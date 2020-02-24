@@ -227,7 +227,7 @@ public class MMORPG {
     @SubscribeEvent
     public static void onServerStopping(FMLServerStoppingEvent event) {
 
-        OnShutdownResetMaps.shouldDelete = Load.world(MapManager.getWorld(MapManager.DUNGEON))
+        OnShutdownResetMaps.shouldDelete = Load.world(MapManager.getWorld(MapManager.getDungeonDimensionType()))
             .shouldDeleteFolderOnServerShutdown();
 
     }

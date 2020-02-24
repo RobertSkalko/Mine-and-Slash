@@ -5,13 +5,14 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
+import com.robertx22.mine_and_slash.new_content.ProcessChunkBlocks;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -29,6 +30,7 @@ public class OnServerTick {
     static final int TicksToGiveMapPortal = 500;
     static final int TicksToPassMinute = 1200;
     static final int TicksToSpellCooldowns = 1;
+    static final int TicksToProcessChunks = 100;
 
     public static HashMap<UUID, PlayerTickData> PlayerTickDatas = new HashMap<UUID, PlayerTickData>();
 
@@ -117,6 +119,10 @@ public class OnServerTick {
                         .ifPresent(x -> x.onMinute(player));
 
                 }
+                if (data.ticksToProcessChunks > TicksToProcessChunks) {
+                    data.ticksToProcessChunks = 0;
+                    ProcessChunkBlocks.process(player);
+                }
 
                 if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {
                     data.ticksToSpellCooldowns = 0;
@@ -158,12 +164,14 @@ public class OnServerTick {
         public int mapPortalTicks = 0;
         public int ticksToPassMinute = 0;
         public int ticksToSpellCooldowns = 0;
+        public int ticksToProcessChunks = 0;
 
         public void increment() {
             regenTicks++;
             playerSyncTick++;
             mapPortalTicks++;
             ticksToPassMinute++;
+            ticksToProcessChunks++;
             ticksToSpellCooldowns++;
         }
 

@@ -59,7 +59,7 @@ public class MapPortalBlock extends EndPortalBlock {
 
                                 if (data.hasTimeForMap()) {
 
-                                    World mapworld = MapManager.getWorld(MapManager.DUNGEON);
+                                    World mapworld = MapManager.getWorld(MapManager.getDungeonDimensionType());
 
                                     if (mapworld == null) {
                                         return;
@@ -74,7 +74,7 @@ public class MapPortalBlock extends EndPortalBlock {
 
                                         p = new BlockPos(p.getX() + 8, 55, p.getZ() + 8);
 
-                                        Entity tped = PlayerUtils.changeDimension((ServerPlayerEntity) player, MapManager.DUNGEON, p);
+                                        Entity tped = PlayerUtils.changeDimension((ServerPlayerEntity) player, MapManager.getDungeonDimensionType(), p);
 
                                         MMORPG.devToolsLog("tp to map succeeded");
 

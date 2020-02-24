@@ -50,6 +50,9 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
 
                 String dungeonID = DungeonDimensionData.getId(cpos);
 
+                Load.world(MapManager.getWorld(type))
+                    .init(data, cpos);
+
                 return summonPortal(world, pos, type, dungeonID);
 
             }

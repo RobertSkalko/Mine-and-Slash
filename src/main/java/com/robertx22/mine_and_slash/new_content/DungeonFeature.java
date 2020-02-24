@@ -3,11 +3,7 @@ package com.robertx22.mine_and_slash.new_content;
 import com.mojang.datafixers.Dynamic;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
-import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
-import com.robertx22.mine_and_slash.new_content.registry.DataProcessors;
-import net.minecraft.block.Blocks;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.state.properties.StructureMode;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -100,34 +96,6 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                 }
 
                 boolean success = template.addBlocksToWorld(world, position, settings, 2);
-
-                if (success) {
-                    for (Template.BlockInfo blockInfo : template.func_215381_a(position, settings, Blocks.STRUCTURE_BLOCK)) {
-                        if (blockInfo.nbt != null) {
-                            StructureMode structuremode = StructureMode.valueOf(blockInfo.nbt.getString("mode"));
-                            if (structuremode == StructureMode.DATA) {
-                                String data = blockInfo.nbt.getString("metadata");
-                                BlockPos data_pos = blockInfo.pos;
-
-                                boolean any = false;
-
-                                for (DataProcessor x : DataProcessors.getAll()) {
-                                    boolean did = x.process(data, data_pos, world);
-                                    if (did) {
-                                        any = true;
-                                    }
-                                }
-
-                                if (any) {
-                                    world.setBlockState(data_pos, Blocks.AIR.getDefaultState(), 2); // delete data block
-                                } else {
-                                    System.out.println("Data block with tag: " + data + " had no matching processors!");
-                                }
-
-                            }
-                        }
-                    }
-                }
 
                 return success;
 

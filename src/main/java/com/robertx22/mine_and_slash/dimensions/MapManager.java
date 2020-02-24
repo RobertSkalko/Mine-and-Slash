@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.dimensions;
 
-import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
+import com.robertx22.mine_and_slash.database.world_providers.DungeonIWP;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -20,21 +20,21 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.minecraftforge.registries.ObjectHolder;
 
 public class MapManager {
 
     public static final String DUNGEON_ID = "mmorpg:resettable_dungeon";
 
-    @ObjectHolder(DUNGEON_ID)
-    public static DimensionType DUNGEON;
+    public static DimensionType getDungeonDimensionType() {
+        return getDimensionType(new ResourceLocation(DUNGEON_ID));
+    }
 
     @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class EventMod {
+
         @SubscribeEvent
         public static void registerModDimensions(RegistryEvent.Register<ModDimension> event) {
 
@@ -54,46 +54,19 @@ public class MapManager {
 
             }
 
+            ModDimension moddim = SlashRegistry.WorldProviders()
+                .get(new DungeonIWP(null, null).GUID()).moddim;
+            DimensionType type =
+                DimensionManager.registerDimension(new ResourceLocation(DUNGEON_ID), moddim, new PacketBuffer(Unpooled.buffer()), true);
+            DimensionManager.keepLoaded(type, false);
+
         }
 
-    }
-
-    @Mod.EventBusSubscriber
-    public static class announce {
         @SubscribeEvent
-        public static void registerDimensions(RegisterDimensionsEvent event) {
-            for (IWP iwp : SlashRegistry.WorldProviders()
-                .getList()) {
-                ModDimension moddim = iwp.getModDim();
-                DimensionType type = DimensionManager.registerDimension(new ResourceLocation(DUNGEON_ID), moddim, new PacketBuffer(Unpooled.buffer()), true);
-                DimensionManager.keepLoaded(type, false);
-            }
+        public static void regTypes(RegistryEvent.Register<DimensionType> event) {
+
         }
 
-    }
-
-    static ResourceLocation getResourceLocForMap(MapItemData map) {
-        return new ResourceLocation(Ref.MODID, BaseWorldProvider.RESETTABLE + "_mine_and_slash_map_" + map.mapUUID);
-    }
-
-    public static DimensionType getOrRegister(MapItemData map) {
-
-        IWP iwp = map.getIWP();
-        ResourceLocation res = getResourceLocForMap(map);
-        // this gets the random id that allows dynamic dimensions
-
-        if (isRegistered(res)) {
-            return DimensionType.byName(res);
-        }
-
-        return null;
-        /*
-         WorldMapCap.IWorldMapData mapcap = Load.world(getWorld(type));
-        mapcap.init(map); // this should work but it doesnt, i made a bandaid solution elsewhere
-
-        return type;
-
-         */
     }
 
     public static DimensionType getDimensionType(ResourceLocation res) {
@@ -120,6 +93,11 @@ public class MapManager {
     }
 
     public static String getId(IWorld world) {
+
+        if (world.getDimension() instanceof DungeonIWP) {
+            return DUNGEON_ID; // TODO UNSURE WHY NULLP
+        }
+
         try {
             return getResourceLocation(world.getDimension()
                 .getType()).toString();
@@ -155,11 +133,9 @@ public class MapManager {
     public static DimensionType setupPlayerMapDimension(PlayerEntity player, UnitData unit, MapItemData map,
                                                         BlockPos pos) {
 
-        ResourceLocation res = getResourceLocForMap(map);
+        DimensionType type = getDungeonDimensionType();
 
-        DimensionType type = getOrRegister(map);
-
-        unit.setCurrentMapId(res.toString());
+        unit.setCurrentMapId(map.mapUUID);
 
         PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.dungeon_dimension;
 
+import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -22,7 +23,16 @@ public class DungeonDimensionData {
         return map.get(getId(pos));
     }
 
+    public DungeonData getData(ChunkPos pos) {
+        return map.get(getId(pos));
+    }
+
     public boolean hasData(BlockPos pos) {
+        String id = getId(pos);
+        return hasData(id);
+    }
+
+    public boolean hasData(ChunkPos pos) {
         String id = getId(pos);
         return hasData(id);
     }
@@ -40,10 +50,12 @@ public class DungeonDimensionData {
 
         while (id.isEmpty() || hasData(id) || tries > 1000) {
 
-            int x = RandomUtils.RandomRange(500, Integer.MAX_VALUE);
-            int z = RandomUtils.RandomRange(500, Integer.MAX_VALUE);
+            int x = RandomUtils.RandomRange(50, 50000);
+            int z = RandomUtils.RandomRange(50, 50000);
 
             pos = new ChunkPos(x, z);
+
+            pos = DungeonUtils.getStartChunk(pos);
 
             id = getId(pos);
         }
@@ -57,10 +69,11 @@ public class DungeonDimensionData {
     }
 
     public static String getId(BlockPos pos) {
-        return getId(new ChunkPos(pos));
+        return getId(DungeonUtils.getStartChunk(new ChunkPos(pos)));
     }
 
     public static String getId(ChunkPos cpos) {
+        cpos = DungeonUtils.getStartChunk(cpos);
         return cpos.x + "_" + cpos.z;
     }
 
@@ -80,9 +93,9 @@ public class DungeonDimensionData {
         return null;
     }
 
-    public void setupNew(DungeonData d, BlockPos pos) {
+    public void setupNew(DungeonData d, ChunkPos pos) {
         if (hasData(pos)) {
-            throw new RuntimeException("Can't setup new dungeon over existing one!");
+            //throw new RuntimeException("Can't setup new dungeon over existing one!");
         } else {
             map.put(getId(pos), d);
         }

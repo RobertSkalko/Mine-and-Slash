@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
+import com.robertx22.mine_and_slash.uncommon.capability.chunk.DungeonChunkCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.*;
@@ -45,6 +46,9 @@ public class CapabilityRegister {
 
         CapabilityManager.INSTANCE.register(
             WorldMapCap.IWorldMapData.class, new WorldMapCap.Storage(), WorldMapCap.DefaultImpl::new);
+
+        CapabilityManager.INSTANCE.register(
+            DungeonChunkCap.IDungeonChunkData.class, new DungeonChunkCap.Storage(), DungeonChunkCap.DefaultImpl::new);
 
     }
 

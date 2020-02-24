@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability.world;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonData;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
@@ -11,6 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -38,7 +40,7 @@ public class WorldMapCap {
 
         MapItemData getMap(BlockPos pos);
 
-        void init(MapItemData map, BlockPos pos);
+        void init(MapItemData map, ChunkPos pos);
 
         boolean shouldDeleteFolderOnServerShutdown();
 
@@ -68,7 +70,6 @@ public class WorldMapCap {
         }
     }
 
-    static String EVENTS_LOC = Ref.MODID + ":events";
     static String DATA_LOC = Ref.MODID + ":data";
 
     public static class DefaultImpl implements IWorldMapData {
@@ -100,18 +101,19 @@ public class WorldMapCap {
         }
 
         @Override
-        public void init(MapItemData map, BlockPos pos) {
+        public void init(MapItemData map, ChunkPos pos) {
+
+            ChunkPos cpos = DungeonUtils.getStartChunk(pos);
 
             DungeonData d = new DungeonData();
             d.mapData = map;
-
-            data.setupNew(d, pos);
+            data.setupNew(d, cpos);
 
         }
 
         @Override
         public boolean shouldDeleteFolderOnServerShutdown() {
-            return data.getDungeonsAmount() > 5000;
+            return data.getDungeonsAmount() > 1000;
         }
 
         @Override
@@ -144,7 +146,13 @@ public class WorldMapCap {
 
         @Override
         public MapItemData getMap(BlockPos pos) {
-            return data.getData(pos).mapData;
+            try {
+                return data.getData(pos).mapData;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
         }
 
     }
