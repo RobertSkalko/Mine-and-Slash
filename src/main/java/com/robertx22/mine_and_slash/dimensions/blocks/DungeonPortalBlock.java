@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.dimensions.blocks;
 
 import com.google.common.cache.LoadingCache;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -57,18 +58,36 @@ public class DungeonPortalBlock extends Block {
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         Direction.Axis direction$axis = facing.getAxis();
         Direction.Axis direction$axis1 = stateIn.get(AXIS);
+
+        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        /*
         boolean flag = direction$axis1 != direction$axis && direction$axis.isHorizontal();
         return !flag && facingState.getBlock() != this && !(new DungeonPortalBlock.Size(worldIn, currentPos, direction$axis1)).func_208508_f() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+*/
+
     }
 
     @Override
     public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity en) {
-        if (!en.isPassenger() && !en.isBeingRidden() && en.isNonBoss()) {
-            if (en instanceof PlayerEntity) {
-                PlayerEntity player = (PlayerEntity) en;
-                Load.playerMapData(player)
-                    .teleportPlayerBack(player);
+
+        try {
+            if (!en.isPassenger() && !en.isBeingRidden() && en.isNonBoss()) {
+                if (!worldIn.isRemote) {
+                    if (en instanceof PlayerEntity) {
+                        PlayerEntity player = (PlayerEntity) en;
+
+                        if (WorldUtils.isMapWorldClass(en.world)) {
+                            Load.playerMapData(player)
+                                .teleportPlayerBack(player);
+                        } else {
+
+                        }
+
+                    }
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

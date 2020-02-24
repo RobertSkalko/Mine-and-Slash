@@ -152,7 +152,9 @@ public class WorldMapCap {
                 e.printStackTrace();
             }
 
-            return null;
+            System.out.println("No data map found, returning blank default.");
+            return new MapItemData();
+
         }
 
     }

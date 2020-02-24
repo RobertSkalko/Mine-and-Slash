@@ -3,9 +3,12 @@ package com.robertx22.mine_and_slash.loot.gens;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueRuneBlueprint;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.item.ItemStack;
+
+import java.util.Comparator;
 
 public class UniqueRuneLootGen extends BaseLootGen<UniqueRuneBlueprint> {
 
@@ -15,12 +18,25 @@ public class UniqueRuneLootGen extends BaseLootGen<UniqueRuneBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return ModConfig.INSTANCE.DropRates.UNIQUE_RUNE_DROPRATE.get().floatValue();
+        return ModConfig.INSTANCE.DropRates.UNIQUE_RUNE_DROPRATE.get()
+            .floatValue();
     }
+
+    static int lowestTierRune = -1;
 
     @Override
     public boolean condition() {
-        return WorldUtils.dropsUniques(info.world);
+
+        if (lowestTierRune < 0) {
+            lowestTierRune = SlashRegistry.Runes()
+                .getFiltered(x -> x.isUnique)
+                .stream()
+                .min(Comparator.comparingInt(x -> x.Tier()))
+                .get()
+                .Tier();
+        }
+
+        return WorldUtils.dropsUniques(info.world) && info.tier >= lowestTierRune;
     }
 
     @Override
