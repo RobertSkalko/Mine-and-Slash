@@ -3,12 +3,12 @@ package com.robertx22.mine_and_slash.onevent.entity;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.quests.actions.KilledMobData;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -73,7 +73,7 @@ public class OnMobDeathDrops {
 
                             if (exp > 0) {
                                 DmgNumPacket packet = new DmgNumPacket(
-                                        mobKilled, Elements.Nature, "+" + NumberUtils.formatNumber(exp) + " Exp!");
+                                    mobKilled, Elements.Nature, "+" + NumberUtils.formatNumber(exp) + " Exp!");
                                 packet.isExp = true;
                                 MMORPG.sendToClient(packet, player);
                             }
@@ -85,7 +85,7 @@ public class OnMobDeathDrops {
 
         } catch (
 
-                Exception e) {
+            Exception e) {
             e.printStackTrace();
         }
 
@@ -93,7 +93,8 @@ public class OnMobDeathDrops {
 
     private static int GiveExp(LivingEntity victim, PlayerEntity entity, UnitData player, UnitData mob, float multi) {
 
-        int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity()).ExpOnKill() * multi);
+        int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity())
+            .ExpOnKill() * multi);
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mob, player, exp);
 
@@ -102,7 +103,8 @@ public class OnMobDeathDrops {
         }
 
         if (WorldUtils.isMapWorldClass(victim.world)) {
-            exp *= Load.world(entity.world).getExpMultiplier();
+            exp *= Load.world(entity.world)
+                .getExpMultiplier(victim.getPosition());
         }
 
         exp = player.PostGiveExpEvent(victim, entity, exp);

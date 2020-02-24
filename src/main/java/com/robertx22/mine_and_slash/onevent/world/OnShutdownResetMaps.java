@@ -15,25 +15,30 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.Objects;
 
-public class OnStartResetMaps {
+public class OnShutdownResetMaps {
 
-    public static void OnStartResetMaps() {
+    public static boolean shouldDelete = false;
+
+    public static void deleteFolders() {
 
         if (ModConfig.INSTANCE.Server.RESET_MAP_DIMENSIONS_ON_LOAD.get()) {
 
-            File file = new File(FMLPaths.GAMEDIR.get().toAbsolutePath().toString());
-            for (File dir : Objects.requireNonNull(FileUtils.listFilesAndDirs(file, new NoFilter(), new NoFilter()))) {
+            if (shouldDelete) {
 
-                try {
+                File file = new File(FMLPaths.GAMEDIR.get()
+                    .toAbsolutePath()
+                    .toString());
+                for (File dir : Objects.requireNonNull(FileUtils.listFilesAndDirs(file, new NoFilter(), new NoFilter()))) {
 
-                    if (dirMatches(dir)) {
-                        System.out.println("Deleting Resettable Map Folder from Mine and Slash");
-                        deleteDirectoryRecursion(dir.toPath());
+                    try {
+                        if (dirMatches(dir)) {
+                            System.out.println("Deleting Resettable Map Folder from Mine and Slash");
+                            deleteDirectoryRecursion(dir.toPath());
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
-
             }
         }
     }
@@ -54,7 +59,8 @@ public class OnStartResetMaps {
     }
 
     private static boolean dirMatches(File file) {
-        String str = file.toPath().toString();
+        String str = file.toPath()
+            .toString();
 
         if (file.isDirectory()) {
 

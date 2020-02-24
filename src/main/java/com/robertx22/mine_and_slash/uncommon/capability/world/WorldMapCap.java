@@ -1,17 +1,16 @@
 package com.robertx22.mine_and_slash.uncommon.capability.world;
 
-import com.robertx22.mine_and_slash.database.map_events.base.MapEvent;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.MapEventsData;
+import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonData;
+import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -29,25 +28,21 @@ public class WorldMapCap {
 
     public interface IWorldMapData extends ICommonCap {
 
-        float getLootMultiplier();
+        float getLootMultiplier(BlockPos pos);
 
-        float getExpMultiplier();
+        float getExpMultiplier(BlockPos pos);
 
-        int getLevel();
+        int getLevel(BlockPos pos);
 
-        int getTier();
+        int getTier(BlockPos pos);
 
-        MapItemData getMap();
+        MapItemData getMap(BlockPos pos);
 
-        boolean isPermaDeath();
+        void init(MapItemData map, BlockPos pos);
 
-        void init(MapItemData map);
+        boolean shouldDeleteFolderOnServerShutdown();
 
-        void startRandomMapEvent(World world);
-
-        void startEvent(MapEvent event, World world);
-
-        MapEventsData getEvents();
+        DungeonDimensionData getData();
     }
 
     @Mod.EventBusSubscriber
@@ -74,23 +69,19 @@ public class WorldMapCap {
     }
 
     static String EVENTS_LOC = Ref.MODID + ":events";
+    static String DATA_LOC = Ref.MODID + ":data";
 
     public static class DefaultImpl implements IWorldMapData {
 
-        MapItemData mapdata = null;
-        MapEventsData events = new MapEventsData();
+        DungeonDimensionData data = new DungeonDimensionData();
 
         @Override
         public CompoundNBT saveToNBT() {
 
             CompoundNBT nbt = new CompoundNBT();
 
-            if (mapdata != null) {
-                Map.Save(nbt, mapdata);
-            }
-
-            if (events != null) {
-                LoadSave.Save(events, nbt, EVENTS_LOC);
+            if (data != null) {
+                LoadSave.Save(data, nbt, DATA_LOC);
             }
 
             return nbt;
@@ -99,78 +90,61 @@ public class WorldMapCap {
 
         @Override
         public void loadFromNBT(CompoundNBT nbt) {
-            mapdata = Map.Load(nbt);
-            events = LoadSave.Load(MapEventsData.class, new MapEventsData(), nbt, EVENTS_LOC);
 
-            if (events == null) {
-                events = new MapEventsData();
-            }
-        }
+            data = LoadSave.Load(DungeonDimensionData.class, new DungeonDimensionData(), nbt, DATA_LOC);
 
-        @Override
-        public boolean isPermaDeath() {
-            return false;
-        }
-
-        @Override
-        public void init(MapItemData map) {
-            if (mapdata == null) { // only init once, after that its set in stone
-                this.mapdata = map.clone();
-            }
-        }
-
-        @Override
-        public void startRandomMapEvent(World world) {
-            this.events.add(SlashRegistry.MapEvents()
-                .getFilterWrapped(x -> !events.isActive(x))
-                .random(), world);
-        }
-
-        @Override
-        public void startEvent(MapEvent event, World world) {
-            this.events.add(event, world);
-
-        }
-
-        @Override
-        public MapEventsData getEvents() {
-            if (events == null) {
-                events = new MapEventsData();
+            if (data == null) {
+                data = new DungeonDimensionData();
             }
 
-            return events;
         }
 
         @Override
-        public float getLootMultiplier() {
+        public void init(MapItemData map, BlockPos pos) {
 
-            return this.getMap()
+            DungeonData d = new DungeonData();
+            d.mapData = map;
+
+            data.setupNew(d, pos);
+
+        }
+
+        @Override
+        public boolean shouldDeleteFolderOnServerShutdown() {
+            return data.getDungeonsAmount() > 5000;
+        }
+
+        @Override
+        public DungeonDimensionData getData() {
+            return data;
+        }
+
+        @Override
+        public float getLootMultiplier(BlockPos pos) {
+
+            return this.getMap(pos)
                 .getBonusLootMulti();
 
         }
 
         @Override
-        public float getExpMultiplier() {
-            return 1 + getMap().tier * 0.05F;
+        public float getExpMultiplier(BlockPos pos) {
+            return 1 + getMap(pos).tier * 0.05F;
         }
 
         @Override
-        public int getLevel() {
-            return this.getMap().level;
+        public int getLevel(BlockPos pos) {
+            return this.getMap(pos).level;
         }
 
         @Override
-        public int getTier() {
-            return this.getMap().tier;
+        public int getTier(BlockPos pos) {
+            return this.getMap(pos).tier;
         }
 
         @Override
-        public MapItemData getMap() {
-            if (mapdata != null) {
-                return this.mapdata;
-            } else {
-                return MapItemData.empty();
-            }
+        public MapItemData getMap(BlockPos pos) {
+            return data.getData(pos).mapData;
         }
 
     }

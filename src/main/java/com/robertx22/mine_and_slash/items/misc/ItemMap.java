@@ -3,15 +3,19 @@ package com.robertx22.mine_and_slash.items.misc;
 import com.robertx22.mine_and_slash.data_generation.models.IAutoModel;
 import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -40,14 +44,21 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
 
             if (data != null) {
 
-                return summonPortal(world, pos, type);
+                ChunkPos cpos = Load.world(MapManager.getWorld(type))
+                    .getData()
+                    .randomFree();
+
+                String dungeonID = DungeonDimensionData.getId(cpos);
+
+                return summonPortal(world, pos, type, dungeonID);
+
             }
         }
 
         return false;
     }
 
-    private static boolean summonPortal(World world, BlockPos pos, DimensionType type) {
+    private static boolean summonPortal(World world, BlockPos pos, DimensionType type, String dungeonId) {
 
         spawnFrameBlock(world, pos.south());
         spawnFrameBlock(world, pos.north());
@@ -63,11 +74,11 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
         spawnFrameBlock(world, pos.north()
             .west());
 
-        return spawnPortalBlock(world, pos, type);
+        return spawnPortalBlock(world, pos, type, dungeonId);
 
     }
 
-    private static boolean spawnPortalBlock(World world, BlockPos pos, DimensionType type) {
+    private static boolean spawnPortalBlock(World world, BlockPos pos, DimensionType type, String dungeonId) {
         Block block = world.getBlockState(pos)
             .getBlock();
 
@@ -76,7 +87,9 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
             world.setBlockState(pos, BlockRegister.MAP_PORTAL.get()
                 .getDefaultState(), 2);
             TileMapPortal portal = new TileMapPortal();
+            portal.dungeonID = dungeonId;
             world.setTileEntity(pos, portal);
+
             return true;
         }
         return false;

@@ -23,7 +23,7 @@ public class Dungeon {
 
     public Dungeon(int size) {
         this.size = size;
-        this.capacity = size;
+        this.capacity = size / 2;
 
         rooms = new BuiltRoom[capacity][capacity];
 
@@ -78,7 +78,7 @@ public class Dungeon {
 
     public BuiltRoom getRoomForChunk(ChunkPos pos) {
         try {
-            ChunkPos start = DungeonBuilder.getStartChunk(pos);
+            ChunkPos start = DungeonUtils.getStartChunk(pos);
             ChunkPos relative = new ChunkPos(pos.x - start.x, pos.z - start.z);
             return rooms[getMiddle() + relative.x][getMiddle() + relative.z];
         } catch (Exception e) {

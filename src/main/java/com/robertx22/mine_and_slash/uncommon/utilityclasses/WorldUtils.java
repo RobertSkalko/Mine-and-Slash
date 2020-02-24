@@ -43,7 +43,7 @@ public class WorldUtils {
         List<MapAffixData> list = new ArrayList<>();
 
         if (data != null) {
-            list.addAll(MapItemData.getAllAffixesThatAffect(data.getMap().affixes, entity));
+            list.addAll(MapItemData.getAllAffixesThatAffect(data.getMap(entity.getPosition()).affixes, entity));
         }
 
         list.addAll(MapItemData.getAllAffixesThatAffect(getAllMapAffixes(entity.world), entity));
@@ -190,10 +190,10 @@ public class WorldUtils {
         return null;
     }
 
-    public static int getTier(World world, WorldMapCap.IWorldMapData data) {
+    public static int getTier(World world, WorldMapCap.IWorldMapData data, BlockPos pos) {
 
         if (WorldUtils.isMapWorldClass(world)) {
-            return data.getTier();
+            return data.getTier(pos);
         } else {
             return SlashRegistry.getDimensionConfig(world).MAP_TIER;
         }

@@ -307,8 +307,6 @@ public enum Words implements IAutoLocName {
 
     Beware("Beware"),
 
-    MapWorldsAreResetOnGameReload("Maps Worlds Wipe On Game Reload!"),
-
     DoNotBuildInMaps("Do not build in maps!"),
 
     World_Type("World Type"),

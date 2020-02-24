@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -36,11 +37,13 @@ public class MapQuestReward extends QuestReward {
 
             WorldMapCap.IWorldMapData worldmapdata = Load.world(player.world);
 
+            BlockPos pos = player.getPosition();
+
             LootCrate crate = SlashRegistry.LootCrates()
-                .get(worldmapdata.getMap().rewardCrateGUID);
+                .get(worldmapdata.getMap(pos).rewardCrateGUID);
 
             ItemStack stack = crate.getCrateStack(
-                worldmapdata.getLevel(), worldmapdata.getTier(), data.reward.score.number);
+                worldmapdata.getLevel(pos), worldmapdata.getTier(pos), data.reward.score.number);
 
             player.sendMessage(new StringTextComponent(
                 TextFormatting.GREEN + "Map Completed! Further exploration seems to give little benefit."));

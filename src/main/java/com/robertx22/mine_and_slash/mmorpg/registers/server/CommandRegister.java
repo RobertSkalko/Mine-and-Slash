@@ -54,8 +54,6 @@ public class CommandRegister {
 
         GenDefaultCompItemsOfMod.register(dispatcher);
 
-        StartMapEvent.register(dispatcher);
-
         GiveCrate.register(dispatcher);
 
         PartyCommand.register(dispatcher);

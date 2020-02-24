@@ -2,7 +2,8 @@ package com.robertx22.mine_and_slash.dimensions.blocks;
 
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
+import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
+import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
@@ -21,7 +22,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 
 public class MapPortalBlock extends EndPortalBlock {
 
@@ -49,44 +49,41 @@ public class MapPortalBlock extends EndPortalBlock {
 
                         if (portal.readyToTeleport()) {
 
-                            PlayerEntity player = (PlayerEntity) entity;
+                            ChunkPos cpos = DungeonDimensionData.getChunkFromId(portal.dungeonID);
 
-                            PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
+                            if (cpos != null) {
 
-                            if (data.hasTimeForMap()) {
+                                PlayerEntity player = (PlayerEntity) entity;
 
-                                DimensionType type = MapManager.getOrRegister(data.getMap());
+                                PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
-                                World mapworld = MapManager.getWorld(type);
+                                if (data.hasTimeForMap()) {
 
-                                // mapworld.getCapability(WorldMapCap.Data).ifPresent(x -> x.init(data.getMap()));
+                                    World mapworld = MapManager.getWorld(MapManager.DUNGEON);
 
-                                if (mapworld == null) {
-                                    return;
+                                    if (mapworld == null) {
+                                        return;
+                                    }
+
+                                    if (WorldUtils.isMapWorld(mapworld)) {
+
+                                        entity.sendMessage(Chats.Teleport_started.locName());
+
+                                        BlockPos p = DungeonUtils.getStartChunk(cpos)
+                                            .asBlockPos();
+
+                                        p = new BlockPos(p.getX() + 8, 55, p.getZ() + 8);
+
+                                        Entity tped = PlayerUtils.changeDimension((ServerPlayerEntity) player, MapManager.DUNGEON, p);
+
+                                        MMORPG.devToolsLog("tp to map succeeded");
+
+                                    }
+                                } else {
+                                    entity.sendMessage(Chats.Not_enough_time.locName());
                                 }
 
-                                if (WorldUtils.isMapWorld(mapworld)) {
-
-                                    MMORPG.devToolsLog(
-                                        "trying to teleport to portal id:  " + MapManager.getResourceLocation(type)
-                                            .toString() + " world id: " + MapManager.getId(mapworld));
-
-                                    entity.sendMessage(Chats.Teleport_started.locName());
-
-                                    BlockPos p = DungeonBuilder.getStartChunk(new ChunkPos(0, 0))
-                                        .asBlockPos();
-
-                                    p = new BlockPos(p.getX() + 8, 55, p.getZ() + 8);
-
-                                    Entity tped = PlayerUtils.changeDimension((ServerPlayerEntity) player, type, p);
-
-                                    MMORPG.devToolsLog("tp to map succeeded");
-
-                                }
-                            } else {
-                                entity.sendMessage(Chats.Not_enough_time.locName());
                             }
-
                         }
                     }
                 }

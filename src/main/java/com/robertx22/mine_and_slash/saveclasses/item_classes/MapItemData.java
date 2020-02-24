@@ -323,9 +323,6 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         tooltip.add(Styles.BLUECOMP()
             .appendSibling(CLOC.tooltip("put_in_mapdevice")));
 
-        tooltip.add(new StringTextComponent(TextFormatting.RED + "[" + "\u2668" + "]").appendSibling(
-            Words.MapWorldsAreResetOnGameReload.locName()));
-
         TooltipUtils.removeDoubleBlankLines(tooltip, 20);
 
         return tooltip;

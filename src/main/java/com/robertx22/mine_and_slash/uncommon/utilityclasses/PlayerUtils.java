@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -88,12 +87,6 @@ public class PlayerUtils {
         player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
 
         EntityUtils.setLoc(player, new Vec3d(pos), player.rotationYaw, player.rotationPitch);
-
-        if (WorldUtils.isMapWorldClass(player.world)) {
-            Load.world(player.world)
-                .init(Load.playerMapData(player)
-                    .getMap()); // TODO
-        }
 
         return player;
 

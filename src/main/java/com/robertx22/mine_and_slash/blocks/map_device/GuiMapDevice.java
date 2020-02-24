@@ -42,7 +42,9 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice, TileMapDevice> {
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
 
         // Bind the image texture
-        Minecraft.getInstance().getTextureManager().bindTexture(texture);
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(texture);
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
@@ -56,7 +58,7 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice, TileMapDevice> {
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
         font.drawString(Words.Map_Device.translate(), LABEL_XPOS, LABEL_YPOS, Color.darkGray
-                .getRGB());
+            .getRGB());
 
         try {
 
@@ -66,8 +68,8 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice, TileMapDevice> {
 
             final int REM_XPOS = 5;
             final int REM_YPOS = 15;
-            font.drawString("Remaining Group Map Tickets: " + tile.mapDeviceData.getRemainingTickets(), REM_XPOS, REM_YPOS, Color.darkGray
-                    .getRGB());
+            //  font.drawString("Remaining Group Map Tickets: " + tile.mapDeviceData.getRemainingTickets(), REM_XPOS, REM_YPOS, Color.darkGray
+            //         .getRGB());
 
             String text = "Take Group Map Ticket";
 

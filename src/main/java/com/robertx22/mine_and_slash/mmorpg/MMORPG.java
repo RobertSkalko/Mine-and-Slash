@@ -22,11 +22,12 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
-import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
+import com.robertx22.mine_and_slash.onevent.world.OnShutdownResetMaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
 import net.minecraft.entity.Entity;
@@ -43,10 +44,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.*;
-import net.minecraftforge.fml.event.server.FMLServerAboutToStartEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
-import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
+import net.minecraftforge.fml.event.server.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
@@ -118,8 +116,6 @@ public class MMORPG {
         ConfigRegister.registerForgeConfigs(); // MUST BE IN MAIN CLASS
 
         SlashRegistry.registerAllItems(); // after config registerAll
-
-        OnStartResetMaps.OnStartResetMaps(); // TODO delete this after PR accepted
 
         SlashRegistry.checkGuidValidity();
 
@@ -224,8 +220,16 @@ public class MMORPG {
     }
 
     @SubscribeEvent
+    public static void onServerStopping(FMLServerStoppedEvent event) {
+        OnShutdownResetMaps.deleteFolders(); // TODO delete this after PR accepted
+    }
+
+    @SubscribeEvent
     public static void onServerStopping(FMLServerStoppingEvent event) {
-        MapManager.unregisterDims();
+
+        OnShutdownResetMaps.shouldDelete = Load.world(MapManager.getWorld(MapManager.DUNGEON))
+            .shouldDeleteFolderOnServerShutdown();
+
     }
 
     public static <MSG> void sendToTracking(MSG msg, Entity entity) {

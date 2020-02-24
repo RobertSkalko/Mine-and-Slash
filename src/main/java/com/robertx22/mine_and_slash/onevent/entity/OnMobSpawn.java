@@ -108,7 +108,7 @@ public class OnMobSpawn {
         UnitData endata = Load.Unit(entity);
 
         if (WorldUtils.isMapWorldClass(entity.world)) {
-            endata.setTier(mapData.getTier());
+            endata.setTier(mapData.getTier(entity.getPosition()));
         }
 
         endata.SetMobLevelAtSpawn(mapData, entity, nearestPlayer);

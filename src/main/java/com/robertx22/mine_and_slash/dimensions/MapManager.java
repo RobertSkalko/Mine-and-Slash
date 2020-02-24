@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
-import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,8 +24,14 @@ import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.minecraftforge.registries.ObjectHolder;
 
 public class MapManager {
+
+    public static final String DUNGEON_ID = "mmorpg:resettable_dungeon";
+
+    @ObjectHolder(DUNGEON_ID)
+    public static DimensionType DUNGEON;
 
     @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class EventMod {
@@ -56,45 +61,15 @@ public class MapManager {
     @Mod.EventBusSubscriber
     public static class announce {
         @SubscribeEvent
-        public static void registerModDimensions(RegisterDimensionsEvent event) {
-
+        public static void registerDimensions(RegisterDimensionsEvent event) {
+            for (IWP iwp : SlashRegistry.WorldProviders()
+                .getList()) {
+                ModDimension moddim = iwp.getModDim();
+                DimensionType type = DimensionManager.registerDimension(new ResourceLocation(DUNGEON_ID), moddim, new PacketBuffer(Unpooled.buffer()), true);
+                DimensionManager.keepLoaded(type, false);
+            }
         }
 
-    }
-
-    // this is INCOMPLETE AND DOES NOTHING
-    public static void unregisterDims() {
-        DimensionManager.getRegistry()
-            .stream()
-            .filter(x -> {
-                try {
-                    if (x.getModType() != null) {
-                        String path = x.getModType()
-                            .getRegistryName()
-                            .getNamespace();
-
-                        if (path.equals(Ref.MODID)) {
-                            return true;
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return false;
-            })
-            .forEach(d -> {
-                try {
-                    deleteDimension(d);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-    }
-
-    public static void deleteDimension(DimensionType type) {
-
-        // TODO DimensionManager.markForDeletition(type);
     }
 
     static ResourceLocation getResourceLocForMap(MapItemData map) {
@@ -111,16 +86,14 @@ public class MapManager {
             return DimensionType.byName(res);
         }
 
-        ModDimension moddim = iwp.getModDim();
-
-        DimensionType type = DimensionManager.registerDimension(res, moddim, new PacketBuffer(Unpooled.buffer()), true);
-
-        DimensionManager.keepLoaded(type, false);
-
-        WorldMapCap.IWorldMapData mapcap = Load.world(getWorld(type));
+        return null;
+        /*
+         WorldMapCap.IWorldMapData mapcap = Load.world(getWorld(type));
         mapcap.init(map); // this should work but it doesnt, i made a bandaid solution elsewhere
 
         return type;
+
+         */
     }
 
     public static DimensionType getDimensionType(ResourceLocation res) {

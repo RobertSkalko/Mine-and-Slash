@@ -19,28 +19,14 @@ public class DungeonBuilder {
 
     public DungeonBuilder(long worldSeed, ChunkPos cpos) {
 
-        // worldSeed = 500000; // TODO FOR TEST
-        //cpos = new ChunkPos(0, 0); // TODO TEST
-
-        int chunkX = getStartChunk(cpos).x;
-        int chunkZ = getStartChunk(cpos).z;
+        int chunkX = DungeonUtils.getStartChunk(cpos).x;
+        int chunkZ = DungeonUtils.getStartChunk(cpos).z;
 
         long newSeed = (worldSeed + (long) (chunkX * chunkX * 4987142) + (long) (chunkX * 5947611) + (long) (chunkZ * chunkZ) * 4392871L + (long) (chunkZ * 389711) ^ worldSeed);
         rand = new Random(newSeed);
 
         this.group = RandomUtils.weightedRandom(Arrays.asList(RoomGroup.values()), rand.nextDouble());
 
-    }
-
-    public static ChunkPos getStartChunk(ChunkPos pos) {
-        int chunkX = pos.x;
-        int chunkZ = pos.z;
-        int distToEntranceX = 8 - (chunkX % 50);
-        int distToEntranceZ = 11 - (chunkZ % 50);
-        chunkX += distToEntranceX;
-        chunkZ += distToEntranceZ;
-
-        return new ChunkPos(chunkX, chunkZ);
     }
 
     boolean debug = false;

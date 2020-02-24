@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class LootInfo {
@@ -29,6 +30,8 @@ public class LootInfo {
     public float multi = 1;
     public int minItems = 0;
     public int maxItems = 50;
+
+    public BlockPos pos;
 
     public LootInfo(ItemBlueprint blueprint) {
         this.level = blueprint.level.get();
@@ -62,7 +65,7 @@ public class LootInfo {
         } else {
             if (world != null && mapData != null) {
                 if (WorldUtils.isMapWorld(world)) {
-                    this.tier = WorldUtils.getTier(world, mapData);
+                    this.tier = WorldUtils.getTier(world, mapData, pos);
                 }
             }
         }
@@ -77,23 +80,26 @@ public class LootInfo {
         this.playerData = playerData;
         this.victim = victim;
         this.killer = killer;
+        this.pos = victim.getPosition();
 
-        this.level = WorldUtils.isMapWorldClass(world) ? mapData.getLevel() : mobData.getLevel();
+        this.level = WorldUtils.isMapWorldClass(world) ? mapData.getLevel(pos) : mobData.getLevel();
 
         setTier();
 
     }
 
-    public LootInfo(World theworld) {
+    public LootInfo(World theworld, BlockPos pos) {
         this.world = theworld;
+        this.pos = pos;
     }
 
     public LootInfo(PlayerEntity player) {
         this.world = player.world;
         this.mapData = Load.world(world);
         this.playerData = Load.Unit(player);
+        this.pos = player.getPosition();
 
-        this.level = WorldUtils.isMapWorldClass(world) ? mapData.getLevel() : playerData.getLevel();
+        this.level = WorldUtils.isMapWorldClass(world) ? mapData.getLevel(pos) : playerData.getLevel();
 
         setTier();
 
@@ -141,7 +147,7 @@ public class LootInfo {
             }
 
             chance *= Load.world(world)
-                .getLootMultiplier();
+                .getLootMultiplier(pos);
         }
 
         if (mobData != null && victim != null) {
