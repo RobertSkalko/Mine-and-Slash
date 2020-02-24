@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.new_content.RoomRotation;
 import com.robertx22.mine_and_slash.new_content.RoomSides;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
+import com.robertx22.mine_and_slash.new_content.registry.RoomList;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.Rotation;
@@ -23,12 +24,6 @@ public enum RoomType implements IWeighted {
             return all;
         }
 
-        @Override
-        public List<DungeonRoom> getAllRooms() {
-            List<DungeonRoom> all = new ArrayList<>();
-            all.add(new DungeonRoom("basic_stone_brick", this));
-            return all;
-        }
     },
     STRAIGHT_HALLWAY("straight_hallway") {
         @Override
@@ -41,13 +36,6 @@ public enum RoomType implements IWeighted {
             return all;
         }
 
-        @Override
-        public List<DungeonRoom> getAllRooms() {
-            List<DungeonRoom> all = new ArrayList<>();
-            all.add(new DungeonRoom("stone_brick0", this));
-
-            return all;
-        }
     },
     CURVED_HALLWAY("curved_hallway") {
         @Override
@@ -57,15 +45,6 @@ public enum RoomType implements IWeighted {
             all.add(new RoomRotation(this, new RoomSides(RoomSide.BLOCKED, RoomSide.DOOR, RoomSide.DOOR, RoomSide.BLOCKED), Rotation.CLOCKWISE_90));
             all.add(new RoomRotation(this, new RoomSides(RoomSide.DOOR, RoomSide.BLOCKED, RoomSide.DOOR, RoomSide.BLOCKED), Rotation.CLOCKWISE_180));
             all.add(new RoomRotation(this, new RoomSides(RoomSide.DOOR, RoomSide.BLOCKED, RoomSide.BLOCKED, RoomSide.DOOR), Rotation.COUNTERCLOCKWISE_90));
-            return all;
-        }
-
-        @Override
-        public List<DungeonRoom> getAllRooms() {
-            List<DungeonRoom> all = new ArrayList<>();
-
-            all.add(new DungeonRoom("simple_stone_brick", this));
-
             return all;
         }
 
@@ -81,14 +60,6 @@ public enum RoomType implements IWeighted {
             return all;
         }
 
-        @Override
-        public List<DungeonRoom> getAllRooms() {
-            List<DungeonRoom> all = new ArrayList<>();
-
-            all.add(new DungeonRoom("stone_brick_parkour0", this));
-
-            return all;
-        }
     },
     END("end") {
         @Override
@@ -101,14 +72,6 @@ public enum RoomType implements IWeighted {
             return all;
         }
 
-        @Override
-        public List<DungeonRoom> getAllRooms() {
-            List<DungeonRoom> all = new ArrayList<>();
-
-            all.add(new DungeonRoom("stone_brick_boss", this));
-
-            return all;
-        }
     },
     ENTRANCE("entrance") {
         @Override
@@ -121,14 +84,6 @@ public enum RoomType implements IWeighted {
             return all;
         }
 
-        @Override
-        public List<DungeonRoom> getAllRooms() {
-            List<DungeonRoom> all = new ArrayList<>();
-
-            all.add(new DungeonRoom("basic_stone_brick", this));
-
-            return all;
-        }
     };
 
     public RoomSides sides;
@@ -144,7 +99,13 @@ public enum RoomType implements IWeighted {
 
     public abstract List<RoomRotation> getRotations();
 
-    public abstract List<DungeonRoom> getAllRooms();
+    public final List<DungeonRoom> getAllRooms() {
+        return RoomList.getAllRooms()
+            .stream()
+            .filter(x -> x.type.equals(this))
+            .collect(Collectors.toList());
+
+    }
 
     public DungeonRoom getRandomRoom(Random rand) {
         return getRandomRoom(rand, false);
