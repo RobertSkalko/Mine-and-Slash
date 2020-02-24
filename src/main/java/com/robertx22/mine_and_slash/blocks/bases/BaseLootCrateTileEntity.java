@@ -44,7 +44,7 @@ public abstract class BaseLootCrateTileEntity extends TileEntity implements ITic
 
         // turns invisible for some reason?
         FireworkRocketEntity firework = new FireworkRocketEntity(
-                world, pos.getX(), pos.getY() + 2, pos.getZ(), ItemStack.EMPTY);
+            world, pos.getX(), pos.getY() + 2, pos.getZ(), ItemStack.EMPTY);
         firework.setPosition(pos.getX(), pos.getY() + 2, pos.getZ());
         firework.setInvulnerable(true);
         WorldUtils.spawnEntity(world, firework);
@@ -142,8 +142,8 @@ public abstract class BaseLootCrateTileEntity extends TileEntity implements ITic
             }
 
             ParticleEnum.sendToClients(
-                    getPos(), world, new ParticlePacketData(getPos(), ParticleEnum.CIRCLE_REDSTONE).radius(1.3F)
-                            .color(Elements.Thunder.getRGBColor()));
+                getPos(), world, new ParticlePacketData(getPos(), ParticleEnum.CIRCLE_REDSTONE).radius(1.3F)
+                    .color(Elements.Thunder.getRGBColor()));
 
             dropLootTicks++;
 
@@ -174,7 +174,7 @@ public abstract class BaseLootCrateTileEntity extends TileEntity implements ITic
                 }
 
             } else {
-                player.sendMessage(new StringTextComponent("You have already used this crate. Come again next map!"));
+                player.sendMessage(new StringTextComponent("You have already used this crate!"));
             }
 
         } else {

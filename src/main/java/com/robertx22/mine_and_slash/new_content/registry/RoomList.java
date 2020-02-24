@@ -27,6 +27,13 @@ public class RoomList {
             rooms.add(new DungeonRoom("easy_sandstone_puzzle", RoomType.CURVED_HALLWAY, RoomGroup.MISC));
             rooms.add(new DungeonRoom("infested_cellar", RoomType.STRAIGHT_HALLWAY, RoomGroup.MISC));
 
+            rooms.add(new DungeonRoom("trap", RoomType.FOUR_WAY, RoomGroup.SANDSTONE));
+            rooms.add(new DungeonRoom("basic", RoomType.ENTRANCE, RoomGroup.SANDSTONE));
+            rooms.add(new DungeonRoom("boss", RoomType.END, RoomGroup.SANDSTONE));
+            rooms.add(new DungeonRoom("cactus", RoomType.TRIPLE_HALLWAY, RoomGroup.SANDSTONE));
+            rooms.add(new DungeonRoom("prison", RoomType.CURVED_HALLWAY, RoomGroup.SANDSTONE));
+            rooms.add(new DungeonRoom("puzzle0", RoomType.STRAIGHT_HALLWAY, RoomGroup.SANDSTONE));
+
         }
 
         return rooms;

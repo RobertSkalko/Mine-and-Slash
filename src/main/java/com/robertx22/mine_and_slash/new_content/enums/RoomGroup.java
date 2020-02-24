@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 public enum RoomGroup implements IWeighted {
 
     STONE_BRICK("stone_brick", 1000),
+    SANDSTONE("sandstone", 800),
     MISC("misc", 10),
     TEST("test", 0);
 

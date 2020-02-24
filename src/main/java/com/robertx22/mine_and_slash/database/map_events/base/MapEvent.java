@@ -47,7 +47,7 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
             .forEach(x -> x.sendMessage(comp));
     }
 
-    public static <T extends MobEntity> void summonMinions(EntityType<T> type, int amount, World world, BlockPos p) {
+    public static <T extends MobEntity> void summonMinions(EntityType<T> type, int amount, IWorld world, BlockPos p) {
         for (int i = 0; i < amount; i++) {
             summonMinion(type, world, p);
         }

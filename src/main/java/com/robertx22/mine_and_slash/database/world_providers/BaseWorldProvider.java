@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.world_providers;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonBiomeProvider;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonChunkGenerator;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
@@ -204,6 +205,9 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         }
         if (block.getRegistryName()
             .getNamespace() == "gravestones") {
+            return true;
+        }
+        if (block == BlockRegister.EGG_LOOT_CRATE.get()) {
             return true;
         }
 

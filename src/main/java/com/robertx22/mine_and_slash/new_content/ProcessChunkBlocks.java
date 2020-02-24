@@ -84,7 +84,11 @@ public class ProcessChunkBlocks {
                                                         }
 
                                                         if (any) {
-                                                            player.world.setBlockState(tilePos, Blocks.AIR.getDefaultState(), 2); // delete data block
+                                                            // only set to air if the processor didnt turn it into another block
+                                                            if (player.world.getBlockState(tilePos)
+                                                                .getBlock() == Blocks.STRUCTURE_BLOCK) {
+                                                                player.world.setBlockState(tilePos, Blocks.AIR.getDefaultState(), 2); // delete data block
+                                                            }
                                                         } else {
                                                             System.out.println("Data block with tag: " + metadata + " had no matching processors!");
                                                         }
