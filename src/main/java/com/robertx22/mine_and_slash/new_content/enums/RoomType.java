@@ -94,7 +94,7 @@ public enum RoomType implements IWeighted {
     }
 
     public final DungeonRoom getTestRoom() {
-        return new DungeonRoom("test", this).setTest();
+        return new DungeonRoom("test", this, RoomGroup.TEST).setTest();
     }
 
     public abstract List<RoomRotation> getRotations();
@@ -107,15 +107,22 @@ public enum RoomType implements IWeighted {
 
     }
 
-    public DungeonRoom getRandomRoom(Random rand) {
-        return getRandomRoom(rand, false);
+    public DungeonRoom getRandomRoom(RoomGroup group, Random rand) {
+        return getRandomRoom(group, rand, false);
     }
 
-    public DungeonRoom getRandomRoom(Random rand, boolean debug) {
+    public DungeonRoom getRandomRoom(RoomGroup group, Random rand, boolean debug) {
         if (debug) {
             return this.getTestRoom();
         } else {
-            return RandomUtils.weightedRandom(getAllRooms(), rand.nextDouble());
+            RoomGroup g = RandomUtils.roll(15, rand) ? RoomGroup.MISC : group;
+
+            List<DungeonRoom> possible = getAllRooms().stream()
+
+                .filter(x -> x.group.equals(g))
+                .collect(Collectors.toList());
+            return RandomUtils.weightedRandom(possible, rand.nextDouble());
+
         }
     }
 

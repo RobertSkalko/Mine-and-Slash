@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.world_providers;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.Templates;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonBiomeProvider;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonChunkGenerator;
@@ -236,7 +235,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         ChunkGenerator gen = generator.create(this.world, biomeProvider, gensettings);
 
         if (ModConfig.INSTANCE.Server.RESET_MAP_DIMENSIONS_ON_LOAD.get()) {
-            gen.seed = MMORPG.MAP_WORLD_SEED;
+            //gen.seed = MMORPG.MAP_WORLD_SEED;
         }
 
         return gen;

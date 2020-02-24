@@ -5,7 +5,8 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 public enum RoomGroup implements IWeighted {
 
     STONE_BRICK("stone_brick", 1000),
-    MISC("misc", 10);
+    MISC("misc", 10),
+    TEST("test", 0);
 
     RoomGroup(String folder, int weight) {
         this.folder = folder;

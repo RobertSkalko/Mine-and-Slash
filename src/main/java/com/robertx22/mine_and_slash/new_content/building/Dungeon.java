@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.new_content.BuiltRoom;
 import com.robertx22.mine_and_slash.new_content.RoomRotation;
 import com.robertx22.mine_and_slash.new_content.RoomSides;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
+import com.robertx22.mine_and_slash.new_content.enums.RoomGroup;
 import com.robertx22.mine_and_slash.new_content.enums.RoomSide;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
@@ -118,7 +119,7 @@ public class Dungeon {
     }
 
     public void setupBarriers() {
-        DungeonRoom barrier = new DungeonRoom("", RoomType.END);
+        DungeonRoom barrier = new DungeonRoom("", RoomType.END, RoomGroup.TEST);
         barrier.loc = new ResourceLocation(Ref.MODID, "dun/barrier");
         RoomRotation rot = new RoomRotation(RoomType.END, new RoomSides(RoomSide.BLOCKED, RoomSide.BLOCKED, RoomSide.BLOCKED, RoomSide.BLOCKED), Rotation.NONE);
         BuiltRoom built = new BuiltRoom(rot, barrier.loc);

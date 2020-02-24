@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.registry;
 
+import com.robertx22.mine_and_slash.new_content.enums.RoomGroup;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 
 import java.util.ArrayList;
@@ -12,12 +13,20 @@ public class RoomList {
     public static List<DungeonRoom> getAllRooms() {
 
         if (rooms.isEmpty()) {
-            rooms.add(new DungeonRoom("basic_stone_brick", RoomType.FOUR_WAY));
-            rooms.add(new DungeonRoom("basic_stone_brick", RoomType.ENTRANCE));
-            rooms.add(new DungeonRoom("stone_brick_boss", RoomType.END));
-            rooms.add(new DungeonRoom("stone_brick_parkour0", RoomType.TRIPLE_HALLWAY));
-            rooms.add(new DungeonRoom("simple_stone_brick", RoomType.CURVED_HALLWAY));
-            rooms.add(new DungeonRoom("stone_brick0", RoomType.STRAIGHT_HALLWAY));
+            rooms.add(new DungeonRoom("basic", RoomType.FOUR_WAY, RoomGroup.STONE_BRICK));
+            rooms.add(new DungeonRoom("basic", RoomType.ENTRANCE, RoomGroup.STONE_BRICK));
+            rooms.add(new DungeonRoom("boss", RoomType.END, RoomGroup.STONE_BRICK));
+            rooms.add(new DungeonRoom("parkour", RoomType.TRIPLE_HALLWAY, RoomGroup.STONE_BRICK));
+            rooms.add(new DungeonRoom("basic", RoomType.CURVED_HALLWAY, RoomGroup.STONE_BRICK));
+            rooms.add(new DungeonRoom("basic", RoomType.STRAIGHT_HALLWAY, RoomGroup.STONE_BRICK));
+
+            rooms.add(new DungeonRoom("simple_prismarine", RoomType.FOUR_WAY, RoomGroup.MISC));
+            rooms.add(new DungeonRoom("prismarine", RoomType.ENTRANCE, RoomGroup.MISC));
+            rooms.add(new DungeonRoom("nether0", RoomType.END, RoomGroup.MISC));
+            rooms.add(new DungeonRoom("obsidian_lava0", RoomType.TRIPLE_HALLWAY, RoomGroup.MISC));
+            rooms.add(new DungeonRoom("easy_sandstone_puzzle", RoomType.CURVED_HALLWAY, RoomGroup.MISC));
+            rooms.add(new DungeonRoom("infested_cellar", RoomType.STRAIGHT_HALLWAY, RoomGroup.MISC));
+
         }
 
         return rooms;

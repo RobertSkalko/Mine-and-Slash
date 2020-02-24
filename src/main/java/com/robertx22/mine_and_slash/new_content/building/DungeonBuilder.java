@@ -4,12 +4,14 @@ import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.new_content.BuiltRoom;
 import com.robertx22.mine_and_slash.new_content.RoomRotation;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
+import com.robertx22.mine_and_slash.new_content.enums.RoomGroup;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.ChunkPos;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -25,6 +27,8 @@ public class DungeonBuilder {
 
         long newSeed = (worldSeed + (long) (chunkX * chunkX * 4987142) + (long) (chunkX * 5947611) + (long) (chunkZ * chunkZ) * 4392871L + (long) (chunkZ * 389711) ^ worldSeed);
         rand = new Random(newSeed);
+
+        this.group = RandomUtils.weightedRandom(Arrays.asList(RoomGroup.values()), rand.nextDouble());
 
     }
 
@@ -44,6 +48,7 @@ public class DungeonBuilder {
     Random rand;
     public int size = 25;
     public boolean isTesting = false;
+    RoomGroup group;
 
     public void build() {
         dungeon = new Dungeon(size);
@@ -66,7 +71,7 @@ public class DungeonBuilder {
 
                         Preconditions.checkNotNull(rot);
 
-                        DungeonRoom dRoom = rot.type.getRandomRoom(rand, debug);
+                        DungeonRoom dRoom = rot.type.getRandomRoom(group, rand, debug);
 
                         Preconditions.checkNotNull(dRoom);
 
@@ -126,7 +131,7 @@ public class DungeonBuilder {
     }
 
     private void setupEntrance() {
-        DungeonRoom entranceRoom = RoomType.ENTRANCE.getRandomRoom(rand, debug);
+        DungeonRoom entranceRoom = RoomType.ENTRANCE.getRandomRoom(group, rand, debug);
 
         List<RoomRotation> possible = new ArrayList<>();
         possible.addAll(RoomType.ENTRANCE.getRotations());
