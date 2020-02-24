@@ -40,6 +40,11 @@ public class ProcessChunkBlocks {
                 mapdata.init(Load.playerMapData((PlayerEntity) player)
                     .getMap(), start);
 
+                if (!mapdata.getData()
+                    .hasData(start)) {
+                    return;
+                }
+
                 chunks.forEach(cpos -> {
 
                     Chunk chunk = player.world.getChunk(cpos.x, cpos.z);

@@ -20,9 +20,6 @@ public class MapInfoOverlay extends AbstractGui {
         "textures/gui/map_info_overlay" +
             "/progress.png"
     );
-    private static final ResourceLocation TIME_TEX = new ResourceLocation(Ref.MODID,
-        "textures/gui/map_info_overlay/time.png"
-    );
 
     Minecraft mc = Minecraft.getInstance();
 
@@ -60,12 +57,6 @@ public class MapInfoOverlay extends AbstractGui {
         float as = 1F / s;
 
         int xr = 7;
-
-        RenderSystem.scalef(s, s, s);
-        mc.getTextureManager()
-            .bindTexture(TIME_TEX);
-        this.blit((int) (x * as) + xr, (int) (y * as), 0, 0, 16, 16, 16, 16);
-        RenderSystem.scalef(as, as, as);
 
         String progressText = quests.getMapQuestData()
             .getProgressPercent() + "%";

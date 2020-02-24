@@ -40,7 +40,7 @@ public class TileMapPortal extends TileEntity {
         super.read(nbt);
 
         ticks = nbt.getInt("ticks");
-        dungeonID = nbt.getString("id");
+        dungeonID = nbt.getString("dungeon_id");
     }
 
     @Override
@@ -48,7 +48,7 @@ public class TileMapPortal extends TileEntity {
         super.write(nbt); // The super call is required to save and load the tile loc
 
         nbt.putInt("ticks", ticks);
-        nbt.putString("id", dungeonID);
+        nbt.putString("dungeon_id", dungeonID);
 
         return nbt;
     }

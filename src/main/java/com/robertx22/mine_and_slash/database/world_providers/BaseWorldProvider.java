@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.FenceGateBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.tags.BlockTags;
@@ -205,6 +206,9 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         }
         if (block.getRegistryName()
             .getNamespace() == "gravestones") {
+            return true;
+        }
+        if (block instanceof FenceGateBlock) {
             return true;
         }
         if (block == BlockRegister.EGG_LOOT_CRATE.get()) {

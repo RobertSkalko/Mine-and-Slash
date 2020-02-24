@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.new_content.ProcessChunkBlocks;
+import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -102,6 +103,10 @@ public class OnServerTick {
                 }
                 if (data.ticksToProcessChunks > TicksToProcessChunks) {
                     data.ticksToProcessChunks = 0;
+
+                    if (player.getActivePotionEffect(TeleportProtection.INSTANCE) == null) {
+                        player.setInvulnerable(false);
+                    }
 
                     ProcessChunkBlocks.process(player);
                 }

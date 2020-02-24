@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -20,6 +19,7 @@ public class OnDeath {
     public static void onTickTeleportPlayerBackIfDead(TickEvent.PlayerTickEvent evt) {
 
         try {
+
             if (true) {
                 return;
             }
@@ -35,10 +35,6 @@ public class OnDeath {
 
                     }
                 }
-            }
-
-            if (evt.player.getActivePotionEffect(TeleportProtection.INSTANCE) == null) {
-                evt.player.setInvulnerable(false);
             }
 
         } catch (Exception e) {

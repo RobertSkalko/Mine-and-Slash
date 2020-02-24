@@ -81,6 +81,7 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
         T minion = (T) type.create(world.getWorld());
         minion.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         minion.setPosition(p.getX(), p.getY(), p.getZ());
+
         OnMobSpawn.setupNewMobOnSpawn(minion);
 
         world.addEntity(minion);
