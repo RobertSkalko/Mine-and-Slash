@@ -104,7 +104,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     }
 
     @Store
-    public String worldGeneratorName;
+    public String worldGeneratorName = "dungeon";
 
     @Nonnull
     public IWP getIWP() {
