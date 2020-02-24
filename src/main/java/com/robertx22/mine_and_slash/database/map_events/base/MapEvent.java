@@ -1,5 +1,8 @@
 package com.robertx22.mine_and_slash.database.map_events.base;
 
+import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
+import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
+import com.robertx22.mine_and_slash.database.rarities.mobs.MythicalMob;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
@@ -14,6 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+
+import java.util.Arrays;
 
 public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
 
@@ -59,13 +64,29 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
         return bossEntity;
     }
 
-    public static <T extends MobEntity> T summonMinion(EntityType<T> type, World world, BlockPos p) {
-        T minion = (T) type.create(world);
+    public static <T extends MobEntity> T summonMinion(EntityType<T> type, IWorld world, BlockPos p) {
+        T minion = (T) type.create(world.getWorld());
         minion.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         minion.setPosition(p.getX(), p.getY(), p.getZ());
         world.addEntity(minion);
 
         return minion;
+
+    }
+
+    public static <T extends MobEntity> T summonElite(EntityType<T> type, IWorld world, BlockPos p) {
+        T elite = (T) type.create(world.getWorld());
+        elite.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
+        elite.setPosition(p.getX(), p.getY(), p.getZ());
+
+        Load.Unit(elite)
+            .setRarity(RandomUtils.weightedRandom(Arrays.asList(MythicalMob.getInstance(), LegendaryMob.getInstance(), EpicMob.getInstance()))
+                .Rank());
+
+        world.addEntity(elite);
+
+        return elite;
+
     }
 
     public static BlockPos randomPosNearPlayer(World world) {

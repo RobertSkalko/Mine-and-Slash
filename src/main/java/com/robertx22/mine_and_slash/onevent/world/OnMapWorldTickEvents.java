@@ -19,6 +19,10 @@ public class OnMapWorldTickEvents {
     @SubscribeEvent
     public static void onTickLogicVoid(TickEvent.WorldTickEvent event) {
 
+        if (true) {
+            return; // TODO DECIDE WHETHER TO DELETE THIS THING OR NOT
+        }
+
         try {
             if (event.side.equals(LogicalSide.SERVER) && event.phase == TickEvent.Phase.END) {
 
@@ -34,7 +38,8 @@ public class OnMapWorldTickEvents {
                         WorldMapCap.IWorldMapData map = Load.world(event.world);
                         if (map != null) {
 
-                            map.getEvents().onMinute(event.world);
+                            map.getEvents()
+                                .onMinute(event.world);
 
                             if (RandomUtils.roll(ModConfig.INSTANCE.Server.MAP_EVENT_CHANCE_PER_MINUTE.get())) {
                                 map.startRandomMapEvent(event.world);

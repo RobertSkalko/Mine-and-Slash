@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
@@ -34,9 +35,9 @@ public class SpawnerRandProcessor extends StructureProcessor {
     public SpawnerRandProcessor(Dynamic<?> dynamic) {
     }
 
-    static List<EntityType<?>> possibleMobs = new ArrayList<>();
+    static List<EntityType<? extends MobEntity>> possibleMobs = new ArrayList<>();
 
-    public static List<EntityType<?>> getPossibleMobs(World world) {
+    public static List<EntityType<? extends MobEntity>> getPossibleMobs(World world) {
         if (possibleMobs.isEmpty()) {
             setupList(world);
         }
@@ -47,12 +48,14 @@ public class SpawnerRandProcessor extends StructureProcessor {
     static void setupList(World world) {
 
         if (possibleMobs.isEmpty()) {
+
             possibleMobs = ForgeRegistries.ENTITIES.getValues()
                 .stream()
                 .filter(x -> {
                     Entity en = x.create(world);
                     return EntityTypeUtils.isMob(en) && en.isNonBoss();
                 })
+                .map(x -> ((EntityType<? extends MobEntity>) x))
                 .collect(Collectors.toList());
         }
 
