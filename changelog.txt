@@ -17,6 +17,15 @@ I tested it myself on client and server but it's not foolproof.
 Also there's a similar method convertToNewFormat for mod devs that use code. But i strongly suggest they switch to datapacks too. If you need help switching, call me on discord.
 It's not really that hard, as the object has a .toJson() method, and that's most of the hard work.
 
+MAP DIMENSIONS REWORK!
+* maps are no longer open world, now they are dungeons!
+* they no longer reset on game reboot unless the dimension is reaching its limit (and that's just me being way too careful)
+* it's now just 1 dimension for now, so server owners should be happy i think. Also it's a flatworld with no worldgen besides my dungeon, so should be lag free
+* dying in maps no longer prevented. This means dying will be painful and you will have to go back to your gear! 
+* map leave pearls are no longer free! You now have to kill a boss to get one, otherwise use the portal at the dungeon entrance to go back.
+* increased loot drops by a bunch in maps
+
+
 * added recipe for increase map tier item in tinkering station
 * most loot crate rewards now cant drop common rarity
 * fix loot crates without nbt crashing game

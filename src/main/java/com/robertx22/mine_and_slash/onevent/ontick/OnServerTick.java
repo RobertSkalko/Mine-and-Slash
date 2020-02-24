@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.EnergyRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
-import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
 import com.robertx22.mine_and_slash.new_content.ProcessChunkBlocks;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
@@ -13,9 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -27,7 +24,6 @@ public class OnServerTick {
 
     static final int TicksToUpdatePlayer = 18;
     static final int TicksToRegen = 100;
-    static final int TicksToGiveMapPortal = 500;
     static final int TicksToPassMinute = 1200;
     static final int TicksToSpellCooldowns = 1;
     static final int TicksToProcessChunks = 100;
@@ -101,18 +97,6 @@ public class OnServerTick {
                     }
                 }
 
-                if (data.mapPortalTicks > TicksToGiveMapPortal) {
-                    data.mapPortalTicks = 0;
-
-                    if (WorldUtils.isMapWorldClass(player.world)) {
-                        ItemStack portalitem = new ItemStack(ItemMapBackPortal.ITEM);
-                        if (!player.inventory.hasItemStack(portalitem)) {
-                            player.inventory.addItemStackToInventory(portalitem);
-
-                        }
-                    }
-
-                }
                 if (data.ticksToPassMinute > TicksToPassMinute) {
                     data.ticksToPassMinute = 0;
                     player.getCapability(PlayerMapCap.Data)
@@ -121,6 +105,7 @@ public class OnServerTick {
                 }
                 if (data.ticksToProcessChunks > TicksToProcessChunks) {
                     data.ticksToProcessChunks = 0;
+
                     ProcessChunkBlocks.process(player);
                 }
 
@@ -161,7 +146,6 @@ public class OnServerTick {
     static class PlayerTickData {
         public int regenTicks = 0;
         public int playerSyncTick = 0;
-        public int mapPortalTicks = 0;
         public int ticksToPassMinute = 0;
         public int ticksToSpellCooldowns = 0;
         public int ticksToProcessChunks = 0;
@@ -169,7 +153,6 @@ public class OnServerTick {
         public void increment() {
             regenTicks++;
             playerSyncTick++;
-            mapPortalTicks++;
             ticksToPassMinute++;
             ticksToProcessChunks++;
             ticksToSpellCooldowns++;

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.onevent.entity;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.quests.actions.KilledMobData;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.items.misc.ItemMapBackPortal;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -21,6 +22,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -66,6 +68,16 @@ public class OnMobDeathDrops {
 
                         if (loot_multi > 0) {
                             MasterLootGen.genAndDrop(mobKilledData, playerData, mobKilled, player);
+
+                            if (WorldUtils.isMapWorldClass(player.world)) {
+                                if (boss.isBoss()) {
+                                    ItemStack portalitem = new ItemStack(ItemMapBackPortal.ITEM);
+                                    if (!player.inventory.hasItemStack(portalitem)) {
+                                        player.inventory.addItemStackToInventory(portalitem);
+                                    }
+                                }
+                            }
+
                         }
 
                         if (exp_multi > 0) {

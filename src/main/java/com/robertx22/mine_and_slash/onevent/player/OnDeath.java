@@ -20,6 +20,9 @@ public class OnDeath {
     public static void onTickTeleportPlayerBackIfDead(TickEvent.PlayerTickEvent evt) {
 
         try {
+            if (true) {
+                return;
+            }
 
             if (evt.player != null && evt.player.world != null) {
                 if (evt.player.world.isRemote == false) {
@@ -47,6 +50,11 @@ public class OnDeath {
     public static void onPlayerDeathSetTeleportBack(LivingDeathEvent evt) {
 
         try {
+
+            if (true) {
+                return;
+            }
+
             LivingEntity living = evt.getEntityLiving();
 
             if (living.world.isRemote) {
@@ -57,7 +65,8 @@ public class OnDeath {
 
                 PlayerEntity player = (PlayerEntity) living;
 
-                Load.Unit(player).onDeath(player);
+                Load.Unit(player)
+                    .onDeath(player);
 
                 if (WorldUtils.isMapWorldClass(living.world)) {
 
