@@ -4,10 +4,12 @@ import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.MythicalMob;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.onevent.entity.OnMobSpawn;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.MapEventsData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;
@@ -56,8 +58,14 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
         T bossEntity = (T) type.create(world.getWorld());
         bossEntity.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         bossEntity.setPosition(p.getX(), p.getY(), p.getZ());
+
+        OnMobSpawn.setupNewMobOnSpawn(bossEntity);
+
         Load.boss(bossEntity)
             .setBoss(boss);
+
+        Load.Unit(bossEntity)
+            .setRarity(IRarity.Boss);
 
         world.addEntity(bossEntity);
 
@@ -68,16 +76,19 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
         T minion = (T) type.create(world.getWorld());
         minion.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         minion.setPosition(p.getX(), p.getY(), p.getZ());
+        OnMobSpawn.setupNewMobOnSpawn(minion);
+
         world.addEntity(minion);
 
         return minion;
-
     }
 
     public static <T extends MobEntity> T summonElite(EntityType<T> type, IWorld world, BlockPos p) {
         T elite = (T) type.create(world.getWorld());
         elite.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         elite.setPosition(p.getX(), p.getY(), p.getZ());
+
+        OnMobSpawn.setupNewMobOnSpawn(elite);
 
         Load.Unit(elite)
             .setRarity(RandomUtils.weightedRandom(Arrays.asList(MythicalMob.getInstance(), LegendaryMob.getInstance(), EpicMob.getInstance()))

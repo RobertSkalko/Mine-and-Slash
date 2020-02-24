@@ -44,14 +44,20 @@ public class OnMobSpawn {
 
         LivingEntity entity = (LivingEntity) event.getEntity();
 
+        setupNewMobOnSpawn(entity);
+
+    }
+
+    public static void setupNewMobOnSpawn(LivingEntity entity) {
+
         UnitData endata = Load.Unit(entity);
 
-        if (endata.getUnit() != null) {
-            endata.getUnit()
-                .removeUnregisteredStats();
-        }
-
         if (endata != null) {
+
+            if (endata.getUnit() != null) {
+                endata.getUnit()
+                    .removeUnregisteredStats();
+            }
 
             BossCap.IBossData boss = Load.boss(entity);
             boss.onMobCreation(entity);
@@ -91,7 +97,6 @@ public class OnMobSpawn {
                 endata.setRarity(IRarity.Boss);
             }
         }
-
     }
 
     public static Unit Mob(LivingEntity entity, UnitData data, BossCap.IBossData boss,

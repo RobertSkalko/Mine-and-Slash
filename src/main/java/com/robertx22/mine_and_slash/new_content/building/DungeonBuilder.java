@@ -120,7 +120,13 @@ public class DungeonBuilder {
         });
 
         if (possible.isEmpty()) {
-            throw new RuntimeException("No possible rooms at all for unbuilt room, this is horrible.");
+
+            // we dont want to end things fast, but if there's nothing else that matches, add an end.
+            possible.addAll(RoomType.END.getPossibleFor(unbuilt));
+
+            if (possible.isEmpty()) {
+                throw new RuntimeException("No possible rooms at all for unbuilt room, this is horrible.");
+            }
         }
 
         return random(possible);
