@@ -55,6 +55,9 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
 
     public static <T extends MobEntity> T summonBoss(EntityType<T> type, IWorld world, BlockPos p,
                                                      com.robertx22.mine_and_slash.database.bosses.base.Boss boss) {
+
+        p = p.add(0.5F, 0.5F, 0.5F);
+
         T bossEntity = (T) type.create(world.getWorld());
         bossEntity.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         bossEntity.setPosition(p.getX(), p.getY(), p.getZ());
@@ -73,6 +76,8 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
     }
 
     public static <T extends MobEntity> T summonMinion(EntityType<T> type, IWorld world, BlockPos p) {
+        p = p.add(0.5F, 0.5F, 0.5F);
+
         T minion = (T) type.create(world.getWorld());
         minion.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         minion.setPosition(p.getX(), p.getY(), p.getZ());
@@ -84,6 +89,8 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
     }
 
     public static <T extends MobEntity> T summonElite(EntityType<T> type, IWorld world, BlockPos p) {
+        p = p.add(0.5F, 0.5F, 0.5F);
+
         T elite = (T) type.create(world.getWorld());
         elite.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
         elite.setPosition(p.getX(), p.getY(), p.getZ());

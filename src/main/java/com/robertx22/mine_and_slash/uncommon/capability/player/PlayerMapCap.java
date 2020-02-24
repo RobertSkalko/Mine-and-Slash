@@ -175,7 +175,7 @@ public class PlayerMapCap {
 
         @Override
         public boolean isPermaDeath() {
-            return data.mapdata.isPermaDeath;
+            return false;
         }
 
         @Override

@@ -109,7 +109,7 @@ public class WorldMapCap {
 
         @Override
         public boolean isPermaDeath() {
-            return mapdata.isPermaDeath;
+            return false;
         }
 
         @Override

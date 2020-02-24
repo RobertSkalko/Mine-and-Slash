@@ -3,13 +3,9 @@ package com.robertx22.mine_and_slash.world_gen.processors;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.DynamicOps;
-import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
+import com.robertx22.mine_and_slash.database.world_providers.DungeonIWP;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
-import com.robertx22.mine_and_slash.db_lists.initializers.WorldProviders;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.state.IProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.biome.Biome;
@@ -28,16 +24,19 @@ public class BiomeProcessor extends StructureProcessor {
 
     public BiomeProcessor(Biome biome) {
 
-        this.iwp = WorldProviders.byBiome(biome);
+        //this.iwp = WorldProviders.byBiome(biome);
 
     }
 
     public BiomeProcessor(Dynamic<?> dynamic) {
         iwp = SlashRegistry.WorldProviders()
-                .get(dynamic.get("iwp").asString(new BirchForestIWP(null, null).GUID()));
+            .get(dynamic.get("iwp")
+                .asString(new DungeonIWP(null, null).GUID()));
     }
 
     IWP iwp;
+
+    // TODO SAVE BIOME THEME INSTEAD OF WORLD PROVIDER
 
     @Nullable
     @Override
@@ -46,13 +45,14 @@ public class BiomeProcessor extends StructureProcessor {
                                       Template.BlockInfo blockInfo1,
                                       PlacementSettings placementSettings) {
 
+        /*
         Block block = blockInfo1.state.getBlock();
 
         if (iwp.biomeTheme().blocksReplaceMap.containsKey(block)) {
 
             BlockState newstate = iwp.biomeTheme().blocksReplaceMap.get(block)
-                    .getBlockToReplaceWith(block)
-                    .getDefaultState();
+                .getBlockToReplaceWith(block)
+                .getDefaultState();
 
             for (IProperty prop : blockInfo1.state.getProperties()) {
                 if (newstate.has(prop)) {
@@ -66,6 +66,10 @@ public class BiomeProcessor extends StructureProcessor {
 
         return blockInfo1;
 
+         */
+
+        return blockInfo1;
+
     }
 
     @Override
@@ -76,7 +80,7 @@ public class BiomeProcessor extends StructureProcessor {
     @Override
     protected <T> Dynamic<T> serialize0(DynamicOps<T> dynamicOps) {
         return new Dynamic(dynamicOps, dynamicOps.createMap(ImmutableMap.of(dynamicOps.createString("iwp"), dynamicOps
-                .createString(this.iwp.GUID()))));
+            .createString(this.iwp.GUID()))));
     }
 
 }

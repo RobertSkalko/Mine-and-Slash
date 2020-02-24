@@ -35,7 +35,7 @@ import com.robertx22.mine_and_slash.database.talent_tree.PerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.data.StartPerkEffects;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
-import com.robertx22.mine_and_slash.database.world_providers.BirchForestIWP;
+import com.robertx22.mine_and_slash.database.world_providers.DungeonIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -344,7 +344,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
         addRegistry(new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
         addRegistry(new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect()));
-        addRegistry(new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new BirchForestIWP(null, null)));
+        addRegistry(new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new DungeonIWP(null, null)));
         addRegistry(new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new ItemOrbOfTransmutation()));
         addRegistry(new SlashRegistryContainer<BaseRecipe>(SlashRegistryType.RECIPE, null));

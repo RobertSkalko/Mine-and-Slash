@@ -8,9 +8,9 @@ import com.robertx22.mine_and_slash.database.rarities.MapRarity;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IBonusLootMulti;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -67,12 +67,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     public int tier = 0;
     @Store
     public int rarity = 0;
-    @Store
-    public int maxPlayersInGroup = 0;
-    @Store
-    public boolean groupPlay = false;
-    @Store
-    public boolean isPermaDeath = false;
+
     @Store
     public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
 
@@ -86,7 +81,8 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     public String rewardCrateGUID = CommonerCrate.INSTANCE.GUID();
 
     @Store
-    public String mapUUID = UUID.randomUUID().toString();
+    public String mapUUID = UUID.randomUUID()
+        .toString();
 
     @Override
     public void saveToStack(ItemStack stack) {
@@ -113,19 +109,16 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     @Nonnull
     public IWP getIWP() {
 
-        return SlashRegistry.WorldProviders().get(this.worldGeneratorName);
+        return SlashRegistry.WorldProviders()
+            .get(this.worldGeneratorName);
 
     }
 
     @Override
     public float getBonusLootMulti() {
 
-        return 0.1F + (1 * getAffixMulti() * getPermaDeathMultiplier());
+        return 0.1F + (1 * getAffixMulti());
 
-    }
-
-    public float getPermaDeathMultiplier() {
-        return this.isPermaDeath ? 1.1F : 1;
     }
 
     public boolean increaseLevel(int i) {
@@ -204,7 +197,8 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
             }
         }
 
-        for (MapAffixData data : this.getIWP().getMapAffixes()) {
+        for (MapAffixData data : this.getIWP()
+            .getMapAffixes()) {
             if (data.affectedEntities.equals(affected)) {
                 list.add(data);
             }
@@ -219,9 +213,12 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         ParticleUtils.spawnEnergyRestoreParticles(player, 10);
 
-        player.sendMessage(Styles.GREENCOMP().appendSibling(Chats.MapStarted.locName()));
+        player.sendMessage(Styles.GREENCOMP()
+            .appendSibling(Chats.MapStarted.locName()));
 
-        Load.quests(player).setMapQuest(SlashRegistry.Quests().get(questGUID), this);
+        Load.quests(player)
+            .setMapQuest(SlashRegistry.Quests()
+                .get(questGUID), this);
 
         return MapManager.setupPlayerMapDimension(player, unit, this, pos);
 
@@ -235,9 +232,13 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         ItemStack stack = ItemStack.EMPTY;
 
-        if (RandomUtils.roll(this.getRarity().specialItemChance())) {
+        if (RandomUtils.roll(this.getRarity()
+            .specialItemChance())) {
 
-            Item item = SlashRegistry.CurrencyItems().getWrapped().ofCurrencyUsableOnItemType(ItemType.MAP).random();
+            Item item = SlashRegistry.CurrencyItems()
+                .getWrapped()
+                .ofCurrencyUsableOnItemType(ItemType.MAP)
+                .random();
 
             stack = new ItemStack(item);
         } else {
@@ -275,58 +276,55 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         try {
             tooltip.add(Styles.BLUECOMP()
-                                .appendSibling(Words.World_Type.locName())
-                                .appendText(": ")
-                                .appendSibling(this.getIWP().locName()));
+                .appendSibling(Words.World_Type.locName())
+                .appendText(": ")
+                .appendSibling(this.getIWP()
+                    .locName()));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(Styles.GREENCOMP().appendSibling(Words.Minutes.locName().appendText(": " + this.minutes)));
+        tooltip.add(Styles.GREENCOMP()
+            .appendSibling(Words.Minutes.locName()
+                .appendText(": " + this.minutes)));
 
         TooltipUtils.addEmpty(tooltip);
 
         tooltip.add(TooltipUtils.rarityShort(rarity)
-                            .appendText(TextFormatting.GRAY + ", ")
-                            .appendSibling(Styles.YELLOWCOMP()
-                                                   .appendSibling(Words.Loot.locName()
-                                                                          .appendText(
-                                                                                  ": +" + this.getBonusLootAmountInPercent() + "%")))
-                            .appendText(TextFormatting.GRAY + ", ")
-                            .appendSibling(Styles.GOLDCOMP()
-                                                   .appendSibling(Words.Tier.locName().appendText(": " + this.tier))));
-
-        if (this.isPermaDeath) {
-            tooltip.add(Styles.REDCOMP().appendSibling(Words.Permadeath.locName().appendText(" " + "\u2620")));
-        }
-
-        if (this.groupPlay) {
-            tooltip.add(Styles.GREENCOMP()
-                                .appendSibling(Words.GroupPlay.locName()
-                                                       .appendText(", ")
-                                                       .appendSibling(Words.PartySize.locName())
-                                                       .appendText(": " + this.maxPlayersInGroup)));
-        }
+            .appendText(TextFormatting.GRAY + ", ")
+            .appendSibling(Styles.YELLOWCOMP()
+                .appendSibling(Words.Loot.locName()
+                    .appendText(
+                        ": +" + this.getBonusLootAmountInPercent() + "%")))
+            .appendText(TextFormatting.GRAY + ", ")
+            .appendSibling(Styles.GOLDCOMP()
+                .appendSibling(Words.Tier.locName()
+                    .appendText(": " + this.tier))));
 
         TooltipUtils.addEmpty(tooltip);
 
         tooltip.add(new StringTextComponent(
-                TextFormatting.LIGHT_PURPLE + "Reward: " + TextFormatting.DARK_PURPLE).appendSibling(
-                SlashRegistry.LootCrates().get(this.rewardCrateGUID).name()));
+            TextFormatting.LIGHT_PURPLE + "Reward: " + TextFormatting.DARK_PURPLE).appendSibling(
+            SlashRegistry.LootCrates()
+                .get(this.rewardCrateGUID)
+                .name()));
 
         TooltipUtils.addEmpty(tooltip);
 
         tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Quest: ").appendSibling(
-                SlashRegistry.Quests().get(questGUID).name()));
+            SlashRegistry.Quests()
+                .get(questGUID)
+                .name()));
 
         TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(Styles.BLUECOMP().appendSibling(CLOC.tooltip("put_in_mapdevice")));
+        tooltip.add(Styles.BLUECOMP()
+            .appendSibling(CLOC.tooltip("put_in_mapdevice")));
 
         tooltip.add(new StringTextComponent(TextFormatting.RED + "[" + "\u2668" + "]").appendSibling(
-                Words.MapWorldsAreResetOnGameReload.locName()));
+            Words.MapWorldsAreResetOnGameReload.locName()));
 
         TooltipUtils.removeDoubleBlankLines(tooltip, 20);
 
@@ -337,7 +335,8 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     @Override
     public void BuildTooltip(TooltipContext ctx) {
         if (ctx.data != null) {
-            ctx.event.getToolTip().addAll(getTooltip());
+            ctx.event.getToolTip()
+                .addAll(getTooltip());
         }
     }
 
@@ -366,14 +365,17 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
             str.appendSibling(Words.Affixes_Affecting_All.locName());
         }
 
-        tooltip.add(Styles.GREENCOMP().appendSibling(str));
+        tooltip.add(Styles.GREENCOMP()
+            .appendSibling(str));
 
         for (MapAffixData affix : affixes) {
 
-            for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
+            for (StatModData statmod : affix.getAffix()
+                .Stats(affix.percent)) {
 
                 TooltipInfo info = new TooltipInfo(
-                        new EntityCap.DefaultImpl(), data.getRarity().StatPercents(), data.level);
+                    new EntityCap.DefaultImpl(), data.getRarity()
+                    .StatPercents(), data.level);
 
                 tooltip.addAll(statmod.GetTooltipString(info));
 

@@ -16,7 +16,10 @@ import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.ClientSetup;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.*;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.CapabilityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
 import com.robertx22.mine_and_slash.onevent.world.OnStartResetMaps;
@@ -119,8 +122,6 @@ public class MMORPG {
         OnStartResetMaps.OnStartResetMaps(); // TODO delete this after PR accepted
 
         SlashRegistry.checkGuidValidity();
-
-        StructurePieceRegisters.reg();
 
         bus.addListener(this::commonSetupEvent);
         bus.addListener(this::interModProcessEvent);

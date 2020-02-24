@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.world_providers;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.db_lists.Templates;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonBiomeProvider;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonChunkGenerator;
@@ -10,7 +9,6 @@ import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.mine_and_slash.world_gen.types.FeatureType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -37,8 +35,6 @@ import net.minecraftforge.common.ModDimension;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.BiFunction;
 
 public abstract class BaseWorldProvider extends Dimension implements IWP, IRarity,
@@ -65,16 +61,6 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
     @Override
     public Rarity getRarity() {
         return Rarities.Gears.get(getRarityRank());
-    }
-
-    @Override
-    public List<FeatureType> smallSurfaceDecorations() {
-        return Arrays.asList(Templates.bigWoodPillar, Templates.smallWoodPillar, Templates.lampPillar);
-    }
-
-    @Override
-    public List<FeatureType> smallTreasures() {
-        return Arrays.asList(Templates.smallTreasure0, Templates.smallTreasure1, Templates.smallTreasure2);
     }
 
     public ResourceLocation res(String str) {

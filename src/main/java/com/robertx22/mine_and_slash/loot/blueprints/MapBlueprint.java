@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
+import com.robertx22.mine_and_slash.database.map_affixes.beneficial.BonusEleDmgAffix;
 import com.robertx22.mine_and_slash.database.quests.base.Quest;
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
@@ -12,6 +13,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
@@ -30,19 +32,6 @@ public class MapBlueprint extends ItemBlueprint {
     }
 
     public IWPPart iwp = new IWPPart(this);
-
-    public boolean getIsPermaDeath() {
-        return RandomUtils.roll(PERMADEATH_CHANCE);
-    }
-
-    public void rollSetupGrouPlay(MapItemData data, MapRarity rarity) {
-
-        if (RandomUtils.roll(rarity.groupPlayChance())) {
-            data.groupPlay = true;
-            data.maxPlayersInGroup = RandomUtils.RandomRange(3, 8);
-        }
-
-    }
 
     @Override
     public BaseRaritiesContainer<? extends Rarity> getRarityContainer() {
@@ -79,14 +68,10 @@ public class MapBlueprint extends ItemBlueprint {
 
         data.tier = tier.get();
 
-        data.isPermaDeath = getIsPermaDeath();
-
         data.rewardCrateGUID = SlashRegistry.LootCrates()
             .getWrapped()
             .random()
             .GUID();
-
-        rollSetupGrouPlay(data, rarity);
 
         data.level = level.get();
 
@@ -119,11 +104,13 @@ public class MapBlueprint extends ItemBlueprint {
             }
 
             int percent = RandomUtils.RandomRange(rarity.StatPercents().min, rarity.StatPercents().max);
-
             map.affixes.add(new MapAffixData(affix, percent));
             affixes.add(affix.GUID());
 
         }
+
+        List<BaseMapAffix> possible = new BonusEleDmgAffix(Elements.Nature).generateAllSingleVariations();
+        map.affixes.add(new MapAffixData(RandomUtils.weightedRandom(possible), 100));
 
         return map;
     }

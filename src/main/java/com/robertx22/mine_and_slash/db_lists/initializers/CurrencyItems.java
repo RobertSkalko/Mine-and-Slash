@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.currency.infusions.ResourceInfusion
 import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.NormalUpgradeInfusion;
 import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.SuperiorUpgradeInfusion;
 import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.WondrousUpgradeInfusion;
-import com.robertx22.mine_and_slash.database.currency.map.ItemAddGroupMap;
 import com.robertx22.mine_and_slash.database.currency.map.ItemAddMapLevel;
 import com.robertx22.mine_and_slash.database.currency.map.ItemAddMapTier;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ItemRegister;
@@ -25,7 +24,6 @@ public class CurrencyItems implements ISlashRegistryInit {
         add(new ItemRerollPrimaryStats());
         add(new ItemAddMajorArcana());
         add(new ItemAddSet());
-        add(new ItemAddGroupMap());
         add(new ItemClearRunes());
         add(new ItemRerollSet());
         add(new CreateNewUnique());
