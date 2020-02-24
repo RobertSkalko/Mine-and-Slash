@@ -28,6 +28,8 @@ public class ClientSetup {
         RenderTypeLookup.setRenderLayer(BlockRegister.MAGMA_FLOWER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BlockRegister.THORN_BUSH.get(), RenderType.getCutout());
 
+        RenderTypeLookup.setRenderLayer(BlockRegister.DUNGEON_PORTAL.get(), RenderType.getTranslucent());
+
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);
 

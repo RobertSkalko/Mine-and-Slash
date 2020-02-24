@@ -270,26 +270,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 	"item.mmorpg.lootbox.big_currency_lootbox_3": "§9Epic Big Currency Treasure Box",
@@ -312,6 +292,26 @@
 	"item.mmorpg.lootbox.small_gear_lootbox_5": "§dMythical Small Gear Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -919,6 +919,37 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
+	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
+	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
+	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
+	"mmorpg.gear_type.crossbow": "Crossbow",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.leather_boots": "Leather Boots",
+	"mmorpg.gear_type.leather_chest": "Leather Chest",
+	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
+	"mmorpg.gear_type.leather_pants": "Leather Pants",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.plate_boots": "Plate Boots",
+	"mmorpg.gear_type.plate_chest": "Plate Chest",
+	"mmorpg.gear_type.plate_helmet": "Plate Helm",
+	"mmorpg.gear_type.plate_pants": "Plate Greaves",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+	"mmorpg.gear_type.wand": "Staff",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 	"item.mmorpg.uniques.axe.axefire0": "§eAxe of Blazing Cuts",
@@ -1012,37 +1043,6 @@
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§eSaber of Frost madness",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
-	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
-	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
-	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
-	"mmorpg.gear_type.crossbow": "Crossbow",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.leather_boots": "Leather Boots",
-	"mmorpg.gear_type.leather_chest": "Leather Chest",
-	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
-	"mmorpg.gear_type.leather_pants": "Leather Pants",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.plate_boots": "Plate Boots",
-	"mmorpg.gear_type.plate_chest": "Plate Chest",
-	"mmorpg.gear_type.plate_helmet": "Plate Helm",
-	"mmorpg.gear_type.plate_pants": "Plate Greaves",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-	"mmorpg.gear_type.wand": "Staff",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",

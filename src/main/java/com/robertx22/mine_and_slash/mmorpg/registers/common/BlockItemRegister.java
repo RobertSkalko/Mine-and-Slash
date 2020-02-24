@@ -28,6 +28,8 @@ public class BlockItemRegister {
 
     public static RegistryObject<Item> BEACON = of(BlockRegister.BEACON);
 
+    public static RegistryObject<Item> DUNGEON_PORTAL = of(BlockRegister.DUNGEON_PORTAL);
+
     static Item.Properties stationProp = new Item.Properties().group(CreativeTabs.MyModTab);
 
     static <T extends Block> RegistryObject<Item> of(RegistryObject<T> block) {
