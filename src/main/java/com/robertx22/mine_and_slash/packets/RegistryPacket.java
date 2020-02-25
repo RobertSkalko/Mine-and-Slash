@@ -30,8 +30,15 @@ public class RegistryPacket {
     }
 
     public RegistryPacket(SlashRegistryType type) {
+
+        SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
+
+        if (reg.isEmpty()) {
+            SlashRegistry.restoreBackup();
+        }
+
         // TODO CACHE THIS
-        List<String> list = (List<String>) SlashRegistry.getRegistry(type)
+        List<String> list = (List<String>) reg
             .getFromDatapacks()
             .stream()
             .map(x -> ((ISerializable) x).toJson()

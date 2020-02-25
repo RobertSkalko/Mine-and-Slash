@@ -52,10 +52,20 @@ import java.util.List;
 
 public class SlashRegistry {
 
+    private static HashMap<SlashRegistryType, SlashRegistryContainer> SERVER = new HashMap<>();
+    private static HashMap<SlashRegistryType, SlashRegistryContainer> BACKUP = new HashMap<>();
+
+    public static void backup() {
+        BACKUP = new HashMap<>(SERVER);
+    }
+
+    public static void restoreBackup() {
+        SERVER = new HashMap<>(BACKUP);
+    }
+
     public static DimensionConfig getDimensionConfig(IWorld world) {
         String id = MapManager.getId(world);
         return DimensionConfigs().get(id);
-
     }
 
     public static ModEntityConfig getEntityConfig(LivingEntity entity, EntityCap.UnitData data) {
@@ -207,14 +217,12 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.STATMOD);
     }
 
-    private static HashMap<SlashRegistryType, SlashRegistryContainer> map = new HashMap<>();
-
     public static List<SlashRegistryContainer> getAllRegistries() {
-        return new ArrayList<>(map.values());
+        return new ArrayList<>(SERVER.values());
     }
 
     public static SlashRegistryContainer getRegistry(SlashRegistryType type) {
-        return map.get(type);
+        return SERVER.get(type);
     }
 
     public static ISlashRegistryEntry get(SlashRegistryType type, String guid) {
@@ -234,6 +242,7 @@ public class SlashRegistry {
     }
 
     public static void sendAllPacketsToClientOnLogin(ServerPlayerEntity player) {
+
         getAllRegistries()
             .forEach(x -> {
                 if (x.getType()
@@ -249,7 +258,7 @@ public class SlashRegistry {
 
     public static void checkGuidValidity() {
 
-        map.values()
+        SERVER.values()
             .forEach(c -> c.getAllIncludingSeriazable()
                 .forEach(x -> {
                     ISlashRegistryEntry entry = (ISlashRegistryEntry) x;
@@ -266,7 +275,7 @@ public class SlashRegistry {
 
         List<ISlashRegistryEntry> invalid = new ArrayList<>();
 
-        map.values()
+        SERVER.values()
             .forEach(c -> c.getList()
                 .forEach(x -> {
                     ISlashRegistryEntry entry = (ISlashRegistryEntry) x;
@@ -319,11 +328,11 @@ public class SlashRegistry {
     }
 
     private static void addRegistry(SlashRegistryContainer cont) {
-        map.put(cont.getType(), cont);
+        SERVER.put(cont.getType(), cont);
     }
 
     public static void initRegistries() {
-        map = new HashMap<>();
+        SERVER = new HashMap<>();
 
         // data pack ones
         addRegistry(new SlashRegistryContainer<BaseRune>(SlashRegistryType.RUNE, EmptyRune.getInstance()).isDatapack());

@@ -11,6 +11,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.StructureBlockTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -77,7 +78,10 @@ public class ProcessChunkBlocks {
                                                     if (tile instanceof StructureBlockTileEntity) {
                                                         StructureBlockTileEntity struc = (StructureBlockTileEntity) tile;
 
-                                                        String metadata = struc.getMetadata();
+                                                        CompoundNBT nbt = new CompoundNBT();
+                                                        struc.write(nbt);
+                                                        String metadata = nbt.getString("metadata");
+                                                        // cus getmetadata is clientonly wtf
 
                                                         boolean any = false;
 

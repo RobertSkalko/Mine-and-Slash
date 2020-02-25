@@ -30,6 +30,8 @@ public class OnLoginClientPacket {
             .enqueueWork(() -> {
                 try {
                     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+
+                        SlashRegistry.backup();
                         ConfigRegister.unregisterFlaggedEntries();
                         SlashRegistry.getAllRegistries()
                             .forEach(x -> x.
