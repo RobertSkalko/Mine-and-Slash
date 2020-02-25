@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item;
 
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.MapScoreEnum;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RegisterItemUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -45,7 +45,7 @@ public class MapLootCrateItem extends Item {
 
     public ITextComponent name(ItemStack stack) {
         return new StringTextComponent(TextFormatting.BOLD + "" + TextFormatting.DARK_PURPLE).appendSibling(
-                getCrate(stack).name());
+            getCrate(stack).name());
     }
 
     public static Properties getProp() {
@@ -57,12 +57,15 @@ public class MapLootCrateItem extends Item {
     public static String LVL = "LVL", SCORE = "SCORE", ID = "REGISTRY_ID", TIER = "TIER";
 
     public LootCrate getCrate(ItemStack stack) {
-        return SlashRegistry.LootCrates().get(getID(stack));
+        return SlashRegistry.LootCrates()
+            .get(getID(stack));
     }
 
     public String getID(ItemStack stack) {
-        if (stack.hasTag() && stack.getTag().getString(ID) != null) {
-            return stack.getTag().getString(ID);
+        if (stack.hasTag() && stack.getTag()
+            .getString(ID) != null) {
+            return stack.getTag()
+                .getString(ID);
         } else {
             return "";
         }
@@ -75,9 +78,12 @@ public class MapLootCrateItem extends Item {
 
         try {
             LootCrate crate = getCrate(stack);
-            int lvl = stack.getTag().getInt(LVL);
-            MapScoreEnum score = MapScoreEnum.valueOf(stack.getTag().getString(SCORE));
-            int tier = stack.getTag().getInt(TIER);
+            int lvl = stack.getTag()
+                .getInt(LVL);
+            MapScoreEnum score = MapScoreEnum.valueOf(stack.getTag()
+                .getString(SCORE));
+            int tier = stack.getTag()
+                .getInt(TIER);
 
             tooltip.clear();
 
@@ -115,10 +121,15 @@ public class MapLootCrateItem extends Item {
 
                     ItemStack stack = player.getHeldItem(hand);
 
-                    LootCrate crate = SlashRegistry.LootCrates().get(stack.getTag().getString(ID));
-                    int lvl = stack.getTag().getInt(LVL);
-                    MapScoreEnum score = MapScoreEnum.valueOf(stack.getTag().getString(SCORE));
-                    int tier = stack.getTag().getInt(TIER);
+                    LootCrate crate = SlashRegistry.LootCrates()
+                        .get(stack.getTag()
+                            .getString(ID));
+                    int lvl = stack.getTag()
+                        .getInt(LVL);
+                    MapScoreEnum score = MapScoreEnum.valueOf(stack.getTag()
+                        .getString(SCORE));
+                    int tier = stack.getTag()
+                        .getInt(TIER);
 
                     LootInfo info = new LootInfo(player);
                     info.level = lvl;
@@ -132,7 +143,7 @@ public class MapLootCrateItem extends Item {
                         // player.sendMessage(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Lucky draw!"));
                     }
 
-                    List<ItemStack> items = crate.generateItems(info, score, wonLottery);
+                    List<ItemStack> items = crate.generateItems(info);
 
                     for (ItemStack istack : items) {
                         player.entityDropItem(istack, 1F);

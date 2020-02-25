@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.quests.actions.ActionDoneData;
 import com.robertx22.mine_and_slash.database.quests.base.Quest;
 import com.robertx22.mine_and_slash.database.quests.data.QuestLogData;
 import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
-import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
@@ -40,7 +39,6 @@ public class QuestsCap {
 
         QuestLogData getData();
 
-        QuestSaveData getMapQuestData();
     }
 
     @Mod.EventBusSubscriber
@@ -94,7 +92,8 @@ public class QuestsCap {
 
             List<QuestSaveData> all = data.getAllQuests();
 
-            all.forEach(x -> x.tasks.forEach(y -> y.getQuest().onAction(y, actionData)));
+            all.forEach(x -> x.tasks.forEach(y -> y.getQuest()
+                .onAction(y, actionData)));
 
             all.forEach(x -> x.setupResult(player));
 
@@ -102,19 +101,11 @@ public class QuestsCap {
 
         @Override
         public void setMapQuest(Quest quest, MapItemData map) {
-            this.data.mapCompletitionQuest = new QuestSaveData();
-            this.data.mapCompletitionQuest.tasks.add(quest.getTaskData(map));
-            this.data.mapCompletitionQuest.reward.rewardGUID = MapQuestReward.INSTANCE.GUID();
         }
 
         @Override
         public QuestLogData getData() {
             return this.data;
-        }
-
-        @Override
-        public QuestSaveData getMapQuestData() {
-            return data.mapCompletitionQuest;
         }
 
         @Override

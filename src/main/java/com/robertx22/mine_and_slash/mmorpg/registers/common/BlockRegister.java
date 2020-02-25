@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.blocks.beacon.CosmeticBeaconBlock;
-import com.robertx22.mine_and_slash.blocks.egg_loot_crate.EggLootCrateBlock;
 import com.robertx22.mine_and_slash.blocks.item_modify_station.BlockGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.BlockMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.BlockGearRepair;
@@ -32,7 +31,6 @@ public class BlockRegister {
     public static RegistryObject<BlockGearSalvage> GEAR_SALVAGE = REG.register("salvage_station", BlockGearSalvage::new);
     public static RegistryObject<BlockGearRepair> GEAR_REPAIR = REG.register("repair_station", BlockGearRepair::new);
     public static RegistryObject<BlockMapDevice> MAP_DEVICE = REG.register("map_device", BlockMapDevice::new);
-    public static RegistryObject<EggLootCrateBlock> EGG_LOOT_CRATE = REG.register("egg_loot_crate", EggLootCrateBlock::new);
     public static RegistryObject<MapPortalBlock> MAP_PORTAL = REG.register("map_portal_block", MapPortalBlock::new);
     public static RegistryObject<CosmeticBeaconBlock> BEACON = REG.register("beacon", CosmeticBeaconBlock::new);
 

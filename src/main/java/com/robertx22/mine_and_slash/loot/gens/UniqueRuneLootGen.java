@@ -8,8 +8,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.item.ItemStack;
 
-import java.util.Comparator;
-
 public class UniqueRuneLootGen extends BaseLootGen<UniqueRuneBlueprint> {
 
     public UniqueRuneLootGen(LootInfo info) {
@@ -22,21 +20,13 @@ public class UniqueRuneLootGen extends BaseLootGen<UniqueRuneBlueprint> {
             .floatValue();
     }
 
-    static int lowestTierRune = -1;
-
     @Override
     public boolean condition() {
+        return WorldUtils.dropsUniques(info.world) && SlashRegistry.Runes()
+            .getFiltered(x -> x.isUnique)
+            .stream()
+            .anyMatch(x -> info.tier >= x.Tier());
 
-        if (lowestTierRune < 0) {
-            lowestTierRune = SlashRegistry.Runes()
-                .getFiltered(x -> x.isUnique)
-                .stream()
-                .min(Comparator.comparingInt(x -> x.Tier()))
-                .get()
-                .Tier();
-        }
-
-        return WorldUtils.dropsUniques(info.world) && info.tier >= lowestTierRune;
     }
 
     @Override

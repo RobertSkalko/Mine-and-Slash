@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.database.loot_crates.bases;
 
 import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -44,26 +44,30 @@ public abstract class LootCrate implements ISlashRegistryEntry {
             stack.setTag(new CompoundNBT());
         }
 
-        stack.getTag().putInt(MapLootCrateItem.LVL, lvl);
-        stack.getTag().putInt(MapLootCrateItem.TIER, mapTier);
-        stack.getTag().putString(MapLootCrateItem.ID, GUID());
-        stack.getTag().putString(MapLootCrateItem.SCORE, MapScoreEnum.byNumber(score).name());
+        stack.getTag()
+            .putInt(MapLootCrateItem.LVL, lvl);
+        stack.getTag()
+            .putInt(MapLootCrateItem.TIER, mapTier);
+        stack.getTag()
+            .putString(MapLootCrateItem.ID, GUID());
+        stack.getTag()
+            .putString(MapLootCrateItem.SCORE, MapScoreEnum.byNumber(score)
+                .name());
 
         return stack;
     }
 
-    public List<ItemStack> generateItems(LootInfo info, MapScoreEnum score, boolean wonLottery) {
+    public List<ItemStack> generateItems(LootInfo info) {
 
         List<ItemStack> items = new ArrayList<>();
 
-        float amount = this.maxItems() * score.itemRewardMulti;
-        if (wonLottery) {
+        int amount = RandomUtils.RandomRange(maxItems() / 2, maxItems());
+
+        if (RandomUtils.roll(1)) {
             amount *= 3;
         }
 
-        int amountInt = (int) amount;
-
-        while (items.size() < amountInt) {
+        while (items.size() < amount) {
             ItemStack stack = generateStack(info);
             if (stack != null && !stack.isEmpty()) {
                 items.add(stack);

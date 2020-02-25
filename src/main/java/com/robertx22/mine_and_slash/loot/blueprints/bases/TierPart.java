@@ -11,7 +11,7 @@ public class TierPart extends BlueprintPart<Integer> {
     public boolean isRandom = true;
     public int variance = 2;
 
-    public int minTier = 0;
+    public int minTier = 1;
     public int maxTier = ITiered.MAX_TIER;
 
     public TierPart(ItemBlueprint blueprint) {

@@ -26,7 +26,7 @@ public class MapChestContainer extends Container {
 
     public MapChestContainer(int windowId, PlayerInventory playerInventory, IInventory inventory) {
         super(ContainerTypeRegisters.MAP_CHEST.get(), windowId);
-        assertInventorySize(inventory, 27);
+        //assertInventorySize(inventory, 27);
 
         this.inventory = inventory;
 

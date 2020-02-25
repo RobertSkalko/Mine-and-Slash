@@ -10,15 +10,11 @@ import java.util.List;
 public class QuestLogData {
 
     @Store
-    public QuestSaveData mapCompletitionQuest = new QuestSaveData();
-
-    @Store
     public List<QuestSaveData> quests = new ArrayList<>();
 
     public List<QuestSaveData> getAllQuests() {
 
         List<QuestSaveData> list = new ArrayList<>(quests);
-        list.add(mapCompletitionQuest);
 
         return list;
 

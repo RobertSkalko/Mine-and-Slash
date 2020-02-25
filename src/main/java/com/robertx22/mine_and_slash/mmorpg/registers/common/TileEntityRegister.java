@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.blocks.beacon.CosmeticBeaconTile;
-import com.robertx22.mine_and_slash.blocks.egg_loot_crate.EggLootCrateTileEntity;
 import com.robertx22.mine_and_slash.blocks.item_modify_station.TileGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.TileMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.TileGearRepair;
@@ -64,12 +63,6 @@ public class TileEntityRegister {
         REG.register(BlockRegister.MAP_DEVICE.getId()
                 .getPath(),
             () -> TileEntityType.Builder.create(TileMapDevice::new, BlockRegister.MAP_DEVICE.get())
-                .build(null));
-
-    public static RegistryObject<TileEntityType<EggLootCrateTileEntity>> EGG_LOOT_CRATE =
-        REG.register(BlockRegister.EGG_LOOT_CRATE.getId()
-                .getPath(),
-            () -> TileEntityType.Builder.create(EggLootCrateTileEntity::new, BlockRegister.EGG_LOOT_CRATE.get())
                 .build(null));
 
     public static RegistryObject<TileEntityType<MagmaFlowerTileEntity>> MAGMA_FLOWER =

@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.packets;
 
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -27,11 +29,12 @@ public class OnLoginClientPacket {
         ctx.get()
             .enqueueWork(() -> {
                 try {
-                    ConfigRegister.unregisterFlaggedEntries();
-                    SlashRegistry.getAllRegistries()
-                        .forEach(x -> x.
-                            unregisterAllEntriesFromDatapacks());
-
+                    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+                        ConfigRegister.unregisterFlaggedEntries();
+                        SlashRegistry.getAllRegistries()
+                            .forEach(x -> x.
+                                unregisterAllEntriesFromDatapacks());
+                    });
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

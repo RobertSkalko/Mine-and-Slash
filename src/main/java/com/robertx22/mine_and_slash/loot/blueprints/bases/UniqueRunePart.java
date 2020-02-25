@@ -14,7 +14,7 @@ public class UniqueRunePart extends BlueprintPart<BaseRune> {
     protected BaseRune generateIfNull() {
         return SlashRegistry.Runes()
             .getFilterWrapped(x -> x.isUnique())
-            .ofTierOrLess(this.blueprint.tier.number)
+            .ofTierOrLess(this.blueprint.tier.get())
             .random();
     }
 }

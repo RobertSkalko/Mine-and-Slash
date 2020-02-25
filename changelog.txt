@@ -55,6 +55,7 @@ other minecraft things in the meantime.
 This should make using commands a lot easier
 * added simple party system, untested. /slash party. For now it should disable friendly fire
 * added /slash generate compatible_items modid. To auto generate large amounts of compatible item files with default values. Should save some time.
+* removed dragon egg like loot chest, now it's a "regular" chest. Basically works like vanilla but it's my block, in the future i'd like to give it different textures.
 
 3.0.10
 * buffed rarity drops default config (needs config reset)

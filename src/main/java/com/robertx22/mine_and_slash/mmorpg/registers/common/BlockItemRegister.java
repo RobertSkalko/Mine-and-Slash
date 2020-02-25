@@ -21,8 +21,6 @@ public class BlockItemRegister {
     public static RegistryObject<Item> TINKERING = of(BlockRegister.TINKERING);
     public static RegistryObject<Item> ALCHEMY = of(BlockRegister.ALCHEMY);
 
-    public static RegistryObject<Item> EGG_CRATE = of(BlockRegister.EGG_LOOT_CRATE);
-
     public static RegistryObject<Item> MAGMA_FLOWER = of(BlockRegister.MAGMA_FLOWER);
     public static RegistryObject<Item> THORN_BUSH = of(BlockRegister.THORN_BUSH);
 

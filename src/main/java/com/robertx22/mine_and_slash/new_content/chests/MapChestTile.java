@@ -25,8 +25,16 @@ public class MapChestTile extends ChestTileEntity implements INamedContainerProv
         NORMAL
     }
 
-    public void setItems(NonNullList<ItemStack> items) {
-        super.setItems(items);
+    public void addItems(NonNullList<ItemStack> items) {
+        NonNullList<ItemStack> inv = getItems();
+
+        int i = 0;
+        for (ItemStack x : items) {
+            inv.set(i, x);
+
+            i++;
+        }
+
     }
 
     @Override

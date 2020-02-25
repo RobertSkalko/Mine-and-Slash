@@ -212,7 +212,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         if (block instanceof FenceGateBlock) {
             return true;
         }
-        if (block == BlockRegister.EGG_LOOT_CRATE.get()) {
+        if (block == BlockRegister.MAP_CHEST.get()) {
             return true;
         }
 
