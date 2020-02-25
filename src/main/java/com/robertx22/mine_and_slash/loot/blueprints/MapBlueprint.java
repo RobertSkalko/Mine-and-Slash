@@ -60,16 +60,7 @@ public class MapBlueprint extends ItemBlueprint {
             .getWrapped()
             .random();
 
-        data.questGUID = quest.GUID();
-
-        data.questPerc = RandomUtils.RandomRange(35, 100);
-
         data.tier = tier.get();
-
-        data.rewardCrateGUID = SlashRegistry.LootCrates()
-            .getWrapped()
-            .random()
-            .GUID();
 
         data.level = level.get();
 

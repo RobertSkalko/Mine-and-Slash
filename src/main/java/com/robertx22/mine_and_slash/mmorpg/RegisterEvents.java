@@ -35,7 +35,6 @@ public class RegisterEvents {
         register(OnDeath.class);
         register(OnPlayerClone.class);
         register(OnLogin.class);
-        register(OnLogout.class);
         register(OnServerTick.class);
 
         register(CapSync.class);

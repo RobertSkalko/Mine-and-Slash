@@ -32,7 +32,7 @@ public class CurrencyCrate extends LootCrate {
 
     @Override
     public int maxItems() {
-        return 15;
+        return 12;
     }
 
     @Override

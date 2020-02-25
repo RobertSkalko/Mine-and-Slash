@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
-import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.error_checks.DunSameSeedAreSame;
 import com.robertx22.mine_and_slash.error_checks.base.ErrorChecks;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
@@ -27,7 +26,6 @@ import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
 import net.minecraft.entity.Entity;
@@ -61,7 +59,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
-    public static boolean RUN_DEV_TOOLS = true;
+    public static boolean RUN_DEV_TOOLS = false;
 
     public static boolean statEffectDebuggingEnabled() {
         return false && RUN_DEV_TOOLS;
@@ -226,9 +224,6 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerStopping(FMLServerStoppingEvent event) {
-
-        OnShutdownResetMaps.shouldDelete = Load.world(MapManager.getWorld(MapManager.getDungeonDimensionType()))
-            .shouldDeleteFolderOnServerShutdown();
 
     }
 

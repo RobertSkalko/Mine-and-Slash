@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -28,17 +27,6 @@ public abstract class Quest implements ISlashRegistryEntry {
 
     public abstract ITextComponent name();
 
-    public QuestTaskData getTaskData(MapItemData map) {
-
-        QuestTaskData data = new QuestTaskData();
-
-        data.amountRequired = (int) this.getAmountRequired(map);
-        data.questGUID = this.GUID();
-
-        return data;
-
-    }
-
     public void onCompleted(PlayerEntity player, QuestSaveData data) {
         data.reward.score = MapScoreEnum.getScore(player);
     }
@@ -49,11 +37,6 @@ public abstract class Quest implements ISlashRegistryEntry {
         }
         return WorldUtils.isMapWorldClass(mob.world);
 
-    }
-
-    public final float getAmountRequired(MapItemData map) {
-        float tierMulti = 1 + map.tier * 0.025F;
-        return MathHelper.clamp((amountRequired() * map.questPerc / 100) * tierMulti, 1, Float.MAX_VALUE);
     }
 
     public abstract float amountRequired();

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
+import com.robertx22.mine_and_slash.onevent.world.OnShutdownResetMaps;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -59,6 +60,14 @@ public class TileMapPortal extends TileEntity {
 
                 if (data.isMapActive()) {
                     World mapworld = MapManager.getWorld(MapManager.getDungeonDimensionType());
+
+                    try {
+                        OnShutdownResetMaps.shouldDelete = Load.world(mapworld)
+                            .shouldDeleteFolderOnServerShutdown();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     if (mapworld == null) {
                         return;
                     }

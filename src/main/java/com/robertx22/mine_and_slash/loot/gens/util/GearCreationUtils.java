@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.loot.gens.util;
 
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
@@ -88,32 +89,39 @@ public class GearCreationUtils {
         data.level = blueprint.level.get();
         data.Rarity = rarity.Rank();
 
-        if (blueprint instanceof UniqueGearBlueprint && canMakeUnique(blueprint)) {
+        if (blueprint instanceof UniqueGearBlueprint) {
 
-            UniqueGearBlueprint uniqprint = (UniqueGearBlueprint) blueprint;
-
-            IUnique unique = uniqprint.unique.get();
-
-            if (unique != null) {
-
-                blueprint.gearItemSlot.forceSet(unique.getGearSlot());
-
-                data.gearTypeName = unique.getGearSlot()
-                    .GUID();
-
-                data.isUnique = true;
-
-                data.uniqueGUID = unique.GUID();
-                data.uniqueStats = new UniqueStatsData(unique.GUID());
-                data.uniqueStats.RerollFully(data);
-
-                if (unique.canGetSet()) {
-                    data.set = blueprint.getSet(data)
-                        .getSetData();
-                }
+            if (!canMakeUnique(blueprint)) {
+                data.Rarity = Rarities.Gears.random()
+                    .Rank();
 
             } else {
-                data.Rarity = IRarity.Common;
+
+                UniqueGearBlueprint uniqprint = (UniqueGearBlueprint) blueprint;
+
+                IUnique unique = uniqprint.unique.get();
+
+                if (unique != null) {
+
+                    blueprint.gearItemSlot.forceSet(unique.getGearSlot());
+
+                    data.gearTypeName = unique.getGearSlot()
+                        .GUID();
+
+                    data.isUnique = true;
+
+                    data.uniqueGUID = unique.GUID();
+                    data.uniqueStats = new UniqueStatsData(unique.GUID());
+                    data.uniqueStats.RerollFully(data);
+
+                    if (unique.canGetSet()) {
+                        data.set = blueprint.getSet(data)
+                            .getSetData();
+                    }
+
+                } else {
+                    data.Rarity = IRarity.Common;
+                }
             }
         } else {
             blueprint.gearItemSlot.get()

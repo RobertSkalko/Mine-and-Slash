@@ -12,6 +12,7 @@ import net.minecraft.world.gen.OverworldGenSettings;
 import net.minecraft.world.gen.WorldGenRegion;
 import net.minecraft.world.server.ServerWorld;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -31,15 +32,13 @@ public class DungeonChunkGenerator extends OverworldChunkGenerator {
     }
 
     @Override
-    public void spawnMobs(ServerWorld worldIn, boolean spawnHostileMobs, boolean spawnPeacefulMobs) {
-
+    public List<Biome.SpawnListEntry> getPossibleCreatures(EntityClassification p_177458_1_, BlockPos p_177458_2_) {
+        return new ArrayList<>();
     }
 
     @Override
-    public List<Biome.SpawnListEntry> getPossibleCreatures(EntityClassification creatureType, BlockPos pos) {
-        // let the biome handle which mobs can spawn
-        // otherwise, implement exceptions and structure-specific logic here (witch huts, ocean monuments, etc)
-        return super.getPossibleCreatures(creatureType, pos);
+    public void spawnMobs(ServerWorld worldIn, boolean spawnHostileMobs, boolean spawnPeacefulMobs) {
+
     }
 
     @Override

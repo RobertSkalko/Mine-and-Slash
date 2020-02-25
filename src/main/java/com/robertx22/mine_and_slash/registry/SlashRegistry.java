@@ -18,7 +18,6 @@ import com.robertx22.mine_and_slash.database.map_events.base.MapEvent;
 import com.robertx22.mine_and_slash.database.map_events.impl.ZombieHordeEvent;
 import com.robertx22.mine_and_slash.database.quests.base.Quest;
 import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
-import com.robertx22.mine_and_slash.database.quests.quest_rewards.MapQuestReward;
 import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
@@ -357,7 +356,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
         addRegistry(new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
         addRegistry(new SlashRegistryContainer<Quest>(SlashRegistryType.QUEST, SimpleKillMobsQuest.INSTANCE));
-        addRegistry(new SlashRegistryContainer<QuestReward>(SlashRegistryType.QUEST_REWARD, MapQuestReward.INSTANCE));
+        addRegistry(new SlashRegistryContainer<QuestReward>(SlashRegistryType.QUEST_REWARD, null));
         addRegistry(new SlashRegistryContainer<SpellPerk>(SlashRegistryType.SPELL_PERK, null));
         addRegistry(new SlashRegistryContainer<SpellPerkEffect>(SlashRegistryType.SPELL_PERK_EFFECT, null));
         addRegistry(new SlashRegistryContainer<SynergyPerkEffect>(SlashRegistryType.SYNERGY_EFFECT, null));

@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
-import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
@@ -68,15 +66,6 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
     @Store
     public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
-
-    @Store
-    public String questGUID = SimpleKillMobsQuest.INSTANCE.GUID();
-
-    @Store
-    public int questPerc = 50;
-
-    @Store
-    public String rewardCrateGUID = CommonerCrate.INSTANCE.GUID();
 
     @Store
     public String mapUUID = UUID.randomUUID()
@@ -296,21 +285,6 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
             .appendSibling(Styles.GOLDCOMP()
                 .appendSibling(Words.Tier.locName()
                     .appendText(": " + this.tier))));
-
-        TooltipUtils.addEmpty(tooltip);
-
-        tooltip.add(new StringTextComponent(
-            TextFormatting.LIGHT_PURPLE + "Reward: " + TextFormatting.DARK_PURPLE).appendSibling(
-            SlashRegistry.LootCrates()
-                .get(this.rewardCrateGUID)
-                .name()));
-
-        TooltipUtils.addEmpty(tooltip);
-
-        tooltip.add(new StringTextComponent(TextFormatting.BLUE + "Quest: ").appendSibling(
-            SlashRegistry.Quests()
-                .get(questGUID)
-                .name()));
 
         TooltipUtils.addEmpty(tooltip);
 

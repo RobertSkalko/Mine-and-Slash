@@ -2,11 +2,11 @@ package com.robertx22.mine_and_slash.database.loot_crates;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.BlueprintUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
@@ -32,8 +32,9 @@ public class WeaponCraftersCrate extends LootCrate {
         blueprint.rarity.minRarity = 1;
 
         blueprint.gearItemSlot.set(SlashRegistry.GearTypes()
-                                           .getFilterWrapped(x -> x.slotType().equals(GearItemSlot.GearSlotType.Weapon))
-                                           .random());
+            .getFilterWrapped(x -> x.slotType()
+                .equals(GearItemSlot.GearSlotType.Weapon))
+            .random());
 
         return GearCreationUtils.CreateStack(blueprint);
 
@@ -46,7 +47,7 @@ public class WeaponCraftersCrate extends LootCrate {
 
     @Override
     public int maxItems() {
-        return 8;
+        return 6;
     }
 
     @Override
