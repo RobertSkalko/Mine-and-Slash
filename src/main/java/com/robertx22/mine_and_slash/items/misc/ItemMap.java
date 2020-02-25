@@ -36,7 +36,7 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
         manager.generated(this);
     }
 
-    public static boolean createMapPortal(DimensionType type, BlockPos pos, World world, MapItemData data) {
+    public static boolean createMapPortal(BlockPos mapDevicePos, DimensionType type, BlockPos pos, World world, MapItemData data) {
 
         if (WorldUtils.isMapWorld(world)) {
 
@@ -53,7 +53,7 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
                 Load.world(MapManager.getWorld(type))
                     .init(data, cpos);
 
-                return summonPortal(world, pos, type, dungeonID);
+                return summonPortal(mapDevicePos, data, world, pos, type, dungeonID);
 
             }
         }
@@ -61,7 +61,7 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
         return false;
     }
 
-    private static boolean summonPortal(World world, BlockPos pos, DimensionType type, String dungeonId) {
+    private static boolean summonPortal(BlockPos mapDevicePos, MapItemData map, World world, BlockPos pos, DimensionType type, String dungeonId) {
 
         spawnFrameBlock(world, pos.south());
         spawnFrameBlock(world, pos.north());
@@ -77,11 +77,11 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
         spawnFrameBlock(world, pos.north()
             .west());
 
-        return spawnPortalBlock(world, pos, type, dungeonId);
+        return spawnPortalBlock(mapDevicePos, map, world, pos, type, dungeonId);
 
     }
 
-    private static boolean spawnPortalBlock(World world, BlockPos pos, DimensionType type, String dungeonId) {
+    private static boolean spawnPortalBlock(BlockPos mapDevicePos, MapItemData map, World world, BlockPos pos, DimensionType type, String dungeonId) {
         Block block = world.getBlockState(pos)
             .getBlock();
 
@@ -90,7 +90,7 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
             world.setBlockState(pos, BlockRegister.MAP_PORTAL.get()
                 .getDefaultState(), 2);
             TileMapPortal portal = new TileMapPortal();
-            portal.dungeonID = dungeonId;
+            portal.onMapSacrificed(mapDevicePos, map, dungeonId);
             world.setTileEntity(pos, portal);
 
             return true;

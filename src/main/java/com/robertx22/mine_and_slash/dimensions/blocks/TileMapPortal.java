@@ -6,8 +6,10 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.onevent.world.OnShutdownResetMaps;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -31,10 +33,17 @@ public class TileMapPortal extends TileEntity {
 
     int ticks = 0;
     public String dungeonID = "";
-    public boolean isBackPortal = false;
+    public MapItemData map = new MapItemData();
+    public BlockPos mapDevicePos = new BlockPos(0, 0, 0);
 
     public void onTick() {
         ticks++;
+    }
+
+    public void onMapSacrificed(BlockPos mapDevicePos, MapItemData map, String dungeonID) {
+        this.mapDevicePos = mapDevicePos;
+        this.map = map;
+        this.dungeonID = dungeonID;
     }
 
     public boolean readyToTeleport() {
@@ -48,7 +57,7 @@ public class TileMapPortal extends TileEntity {
     }
 
     public void onDone(PlayerEntity player) {
-        if (isBackPortal) {
+        if (WorldUtils.isMapWorldClass(player.world)) {
             Load.playerMapData(player)
                 .teleportPlayerBack(player);
         } else {
@@ -57,6 +66,8 @@ public class TileMapPortal extends TileEntity {
             if (cpos != null) {
 
                 PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
+
+                data.init(mapDevicePos, map, MapManager.getDungeonDimensionType(), player);
 
                 if (data.isMapActive()) {
                     World mapworld = MapManager.getWorld(MapManager.getDungeonDimensionType());
@@ -101,18 +112,41 @@ public class TileMapPortal extends TileEntity {
     public void read(CompoundNBT nbt) {
         super.read(nbt);
 
-        ticks = nbt.getInt("ticks");
-        dungeonID = nbt.getString("dungeon_id");
-        isBackPortal = nbt.getBoolean("is_back_portal");
+        try {
+            ticks = nbt.getInt("ticks");
+            dungeonID = nbt.getString("dungeon_id");
+
+            mapDevicePos = new BlockPos(nbt.getInt("xmap"), nbt.getInt("ymap"), nbt.getInt("zmap"));
+
+            if (mapDevicePos == new BlockPos(0, 0, 0)) {
+                mapDevicePos = this.getPos()
+                    .up()
+                    .south();
+            }
+
+            map = Map.Load(nbt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public CompoundNBT write(CompoundNBT nbt) {
         super.write(nbt); // The super call is required to save and load the tile loc
 
-        nbt.putInt("ticks", ticks);
-        nbt.putString("dungeon_id", dungeonID);
-        nbt.putBoolean("is_back_portal", isBackPortal);
+        try {
+            nbt.putInt("ticks", ticks);
+            nbt.putString("dungeon_id", dungeonID);
+
+            Map.Save(nbt, map);
+
+            nbt.putInt("xmap", mapDevicePos.getX());
+            nbt.putInt("ymap", mapDevicePos.getY());
+            nbt.putInt("zmap", mapDevicePos.getZ());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return nbt;
     }

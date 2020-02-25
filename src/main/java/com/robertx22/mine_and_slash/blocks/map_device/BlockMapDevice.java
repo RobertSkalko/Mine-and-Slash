@@ -18,7 +18,8 @@ import net.minecraft.world.World;
 public class BlockMapDevice extends BaseInventoryBlock {
 
     public BlockMapDevice() {
-        super(Properties.create(Material.ROCK).hardnessAndResistance(5F));
+        super(Properties.create(Material.ROCK)
+            .hardnessAndResistance(5F));
     }
 
     @Override
@@ -52,7 +53,10 @@ public class BlockMapDevice extends BaseInventoryBlock {
 
         }
 
-        return super.onBlockActivated(state, world, pos, player, hand, ray);
+        return ActionResultType.FAIL;
+
+        // no need for map device gui anymore?
+        // return super.onBlockActivated(state, world, pos, player, hand, ray);
 
     }
 

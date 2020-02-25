@@ -105,16 +105,16 @@ public class TileMapDevice extends BaseTile {
             // start map
 
             BlockPos pos = this.pos.north(4);
-            Boolean spawnedPortal1 = ItemMap.createMapPortal(type, pos, world, map);
+            Boolean spawnedPortal1 = ItemMap.createMapPortal(p, type, pos, world, map);
 
             BlockPos pos1 = this.pos.south(4);
-            Boolean spawnedPortal2 = ItemMap.createMapPortal(type, pos1, world, map);
+            Boolean spawnedPortal2 = ItemMap.createMapPortal(p, type, pos1, world, map);
 
             BlockPos pos2 = this.pos.east(4);
-            Boolean spawnedPortal3 = ItemMap.createMapPortal(type, pos2, world, map);
+            Boolean spawnedPortal3 = ItemMap.createMapPortal(p, type, pos2, world, map);
 
             BlockPos pos3 = this.pos.west(4);
-            Boolean spawnedPortal4 = ItemMap.createMapPortal(type, pos3, world, map);
+            Boolean spawnedPortal4 = ItemMap.createMapPortal(p, type, pos3, world, map);
 
             if (!spawnedPortal1 && !spawnedPortal2 && !spawnedPortal3 && !spawnedPortal4) {
                 AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(10);

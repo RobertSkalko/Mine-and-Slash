@@ -47,7 +47,7 @@ public abstract class DataProcessor {
             mobList.add(new WeightedWrapper(EntityType.WITCH, 100));
             mobList.add(new WeightedWrapper(EntityType.VINDICATOR, 25));
             mobList.add(new WeightedWrapper(EntityType.SLIME, 5));
-            mobList.add(new WeightedWrapper(EntityType.EVOKER, 80));
+            mobList.add(new WeightedWrapper(EntityType.EVOKER, 2));
             mobList.add(new WeightedWrapper(EntityType.ILLUSIONER, 30));
             mobList.add(new WeightedWrapper(EntityType.HUSK, 500));
             mobList.add(new WeightedWrapper(EntityType.RAVAGER, 40));
