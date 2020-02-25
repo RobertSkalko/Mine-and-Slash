@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.items.bags.loot_bag.ContainerLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ContainerMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content.chests.MapChestContainer;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
@@ -33,6 +34,7 @@ public class ContainerTypeRegisters {
     public static RegistryObject<ContainerType<ContainerGearRepair>> GEAR_REPAIR = REG.register(of(BlockRegister.GEAR_REPAIR), () -> IForgeContainerType.create(ContainerGearRepair::new));
     public static RegistryObject<ContainerType<ContainerGearSalvage>> GEAR_SALVAGE = REG.register(of(BlockRegister.GEAR_SALVAGE), () -> IForgeContainerType.create(ContainerGearSalvage::new));
     public static RegistryObject<ContainerType<ContainerMapDevice>> MAP_DEVICE = REG.register(of(BlockRegister.MAP_DEVICE), () -> IForgeContainerType.create(ContainerMapDevice::new));
+    public static RegistryObject<ContainerType<MapChestContainer>> MAP_CHEST = REG.register(of(BlockRegister.MAP_CHEST), () -> IForgeContainerType.create(MapChestContainer::new));
 
     static Item.Properties stationProp = new Item.Properties().group(CreativeTabs.MyModTab);
 

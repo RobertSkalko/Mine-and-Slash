@@ -30,18 +30,18 @@ public class GearEnumLocReq extends BaseLocRequirement {
     @Override
     public ITextComponent getText() {
 
-        ITextComponent comp = Words.AllowedOn.locName().appendText(": ");
-
-        Predicate<GearItemEnum> predicate = gearsThatCanDoThis;
+        ITextComponent comp = Words.AllowedOn.locName()
+            .appendText(": ");
 
         List<GearItemEnum> enums = Arrays.stream(GearItemEnum.values())
-                .filter(x -> predicate.test(x))
-                .collect(Collectors.toList());
+            .filter(x -> gearsThatCanDoThis.test(x))
+            .collect(Collectors.toList());
 
         int count = 1;
         for (GearItemEnum x : enums) {
 
-            comp.appendSibling(x.word().locName());
+            comp.appendSibling(x.word()
+                .locName());
 
             if (count < enums.size()) {
                 comp.appendText(", ");

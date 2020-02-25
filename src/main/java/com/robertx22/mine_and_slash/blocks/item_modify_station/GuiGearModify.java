@@ -48,7 +48,9 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
 
         // Bind the image texture
-        Minecraft.getInstance().getTextureManager().bindTexture(texture);
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(texture);
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
@@ -56,8 +58,8 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
 
         // draw the cook progress bar
         blit(
-                guiLeft + 85, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V,
-                (int) (this.tile.fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT
+            guiLeft + 85, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V,
+            (int) (this.tile.fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT
         );
 
     }
@@ -80,7 +82,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                         String reqtext = CLOC.translate(Words.RequirementsNotMet.locName()) + ": ";
 
                         font.drawString(
-                                reqtext, this.xSize / 2 - font.getStringWidth(reqtext) / 2, y, Color.red.getRGB());
+                            reqtext, this.xSize / 2 - font.getStringWidth(reqtext) / 2, y, Color.red.getRGB());
                         y += font.FONT_HEIGHT + 1;
                         add = false;
                     }
@@ -100,8 +102,8 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                         if (i.isInstabilityCapReached()) {
                             String breaktxt = Words.InstabilityLimitReached.translate();
                             font.drawString(
-                                    breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y,
-                                    Color.red.getRGB()
+                                breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y,
+                                Color.red.getRGB()
                             );
                             y += font.FONT_HEIGHT;
 
@@ -110,14 +112,14 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                                 if (insta.activatesBreakRoll()) {
 
                                     float breakChance =
-                                            (insta.additionalBreakChance() + i.getBreakChance()) * insta.breakChanceMulti();
+                                        (insta.additionalBreakChance() + i.getBreakChance()) * insta.breakChanceMulti();
 
                                     if (breakChance > 0) {
                                         String breaktxt = Words.BreakChance.translate() + ": " + String.format(
-                                                "%.1f", breakChance) + "%";
+                                            "%.1f", breakChance) + "%";
                                         font.drawString(
-                                                breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y,
-                                                Color.red.getRGB()
+                                            breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y,
+                                            Color.red.getRGB()
                                         );
                                         y += font.FONT_HEIGHT;
 
@@ -139,7 +141,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
 
         // If the mouse is over the progress bar add the progress bar hovering text
         if (GuiUtils.isInRect(
-                guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
+            guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_WIDTH, COOK_BAR_HEIGHT, mouseX, mouseY)) {
             hoveringText.add(Words.Progress.translate() + ": ");
             int cookPercentage = (int) (this.tile.fractionOfCookTimeComplete() * 100);
             hoveringText.add(cookPercentage + "%");

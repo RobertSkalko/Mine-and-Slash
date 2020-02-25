@@ -12,6 +12,7 @@ public class BuiltRoom {
     public BuiltRoom(RoomRotation data, ResourceLocation structure) {
         this.data = data;
         this.structure = structure;
+
     }
 
     @Override

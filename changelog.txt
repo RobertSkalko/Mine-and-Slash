@@ -30,6 +30,8 @@ MAP DIMENSIONS REWORK!
 * maps are no longer limited by time. The reason is simple, there are ZERO ongoing spawners. You can't farm anything. If you clear all the mobs, that's it. Find another map for a new adventure!
 * you can't BREAK or PLACE ANY blocks in maps! This will change the gameplay a bunch. Parkour has to be done, mistakes can't be undone and mobs can't be blocked under a dirthut.
 
+* removed map quests, they aren't feasible in current map system. If there's quest with kill 50 mobs, and only 49 mobs in a dungeon, it'd be impossible. 
+Even if i ensured there's 50 mobs in a dungeon, if 1 falls in lava, quest is still impossible. Also, the only reason i added quests is to try make the old map system a bit more fun. Which i think helped only slightly.
 * added recipe for increase map tier item in tinkering station
 * most loot crate rewards now cant drop common rarity
 * fix loot crates without nbt crashing game

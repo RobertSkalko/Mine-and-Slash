@@ -29,6 +29,7 @@ public class BlockItemRegister {
     public static RegistryObject<Item> BEACON = of(BlockRegister.BEACON);
 
     public static RegistryObject<Item> DUNGEON_PORTAL = of(BlockRegister.DUNGEON_PORTAL);
+    public static RegistryObject<Item> MAP_CHEST = of(BlockRegister.MAP_CHEST);
 
     static Item.Properties stationProp = new Item.Properties().group(CreativeTabs.MyModTab);
 

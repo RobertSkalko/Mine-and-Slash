@@ -213,11 +213,13 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         player.sendMessage(Styles.GREENCOMP()
             .appendSibling(Chats.MapStarted.locName()));
-
+/*
         Load.quests(player)
             .setMapQuest(SlashRegistry.Quests()
                 .get(questGUID), this);
 
+
+ */
         return MapManager.setupPlayerMapDimension(player, unit, this, pos);
 
     }

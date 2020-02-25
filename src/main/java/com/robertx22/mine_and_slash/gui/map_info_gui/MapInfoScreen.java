@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.gui.map_info_gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.mine_and_slash.database.quests.data.QuestSaveData;
-import com.robertx22.mine_and_slash.database.quests.data.QuestTaskData;
 import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
@@ -64,25 +62,6 @@ public class MapInfoScreen extends BaseScreen implements INamedScreen {
                 mapX, mapY
             ));
 
-            QuestSaveData questData = Load.quests(mc.player)
-                .getMapQuestData();
-
-            if (questData != null) {
-
-                List<ITextComponent> taskTooltip = new ArrayList<>();
-
-                ResourceLocation icon = new ResourceLocation("");
-
-                for (QuestTaskData task : questData.tasks) {
-                    taskTooltip.addAll(task.getQuest()
-                        .getTooltip(task));
-                    icon = task.getQuest()
-                        .icon();
-                }
-
-                addButton(new ItemButton(icon, taskTooltip, questX, questY));
-
-            }
         }
     }
 

@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.dimensions.blocks.DungeonPortalBlock;
 import com.robertx22.mine_and_slash.dimensions.blocks.MapPortalBlock;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content.chests.MapChestBlock;
 import com.robertx22.mine_and_slash.professions.blocks.alchemy.AlchemyBlock;
 import com.robertx22.mine_and_slash.professions.blocks.tinkering.TinkeringBlock;
 import net.minecraft.block.Block;
@@ -42,6 +43,8 @@ public class BlockRegister {
     public static RegistryObject<TinkeringBlock> THORN_BUSH = REG.register("thorn_bush", TinkeringBlock::new);
 
     public static RegistryObject<DungeonPortalBlock> DUNGEON_PORTAL = REG.register("dungeon_portal", DungeonPortalBlock::new);
+
+    public static RegistryObject<MapChestBlock> MAP_CHEST = REG.register("map_chest", MapChestBlock::new);
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {

@@ -14,7 +14,7 @@ public class ChestProcessor extends DataProcessor {
     @Override
     public void processImplementation(BlockPos pos, IWorld world) {
 
-        world.setBlockState(pos, BlockRegister.EGG_LOOT_CRATE.get()
+        world.setBlockState(pos, BlockRegister.MAP_CHEST.get()
             .getDefaultState(), 2);
 
     }

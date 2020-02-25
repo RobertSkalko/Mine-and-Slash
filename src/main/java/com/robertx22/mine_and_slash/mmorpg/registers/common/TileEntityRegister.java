@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlo
 import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushTileEntity;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content.chests.MapChestTile;
 import com.robertx22.mine_and_slash.professions.blocks.alchemy.AlchemyTile;
 import com.robertx22.mine_and_slash.professions.blocks.tinkering.TinkeringTile;
 import net.minecraft.tileentity.TileEntityType;
@@ -87,6 +88,12 @@ public class TileEntityRegister {
         REG.register(BlockRegister.BEACON.getId()
                 .getPath(),
             () -> TileEntityType.Builder.create(CosmeticBeaconTile::new, BlockRegister.BEACON.get())
+                .build(null));
+
+    public static RegistryObject<TileEntityType<MapChestTile>> MAP_CHEST =
+        REG.register(BlockRegister.MAP_CHEST.getId()
+                .getPath(),
+            () -> TileEntityType.Builder.create(MapChestTile::new, BlockRegister.MAP_CHEST.get())
                 .build(null));
 
 }
