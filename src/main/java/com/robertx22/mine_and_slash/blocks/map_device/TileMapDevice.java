@@ -100,8 +100,7 @@ public class TileMapDevice extends BaseTile {
 
         try {
 
-            DimensionType type = MapManager.getDimensionType(map.getIWP()
-                .getResourceLoc());
+            DimensionType type = MapManager.getDungeonDimensionType();
 
             // start map
 

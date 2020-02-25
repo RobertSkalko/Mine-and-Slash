@@ -69,7 +69,7 @@ public class Dungeon {
     }
 
     public boolean isFinished() {
-        return started && unbuiltRooms.isEmpty();
+        return (started && unbuiltRooms.isEmpty());
     }
 
     public boolean shouldStartFinishing() {
@@ -177,10 +177,13 @@ public class Dungeon {
 
     private void addUnbuilts(int x, int z, BuiltRoom room) {
 
-        if (x > capacity * 0.9F || z > capacity * 0.9F) {
+        /*
+        if (x > capacity * 0.95F || z > capacity * 0.95F) {
             System.out.println("Pushing too close to capacity, not adding any unbuilt rooms. This means it will look broken.");
             return;
         }
+
+         */
 
         List<Direction> dirs = new ArrayList<>();
         dirs.add(Direction.SOUTH);

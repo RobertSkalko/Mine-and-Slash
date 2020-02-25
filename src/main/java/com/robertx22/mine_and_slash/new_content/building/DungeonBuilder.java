@@ -43,7 +43,11 @@ public class DungeonBuilder {
 
         dungeon.setupBarriers();
 
-        while (!dungeon.isFinished()) {
+        int tries = 0;
+
+        while (!dungeon.isFinished() || tries < 500) {
+
+            tries++;
 
             dungeon.getUnbuiltCopy()
                 .forEach(x -> {

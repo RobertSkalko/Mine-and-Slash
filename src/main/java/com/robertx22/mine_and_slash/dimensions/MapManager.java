@@ -20,6 +20,7 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.RegisterDimensionsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -29,6 +30,11 @@ public class MapManager {
     public static final String DUNGEON_ID = "mmorpg:resettable_dungeon";
 
     public static DimensionType getDungeonDimensionType() {
+
+        if (DUNGEON_DIMENSION != null) {
+            return DUNGEON_DIMENSION;
+        }
+
         return getDimensionType(new ResourceLocation(DUNGEON_ID));
     }
 
@@ -54,19 +60,30 @@ public class MapManager {
 
             }
 
-            ModDimension moddim = SlashRegistry.WorldProviders()
-                .get(new DungeonIWP(null, null).GUID()).moddim;
-            DimensionType type =
-                DimensionManager.registerDimension(new ResourceLocation(DUNGEON_ID), moddim, new PacketBuffer(Unpooled.buffer()), true);
-            DimensionManager.keepLoaded(type, false);
-
         }
+    }
 
+    private static DimensionType DUNGEON_DIMENSION;
+
+    @Mod.EventBusSubscriber(modid = Ref.MODID)
+    public static class EventDimensionType {
         @SubscribeEvent
-        public static void regTypes(RegistryEvent.Register<DimensionType> event) {
+        public static void dimReg(final RegisterDimensionsEvent event) {
+            ResourceLocation id = new ResourceLocation(DUNGEON_ID);
+            if (DimensionType.byName(id) == null) {
 
+                ModDimension moddim = SlashRegistry.WorldProviders()
+                    .get(new DungeonIWP(null, null).GUID()).moddim;
+                DUNGEON_DIMENSION =
+                    DimensionManager.registerDimension(new ResourceLocation(DUNGEON_ID), moddim, new PacketBuffer(Unpooled.buffer()), true);
+                DimensionManager.keepLoaded(DUNGEON_DIMENSION, false);
+
+            } else {
+
+                DUNGEON_DIMENSION = DimensionType.byName(id);
+
+            }
         }
-
     }
 
     public static DimensionType getDimensionType(ResourceLocation res) {

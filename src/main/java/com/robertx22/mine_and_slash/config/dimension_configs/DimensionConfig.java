@@ -28,7 +28,9 @@ public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
     }
 
     public static DimensionConfig DefaultExtra() {
-        return new DimensionConfig(1, 100);
+        DimensionConfig config = new DimensionConfig(1, 100);
+        config.SCALE_MOB_LEVEL_TO_NEAREST_PLAYER = true;
+        return config;
     }
 
     @Override

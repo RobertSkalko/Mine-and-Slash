@@ -33,9 +33,10 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
     public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> chunkGenerator, Random rand, BlockPos pos, NoFeatureConfig config) {
 
         try {
-            ChunkPos cpos = new ChunkPos(pos);
 
             if (world.getDimension() instanceof IWP) {
+
+                ChunkPos cpos = new ChunkPos(pos);
 
                 DungeonBuilder builder = new DungeonBuilder(world.getSeed(), cpos);
                 builder.build();
