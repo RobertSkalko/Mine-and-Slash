@@ -132,7 +132,7 @@ public class WorldMapCap {
 
         @Override
         public float getExpMultiplier(BlockPos pos) {
-            return 1 + getMap(pos).tier * 0.05F;
+            return (1 + getMap(pos).tier * 0.05F) * getMap(pos).getBonusExpMulti();
         }
 
         @Override

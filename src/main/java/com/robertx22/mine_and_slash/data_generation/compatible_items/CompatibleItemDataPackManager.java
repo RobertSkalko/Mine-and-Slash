@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompatibleItemDataPackManager extends BaseDataPackManager<CompatibleItem> {
-    static String ID = "compatible_items";
+    public static String ID = "compatible_items";
 
     public CompatibleItemDataPackManager() {
         super(SlashRegistryType.COMPATIBLE_ITEM, ID, x -> CompatibleItem.EMPTY.fromJson(x));

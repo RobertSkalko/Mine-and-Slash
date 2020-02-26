@@ -63,7 +63,8 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     public int tier = 0;
     @Store
     public int rarity = 0;
-
+    @Store
+    public boolean isExp = false;
     @Store
     public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
 
@@ -103,9 +104,19 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
     @Override
     public float getBonusLootMulti() {
+        if (isExp) {
+            return 1;
+        } else {
+            return 0.1F + (1 * getAffixMulti());
+        }
+    }
 
-        return 0.1F + (1 * getAffixMulti());
-
+    public float getBonusExpMulti() {
+        if (isExp) {
+            return getBonusLootMulti() * 2;
+        } else {
+            return 1;
+        }
     }
 
     public boolean increaseLevel(int i) {
@@ -275,16 +286,33 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(TooltipUtils.rarityShort(rarity)
+        ITextComponent comp = TooltipUtils.rarityShort(rarity)
             .appendText(TextFormatting.GRAY + ", ")
-            .appendSibling(Styles.YELLOWCOMP()
-                .appendSibling(Words.Loot.locName()
-                    .appendText(
-                        ": +" + this.getBonusLootAmountInPercent() + "%")))
-            .appendText(TextFormatting.GRAY + ", ")
+            .appendSibling(Styles.YELLOWCOMP());
+
+        boolean addedExp = false;
+        if (getBonusExpAmountInPercent() > 0) {
+            comp.appendSibling(Words.Exp.locName()
+                .appendText(
+                    ": +" + this.getBonusExpAmountInPercent() + "%"));
+            addedExp = true;
+        }
+
+        if (getBonusLootAmountInPercent() > 0) {
+            if (addedExp) {
+                comp.appendText(", ");
+            }
+
+            comp.appendSibling(Words.Loot.locName()
+                .appendText(
+                    ": +" + this.getBonusLootAmountInPercent() + "%"));
+        }
+        comp.appendText(TextFormatting.GRAY + ", ")
             .appendSibling(Styles.GOLDCOMP()
                 .appendSibling(Words.Tier.locName()
-                    .appendText(": " + this.tier))));
+                    .appendText(": " + this.tier)));
+
+        tooltip.add(comp);
 
         TooltipUtils.addEmpty(tooltip);
 
@@ -306,9 +334,11 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     }
 
     private int getBonusLootAmountInPercent() {
-
         return (int) ((this.getBonusLootMulti() - 1) * 100);
+    }
 
+    private int getBonusExpAmountInPercent() {
+        return (int) ((this.getBonusExpMulti() - 1) * 100);
     }
 
     private static void addAffixTypeToTooltip(MapItemData data, List<ITextComponent> tooltip,

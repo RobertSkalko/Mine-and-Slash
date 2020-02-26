@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.Superior
 import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.WondrousUpgradeInfusion;
 import com.robertx22.mine_and_slash.database.currency.map.ItemAddMapLevel;
 import com.robertx22.mine_and_slash.database.currency.map.ItemAddMapTier;
+import com.robertx22.mine_and_slash.database.currency.map.ItemExpMap;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ItemRegister;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
@@ -40,6 +41,7 @@ public class CurrencyItems implements ISlashRegistryInit {
         add(new RerollPrefixNumbers());
         add(new RerollSuffixNumbers());
         add(new RerollUniqueNumbers());
+        add(new ItemExpMap());
 
         add(new NormalUpgradeInfusion());
         add(new SuperiorUpgradeInfusion());

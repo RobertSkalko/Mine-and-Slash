@@ -164,7 +164,7 @@ public enum Words implements IAutoLocName {
 
     Automatically_salvages_items("Automatically salvages items"),
 
-    Loot("Loot"),
+    Loot("Loot"), Exp("Exp"),
 
     Bonus_Salvage_Chance("Bonus Salvage Chance"),
 
@@ -233,8 +233,11 @@ public enum Words implements IAutoLocName {
     Npc("Npc"),
 
     Percent("Percent"),
+
     GroupPlay("Group Play"),
+
     PartySize("Party Size"),
+
     Permadeath("Permadeath"),
 
     Player_Affixes("Player Affixes"),
@@ -300,7 +303,9 @@ public enum Words implements IAutoLocName {
     Unique_Stats("Unique Stats"),
 
     Unsalvagable("Unsalvagable"),
+
     UsableOn("Usable on"),
+
     Use_Time("Use Time"),
 
     Uses("Uses"),
