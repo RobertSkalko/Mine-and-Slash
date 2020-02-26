@@ -20,6 +20,11 @@ public class GearBlueprint extends ItemBlueprint {
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
     }
 
+    public GearBlueprint(int level, int tier) {
+        super(level, tier);
+        actionsAfterGeneration.add(DamagedGear.INSTANCE);
+    }
+
     public GearItemSlotPart gearItemSlot = new GearItemSlotPart(this);
     private SetPart set;
     public float chaosStatChance = 1;

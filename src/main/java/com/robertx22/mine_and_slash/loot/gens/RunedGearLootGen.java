@@ -14,7 +14,8 @@ public class RunedGearLootGen extends BaseLootGen<RunedGearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return ModConfig.INSTANCE.DropRates.RUNED_GEAR_DROPRATE.get().floatValue();
+        return ModConfig.INSTANCE.DropRates.RUNED_GEAR_DROPRATE.get()
+            .floatValue();
     }
 
     @Override
@@ -29,7 +30,9 @@ public class RunedGearLootGen extends BaseLootGen<RunedGearBlueprint> {
 
     @Override
     public ItemStack generateOne() {
-        RunedGearBlueprint blueprint = new RunedGearBlueprint(info.level);
+        RunedGearBlueprint blueprint = new RunedGearBlueprint(info.level, info.tier);
+        blueprint.rarity.setChanceForHigherRarityBasedOnMapTier();
+
         return blueprint.createStack();
 
     }

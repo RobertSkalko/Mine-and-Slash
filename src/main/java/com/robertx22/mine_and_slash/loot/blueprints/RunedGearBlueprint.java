@@ -13,6 +13,10 @@ public class RunedGearBlueprint extends GearBlueprint {
         super(level);
     }
 
+    public RunedGearBlueprint(int level, int tier) {
+        super(level, tier);
+    }
+
     @Override
     public BaseRaritiesContainer<? extends Rarity> getRarityContainer() {
         return Rarities.RunedGears;

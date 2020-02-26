@@ -63,6 +63,12 @@ public class SlashRegistry {
         SERVER = new HashMap<>(BACKUP);
     }
 
+    public static void restoreFromBackupifEmpty() {
+        if (UniqueGears().isEmpty() || Runes().isEmpty() || Affixes().isEmpty()) {
+            restoreBackup();
+        }
+    }
+
     public static DimensionConfig getDimensionConfig(IWorld world) {
         String id = MapManager.getId(world);
         return DimensionConfigs().get(id);

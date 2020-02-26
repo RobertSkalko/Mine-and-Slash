@@ -15,7 +15,8 @@ public class GearLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return ModConfig.INSTANCE.DropRates.GEAR_DROPRATE.get().floatValue();
+        return ModConfig.INSTANCE.DropRates.GEAR_DROPRATE.get()
+            .floatValue();
     }
 
     @Override
@@ -26,7 +27,8 @@ public class GearLootGen extends BaseLootGen<GearBlueprint> {
     @Override
     public ItemStack generateOne() {
 
-        GearBlueprint blueprint = new GearBlueprint(info.level);
+        GearBlueprint blueprint = new GearBlueprint(info.level, info.tier);
+        blueprint.rarity.setChanceForHigherRarityBasedOnMapTier();
 
         ItemStack stack = blueprint.createStack();
 

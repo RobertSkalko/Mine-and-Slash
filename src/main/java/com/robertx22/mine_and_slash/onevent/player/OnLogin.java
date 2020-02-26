@@ -46,13 +46,14 @@ public class OnLogin {
             ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
 
             MMORPG.sendToClient(new OnLoginClientPacket(), player);
-
+            SlashRegistry.restoreFromBackupifEmpty();
             ConfigRegister.CONFIGS.values()
                 .forEach(x -> x.sendToClient(player));
 
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
                     .setStyle(new Style().setColor(Styles.RED)));
+
             }
 
             if (Load.hasUnit(player)) {
@@ -113,6 +114,14 @@ public class OnLogin {
             ItemStack mapdevice = new ItemStack(BlockItemRegister.MAP_DEVICE.get());
             mapdevice.setCount(64);
             player.inventory.addItemStackToInventory(mapdevice);
+
+            for (int i = 0; i < 10; i++) {
+                GearBlueprint print = new GearBlueprint(100);
+                print.level.LevelRange = false;
+                print.rarity.setSpecificRarity(5);
+                player.inventory.addItemStackToInventory(GearCreationUtils.CreateStack(print, GearItemEnum.NORMAL));
+            }
+
         }
     }
 

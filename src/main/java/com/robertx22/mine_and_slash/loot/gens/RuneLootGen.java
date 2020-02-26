@@ -14,7 +14,8 @@ public class RuneLootGen extends BaseLootGen<RuneBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return ModConfig.INSTANCE.DropRates.RUNE_DROPRATE.get().floatValue();
+        return ModConfig.INSTANCE.DropRates.RUNE_DROPRATE.get()
+            .floatValue();
     }
 
     @Override
@@ -30,7 +31,8 @@ public class RuneLootGen extends BaseLootGen<RuneBlueprint> {
     @Override
     public ItemStack generateOne() {
 
-        RuneBlueprint blueprint = new RuneBlueprint(info.level);
+        RuneBlueprint blueprint = new RuneBlueprint(info.level, info.tier);
+        blueprint.rarity.setChanceForHigherRarityBasedOnMapTier();
 
         return blueprint.createStack();
 

@@ -19,6 +19,11 @@ public class RuneBlueprint extends ItemBlueprint {
 
     }
 
+    public RuneBlueprint(int level, int tier) {
+        super(level, tier);
+
+    }
+
     public RunePart runePart = new RunePart(this);
 
     @Override

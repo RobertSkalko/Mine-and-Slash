@@ -91,6 +91,11 @@ public class LootInfo {
     public LootInfo(World theworld, BlockPos pos) {
         this.world = theworld;
         this.pos = pos;
+        this.mapData = Load.world(world);
+
+        this.level = WorldUtils.isMapWorldClass(world) ? mapData.getLevel(pos) : playerData.getLevel();
+
+        setTier();
     }
 
     public LootInfo(PlayerEntity player) {
