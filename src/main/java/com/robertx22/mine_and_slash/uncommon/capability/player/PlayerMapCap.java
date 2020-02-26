@@ -163,7 +163,7 @@ public class PlayerMapCap {
 
         @Override // a self balancing map loot drop rate that isn't too much or too little.
         public float getMapLootMultiplierForTime() {
-            float total = 1 + data.mapDropPoints;
+            float total = data.mapDropPoints;
 
             return MathHelper.clamp(total, 0.01F, 3F);
         }

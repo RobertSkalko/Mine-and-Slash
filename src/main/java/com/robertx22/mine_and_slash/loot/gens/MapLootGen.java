@@ -22,7 +22,7 @@ public class MapLootGen extends BaseLootGen<MapBlueprint> {
 
         if (info.killer != null) {
             PlayerMapCap.IPlayerMapData map = Load.playerMapData(info.killer);
-            chance = map.getMapLootMultiplierForTime();
+            chance *= map.getMapLootMultiplierForTime();
             if (WorldUtils.isMapWorldClass(info.killer.world)) {
                 chance *= 0.2F;
             } else {
