@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.Rotation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -115,12 +116,30 @@ public enum RoomType implements IWeighted {
         if (debug) {
             return this.getTestRoom();
         } else {
-            RoomGroup g = RandomUtils.roll(15, rand) ? RoomGroup.MISC : group;
+            RoomGroup g = group;
 
-            List<DungeonRoom> possible = getAllRooms().stream()
+            if (RandomUtils.roll(20, rand)) {
+                g = RoomGroup.MISC;
+            } else if (RandomUtils.roll(5, rand)) {
 
-                .filter(x -> x.group.equals(g))
-                .collect(Collectors.toList());
+                List<RoomGroup> posGroups = new ArrayList<>();
+                Arrays.stream(RoomGroup.values())
+                    .forEach(x -> {
+                        if (x != RoomGroup.MISC && x != group) {
+                            posGroups.add(x);
+                        }
+                    });
+
+                g = RandomUtils.randomFromList(posGroups, rand);
+            }
+
+            List<DungeonRoom> possible = new ArrayList<>();
+            for (DungeonRoom x : getAllRooms()) {
+                if (x.group.equals(g)) {
+                    possible.add(x);
+                }
+            }
+
             return RandomUtils.weightedRandom(possible, rand.nextDouble());
 
         }

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.capability.player;
 
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -134,12 +133,6 @@ public class PlayerMapCap {
         @Override
         public void onPlayerDeath(PlayerEntity player) {
 
-            this.data.isDead = true;
-
-            if (ModConfig.INSTANCE.Server.DISABLE_DEATH_IN_MAPS.get()) {
-                player.setHealth(player.getMaxHealth()); // needs to have more hp to actually teleport lol and not die
-            }
-
         }
 
         @Override
@@ -192,12 +185,7 @@ public class PlayerMapCap {
 
         @Override
         public void onTickIfDead(ServerPlayerEntity player) {
-            if (data != null) {
-                if (data.isDead) {
-                    this.data.isDead = false;
-                    teleportPlayerBack(player);
-                }
-            }
+
         }
 
         @Override

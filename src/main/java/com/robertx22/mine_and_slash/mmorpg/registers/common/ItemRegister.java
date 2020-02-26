@@ -122,7 +122,6 @@ public class ItemRegister {
         list.add(new ItemAwakenRuneWord());
         list.add(new ItemIncreaseRarityNearestEntity());
         list.add(new ItemLevelNearestEntity());
-        list.add(new ItemMapBackPortal());
         list.add(new ItemNewbieGearBag());
 
         for (Item item : list) {

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.capability.world;
 
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonData;
@@ -113,7 +114,7 @@ public class WorldMapCap {
 
         @Override
         public boolean shouldDeleteFolderOnServerShutdown() {
-            return data.getDungeonsAmount() > 1000;
+            return data.getDungeonsAmount() > ModConfig.INSTANCE.Server.DELETE_DUNGEON_DIMENSION_FOLDER_AFTER_X_MAPS_SACRIFICED.get();
         }
 
         @Override

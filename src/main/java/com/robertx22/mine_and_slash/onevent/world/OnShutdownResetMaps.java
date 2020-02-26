@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.onevent.world;
 
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -21,26 +20,24 @@ public class OnShutdownResetMaps {
 
     public static void deleteFolders() {
 
-        if (ModConfig.INSTANCE.Server.RESET_MAP_DIMENSIONS_ON_LOAD.get()) {
+        if (shouldDelete) {
 
-            if (shouldDelete) {
+            File file = new File(FMLPaths.GAMEDIR.get()
+                .toAbsolutePath()
+                .toString());
+            for (File dir : Objects.requireNonNull(FileUtils.listFilesAndDirs(file, new NoFilter(), new NoFilter()))) {
 
-                File file = new File(FMLPaths.GAMEDIR.get()
-                    .toAbsolutePath()
-                    .toString());
-                for (File dir : Objects.requireNonNull(FileUtils.listFilesAndDirs(file, new NoFilter(), new NoFilter()))) {
-
-                    try {
-                        if (dirMatches(dir)) {
-                            System.out.println("Deleting Resettable Map Folder from Mine and Slash");
-                            deleteDirectoryRecursion(dir.toPath());
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                try {
+                    if (dirMatches(dir)) {
+                        System.out.println("Deleting Resettable Map Folder from Mine and Slash");
+                        deleteDirectoryRecursion(dir.toPath());
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
+
     }
 
     static class NoFilter implements IOFileFilter {

@@ -63,12 +63,14 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
     }
 
     public boolean hasPerk(T perk) {
-        return this.getPerksData().isAllocated(perk);
+        return this.getPerksData()
+            .isAllocated(perk);
     }
 
     public boolean tryRemovePoint(T perk, ServerPlayerEntity player) {
         if (getPerksData().canRemove(perk)) {
-            this.getPerksData().remove(perk.GUID());
+            this.getPerksData()
+                .remove(perk.GUID());
             this.getPerksData().resetPoints--;
             return true;
         }
@@ -76,7 +78,8 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
     }
 
     public void allocate(Perk talent) {
-        this.getPerksData().allocate(talent.GUID());
+        this.getPerksData()
+            .allocate(talent.GUID());
     }
 
     public int getFreePoints(EntityCap.UnitData data) {
@@ -84,11 +87,13 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
     }
 
     public int getAllocatedPoints() {
-        return this.getPerksData().getAllocatedPerks();
+        return this.getPerksData()
+            .getAllocatedPerks();
     }
 
     public void reset() {
-        this.getPerksData().reset();
+        this.getPerksData()
+            .reset();
     }
 
     public void addResetPoints(int amount) {
@@ -109,7 +114,10 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
             if (allowMultipleStarts()) {
                 return true;
             } else {
-                if (this.getPerksData().getAllCurrentPerks().stream().anyMatch(x -> x.isStart)) {
+                if (this.getPerksData()
+                    .getAllCurrentPerks()
+                    .stream()
+                    .anyMatch(x -> x.isStart)) {
                     // if player already picked a starting point, dont allow to pick other start points
                     return false;
                 } else {
@@ -122,7 +130,8 @@ public abstract class IPerkCap<T extends BasePerk, D extends BasePerksData<T>> {
         boolean can = false;
         for (Object obj : talent.connections) {
             T con = (T) obj;
-            if (this.getPerksData().isAllocated(con)) {
+            if (this.getPerksData()
+                .isAllocated(con)) {
                 can = true;
                 break;
             }

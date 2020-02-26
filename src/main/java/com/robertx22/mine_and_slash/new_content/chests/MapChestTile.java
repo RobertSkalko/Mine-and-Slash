@@ -23,6 +23,11 @@ public class MapChestTile extends ChestTileEntity implements INamedContainerProv
 
     public enum ChestTypes {
         NORMAL
+
+    }
+
+    public NonNullList<ItemStack> getItems() {
+        return super.getItems();
     }
 
     public void addItems(NonNullList<ItemStack> items) {

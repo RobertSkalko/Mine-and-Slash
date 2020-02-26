@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
@@ -53,9 +54,12 @@ public class PlayerStatUtils {
 
         if (penalty < 1) {
 
-            for (Map.Entry<String, StatData> entry : data.getUnit().getStats().entrySet()) {
+            for (Map.Entry<String, StatData> entry : data.getUnit()
+                .getStats()
+                .entrySet()) {
                 if (entry.getValue().val > 0) {
-                    entry.getValue().setValue(entry.getValue().val * penalty);
+                    entry.getValue()
+                        .setValue(entry.getValue().val * penalty);
                 }
             }
         }
@@ -78,10 +82,12 @@ public class PlayerStatUtils {
                         if (mod == null) {
                             //  System.out.println(data.baseModName + " is null");
                         } else {
-                            Stat stat = data.getStatMod().GetBaseStat();
+                            Stat stat = data.getStatMod()
+                                .GetBaseStat();
 
                             if (stat != null) {
-                                StatData statdata = unitdata.getUnit().getCreateStat(stat);
+                                StatData statdata = unitdata.getUnit()
+                                    .getCreateStat(stat);
                                 if (statdata != null) {
                                     data.Add(statdata, datas.level);
                                 }
@@ -102,4 +108,13 @@ public class PlayerStatUtils {
         talents.applyStats(data, player);
 
     }
+
+    public static void addSpellTreeStats(UnitData data, PlayerEntity player) {
+
+        PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+
+        spells.applyStats(data, player);
+
+    }
+
 }

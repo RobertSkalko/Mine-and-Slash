@@ -23,8 +23,7 @@ public class PlayerWholeMapData {
     String originalDimension = "";
     @Store
     String playerID = ""; // for debug purposes
-    @Store
-    public boolean isDead = false;
+
     @Store
     public boolean questFinished = false;
 

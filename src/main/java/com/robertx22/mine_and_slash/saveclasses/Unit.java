@@ -402,6 +402,7 @@ public class Unit {
         if (entity instanceof PlayerEntity) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
             PlayerStatUtils.addTalentStats(data, (PlayerEntity) entity);
+            PlayerStatUtils.addSpellTreeStats(data, (PlayerEntity) entity);
 
             Load.statPoints((PlayerEntity) entity)
                 .getData()

@@ -32,11 +32,15 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootContext;
+import net.minecraft.world.storage.loot.LootParameters;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiPredicate;
 
 public class MapChestBlock extends AbstractChestBlock<MapChestTile> {
@@ -52,8 +56,31 @@ public class MapChestBlock extends AbstractChestBlock<MapChestTile> {
 
     public MapChestBlock() {
         super(Block.Properties.create(Material.WOOD)
-            .hardnessAndResistance(2.5F)
+            .hardnessAndResistance(0)
             .sound(SoundType.WOOD), () -> TileEntityRegister.MAP_CHEST.get());
+    }
+
+    @Deprecated
+    public List<ItemStack> getDrops(BlockState blockstate, LootContext.Builder context) {
+
+        ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+        items.add(new ItemStack(this));
+
+        TileEntity tileentity = context.get(LootParameters.BLOCK_ENTITY);
+
+        if (tileentity instanceof MapChestTile) {
+
+            MapChestTile inv = (MapChestTile) tileentity;
+
+            for (ItemStack stack : inv.getItems()) {
+                if (stack.isEmpty() == false) {
+                    items.add(stack);
+                }
+            }
+
+        }
+
+        return items;
     }
 
     @Nullable

@@ -24,12 +24,34 @@ public class RandomUtils {
 
     }
 
+    public static int RandomRange(int min, int max, Random rand) {
+        // prevents trying to nextin on 0
+        if (min == max) {
+            return min;
+        }
+
+        int result = rand.nextInt(max - min + 1);
+
+        return MathHelper.clamp(result + min, min, max);
+
+    }
+
     public static <T> T randomFromList(List<T> list) {
         if (list == null || list.isEmpty()) {
             return null;
         }
 
         int random = RandomRange(0, list.size() - 1);
+        return list.get(random);
+
+    }
+
+    public static <T> T randomFromList(List<T> list, Random rand) {
+        if (list == null || list.isEmpty()) {
+            return null;
+        }
+
+        int random = RandomRange(0, list.size() - 1, rand);
         return list.get(random);
 
     }
