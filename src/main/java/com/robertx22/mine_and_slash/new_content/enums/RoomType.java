@@ -130,7 +130,11 @@ public enum RoomType implements IWeighted {
                         }
                     });
 
-                g = RandomUtils.randomFromList(posGroups, rand);
+                g = RandomUtils.weightedRandom(posGroups, rand.nextDouble());
+            }
+
+            if (g == null || g == RoomGroup.TEST) {
+                g = RoomGroup.MISC;
             }
 
             List<DungeonRoom> possible = new ArrayList<>();
@@ -138,6 +142,10 @@ public enum RoomType implements IWeighted {
                 if (x.group.equals(g)) {
                     possible.add(x);
                 }
+            }
+
+            if (possible.isEmpty()) {
+                System.out.println("No possible rooms?");
             }
 
             return RandomUtils.weightedRandom(possible, rand.nextDouble());

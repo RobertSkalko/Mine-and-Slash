@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.chunk.DungeonChunkCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,6 +18,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.chunk.Chunk;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ProcessChunkBlocks {
@@ -60,54 +60,40 @@ public class ProcessChunkBlocks {
 
                                 if (dungeonData != null) {
 
-                                    for (int x = 0; x < 16; x++) {
-                                        for (int z = 0; z < 16; z++) {
-                                            for (int y = 0; y < player.world.getHeight(); y++) {
+                                    new HashMap<>(chunk.getTileEntityMap())
+                                        .entrySet()
+                                        .forEach(entry -> {
+                                            TileEntity tile = entry.getValue();
+                                            if (tile instanceof StructureBlockTileEntity) {
+                                                BlockPos tilePos = entry.getKey();
 
-                                                BlockPos pos = new BlockPos(x, y, z);
+                                                StructureBlockTileEntity struc = (StructureBlockTileEntity) tile;
 
-                                                BlockState state = chunk.getBlockState(pos);
+                                                CompoundNBT nbt = new CompoundNBT();
+                                                struc.write(nbt);
+                                                String metadata = nbt.getString("metadata");
+                                                // cus getmetadata is clientonly wtf
 
-                                                if (state.getBlock() == Blocks.STRUCTURE_BLOCK) {
+                                                boolean any = false;
 
-                                                    BlockPos tilePos = cpos.asBlockPos();
-                                                    tilePos = new BlockPos(tilePos.getX() + pos.getX(), pos.getY(), tilePos.getZ() + pos.getZ());
-
-                                                    TileEntity tile = player.world.getTileEntity(tilePos);
-
-                                                    if (tile instanceof StructureBlockTileEntity) {
-                                                        StructureBlockTileEntity struc = (StructureBlockTileEntity) tile;
-
-                                                        CompoundNBT nbt = new CompoundNBT();
-                                                        struc.write(nbt);
-                                                        String metadata = nbt.getString("metadata");
-                                                        // cus getmetadata is clientonly wtf
-
-                                                        boolean any = false;
-
-                                                        for (DataProcessor processor : DataProcessors.getAll()) {
-                                                            boolean did = processor.process(metadata, tilePos, player.world);
-                                                            if (did) {
-                                                                any = true;
-                                                            }
-                                                        }
-
-                                                        if (any) {
-                                                            // only set to air if the processor didnt turn it into another block
-                                                            if (player.world.getBlockState(tilePos)
-                                                                .getBlock() == Blocks.STRUCTURE_BLOCK) {
-                                                                player.world.setBlockState(tilePos, Blocks.AIR.getDefaultState(), 2); // delete data block
-                                                            }
-                                                        } else {
-                                                            System.out.println("Data block with tag: " + metadata + " had no matching processors!");
-                                                        }
-
+                                                for (DataProcessor processor : DataProcessors.getAll()) {
+                                                    boolean did = processor.process(metadata, tilePos, player.world);
+                                                    if (did) {
+                                                        any = true;
                                                     }
                                                 }
 
+                                                if (any) {
+                                                    // only set to air if the processor didnt turn it into another block
+                                                    if (player.world.getBlockState(tilePos)
+                                                        .getBlock() == Blocks.STRUCTURE_BLOCK) {
+                                                        player.world.setBlockState(tilePos, Blocks.AIR.getDefaultState(), 2); // delete data block
+                                                    }
+                                                } else {
+                                                    System.out.println("Data block with tag: " + metadata + " had no matching processors!");
+                                                }
                                             }
-                                        }
-                                    }
+                                        });
 
                                     c.setDone();
                                     chunk.markDirty();
