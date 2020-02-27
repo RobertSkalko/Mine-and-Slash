@@ -24,17 +24,30 @@ public class RefreshingBreezeEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        float energy = effect.targetData.getUnit().peekAtStat(EnergyRegen.GUID).val * RefreshingBreeze.PERCENT / 100;
+
+        float energy = effect.targetData.getUnit()
+            .peekAtStat(EnergyRegen.GUID).val * RefreshingBreeze.PERCENT / 100;
+
+        ResourcesData.Use use;
+
+        if (effect.isDodged) {
+            use = ResourcesData.Use.RESTORE;
+        } else {
+            use = ResourcesData.Use.SPEND;
+            energy /= 2;
+        }
+
         ResourcesData.Context ene = new ResourcesData.Context(
-                effect.targetData, effect.target, ResourcesData.Type.ENERGY, energy, ResourcesData.Use.RESTORE);
-        effect.targetData.getResources().modify(ene);
+            effect.targetData, effect.target, ResourcesData.Type.ENERGY, energy, use);
+        effect.targetData.getResources()
+            .modify(ene);
 
         return effect;
     }
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.isDodged;
+        return true;
     }
 
 }

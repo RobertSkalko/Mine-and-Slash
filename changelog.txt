@@ -1,5 +1,6 @@
 3.1.3
 * updated chinese lang by mcfensi
+* nerf to refreshing breeze and bleed mastery
 3.1.2
 * nerf blood mage
 3.1.1

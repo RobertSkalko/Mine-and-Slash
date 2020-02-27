@@ -43,10 +43,12 @@ public class ElementalPurity extends BaseGameChangerTrait implements IAffectsSta
     public void affectStats(EntityCap.UnitData data, StatData statData) {
 
         for (Stat stat : AllElementalDamage.MAP.getList()) {
-            data.getUnit().getCreateStat(stat).Multi += ELE_INCREASE;
+            data.getUnit()
+                .getCreateStat(stat).Flat += ELE_INCREASE;
         }
 
-        data.getUnit().getCreateStat(PhysicalDamage.getInstance()).Multi -= PHYS_DECREASE;
+        data.getUnit()
+            .getCreateStat(PhysicalDamage.getInstance()).Multi -= PHYS_DECREASE;
     }
 
     private static class SingletonHolder {

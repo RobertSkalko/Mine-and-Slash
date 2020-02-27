@@ -1,10 +1,13 @@
 package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 
 import com.robertx22.mine_and_slash.database.stats.effects.game_changers.RefreshingBreezeEffect;
+import com.robertx22.mine_and_slash.saveclasses.StatData;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-public class RefreshingBreeze extends BaseGameChangerTrait implements IStatEffects {
+public class RefreshingBreeze extends BaseGameChangerTrait implements IStatEffects, IAffectsStats {
 
     private RefreshingBreeze() {
     }
@@ -15,7 +18,7 @@ public class RefreshingBreeze extends BaseGameChangerTrait implements IStatEffec
 
     @Override
     public String locDescForLangFile() {
-        return "Dodging restores " + PERCENT + " percent of your energy regen";
+        return "Dodging restores " + PERCENT + " percent of your energy regen. But if you don't dodge, you lose half of that from energy.";
     }
 
     @Override
@@ -36,5 +39,10 @@ public class RefreshingBreeze extends BaseGameChangerTrait implements IStatEffec
     @Override
     public IStatEffect getEffect() {
         return RefreshingBreezeEffect.INSTANCE;
+    }
+
+    @Override
+    public void affectStats(EntityCap.UnitData data, StatData statData) {
+
     }
 }
