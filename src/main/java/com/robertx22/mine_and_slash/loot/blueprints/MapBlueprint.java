@@ -98,8 +98,9 @@ public class MapBlueprint extends ItemBlueprint {
 
         }
 
+        int percent = RandomUtils.RandomRange(rarity.StatPercents().min, rarity.StatPercents().max);
         List<BaseMapAffix> possible = new BonusEleDmgAffix(Elements.Nature).generateAllSingleVariations();
-        map.affixes.add(new MapAffixData(RandomUtils.weightedRandom(possible), 100));
+        map.affixes.add(new MapAffixData(RandomUtils.weightedRandom(possible), percent));
 
         return map;
     }

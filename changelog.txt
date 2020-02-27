@@ -1,3 +1,12 @@
+3.1.5
+* fixed each map portal having its own dungeon
+* made ticks to update dungeon blocks faster
+3.1.4
+* fixed blink strike server crash
+* fix map chest dropping itself
+* made mobs scale less hard per map tier
+* fix map dmg affix always generating at max value
+* updated chinese lang
 3.1.3
 * updated chinese lang by mcfensi
 * nerf to refreshing breeze and bleed mastery

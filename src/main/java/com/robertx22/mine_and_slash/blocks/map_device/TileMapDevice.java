@@ -5,10 +5,13 @@ import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.datasaving.MapDeviceSaving;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -19,6 +22,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -104,23 +108,35 @@ public class TileMapDevice extends BaseTile {
 
             // start map
 
-            BlockPos pos = this.pos.north(4);
-            Boolean spawnedPortal1 = ItemMap.createMapPortal(p, type, pos, world, map);
+            ChunkPos cpos = Load.world(MapManager.getWorld(type))
+                .getData()
+                .randomFree();
 
-            BlockPos pos1 = this.pos.south(4);
-            Boolean spawnedPortal2 = ItemMap.createMapPortal(p, type, pos1, world, map);
+            String dungeonID = DungeonDimensionData.getId(cpos);
 
-            BlockPos pos2 = this.pos.east(4);
-            Boolean spawnedPortal3 = ItemMap.createMapPortal(p, type, pos2, world, map);
+            Load.world(MapManager.getWorld(type))
+                .init(map, cpos);
 
-            BlockPos pos3 = this.pos.west(4);
-            Boolean spawnedPortal4 = ItemMap.createMapPortal(p, type, pos3, world, map);
+            if (!WorldUtils.isMapWorld(world)) {
 
-            if (!spawnedPortal1 && !spawnedPortal2 && !spawnedPortal3 && !spawnedPortal4) {
-                AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(10);
-                world.getEntitiesWithinAABB(ServerPlayerEntity.class, aab)
-                    .forEach(x -> x.sendMessage(Chats.NoSpaceForPortal.locName()));
-                return false;
+                BlockPos pos = this.pos.north(4);
+                Boolean spawnedPortal1 = ItemMap.summonPortal(p, map, world, pos, type, dungeonID);
+
+                BlockPos pos1 = this.pos.south(4);
+                Boolean spawnedPortal2 = ItemMap.summonPortal(p, map, world, pos1, type, dungeonID);
+
+                BlockPos pos2 = this.pos.east(4);
+                Boolean spawnedPortal3 = ItemMap.summonPortal(p, map, world, pos2, type, dungeonID);
+
+                BlockPos pos3 = this.pos.west(4);
+                Boolean spawnedPortal4 = ItemMap.summonPortal(p, map, world, pos3, type, dungeonID);
+
+                if (!spawnedPortal1 && !spawnedPortal2 && !spawnedPortal3 && !spawnedPortal4) {
+                    AxisAlignedBB aab = new AxisAlignedBB(this.getPos()).grow(10);
+                    world.getEntitiesWithinAABB(ServerPlayerEntity.class, aab)
+                        .forEach(x -> x.sendMessage(Chats.NoSpaceForPortal.locName()));
+                    return false;
+                }
             }
 
         } catch (Exception e) {

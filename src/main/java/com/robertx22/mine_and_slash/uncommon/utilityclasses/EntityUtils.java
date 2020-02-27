@@ -18,7 +18,8 @@ public class EntityUtils {
         AxisAlignedBB axisalignedbb = caster.getBoundingBox()
             .expand(vec3d1.scale(d0))
             .grow(1, 1, 1);
-        EntityRayTraceResult ray = ProjectileHelper.rayTraceEntities(caster, vec3d, vec3d2, axisalignedbb, (en) -> {
+
+        EntityRayTraceResult ray = ProjectileHelper.rayTraceEntities(caster.world, caster, vec3d, vec3d2, axisalignedbb, (en) -> {
             return !en.isSpectator() && en.canBeCollidedWith();
         }, 200);
 

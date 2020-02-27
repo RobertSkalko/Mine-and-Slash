@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CompatibleItemProvider extends SlashDataProvider<CompatibleItem> {
 
-    public CompatibleItemProvider(DataGenerator gen, List list, String category) {
+    public CompatibleItemProvider(DataGenerator gen, List<CompatibleItem> list, String category) {
         super(gen, list, category);
     }
 

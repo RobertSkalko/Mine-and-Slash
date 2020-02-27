@@ -64,7 +64,6 @@ public class MapChestBlock extends AbstractChestBlock<MapChestTile> {
     public List<ItemStack> getDrops(BlockState blockstate, LootContext.Builder context) {
 
         ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-        items.add(new ItemStack(this));
 
         TileEntity tileentity = context.get(LootParameters.BLOCK_ENTITY);
 

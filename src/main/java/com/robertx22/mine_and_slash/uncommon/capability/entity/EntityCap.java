@@ -955,12 +955,12 @@ public class EntityCap {
 
         @Override
         public float getStatMultiplierIncreaseByTier() {
-            return 1 + tier * 0.18F;
+            return 1 + tier * 0.15F;
         }
 
         @Override
         public float getDMGMultiplierIncreaseByTier() {
-            return 1 + tier * 0.21F;
+            return 1 + tier * 0.18F;
         }
 
         @Override

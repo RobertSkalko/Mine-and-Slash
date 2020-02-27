@@ -21,15 +21,16 @@ public class SkeletonHordeEvent extends MapEvent {
     @Override
     public void onActivate(World world) {
 
-        if (!world.getPlayers().isEmpty()) {
+        if (!world.getPlayers()
+            .isEmpty()) {
 
             BlockPos p = randomPosNearPlayer(world);
 
             announceEvent(
-                    world, new StringTextComponent(TextFormatting.LIGHT_PURPLE + "A Skeleton Horde has Appeared!"));
-            summonBeacon(p, world);
+                world, new StringTextComponent(TextFormatting.LIGHT_PURPLE + "A Skeleton Horde has Appeared!"));
 
-            com.robertx22.mine_and_slash.database.bosses.base.Boss boss = SlashRegistry.Bosses().random();
+            com.robertx22.mine_and_slash.database.bosses.base.Boss boss = SlashRegistry.Bosses()
+                .random();
 
             Entity bossMob = summonBoss(EntityType.WITHER_SKELETON, world, p, boss);
 

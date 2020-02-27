@@ -35,7 +35,7 @@ public abstract class DataProcessor {
     public ArrayList<WeightedWrapper<EntityType<? extends MobEntity>>> getMobList() {
 
         if (mobList.isEmpty()) {
-            mobList.add(new WeightedWrapper(EntityType.ZOMBIE, 1000));
+            mobList.add(new WeightedWrapper(EntityType.ZOMBIE, 1200));
             mobList.add(new WeightedWrapper(EntityType.WITHER_SKELETON, 50));
             mobList.add(new WeightedWrapper(EntityType.SKELETON, 400));
             mobList.add(new WeightedWrapper(EntityType.BLAZE, 15));
@@ -50,7 +50,7 @@ public abstract class DataProcessor {
             mobList.add(new WeightedWrapper(EntityType.EVOKER, 2));
             mobList.add(new WeightedWrapper(EntityType.ILLUSIONER, 30));
             mobList.add(new WeightedWrapper(EntityType.HUSK, 500));
-            mobList.add(new WeightedWrapper(EntityType.RAVAGER, 40));
+            mobList.add(new WeightedWrapper(EntityType.RAVAGER, 10));
 
         }
 

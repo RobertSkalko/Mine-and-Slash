@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.blocks.beacon.CosmeticBeaconTile;
 import com.robertx22.mine_and_slash.blocks.item_modify_station.TileGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.TileMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.TileGearRepair;
@@ -75,12 +74,6 @@ public class TileEntityRegister {
         REG.register(BlockRegister.THORN_BUSH.getId()
                 .getPath(),
             () -> TileEntityType.Builder.create(ThornBushTileEntity::new, BlockRegister.THORN_BUSH.get())
-                .build(null));
-
-    public static RegistryObject<TileEntityType<CosmeticBeaconTile>> BEACON =
-        REG.register(BlockRegister.BEACON.getId()
-                .getPath(),
-            () -> TileEntityType.Builder.create(CosmeticBeaconTile::new, BlockRegister.BEACON.get())
                 .build(null));
 
     public static RegistryObject<TileEntityType<MapChestTile>> MAP_CHEST =

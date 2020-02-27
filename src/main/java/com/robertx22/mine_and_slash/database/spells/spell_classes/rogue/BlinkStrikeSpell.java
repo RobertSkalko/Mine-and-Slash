@@ -11,7 +11,9 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -103,6 +105,8 @@ public class BlinkStrikeSpell extends BaseSpell {
             DamageEffect dmg = new DamageEffect(null, caster, target, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
             dmg.element = Elements.Elemental;
             dmg.Activate();
+
+            SoundUtils.playSound(caster, SoundEvents.ENTITY_GENERIC_HURT, 1, 1);
 
             return true;
 

@@ -24,8 +24,6 @@ public class BlockItemRegister {
     public static RegistryObject<Item> MAGMA_FLOWER = of(BlockRegister.MAGMA_FLOWER);
     public static RegistryObject<Item> THORN_BUSH = of(BlockRegister.THORN_BUSH);
 
-    public static RegistryObject<Item> BEACON = of(BlockRegister.BEACON);
-
     public static RegistryObject<Item> DUNGEON_PORTAL = of(BlockRegister.DUNGEON_PORTAL);
     public static RegistryObject<Item> MAP_CHEST = of(BlockRegister.MAP_CHEST);
 

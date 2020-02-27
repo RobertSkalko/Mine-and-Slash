@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.MythicalMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.RareMob;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.onevent.entity.OnMobSpawn;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
@@ -36,11 +35,6 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
     @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.MAP_EVENT;
-    }
-
-    public static void summonBeacon(BlockPos pos, World world) {
-        world.setBlockState(WorldUtils.getSurface(world, pos), BlockRegister.BEACON.get()
-            .getDefaultState());
     }
 
     public static void announceEvent(World world, ITextComponent comp) {
