@@ -1,3 +1,7 @@
+3.1.6
+* nerfed boss and mythic mobs dmg a bit
+* loot tweaks
+* fix death not losing exp
 3.1.5
 * fixed each map portal having its own dungeon
 * made ticks to update dungeon blocks faster

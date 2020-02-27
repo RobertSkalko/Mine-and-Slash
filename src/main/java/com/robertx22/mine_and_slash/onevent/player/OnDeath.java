@@ -12,13 +12,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class OnDeath {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onPlayerDeathSetTeleportBack(LivingDeathEvent evt) {
+    public static void onPlayerDeath(LivingDeathEvent evt) {
 
         try {
-
-            if (true) {
-                return;
-            }
 
             LivingEntity living = evt.getEntityLiving();
 

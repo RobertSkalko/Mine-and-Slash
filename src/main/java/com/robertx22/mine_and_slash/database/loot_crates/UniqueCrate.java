@@ -2,9 +2,10 @@ package com.robertx22.mine_and_slash.database.loot_crates;
 
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.loot.LootInfo;
-import com.robertx22.mine_and_slash.loot.gens.UniqueGearLootGen;
+import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
@@ -22,7 +23,12 @@ public class UniqueCrate extends LootCrate {
 
     @Override
     public ItemStack generateStack(LootInfo info) {
-        return new UniqueGearLootGen(info).generateOne();
+
+        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(info.level, info.tier + RandomUtils.RandomRange(0, 3), true);
+
+        ItemStack stack = blueprint.createStack();
+
+        return stack;
     }
 
     @Override

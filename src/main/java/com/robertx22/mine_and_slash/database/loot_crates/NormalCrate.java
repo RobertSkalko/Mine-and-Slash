@@ -2,34 +2,48 @@ package com.robertx22.mine_and_slash.database.loot_crates;
 
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.loot.LootInfo;
-import com.robertx22.mine_and_slash.loot.gens.MapLootGen;
+import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
-public class CartographerCrate extends LootCrate {
+import java.util.List;
 
-    private CartographerCrate() {
+public class NormalCrate extends LootCrate {
+
+    private NormalCrate() {
     }
 
-    public static CartographerCrate getInstance() {
+    public static NormalCrate getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public ITextComponent name() {
-        return Words.CartographerCrate.locName();
+        return Words.CommonerCrate.locName();
     }
 
     @Override
     public ItemStack generateStack(LootInfo info) {
-        return new MapLootGen(info).generateOne();
+
+        try {
+            List<ItemStack> items = MasterLootGen.generateLoot(info);
+            info.minItems = 1;
+            ItemStack stack = RandomUtils.randomFromList(items);
+
+            return stack;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ItemStack.EMPTY;
     }
 
     @Override
     public int getRarityRank() {
-        return IRarity.Mythic;
+        return IRarity.Common;
     }
 
     @Override
@@ -39,10 +53,10 @@ public class CartographerCrate extends LootCrate {
 
     @Override
     public String GUID() {
-        return "map_crate";
+        return "normal_crate";
     }
 
     private static class SingletonHolder {
-        private static final CartographerCrate INSTANCE = new CartographerCrate();
+        private static final NormalCrate INSTANCE = new NormalCrate();
     }
 }

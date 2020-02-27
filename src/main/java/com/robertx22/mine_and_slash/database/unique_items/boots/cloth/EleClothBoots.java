@@ -46,7 +46,7 @@ public class EleClothBoots implements IElementalUnique, IUnique {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element).size(StatMod.Size.LOW));
+        return Arrays.asList(new ElementalAttackDamageFlat(element).size(StatMod.Size.TINY));
     }
 
     @Override
