@@ -198,7 +198,7 @@ public class TileGearSalvage extends BaseTile {
 
                 if (!result.isEmpty()) { // isEmpty()
 
-                    boolean oneOutputIsEmpty = false;
+                    boolean merged = false;
 
                     // find the first suitable output slot- either empty, or with identical item
                     // that has enough space
@@ -208,24 +208,32 @@ public class TileGearSalvage extends BaseTile {
                             firstSuitableInputSlot = inputSlot;
                             firstSuitableOutputSlot = outputSlot;
 
-                            oneOutputIsEmpty = true;
-
                             break;
                         }
 
                         if (outputStack.getItem() == result.getItem()
-
                             && ItemStack.areItemStackTagsEqual(outputStack, result)) {
                             int combinedSize = itemStacks[outputSlot].getCount() + result.getCount(); // getStackSize()
                             if (combinedSize <= getInventoryStackLimit() && combinedSize <= itemStacks[outputSlot].getMaxStackSize()) {
                                 firstSuitableInputSlot = inputSlot;
                                 firstSuitableOutputSlot = outputSlot;
+
                                 break;
+
                             }
                         }
                     }
 
-                    if (!oneOutputIsEmpty) {
+                    boolean anyEmpty = false;
+                    for (int outputSlot = FIRST_OUTPUT_SLOT; outputSlot < FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT; outputSlot++) {
+                        ItemStack outputStack = itemStacks[outputSlot];
+                        if (outputStack.isEmpty()) { // isEmpty()
+                            anyEmpty = true;
+                            break;
+                        }
+                    }
+
+                    if (!anyEmpty) {
                         return false;
                     }
 

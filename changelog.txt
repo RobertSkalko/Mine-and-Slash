@@ -1,3 +1,7 @@
+3.1.2
+* nerf blood mage
+3.1.1
+salvage fix
 3.1.0
 THIS UPDATE WILL BREAK SOME EXISTING ITEMS FROM OLDER SAVES. 
 This is not something i do lightly, but with me starting to turn my stuff into datapacks, it's something i would have to do sooner or later. 
