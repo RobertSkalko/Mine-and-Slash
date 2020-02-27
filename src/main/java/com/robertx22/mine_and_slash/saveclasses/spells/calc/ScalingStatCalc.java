@@ -35,6 +35,10 @@ public class ScalingStatCalc extends BaseStatCalc {
         return multi;
     }
 
+    public int getMultiAsPercent() {
+        return (int) (multi * 100);
+    }
+
     @Override
     public int getCalculatedValue(EntityCap.UnitData data) {
         return (int) (data.getUnit()

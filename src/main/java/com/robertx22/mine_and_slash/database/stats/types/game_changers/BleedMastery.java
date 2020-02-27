@@ -26,7 +26,7 @@ public class BleedMastery extends BaseGameChangerTrait implements IStatEffects, 
 
     @Override
     public String locDescForLangFile() {
-        return "Your phys basic attacks inflict " + BleedPotion.CALC.multi + " percent of your phys dmg as bleed on " + "targets but you lose " +
+        return "Your phys basic attacks inflict " + BleedPotion.CALC.getMultiAsPercent() + " percent of your phys dmg as bleed on " + "targets but you lose " +
             LOSE_PERC + " percent of your elemental damage.";
     }
 
