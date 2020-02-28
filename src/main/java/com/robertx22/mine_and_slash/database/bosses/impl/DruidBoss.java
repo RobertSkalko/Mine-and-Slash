@@ -21,12 +21,14 @@ public class DruidBoss extends Boss {
         this.synergies.add(Synergies.REGEN_AOE);
         this.synergies.add(Synergies.REGEN_THORNS);
 
-        this.tickActions.add(new TickAction(100, x -> {
-            RegenerateSpell.getInstance().cast(x, 0);
+        this.tickActions.add(new TickAction(200, x -> {
+            RegenerateSpell.getInstance()
+                .cast(x, 0);
             return x;
         }));
-        this.tickActions.add(new TickAction(300, x -> {
-            ThornBushSpell.getInstance().cast(x, 0);
+        this.tickActions.add(new TickAction(400, x -> {
+            ThornBushSpell.getInstance()
+                .cast(x, 0);
             return x;
         }));
     }
@@ -49,18 +51,21 @@ public class DruidBoss extends Boss {
     public void onHealthTreshholdTriggered(LivingEntity en, BossData.HealthTreshhold treshhold) {
 
         if (treshhold == BossData.HealthTreshhold.T_75) {
-            ThornArmorSpell.getInstance().cast(en, 0);
+            ThornArmorSpell.getInstance()
+                .cast(en, 0);
         }
 
         if (treshhold == BossData.HealthTreshhold.T_25) {
-            ThornArmorSpell.getInstance().cast(en, 0);
+            ThornArmorSpell.getInstance()
+                .cast(en, 0);
         }
     }
 
     @Override
     public void applyStats(EntityCap.UnitData data) {
         super.applyStats(data);
-        data.getUnit().getCreateStat(HealthRegen.getInstance()).Multi -= 100;
+        data.getUnit()
+            .getCreateStat(HealthRegen.getInstance()).Multi -= 100;
     }
 
     @Override

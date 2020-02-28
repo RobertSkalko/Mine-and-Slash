@@ -26,8 +26,8 @@ public class BloodMage extends BaseGameChangerTrait implements IStatMultipleEffe
 
     @Override
     public String locDescForLangFile() {
-        return "Your have no mana, you use blood instead. Max blood is half of your health. You replenish blood with "
-            + "any non spell related health restoration method like hp regen or lifesteal. " + HP_DECREASE + "% of your Health and Health regen are taken as a result.";
+        return "You have no mana, you use blood instead. Max blood is half of your health. You replenish blood with "
+            + "any non spell related health restoration method like hp regen or lifesteal. " + HP_DECREASE + " percent of your Health and Health regen are taken as a result.";
     }
 
     @Override

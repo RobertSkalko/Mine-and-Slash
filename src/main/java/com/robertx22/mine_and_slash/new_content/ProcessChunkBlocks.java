@@ -20,6 +20,7 @@ import net.minecraft.world.chunk.Chunk;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProcessChunkBlocks {
 
@@ -46,7 +47,11 @@ public class ProcessChunkBlocks {
                     return;
                 }
 
-                chunks.forEach(cpos -> {
+                for (ChunkPos cpos : chunks) {
+
+                    if (!player.world.chunkExists(cpos.x, cpos.z)) {
+                        continue;
+                    }
 
                     Chunk chunk = player.world.getChunk(cpos.x, cpos.z);
 
@@ -58,51 +63,58 @@ public class ProcessChunkBlocks {
                                 DungeonData dungeonData = mapdata.getData()
                                     .getData(cpos);
 
+                                boolean anyStructureBlocks = false;
+
                                 if (dungeonData != null) {
 
-                                    new HashMap<>(chunk.getTileEntityMap())
-                                        .entrySet()
-                                        .forEach(entry -> {
-                                            TileEntity tile = entry.getValue();
-                                            if (tile instanceof StructureBlockTileEntity) {
-                                                BlockPos tilePos = entry.getKey();
+                                    for (Map.Entry<BlockPos, TileEntity> entry : new HashMap<>(chunk.getTileEntityMap())
+                                        .entrySet()) {
+                                        TileEntity tile = entry.getValue();
+                                        if (tile instanceof StructureBlockTileEntity) {
+                                            BlockPos tilePos = entry.getKey();
 
-                                                StructureBlockTileEntity struc = (StructureBlockTileEntity) tile;
+                                            StructureBlockTileEntity struc = (StructureBlockTileEntity) tile;
 
-                                                CompoundNBT nbt = new CompoundNBT();
-                                                struc.write(nbt);
-                                                String metadata = nbt.getString("metadata");
-                                                // cus getmetadata is clientonly wtf
+                                            CompoundNBT nbt = new CompoundNBT();
+                                            struc.write(nbt);
+                                            String metadata = nbt.getString("metadata");
+                                            // cus getmetadata is clientonly wtf
 
-                                                boolean any = false;
+                                            boolean any = false;
 
-                                                for (DataProcessor processor : DataProcessors.getAll()) {
-                                                    boolean did = processor.process(metadata, tilePos, player.world);
-                                                    if (did) {
-                                                        any = true;
-                                                    }
-                                                }
-
-                                                if (any) {
-                                                    // only set to air if the processor didnt turn it into another block
-                                                    if (player.world.getBlockState(tilePos)
-                                                        .getBlock() == Blocks.STRUCTURE_BLOCK) {
-                                                        player.world.setBlockState(tilePos, Blocks.AIR.getDefaultState(), 2); // delete data block
-                                                    }
-                                                } else {
-                                                    System.out.println("Data block with tag: " + metadata + " had no matching processors!");
+                                            for (DataProcessor processor : DataProcessors.getAll()) {
+                                                boolean did = processor.process(metadata, tilePos, player.world);
+                                                if (did) {
+                                                    any = true;
                                                 }
                                             }
-                                        });
 
-                                    c.setDone();
-                                    chunk.markDirty();
+                                            if (any) {
+
+                                                anyStructureBlocks = true;
+
+                                                // only set to air if the processor didnt turn it into another block
+                                                if (player.world.getBlockState(tilePos)
+                                                    .getBlock() == Blocks.STRUCTURE_BLOCK) {
+                                                    player.world.setBlockState(tilePos, Blocks.AIR.getDefaultState(), 2); // delete data block
+                                                }
+
+                                            } else {
+                                                System.out.println("Data block with tag: " + metadata + " had no matching processors!");
+                                            }
+                                        }
+                                    }
+
+                                    if (anyStructureBlocks) {
+                                        c.setDone();
+                                        chunk.markDirty();
+                                    }
 
                                 }
                             }
 
                         });
-                });
+                }
 
             }
         } catch (Exception e) {

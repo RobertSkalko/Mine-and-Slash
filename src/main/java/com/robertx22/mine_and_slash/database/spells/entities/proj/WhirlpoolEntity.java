@@ -68,7 +68,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
         int tickRate = 20;
 
-        if (this.inGround) {
+        if (this.inGround || this.ticksExisted > 30) {
             if (this.ticksExisted % tickRate == 0) {
                 if (!world.isRemote) {
                     LivingEntity caster = getCaster();
@@ -78,12 +78,13 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                     }
 
                     List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPositionVector())
-                            .radius(radius())
-                            .build();
+                        .radius(radius())
+                        .build();
 
                     entities.forEach(x -> {
 
-                        DamageEffect dmg = dealSpellDamageTo(x, new Options().knockbacks(false).activatesEffect(false));
+                        DamageEffect dmg = dealSpellDamageTo(x, new Options().knockbacks(false)
+                            .activatesEffect(false));
 
                         if (Synergies.WHIRLPOOL_FROST_DMG.has(caster)) {
                             Synergies.WHIRLPOOL_FROST_DMG.tryActivate(new BeforeDamageContext(caster, x, dmg));
@@ -104,9 +105,9 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                     Vec3d p = this.getPositionVector();
 
                     world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_BUBBLE_POP, SoundCategory.BLOCKS, 1F,
-                                    1F,
+                        1F,
 
-                                    false
+                        false
                     );
 
                 }
@@ -122,7 +123,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
                     for (int i = 0; i < 40; i++) {
                         Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                                getPositionVector().add(0, yUp, 0), rad);
+                            getPositionVector().add(0, yUp, 0), rad);
                         ParticleUtils.spawn(ParticleRegister.BUBBLE, world, p);
 
                     }
@@ -131,7 +132,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                 Vec3d p = this.getPositionVector();
 
                 world.playSound(p.x, p.y, p.z, SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_AMBIENT, SoundCategory.BLOCKS,
-                                0.2F, 0.9F, false
+                    0.2F, 0.9F, false
                 );
             }
         }

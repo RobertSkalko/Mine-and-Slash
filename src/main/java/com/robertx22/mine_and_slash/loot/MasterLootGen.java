@@ -27,6 +27,7 @@ public class MasterLootGen {
 
             tries++;
             if (tries > 30) {
+                System.out.println("Tried to generate loot many times but failed! " + info.toString());
                 break;
             }
 
@@ -66,8 +67,8 @@ public class MasterLootGen {
         items.addAll(new UniqueRuneLootGen(info).tryGenerate());
 
         return items.stream()
-                .filter(x -> x.isEmpty() == false)
-                .collect(Collectors.toList());
+            .filter(x -> x.isEmpty() == false)
+            .collect(Collectors.toList());
     }
 
     public static List<ItemStack> generateLoot(UnitData mob, UnitData player,

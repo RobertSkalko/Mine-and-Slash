@@ -151,8 +151,11 @@ public class LootInfo {
                 chance *= iwp.getBonusLootMulti();
             }
 
-            chance *= Load.world(world)
-                .getLootMultiplier(pos);
+        }
+
+        if (this.mapData != null && mapData.getData()
+            .hasData(pos)) {
+            chance *= this.mapData.getLootMultiplier(pos);
         }
 
         if (mobData != null && victim != null) {

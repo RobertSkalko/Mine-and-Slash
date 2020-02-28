@@ -15,13 +15,13 @@ public abstract class BaseSummonerBoss extends com.robertx22.mine_and_slash.data
 
         int amount = 2;
         if (t == BossData.HealthTreshhold.T_75) {
-            amount = 4;
+            amount = 3;
         } else if (t == BossData.HealthTreshhold.T_50) {
-            amount = 5;
+            amount = 4;
         } else if (t == BossData.HealthTreshhold.T_25) {
-            amount = 10;
+            amount = 8;
         } else if (t == BossData.HealthTreshhold.T_10) {
-            amount = 15;
+            amount = 10;
         }
 
         en.addPotionEffect(new EffectInstance(Effects.LEVITATION, 200, 1));

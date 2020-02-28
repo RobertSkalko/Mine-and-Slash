@@ -29,7 +29,7 @@ public class MapAffixData {
     }
 
     public float getBonusLootMultiplier() {
-        return 0.05F + (((float) percent / 550) * getAffix().lootMulti());
+        return 0.01F + (((float) percent / 600) * getAffix().lootMulti());
     }
 
     @Store

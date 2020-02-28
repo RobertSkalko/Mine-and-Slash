@@ -177,9 +177,9 @@ public class PlayerMapCap {
         public void onMinute(PlayerEntity player) {
 
             if (WorldUtils.isMapWorldClass(player.world)) {
-                this.data.mapDropPoints -= 0.03F;
+                this.data.mapDropPoints -= 0.05F;
             } else {
-                this.data.mapDropPoints += 0.01F;
+                this.data.mapDropPoints += 0.007F;
             }
         }
 

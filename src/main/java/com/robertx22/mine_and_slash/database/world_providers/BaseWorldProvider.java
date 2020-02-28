@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonBiomeProvider;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonChunkGenerator;
-import com.robertx22.mine_and_slash.onevent.player.OnBreakBlockStopInDungeon;
+import com.robertx22.mine_and_slash.onevent.player.OnDungeonBlockEvents;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -209,7 +209,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
             if (block instanceof FenceGateBlock) {
                 return true;
             }
-            if (OnBreakBlockStopInDungeon.canBreakBlock(block)) {
+            if (OnDungeonBlockEvents.canBreakBlock(block)) {
                 return true;
             }
         } catch (Exception e) {

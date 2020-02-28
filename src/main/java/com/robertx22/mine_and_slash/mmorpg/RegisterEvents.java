@@ -30,7 +30,7 @@ public class RegisterEvents {
 
     private static void registerPlayerEvents() {
 
-        register(OnBreakBlockStopInDungeon.class);
+        register(OnDungeonBlockEvents.class);
         register(GiveExpSub.class);
         register(OnDeath.class);
         register(OnPlayerClone.class);

@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.server_wide.TeamCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
@@ -23,6 +24,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OnMobDeathDrops {
 
@@ -66,18 +71,10 @@ public class OnMobDeathDrops {
 
                         if (loot_multi > 0) {
                             MasterLootGen.genAndDrop(mobKilledData, playerData, mobKilled, player);
-
                         }
 
                         if (exp_multi > 0) {
-                            int exp = GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
-
-                            if (exp > 0) {
-                                DmgNumPacket packet = new DmgNumPacket(
-                                    mobKilled, Elements.Nature, "+" + NumberUtils.formatNumber(exp) + " Exp!");
-                                packet.isExp = true;
-                                MMORPG.sendToClient(packet, player);
-                            }
+                            GiveExp(mobKilled, player, playerData, mobKilledData, exp_multi);
                         }
                     }
                 }
@@ -92,26 +89,52 @@ public class OnMobDeathDrops {
 
     }
 
-    private static int GiveExp(LivingEntity victim, PlayerEntity entity, UnitData player, UnitData mob, float multi) {
+    private static void GiveExp(LivingEntity victim, PlayerEntity killer, UnitData killerData, UnitData mobData, float multi) {
 
-        int exp = (int) (mob.getLevel() * Rarities.Mobs.get(mob.getRarity())
+        int exp = (int) (mobData.getLevel() * Rarities.Mobs.get(mobData.getRarity())
             .ExpOnKill() * multi);
 
-        exp = (int) LootUtils.ApplyLevelDistancePunishment(mob, player, exp);
+        exp = (int) LootUtils.ApplyLevelDistancePunishment(mobData, killerData, exp);
 
         if (victim instanceof SlimeEntity) {
             exp /= 10;
         }
 
         if (WorldUtils.isMapWorldClass(victim.world)) {
-            exp *= Load.world(entity.world)
+            exp *= Load.world(killer.world)
                 .getExpMultiplier(victim.getPosition());
         }
 
-        exp = player.PostGiveExpEvent(victim, entity, exp);
+        if (exp > 0) {
 
-        return exp;
+            TeamCap.ITeamData team = TeamCap.getCapability();
 
+            List<PlayerEntity> list = new ArrayList<>();
+
+            if (team.isPlayerInATeam((ServerPlayerEntity) killer)) {
+                list.addAll(team.getPlayersInTeam((ServerPlayerEntity) killer)
+                    .stream()
+                    .filter(x -> x.getDistance(killer) < 200)
+                    .collect(Collectors.toList()));
+            }
+            if (list.isEmpty()) {
+                list.add(killer);
+            }
+
+            exp /= list.size();
+
+            if (exp > 0) {
+                DmgNumPacket packet = new DmgNumPacket(
+                    victim, Elements.Nature, "+" + NumberUtils.formatNumber(exp) + " Exp!");
+                packet.isExp = true;
+                MMORPG.sendToClient(packet, (ServerPlayerEntity) killer);
+
+                for (PlayerEntity x : list) {
+                    killerData.PostGiveExpEvent(victim, killer, exp);
+                }
+            }
+
+        }
     }
 
 }

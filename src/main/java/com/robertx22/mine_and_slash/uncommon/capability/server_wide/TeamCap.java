@@ -13,13 +13,13 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -27,10 +27,13 @@ import java.util.stream.Collectors;
 @Mod.EventBusSubscriber
 public class TeamCap {
 
+    static ITeamData data;
+
     public static ITeamData getCapability() {
-        return MapManager.getWorld(DimensionType.OVERWORLD)
-            .getCapability(Data)
-            .orElse(new DefaultImpl());
+        if (data == null) {
+            data = new DefaultImpl();
+        }
+        return data;
     }
 
     public static final ResourceLocation RESOURCE = new ResourceLocation(Ref.MODID, "teams");
@@ -61,7 +64,7 @@ public class TeamCap {
     public static class EventHandler {
         @SubscribeEvent
         public static void onEntityConstruct(AttachCapabilitiesEvent<World> event) {
-            event.addCapability(RESOURCE, new Provider());
+            //event.addCapability(RESOURCE, new Provider());
         }
     }
 
@@ -160,8 +163,10 @@ public class TeamCap {
         public boolean isPlayerInATeam(ServerPlayerEntity player) {
             try {
                 PlayerTeamsData.Team team = teams.teamIDxTeamDataMap.get(teams.getTeamId(player));
+
+                String id = teams.getPlayerId(player);
                 return team != null && team.getPlayerIds()
-                    .contains(teams.getTeamId(player));
+                    .contains(id);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -202,13 +207,19 @@ public class TeamCap {
 
         @Override
         public List<PlayerEntity> getPlayersInTeam(ServerPlayerEntity player) {
-            return teams.teamIDxTeamDataMap.get(teams.getTeamId(player))
-                .getPlayerIds()
-                .stream()
-                .map(x -> MapManager.getServer()
-                    .getPlayerList()
-                    .getPlayerByUUID(UUID.fromString(x)))
-                .collect(Collectors.toList());
+            try {
+                return teams.teamIDxTeamDataMap.get(teams.getTeamId(player))
+                    .getPlayerIds()
+                    .stream()
+                    .map(x -> MapManager.getServer()
+                        .getPlayerList()
+                        .getPlayerByUUID(UUID.fromString(x)))
+                    .collect(Collectors.toList());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return new ArrayList<>();
         }
     }
 

@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.server.ServerWorld;
@@ -45,6 +46,13 @@ public class OnMobSpawn {
         LivingEntity entity = (LivingEntity) event.getEntity();
 
         setupNewMobOnSpawn(entity);
+
+        if (WorldUtils.isMapWorldClass(entity.world)) {
+            if (entity instanceof MobEntity) {
+                MobEntity mob = (MobEntity) entity;
+                mob.enablePersistence();
+            }
+        }
 
     }
 

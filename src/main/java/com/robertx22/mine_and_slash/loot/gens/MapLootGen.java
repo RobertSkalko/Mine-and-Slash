@@ -21,12 +21,13 @@ public class MapLootGen extends BaseLootGen<MapBlueprint> {
             .floatValue();
 
         if (info.killer != null) {
+
             PlayerMapCap.IPlayerMapData map = Load.playerMapData(info.killer);
+
             chance *= map.getMapLootMultiplierForTime();
+
             if (WorldUtils.isMapWorldClass(info.killer.world)) {
-                chance *= 0.1F;
-            } else {
-                chance *= 1.2F;
+                chance *= 0.05F;
             }
         }
 
