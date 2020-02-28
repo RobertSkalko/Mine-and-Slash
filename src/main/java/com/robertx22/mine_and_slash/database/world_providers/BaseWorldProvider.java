@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.database.world_providers;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonBiomeProvider;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonChunkGenerator;
+import com.robertx22.mine_and_slash.onevent.player.OnBreakBlockStopInDungeon;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -192,28 +192,28 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
     // otherwise you can break interactables, and that's bad. breaking a button might mean you're stuck forever
     @Override
     public boolean canMineBlock(PlayerEntity player, BlockPos pos) {
-        Block block = getWorld().getBlockState(pos)
-            .getBlock();
+        try {
+            Block block = getWorld().getBlockState(pos)
+                .getBlock();
 
-        // okay, except some interactable blocks need to return true so that they can be interacted with
-        if (block.isIn(BlockTags.WOODEN_DOORS) || block.isIn(BlockTags.WOODEN_TRAPDOORS)) {
-            return true;
-        }
-        if (block == Blocks.LEVER || block.isIn(BlockTags.BUTTONS) || block == Blocks.CAULDRON) {
-            return true;
-        }
-        if (block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST || block == Blocks.BARREL) {
-            return true;
-        }
-        if (block.getRegistryName()
-            .getNamespace() == "gravestones") {
-            return true;
-        }
-        if (block instanceof FenceGateBlock) {
-            return true;
-        }
-        if (block == BlockRegister.MAP_CHEST.get()) {
-            return true;
+            // okay, except some interactable blocks need to return true so that they can be interacted with
+            if (block.isIn(BlockTags.WOODEN_DOORS) || block.isIn(BlockTags.WOODEN_TRAPDOORS)) {
+                return true;
+            }
+            if (block == Blocks.LEVER || block.isIn(BlockTags.BUTTONS) || block == Blocks.CAULDRON) {
+                return true;
+            }
+            if (block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST || block == Blocks.BARREL) {
+                return true;
+            }
+            if (block instanceof FenceGateBlock) {
+                return true;
+            }
+            if (OnBreakBlockStopInDungeon.canBreakBlock(block)) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return false;

@@ -1,3 +1,5 @@
+3.1.7
+* make it possible to destroy graves from other mods in dungeons.
 3.1.6
 * nerfed boss and mythic mobs dmg a bit
 * loot tweaks

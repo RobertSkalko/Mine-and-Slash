@@ -43,7 +43,7 @@ public class NormalCrate extends LootCrate {
 
     @Override
     public int getRarityRank() {
-        return IRarity.Common;
+        return IRarity.Uncommon;
     }
 
     @Override
