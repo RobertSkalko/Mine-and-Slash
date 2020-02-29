@@ -57,7 +57,7 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                     .getType())
                     .getStructureTemplateManager();
 
-                Template template = templatemanager.getTemplate(room.structure);
+                Template template = templatemanager.getTemplate(room.getStructure());
                 PlacementSettings settings = (new PlacementSettings()).setMirror(Mirror.NONE)
                     .setRotation(Rotation.NONE)
                     .setIgnoreEntities(false)
@@ -70,7 +70,7 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                 BlockPos position = new BlockPos(cpos.getXStart(), Y_POS, cpos.getZStart());
 
                 if (template == null) {
-                    System.out.println("FATAL ERROR: Structure does not exist (" + room.structure + ")");
+                    System.out.println("FATAL ERROR: Structure does not exist (" + room.getStructure() + ")");
                     return false;
                 }
 

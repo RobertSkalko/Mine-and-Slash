@@ -34,6 +34,7 @@ public class Dungeon {
     private boolean started = false;
     int amount = 0;
     int ends = 0;
+    public int bossRooms = 0;
 
     private BuiltRoom[][] rooms;
 
@@ -122,7 +123,7 @@ public class Dungeon {
         DungeonRoom barrier = new DungeonRoom("", RoomType.END, RoomGroup.TEST);
         barrier.loc = new ResourceLocation(Ref.MODID, "dun/barrier");
         RoomRotation rot = new RoomRotation(RoomType.END, new RoomSides(RoomSide.BLOCKED, RoomSide.BLOCKED, RoomSide.BLOCKED, RoomSide.BLOCKED), Rotation.NONE);
-        BuiltRoom built = new BuiltRoom(rot, barrier.loc);
+        BuiltRoom built = new BuiltRoom(rot, barrier);
 
         // add barriers to edges
         for (int i = 0; i < rooms.length; i++) {
@@ -217,6 +218,9 @@ public class Dungeon {
 
             if (room.data.type.equals(RoomType.END)) {
                 ends++;
+            }
+            if (room.room.isBoss) {
+                bossRooms++;
             }
 
             this.started = true;

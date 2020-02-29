@@ -15,7 +15,7 @@ public class RoomList {
         if (rooms.isEmpty()) {
             rooms.add(new DungeonRoom("basic", RoomType.FOUR_WAY, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("basic", RoomType.ENTRANCE, RoomGroup.STONE_BRICK));
-            rooms.add(new DungeonRoom("boss", RoomType.END, RoomGroup.STONE_BRICK).isBoss());
+            rooms.add(new DungeonRoom("boss", RoomType.END, RoomGroup.STONE_BRICK).setBoss());
             rooms.add(new DungeonRoom("parkour", RoomType.TRIPLE_HALLWAY, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("basic", RoomType.CURVED_HALLWAY, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("basic", RoomType.STRAIGHT_HALLWAY, RoomGroup.STONE_BRICK));
@@ -43,7 +43,7 @@ public class RoomList {
 
             rooms.add(new DungeonRoom("trap", RoomType.FOUR_WAY, RoomGroup.SANDSTONE));
             rooms.add(new DungeonRoom("basic", RoomType.ENTRANCE, RoomGroup.SANDSTONE));
-            rooms.add(new DungeonRoom("boss", RoomType.END, RoomGroup.SANDSTONE).isBoss());
+            rooms.add(new DungeonRoom("boss", RoomType.END, RoomGroup.SANDSTONE).setBoss());
             rooms.add(new DungeonRoom("cactus", RoomType.TRIPLE_HALLWAY, RoomGroup.SANDSTONE));
             rooms.add(new DungeonRoom("prison", RoomType.CURVED_HALLWAY, RoomGroup.SANDSTONE));
             rooms.add(new DungeonRoom("puzzle0", RoomType.STRAIGHT_HALLWAY, RoomGroup.SANDSTONE));

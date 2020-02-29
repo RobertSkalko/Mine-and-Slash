@@ -4,6 +4,7 @@
 * try fix party members being able to kill each other
 * added new dungeon rooms
 * made dungeon size random but usually smaller
+* dungeon will attempt to limit boss rooms to 1 or 2
 3.1.9
 * made parties not save on server reboot due to lag.
 * fix nullp in loot gen

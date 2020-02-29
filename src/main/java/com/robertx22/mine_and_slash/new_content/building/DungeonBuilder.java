@@ -29,11 +29,14 @@ public class DungeonBuilder {
 
         this.size = RandomUtils.RandomRange(15, 25, rand);
 
+        if (RandomUtils.roll(5, rand)) {
+            this.maxBossRooms++;
+        }
     }
 
-    boolean debug = false;
+    public boolean debug = false;
     public Dungeon dungeon;
-    Random rand;
+    public final Random rand;
     public int size;
     public boolean isTesting = false;
     RoomGroup group;
@@ -64,11 +67,11 @@ public class DungeonBuilder {
 
                         Preconditions.checkNotNull(rot);
 
-                        DungeonRoom dRoom = rot.type.getRandomRoom(group, rand, debug);
+                        DungeonRoom dRoom = rot.type.getRandomRoom(group, this);
 
                         Preconditions.checkNotNull(dRoom);
 
-                        BuiltRoom room = new BuiltRoom(rot, dRoom.loc);
+                        BuiltRoom room = new BuiltRoom(rot, dRoom);
 
                         Preconditions.checkNotNull(room);
 
@@ -130,13 +133,13 @@ public class DungeonBuilder {
     }
 
     private void setupEntrance() {
-        DungeonRoom entranceRoom = RoomType.ENTRANCE.getRandomRoom(group, rand, debug);
+        DungeonRoom entranceRoom = RoomType.ENTRANCE.getRandomRoom(group, this);
 
         List<RoomRotation> possible = new ArrayList<>();
         possible.addAll(RoomType.ENTRANCE.getRotations());
         RoomRotation rotation = random(possible);
 
-        BuiltRoom entrance = new BuiltRoom(rotation, entranceRoom.loc);
+        BuiltRoom entrance = new BuiltRoom(rotation, entranceRoom);
 
         int mid = dungeon.getMiddle();
         dungeon.addRoom(mid, mid, entrance);

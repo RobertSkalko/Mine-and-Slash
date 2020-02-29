@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content;
 
+import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.Objects;
@@ -7,12 +8,16 @@ import java.util.Objects;
 public class BuiltRoom {
 
     public RoomRotation data;
-    public ResourceLocation structure;
+    public DungeonRoom room;
 
-    public BuiltRoom(RoomRotation data, ResourceLocation structure) {
+    public BuiltRoom(RoomRotation data, DungeonRoom room) {
         this.data = data;
-        this.structure = structure;
+        this.room = room;
 
+    }
+
+    public ResourceLocation getStructure() {
+        return room.loc;
     }
 
     @Override
@@ -25,6 +30,6 @@ public class BuiltRoom {
 
     @Override
     public int hashCode() {
-        return Objects.hash(structure.toString(), data.rotation, data.type);
+        return Objects.hash(room.toString(), data.rotation, data.type);
     }
 }

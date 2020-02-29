@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.new_content.enums;
 import com.robertx22.mine_and_slash.new_content.RoomRotation;
 import com.robertx22.mine_and_slash.new_content.RoomSides;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
+import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
 import com.robertx22.mine_and_slash.new_content.registry.RoomList;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -12,7 +13,7 @@ import net.minecraft.util.Rotation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public enum RoomType implements IWeighted {
@@ -108,19 +109,15 @@ public enum RoomType implements IWeighted {
 
     }
 
-    public DungeonRoom getRandomRoom(RoomGroup group, Random rand) {
-        return getRandomRoom(group, rand, false);
-    }
-
-    public DungeonRoom getRandomRoom(RoomGroup group, Random rand, boolean debug) {
-        if (debug) {
+    public DungeonRoom getRandomRoom(RoomGroup group, DungeonBuilder builder) {
+        if (builder.debug) {
             return this.getTestRoom();
         } else {
             RoomGroup g = group;
 
-            if (RandomUtils.roll(20, rand)) {
+            if (RandomUtils.roll(15, builder.rand)) {
                 g = RoomGroup.MISC;
-            } else if (RandomUtils.roll(5, rand)) {
+            } else if (RandomUtils.roll(5, builder.rand)) {
 
                 List<RoomGroup> posGroups = new ArrayList<>();
                 Arrays.stream(RoomGroup.values())
@@ -130,7 +127,7 @@ public enum RoomType implements IWeighted {
                         }
                     });
 
-                g = RandomUtils.weightedRandom(posGroups, rand.nextDouble());
+                g = RandomUtils.weightedRandom(posGroups, builder.rand.nextDouble());
             }
 
             if (g == null || g == RoomGroup.TEST) {
@@ -148,9 +145,26 @@ public enum RoomType implements IWeighted {
                 System.out.println("No possible rooms?");
             }
 
-            return RandomUtils.weightedRandom(possible, rand.nextDouble());
+            if (builder.dungeon.bossRooms >= builder.maxBossRooms) {
+                possible = tryFilter(possible, r -> !r.isBoss);
+            }
+
+            return RandomUtils.weightedRandom(possible, builder.rand.nextDouble());
 
         }
+    }
+
+    // if filtering returns nothing, dont filter
+    public static List<DungeonRoom> tryFilter(List<DungeonRoom> rooms, Predicate<DungeonRoom> pred) {
+        List<DungeonRoom> filtered = rooms.stream()
+            .filter(pred)
+            .collect(Collectors.toList());
+        if (filtered.isEmpty()) {
+            return rooms;
+        } else {
+            return filtered;
+        }
+
     }
 
     public List<RoomRotation> getPossibleFor(UnbuiltRoom room) {
