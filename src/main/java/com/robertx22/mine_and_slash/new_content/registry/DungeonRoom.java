@@ -12,6 +12,7 @@ public class DungeonRoom implements IWeighted {
     public RoomGroup group;
     public RoomType type;
     int weight = 1000;
+    boolean isBoss = false;
 
     public DungeonRoom(String id, RoomType type, RoomGroup group) {
         this.loc = new ResourceLocation(Ref.MODID, "dun/" + type.id + "/" + group.folder + "/" + id);
@@ -21,6 +22,16 @@ public class DungeonRoom implements IWeighted {
 
     public DungeonRoom setTest() {
         isTest = true;
+        return this;
+    }
+
+    public DungeonRoom isBoss() {
+        this.isBoss = true;
+        return this;
+    }
+
+    public DungeonRoom weight(int weight) {
+        this.weight = weight;
         return this;
     }
 

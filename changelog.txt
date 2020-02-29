@@ -1,5 +1,9 @@
 3.1.10
 * mobs in maps shouldnt despawn anymore
+* should fix party commands needing OP
+* try fix party members being able to kill each other
+* added new dungeon rooms
+* made dungeon size random but usually smaller
 3.1.9
 * made parties not save on server reboot due to lag.
 * fix nullp in loot gen

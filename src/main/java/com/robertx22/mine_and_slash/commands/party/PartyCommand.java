@@ -20,6 +20,7 @@ public class PartyCommand {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(
             literal("slash")
+                .requires(e -> e.hasPermissionLevel(0))
                 .then(
                     literal("party")
                         .then(literal("list").executes(c -> {

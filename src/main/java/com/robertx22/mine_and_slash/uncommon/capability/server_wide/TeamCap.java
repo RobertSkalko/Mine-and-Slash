@@ -113,8 +113,16 @@ public class TeamCap {
         @Override
         public boolean isOnSameTeam(ServerPlayerEntity p1, ServerPlayerEntity p2) {
             try {
-                return teams.getTeamId(p1)
-                    .equals(teams.getTeamId(p2));
+
+                String id1 = teams.getTeamId(p1);
+                String id2 = teams.getTeamId(p2);
+
+                if (id1.isEmpty() || id2.isEmpty()) {
+                    return false;
+                }
+
+                return id1.equals(id2);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

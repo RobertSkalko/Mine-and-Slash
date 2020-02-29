@@ -27,14 +27,17 @@ public class DungeonBuilder {
 
         this.group = RandomUtils.weightedRandom(Arrays.asList(RoomGroup.values()), rand.nextDouble());
 
+        this.size = RandomUtils.RandomRange(15, 25, rand);
+
     }
 
     boolean debug = false;
     public Dungeon dungeon;
     Random rand;
-    public int size = 25;
+    public int size;
     public boolean isTesting = false;
     RoomGroup group;
+    public int maxBossRooms = 1;
 
     public void build() {
         dungeon = new Dungeon(size);

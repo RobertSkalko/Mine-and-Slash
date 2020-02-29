@@ -5,11 +5,14 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeManager;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.OverworldChunkGenerator;
 import net.minecraft.world.gen.OverworldGenSettings;
 import net.minecraft.world.gen.WorldGenRegion;
+import net.minecraft.world.gen.feature.template.TemplateManager;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.ArrayList;
@@ -29,6 +32,10 @@ public class DungeonChunkGenerator extends OverworldChunkGenerator {
     @Override
     public void spawnMobs(WorldGenRegion region) {
 
+    }
+
+    @Override
+    public void generateStructures(BiomeManager p_227058_1_, IChunk p_227058_2_, ChunkGenerator<?> p_227058_3_, TemplateManager p_227058_4_) {
     }
 
     @Override
