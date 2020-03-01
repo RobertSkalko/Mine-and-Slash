@@ -27,8 +27,7 @@ public class ModifyItem {
         commandDispatcher.register(
 
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("modify")
+                .then(literal("modify").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("item")
                         .then(argument("target", EntityArgument.player())
                             .then(argument("type", StringArgumentType.word())

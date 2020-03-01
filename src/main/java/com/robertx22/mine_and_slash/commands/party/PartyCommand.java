@@ -20,25 +20,29 @@ public class PartyCommand {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(
             literal("slash")
-                .requires(e -> e.hasPermissionLevel(0))
                 .then(
-                    literal("party")
+                    literal("party").requires(e -> e.hasPermissionLevel(0))
                         .then(literal("list").executes(c -> {
 
                             try {
                                 ServerPlayerEntity player = c.getSource()
                                     .asPlayer();
+                                if (TeamCap.getCapability()
+                                    .isPlayerInATeam(player)) {
+                                    ITextComponent text = new SText("Party List: ");
+                                    List<ITextComponent> list = TeamCap.getCapability()
+                                        .getPlayersInTeam(player)
+                                        .stream()
+                                        .map(x -> x.getDisplayName())
+                                        .collect(Collectors.toList());
+                                    list.forEach(x -> text.appendSibling(x));
 
-                                ITextComponent text = new SText("Party List: ");
-                                List<ITextComponent> list = TeamCap.getCapability()
-                                    .getPlayersInTeam(player)
-                                    .stream()
-                                    .map(x -> x.getDisplayName())
-                                    .collect(Collectors.toList());
-                                list.forEach(x -> text.appendSibling(x));
-
-                                player
-                                    .sendMessage(text);
+                                    player
+                                        .sendMessage(text);
+                                } else {
+                                    player
+                                        .sendMessage(new SText("You aren't in a team."));
+                                }
                             } catch (CommandSyntaxException e) {
                                 e.printStackTrace();
                             }

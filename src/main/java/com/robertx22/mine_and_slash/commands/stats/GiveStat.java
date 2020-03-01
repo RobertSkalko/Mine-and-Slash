@@ -25,8 +25,7 @@ public class GiveStat {
         commandDispatcher.register(
 
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("stat")
+                .then(literal("stat").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("exact")
                         .then(literal("give")
                             .requires(e -> e.hasPermissionLevel(2))

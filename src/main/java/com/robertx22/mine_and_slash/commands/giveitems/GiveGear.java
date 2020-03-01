@@ -25,8 +25,7 @@ public class GiveGear {
 
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("give")
+                .then(literal("give").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("gear")
                         .then(argument("target", EntityArgument.player())
                             .then(argument("type", StringArgumentType.word())

@@ -16,8 +16,7 @@ public class ResetSpells {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("reset")
+                .then(literal("reset").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("spells")
                         .then(Commands.argument("target", EntityArgument.entity())
                             .executes(

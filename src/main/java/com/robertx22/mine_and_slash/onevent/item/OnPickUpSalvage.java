@@ -27,7 +27,13 @@ public class OnPickUpSalvage {
 
                 if (bag.getItem() instanceof AutoSalvageBag) {
 
-                    ItemStack stack = event.getItem().getItem();
+                    ItemStack stack = event.getItem()
+                        .getItem();
+
+                    if (OnPickupInsertIntoBag.preventAutoActions(stack)) {
+                        return;
+                    }
+
                     ISalvagable sal = AutoSalvageBag.getSalvagable(stack);
 
                     if (sal != null) {

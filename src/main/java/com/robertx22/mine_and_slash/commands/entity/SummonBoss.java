@@ -25,8 +25,7 @@ public class SummonBoss {
         commandDispatcher.register(
 
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("summon")
+                .then(literal("summon").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("boss")
                         .requires(e -> e.hasPermissionLevel(2))
                         .then(argument("entity_type", EntitySummonArgument.entitySummon())

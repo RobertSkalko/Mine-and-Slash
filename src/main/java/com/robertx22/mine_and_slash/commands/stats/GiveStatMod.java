@@ -23,8 +23,7 @@ public class GiveStatMod {
         commandDispatcher.register(
 
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("stat")
+                .then(literal("stat").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("mods")
                         .then(literal("give")
                             .requires(e -> e.hasPermissionLevel(2))

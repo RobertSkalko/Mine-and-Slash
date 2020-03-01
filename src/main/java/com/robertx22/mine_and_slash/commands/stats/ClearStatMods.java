@@ -19,8 +19,7 @@ public class ClearStatMods {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         dispatcher.register(
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("stat")
+                .then(literal("stat").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("mods")
                         .then(literal("clear")
                             .requires(e -> e.hasPermissionLevel(2))

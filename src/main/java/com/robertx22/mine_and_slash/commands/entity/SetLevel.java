@@ -21,8 +21,7 @@ public class SetLevel {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("set")
+                .then(literal("set").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("level")
                         .requires(e -> e.hasPermissionLevel(2))
                         .then(argument("target", EntityArgument.player())

@@ -20,8 +20,7 @@ public class SetEntityRarity {
         commandDispatcher.register(
 
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("set")
+                .then(literal("set").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("entity")
                         .then(literal("rarity")
                             .requires(e -> e.hasPermissionLevel(2))

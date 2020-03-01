@@ -23,8 +23,7 @@ public class GiveUniqueGear {
         commandDispatcher.register(
 
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("give")
+                .then(literal("give").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("unique_gear")
                         .then(Commands.argument("target", EntityArgument.player())
                             .then(Commands.argument("type", StringArgumentType.word())

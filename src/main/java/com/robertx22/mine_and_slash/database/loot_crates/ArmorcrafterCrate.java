@@ -48,7 +48,7 @@ public class ArmorcrafterCrate extends LootCrate {
 
     @Override
     public int maxItems() {
-        return 6;
+        return 5;
     }
 
     @Override

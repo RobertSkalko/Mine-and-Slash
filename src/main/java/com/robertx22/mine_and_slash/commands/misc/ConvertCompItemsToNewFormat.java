@@ -21,8 +21,7 @@ public class ConvertCompItemsToNewFormat {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("old")
+                .then(literal("old").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("convert")
                         .then(literal("compatible_items")
                             .executes(ctx -> run(ctx.getSource()))))));

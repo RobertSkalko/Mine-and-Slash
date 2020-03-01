@@ -23,8 +23,7 @@ public class GiveUniqueRune {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("give")
+                .then(literal("give").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("unique_rune")
                         .then(argument("target", EntityArgument.player())
                             .then(argument("uniqueID", StringArgumentType.word())

@@ -135,7 +135,11 @@ public class TeamCap {
 
             try {
                 PlayerTeamsData.Team team = teams.teamIDxTeamDataMap.get(teamID);
-                team.tryJoin(player);
+
+                if (team.tryJoin(player)) {
+                    teams.playerIDxTeamIDMap.put(teams.getPlayerId(player), teamID);
+
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();

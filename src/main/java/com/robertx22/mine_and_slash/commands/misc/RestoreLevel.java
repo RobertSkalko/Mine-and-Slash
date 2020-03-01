@@ -14,8 +14,7 @@ public class RestoreLevel {
         commandDispatcher.register(
 
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(0))
-                .then(literal("backup")
+                .then(literal("backup").requires(e -> e.hasPermissionLevel(0))
                     .then(literal("restore")
                         .then(literal("level")
                             .executes(ctx -> run(ctx.getSource()))))));

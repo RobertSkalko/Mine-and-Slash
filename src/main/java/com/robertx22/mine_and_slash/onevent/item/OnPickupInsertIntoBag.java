@@ -15,13 +15,21 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class OnPickupInsertIntoBag {
 
+    public static boolean preventAutoActions(ItemStack stack) {
+        if (stack.hasDisplayName() || stack.isEnchanted()) {
+            return true; // don't pickup into bag if it has custom name or encahnted, it means its part of current gear and not a new drop
+        }
+        return false;
+    }
+
     @SubscribeEvent
     public static void onPickupItem(EntityItemPickupEvent event) {
 
-        ItemStack stack = event.getItem().getItem();
+        ItemStack stack = event.getItem()
+            .getItem();
 
-        if (stack.hasDisplayName() || stack.isEnchanted()) {
-            return; // don't pickup into bag if it has custom name or encahnted, it means its part of current gear and not a new drop
+        if (preventAutoActions(stack)) {
+            return;
         }
 
         for (int i = 0; i < event.getPlayer().inventory.getSizeInventory(); i++) {
@@ -71,18 +79,21 @@ public class OnPickupInsertIntoBag {
 
                 baseInv.writeItemStack();
 
-                event.getItem().setItem(result);
+                event.getItem()
+                    .setItem(result);
 
                 event.setCanceled(true);
-                if (!event.getItem().isSilent()) {
+                if (!event.getItem()
+                    .isSilent()) {
                     event.getItem().world.playSound(null, event.getPlayer().posX, event.getPlayer().posY, event
-                            .getPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((event
-                            .getItem().world.rand.nextFloat() - event.getItem().world.rand
-                            .nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                        .getPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((event
+                        .getItem().world.rand.nextFloat() - event.getItem().world.rand
+                        .nextFloat()) * 0.7F + 1.0F) * 2.0F);
                 }
                 ((ServerPlayerEntity) event.getPlayer()).connection.sendPacket(new SCollectItemPacket(event
-                        .getItem()
-                        .getEntityId(), event.getPlayer().getEntityId(), numPickedUp));
+                    .getItem()
+                    .getEntityId(), event.getPlayer()
+                    .getEntityId(), numPickedUp));
                 event.getPlayer().openContainer.detectAndSendChanges();
 
                 return result;

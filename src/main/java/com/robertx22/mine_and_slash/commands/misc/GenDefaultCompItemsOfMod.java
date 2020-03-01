@@ -28,8 +28,7 @@ public class GenDefaultCompItemsOfMod {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("generate")
+                .then(literal("generate").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("compatible_items").
                         then(argument("mod", StringArgumentType.string())
                             .suggests(new ModsWithItemsSuggestions())

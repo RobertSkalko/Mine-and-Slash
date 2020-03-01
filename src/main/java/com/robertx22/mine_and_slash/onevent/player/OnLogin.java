@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
+import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
@@ -45,10 +46,14 @@ public class OnLogin {
 
             ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
 
-            MMORPG.sendToClient(new OnLoginClientPacket(), player);
-            SlashRegistry.restoreFromBackupifEmpty();
-            ConfigRegister.CONFIGS.values()
-                .forEach(x -> x.sendToClient(player));
+            if (!MapManager.getServer()
+                .isSinglePlayer()) {
+                MMORPG.sendToClient(new OnLoginClientPacket(), player);
+                SlashRegistry.restoreFromBackupifEmpty();
+                ConfigRegister.CONFIGS.values()
+                    .forEach(x -> x.sendToClient(player));
+                SlashRegistry.sendAllPacketsToClientOnLogin(player);
+            }
 
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
@@ -68,8 +73,6 @@ public class OnLogin {
                 player.sendMessage(
                     new StringTextComponent("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
             }
-
-            SlashRegistry.sendAllPacketsToClientOnLogin(player);
 
         } catch (Exception e) {
             e.printStackTrace();

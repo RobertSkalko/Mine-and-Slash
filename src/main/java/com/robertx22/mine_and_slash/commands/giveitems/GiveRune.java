@@ -23,8 +23,7 @@ public class GiveRune {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("give")
+                .then(literal("give").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("rune")
                         .then(Commands.argument("target", EntityArgument.player())
                             .then(Commands.argument("type", StringArgumentType.word())

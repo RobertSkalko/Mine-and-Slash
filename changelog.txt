@@ -1,3 +1,7 @@
+3.1.11
+* attempt to fix parties
+* should stop auto salvage bag from salvaging enchanted or named items.
+* reduced map loot drops a bit
 3.1.10
 * mobs in maps shouldnt despawn anymore
 * should fix party commands needing OP
@@ -5,6 +9,7 @@
 * added new dungeon rooms
 * made dungeon size random but usually smaller
 * dungeon will attempt to limit boss rooms to 1 or 2
+* attempt to make mobs not move until they see player in dungeons
 3.1.9
 * made parties not save on server reboot due to lag.
 * fix nullp in loot gen

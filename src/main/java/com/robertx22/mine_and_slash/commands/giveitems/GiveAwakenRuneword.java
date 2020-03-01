@@ -22,8 +22,7 @@ public class GiveAwakenRuneword {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
 
         commandDispatcher.register(literal("slash")
-            .requires(e -> e.hasPermissionLevel(2))
-            .then(literal("give")
+            .then(literal("give").requires(e -> e.hasPermissionLevel(2))
                 .then(literal("rune_word")
                     .then(argument("target", EntityArgument.player())
                         .then(argument("type", StringArgumentType.word())

@@ -20,8 +20,7 @@ public class SetEntityLevel {
         commandDispatcher.register(
 
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("set")
+                .then(literal("set").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("entity")
                         .then(literal("level")
                             .requires(e -> e.hasPermissionLevel(2))

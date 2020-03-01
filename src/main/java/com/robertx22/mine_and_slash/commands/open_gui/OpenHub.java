@@ -13,8 +13,7 @@ public class OpenHub {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(0))
-                .then(literal("open")
+                .then(literal("open").requires(e -> e.hasPermissionLevel(0))
                     .then(literal("hub")
                         .executes(ctx -> run(ctx.getSource())))));
     }

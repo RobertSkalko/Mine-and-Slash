@@ -18,8 +18,7 @@ public class ResetTalents {
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("reset")
+                .then(literal("reset").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("talents")
                         .then(argument("target", EntityArgument.entity())
                             .executes(ctx -> run(EntityArgument.getPlayer(ctx, "target")))))));

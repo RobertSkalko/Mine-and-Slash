@@ -33,7 +33,7 @@ public class CommonerCrate extends LootCrate {
 
     @Override
     public int maxItems() {
-        return 6;
+        return 4;
     }
 
     @Override

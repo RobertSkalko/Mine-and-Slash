@@ -21,10 +21,8 @@ public class GiveAllStats {
 
     public static void register(CommandDispatcher<CommandSource> commandDispatcher) {
         commandDispatcher.register(
-
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("stat")
+                .then(literal("stat").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("exact")
                         .then(literal("testing").then(literal("give_all")
                             .requires(e -> e.hasPermissionLevel(2))

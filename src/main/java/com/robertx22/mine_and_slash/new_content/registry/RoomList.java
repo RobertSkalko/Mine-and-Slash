@@ -34,6 +34,13 @@ public class RoomList {
             rooms.add(new DungeonRoom("simple0", RoomType.STRAIGHT_HALLWAY, RoomGroup.SANDSTONE));
             rooms.add(new DungeonRoom("simple_maze0", RoomType.TRIPLE_HALLWAY, RoomGroup.SANDSTONE));
 
+            rooms.add(new DungeonRoom("hidden_button0", RoomType.CURVED_HALLWAY, RoomGroup.SANDSTONE));
+            rooms.add(new DungeonRoom("tnt_pyramid", RoomType.END, RoomGroup.SANDSTONE));
+            //rooms.add(new DungeonRoom("basic", RoomType.ENTRANCE, RoomGroup.STONE_BRICK));
+            rooms.add(new DungeonRoom("simple1", RoomType.FOUR_WAY, RoomGroup.SANDSTONE));
+            rooms.add(new DungeonRoom("simple_magma0", RoomType.STRAIGHT_HALLWAY, RoomGroup.SANDSTONE));
+            rooms.add(new DungeonRoom("parkour_puzzle_magma", RoomType.TRIPLE_HALLWAY, RoomGroup.SANDSTONE));
+
             rooms.add(new DungeonRoom("simple_prismarine", RoomType.FOUR_WAY, RoomGroup.MISC));
             rooms.add(new DungeonRoom("prismarine", RoomType.ENTRANCE, RoomGroup.MISC));
             rooms.add(new DungeonRoom("nether0", RoomType.END, RoomGroup.MISC));

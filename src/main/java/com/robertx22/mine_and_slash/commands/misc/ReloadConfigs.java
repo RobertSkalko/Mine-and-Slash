@@ -14,8 +14,7 @@ public class ReloadConfigs {
         commandDispatcher.register(
 
             literal(CommandRefs.ID)
-                .requires(e -> e.hasPermissionLevel(2))
-                .then(literal("configs")
+                .then(literal("configs").requires(e -> e.hasPermissionLevel(2))
                     .then(literal("reload")
 
                         .requires(e -> e.hasPermissionLevel(2))

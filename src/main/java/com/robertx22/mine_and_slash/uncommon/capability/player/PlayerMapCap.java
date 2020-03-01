@@ -165,7 +165,7 @@ public class PlayerMapCap {
         public float getMapLootMultiplierForTime() {
             float total = data.mapDropPoints;
 
-            return MathHelper.clamp(total, 0.01F, 3F);
+            return MathHelper.clamp(total, 0.01F, 2.5F);
         }
 
         @Override

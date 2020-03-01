@@ -14,6 +14,10 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.goal.BreakDoorGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.MoveToBlockGoal;
+import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.server.ServerWorld;
@@ -22,6 +26,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class OnMobSpawn {
 
@@ -51,6 +56,7 @@ public class OnMobSpawn {
             if (entity instanceof MobEntity) {
                 MobEntity mob = (MobEntity) entity;
                 mob.enablePersistence();
+                removeWalkGoalsForDungeonMobs((MobEntity) entity);
             }
         }
 
@@ -105,6 +111,18 @@ public class OnMobSpawn {
                 endata.setRarity(IRarity.Boss);
             }
         }
+    }
+
+    public static void removeWalkGoalsForDungeonMobs(MobEntity en) {
+        new HashSet<>(en.goalSelector.goals)
+            .forEach(x -> {
+                Goal g = x.getGoal();
+                if (g instanceof MoveToBlockGoal
+                    || g instanceof RandomWalkingGoal
+                    || g instanceof BreakDoorGoal) {
+                    en.goalSelector.removeGoal(g);
+                }
+            });
     }
 
     public static Unit Mob(LivingEntity entity, UnitData data, BossCap.IBossData boss,
