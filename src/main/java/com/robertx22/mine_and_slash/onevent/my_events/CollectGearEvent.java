@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -44,27 +45,52 @@ public class CollectGearEvent {
 
     public static void addHeldItems(MineAndSlashEvents.CollectGearStacksEvent event) {
 
-        ItemStack weapon = event.getEntityLiving().getHeldItemMainhand();
+        boolean hasWep = false;
+
+        ItemStack weapon = event.getEntityLiving()
+            .getHeldItemMainhand();
         if (event.isStackValidGear(weapon)) {
             GearItemData wep = Gear.Load(weapon);
             if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
-                    .slotType()
-                    .equals(GearItemSlot.GearSlotType.Weapon)) {
+                .slotType()
+                .equals(GearItemSlot.GearSlotType.Weapon)) {
+                hasWep = true;
                 event.add(wep);
             }
 
         }
 
-        ItemStack offhand = event.getEntityLiving().getHeldItemOffhand();
+        if (!hasWep && event.getEntityLiving() instanceof PlayerEntity) {
+            weapon = Load.lastThrown((PlayerEntity) event.getEntityLiving())
+                .get((PlayerEntity) event.getEntityLiving());
+
+            if (event.isStackValidGear(weapon)) {
+                GearItemData wep = Gear.Load(weapon);
+                if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
+                    .slotType()
+                    .equals(GearItemSlot.GearSlotType.Weapon)) {
+                    hasWep = true;
+                    event.add(wep);
+                }
+
+            }
+
+        }
+
+        ItemStack offhand = event.getEntityLiving()
+            .getHeldItemOffhand();
         if (event.isStackValidGear(offhand)) {
 
             GearItemData off = Gear.Load(offhand);
             if (off != null && off.GetBaseGearType() != null && off.GetBaseGearType()
-                    .slotType()
-                    .equals(GearItemSlot.GearSlotType.OffHand)) {
+                .slotType()
+                .equals(GearItemSlot.GearSlotType.OffHand)) {
                 event.add(off);
-            } else if (off != null && off.GetBaseGearType().slotType().equals(GearItemSlot.GearSlotType.Weapon)) {
-                event.getEntityLiving().sendMessage(new StringTextComponent("You can't wear a weapon in offhand."));
+            } else if (off != null && off.GetBaseGearType()
+                .slotType()
+                .equals(GearItemSlot.GearSlotType.Weapon)) {
+                event.getEntityLiving()
+                    .sendMessage(new StringTextComponent("You can't wear a weapon in offhand."));
             }
 
         }

@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BowItem;
 import net.minecraft.item.CrossbowItem;
@@ -26,7 +27,8 @@ import java.util.List;
 public class LivingHurtUtils {
 
     public static void onBossHurt(LivingEntity en) {
-        en.getCapability(BossCap.Data).ifPresent(x -> x.onHealthChanged(en, x));
+        en.getCapability(BossCap.Data)
+            .ifPresent(x -> x.onHealthChanged(en, x));
     }
 
     public static void damageCurioItems(LivingEntity en) {
@@ -48,7 +50,8 @@ public class LivingHurtUtils {
 
         List<ItemStack> stacks = new ArrayList<>();
 
-        en.getArmorInventoryList().forEach(x -> stacks.add(x));
+        en.getArmorInventoryList()
+            .forEach(x -> stacks.add(x));
         stacks.add(en.getHeldItemOffhand());
 
         stacks.forEach(x -> x.damageItem(1, en, (entity) -> {
@@ -72,13 +75,15 @@ public class LivingHurtUtils {
             }
 
             if (event.getSource() instanceof MyDamageSource || event.getSource()
-                    .getDamageType()
-                    .equals(DamageEffect.dmgSourceName)) {
+                .getDamageType()
+                .equals(DamageEffect.dmgSourceName)) {
                 return;
             }
 
-            if (event.getSource().getTrueSource() instanceof LivingEntity) {
-                LivingEntity source = (LivingEntity) event.getSource().getTrueSource();
+            if (event.getSource()
+                .getTrueSource() instanceof LivingEntity) {
+                LivingEntity source = (LivingEntity) event.getSource()
+                    .getTrueSource();
 
                 onAttack(source, target, event.getAmount(), event);
             }
@@ -125,7 +130,7 @@ public class LivingHurtUtils {
                 if (sourceData.isWeapon(weapondata)) {
                     if (sourceData.tryUseWeapon(weapondata, source)) {
                         sourceData.attackWithWeapon(
-                                event, source.getHeldItemMainhand(), weapondata, source, target, targetData);
+                            event, source.getHeldItemMainhand(), weapondata, source, target, targetData);
                     }
 
                 } else {
@@ -144,16 +149,27 @@ public class LivingHurtUtils {
 
     public static boolean isForbiddenAttack(LivingHurtEvent event) {
 
-        if (event.getSource().getTrueSource() instanceof LivingEntity) {
-            LivingEntity en = (LivingEntity) event.getSource().getTrueSource();
+        if (event.getSource()
+            .getTrueSource() instanceof LivingEntity) {
+            LivingEntity en = (LivingEntity) event.getSource()
+                .getTrueSource();
             DamageSource source = event.getSource();
 
-            Item item = en.getHeldItemMainhand().getItem();
+            Item item = en.getHeldItemMainhand()
+                .getItem();
 
             if (item instanceof BowItem || item instanceof CrossbowItem) {
                 return !source.isProjectile();
             } else {
-                return source instanceof IndirectEntityDamageSource;
+                if (source instanceof IndirectEntityDamageSource) {
+                    IndirectEntityDamageSource indi = (IndirectEntityDamageSource) source;
+
+                    if (indi.getImmediateSource() instanceof TridentEntity) {
+                        return false;
+                    }
+
+                    return true;
+                }
             }
         }
 
@@ -187,23 +203,26 @@ public class LivingHurtUtils {
         if (isEnviromentalDmg(event.getSource())) {
             if (event.getEntity() instanceof PlayerEntity == false) {
                 event.setAmount(
-                        event.getAmount() * ModConfig.INSTANCE.Server.MOB_ENVIRONMENT_DAMAGE_MULTI.get().floatValue());
+                    event.getAmount() * ModConfig.INSTANCE.Server.MOB_ENVIRONMENT_DAMAGE_MULTI.get()
+                        .floatValue());
                 return;
             }
         } else {
 
             // dont decrease dmg if its from whitelist item
-            LivingEntity en = (LivingEntity) event.getSource().getTrueSource();
+            LivingEntity en = (LivingEntity) event.getSource()
+                .getTrueSource();
 
             ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer.getModDmgWhitelist(
-                    en.getHeldItemMainhand());
+                en.getHeldItemMainhand());
 
             if (mod != null) {
                 event.setAmount(event.getAmount() * mod.dmgMultiplier);
                 return;
             }
 
-            event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI.get().floatValue());
+            event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI.get()
+                .floatValue());
 
             return;
         }
@@ -219,8 +238,10 @@ public class LivingHurtUtils {
 
         UnitData data = Load.Unit(defender);
 
-        if (event.getSource() != null && event.getSource().getTrueSource() instanceof LivingEntity) {
-            LivingEntity attacker = (LivingEntity) event.getSource().getTrueSource();
+        if (event.getSource() != null && event.getSource()
+            .getTrueSource() instanceof LivingEntity) {
+            LivingEntity attacker = (LivingEntity) event.getSource()
+                .getTrueSource();
             data.onDamagedBy(attacker, event.getAmount());
 
         } else {

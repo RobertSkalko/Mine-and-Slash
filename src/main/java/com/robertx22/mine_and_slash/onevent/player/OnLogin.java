@@ -22,12 +22,14 @@ import com.robertx22.mine_and_slash.packets.OnLoginClientPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -54,6 +56,13 @@ public class OnLogin {
                     .forEach(x -> x.sendToClient(player));
                 SlashRegistry.sendAllPacketsToClientOnLogin(player);
             }
+
+            GearBlueprint b = new GearBlueprint(100);
+            b.gearItemSlot.set(Sword.INSTANCE);
+            ItemStack trident = new ItemStack(Items.TRIDENT);
+            Gear.Save(trident, b.createData());
+
+            player.entityDropItem(trident);
 
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()

@@ -50,6 +50,9 @@ public class CapabilityRegister {
         CapabilityManager.INSTANCE.register(
             DungeonChunkCap.IDungeonChunkData.class, new DungeonChunkCap.Storage(), DungeonChunkCap.DefaultImpl::new);
 
+        CapabilityManager.INSTANCE.register(
+            PlayerLastThrownItemCap.ILastThrownItem.class, new PlayerLastThrownItemCap.Storage(), PlayerLastThrownItemCap.DefaultImpl::new);
+
     }
 
 }

@@ -112,6 +112,17 @@ public class Load {
         return null;
     }
 
+    public static PlayerLastThrownItemCap.ILastThrownItem lastThrown(PlayerEntity provider) {
+
+        if (provider != null) {
+
+            return provider.getCapability(PlayerLastThrownItemCap.Data)
+                .orElse(new PlayerLastThrownItemCap.DefaultImpl());
+
+        }
+        return null;
+    }
+
     public static BossCap.IBossData boss(ICapabilityProvider provider) {
 
         if (provider != null) {

@@ -34,15 +34,6 @@ public class OnMobSpawn {
         if (event.getWorld().isRemote) {
             return;
         }
-/*
-        if (event.getEntity() instanceof PlayerEntity) {
-            if (!event.getWorld().isRemote) {
-                MMORPG.syncMapData((ServerPlayerEntity) event.getEntity());
-            }
-            return;
-        }
-
- */
 
         if (!(event.getEntity() instanceof LivingEntity)) {
             return;
