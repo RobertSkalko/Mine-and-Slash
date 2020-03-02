@@ -162,7 +162,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (areOnSamePlayerTeam()) {
             this.canceled = true;
-            return;
         }
 
         if (this.canceled) {

@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.ontick.OnBossTick;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
@@ -19,7 +18,6 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -36,13 +34,15 @@ public class OnMobSpawn {
         if (event.getWorld().isRemote) {
             return;
         }
-
+/*
         if (event.getEntity() instanceof PlayerEntity) {
             if (!event.getWorld().isRemote) {
                 MMORPG.syncMapData((ServerPlayerEntity) event.getEntity());
             }
             return;
         }
+
+ */
 
         if (!(event.getEntity() instanceof LivingEntity)) {
             return;

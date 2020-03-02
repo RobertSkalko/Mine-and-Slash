@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearRe
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.SetPart;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
@@ -43,9 +44,11 @@ public class ItemAddSet extends CurrencyItem implements ICurrencyItemEffect, IHa
         gear.set = new SetData();
 
         GearBlueprint blueprint = new GearBlueprint(gear.level);
-        blueprint.getSet(gear).chance = 100;
 
-        gear.set = blueprint.getSet(gear).getSetData();
+        SetPart set = blueprint.getSet(gear);
+        set.chance = 100;
+
+        gear.set = set.getSetData();
 
         Gear.Save(stack, gear);
 
@@ -90,15 +93,15 @@ public class ItemAddSet extends CurrencyItem implements ICurrencyItemEffect, IHa
     @Override
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
-                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
-                .addMaterial(new ItemLevelUpGear().getFromForgeRegistry(), 3)
-                .addMaterial(new ItemOrbOfTransmutation().getFromForgeRegistry(), 5)
-                .addMaterial(Items.ENDER_EYE, 1)
-                .buildMaterials()
-                .setOutput(this)
-                .levelReq(75)
-                .expGained(50)
-                .build();
+            .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
+            .addMaterial(new ItemLevelUpGear().getFromForgeRegistry(), 3)
+            .addMaterial(new ItemOrbOfTransmutation().getFromForgeRegistry(), 5)
+            .addMaterial(Items.ENDER_EYE, 1)
+            .buildMaterials()
+            .setOutput(this)
+            .levelReq(75)
+            .expGained(50)
+            .build();
 
     }
 }

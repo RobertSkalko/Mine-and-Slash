@@ -1,7 +1,11 @@
+3.1.12
+* switched to release build. Servers don't seem to be crashing anymore, mod seems stable now!
+* another dmg and exp party fix attempt
 3.1.11
 * attempt to fix parties
 * should stop auto salvage bag from salvaging enchanted or named items.
 * reduced map loot drops a bit
+* fix key of unity and key of new dawn.
 3.1.10
 * mobs in maps shouldnt despawn anymore
 * should fix party commands needing OP

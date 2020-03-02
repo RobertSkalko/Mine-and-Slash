@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearRe
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.SetPart;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
@@ -39,16 +40,21 @@ public class ItemRerollSet extends CurrencyItem implements ICurrencyItemEffect, 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
 
-        GearItemData gear = Gear.Load(stack);
+        try {
+            GearItemData gear = Gear.Load(stack);
 
-        gear.set = new SetData();
+            gear.set = new SetData();
 
-        GearBlueprint blueprint = new GearBlueprint(gear.level);
-        blueprint.getSet(gear).chance = 100;
+            GearBlueprint blueprint = new GearBlueprint(gear.level);
+            SetPart set = blueprint.getSet(gear);
+            set.chance = 100;
 
-        gear.set = blueprint.getSet(gear).getSetData();
+            gear.set = set.getSetData();
 
-        Gear.Save(stack, gear);
+            Gear.Save(stack, gear);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return stack;
     }
@@ -91,16 +97,16 @@ public class ItemRerollSet extends CurrencyItem implements ICurrencyItemEffect, 
     @Override
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
-                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
-                .addMaterial(new ItemLevelUpGear().getFromForgeRegistry(), 3)
-                .addMaterial(new RerollSuffixNumbers().getFromForgeRegistry(), 3)
-                .addMaterial(new RerollPrefixNumbers().getFromForgeRegistry(), 3)
-                .addMaterial(Items.ENDER_EYE, 1)
-                .buildMaterials()
-                .setOutput(this)
-                .levelReq(75)
-                .expGained(50)
-                .build();
+            .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
+            .addMaterial(new ItemLevelUpGear().getFromForgeRegistry(), 3)
+            .addMaterial(new RerollSuffixNumbers().getFromForgeRegistry(), 3)
+            .addMaterial(new RerollPrefixNumbers().getFromForgeRegistry(), 3)
+            .addMaterial(Items.ENDER_EYE, 1)
+            .buildMaterials()
+            .setOutput(this)
+            .levelReq(75)
+            .expGained(50)
+            .build();
 
     }
 }
