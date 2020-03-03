@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackMa
 import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.MyAdvProvider;
+import com.robertx22.mine_and_slash.onevent.data_gen.providers.SlashRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 
@@ -26,6 +27,7 @@ public class OnGatherData {
             gen.addProvider(new UniqueGearDatapackManager().getDataPackCreator(gen));
             gen.addProvider(new CompatibleItemDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new RuneDataPackManager().getDataPackCreator(gen));
+            gen.addProvider(new SlashRecipeProvider(gen));
         }
 
         if (event.includeClient()) {

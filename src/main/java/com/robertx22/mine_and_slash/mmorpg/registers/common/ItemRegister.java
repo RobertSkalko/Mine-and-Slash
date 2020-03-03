@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLoot
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.loot_bag.ItemLootBag;
@@ -123,6 +124,11 @@ public class ItemRegister {
         list.add(new ItemIncreaseRarityNearestEntity());
         list.add(new ItemLevelNearestEntity());
         list.add(new ItemNewbieGearBag());
+
+        list.add(SimpleMatItem.CRYSTALLIZED_ESSENCE);
+        list.add(SimpleMatItem.INFUSED_IRON);
+        list.add(SimpleMatItem.MYTHIC_ESSENCE);
+        list.add(SimpleMatItem.GOLDEN_ORB);
 
         for (Item item : list) {
             if (item instanceof IGenerated) {

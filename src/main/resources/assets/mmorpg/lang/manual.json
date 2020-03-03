@@ -40,6 +40,12 @@
 "item.mmorpg.map_back_portal": "Map Leave Pearl",
 "item.mmorpg.level_nearest_entity": "Level Nearest Entity",
 "item.mmorpg.increase_rarity_nearest_entity": "Increase Rarity Nearest Entity",
+
+"item.mmorpg.mat.infused_iron": "Infused Iron",
+"item.mmorpg.mat.crystallized_essence": "Crystalized Essence",
+"item.mmorpg.mat.golden_orb": "Golden Orb",
+"item.mmorpg.mat.mythic_essence": "Mythic Essence",
+
 "item.mmorpg.awaken_runeword": "Awaken RuneWord",
 "_comment": "SPELL TOOLTIPS",
 "mmorpg.tooltip.aoe_spell_explosion": "Casts an elemental projectile that does AOE dmg on hit.",

@@ -8,6 +8,7 @@ public enum WeaponTypes {
     None(false, "none"),
     Axe(true, "axe"),
     Hammer(true, "hammer"),
+    Trident(true, "trident"),
     Bow(true, "bow"),
     Sword(true, "sword"),
     CrossBow(true, "crossbow"),
@@ -25,8 +26,8 @@ public enum WeaponTypes {
     public static List<WeaponTypes> getAll() {
 
         return Arrays.stream(WeaponTypes.values())
-                .filter(x -> x.isSingleType)
-                .collect(Collectors.toList());
+            .filter(x -> x.isSingleType)
+            .collect(Collectors.toList());
 
     }
 }

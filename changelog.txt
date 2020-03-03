@@ -1,3 +1,5 @@
+3.1.13
+* added tridents
 3.1.12
 * switched to release build. Servers don't seem to be crashing anymore, mod seems stable now!
 * another dmg and exp party fix attempt
