@@ -41,6 +41,12 @@
 "item.mmorpg.map_back_portal": "Map Leave Pearl",
 "item.mmorpg.level_nearest_entity": "Level Nearest Entity",
 "item.mmorpg.increase_rarity_nearest_entity": "Increase Rarity Nearest Entity",
+
+"item.mmorpg.mat.infused_iron": "Infused Iron",
+"item.mmorpg.mat.crystallized_essence": "Crystalized Essence",
+"item.mmorpg.mat.golden_orb": "Golden Orb",
+"item.mmorpg.mat.mythic_essence": "Mythic Essence",
+
 "item.mmorpg.awaken_runeword": "Awaken RuneWord",
 "_comment": "SPELL TOOLTIPS",
 "mmorpg.tooltip.aoe_spell_explosion": "Casts an elemental projectile that does AOE dmg on hit.",
@@ -207,6 +213,7 @@
 	"mmorpg.affix.of_the_sage": "Of The Sage",
 	"mmorpg.affix.of_thunder_dissonance": "Of Lightning's Dissonance",
 	"mmorpg.affix.of_thunder_storms": "Of Thunderstorms",
+	"mmorpg.affix.of_trident_flurry": "Of Trident Flurry",
 	"mmorpg.affix.of_vampirism": "Of Vampirism",
 	"mmorpg.affix.of_vitality": "Of Vitality",
 	"mmorpg.affix.of_wand_flurry": "Of Wand Flurry",
@@ -753,6 +760,7 @@
 	"mmorpg.stat.ele_hammer_damage": "Elemental Hammer Damage",
 	"mmorpg.stat.ele_staff_damage": "Elemental Staff Damage",
 	"mmorpg.stat.ele_sword_damage": "Elemental Sword Damage",
+	"mmorpg.stat.ele_trident_damage": "Elemental Trident Damage",
 	"mmorpg.stat.ele_wand_damage": "Elemental Wand Damage",
 	"mmorpg.stat.elemental": "Elemental",
 	"mmorpg.stat.elemental_affinity": "Elemental Affinity",
@@ -872,6 +880,7 @@
 	"mmorpg.stat.thunder_to_water_conversion": "Boost Thunder to Water",
 	"mmorpg.stat.thunder_to_water_transfer": "Transfer Thunder to Water",
 	"mmorpg.stat.tower": "Tower",
+	"mmorpg.stat.trident_damage": "Trident Damage",
 	"mmorpg.stat.true_hit_trait": "True Hit",
 	"mmorpg.stat.vitality": "Vitality",
 	"mmorpg.stat.wand_damage": "Wand Damage",
@@ -919,37 +928,6 @@
 	"mmorpg.advancement.desc.welcomemineandslash": "This mod is all about killing mobs, looting epic gear to kill more mobs!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
-	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
-	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
-	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
-	"mmorpg.gear_type.crossbow": "Crossbow",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.leather_boots": "Leather Boots",
-	"mmorpg.gear_type.leather_chest": "Leather Chest",
-	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
-	"mmorpg.gear_type.leather_pants": "Leather Pants",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.plate_boots": "Plate Boots",
-	"mmorpg.gear_type.plate_chest": "Plate Chest",
-	"mmorpg.gear_type.plate_helmet": "Plate Helm",
-	"mmorpg.gear_type.plate_pants": "Plate Greaves",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-	"mmorpg.gear_type.wand": "Staff",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
@@ -1045,6 +1023,38 @@
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§eSaber of Frost madness",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
+	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
+	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
+	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
+	"mmorpg.gear_type.crossbow": "Crossbow",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.leather_boots": "Leather Boots",
+	"mmorpg.gear_type.leather_chest": "Leather Chest",
+	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
+	"mmorpg.gear_type.leather_pants": "Leather Pants",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.plate_boots": "Plate Boots",
+	"mmorpg.gear_type.plate_chest": "Plate Chest",
+	"mmorpg.gear_type.plate_helmet": "Plate Helm",
+	"mmorpg.gear_type.plate_pants": "Plate Greaves",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+	"mmorpg.gear_type.trident": "Trident",
+	"mmorpg.gear_type.wand": "Staff",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",

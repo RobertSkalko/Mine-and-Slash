@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class PerkEffectBuilder {
 
@@ -41,7 +42,8 @@ public class PerkEffectBuilder {
             ExactStatData data2 = new ExactStatData(data);
             data2.setValue(data2.getValue() * type.statMulti);
 
-            String id = guid + "_" + type.name().toLowerCase();
+            String id = guid + "_" + type.name()
+                .toLowerCase(Locale.ROOT);
 
             PerkEffect neww = new PerkEffect(id, data2, stat).type(type);
 
@@ -63,7 +65,8 @@ public class PerkEffectBuilder {
                 stat.setValue(stat.getValue() * type.statMulti);
                 stats.add(stat);
             }
-            String id = guid + "_" + type.name().toLowerCase();
+            String id = guid + "_" + type.name()
+                .toLowerCase(Locale.ROOT);
 
             PerkEffect neww = new PerkEffect(id, stats, guid).type(type);
 

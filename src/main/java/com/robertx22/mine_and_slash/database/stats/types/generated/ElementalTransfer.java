@@ -49,8 +49,7 @@ public class ElementalTransfer extends Stat implements IStatTransfer, IGenerated
         this.fromElement = from;
         this.toElement = to;
         this.maximumValue = 100;
-        this.GUID = from.name() + "_to_" + to.name() + "_transfer";
-        this.GUID = GUID.toLowerCase();
+        this.GUID = from.guidName + "_to_" + to.guidName + "_transfer";
 
         transfers.add(new TransferMethod(new ElementalAttackDamage(from), new ElementalAttackDamage(to)));
         transfers.add(new TransferMethod(new ElementalSpellDamage(from), new ElementalSpellDamage(to)));

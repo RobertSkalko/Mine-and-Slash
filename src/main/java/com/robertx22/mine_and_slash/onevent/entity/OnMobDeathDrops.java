@@ -130,7 +130,7 @@ public class OnMobDeathDrops {
                 MMORPG.sendToClient(packet, (ServerPlayerEntity) killer);
 
                 for (PlayerEntity x : list) {
-                    killerData.PostGiveExpEvent(victim, killer, exp);
+                    killerData.PostGiveExpEvent(victim, x, exp);
                 }
             }
 

@@ -27,18 +27,22 @@ public class SpellPerkGrid extends PerkGrid<SpellPerkGridPoint> {
 
                     String id = point.getEffectIDRaw();
 
-                    // SlashRegistryContainer con = SlashRegistry.SpellPerkEffects();
-
                     BasePerkEffect effect = null;
 
-                    if (SlashRegistry.SpellPerkEffects().isRegistered(id)) {
-                        effect = SlashRegistry.SpellPerkEffects().get(id);
+                    if (SlashRegistry.SpellPerkEffects()
+                        .isRegistered(id)) {
+                        effect = SlashRegistry.SpellPerkEffects()
+                            .get(id);
                     }
-                    if (SlashRegistry.PerkEffects().isRegistered(id)) {
-                        effect = SlashRegistry.PerkEffects().get(id);
+                    if (SlashRegistry.PerkEffects()
+                        .isRegistered(id)) {
+                        effect = SlashRegistry.PerkEffects()
+                            .get(id);
                     }
-                    if (SlashRegistry.SynergyEffects().isRegistered(id)) {
-                        effect = SlashRegistry.SynergyEffects().get(id);
+                    if (SlashRegistry.SynergyEffects()
+                        .isRegistered(id)) {
+                        effect = SlashRegistry.SynergyEffects()
+                            .get(id);
                     }
 
                     if (effect == null) {
@@ -52,10 +56,10 @@ public class SpellPerkGrid extends PerkGrid<SpellPerkGridPoint> {
                     }
 
                     SpellPerk perk = (SpellPerk) PerkBuilder.createSpell(point.getID())
-                            .pos(point.x, point.y)
-                            .effect(effect)
-                            .connections()
-                            .build();
+                        .pos(point.x, point.y)
+                        .effect(effect)
+                        .connections()
+                        .build();
 
                 }
             }

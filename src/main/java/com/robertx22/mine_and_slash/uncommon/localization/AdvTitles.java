@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.uncommon.localization;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
+import java.util.Locale;
+
 public enum AdvTitles implements IAutoLocName {
     FirstAdventureMap("First Adventure Map!"),
     WelcomeMineandslash("Welcome to Mine and Slash!"),
@@ -43,6 +45,7 @@ public enum AdvTitles implements IAutoLocName {
 
     @Override
     public String GUID() {
-        return this.name().toLowerCase();
+        return this.name()
+            .toLowerCase(Locale.ROOT);
     }
 }

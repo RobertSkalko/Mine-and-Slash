@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.testing;
 
 import org.apache.commons.lang3.time.StopWatch;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class Watch {
@@ -37,7 +38,8 @@ public class Watch {
         }
         Long time = stop.getTime(unit);
         if (time > min) {
-            return "Action took: " + time + " " + unit.name().toLowerCase();
+            return "Action took: " + time + " " + unit.name()
+                .toLowerCase(Locale.ROOT);
 
         }
         return "";
@@ -50,7 +52,7 @@ public class Watch {
         Long time = stop.getTime(unit);
         if (time > min) {
             System.out.println(str + "Action took: " + time + " " + unit.name()
-                    .toLowerCase());
+                .toLowerCase(Locale.ROOT));
 
         }
     }
@@ -60,7 +62,8 @@ public class Watch {
         stop.stop();
         Long time = stop.getTime(unit);
         if (time > min) {
-            System.out.println("Action took: " + time + " " + unit.name().toLowerCase());
+            System.out.println("Action took: " + time + " " + unit.name()
+                .toLowerCase(Locale.ROOT));
 
         }
     }

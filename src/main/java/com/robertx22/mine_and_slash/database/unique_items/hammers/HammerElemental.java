@@ -2,14 +2,14 @@ package com.robertx22.mine_and_slash.database.unique_items.hammers;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Hammer;
-import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalFocusFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
+import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -56,8 +56,7 @@ public class HammerElemental implements IElementalUnique {
 
     @Override
     public String GUID() {
-        return element.name()
-            .toLowerCase() + "_ele_hammer0";
+        return element.guidName + "_ele_hammer0";
     }
 
     @Override

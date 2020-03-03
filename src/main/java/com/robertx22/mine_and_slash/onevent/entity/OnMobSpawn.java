@@ -34,8 +34,10 @@ public class OnMobSpawn {
         if (event.getWorld().isRemote) {
             return;
         }
-
         if (!(event.getEntity() instanceof LivingEntity)) {
+            return;
+        }
+        if (event.getEntity() instanceof PlayerEntity) {
             return;
         }
 

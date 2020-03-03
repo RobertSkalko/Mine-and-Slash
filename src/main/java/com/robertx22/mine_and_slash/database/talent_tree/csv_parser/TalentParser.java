@@ -13,7 +13,8 @@ public class TalentParser {
         try {
             String path = SerializationUtils.CONFIG_PATH + "talents.csv";
 
-            InputStream input = TalentParser.class.getClassLoader().getResourceAsStream("assets\\mmorpg\\talents.csv");
+            InputStream input = TalentParser.class.getClassLoader()
+                .getResourceAsStream("assets\\mmorpg\\talents.csv");
 
             String s = IOUtils.toString(input, "utf-8");
 
@@ -23,7 +24,8 @@ public class TalentParser {
 
             grid.createConnections();
 
-            System.out.println("Registered all" + SlashRegistry.Perks().getSize() + " perks to the talent tree!");
+            System.out.println("Registered all " + SlashRegistry.Perks()
+                .getSize() + " perks to the talent tree!");
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -61,8 +61,7 @@ public class EleClothBoots implements IElementalUnique, IUnique {
 
     @Override
     public String GUID() {
-        return element.name()
-            .toLowerCase() + "_cloth_boots0";
+        return element.guidName + "_cloth_boots0";
     }
 
     @Override

@@ -4,13 +4,13 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.currency.CurrencyItem;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.BaseItem;
 import com.robertx22.mine_and_slash.items.ItemDefault;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.CompatibleItemLootGen;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -37,6 +37,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
     public static HashMap<String, ItemLootbox> Items = new HashMap<String, ItemLootbox>();
@@ -48,18 +49,21 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     @Override
     public String locNameForLangFile() {
-        return Rarities.Gears.get(rarity).textFormatColor() + Rarities.Gears.get(rarity)
-                .locNameForLangFile() + " " + this.size.name() + " " + this.lootType.name() + " " + "Treasure Box";
+        return Rarities.Gears.get(rarity)
+            .textFormatColor() + Rarities.Gears.get(rarity)
+            .locNameForLangFile() + " " + this.size.name() + " " + this.lootType.name() + " " + "Treasure Box";
     }
 
     @Override
     public String GUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     public enum LootTypes {
@@ -99,7 +103,7 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
         String reg = "lootbox/" + size.toString() + "_" + type.toString() + "_lootbox_" + rarity;
 
-        return reg.toLowerCase();
+        return reg.toLowerCase(Locale.ROOT);
 
     }
 
@@ -133,7 +137,8 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
     private void setWeight() {
 
-        int base = Rarities.Gears.get(rarity).Weight() + 5000;
+        int base = Rarities.Gears.get(rarity)
+            .Weight() + 5000;
         //still important, but not that much
 
         base *= this.size.weightMult;
@@ -162,16 +167,18 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
         if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get()) {
             types.add(new GenWeight(GearType.Compatible,
-                                    (int) (ModConfig.INSTANCE.DropRates.COMPATIBLE_ITEMS_DROPRATE.get()
-                                            .floatValue()) * 100
+                (int) (ModConfig.INSTANCE.DropRates.COMPATIBLE_ITEMS_DROPRATE.get()
+                    .floatValue()) * 100
             ));
         }
         types.add(new GenWeight(GearType.Runed,
-                                (int) (ModConfig.INSTANCE.DropRates.RUNED_GEAR_DROPRATE.get().floatValue()) * 100
+            (int) (ModConfig.INSTANCE.DropRates.RUNED_GEAR_DROPRATE.get()
+                .floatValue()) * 100
         ));
 
         types.add(new GenWeight(GearType.Normal,
-                                (int) (ModConfig.INSTANCE.DropRates.GEAR_DROPRATE.get().floatValue()) * 100
+            (int) (ModConfig.INSTANCE.DropRates.GEAR_DROPRATE.get()
+                .floatValue()) * 100
         ));
 
         GenWeight winner = (GenWeight) RandomUtils.weightedRandom(types);
@@ -215,7 +222,8 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
             for (int i = 0; i < this.ItemAmount.get(this.size) + rarity; i++) {
 
-                CurrencyItem item = SlashRegistry.CurrencyItems().random();
+                CurrencyItem item = SlashRegistry.CurrencyItems()
+                    .random();
 
                 stacks.add(new ItemStack(item));
             }
@@ -231,7 +239,7 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 
         FireworkRocketEntity firework = new FireworkRocketEntity(
-                worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, ItemStack.EMPTY);
+            worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, ItemStack.EMPTY);
         firework.setPosition(playerIn.posX, playerIn.posY, playerIn.posZ);
         WorldUtils.spawnEntity(worldIn, firework);
 
@@ -245,7 +253,8 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
 
                     GiveItems(playerIn, lvl);
 
-                    playerIn.getHeldItem(handIn).shrink(1);
+                    playerIn.getHeldItem(handIn)
+                        .shrink(1);
 
                     return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
 
@@ -271,7 +280,8 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
                                ITooltipFlag flagIn) {
 
-        tooltip.add(Styles.GREENCOMP().appendSibling(CLOC.tooltip("lootbox")));
+        tooltip.add(Styles.GREENCOMP()
+            .appendSibling(CLOC.tooltip("lootbox")));
 
     }
 

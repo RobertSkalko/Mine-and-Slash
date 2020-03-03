@@ -2,14 +2,14 @@ package com.robertx22.mine_and_slash.database.unique_items.shields;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
-import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.BlockReflectFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffinityFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -60,8 +60,7 @@ public class ShieldElemental implements IElementalUnique {
 
     @Override
     public String GUID() {
-        return element.name()
-            .toLowerCase() + "_ele_shield0";
+        return element.guidName + "_ele_shield0";
     }
 
     @Override

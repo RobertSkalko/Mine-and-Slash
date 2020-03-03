@@ -35,6 +35,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GearItemRegisters {
@@ -107,7 +108,7 @@ public class GearItemRegisters {
 
     private static void regRarities(Item item, HashMap<Integer, Item> map, String name, int rarity) {
 
-        String reg = name.toLowerCase() + rarity;
+        String reg = name.toLowerCase(Locale.ROOT) + rarity;
         item.setRegistryName(Ref.MODID, reg);
         map.put(rarity, item);
         items.add(item);

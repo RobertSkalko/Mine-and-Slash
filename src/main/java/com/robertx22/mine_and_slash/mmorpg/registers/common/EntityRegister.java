@@ -22,6 +22,7 @@ import net.minecraftforge.fml.network.FMLPlayMessages;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.BiFunction;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -100,9 +101,9 @@ public class EntityRegister {
         EntityType<T> type = EntityType.Builder.<T>create(factory, EntityClassification.MISC).setCustomClientFactory(
             bif)
             .size(0.5F, 0.5F)
-            .build(Ref.MODID + ":" + id.toLowerCase());
+            .build(Ref.MODID + ":" + id.toLowerCase(Locale.ROOT));
 
-        type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase()));
+        type.setRegistryName(new ResourceLocation(Ref.MODID, id.toLowerCase(Locale.ROOT)));
 
         ENTITY_TYPES.add(type);
 

@@ -20,7 +20,6 @@ public class ElementalConversion extends Stat implements IStatConversion, IGener
         this.toElement = to;
         this.maximumValue = 100;
         this.GUID = from.guidName + "_to_" + to.guidName + "_conversion";
-        this.GUID = GUID.toLowerCase();
 
         conversion.add(new ConversionMethod(new ElementalAttackDamage(from), new ElementalAttackDamage(to)));
         conversion.add(new ConversionMethod(new ElementalSpellDamage(from), new ElementalSpellDamage(to)));

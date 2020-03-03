@@ -18,14 +18,15 @@ import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class KillOnlyOfRarityOrHigherQuest extends Quest {
 
     public static KillOnlyOfRarityOrHigherQuest EPIC = new KillOnlyOfRarityOrHigherQuest(EpicMob.getInstance(), 1000);
     public static KillOnlyOfRarityOrHigherQuest LEGENDARY = new KillOnlyOfRarityOrHigherQuest(
-            LegendaryMob.getInstance(), 500);
+        LegendaryMob.getInstance(), 500);
     public static KillOnlyOfRarityOrHigherQuest MYTHIC = new KillOnlyOfRarityOrHigherQuest(MythicalMob.getInstance(),
-                                                                                           250
+        250
     );
 
     private KillOnlyOfRarityOrHigherQuest(MobRarity rar, int weight) {
@@ -60,7 +61,8 @@ public class KillOnlyOfRarityOrHigherQuest extends Quest {
 
     @Override
     public ITextComponent name() {
-        return new StringTextComponent("Kill ").appendSibling(rarity.locName()).appendText(" mobs");
+        return new StringTextComponent("Kill ").appendSibling(rarity.locName())
+            .appendText(" mobs");
     }
 
     @Override
@@ -118,9 +120,9 @@ public class KillOnlyOfRarityOrHigherQuest extends Quest {
         List<ITextComponent> tooltip = new ArrayList<>();
 
         tooltip.add(new StringTextComponent(
-                "Kill mobs: " + " ( " + data.getCurrentCompletition() + " / " + data.amountRequired + " ) "));
+            "Kill mobs: " + " ( " + data.getCurrentCompletition() + " / " + data.amountRequired + " ) "));
         tooltip.add(new StringTextComponent("Only ").appendSibling(rarity.locName())
-                            .appendText(" or higher rarity Mobs count"));
+            .appendText(" or higher rarity Mobs count"));
 
         return tooltip;
     }
@@ -137,7 +139,8 @@ public class KillOnlyOfRarityOrHigherQuest extends Quest {
 
     @Override
     public String GUID() {
-        return "kill_rarity_or_higher_" + rarity.GUID().toLowerCase();
+        return "kill_rarity_or_higher_" + rarity.GUID()
+            .toLowerCase(Locale.ROOT);
     }
 }
 

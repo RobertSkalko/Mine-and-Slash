@@ -11,6 +11,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockItemRegister {
 
+    static Item.Properties stationProp = new Item.Properties().group(CreativeTabs.MyModTab);
+    static Item.Properties inviProp = new Item.Properties();
+
     public static DeferredRegister<Item> REG = new DeferredRegister<>(ForgeRegistries.ITEMS, Ref.MODID);
 
     public static RegistryObject<Item> GEAR_MODIFY = of(BlockRegister.GEAR_MODIFY);
@@ -21,13 +24,16 @@ public class BlockItemRegister {
     public static RegistryObject<Item> TINKERING = of(BlockRegister.TINKERING);
     public static RegistryObject<Item> ALCHEMY = of(BlockRegister.ALCHEMY);
 
-    public static RegistryObject<Item> MAGMA_FLOWER = of(BlockRegister.MAGMA_FLOWER);
-    public static RegistryObject<Item> THORN_BUSH = of(BlockRegister.THORN_BUSH);
+    public static RegistryObject<Item> MAGMA_FLOWER = invi(BlockRegister.MAGMA_FLOWER);
+    public static RegistryObject<Item> THORN_BUSH = invi(BlockRegister.THORN_BUSH);
 
-    public static RegistryObject<Item> DUNGEON_PORTAL = of(BlockRegister.DUNGEON_PORTAL);
-    public static RegistryObject<Item> MAP_CHEST = of(BlockRegister.MAP_CHEST);
+    public static RegistryObject<Item> DUNGEON_PORTAL = invi(BlockRegister.DUNGEON_PORTAL);
+    public static RegistryObject<Item> MAP_CHEST = invi(BlockRegister.MAP_CHEST);
 
-    static Item.Properties stationProp = new Item.Properties().group(CreativeTabs.MyModTab);
+    static <T extends Block> RegistryObject<Item> invi(RegistryObject<T> block) {
+        return REG.register(block.getId()
+            .getPath(), () -> new BlockItem(block.get(), inviProp));
+    }
 
     static <T extends Block> RegistryObject<Item> of(RegistryObject<T> block) {
         return REG.register(block.getId()

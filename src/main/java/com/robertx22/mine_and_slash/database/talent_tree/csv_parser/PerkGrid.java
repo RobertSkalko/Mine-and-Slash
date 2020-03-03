@@ -13,7 +13,8 @@ public class PerkGrid<T extends GridPoint> {
     protected List<List<T>> grid = new ArrayList<>();
 
     public T get(int x, int y) {
-        return grid.get(x).get(y);
+        return grid.get(x)
+            .get(y);
     }
 
     public T newGridPoint(int x, int y, String s) {
@@ -31,7 +32,8 @@ public class PerkGrid<T extends GridPoint> {
                     grid.add(new ArrayList<>());
                 }
 
-                grid.get(x).add(newGridPoint(x, y, s));
+                grid.get(x)
+                    .add(newGridPoint(x, y, s));
 
                 x++;
 
@@ -57,7 +59,8 @@ public class PerkGrid<T extends GridPoint> {
         for (T one : talents) {
             for (T two : talents) {
                 if (hasPath(one, two)) {
-                    one.getPerk().tryConnectTo(two.getPerk());
+                    one.getPerk()
+                        .tryConnectTo(two.getPerk());
                 }
             }
         }
@@ -144,29 +147,29 @@ public class PerkGrid<T extends GridPoint> {
 
                     String id = point.getEffectID();
 
-                    if (!SlashRegistry.PerkEffects().isRegistered(id)) {
-                        id = id.toLowerCase();
-                        if (!SlashRegistry.PerkEffects().isRegistered(id)) {
-                            id = id.toUpperCase();
-                        }
+                    if (!SlashRegistry.PerkEffects()
+                        .isRegistered(id)) {
+                        id = id.toLowerCase(Locale.ROOT);
                     }
 
                     PerkEffect effect = null;
 
-                    if (SlashRegistry.PerkEffects().isRegistered(id)) {
-                        effect = SlashRegistry.PerkEffects().get(id);
+                    if (SlashRegistry.PerkEffects()
+                        .isRegistered(id)) {
+                        effect = SlashRegistry.PerkEffects()
+                            .get(id);
                     }
                     if (effect == null) {
                         effect = StartPerkEffects.WARRIOR;
 
-                        System.out.println(point.getID() + " is a broken talent.");
+                        System.out.println(point.getID() + ": " + point.getEffectIDRaw() + " is a broken talent.");
                     }
 
                     Perk perk = (Perk) PerkBuilder.create(point.getID())
-                            .pos(point.x, point.y)
-                            .effect(effect)
-                            .connections()
-                            .build();
+                        .pos(point.x, point.y)
+                        .effect(effect)
+                        .connections()
+                        .build();
 
                 }
             }

@@ -32,6 +32,7 @@ import net.minecraft.util.text.ITextComponent;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class ProfessionGui extends ContainerScreen<ProfessionContainer> implements IGuiEventListener {
@@ -143,7 +144,8 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
 
             BaseRecipe recipe = recipes.get(i);
 
-            ItemStack output = recipe.getOutput(tile).getPreview();
+            ItemStack output = recipe.getOutput(tile)
+                .getPreview();
 
             if (n == maxRowMembers) {
                 y += ChooseRecipeButton.ySize;
@@ -153,7 +155,7 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
             xOffset = n * (ChooseRecipeButton.xSize + 1);
 
             ChooseRecipeButton button = new ChooseRecipeButton(
-                    proffs.getLevel(recipe.profession()), recipe, output, x + xOffset, y, tile.getPos());
+                proffs.getLevel(recipe.profession()), recipe, output, x + xOffset, y, tile.getPos());
 
             this.displayedRecipeButtons.add(button);
 
@@ -179,16 +181,16 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
 
         if (this.lvlbar == null) {
             this.lvlbar = new ProfessionLvlBar(
-                    tile.profession, proffs, guiLeft + 229 - ProfessionLvlBar.xSize / 2,
-                    guiTop + 70 - ProfessionLvlBar.ySize
+                tile.profession, proffs, guiLeft + 229 - ProfessionLvlBar.xSize / 2,
+                guiTop + 70 - ProfessionLvlBar.ySize
             );
         }
 
         if (this.searchBar == null) {
             String s = this.searchBar != null ? this.searchBar.getText() : "";
             this.searchBar = new TextFieldWidget(
-                    this.mc.fontRenderer, this.guiLeft + 20, this.guiTop + 5, 80, 9 + 5,
-                    I18n.format("itemGroup.search")
+                this.mc.fontRenderer, this.guiLeft + 20, this.guiTop + 5, 80, 9 + 5,
+                I18n.format("itemGroup.search")
             );
             this.searchBar.setMaxStringLength(50);
             this.searchBar.setEnableBackgroundDrawing(false);
@@ -253,7 +255,8 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
         if (this.tile.currentRecipe != null) {
             int x = this.guiLeft + 217 + 5;
             int y = this.guiTop + 19 + 5;
-            currentOutput = new Slot(new Inventory(tile.currentRecipe.getOutput(tile).getPreview()), 0, x, y);
+            currentOutput = new Slot(new Inventory(tile.currentRecipe.getOutput(tile)
+                .getPreview()), 0, x, y);
             this.drawSlot(currentOutput);
         }
     }
@@ -299,15 +302,21 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
 
         List<BaseRecipe> recipes = tile.profession.recipes();
 
-        if (this.searchBar.getText().isEmpty() == false) {
+        if (this.searchBar.getText()
+            .isEmpty() == false) {
 
             List<BaseRecipe> list = new ArrayList<>();
 
             for (BaseRecipe recipe : recipes) {
 
-                String s = recipe.getOutput(tile).getPreview().getDisplayName().getFormattedText().toLowerCase();
+                String s = recipe.getOutput(tile)
+                    .getPreview()
+                    .getDisplayName()
+                    .getFormattedText()
+                    .toLowerCase(Locale.ROOT);
 
-                if (s.contains(this.searchBar.getText().toLowerCase())) {
+                if (s.contains(this.searchBar.getText()
+                    .toLowerCase(Locale.ROOT))) {
                     list.add(recipe);
                 }
             }
@@ -319,19 +328,19 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
 
         if (this.onlyLvlMetCheckbox.checked == OnlyLvlMetCheckBox.PickedRecipes.LVL_MET) {
             recipes = recipes.stream()
-                    .filter(x -> x.professionLevelReq <= profs.getLevel(x.profession()))
-                    .collect(Collectors.toList());
+                .filter(x -> x.professionLevelReq <= profs.getLevel(x.profession()))
+                .collect(Collectors.toList());
         }
         if (this.onlyLvlMetCheckbox.checked == OnlyLvlMetCheckBox.PickedRecipes.LVL_NOT_MET) {
             recipes = recipes.stream()
-                    .filter(x -> x.professionLevelReq > profs.getLevel(x.profession()))
-                    .collect(Collectors.toList());
+                .filter(x -> x.professionLevelReq > profs.getLevel(x.profession()))
+                .collect(Collectors.toList());
         }
 
         if (recipes.size() > 1) {
             recipes = recipes.stream()
-                    .sorted((Comparator.comparingInt(BaseRecipe::getLevelReq)))
-                    .collect(Collectors.toList());
+                .sorted((Comparator.comparingInt(BaseRecipe::getLevelReq)))
+                .collect(Collectors.toList());
 
         }
 
@@ -341,7 +350,9 @@ public class ProfessionGui extends ContainerScreen<ProfessionContainer> implemen
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
-        Minecraft.getInstance().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.xSize, this.ySize, 256, 512);
 
