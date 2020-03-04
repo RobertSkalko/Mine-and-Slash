@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.registry;
 
+import com.robertx22.mine_and_slash.new_content.data_processors.ChunkProcessData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.WeightedWrapper;
 import net.minecraft.entity.EntityType;
@@ -17,9 +18,9 @@ public abstract class DataProcessor {
 
     String data;
 
-    public final boolean process(String data, BlockPos pos, IWorld world) {
+    public final boolean process(String data, BlockPos pos, IWorld world, ChunkProcessData chunkData) {
         if (this.data.equals(data)) {
-            processImplementation(pos, world);
+            processImplementation(pos, world, chunkData);
             return true;
         }
         return false;
@@ -58,6 +59,6 @@ public abstract class DataProcessor {
 
     }
 
-    public abstract void processImplementation(BlockPos pos, IWorld world);
+    public abstract void processImplementation(BlockPos pos, IWorld world, ChunkProcessData data);
 
 }

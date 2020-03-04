@@ -14,7 +14,7 @@ public class EliteMobHorde extends DataProcessor {
     }
 
     @Override
-    public void processImplementation(BlockPos pos, IWorld world) {
+    public void processImplementation(BlockPos pos, IWorld world, ChunkProcessData data) {
 
         EntityType<? extends MobEntity> type = randomMob();
 

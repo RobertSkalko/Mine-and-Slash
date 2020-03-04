@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content;
 
+import com.robertx22.mine_and_slash.new_content.data_processors.ChunkProcessData;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessors;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonData;
@@ -60,6 +61,8 @@ public class ProcessChunkBlocks {
 
                             if (!c.isDoneProcessing()) {
 
+                                ChunkProcessData data = new ChunkProcessData();
+
                                 DungeonData dungeonData = mapdata.getData()
                                     .getData(cpos);
 
@@ -83,7 +86,7 @@ public class ProcessChunkBlocks {
                                             boolean any = false;
 
                                             for (DataProcessor processor : DataProcessors.getAll()) {
-                                                boolean did = processor.process(metadata, tilePos, player.world);
+                                                boolean did = processor.process(metadata, tilePos, player.world, data);
                                                 if (did) {
                                                     any = true;
                                                 }

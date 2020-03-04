@@ -19,7 +19,7 @@ public class ChestProcessor extends DataProcessor {
     }
 
     @Override
-    public void processImplementation(BlockPos pos, IWorld world) {
+    public void processImplementation(BlockPos pos, IWorld world, ChunkProcessData data) {
 
         world.setBlockState(pos, BlockRegister.MAP_CHEST.get()
             .getDefaultState(), 2);

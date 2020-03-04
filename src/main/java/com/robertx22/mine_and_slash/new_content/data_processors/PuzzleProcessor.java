@@ -13,7 +13,7 @@ public class PuzzleProcessor extends DataProcessor {
     }
 
     @Override
-    public void processImplementation(BlockPos pos, IWorld world) {
+    public void processImplementation(BlockPos pos, IWorld world, ChunkProcessData data) {
 
         Block block = BlockRegister.SCRABBLE.get();
 
