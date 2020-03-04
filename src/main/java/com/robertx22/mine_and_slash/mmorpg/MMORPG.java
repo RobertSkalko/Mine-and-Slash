@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.electronwill.nightconfig.core.utils.StringUtils;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
-import com.robertx22.mine_and_slash.blocks.scrabble.ScrabbleTile;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
@@ -136,8 +135,6 @@ public class MMORPG {
         new DunSameSeedAreSame().check();
 
         loadWordList();
-
-        ScrabbleTile.genRandomLetters();
     }
 
     public static List<String> WORDS = new ArrayList<>();

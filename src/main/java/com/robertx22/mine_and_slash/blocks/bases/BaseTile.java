@@ -328,8 +328,6 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         this.fuel = nbtTagCompound.getInt("fuel");
     }
 
-    //	// When the world loads from disk, the server needs to send the TileEntity information to the client
-    //	//  it uses getUpdatePacket(), getUpdateTag(), onDataPacket(), and handleUpdateTag() to do this
     @Override
     @Nullable
     public SUpdateTileEntityPacket getUpdatePacket() {
@@ -344,11 +342,6 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         handleUpdateTag(updateTagDescribingTileEntityState);
     }
 
-    /*
-     * Creates a tag containing the TileEntity information, used by vanilla to
-     * transmit from server to client Warning - although our getUpdatePacket() uses
-     * this method, vanilla also calls it directly, so don't remove it.
-     */
     @Override
     public CompoundNBT getUpdateTag() {
         CompoundNBT nbtTagCompound = new CompoundNBT();

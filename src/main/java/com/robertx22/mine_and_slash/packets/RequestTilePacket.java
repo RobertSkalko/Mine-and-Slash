@@ -39,21 +39,24 @@ public class RequestTilePacket {
 
     public static void handle(final RequestTilePacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
 
-                ServerPlayerEntity player = ctx.get().getSender();
+                    ServerPlayerEntity player = ctx.get()
+                        .getSender();
 
-                if (player != null) {
-                    sendUpdate(pkt.pos, player);
+                    if (player != null) {
+                        sendUpdate(pkt.pos, player);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            });
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        ctx.get().setPacketHandled(true);
+        ctx.get()
+            .setPacketHandled(true);
 
     }
 

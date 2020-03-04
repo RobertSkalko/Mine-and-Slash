@@ -5,10 +5,13 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
 import com.robertx22.mine_and_slash.uncommon.testing.Watch;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -58,11 +61,11 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
     @Override
     public void tick() {
-
-        if (letters.isEmpty()) {
-            this.letters = genRandomLetters();
+        if (!world.isRemote) {
+            if (letters.isEmpty()) {
+                this.letters = genRandomLetters();
+            }
         }
-
     }
 
     public static String genRandomLetters() {
@@ -109,7 +112,7 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
             }
         }
 
-        return words > 7 && words < 50;
+        return words > 5 && words < 70;
     }
 
     public static Set<ImmutablePair<String, Integer>> getPairs(String letters) {
@@ -183,4 +186,26 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
         this.letters = nbt.getString("letters");
     }
+
+    @Override
+    @Nullable
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        CompoundNBT updateTagDescribingTileEntityState = getUpdateTag();
+        final int METADATA = 0;
+        return new SUpdateTileEntityPacket(this.pos, METADATA, updateTagDescribingTileEntityState);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
+        CompoundNBT updateTagDescribingTileEntityState = pkt.getNbtCompound();
+        handleUpdateTag(updateTagDescribingTileEntityState);
+    }
+
+    @Override
+    public CompoundNBT getUpdateTag() {
+        CompoundNBT nbtTagCompound = new CompoundNBT();
+        write(nbtTagCompound);
+        return nbtTagCompound;
+    }
+
 }
