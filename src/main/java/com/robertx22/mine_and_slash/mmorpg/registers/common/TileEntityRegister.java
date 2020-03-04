@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.blocks.item_modify_station.TileGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.TileMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.TileGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.TileGearSalvage;
+import com.robertx22.mine_and_slash.blocks.scrabble.ScrabbleTile;
 import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
 import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushTileEntity;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
@@ -80,6 +81,12 @@ public class TileEntityRegister {
         REG.register(BlockRegister.MAP_CHEST.getId()
                 .getPath(),
             () -> TileEntityType.Builder.create(MapChestTile::new, BlockRegister.MAP_CHEST.get())
+                .build(null));
+
+    public static RegistryObject<TileEntityType<ScrabbleTile>> SCRABBLE =
+        REG.register(BlockRegister.SCRABBLE.getId()
+                .getPath(),
+            () -> TileEntityType.Builder.create(ScrabbleTile::new, BlockRegister.SCRABBLE.get())
                 .build(null));
 
 }

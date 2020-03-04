@@ -17,7 +17,7 @@
       },
       {
         "min_level": 75,
-        "max_level": 100
+        "max_level": 2147483647
       }
     ]
   },

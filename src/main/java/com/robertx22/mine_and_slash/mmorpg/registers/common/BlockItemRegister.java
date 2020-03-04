@@ -30,6 +30,8 @@ public class BlockItemRegister {
     public static RegistryObject<Item> DUNGEON_PORTAL = invi(BlockRegister.DUNGEON_PORTAL);
     public static RegistryObject<Item> MAP_CHEST = invi(BlockRegister.MAP_CHEST);
 
+    public static RegistryObject<Item> SCRABBLE = of(BlockRegister.SCRABBLE);
+
     static <T extends Block> RegistryObject<Item> invi(RegistryObject<T> block) {
         return REG.register(block.getId()
             .getPath(), () -> new BlockItem(block.get(), inviProp));

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.blocks.item_modify_station.BlockGearModify;
 import com.robertx22.mine_and_slash.blocks.map_device.BlockMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.BlockGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.BlockGearSalvage;
+import com.robertx22.mine_and_slash.blocks.scrabble.ScrabbleBlock;
 import com.robertx22.mine_and_slash.dimensions.blocks.DungeonPortalBlock;
 import com.robertx22.mine_and_slash.dimensions.blocks.MapPortalBlock;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
@@ -41,6 +42,7 @@ public class BlockRegister {
     public static RegistryObject<DungeonPortalBlock> DUNGEON_PORTAL = REG.register("dungeon_portal", DungeonPortalBlock::new);
 
     public static RegistryObject<MapChestBlock> MAP_CHEST = REG.register("map_chest", MapChestBlock::new);
+    public static RegistryObject<ScrabbleBlock> SCRABBLE = REG.register("scrabble", ScrabbleBlock::new);
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {

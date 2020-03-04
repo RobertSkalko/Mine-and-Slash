@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 import com.robertx22.mine_and_slash.database.quests.base.Quest;
 import com.robertx22.mine_and_slash.database.quests.quests.CollectRarityPointsKillQuest;
 import com.robertx22.mine_and_slash.database.quests.quests.KillOnlyOfRarityOrHigherQuest;
-import com.robertx22.mine_and_slash.database.quests.quests.OpenAnyCratesQuest;
 import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
@@ -25,8 +24,6 @@ public class Quests implements ISlashRegistryInit {
                     add(KillOnlyOfRarityOrHigherQuest.MYTHIC);
 
                     add(CollectRarityPointsKillQuest.INSTANCE);
-
-                    add(OpenAnyCratesQuest.getInstance());
 
                 }
             }
