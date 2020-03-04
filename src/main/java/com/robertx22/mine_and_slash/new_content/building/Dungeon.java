@@ -35,6 +35,7 @@ public class Dungeon {
     int amount = 0;
     int ends = 0;
     public int bossRooms = 0;
+    public int puzzleBlockRooms = 0;
 
     private BuiltRoom[][] rooms;
 
@@ -221,6 +222,9 @@ public class Dungeon {
             }
             if (room.room.isBoss) {
                 bossRooms++;
+            }
+            if (room.room.isPuzzleBlock) {
+                puzzleBlockRooms++;
             }
 
             this.started = true;

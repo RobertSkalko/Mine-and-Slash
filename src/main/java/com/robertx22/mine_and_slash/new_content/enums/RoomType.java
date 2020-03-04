@@ -148,6 +148,9 @@ public enum RoomType implements IWeighted {
             if (builder.dungeon.bossRooms >= builder.maxBossRooms) {
                 possible = tryFilter(possible, r -> !r.isBoss);
             }
+            if (builder.dungeon.puzzleBlockRooms >= builder.maxPuzzleBlockRooms) {
+                possible = tryFilter(possible, r -> !r.isPuzzleBlock);
+            }
 
             return RandomUtils.weightedRandom(possible, builder.rand.nextDouble());
 

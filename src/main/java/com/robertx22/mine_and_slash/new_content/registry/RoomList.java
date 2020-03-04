@@ -18,7 +18,7 @@ public class RoomList {
             rooms.add(new DungeonRoom("hidden_lever0", RoomType.END, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("simple1", RoomType.FOUR_WAY, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("simple2", RoomType.STRAIGHT_HALLWAY, RoomGroup.STONE_BRICK));
-            rooms.add(new DungeonRoom("puzzle_plus_web", RoomType.TRIPLE_HALLWAY, RoomGroup.STONE_BRICK));
+            rooms.add(new DungeonRoom("puzzle_plus_web", RoomType.TRIPLE_HALLWAY, RoomGroup.STONE_BRICK).setPuzzleBlock());
 
             rooms.add(new DungeonRoom("basic", RoomType.FOUR_WAY, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("basic", RoomType.ENTRANCE, RoomGroup.STONE_BRICK));

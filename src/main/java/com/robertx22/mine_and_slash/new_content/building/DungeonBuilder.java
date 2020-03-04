@@ -34,6 +34,8 @@ public class DungeonBuilder {
         }
     }
 
+    public int maxPuzzleBlockRooms = 3;
+
     public boolean debug = false;
     public Dungeon dungeon;
     public final Random rand;
