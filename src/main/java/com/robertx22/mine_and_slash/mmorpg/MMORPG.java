@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
-import com.electronwill.nightconfig.core.utils.StringUtils;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
+import com.robertx22.mine_and_slash.blocks.scrabble.ScrabbleTile;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
@@ -50,15 +50,8 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import org.apache.commons.io.IOUtils;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -134,30 +127,7 @@ public class MMORPG {
 
         new DunSameSeedAreSame().check();
 
-        loadWordList();
-    }
-
-    public static List<String> WORDS = new ArrayList<>();
-
-    public static void loadWordList() {
-
-        InputStream input = MMORPG.class.getClassLoader()
-            .getResourceAsStream("assets\\mmorpg\\word_list.txt");
-
-        try {
-            String file = IOUtils.toString(input, "utf-8");
-            WORDS = StringUtils.splitLines(file);
-
-            WORDS = WORDS.stream()
-                .filter(x -> x != null && !x.isEmpty())
-                .map(x -> x.toLowerCase(Locale.ROOT))
-                .collect(Collectors.toList());
-
-            System.out.println("Loaded " + WORDS.size() + " words to the dictionary.");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ScrabbleTile.loadWordList();
     }
 
     public static void logError(String s) {

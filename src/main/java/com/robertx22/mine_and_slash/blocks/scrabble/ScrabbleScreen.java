@@ -11,7 +11,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
+import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
+
+import java.util.Locale;
 
 public class ScrabbleScreen extends BaseTileGui<ScrabbleTile> {
 
@@ -82,8 +85,10 @@ public class ScrabbleScreen extends BaseTileGui<ScrabbleTile> {
         super.render(x, y, t);
 
         if (tile != null) {
-            String str = tile.letters;
-            mc.fontRenderer.drawStringWithShadow(str, mc.mainWindow.getScaledWidth() / 2 - mc.fontRenderer.getStringWidth(str) / 2, mc.mainWindow.getScaledHeight() / 2 - mc.fontRenderer.FONT_HEIGHT / 2 - ySize / 2 + 20, TextFormatting.GREEN.getColor());
+            String str = TextFormatting.BOLD + StringUtils.join(tile.letters.toUpperCase(Locale.ROOT)
+                .split(""), " ");
+
+            mc.fontRenderer.drawStringWithShadow(str, mc.mainWindow.getScaledWidth() / 2 - mc.fontRenderer.getStringWidth(str) / 2, mc.mainWindow.getScaledHeight() / 2 - mc.fontRenderer.FONT_HEIGHT / 2 - ySize / 2 + 20, TextFormatting.GOLD.getColor());
         }
     }
 }
