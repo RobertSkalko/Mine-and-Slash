@@ -21,8 +21,7 @@ public class ScrabbleScreen extends BaseTileGui<ScrabbleTile> {
     private static final ResourceLocation TEX = Res.loc("textures/gui/scrabble.png");
 
     public ScrabbleScreen(BlockPos pos) {
-        super(ScrabbleTile.class, pos);
-
+        super(ScrabbleTile.class, pos, 147, 118);
     }
 
     @Override

@@ -13,6 +13,9 @@ public class RoomList {
     public static List<DungeonRoom> getAllRooms() {
 
         if (rooms.isEmpty()) {
+
+            rooms.add(new DungeonRoom("puzzle_plus_web", RoomType.TRIPLE_HALLWAY, RoomGroup.STONE_BRICK));
+
             rooms.add(new DungeonRoom("basic", RoomType.FOUR_WAY, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("basic", RoomType.ENTRANCE, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("boss", RoomType.END, RoomGroup.STONE_BRICK).setBoss());

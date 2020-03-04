@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.new_content.chests.MapChestTile;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.uncommon.testing.Watch;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.block.Blocks;
@@ -130,6 +129,13 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
                 TileEntity tile = world.getTileEntity(pos);
 
+                ParticleEnum.AOE.sendToClients(
+                    pos,
+                    world,
+                    data.type(ParticleTypes.HAPPY_VILLAGER));
+
+                SoundUtils.playSound(world, pos, SoundEvents.ENTITY_VILLAGER_YES, 1, 1);
+
                 if (tile instanceof MapChestTile) {
 
                     MapChestTile chest = (MapChestTile) tile;
@@ -150,13 +156,6 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
                     chest.addItems(genItems);
 
                 }
-
-                ParticleEnum.AOE.sendToClients(
-                    pos,
-                    world,
-                    data.type(ParticleTypes.HAPPY_VILLAGER));
-
-                SoundUtils.playSound(world, pos, SoundEvents.UI_TOAST_IN, 1, 1);
 
                 return;
 
@@ -227,8 +226,6 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
         String letters = "";
 
-        Watch watch = new Watch();
-
         int tries = 0;
 
         while (!areLettersSuitable(letters)) {
@@ -238,8 +235,6 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
         }
 
         letters = scramble(new Random(), letters);
-
-        watch.print("random word ");
 
         return letters;
 
@@ -263,8 +258,6 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
     public static boolean areLettersSuitable(String letters) {
 
-        Watch watch = new Watch();
-
         if (letters.length() < 2) {
             return false;
         }
@@ -278,7 +271,6 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
                 words++;
             }
         }
-        watch.print("suitable takes ");
 
         return words > 3 && words < 5 * letters.length();
     }

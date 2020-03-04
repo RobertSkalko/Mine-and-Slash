@@ -29,16 +29,16 @@ public abstract class BaseTileGui<Tile extends TileEntity> extends Screen {
     protected void init() {
         super.init();
 
-        xSize = 176;
-        ySize = 207;
-
         this.guiLeft = (this.width - this.xSize) / 2;
         this.guiTop = (this.height - this.ySize) / 2;
 
     }
 
-    public BaseTileGui(Class<Tile> token, BlockPos pos) {
+    public BaseTileGui(Class<Tile> token, BlockPos pos, int x, int y) {
         super(new SText(""));
+
+        xSize = x;
+        ySize = y;
 
         this.mc = Minecraft.getInstance();
 

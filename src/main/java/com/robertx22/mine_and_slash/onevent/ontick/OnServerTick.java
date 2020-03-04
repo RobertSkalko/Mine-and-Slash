@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.new_content.ProcessChunkBlocks;
 import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
 import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
@@ -104,6 +105,10 @@ public class OnServerTick {
                     Load.playerMapData(player)
                         .onMinute(player);
 
+                    if (player.getServer()
+                        .isSinglePlayer()) {
+                        SlashRegistry.restoreFromBackupifEmpty();
+                    }
                 }
                 if (data.ticksToProcessChunks > TicksToProcessChunks) {
                     data.ticksToProcessChunks = 0;

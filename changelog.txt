@@ -1,5 +1,7 @@
 3.1.14
 * buffed ranger spells a bit
+* fix lan problems
+* added a new dungeon room with a new kind of block, scramble block!
 3.1.13
 * added tridents
 * fixed party exp sharing

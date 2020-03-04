@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
-import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
@@ -46,14 +45,11 @@ public class OnLogin {
 
             ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
 
-            if (!MapManager.getServer()
-                .isSinglePlayer()) {
-                MMORPG.sendToClient(new OnLoginClientPacket(), player);
-                SlashRegistry.restoreFromBackupifEmpty();
-                ConfigRegister.CONFIGS.values()
-                    .forEach(x -> x.sendToClient(player));
-                SlashRegistry.sendAllPacketsToClientOnLogin(player);
-            }
+            MMORPG.sendToClient(new OnLoginClientPacket(), player);
+            SlashRegistry.restoreFromBackupifEmpty();
+            ConfigRegister.CONFIGS.values()
+                .forEach(x -> x.sendToClient(player));
+            SlashRegistry.sendAllPacketsToClientOnLogin(player);
 
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()
@@ -64,6 +60,7 @@ public class OnLogin {
 
                 UnitData data = Load.Unit(player);
 
+                SlashRegistry.restoreFromBackupifEmpty();
                 data.onLogin(player);
 
                 data.syncToClient(player);
@@ -76,6 +73,8 @@ public class OnLogin {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        SlashRegistry.restoreFromBackupifEmpty();
 
     }
 

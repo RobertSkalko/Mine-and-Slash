@@ -16,6 +16,7 @@ public class DataProcessors {
         list.add(new ChestProcessor());
         list.add(new MobHordeProcessor());
         list.add(new EliteMobHorde());
+        list.add(new PuzzleProcessor());
 
         return list;
 
