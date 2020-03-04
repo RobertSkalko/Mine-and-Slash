@@ -92,9 +92,11 @@ public class PacketRegister {
         reg(RegistryPacket.class, RegistryPacket::encode, RegistryPacket::decode, RegistryPacket::handle);
 
         reg(
-                OnLoginClientPacket.class, OnLoginClientPacket::encode, OnLoginClientPacket::decode,
-                OnLoginClientPacket::handle
+            OnLoginClientPacket.class, OnLoginClientPacket::encode, OnLoginClientPacket::decode,
+            OnLoginClientPacket::handle
         );
+
+        reg(ScrabblePacket.class, ScrabblePacket::encode, ScrabblePacket::decode, ScrabblePacket::handle);
 
     }
 

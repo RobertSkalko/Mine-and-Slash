@@ -1,14 +1,25 @@
 package com.robertx22.mine_and_slash.blocks.scrabble;
 
+import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
+import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.new_content.chests.MapChestTile;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.testing.Watch;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.Vec3d;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import javax.annotation.Nullable;
@@ -68,6 +79,53 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
         }
     }
 
+    public void tryGuessWord(String word) {
+
+        if (areLettersSuitable(word)) {
+            if (isInDict(word)) {
+
+                this.world.setBlockState(pos, BlockRegister.MAP_CHEST.get()
+                    .getDefaultState());
+
+                TileEntity tile = world.getTileEntity(pos);
+
+                if (tile instanceof MapChestTile) {
+
+                    ParticleEnum.AOE.sendToClients(
+                        pos,
+                        world,
+                        new ParticlePacketData(new Vec3d(pos), ParticleEnum.AOE).type(ParticleTypes.HAPPY_VILLAGER)
+                            .radius(1)
+                            .amount(20));
+
+                    MapChestTile chest = (MapChestTile) tile;
+
+                    NonNullList<ItemStack> items = NonNullList.create();
+
+                    LootCrate crate = SlashRegistry.LootCrates()
+                        .random();
+                    crate.generateItems(new LootInfo(world.getWorld(), pos))
+                        .forEach(x -> items.add(x));
+                    crate = SlashRegistry.LootCrates()
+                        .random();
+                    crate.generateItems(new LootInfo(world.getWorld(), pos))
+                        .forEach(x -> items.add(x));
+
+                    chest.addItems(items);
+
+                }
+            }
+        }
+
+        ParticleEnum.AOE.sendToClients(
+            pos,
+            world,
+            new ParticlePacketData(new Vec3d(pos), ParticleEnum.AOE).type(ParticleTypes.WITCH)
+                .amount(20)
+                .radius(1));
+
+    }
+
     public static String genRandomLetters() {
 
         String letters = "";
@@ -98,7 +156,7 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
     public static boolean areLettersSuitable(String letters) {
 
-        if (letters.length() < 3) {
+        if (letters.length() < 2) {
             return false;
         }
 
