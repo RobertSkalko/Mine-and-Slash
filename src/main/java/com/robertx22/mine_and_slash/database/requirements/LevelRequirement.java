@@ -36,7 +36,9 @@ public class LevelRequirement extends BaseRequirement<LevelRequirement> {
     @Override
     public LevelRequirement fromJson(JsonObject json) {
         try {
-            return new LevelRequirement(json.get("min_level").getAsInt(), json.get("max_level").getAsInt());
+            return new LevelRequirement(json.get("min_level")
+                .getAsInt(), json.get("max_level")
+                .getAsInt());
         } catch (Exception e) {
             return null;
         }
@@ -55,7 +57,7 @@ public class LevelRequirement extends BaseRequirement<LevelRequirement> {
     }
 
     public static LevelRequirement endgameLVLOnly() {
-        return new LevelRequirement(75, 100);
+        return new LevelRequirement(75, Integer.MAX_VALUE);
     }
 
     public static LevelRequirement fromLVL10() {
@@ -80,10 +82,10 @@ public class LevelRequirement extends BaseRequirement<LevelRequirement> {
         int maxPlayerlvl = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
 
         minLevel = MathHelper.clamp(minLevel, 0,
-                                    maxPlayerlvl
+            maxPlayerlvl
         );  // make sure min lvl is not higher than the maximum posible level in case it was decreased by config?
         maxLevel = MathHelper.clamp(maxLevel, 0,
-                                    maxPlayerlvl
+            maxPlayerlvl
         );  // make sure min lvl is not higher than the maximum posible level in case it was decreased by config?
 
         int level = requested.gearData.level;

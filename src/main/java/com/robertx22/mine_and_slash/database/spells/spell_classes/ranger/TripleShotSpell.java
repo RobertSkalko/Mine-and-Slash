@@ -97,7 +97,7 @@ public class TripleShotSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.5F, 0.5F, 5);
+        return SpellCalcData.allAttackAndSpellDamages(0.5F, 0.6F, 5);
     }
 
     @Override

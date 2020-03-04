@@ -80,7 +80,7 @@ public class RecoilShotSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(1, 0.5F, 5);
+        return SpellCalcData.allAttackAndSpellDamages(1, 0.75F, 5);
     }
 
     @Override

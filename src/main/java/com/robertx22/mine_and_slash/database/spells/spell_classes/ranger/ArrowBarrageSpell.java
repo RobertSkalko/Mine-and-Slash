@@ -37,7 +37,7 @@ public class ArrowBarrageSpell extends BaseProjectileSpell {
 
     @Override
     public int getCooldownInSeconds() {
-        return 15;
+        return 20;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class ArrowBarrageSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.05F, 0.1F, 1);
+        return SpellCalcData.allAttackAndSpellDamages(0.1F, 0.2F, 1);
     }
 
     @Override

@@ -1,3 +1,5 @@
+3.1.14
+* buffed ranger spells a bit
 3.1.13
 * added tridents
 * fixed party exp sharing

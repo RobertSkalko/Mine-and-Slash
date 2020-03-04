@@ -83,8 +83,6 @@ public class MMORPG {
         }
     }
 
-    public static long MAP_WORLD_SEED = 0;
-
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     private static final String PROTOCOL_VERSION = Integer.toString(1);
@@ -99,10 +97,6 @@ public class MMORPG {
     public MMORPG() {
 
         System.out.println("Starting Mine and Slash");
-
-        if (MAP_WORLD_SEED == 0) {
-            MAP_WORLD_SEED = org.apache.commons.lang3.RandomUtils.nextLong();
-        }
 
         final IEventBus bus = FMLJavaModLoadingContext.get()
             .getModEventBus();
@@ -277,8 +271,6 @@ public class MMORPG {
     }
 
     public void onloadComplete(FMLLoadCompleteEvent evt) {
-
-        //RegisterModelLayers.reg();
 
     }
 
