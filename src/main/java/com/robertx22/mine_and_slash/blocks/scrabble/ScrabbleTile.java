@@ -198,6 +198,9 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
         if (isSameLength) {
             amount *= 2;
         }
+        if (word.length() < 4) {
+            amount *= 0.5;
+        }
 
         return amount;
 

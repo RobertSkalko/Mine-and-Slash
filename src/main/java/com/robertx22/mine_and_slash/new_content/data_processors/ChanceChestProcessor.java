@@ -14,6 +14,7 @@ public class ChanceChestProcessor extends DataProcessor {
     @Override
     public void processImplementation(BlockPos pos, IWorld world, ChunkProcessData data) {
         if (!data.chanceChest && RandomUtils.roll(80)) {
+            data.chanceChest = true;
             new ChestProcessor().processImplementation(pos, world, data);
         }
     }
