@@ -138,6 +138,8 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
                     int amount = getItemRewardAmount(word, letters);
 
+                    amount = MathHelper.clamp(amount, 1, 27);
+
                     for (int i = 0; i < amount; i++) {
                         LootCrate crate = SlashRegistry.LootCrates()
                             .random();
@@ -190,7 +192,16 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
         float score = getScoreOfWordForLetters(word, letters);
 
-        return (int) ((float) 4 * score);
+        boolean isSameLength = word.length() == letters.length();
+
+        int amount = (int) ((float) 3 * score);
+
+        if (isSameLength) {
+            amount *= 2;
+        }
+
+        return amount;
+
     }
 
     // 0-1
@@ -218,34 +229,15 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
         Watch watch = new Watch();
 
-        while (!areLettersSuitable(letters)) {
+        int tries = 0;
 
+        while (!areLettersSuitable(letters)) {
             letters = RandomUtils.randomFromList(LONG_WORDS);
 
-            int amount = RandomUtils.RandomRange(4, 12);
-
-            int wovelCount = 0;
-            int nonWovelCount = 0;
-
-            letters = "";
-
-            for (int i = 0; i < amount; i++) {
-                if (nonWovelCount < 2 || RandomUtils.roll(50)) {
-                    letters += nonWovels[RandomUtils.RandomRange(0, nonWovels.length - 1)];
-                    nonWovelCount++;
-                } else {
-                    letters += wovels[RandomUtils.RandomRange(0, wovels.length - 1)];
-                    wovelCount++;
-                }
-            }
-
-            if (wovelCount < MathHelper.clamp(amount / 5, 1, amount)) {
-                letters = "";
-            }
-            if (nonWovelCount < MathHelper.clamp(amount / 3, 1, amount)) {
-                letters = "";
-            }
+            tries++;
         }
+
+        letters = scramble(new Random(), letters);
 
         watch.print("random word ");
 
@@ -253,7 +245,25 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
     }
 
+    public static String scramble(Random random, String inputString) {
+        // Convert your string into a simple char array:
+        char a[] = inputString.toCharArray();
+
+        // Scramble the letters using the standard Fisher-Yates shuffle,
+        for (int i = 0; i < a.length; i++) {
+            int j = random.nextInt(a.length);
+            // Swap letters
+            char temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
+
+        return new String(a);
+    }
+
     public static boolean areLettersSuitable(String letters) {
+
+        Watch watch = new Watch();
 
         if (letters.length() < 2) {
             return false;
@@ -264,12 +274,13 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
         Set<ImmutablePair<String, Integer>> pairs = getPairs(letters);
 
         for (String x : WORDS) {
-            if (x.length() > 2 && usesAllowedLetters(x, letters)) {
+            if (x.length() > 2 && usesAllowedLetters(x, letters, pairs)) {
                 words++;
             }
         }
+        watch.print("suitable takes ");
 
-        return words > 4 && words < 30;
+        return words > 3 && words < 5 * letters.length();
     }
 
     public static Set<ImmutablePair<String, Integer>> getPairs(String letters) {
@@ -290,6 +301,11 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
     public static boolean usesAllowedLetters(String word, String letters) {
 
         Set<ImmutablePair<String, Integer>> pairs = getPairs(letters);
+
+        return usesAllowedLetters(word, letters, pairs);
+    }
+
+    public static boolean usesAllowedLetters(String word, String letters, Set<ImmutablePair<String, Integer>> pairs) {
 
         for (int i = 0; i < word.length(); i++) {
             String letter = String.valueOf(word.charAt(i));
