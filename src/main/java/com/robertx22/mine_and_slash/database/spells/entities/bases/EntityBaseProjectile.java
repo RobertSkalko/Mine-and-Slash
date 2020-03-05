@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class EntityBaseProjectile extends AbstractArrowEntity implements IProjectile, IMyRenderAsItem,
-        ISpellEntity {
+    ISpellEntity {
 
     EntitySpellData spellData;
 
@@ -132,14 +132,19 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
         }
 
         if (enres != null && enres.getEntity() instanceof LivingEntity) {
+            if (!enres.getEntity()
+                .isAlive()) {
+                return null;
+            }
             if (enres.getEntity() != this.getCaster()) {
+
                 return (LivingEntity) enres.getEntity();
             }
         }
 
         List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPositionVector())
-                .radius(radius)
-                .build();
+            .radius(radius)
+            .build();
 
         if (entities.size() > 0) {
 
@@ -153,6 +158,10 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
                 }
             }
 
+            if (!closest.isAlive()) {
+
+            }
+
             return closest;
         }
 
@@ -163,7 +172,8 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     @Override
     @OnlyIn(Dist.CLIENT)
     public boolean isInRangeToRenderDist(double distance) {
-        double d0 = this.getBoundingBox().getAverageEdgeLength() * 4.0D;
+        double d0 = this.getBoundingBox()
+            .getAverageEdgeLength() * 4.0D;
         if (Double.isNaN(d0)) {
             d0 = 4.0D;
         }
@@ -195,8 +205,8 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
         if (this.spellData == null || this.spellData.getCaster(world) == null) {
             Log.info(
-                    "Removing spell entity because data or caster is null. This happens sometimes and is normal, i'm "
-                            + "just logging to see how often it happens.");
+                "Removing spell entity because data or caster is null. This happens sometimes and is normal, i'm "
+                    + "just logging to see how often it happens.");
             this.remove();
         } else {
             try {
@@ -226,9 +236,11 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     protected EntityRayTraceResult rayTraceEntities(Vec3d pos, Vec3d posPlusMotion) {
 
         return ProjectileHelper.rayTraceEntities(
-                this.world, this, pos, posPlusMotion, this.getBoundingBox().expand(this.getMotion()).grow(1D), (e) -> {
-                    return !e.isSpectator() && e.canBeCollidedWith() && e instanceof LivingEntity && e != this.getCaster() && e != this.ignoreEntity;
-                });
+            this.world, this, pos, posPlusMotion, this.getBoundingBox()
+                .expand(this.getMotion())
+                .grow(1D), (e) -> {
+                return !e.isSpectator() && e.canBeCollidedWith() && e instanceof LivingEntity && e != this.getCaster() && e != this.ignoreEntity;
+            });
 
     }
 
@@ -244,9 +256,11 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
             BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceResultIn;
             BlockState blockstate = this.world.getBlockState(blockraytraceresult.getPos());
 
-            Vec3d vec3d = blockraytraceresult.getHitVec().subtract(this.posX, this.posY, this.posZ);
+            Vec3d vec3d = blockraytraceresult.getHitVec()
+                .subtract(this.posX, this.posY, this.posZ);
             this.setMotion(vec3d);
-            Vec3d vec3d1 = vec3d.normalize().scale((double) 0.05F);
+            Vec3d vec3d1 = vec3d.normalize()
+                .scale((double) 0.05F);
             this.posX -= vec3d1.x;
             this.posY -= vec3d1.y;
             this.posZ -= vec3d1.z;
@@ -314,7 +328,8 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
 
     @Nullable
     public LivingEntity getCaster() {
-        return this.getSpellData().getCaster(world);
+        return this.getSpellData()
+            .getCaster(world);
     }
 
     @Override

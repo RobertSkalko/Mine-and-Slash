@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import info.loenwind.autosave.annotations.Storable;
@@ -47,6 +48,13 @@ public class PlayerSpellsData {
         FIRST,
         SECOND
     }
+
+    public BaseSpell getRightClickSpell() {
+        return FrostballSpell.getInstance(); // TODO
+    }
+
+    @Store
+    public String rightClickSpell = "";
 
     @Store
     private HashMap<Integer, String> firstHotbar = new HashMap<>();
@@ -101,6 +109,12 @@ public class PlayerSpellsData {
 
     }
 
+    public void setToCast(BaseSpell spell, PlayerEntity player) {
+        this.spellBeingCast = spell.GUID();
+        this.castingTicksLeft = spell.useTimeTicks();
+        this.lastSpellCastTimeInTicks = spell.useTimeTicks();
+    }
+
     public void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
 
         if (!spellBeingCast.isEmpty()) {
@@ -142,6 +156,26 @@ public class PlayerSpellsData {
     public BaseSpell getSpellBeingCast() {
         return SlashRegistry.Spells()
             .get(spellBeingCast);
+    }
+
+    public boolean canCast(BaseSpell spell, PlayerEntity player) {
+
+        if (isCasting()) {
+            return false;
+        }
+
+        if (spell == null) {
+            return false;
+        }
+
+        SpellData data = getDataBySpell(spell);
+
+        if (data.cooldownIsReady() == false) {
+            return false;
+        }
+
+        return spell.canCast(player);
+
     }
 
     public boolean canCast(int key, Hotbar hotbar, PlayerEntity player) {

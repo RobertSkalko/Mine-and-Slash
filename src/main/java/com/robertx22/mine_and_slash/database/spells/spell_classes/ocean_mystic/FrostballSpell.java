@@ -20,6 +20,7 @@ import java.util.List;
 public class FrostballSpell extends BaseProjectileSpell {
 
     private FrostballSpell() {
+        this.allowedAsRightClickOn = AllowedAsRightClickOn.MAGE_WEAPON;
     }
 
     public static FrostballSpell getInstance() {
@@ -48,6 +49,16 @@ public class FrostballSpell extends BaseProjectileSpell {
 
     @Override
     public int getCooldownInSeconds() {
+        return 0;
+    }
+
+    @Override
+    public int getCooldownInTicks() {
+        return 10;
+    }
+
+    @Override
+    public int useTimeTicks() {
         return 0;
     }
 

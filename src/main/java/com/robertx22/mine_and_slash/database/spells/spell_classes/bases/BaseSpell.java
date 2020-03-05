@@ -1,6 +1,9 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
 import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Wand;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
@@ -70,6 +73,10 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     public void onCastingTick(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int tick) {
     }
 
+    public enum AllowedAsRightClickOn {
+        MAGE_WEAPON, MELEE_WEAPON, NONE
+    }
+
     public enum SpellType {
         Single_Target_Projectile,
         Aoe_Projectile,
@@ -80,6 +87,23 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         Dash,
         Self_Buff,
         Aoe_Debuff // TODO TURN THESE INTO SINGLES AND ASK FOR LIST
+    }
+
+    public AllowedAsRightClickOn allowedAsRightClickOn = AllowedAsRightClickOn.NONE;
+
+    public boolean isAllowedAsRightClickFor(GearItemSlot slot) {
+        switch (allowedAsRightClickOn) {
+            case NONE: {
+                return false;
+            }
+            case MELEE_WEAPON: {
+                return slot.isMeleeWeapon();
+            }
+            case MAGE_WEAPON: {
+                return slot == Wand.INSTANCE || slot == Staff.INSTANCE;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -116,7 +140,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     public abstract SpellSchools getSchool();
 
-    public final int getCooldownInTicks() {
+    public int getCooldownInTicks() {
         return getCooldownInSeconds() * 20;
     }
 

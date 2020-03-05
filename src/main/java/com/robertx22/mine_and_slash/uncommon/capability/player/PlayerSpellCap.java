@@ -4,17 +4,17 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellPerksData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -44,6 +44,8 @@ public class PlayerSpellCap {
         public abstract BaseSpell getSpellByKeybind(int key, PlayerSpellsData.Hotbar bar);
 
         public abstract PlayerSpellsData getSpellData();
+
+        public abstract boolean canCastRightClickSpell(PlayerEntity player);
 
         public abstract List<BaseSpell> getAvailableSpells();
 
@@ -89,7 +91,8 @@ public class PlayerSpellCap {
             boolean bool = super.tryRemovePoint(perk, player);
 
             if (bool) {
-                this.getSpellData().clear();
+                this.getSpellData()
+                    .clear();
                 this.syncToClient(player);
             }
 
@@ -129,7 +132,7 @@ public class PlayerSpellCap {
             }
 
             this.playerSpellsData = LoadSave.Load(
-                    PlayerSpellsData.class, new PlayerSpellsData(), nbt, PLAYER_SPELL_DATA);
+                PlayerSpellsData.class, new PlayerSpellsData(), nbt, PLAYER_SPELL_DATA);
 
             if (playerSpellsData == null) {
                 playerSpellsData = new PlayerSpellsData();
@@ -178,6 +181,14 @@ public class PlayerSpellCap {
         }
 
         @Override
+        public boolean canCastRightClickSpell(PlayerEntity player) {
+
+            return this.getSpellData()
+                .canCast(getSpellData().getRightClickSpell(), player);
+
+        }
+
+        @Override
         public List<BaseSpell> getAvailableSpells() {
             return this.perksData.getAvailableSpells();
         }
@@ -190,9 +201,11 @@ public class PlayerSpellCap {
         @Override
         public void reset() {
 
-            this.getPerksData().reset();
+            this.getPerksData()
+                .reset();
 
-            this.getSpellData().clear();
+            this.getSpellData()
+                .clear();
 
         }
 

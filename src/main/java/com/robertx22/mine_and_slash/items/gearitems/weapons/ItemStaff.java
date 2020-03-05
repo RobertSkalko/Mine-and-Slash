@@ -46,18 +46,22 @@ public class ItemStaff extends BaseWeaponItem implements IEffectItem {
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BOW;
+        return UseAction.NONE;
     }
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 25000;
+        return 0;
     }
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, LivingEntity player, int timeLeft) {
 
         try {
+
+            if (true) {
+                return;
+            }
 
             if (!world.isRemote) {
 
@@ -108,9 +112,16 @@ public class ItemStaff extends BaseWeaponItem implements IEffectItem {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player, Hand handIn) {
+
         ItemStack itemstack = player.getHeldItem(handIn);
-        player.setActiveHand(handIn);
-        return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+
+        if (Load.spells(player)
+            .canCastRightClickSpell(player)) {
+            player.setActiveHand(handIn);
+            return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
+        } else {
+            return new ActionResult<>(ActionResultType.PASS, itemstack);
+        }
     }
 
     @Override
