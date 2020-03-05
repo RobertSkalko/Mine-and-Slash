@@ -18,7 +18,7 @@ public class ManaBattery extends BaseGameChangerTrait implements IStatEffects, I
 
     @Override
     public String locDescForLangFile() {
-        return "While mana is above 25 percent absorb half of damage by spending mana. Dodge rating halved.";
+        return "While mana is above 50 percent absorb 25 percent of damage by spending double that in mana. Dodge rating halved.";
     }
 
     @Override
@@ -38,7 +38,8 @@ public class ManaBattery extends BaseGameChangerTrait implements IStatEffects, I
 
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
-        data.getUnit().getCreateStat(DodgeRating.GUID).Multi -= 50;
+        data.getUnit()
+            .getCreateStat(DodgeRating.GUID).Multi -= 50;
     }
 
     @Override

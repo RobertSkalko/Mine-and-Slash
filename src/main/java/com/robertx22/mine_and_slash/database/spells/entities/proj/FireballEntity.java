@@ -7,9 +7,11 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
@@ -43,6 +45,8 @@ public class FireballEntity extends BaseElementalBoltEntity {
         if (Synergies.FIREBALL_BURN_CONSUME.has(getCaster())) {
             Synergies.FIREBALL_BURN_CONSUME.tryActivate(new CasterTargetContext(getCaster(), entity));
         }
+
+        SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.8F, 1F);
     }
 
     @Override

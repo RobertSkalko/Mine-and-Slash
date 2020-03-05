@@ -24,22 +24,25 @@ public class ManaBatteryEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        float currentMana = effect.targetData.getResources().getMana();
+        float currentMana = effect.targetData.getResources()
+            .getMana();
 
-        float maxMana = effect.targetData.getUnit().manaData().val;
+        float maxMana = effect.targetData.getUnit()
+            .manaData().val;
 
-        float dmgReduced = MathHelper.clamp(effect.number / 2, 0, currentMana - (maxMana * 0.25F));
+        float dmgReduced = MathHelper.clamp(effect.number / 4, 0, currentMana - (maxMana * 0.5F));
 
         if (dmgReduced > 0) {
 
             effect.number -= dmgReduced;
 
             ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
-                                                                  ResourcesData.Type.MANA, dmgReduced,
-                                                                  ResourcesData.Use.SPEND
+                ResourcesData.Type.MANA, dmgReduced * 2,
+                ResourcesData.Use.SPEND
             );
 
-            effect.targetData.getResources().modify(ctx);
+            effect.targetData.getResources()
+                .modify(ctx);
 
         }
 
@@ -48,9 +51,11 @@ public class ManaBatteryEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        float currentMana = effect.targetData.getResources().getMana();
+        float currentMana = effect.targetData.getResources()
+            .getMana();
 
-        return currentMana / effect.targetData.getUnit().manaData().val > 0.25F;
+        return currentMana / effect.targetData.getUnit()
+            .manaData().val > 0.5F;
     }
 
 }

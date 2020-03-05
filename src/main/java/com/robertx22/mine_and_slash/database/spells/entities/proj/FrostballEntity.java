@@ -9,10 +9,12 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
@@ -53,6 +55,8 @@ public class FrostballEntity extends BaseElementalBoltEntity {
         if (Synergies.FROSTBALL_FROST_ESSENCE_GEN.has((PlayerEntity) getCaster())) {
             Synergies.FROSTBALL_FROST_ESSENCE_GEN.tryActivate(new AfterDamageContext(getCaster(), entity, dmg));
         }
+
+        SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.8F, 1F);
 
     }
 

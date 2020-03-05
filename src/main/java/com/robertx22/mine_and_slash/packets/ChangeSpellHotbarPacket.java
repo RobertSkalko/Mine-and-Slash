@@ -41,25 +41,31 @@ public class ChangeSpellHotbarPacket {
         tag.writeString(packet.guid, 50);
         tag.writeInt(packet.number);
         tag.writeString(packet.hotbar.name(), 30);
+
     }
 
     public static void handle(final ChangeSpellHotbarPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
 
-                ServerPlayerEntity player = ctx.get().getSender();
+                    ServerPlayerEntity player = ctx.get()
+                        .getSender();
 
-                PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+                    PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                spells.getSpellData().getMap(pkt.hotbar).put(pkt.number, pkt.guid);
+                    spells.getSpellData()
+                        .getMap(pkt.hotbar)
+                        .put(pkt.number, pkt.guid);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
 
-        ctx.get().setPacketHandled(true);
+        ctx.get()
+            .setPacketHandled(true);
     }
 
 }

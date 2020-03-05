@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -18,22 +19,28 @@ public class OreGenRegister {
 
             int amount = 3;
 
-            for (Block block : ItemOre.Blocks.values()) {
+            for (int i = 0; i < IRarity.Mythic; i++) {
+
+                Block block = ItemOre.Blocks.get(i);
+
+                amount--;
+
                 if (amount < 1) {
                     amount = 1;
                 }
-                genOre(block, amount--);
+
+                genOre(block, amount, i);
             }
 
         }
 
     }
 
-    public static void genOre(Block block, int amount) {
+    public static void genOre(Block block, int amount, int rarity) {
 
-        CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 60);
+        CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 20 / (rarity + 1));
         OreFeatureConfig minableConfig = new OreFeatureConfig(
-            OreFeatureConfig.FillerBlockType.NATURAL_STONE, block.getDefaultState(), 8);
+            OreFeatureConfig.FillerBlockType.NATURAL_STONE, block.getDefaultState(), 6);
 
         ConfiguredFeature feature = Feature.ORE.withConfiguration(minableConfig)
             .withPlacement(Placement.COUNT_RANGE.configure(countConfig));
