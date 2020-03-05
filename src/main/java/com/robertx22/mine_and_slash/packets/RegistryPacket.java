@@ -4,10 +4,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
-import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.registry.SlashRegistryContainer;
-import com.robertx22.mine_and_slash.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
+import com.robertx22.mine_and_slash.registry.*;
 import com.robertx22.mine_and_slash.saveclasses.ListStringData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.nbt.CompoundNBT;
@@ -29,7 +27,7 @@ public class RegistryPacket {
 
     }
 
-    public RegistryPacket(SlashRegistryType type) {
+    public <T extends ISerializedRegistryEntry> RegistryPacket(SlashRegistryType type, List<T> items) {
 
         SlashRegistryContainer reg = SlashRegistry.getRegistry(type);
 
@@ -38,8 +36,7 @@ public class RegistryPacket {
         }
 
         // TODO CACHE THIS
-        List<String> list = (List<String>) reg
-            .getFromDatapacks()
+        List<String> list = (List<String>) items
             .stream()
             .map(x -> ((ISerializable) x).toJson()
                 .toString())
@@ -93,15 +90,10 @@ public class RegistryPacket {
             .enqueueWork(() -> {
                 try {
 
-                    SlashRegistryContainer reg = SlashRegistry.getRegistry(pkt.type);
-
                     if (pkt.data.getList()
                         .isEmpty()) {
                         throw new RuntimeException("Registry list sent from server is empty!");
                     }
-
-                    System.out.println(
-                        "Starting to register " + pkt.type.name() + " from server packet for Mine and Slash.");
 
                     pkt.data.getList()
                         .stream()
@@ -120,16 +112,9 @@ public class RegistryPacket {
                         .collect(Collectors.toList())
                         .forEach(x -> {
                             if (x instanceof ISlashRegistryEntry) {
-                                ((ISlashRegistryEntry) x).registerToSlashRegistry();
+                                SlashRegistryPackets.add((ISerializedRegistryEntry) x);
                             }
                         });
-
-                    if (reg
-                        .isEmpty()) {
-                        throw new RuntimeException("Mine and Slash Registry of type " + reg.getType() + " is EMPTY after datapack loading!");
-                    } else {
-                        System.out.println("Loading registry on client succeeded with: " + reg.getSize() + " entries.");
-                    }
 
                 } catch (Exception e) {
 

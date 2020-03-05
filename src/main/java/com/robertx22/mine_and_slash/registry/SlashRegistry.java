@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.registry;
 
+import com.google.common.collect.Lists;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
@@ -38,6 +39,7 @@ import com.robertx22.mine_and_slash.database.world_providers.DungeonIWP;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.packets.RegistryPacket;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.registry.empty_entries.*;
@@ -254,7 +256,18 @@ public class SlashRegistry {
                 if (x.getType()
                     .getEmpty() != null) {
                     try {
-                        MMORPG.sendToClient(new RegistryPacket(x.getType()), player);
+
+                        List<ISerializedRegistryEntry> list = x.getFromDatapacks();
+
+                        if (list.size() < 100) {
+                            MMORPG.sendToClient(new RegistryPacket(x.getType(), list), player);
+                        } else {
+                            for (List<ISerializedRegistryEntry> part : Lists.partition(list, 100)) {
+                                MMORPG.sendToClient(new RegistryPacket(x.getType(), part), player);
+                            }
+
+                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

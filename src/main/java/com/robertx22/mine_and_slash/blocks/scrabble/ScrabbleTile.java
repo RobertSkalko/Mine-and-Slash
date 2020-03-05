@@ -231,7 +231,7 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
         int tries = 0;
 
-        while (!areLettersSuitable(letters)) {
+        while (!areLettersSuitable(letters) || tries < 500) {
             letters = RandomUtils.randomFromList(LONG_WORDS);
 
             tries++;

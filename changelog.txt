@@ -1,3 +1,7 @@
+3.1.15
+* reworked way i send datapack packets onlogin, so exceeding 1 mb limit should not be possible anymore.
+* reduced xp share distance a bit
+* tweaked mob strength
 3.1.14
 * buffed ranger spells a bit
 * fix lan problems

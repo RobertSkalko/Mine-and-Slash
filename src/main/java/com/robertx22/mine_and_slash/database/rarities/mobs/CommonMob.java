@@ -15,7 +15,7 @@ public class CommonMob extends BaseCommon implements MobRarity {
 
     @Override
     public float StatMultiplier() {
-        return 0.85F;
+        return 0.9F;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class CommonMob extends BaseCommon implements MobRarity {
 
     @Override
     public float HealthMultiplier() {
-        return 0.85F;
+        return 0.9F;
     }
 
     @Override

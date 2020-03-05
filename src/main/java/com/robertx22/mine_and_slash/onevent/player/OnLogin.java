@@ -45,11 +45,13 @@ public class OnLogin {
 
             ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
 
-            MMORPG.sendToClient(new OnLoginClientPacket(), player);
-            SlashRegistry.restoreFromBackupifEmpty();
+            MMORPG.sendToClient(new OnLoginClientPacket(OnLoginClientPacket.When.BEFORE), player);
             ConfigRegister.CONFIGS.values()
                 .forEach(x -> x.sendToClient(player));
             SlashRegistry.sendAllPacketsToClientOnLogin(player);
+            MMORPG.sendToClient(new OnLoginClientPacket(OnLoginClientPacket.When.AFTER), player);
+
+            SlashRegistry.restoreFromBackupifEmpty();
 
             if (MMORPG.RUN_DEV_TOOLS) {
                 player.sendMessage(Chats.Dev_tools_enabled_contact_the_author.locName()

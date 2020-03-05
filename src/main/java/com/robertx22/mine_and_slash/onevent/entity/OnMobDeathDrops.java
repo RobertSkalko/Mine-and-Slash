@@ -114,7 +114,7 @@ public class OnMobDeathDrops {
             if (team.isPlayerInATeam((ServerPlayerEntity) killer)) {
                 list.addAll(team.getPlayersInTeam((ServerPlayerEntity) killer)
                     .stream()
-                    .filter(x -> x.getDistance(killer) < 2000)
+                    .filter(x -> x.getDistance(killer) < 500)
                     .collect(Collectors.toList()));
             }
             if (list.isEmpty()) {

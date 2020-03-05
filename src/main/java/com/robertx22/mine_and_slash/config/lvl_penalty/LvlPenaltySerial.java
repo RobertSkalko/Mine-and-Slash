@@ -34,7 +34,7 @@ public class LvlPenaltySerial implements ISerializedConfig<LvlPenaltyContainer> 
 
     @Override
     public ConfigRegister.Config getConfigType() {
-        return ConfigRegister.Config.MOD_DMG_WHITELIST;
+        return ConfigRegister.Config.LVL_PENALTY;
     }
 
 }
