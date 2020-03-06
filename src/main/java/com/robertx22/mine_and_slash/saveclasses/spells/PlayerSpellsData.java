@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import info.loenwind.autosave.annotations.Storable;
@@ -48,13 +47,6 @@ public class PlayerSpellsData {
         FIRST,
         SECOND
     }
-
-    public BaseSpell getRightClickSpell() {
-        return FrostballSpell.getInstance(); // TODO
-    }
-
-    @Store
-    public String rightClickSpell = "";
 
     @Store
     private HashMap<Integer, String> firstHotbar = new HashMap<>();

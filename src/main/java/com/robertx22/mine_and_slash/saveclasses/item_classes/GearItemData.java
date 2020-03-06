@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -31,6 +32,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +68,19 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     @Store
     public RunesData runes;
+
+    @Store
+    public String rightClickSpell = "";
+
+    @Nullable
+    public BaseSpell getRightClickSpell() {
+        if (rightClickSpell.isEmpty()) {
+            return null;
+        } else {
+            return SlashRegistry.Spells()
+                .get(rightClickSpell);
+        }
+    }
 
     public boolean isRuned() {
         return runes != null;

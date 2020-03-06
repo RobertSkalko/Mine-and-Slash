@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.packets.*;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacket;
 import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
 import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
+import com.robertx22.mine_and_slash.packets.spells.WeaponRightClickSpellPacket;
 import com.robertx22.mine_and_slash.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import net.minecraft.network.PacketBuffer;
@@ -97,6 +98,8 @@ public class PacketRegister {
         );
 
         reg(ScrabblePacket.class, ScrabblePacket::encode, ScrabblePacket::decode, ScrabblePacket::handle);
+
+        reg(WeaponRightClickSpellPacket.class, WeaponRightClickSpellPacket::encode, WeaponRightClickSpellPacket::decode, WeaponRightClickSpellPacket::handle);
 
     }
 

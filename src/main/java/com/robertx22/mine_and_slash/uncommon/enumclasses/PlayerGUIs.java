@@ -5,6 +5,7 @@ public enum PlayerGUIs {
     Bottom_Middle,
     Bottom_Middle_Corners,
     Middle,
-    Azure_Top_Left
+    Azure_Top_Left,
+    NONE
 
 }

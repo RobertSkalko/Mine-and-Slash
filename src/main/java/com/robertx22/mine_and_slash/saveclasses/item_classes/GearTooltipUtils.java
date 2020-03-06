@@ -1,10 +1,11 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
@@ -16,6 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -207,6 +209,16 @@ public class GearTooltipUtils {
             event.getToolTip()
                 .add(Styles.BLUECOMP()
                     .appendSibling(CLOC.tooltip("press_shift_more_info")));
+        }
+
+        BaseSpell spell = gear.getRightClickSpell();
+        if (spell != null) {
+            tip.add(new SText(""));
+
+            tip.add(new SText(spell.getElement().format + "Right click: ").appendSibling(spell
+                .getName()
+                .locName()));
+
         }
 
         List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip,

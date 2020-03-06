@@ -1,6 +1,9 @@
 3.1.16
 * nerfed mana battery
 * reduced ore spawns
+* added a NONE gui overlay option for those that like to live on edge and hate bars
+* Fireball, Frostball and thunderspear now have reduced mana cost, no cast time, have cooldown and can be set as a right click spell on mage weapons.
+* staffs and wands no longer have the projectile right click attack.
 
 3.1.15
 * reworked way i send datapack packets onlogin, so exceeding 1 mb limit should not be possible anymore.

@@ -272,6 +272,11 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
         this.castRequirements.forEach(x -> list.add(x.text));
 
+        if (this.allowedAsRightClickOn == AllowedAsRightClickOn.MAGE_WEAPON) {
+            TooltipUtils.addEmpty(list);
+            list.add(new SText(TextFormatting.LIGHT_PURPLE + "Can be set as right click for a Mage Weapon"));
+        }
+
         return list;
 
     }

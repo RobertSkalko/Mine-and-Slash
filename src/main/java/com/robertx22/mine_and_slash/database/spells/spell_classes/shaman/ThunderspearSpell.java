@@ -23,6 +23,7 @@ public class ThunderspearSpell extends BaseProjectileSpell {
     public Elements element = Elements.Thunder;
 
     private ThunderspearSpell() {
+        this.allowedAsRightClickOn = AllowedAsRightClickOn.MAGE_WEAPON;
     }
 
     public static ThunderspearSpell getInstance() {
@@ -36,6 +37,16 @@ public class ThunderspearSpell extends BaseProjectileSpell {
 
     @Override
     public int getCooldownInSeconds() {
+        return 0;
+    }
+
+    @Override
+    public int getCooldownInTicks() {
+        return 10;
+    }
+
+    @Override
+    public int useTimeTicks() {
         return 0;
     }
 
@@ -61,12 +72,7 @@ public class ThunderspearSpell extends BaseProjectileSpell {
 
     @Override
     public int getManaCost() {
-        return 8;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 10;
+        return 5;
     }
 
     @Override

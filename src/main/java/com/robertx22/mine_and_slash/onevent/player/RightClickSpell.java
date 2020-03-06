@@ -29,27 +29,20 @@ public class RightClickSpell {
 
             if (gear != null) {
 
-                PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+                BaseSpell spell = gear.getRightClickSpell();
 
-                BaseSpell spell = spells.getSpellData()
-                    .getRightClickSpell();
+                if (spell != null) {
 
-                if (!spell.isAllowedAsRightClickFor(gear.GetBaseGearType())) {
-                    return;
-                }
+                    PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                if (spells.canCastRightClickSpell(player)) {
-                    spells
-                        .getSpellData()
-                        .setToCast(spells.getSpellData()
-                            .getRightClickSpell(), player);
+                    if (spells.canCastRightClickSpell(spell, player)) {
+                        spells
+                            .getSpellData()
+                            .setToCast(spell, player);
 
-                    spells.getSpellData()
-                        .getRightClickSpell()
-                        .spendResources(player);
+                        spell.spendResources(player);
 
-                } else {
-
+                    }
                 }
             }
         } catch (Exception e) {

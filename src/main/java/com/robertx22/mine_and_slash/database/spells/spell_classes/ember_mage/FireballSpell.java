@@ -20,6 +20,7 @@ import java.util.List;
 public class FireballSpell extends BaseProjectileSpell {
 
     private FireballSpell() {
+        this.allowedAsRightClickOn = AllowedAsRightClickOn.MAGE_WEAPON;
     }
 
     public static FireballSpell getInstance() {
@@ -48,6 +49,16 @@ public class FireballSpell extends BaseProjectileSpell {
 
     @Override
     public int getCooldownInSeconds() {
+        return 0;
+    }
+
+    @Override
+    public int getCooldownInTicks() {
+        return 10;
+    }
+
+    @Override
+    public int useTimeTicks() {
         return 0;
     }
 

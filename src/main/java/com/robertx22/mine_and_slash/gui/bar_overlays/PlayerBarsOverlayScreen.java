@@ -32,7 +32,8 @@ public class PlayerBarsOverlayScreen extends AbstractGui {
 
     private void handleHeartGui(RenderGameOverlayEvent event) {
 
-        if (event.getType().equals(ElementType.HEALTH) && ClientContainer.INSTANCE.SHOW_VANILLA_HEARTS.get() == false) {
+        if (event.getType()
+            .equals(ElementType.HEALTH) && ClientContainer.INSTANCE.SHOW_VANILLA_HEARTS.get() == false) {
             event.setCanceled(true);
         }
 
@@ -64,8 +65,10 @@ public class PlayerBarsOverlayScreen extends AbstractGui {
             if (data == null || data.getUnit() == null || mc == null || mc.player == null) {
                 return;
             }
-            if (data.getUnit().energyData() == null || data.getUnit().manaData() == null || data.getUnit()
-                    .healthData() == null) {
+            if (data.getUnit()
+                .energyData() == null || data.getUnit()
+                .manaData() == null || data.getUnit()
+                .healthData() == null) {
                 return;
             }
 
@@ -81,6 +84,8 @@ public class PlayerBarsOverlayScreen extends AbstractGui {
                 middle.Draw(this, mc, mc.player, event, data);
             } else if (guiType.equals(PlayerGUIs.Azure_Top_Left)) {
                 azuretopleft.Draw(this, mc, mc.player, event, data);
+            } else if (guiType.equals(PlayerGUIs.NONE)) {
+                // nothing
             }
 
         } catch (Exception e) {

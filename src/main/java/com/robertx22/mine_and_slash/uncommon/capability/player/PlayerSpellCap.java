@@ -45,7 +45,7 @@ public class PlayerSpellCap {
 
         public abstract PlayerSpellsData getSpellData();
 
-        public abstract boolean canCastRightClickSpell(PlayerEntity player);
+        public abstract boolean canCastRightClickSpell(BaseSpell spell, PlayerEntity player);
 
         public abstract List<BaseSpell> getAvailableSpells();
 
@@ -181,10 +181,10 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public boolean canCastRightClickSpell(PlayerEntity player) {
+        public boolean canCastRightClickSpell(BaseSpell spell, PlayerEntity player) {
 
             return this.getSpellData()
-                .canCast(getSpellData().getRightClickSpell(), player);
+                .canCast(spell, player);
 
         }
 

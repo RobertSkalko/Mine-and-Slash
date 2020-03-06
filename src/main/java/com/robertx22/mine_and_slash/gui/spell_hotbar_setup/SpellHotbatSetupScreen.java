@@ -8,19 +8,25 @@ import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
+import com.robertx22.mine_and_slash.packets.spells.WeaponRightClickSpellPacket;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,7 +54,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         List<BaseSpell> spells = this.spells.getAvailableSpells();
 
         int x = guiLeft + 7;
-        int y = guiTop + 30;
+        int y = guiTop + 40;
 
         int count = 0;
 
@@ -73,7 +79,11 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         count = 0;
 
         x = guiLeft + 55;
-        y = guiTop + 80;
+        y = guiTop + 90;
+
+        HotbarButton right = new HotbarButton(0, PlayerSpellsData.Hotbar.FIRST, guiLeft + SpellHotbatSetupScreen.x / 2 - HotbarButton.xSize / 2, y);
+        right.isForRightClickWeaponSpell = true;
+        this.addButton(right);
 
         for (PlayerSpellsData.Hotbar bar : Arrays.asList(
             PlayerSpellsData.Hotbar.FIRST, PlayerSpellsData.Hotbar.SECOND)) {
@@ -109,15 +119,22 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
     }
 
     private void drawText() {
+
         double scale = 1.25;
-        String str = "First Hotbar";
+
+        String str = "Weapon Right Click Spell";
         int xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
-        int yp = 120 + guiTop;
+        int yp = 80 + guiTop;
+        GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.LIGHT_PURPLE);
+
+        str = "First Hotbar";
+        xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
+        yp = 130 + guiTop;
         GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.GREEN);
 
         str = "Second Hotbar";
         xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
-        yp = 170 + guiTop;
+        yp = 180 + guiTop;
         GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.GREEN);
 
         str = "Available Spells";
@@ -161,6 +178,8 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         int number;
         PlayerSpellsData.Hotbar hotbar;
 
+        public boolean isForRightClickWeaponSpell = false;
+
         public HotbarButton(int number, PlayerSpellsData.Hotbar hotbar, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
             });
@@ -177,6 +196,13 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                     TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
                     GuiUtils.renderTooltip(getSpell().GetTooltipString(info), mouseX, mouseY);
                 }
+            } else {
+                if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
+                    TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
+                    List<ITextComponent> tip = new ArrayList<>();
+                    tip.add(new SText(TextFormatting.BLUE + "Some spells can be attached to a weapon as a right click spell."));
+                    GuiUtils.renderTooltip(tip, mouseX, mouseY);
+                }
             }
         }
 
@@ -184,19 +210,32 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         public void onPress() {
             super.onPress();
 
-            if (this.getSpell() != null) {
-                MMORPG.sendToServer(new HotbarSetupPacket(null, number, hotbar));
+            if (!isForRightClickWeaponSpell) {
+                if (this.getSpell() != null) {
+                    MMORPG.sendToServer(new HotbarSetupPacket(null, number, hotbar));
+                } else {
+                    SpellHotbatSetupScreen.barBeingPicked = this;
+                }
             } else {
-                SpellHotbatSetupScreen.barBeingPicked = this;
+                if (this.getSpell() != null) {
+                    MMORPG.sendToServer(new WeaponRightClickSpellPacket(null));
+                    WeaponRightClickSpellPacket.activate(Minecraft.getInstance().player, ""); // for client sync
+                } else {
+                    SpellHotbatSetupScreen.barBeingPicked = this;
+                }
             }
         }
 
         @Nullable
         public BaseSpell getSpell() {
-            return Load.spells(Minecraft.getInstance().player)
-                .getSpellData()
-                .getSpellByKeybind(number, hotbar);
-
+            if (isForRightClickWeaponSpell) {
+                GearItemData gear = Gear.Load(Minecraft.getInstance().player.getHeldItemMainhand());
+                return gear != null ? gear.getRightClickSpell() : null;
+            } else {
+                return Load.spells(Minecraft.getInstance().player)
+                    .getSpellData()
+                    .getSpellByKeybind(number, hotbar);
+            }
         }
 
         @Override
@@ -244,8 +283,13 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
                     HotbarButton bar = SpellHotbatSetupScreen.barBeingPicked;
 
-                    if (bar.hotbar != null) {
-                        MMORPG.sendToServer(new HotbarSetupPacket(spell, bar.number, bar.hotbar));
+                    if (bar.isForRightClickWeaponSpell) {
+                        MMORPG.sendToServer(new WeaponRightClickSpellPacket(spell));
+                        WeaponRightClickSpellPacket.activate(Minecraft.getInstance().player, spell.GUID()); // for client sync
+                    } else {
+                        if (bar.hotbar != null) {
+                            MMORPG.sendToServer(new HotbarSetupPacket(spell, bar.number, bar.hotbar));
+                        }
                     }
                 }
 
