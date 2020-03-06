@@ -38,9 +38,9 @@ public class OreGenRegister {
 
     public static void genOre(Block block, int amount, int rarity) {
 
-        CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 20 / (rarity + 1));
+        CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 25 / (rarity + 1));
         OreFeatureConfig minableConfig = new OreFeatureConfig(
-            OreFeatureConfig.FillerBlockType.NATURAL_STONE, block.getDefaultState(), 6);
+            OreFeatureConfig.FillerBlockType.NATURAL_STONE, block.getDefaultState(), 8);
 
         ConfiguredFeature feature = Feature.ORE.withConfiguration(minableConfig)
             .withPlacement(Placement.COUNT_RANGE.configure(countConfig));
