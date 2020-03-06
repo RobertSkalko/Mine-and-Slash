@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.currency.infusions;
 
-import com.robertx22.mine_and_slash.database.currency.CurrencyItem;
+import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
@@ -58,8 +58,4 @@ public class AttackInfusionItem extends BaseInfusionItem {
         return "Infuses an item with Attack Modifiers";
     }
 
-    @Override
-    public int instabilityAddAmount() {
-        return 5;
-    }
 }

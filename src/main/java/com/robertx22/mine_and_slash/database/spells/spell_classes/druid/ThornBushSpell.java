@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSeed
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.IBlockSpawner;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
@@ -92,7 +92,7 @@ public class ThornBushSpell extends BaseSeedSpell implements IBlockSpawner {
 
     @Override
     public void spawnBlock(LivingEntity caster, World world, BlockPos pos, BaseSpell spell) {
-        caster.world.setBlockState(pos, BlockRegister.THORN_BUSH.get()
+        caster.world.setBlockState(pos, ModBlocks.THORN_BUSH.get()
             .getDefaultState());
         ThornBushTileEntity tile = new ThornBushTileEntity();
         tile.setSpellData(new EntitySpellData(spell, caster, ThornBushTileEntity.DURATION_SEC * 20));

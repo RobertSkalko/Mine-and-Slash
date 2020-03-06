@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.blocks.item_modify_station;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.blocks.bases.TileGui;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.currency.IAddsInstability;
+import com.robertx22.mine_and_slash.database.currency.base.IAddsInstability;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.chests;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -57,7 +57,7 @@ public class MapChestBlock extends AbstractChestBlock<MapChestTile> {
     public MapChestBlock() {
         super(Block.Properties.create(Material.WOOD)
             .hardnessAndResistance(0)
-            .sound(SoundType.WOOD), () -> TileEntityRegister.MAP_CHEST.get());
+            .sound(SoundType.WOOD), () -> ModTileEntities.MAP_CHEST.get());
     }
 
     @Deprecated
@@ -132,7 +132,7 @@ public class MapChestBlock extends AbstractChestBlock<MapChestTile> {
         } else {
             biPredicate = MapChestBlock::isBlocked;
         }
-        return TileEntityMerger.func_226924_a_(TileEntityRegister.MAP_CHEST.get(), MapChestBlock::getMergerType, MapChestBlock::getDirectionToAttached, FACING, blockState, world, blockPos, biPredicate);
+        return TileEntityMerger.func_226924_a_(ModTileEntities.MAP_CHEST.get(), MapChestBlock::getMergerType, MapChestBlock::getDirectionToAttached, FACING, blockState, world, blockPos, biPredicate);
     }
 
     public static TileEntityMerger.Type getMergerType(BlockState blockState) {

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.blocks.map_device;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTileContainer;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -27,7 +27,7 @@ public class ContainerMapDevice extends BaseTileContainer {
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory,
                               IInventory inventory, BlockPos pos) {
-        super(MAP_DEVICE_SLOTS_COUNT, ContainerTypeRegisters.MAP_DEVICE.get(), i);
+        super(MAP_DEVICE_SLOTS_COUNT, ModContainers.MAP_DEVICE.get(), i);
 
         this.pos = pos;
 

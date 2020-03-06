@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.gui.gear_overlay.GearOverlayGUI;
 import com.robertx22.mine_and_slash.gui.mob_bar.MobBarScreen;
 import com.robertx22.mine_and_slash.gui.spell_cast_bar.SpellCastBarOverlay;
 import com.robertx22.mine_and_slash.gui.spell_hotbar.SpellHotbarOverlay;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -19,15 +19,15 @@ public class ClientSetup {
 
     public static void setup(final FMLClientSetupEvent event) {
 
-        RenderTypeLookup.setRenderLayer(BlockRegister.GEAR_MODIFY.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BlockRegister.GEAR_SALVAGE.get(), RenderType.getCutout());//cutout
-        RenderTypeLookup.setRenderLayer(BlockRegister.ALCHEMY.get(), RenderType.getCutout());//cutout
-        RenderTypeLookup.setRenderLayer(BlockRegister.GEAR_REPAIR.get(), RenderType.getCutout());//cutout
+        RenderTypeLookup.setRenderLayer(ModBlocks.GEAR_MODIFY.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.GEAR_SALVAGE.get(), RenderType.getCutout());//cutout
+        RenderTypeLookup.setRenderLayer(ModBlocks.ALCHEMY.get(), RenderType.getCutout());//cutout
+        RenderTypeLookup.setRenderLayer(ModBlocks.GEAR_REPAIR.get(), RenderType.getCutout());//cutout
 
-        RenderTypeLookup.setRenderLayer(BlockRegister.MAGMA_FLOWER.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BlockRegister.THORN_BUSH.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.MAGMA_FLOWER.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.THORN_BUSH.get(), RenderType.getCutout());
 
-        RenderTypeLookup.setRenderLayer(BlockRegister.DUNGEON_PORTAL.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(ModBlocks.DUNGEON_PORTAL.get(), RenderType.getTranslucent());
 
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);

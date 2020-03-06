@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.blocks.repair_station;
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.blocks.slots.FuelSlot;
 import com.robertx22.mine_and_slash.items.misc.ItemCapacitor;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
@@ -95,7 +95,7 @@ public class TileGearRepair extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 200; // vanilla value is 200 = 10 seconds
 
     public TileGearRepair() {
-        super(TileEntityRegister.GEAR_REPAIR.get());
+        super(ModTileEntities.GEAR_REPAIR.get());
 
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.currency.loc_reqs;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.currency.ItemLevelUpGear;
+import com.robertx22.mine_and_slash.database.currency.CrystalOfAscensionItem;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -22,7 +22,7 @@ public class SimpleGearLocReq extends BaseLocRequirement {
     public static final SimpleGearLocReq HAS_INSFUSION = new SimpleGearLocReq(
         x -> x.infusion != null, Words.HasInfusion.locName());
     public static final SimpleGearLocReq LVLED_LESS_THAN_10_TIMES = new SimpleGearLocReq(
-        x -> x.timesLeveledUp < ItemLevelUpGear.MAXIMUM_LEVEL_UPS, Words.CanOnlyUse10times.locName());
+        x -> x.timesLeveledUp < CrystalOfAscensionItem.MAXIMUM_LEVEL_UPS, Words.CanOnlyUse10times.locName());
     public static final SimpleGearLocReq NO_CHAOS_STATS = new SimpleGearLocReq(
         x -> x.chaosStats == null, Words.NoChaosStats.locName());
     public static final SimpleGearLocReq LEVEL_ISNT_HIGHER_THAN_MAX = new SimpleGearLocReq(

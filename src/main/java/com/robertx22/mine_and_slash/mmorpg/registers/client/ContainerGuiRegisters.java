@@ -17,7 +17,7 @@ import com.robertx22.mine_and_slash.items.bags.map_bag.ContainerMapBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.GuiMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.GuiMasterBag;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModContainers;
 import com.robertx22.mine_and_slash.new_content.chests.MapChestScreen;
 import net.minecraft.client.gui.ScreenManager;
 
@@ -26,20 +26,20 @@ public class ContainerGuiRegisters {
     public static void reg() {
 
         // BLACKED "OBSOLTE" PARTS ARE NEEDED OR IT ERROS !!!!
-        ScreenManager.<ContainerGearModify, GuiGearModify>registerFactory(ContainerTypeRegisters.GEAR_MODIFY.get(), GuiGearModify::new);
+        ScreenManager.<ContainerGearModify, GuiGearModify>registerFactory(ModContainers.GEAR_MODIFY.get(), GuiGearModify::new);
 
-        ScreenManager.<ContainerMapDevice, GuiMapDevice>registerFactory(ContainerTypeRegisters.MAP_DEVICE.get(), GuiMapDevice::new);
+        ScreenManager.<ContainerMapDevice, GuiMapDevice>registerFactory(ModContainers.MAP_DEVICE.get(), GuiMapDevice::new);
 
-        ScreenManager.<ContainerGearRepair, GuiGearRepair>registerFactory(ContainerTypeRegisters.GEAR_REPAIR.get(), GuiGearRepair::new);
-        ScreenManager.<ContainerGearSalvage, GuiGearSalvage>registerFactory(ContainerTypeRegisters.GEAR_SALVAGE.get(), GuiGearSalvage::new);
+        ScreenManager.<ContainerGearRepair, GuiGearRepair>registerFactory(ModContainers.GEAR_REPAIR.get(), GuiGearRepair::new);
+        ScreenManager.<ContainerGearSalvage, GuiGearSalvage>registerFactory(ModContainers.GEAR_SALVAGE.get(), GuiGearSalvage::new);
 
-        ScreenManager.<ContainerLootBag, GuiLootBag>registerFactory(ContainerTypeRegisters.LOOT_BAG, GuiLootBag::new);
-        ScreenManager.<ContainerMapBag, GuiMapBag>registerFactory(ContainerTypeRegisters.MAP_BAG, GuiMapBag::new);
-        ScreenManager.<ContainerCurrencyBag, GuiCurrencyBag>registerFactory(ContainerTypeRegisters.CURRENCY_BAG, GuiCurrencyBag::new);
-        ScreenManager.<ContainerMasterBag, GuiMasterBag>registerFactory(ContainerTypeRegisters.MASTER_BAG, GuiMasterBag::new);
+        ScreenManager.<ContainerLootBag, GuiLootBag>registerFactory(ModContainers.LOOT_BAG, GuiLootBag::new);
+        ScreenManager.<ContainerMapBag, GuiMapBag>registerFactory(ModContainers.MAP_BAG, GuiMapBag::new);
+        ScreenManager.<ContainerCurrencyBag, GuiCurrencyBag>registerFactory(ModContainers.CURRENCY_BAG, GuiCurrencyBag::new);
+        ScreenManager.<ContainerMasterBag, GuiMasterBag>registerFactory(ModContainers.MASTER_BAG, GuiMasterBag::new);
 
-        ScreenManager.registerFactory(ContainerTypeRegisters.PROFESSION_RECIPE_CONTAINER, ProfessionGui::new);
-        ScreenManager.registerFactory(ContainerTypeRegisters.MAP_CHEST.get(), MapChestScreen::new);
+        ScreenManager.registerFactory(ModContainers.PROFESSION_RECIPE_CONTAINER, ProfessionGui::new);
+        ScreenManager.registerFactory(ModContainers.MAP_CHEST.get(), MapChestScreen::new);
 
     }
 

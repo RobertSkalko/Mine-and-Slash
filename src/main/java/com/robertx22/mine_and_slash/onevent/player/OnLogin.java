@@ -15,8 +15,9 @@ import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockItemRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlockItems;
 import com.robertx22.mine_and_slash.packets.OnLoginClientPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
@@ -67,6 +68,8 @@ public class OnLogin {
 
                 data.syncToClient(player);
 
+                CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, data);
+
             } else {
                 player.sendMessage(
                     new StringTextComponent("Error, player has no capability!" + Ref.MOD_NAME + " mod is broken!"));
@@ -114,7 +117,7 @@ public class OnLogin {
             MapBlueprint map = new MapBlueprint(1, 1);
             player.inventory.addItemStackToInventory(map.createStack());
 
-            ItemStack mapdevice = new ItemStack(BlockItemRegister.MAP_DEVICE.get());
+            ItemStack mapdevice = new ItemStack(ModBlockItems.MAP_DEVICE.get());
             mapdevice.setCount(64);
             player.inventory.addItemStackToInventory(mapdevice);
 

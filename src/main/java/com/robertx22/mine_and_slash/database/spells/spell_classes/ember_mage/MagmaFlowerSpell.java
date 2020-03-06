@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSeed
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.IBlockSpawner;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
@@ -92,7 +92,7 @@ public class MagmaFlowerSpell extends BaseSeedSpell implements IBlockSpawner {
 
     @Override
     public void spawnBlock(LivingEntity caster, World world, BlockPos pos, BaseSpell spell) {
-        caster.world.setBlockState(pos, BlockRegister.MAGMA_FLOWER.get()
+        caster.world.setBlockState(pos, ModBlocks.MAGMA_FLOWER.get()
             .getDefaultState());
         MagmaFlowerTileEntity tile = new MagmaFlowerTileEntity();
         tile.setSpellData(new EntitySpellData(spell, caster, MagmaFlowerTileEntity.DURATION_SEC * 20));

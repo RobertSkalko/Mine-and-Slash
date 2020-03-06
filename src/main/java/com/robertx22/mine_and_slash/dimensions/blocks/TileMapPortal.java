@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.dimensions.blocks;
 
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.onevent.world.OnShutdownResetMaps;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
@@ -28,7 +28,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class TileMapPortal extends TileEntity {
 
     public TileMapPortal() {
-        super(TileEntityRegister.MAP_PORTAL.get());
+        super(ModTileEntities.MAP_PORTAL.get());
     }
 
     int ticks = 0;

@@ -197,11 +197,13 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                     GuiUtils.renderTooltip(getSpell().GetTooltipString(info), mouseX, mouseY);
                 }
             } else {
-                if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
-                    TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
-                    List<ITextComponent> tip = new ArrayList<>();
-                    tip.add(new SText(TextFormatting.BLUE + "Some spells can be attached to a weapon as a right click spell."));
-                    GuiUtils.renderTooltip(tip, mouseX, mouseY);
+                if (this.isForRightClickWeaponSpell) {
+                    if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
+                        TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
+                        List<ITextComponent> tip = new ArrayList<>();
+                        tip.add(new SText(TextFormatting.BLUE + "Some spells can be attached to a weapon as a right click spell."));
+                        GuiUtils.renderTooltip(tip, mouseX, mouseY);
+                    }
                 }
             }
         }

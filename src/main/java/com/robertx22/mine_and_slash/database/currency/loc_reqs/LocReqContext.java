@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.currency.loc_reqs;
 
 import com.robertx22.mine_and_slash.blocks.item_modify_station.TileGearModify;
-import com.robertx22.mine_and_slash.database.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import net.minecraft.item.ItemStack;

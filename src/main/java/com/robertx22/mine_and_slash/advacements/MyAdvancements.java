@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.advacements;
 
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
-import com.robertx22.mine_and_slash.database.currency.ItemChaosOrb;
-import com.robertx22.mine_and_slash.database.currency.ItemOrbOfTransmutation;
-import com.robertx22.mine_and_slash.database.currency.ItemStoneOfHope;
+import com.robertx22.mine_and_slash.database.currency.ChaosOrbItem;
+import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
+import com.robertx22.mine_and_slash.database.currency.StoneOfHopeItem;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
@@ -15,8 +15,8 @@ import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemHammer;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ItemRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.AdvDescs;
@@ -89,13 +89,13 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
             .register(consu, id("adv_map"));
 
         Advancement repair = itemAdv(AdvTitles.RepairStation, AdvDescs.RepairStation, "repair", parent, consu,
-            BlockRegister.GEAR_REPAIR.get()
+            ModBlocks.GEAR_REPAIR.get()
         );
         Advancement modify = itemAdv(AdvTitles.ModifyStation, AdvDescs.ModifyStation, "modify", lvl_10, consu,
-            BlockRegister.GEAR_MODIFY.get()
+            ModBlocks.GEAR_MODIFY.get()
         );
         Advancement salvage = itemAdv(AdvTitles.SalvageStation, AdvDescs.SalvageStation, "salvage", parent, consu,
-            BlockRegister.GEAR_SALVAGE.get()
+            ModBlocks.GEAR_SALVAGE.get()
         );
 
         Advancement currency_bag = itemAdv(
@@ -107,26 +107,26 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
             AdvTitles.MasterBag, AdvDescs.MasterBag, "master_bag", repair, consu, ItemMasterBag.ITEM);
 
         Advancement map_device = itemAdv(AdvTitles.MapDevice, AdvDescs.MapDevice, "map_device", first_adv_map, consu,
-            BlockRegister.MAP_DEVICE.get()
+            ModBlocks.MAP_DEVICE.get()
         );
 
-        Advancement orbOfTrans = byItemName(ItemRegister.ORB_OF_TRANSMUTATION,
-            new StringTextComponent(new ItemOrbOfTransmutation().locNameForLangFile()),
+        Advancement orbOfTrans = byItemName(ModItems.ORB_OF_TRANSMUTATION.get(),
+            new StringTextComponent(new OrbOfTransmutationItem().locNameForLangFile()),
             "orb_of_transmutation", AdvDescs.OrbOfTransmutation, lvl_10, consu,
-            ItemRegister.ORB_OF_TRANSMUTATION
+            ModItems.ORB_OF_TRANSMUTATION.get()
         );
 
-        Advancement chaosOrb = byItemName(ItemRegister.CHAOS_ORB,
-            new StringTextComponent(new ItemChaosOrb().locNameForLangFile()), "chaos_orb",
-            AdvDescs.ChaosOrb, orbOfTrans, consu, ItemRegister.CHAOS_ORB
+        Advancement chaosOrb = byItemName(ModItems.CHAOS_ORB.get(),
+            new StringTextComponent(new ChaosOrbItem().locNameForLangFile()), "chaos_orb",
+            AdvDescs.ChaosOrb, orbOfTrans, consu, ModItems.CHAOS_ORB.get()
         );
-        Advancement addaffix = byItemName(ItemRegister.ADD_PREFIX, AdvTitles.AddAffix.locName(), "add_affix",
-            AdvDescs.AddAffix, orbOfTrans, consu, ItemRegister.ADD_PREFIX
+        Advancement addaffix = byItemName(ModItems.UNEARTH_PREFIX.get(), AdvTitles.AddAffix.locName(), "add_affix",
+            AdvDescs.AddAffix, orbOfTrans, consu, ModItems.UNEARTH_PREFIX.get()
         );
-        Advancement stoneofhope = byItemName(ItemRegister.STONE_OF_HOPE,
-            new StringTextComponent(new ItemStoneOfHope().locNameForLangFile()),
+        Advancement stoneofhope = byItemName(ModItems.STONE_OF_HOPE.get(),
+            new StringTextComponent(new StoneOfHopeItem().locNameForLangFile()),
             "stone_of_hope", AdvDescs.Stoneofhope, orbOfTrans, consu,
-            ItemRegister.STONE_OF_HOPE
+            ModItems.STONE_OF_HOPE.get()
         );
 
         Advancement sal0 = salvageBag(AutoSalvageBag.Items.get(0), salvage, consu);

@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.database.currency.infusions;
 
-import com.robertx22.mine_and_slash.database.currency.CurrencyItem;
-import com.robertx22.mine_and_slash.database.currency.ICurrencyItemEffect;
-import com.robertx22.mine_and_slash.database.currency.ItemAddSecondaryStat;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.currency.ItemOrbOfTransmutation;
+import com.robertx22.mine_and_slash.database.currency.CrystalOfLegendItem;
+import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
+import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
+import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.GearEnumLocReq;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
@@ -34,6 +34,11 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     }
 
     @Override
+    public int instabilityAddAmount() {
+        return 15;
+    }
+
+    @Override
     public boolean activatesBreakRoll() {
         return false;
     }
@@ -44,15 +49,17 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
 
         List<StatMod> possible = new ArrayList();
 
-        if (gear.GetBaseGearType().slotType().equals(GearItemSlot.GearSlotType.Armor)) {
+        if (gear.GetBaseGearType()
+            .slotType()
+            .equals(GearItemSlot.GearSlotType.Armor)) {
             possible = this.armorInfusions();
         } else if (gear.GetBaseGearType()
-                .slotType()
-                .equals(GearItemSlot.GearSlotType.Weapon)) {
+            .slotType()
+            .equals(GearItemSlot.GearSlotType.Weapon)) {
             possible = this.weaponInfusions();
         } else if (gear.GetBaseGearType()
-                .slotType()
-                .equals(GearItemSlot.GearSlotType.Jewerly)) {
+            .slotType()
+            .equals(GearItemSlot.GearSlotType.Jewerly)) {
             possible = this.jewerlyInfusions();
         } else {
             possible = this.jewerlyInfusions();
@@ -105,15 +112,15 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
     @Override
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
-                .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
-                .addMaterial(new ItemAddSecondaryStat().getFromForgeRegistry(), 5)
-                .addMaterial(new ItemOrbOfTransmutation().getFromForgeRegistry(), 5)
-                .addMaterial(Items.IRON_INGOT, 2)
-                .buildMaterials()
-                .setOutput(this)
-                .levelReq(25)
-                .expGained(15)
-                .build();
+            .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
+            .addMaterial(new CrystalOfLegendItem().getFromForgeRegistry(), 5)
+            .addMaterial(new OrbOfTransmutationItem().getFromForgeRegistry(), 5)
+            .addMaterial(Items.IRON_INGOT, 2)
+            .buildMaterials()
+            .setOutput(this)
+            .levelReq(25)
+            .expGained(15)
+            .build();
 
     }
 

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.Sounds;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -137,7 +137,7 @@ public class ThunderDashSpell extends BaseSpell {
 
         });
 
-        SoundUtils.playSound(caster, Sounds.DASH.get(), 1, 1);
+        SoundUtils.playSound(caster, ModSounds.DASH.get(), 1, 1);
 
         return true;
     }

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.items.bags.master_bag;
 
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.SlotHandler;
 import com.robertx22.mine_and_slash.items.bags.BaseBagItem;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModContainers;
 import com.robertx22.mine_and_slash.uncommon.item_filters.bases.ItemFilterGroup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -40,7 +40,7 @@ public class ContainerMasterBag extends Container {
     public ContainerMasterBag(int i, PlayerInventory playerInventory, PacketBuffer pkt) {
 
         this(i, playerInventory, new InventoryMasterBag(new ItemStack(ItemMasterBag.ITEM), ItemType.GEAR),
-             ItemType.valueOf(pkt.readString())
+            ItemType.valueOf(pkt.readString())
         );
 
     }
@@ -49,9 +49,10 @@ public class ContainerMasterBag extends Container {
     public int bagHash;
 
     public ContainerMasterBag(int num, PlayerInventory playerInv, InventoryMasterBag basebag, ItemType type) {
-        super(ContainerTypeRegisters.MASTER_BAG, num);
+        super(ModContainers.MASTER_BAG, num);
 
-        bagHash = basebag.getStack().hashCode();
+        bagHash = basebag.getStack()
+            .hashCode();
 
         this.numRows = 6;
         this.size *= ItemType.values().length;
@@ -94,7 +95,7 @@ public class ContainerMasterBag extends Container {
         ItemStack held = player.getHeldItemMainhand();
 
         return held == this.inventory.getStack() && this.inventory.getStack()
-                .isEmpty() == false && held.hashCode() == this.bagHash && held.getItem() instanceof ItemMasterBag;
+            .isEmpty() == false && held.hashCode() == this.bagHash && held.getItem() instanceof ItemMasterBag;
     }
 
     @Override
@@ -108,7 +109,9 @@ public class ContainerMasterBag extends Container {
     @Override
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, PlayerEntity player) {
         try {
-            if (this.getSlot(slotId).getStack().getItem() instanceof BaseBagItem) {
+            if (this.getSlot(slotId)
+                .getStack()
+                .getItem() instanceof BaseBagItem) {
                 return ItemStack.EMPTY;
             }
         } catch (Exception e) {

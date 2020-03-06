@@ -39,7 +39,6 @@ public class ItemStaff extends BaseWeaponItem {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player, Hand handIn) {
-
         ItemStack stack = player.getHeldItem(handIn);
         return new ActionResult<>(ActionResultType.PASS, stack);
     }

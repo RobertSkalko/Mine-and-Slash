@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.currency.infusions.upgrade;
 
-import com.robertx22.mine_and_slash.database.currency.CurrencyItem;
-import com.robertx22.mine_and_slash.database.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
+import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
@@ -43,18 +43,19 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
 
         TooltipUtils.addEmpty(tooltip);
         tooltip.add(Styles.GOLDCOMP()
-                            .appendSibling(Words.Major_Success_Chance.locName()
-                                                   .appendText(": " + this.bonusSuccessChance() + "%")));
+            .appendSibling(Words.Major_Success_Chance.locName()
+                .appendText(": " + this.bonusSuccessChance() + "%")));
 
         tooltip.add(Styles.GOLDCOMP()
-                            .appendSibling(Words.Major_Success_Bonus.locName()
-                                                   .appendText(": " + this.critOnSuccessChance() + "%")));
+            .appendSibling(Words.Major_Success_Bonus.locName()
+                .appendText(": " + this.critOnSuccessChance() + "%")));
 
         tooltip.add(Styles.GOLDCOMP()
-                            .appendSibling(Words.Major_Failure_Chance.locName()
-                                                   .appendText(": " + this.majorFailureChance() + "%")));
+            .appendSibling(Words.Major_Failure_Chance.locName()
+                .appendText(": " + this.majorFailureChance() + "%")));
 
-        tooltip.add(Styles.BLUECOMP().appendSibling(Words.Item_modifiable_in_station.locName()));
+        tooltip.add(Styles.BLUECOMP()
+            .appendSibling(Words.Item_modifiable_in_station.locName()));
 
     }
 
@@ -96,7 +97,7 @@ public abstract class BaseUpgradeInfusion extends CurrencyItem implements ICurre
     @Override
     public List<BaseLocRequirement> requirements() {
         return Arrays.asList(
-                GearEnumLocReq.INFUSIONS, SimpleGearLocReq.HAS_INSFUSION, SimpleGearLocReq.CAN_UPGRADE_INFUSION);
+            GearEnumLocReq.INFUSIONS, SimpleGearLocReq.HAS_INSFUSION, SimpleGearLocReq.CAN_UPGRADE_INFUSION);
     }
 
     public abstract float critOnSuccessChance();

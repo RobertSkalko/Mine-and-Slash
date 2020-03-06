@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.professions.blocks.bases;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.professions.recipe.BaseOutputItem;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
@@ -15,8 +15,8 @@ import java.util.List;
 
 public enum Professions {
 
-    ALCHEMY(Words.Alchemy, TileEntityRegister.ALCHEMY.get()),
-    TINKERERING(Words.Tinkering, TileEntityRegister.TINKERING.get());
+    ALCHEMY(Words.Alchemy, ModTileEntities.ALCHEMY.get()),
+    TINKERERING(Words.Tinkering, ModTileEntities.TINKERING.get());
 
     Professions(Words word, TileEntityType<?> tileEntityType) {
         this.tileEntityType = tileEntityType;

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.data_gen.providers;
 
 import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
+import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -10,6 +11,7 @@ import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -57,6 +59,14 @@ public class SlashRecipeProvider extends RecipeProvider {
             .patternLine(" b ")
             .addCriterion("player_level", new PlayerLevelTrigger.Instance(10))
             .build(c);
+
+        ForgeRegistries.ITEMS.forEach(x -> {
+            if (x instanceof IShapedRecipe) {
+                IShapedRecipe rec = (IShapedRecipe) x;
+                rec.getRecipe()
+                    .build(c);
+            }
+        });
 
     }
 

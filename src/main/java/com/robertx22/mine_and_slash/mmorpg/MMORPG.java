@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
+import com.robertx22.mine_and_slash.db_lists.initializers.CurrencyItems;
 import com.robertx22.mine_and_slash.error_checks.DunSameSeedAreSame;
 import com.robertx22.mine_and_slash.error_checks.base.ErrorChecks;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
@@ -170,6 +171,8 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerAboutToStart(FMLServerAboutToStartEvent event) {
+
+        new CurrencyItems().registerAll();
 
         IReloadableResourceManager manager = event.getServer()
             .getResourceManager();

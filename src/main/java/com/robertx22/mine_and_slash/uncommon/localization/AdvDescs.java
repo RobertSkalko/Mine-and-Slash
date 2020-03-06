@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.localization;
 
-import com.robertx22.mine_and_slash.database.currency.ItemStoneOfHope;
+import com.robertx22.mine_and_slash.database.currency.StoneOfHopeItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 
@@ -44,7 +44,7 @@ public enum AdvDescs implements IAutoLocName {
 
     Stoneofhope(
         "Recreates the item completely, giving you a higher rarity. Very useful if you have a legendary item " +
-            "with" + " bad/unwanted stats. This item can only be gotten by using the map device to go kill " + "mobs in " + "adventure maps above tier " + new ItemStoneOfHope()
+            "with" + " bad/unwanted stats. This item can only be gotten by using the map device to go kill " + "mobs in " + "adventure maps above tier " + new StoneOfHopeItem()
             .Tier()),
 
     AddAffix("Unique items have lower chance to gain affixes, that's why these currencies are so important"),

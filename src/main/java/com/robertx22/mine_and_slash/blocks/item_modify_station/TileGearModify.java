@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.currency.IAddsInstability;
+import com.robertx22.mine_and_slash.database.currency.base.IAddsInstability;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.LocReqContext;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -132,7 +132,7 @@ public class TileGearModify extends BaseTile {
     private static final short COOK_TIME_FOR_COMPLETION = 100; // vanilla value is 200 = 10 seconds
 
     public TileGearModify() {
-        super(TileEntityRegister.GEAR_MODIFY.get());
+        super(ModTileEntities.GEAR_MODIFY.get());
         itemStacks = new ItemStack[TOTAL_SLOTS_COUNT];
         clear();
 

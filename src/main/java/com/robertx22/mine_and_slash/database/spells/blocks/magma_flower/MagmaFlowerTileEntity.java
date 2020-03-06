@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.blocks.base.BaseSpellTileEnt
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterAndSpellEntityContext;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -25,7 +25,7 @@ public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
     public float TICK_RATE = 30;
 
     public MagmaFlowerTileEntity() {
-        super(TileEntityRegister.MAGMA_FLOWER.get());
+        super(ModTileEntities.MAGMA_FLOWER.get());
     }
 
     @Override

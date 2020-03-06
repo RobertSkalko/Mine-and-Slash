@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.currency.CurrencyItem;
+import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.BaseItem;

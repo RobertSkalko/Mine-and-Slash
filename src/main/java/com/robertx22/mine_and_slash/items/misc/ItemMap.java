@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.data_generation.models.IAutoModel;
 import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import net.minecraft.block.Block;
@@ -55,9 +55,9 @@ public class ItemMap extends Item implements IAutoLocName, IAutoModel {
         Block block = world.getBlockState(pos)
             .getBlock();
 
-        if (block.equals(Blocks.AIR) || block.equals(BlockRegister.MAP_PORTAL.get())) {
+        if (block.equals(Blocks.AIR) || block.equals(ModBlocks.MAP_PORTAL.get())) {
 
-            world.setBlockState(pos, BlockRegister.MAP_PORTAL.get()
+            world.setBlockState(pos, ModBlocks.MAP_PORTAL.get()
                 .getDefaultState(), 2);
             TileMapPortal portal = new TileMapPortal();
             portal.onMapSacrificed(mapDevicePos, map, dungeonId);

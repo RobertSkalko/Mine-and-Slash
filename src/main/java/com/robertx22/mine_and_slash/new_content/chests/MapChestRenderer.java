@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.new_content.chests;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.ChestModels;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -47,7 +47,7 @@ public class MapChestRenderer<T extends TileEntity & IChestLid> extends TileEnti
         World world = tileEntity.getWorld();
         boolean flag = world != null;
 
-        BlockState blockstate = flag ? tileEntity.getBlockState() : (BlockState) BlockRegister.MAP_CHEST.get()
+        BlockState blockstate = flag ? tileEntity.getBlockState() : (BlockState) ModBlocks.MAP_CHEST.get()
             .getDefaultState()
             .with(MapChestBlock.FACING, Direction.SOUTH);
         Block block = blockstate.getBlock();

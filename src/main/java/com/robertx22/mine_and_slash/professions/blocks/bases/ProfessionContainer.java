@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.professions.blocks.bases;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTileContainer;
 import com.robertx22.mine_and_slash.blocks.slots.handlerslots.MaterialSlot;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModContainers;
 import com.robertx22.mine_and_slash.professions.blocks.alchemy.AlchemyTile;
 import com.robertx22.mine_and_slash.professions.recipe.BaseMaterial;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
@@ -37,7 +37,7 @@ public class ProfessionContainer extends BaseTileContainer {
 
     protected ProfessionContainer(int id, ProfessionTile tile, BlockPos pos,
                                   PlayerInventory invPlayer) {
-        super(6 * 9, ContainerTypeRegisters.PROFESSION_RECIPE_CONTAINER, id);
+        super(6 * 9, ModContainers.PROFESSION_RECIPE_CONTAINER, id);
         this.profession = tile.profession;
         this.pos = pos;
         this.tile = tile;
@@ -99,7 +99,8 @@ public class ProfessionContainer extends BaseTileContainer {
 
         clearMaterials();
 
-        for (int i = 0; i < recipe.getMaterials().size(); i++) {
+        for (int i = 0; i < recipe.getMaterials()
+            .size(); i++) {
             this.gatherMaterial(i);
         }
 
@@ -112,7 +113,7 @@ public class ProfessionContainer extends BaseTileContainer {
 
         for (int i = 0; i < tile.materialStacks.size(); i++) {
             ItemStack stack = handler.extractItem(i, handler.getStackInSlot(i)
-                    .getCount(), false);
+                .getCount(), false);
 
             if (!stack.isEmpty()) {
 
@@ -143,7 +144,8 @@ public class ProfessionContainer extends BaseTileContainer {
 
         int num = 0;
         for (int i = PLAYER_INV_INDEX; i < PLAYER_INV_END; i++) {
-            list.set(num++, this.getInventory().get(i));
+            list.set(num++, this.getInventory()
+                .get(i));
         }
 
         return new ItemStackHandler(list);
@@ -153,14 +155,17 @@ public class ProfessionContainer extends BaseTileContainer {
     public void gatherMaterial(int num) {
 
         for (int i = 0; i < this.playerInventory.mainInventory.size(); ++i) {
-            ItemStack itemstack = this.playerInventory.mainInventory.get(i).getStack();
+            ItemStack itemstack = this.playerInventory.mainInventory.get(i)
+                .getStack();
             if (!itemstack.isEmpty()) {
 
-                if (this.tile.currentRecipe.getMaterials().size() > num) {
+                if (this.tile.currentRecipe.getMaterials()
+                    .size() > num) {
 
                     ItemStackHandler handler = new ItemStackHandler(tile.materialStacks);
 
-                    BaseMaterial mat = this.tile.currentRecipe.getMaterials().get(num);
+                    BaseMaterial mat = this.tile.currentRecipe.getMaterials()
+                        .get(num);
 
                     if (mat.isStackValidMaterial(itemstack)) {
 

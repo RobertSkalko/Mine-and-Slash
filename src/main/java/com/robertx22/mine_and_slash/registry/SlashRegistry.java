@@ -7,8 +7,8 @@ import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleI
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.impl.NecromancerBoss;
-import com.robertx22.mine_and_slash.database.currency.CurrencyItem;
-import com.robertx22.mine_and_slash.database.currency.ItemOrbOfTransmutation;
+import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
+import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseItemModification;
 import com.robertx22.mine_and_slash.database.item_modifications.gear_items.AddChaosStatMod;
@@ -329,7 +329,6 @@ public class SlashRegistry {
         new WorldProviders().registerAll();
         new Sets().registerAll();
         new ItemModifications().registerAll();
-        new CurrencyItems().registerAll();
 
         new PerkEffectsInit().registerAll();
         new SpellPerkEffectsInit().registerAll();
@@ -373,7 +372,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect()));
         addRegistry(new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new DungeonIWP(null, null)));
         addRegistry(new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
-        addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new ItemOrbOfTransmutation()));
+        addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
         addRegistry(new SlashRegistryContainer<BaseRecipe>(SlashRegistryType.RECIPE, null));
         addRegistry(new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()
             ).logAdditions()

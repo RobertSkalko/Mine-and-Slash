@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.new_content.data_processors;
 
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.loot.LootInfo;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import com.robertx22.mine_and_slash.new_content.chests.MapChestTile;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -21,7 +21,7 @@ public class ChestProcessor extends DataProcessor {
     @Override
     public void processImplementation(BlockPos pos, IWorld world, ChunkProcessData data) {
 
-        world.setBlockState(pos, BlockRegister.MAP_CHEST.get()
+        world.setBlockState(pos, ModBlocks.MAP_CHEST.get()
             .getDefaultState(), 2);
 
         TileEntity tile = world.getTileEntity(pos);

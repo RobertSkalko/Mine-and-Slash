@@ -4,8 +4,8 @@ import com.electronwill.nightconfig.core.utils.StringUtils;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.BlockRegister;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.new_content.chests.MapChestTile;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
 
     public ScrabbleTile() {
-        super(TileEntityRegister.SCRABBLE.get());
+        super(ModTileEntities.SCRABBLE.get());
     }
 
     String letters = "";
@@ -124,7 +124,7 @@ public class ScrabbleTile extends TileEntity implements ITickableTileEntity {
         if (usesAllowedLetters(word, letters)) {
             if (isInDict(word)) {
 
-                this.world.setBlockState(pos, BlockRegister.MAP_CHEST.get()
+                this.world.setBlockState(pos, ModBlocks.MAP_CHEST.get()
                     .getDefaultState());
 
                 TileEntity tile = world.getTileEntity(pos);

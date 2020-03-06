@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.currency.infusions;
 
-import com.robertx22.mine_and_slash.database.currency.CurrencyItem;
+import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
@@ -60,8 +60,4 @@ public class DefenseInfusionItem extends BaseInfusionItem {
         return CurrencyItem.nameColor + "Defense Infusion";
     }
 
-    @Override
-    public int instabilityAddAmount() {
-        return 5;
-    }
 }

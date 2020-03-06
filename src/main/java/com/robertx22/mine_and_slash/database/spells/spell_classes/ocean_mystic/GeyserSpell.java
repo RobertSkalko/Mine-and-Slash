@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.GeyserEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.Sounds;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -51,7 +51,7 @@ public class GeyserSpell extends BaseProjectileSpell {
 
     @Override
     public SoundEvent getShootSound() {
-        return Sounds.SPLASH.get();
+        return ModSounds.SPLASH.get();
     }
 
     @Override

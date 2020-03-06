@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.item;
 
-import com.robertx22.mine_and_slash.database.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
@@ -70,12 +70,15 @@ public class OnTooltip {
             if (data != null) {
                 data.BuildTooltip(ctx);
             } else {
-                if (stack.getItem().getRegistryName() != null) {
+                if (stack.getItem()
+                    .getRegistryName() != null) {
                     if (SlashRegistry.CompatibleItems()
-                            .isRegistered(stack.getItem().getRegistryName().toString())) {
+                        .isRegistered(stack.getItem()
+                            .getRegistryName()
+                            .toString())) {
 
                         event.getToolTip()
-                                .add(new StringTextComponent(Styles.RED + "Compatible Mine and Slash Item"));
+                            .add(new StringTextComponent(Styles.RED + "Compatible Mine and Slash Item"));
 
                     }
                 }
@@ -88,7 +91,8 @@ public class OnTooltip {
 
             ITextComponent broken = TooltipUtils.itemBrokenText(stack, data);
             if (broken != null) {
-                event.getToolTip().add(broken);
+                event.getToolTip()
+                    .add(broken);
             }
 
         } catch (Exception e) {
@@ -99,9 +103,10 @@ public class OnTooltip {
 
     private static void buildCurrencyEffectTooltip(ItemTooltipEvent event) {
 
-        if (event.getItemStack().getItem() instanceof ICurrencyItemEffect) {
+        if (event.getItemStack()
+            .getItem() instanceof ICurrencyItemEffect) {
             ICurrencyItemEffect currency = (ICurrencyItemEffect) event.getItemStack()
-                    .getItem();
+                .getItem();
             currency.addToTooltip(event.getToolTip());
         }
 

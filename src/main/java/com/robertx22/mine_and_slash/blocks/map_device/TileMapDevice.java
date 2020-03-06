@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -49,7 +49,7 @@ public class TileMapDevice extends BaseTile {
     }
 
     public TileMapDevice() {
-        super(TileEntityRegister.MAP_DEVICE.get());
+        super(ModTileEntities.MAP_DEVICE.get());
 
         itemStacks = new ItemStack[size];
         clear();

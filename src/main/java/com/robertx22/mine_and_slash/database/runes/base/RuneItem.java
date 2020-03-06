@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.runes.base;
 
 import com.robertx22.mine_and_slash.data_generation.models.IAutoModel;
 import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
-import com.robertx22.mine_and_slash.database.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;

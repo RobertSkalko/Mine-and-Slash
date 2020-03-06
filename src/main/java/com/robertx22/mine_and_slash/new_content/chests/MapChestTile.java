@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.chests;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.common.TileEntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 public class MapChestTile extends ChestTileEntity implements INamedContainerProvider {
 
     public MapChestTile() {
-        super(TileEntityRegister.MAP_CHEST.get());
+        super(ModTileEntities.MAP_CHEST.get());
 
     }
 

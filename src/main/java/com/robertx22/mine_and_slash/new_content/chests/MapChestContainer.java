@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.chests;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -25,7 +25,7 @@ public class MapChestContainer extends Container {
     }
 
     public MapChestContainer(int windowId, PlayerInventory playerInventory, IInventory inventory) {
-        super(ContainerTypeRegisters.MAP_CHEST.get(), windowId);
+        super(ModContainers.MAP_CHEST.get(), windowId);
         //assertInventorySize(inventory, 27);
 
         this.inventory = inventory;

@@ -4,8 +4,8 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.Sounds;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
@@ -112,12 +112,12 @@ public class HeartOfIceSpell extends BaseSpellHeal {
 
                 heal.Activate();
 
-                SoundUtils.playSound(caster, Sounds.FREEZE.get(), 1, 1);
+                SoundUtils.playSound(caster, ModSounds.FREEZE.get(), 1, 1);
 
                 ParticleUtils.spawnParticles(ParticleRegister.BUBBLE, caster, 25);
 
             } else {
-                SoundUtils.playSound(caster, Sounds.FREEZE.get(), 1, 1);
+                SoundUtils.playSound(caster, ModSounds.FREEZE.get(), 1, 1);
 
             }
         } catch (Exception e) {

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.database.currency.*;
 import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
@@ -21,7 +20,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
-import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,17 +27,6 @@ import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ItemRegister {
-
-    @ObjectHolder(ItemOrbOfTransmutation.ID)
-    public static CurrencyItem ORB_OF_TRANSMUTATION;
-    @ObjectHolder(ItemChaosOrb.ID)
-    public static CurrencyItem CHAOS_ORB;
-    @ObjectHolder(ItemAddPrefix.ID)
-    public static CurrencyItem ADD_PREFIX;
-    @ObjectHolder(ItemAddSuffix.ID)
-    public static CurrencyItem ADD_SUFFIX;
-    @ObjectHolder(ItemStoneOfHope.ID)
-    public static CurrencyItem STONE_OF_HOPE;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {

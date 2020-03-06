@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.Sounds;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.PetrifyEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -93,7 +93,7 @@ public class GorgonsGazeSpell extends BaseSpell {
 
         World world = caster.world;
 
-        SoundUtils.playSound(caster, Sounds.STONE_CRACK.get(), 1, 1);
+        SoundUtils.playSound(caster, ModSounds.STONE_CRACK.get(), 1, 1);
 
         EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
             .radius(3)

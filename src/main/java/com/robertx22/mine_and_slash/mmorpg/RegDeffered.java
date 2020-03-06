@@ -6,10 +6,12 @@ import net.minecraftforge.eventbus.api.IEventBus;
 public class RegDeffered {
 
     public static void register(IEventBus bus) {
-        Sounds.REG.register(bus);
-        BlockRegister.REG.register(bus);
-        BlockItemRegister.REG.register(bus);
-        TileEntityRegister.REG.register(bus);
-        ContainerTypeRegisters.REG.register(bus);
+        ModSounds.REG.register(bus);
+        ModBlocks.REG.register(bus);
+        ModBlockItems.REG.register(bus);
+        ModTileEntities.REG.register(bus);
+        ModContainers.REG.register(bus);
+        ModItems.REG.register(bus);
     }
+
 }

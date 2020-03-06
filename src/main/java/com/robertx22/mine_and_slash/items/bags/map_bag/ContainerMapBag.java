@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.blocks.slots.MapSlot;
 import com.robertx22.mine_and_slash.items.bags.BaseContainer;
 import com.robertx22.mine_and_slash.items.bags.BaseInventory;
 import com.robertx22.mine_and_slash.items.bags.BaseSlot;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ContainerTypeRegisters;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModContainers;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,7 @@ public class ContainerMapBag extends BaseContainer {
     }
 
     public ContainerMapBag(int i, PlayerInventory playerInv, BaseInventory basebag) {
-        super(ContainerTypeRegisters.MAP_BAG, i, playerInv, basebag);
+        super(ModContainers.MAP_BAG, i, playerInv, basebag);
     }
 
     @Override

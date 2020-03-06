@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.database.MinMax;
-import com.robertx22.mine_and_slash.database.currency.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.AwakenRuneWordLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.items.ItemDefault;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -55,20 +55,27 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
                                ITooltipFlag flagIn) {
 
-        if (stack != null && SlashRegistry.RuneWords().isRegistered(getWord(stack))) {
+        if (stack != null && SlashRegistry.RuneWords()
+            .isRegistered(getWord(stack))) {
 
             String word = this.getWord(stack);
 
-            RuneWord runeword = SlashRegistry.RuneWords().get(word);
+            RuneWord runeword = SlashRegistry.RuneWords()
+                .get(word);
 
             ITextComponent name = new StringTextComponent(TextFormatting.LIGHT_PURPLE + "").appendSibling(
-                    runeword.locName());
+                runeword.locName());
 
-            tooltip.add(Styles.GOLDCOMP().appendSibling(Words.Runeword.locName().appendText(": ").appendSibling(name)));
+            tooltip.add(Styles.GOLDCOMP()
+                .appendSibling(Words.Runeword.locName()
+                    .appendText(": ")
+                    .appendSibling(name)));
 
             TooltipUtils.addEmpty(tooltip);
 
-            tooltip.add(Styles.REDCOMP().appendSibling(Words.NeedsGearWithRunesInserted.locName()).appendText(": "));
+            tooltip.add(Styles.REDCOMP()
+                .appendSibling(Words.NeedsGearWithRunesInserted.locName())
+                .appendText(": "));
 
             TooltipUtils.addEmpty(tooltip);
 
@@ -77,7 +84,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
             TooltipUtils.addEmpty(tooltip);
 
             tooltip.add(new StringTextComponent(TextFormatting.AQUA + "").appendSibling(Words.RunesNeeded.locName())
-                                .appendText(": " + runeword.size()));
+                .appendText(": " + runeword.size()));
 
             TooltipUtils.addEmpty(tooltip);
 
@@ -85,7 +92,10 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
                 RuneWordData data = new RuneWordData();
                 data.name = word;
 
-                data.Mods = runeword.mods().stream().map(x -> StatModData.Load(x, 100)).collect(Collectors.toList());
+                data.Mods = runeword.mods()
+                    .stream()
+                    .map(x -> StatModData.Load(x, 100))
+                    .collect(Collectors.toList());
 
                 TooltipInfo info = new TooltipInfo();
                 info.level = 1;
@@ -105,8 +115,10 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
             TooltipUtils.addEmpty(tooltip);
 
         }
-        tooltip.add(Styles.BLUECOMP().appendSibling(Words.Item_modifiable_in_station.locName()));
-        tooltip.add(Styles.BLUECOMP().appendSibling(Words.unlocks_runeword_combo.locName()));
+        tooltip.add(Styles.BLUECOMP()
+            .appendSibling(Words.Item_modifiable_in_station.locName()));
+        tooltip.add(Styles.BLUECOMP()
+            .appendSibling(Words.unlocks_runeword_combo.locName()));
 
     }
 
@@ -136,8 +148,10 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
 
     public String getWord(ItemStack stack) {
 
-        if (stack != null && stack.hasTag() && stack.getTag().contains("runeword")) {
-            return stack.getTag().getString("runeword");
+        if (stack != null && stack.hasTag() && stack.getTag()
+            .contains("runeword")) {
+            return stack.getTag()
+                .getString("runeword");
         }
 
         return "";

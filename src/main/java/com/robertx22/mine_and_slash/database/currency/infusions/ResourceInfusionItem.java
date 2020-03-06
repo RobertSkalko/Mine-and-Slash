@@ -51,8 +51,4 @@ public class ResourceInfusionItem extends BaseInfusionItem {
         return nameColor + "Resource Infusion";
     }
 
-    @Override
-    public int instabilityAddAmount() {
-        return 5;
-    }
 }
