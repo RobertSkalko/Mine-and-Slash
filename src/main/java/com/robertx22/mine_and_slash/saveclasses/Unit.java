@@ -381,8 +381,6 @@ public class Unit {
 
         boolean gearIsValid = this.isGearCombinationValid(gears, entity);
 
-        Unit copy = this.Clone();
-
         ClearStats();
 
         MobRarity rar = Rarities.Mobs.get(data.getRarity());
@@ -432,6 +430,8 @@ public class Unit {
         if (isMapWorld) {
             CommonStatUtils.AddMapAffixStats(mapData, this, level, entity);
         }
+
+        Unit copy = this.Clone();
 
         CommonStatUtils.CalcStatConversionsAndTransfers(copy, this);
 

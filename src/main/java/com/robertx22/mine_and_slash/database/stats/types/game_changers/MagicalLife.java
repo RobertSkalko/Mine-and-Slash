@@ -47,11 +47,12 @@ public class MagicalLife extends BaseGameChangerTrait implements IStatTransfer {
 
         for (TransferMethod stat : this.Transfer()) {
 
-            float val = copy.getCreateStat(stat.converted.GUID()).Flat;
+            float val = copy.peekAtStat(stat.converted.GUID()).Flat;
 
-            unit.getCreateStat(stat.converted).Flat -= val;
-            unit.getCreateStat(stat.statThatBenefits).Flat += val;
-
+            if (val != 0) {
+                unit.getCreateStat(stat.converted).Flat -= val;
+                unit.getCreateStat(stat.statThatBenefits).Flat += val;
+            }
         }
 
     }

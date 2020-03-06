@@ -15,7 +15,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.BreakDoorGoal;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.server.ServerWorld;
@@ -110,8 +109,7 @@ public class OnMobSpawn {
         new HashSet<>(en.goalSelector.goals)
             .forEach(x -> {
                 Goal g = x.getGoal();
-                if (g instanceof MoveToBlockGoal
-                    || g instanceof RandomWalkingGoal
+                if (g instanceof RandomWalkingGoal
                     || g instanceof BreakDoorGoal) {
                     en.goalSelector.removeGoal(g);
                 }
