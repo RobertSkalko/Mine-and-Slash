@@ -69,9 +69,11 @@ public class OnContainerCompatibleItem {
                                 PowerLevel.Types type = PowerLevel.getPowerClassification(item);
 
                                 if (type != PowerLevel.Types.NONE) {
-                                    config = type.getAutoCompatibleItem(item, slot);
+                                    config = type.getConfig()
+                                        .getAutoCompatibleItem(item, slot);
                                 }
                             }
+
                         }
                     }
 

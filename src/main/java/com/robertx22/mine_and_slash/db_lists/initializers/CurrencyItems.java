@@ -11,6 +11,7 @@ public class CurrencyItems implements ISlashRegistryInit {
         ForgeRegistries.ITEMS.forEach(x -> {
             if (x instanceof CurrencyItem) {
                 CurrencyItem cur = (CurrencyItem) x;
+                cur.unregisterFromSlashRegistry();
                 cur.registerToSlashRegistry();
             }
         });

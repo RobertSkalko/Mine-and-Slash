@@ -1,10 +1,11 @@
 package com.robertx22.mine_and_slash.new_content.auto_comp;
 
 import com.google.common.collect.Multimap;
-import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.mine_and_slash.config.forge.parts.AutoCompatibleItemConfig;
+import com.robertx22.mine_and_slash.config.forge.parts.AutoConfigItemType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.MathHelper;
@@ -58,66 +59,49 @@ public class PowerLevel {
     }
 
     public enum Types {
-        TRASH(0.01F) {
+        TRASH() {
             @Override
-            public CompatibleItem getAutoCompatibleItem(Item item, GearItemSlot slot) {
-
-                CompatibleItem comp = CompatibleItem.getDefaultAuto(item, slot);
-                comp.max_rarity = IRarity.Rare;
-                comp.max_level = 40;
-                return comp;
-
+            public AutoConfigItemType getConfig() {
+                return ModConfig.INSTANCE.autoCompatibleItems.TRASH;
             }
-        }, NORMAL(0.3F) {
+        }, NORMAL() {
             @Override
-            public CompatibleItem getAutoCompatibleItem(Item item, GearItemSlot slot) {
-
-                CompatibleItem comp = CompatibleItem.getDefaultAuto(item, slot);
-                comp.max_rarity = IRarity.Legendary;
-                comp.max_level = 80;
-                return comp;
-
+            public AutoConfigItemType getConfig() {
+                return ModConfig.INSTANCE.autoCompatibleItems.NORMAL;
             }
-        }, BEST(0.8F) {
+        }, BEST() {
             @Override
-            public CompatibleItem getAutoCompatibleItem(Item item, GearItemSlot slot) {
-
-                CompatibleItem comp = CompatibleItem.getDefaultAuto(item, slot);
-                comp.max_rarity = IRarity.Mythic;
-                comp.min_rarity = IRarity.Uncommon;
-
-                comp.max_level = Integer.MAX_VALUE;
-
-                return comp;
-
+            public AutoConfigItemType getConfig() {
+                return ModConfig.INSTANCE.autoCompatibleItems.BEST;
             }
-        }, NONE(0) {
+        }, NONE() {
             @Override
-            public CompatibleItem getAutoCompatibleItem(Item item, GearItemSlot slot) {
+            public AutoConfigItemType getConfig() {
                 return null;
             }
         };
 
-        Types(float floatReq) {
-            this.floatReq = floatReq;
+        Types() {
+
         }
 
-        public abstract CompatibleItem getAutoCompatibleItem(Item item, GearItemSlot slot);
+        public abstract AutoConfigItemType getConfig();
 
-        public float floatReq;
     }
 
     public static Types getPowerClassification(Item item) {
 
         float val = getFloatValueOf(item);
 
-        if (val > Types.BEST.floatReq) {
+        AutoCompatibleItemConfig config = ModConfig.INSTANCE.autoCompatibleItems;
+
+        if (val > config.BEST.POWER_REQ.get()) {
             return Types.BEST;
         }
-        if (val > Types.NORMAL.floatReq) {
+        if (val > config.NORMAL.POWER_REQ.get()) {
             return Types.NORMAL;
         }
-        if (val > Types.TRASH.floatReq) {
+        if (val > config.TRASH.POWER_REQ.get()) {
             return Types.TRASH;
         }
 
