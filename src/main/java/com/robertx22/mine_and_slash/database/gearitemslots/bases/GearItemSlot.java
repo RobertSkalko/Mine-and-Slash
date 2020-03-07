@@ -23,6 +23,7 @@ import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -52,6 +53,8 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     public boolean isMeleeWeapon() {
         return false;
     }
+
+    public abstract EquipmentSlotType getVanillaSlotType();
 
     public enum GearSlotType {
         Weapon,

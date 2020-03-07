@@ -2,8 +2,9 @@ package com.robertx22.mine_and_slash.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
@@ -29,6 +30,11 @@ public class EmptyGearType extends GearItemSlot {
 
     @Override
     public Item getBaseUniqueItem() {
+        return null;
+    }
+
+    @Override
+    public EquipmentSlotType getVanillaSlotType() {
         return null;
     }
 

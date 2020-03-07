@@ -7,6 +7,10 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 
 public abstract class BaseHelmet extends BaseArmor {
+    @Override
+    public EquipmentSlotType getVanillaSlotType() {
+        return EquipmentSlotType.HEAD;
+    }
 
     @Override
     public String resourceID() {

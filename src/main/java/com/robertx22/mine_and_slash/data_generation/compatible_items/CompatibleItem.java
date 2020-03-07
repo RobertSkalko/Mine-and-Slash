@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.data_generation.compatible_items;
 
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.config.compatible_items.WeightedType;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
@@ -14,6 +15,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -47,6 +49,20 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
     public int if_unique_random_up_to_tier = 10;
     public String unique_id = "";
+
+    public static CompatibleItem getDefaultAuto(Item item, GearItemSlot slot) {
+
+        CompatibleItem comp = new CompatibleItem();
+        comp.item_type = slot.GUID();
+        comp.item_id = item.getRegistryName()
+            .toString();
+        comp.guid = slot.GUID() + ":" + comp.item_id;
+        comp.level_variance = 3;
+        comp.add_to_loot_drops = false;
+
+        return comp;
+
+    }
 
     @Override
     public JsonObject toJson() {

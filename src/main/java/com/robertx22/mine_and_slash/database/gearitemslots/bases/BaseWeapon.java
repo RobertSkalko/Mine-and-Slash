@@ -9,11 +9,16 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.Lifesteal
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import net.minecraft.inventory.EquipmentSlotType;
 
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class BaseWeapon extends GearItemSlot implements IWeapon {
+    @Override
+    public EquipmentSlotType getVanillaSlotType() {
+        return EquipmentSlotType.MAINHAND;
+    }
 
     @Override
     public List<PosStats> getPossiblePrimaryStats() {

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.config.forge;
 
+import com.robertx22.mine_and_slash.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.DropRatesContainer;
 import com.robertx22.mine_and_slash.config.forge.parts.RarityDropratesConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.StatScaleContainer;
@@ -12,6 +13,7 @@ public class ModConfig {
     public ServerContainer Server;
     public DropRatesContainer DropRates;
     public StatScaleContainer StatScaling;
+    public AutoCompatibleItemConfig autoCompatibleItems;
 
     public static final String NAME = "SERVER";
     public static final ForgeConfigSpec spec;
@@ -26,15 +28,22 @@ public class ModConfig {
 
     ModConfig(ForgeConfigSpec.Builder builder) {
 
-        builder.comment("Mine and Slash Config").push(NAME);
+        builder.comment("Mine and Slash Config")
+            .push(NAME);
 
-        RarityWeightConfig = builder.configure(RarityDropratesConfig::new).getLeft();
-        Server = builder.configure(ServerContainer::new).getLeft();
-        DropRates = builder.configure(DropRatesContainer::new).getLeft();
-        StatScaling = builder.configure(StatScaleContainer::new).getLeft();
+        RarityWeightConfig = builder.configure(RarityDropratesConfig::new)
+            .getLeft();
+        Server = builder.configure(ServerContainer::new)
+            .getLeft();
+        DropRates = builder.configure(DropRatesContainer::new)
+            .getLeft();
+        StatScaling = builder.configure(StatScaleContainer::new)
+            .getLeft();
+        autoCompatibleItems = builder.configure(AutoCompatibleItemConfig::new)
+            .getLeft();
 
         builder.pop();
-        //builder.build();
+
     }
 
 }

@@ -22,6 +22,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
+import com.robertx22.mine_and_slash.new_content.auto_comp.DeterminePowerLevels;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
 import com.robertx22.mine_and_slash.onevent.world.OnShutdownResetMaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
@@ -193,6 +194,8 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerStarted(FMLServerStartedEvent event) {
+
+        DeterminePowerLevels.setupHashMaps();
 
         CommandRegister.Register(event.getServer());
 
