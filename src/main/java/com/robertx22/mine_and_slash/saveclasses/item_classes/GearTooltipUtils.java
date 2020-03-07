@@ -223,6 +223,10 @@ public class GearTooltipUtils {
 
         }
 
+        if (Screen.hasShiftDown()) {
+//
+        }
+
         List<ITextComponent> tool = TooltipUtils.removeDoubleBlankLines(tip,
             ClientContainer.INSTANCE.REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES
                 .get()

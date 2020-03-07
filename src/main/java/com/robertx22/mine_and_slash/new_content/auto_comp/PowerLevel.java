@@ -15,9 +15,6 @@ import java.util.stream.Collectors;
 
 public class PowerLevel {
 
-    public static float MAX_SINGLE_STAT_VALUE = 50;
-    public static float MAX_TOTAL_STATS = 200;
-
     public PowerLevel(Item item, GearItemSlot slot) {
 
         this.item = item;
@@ -25,6 +22,9 @@ public class PowerLevel {
         Multimap<String, AttributeModifier> stats = item.getAttributeModifiers(slot.getVanillaSlotType());
 
         this.statAmount = stats.size();
+
+        int MAX_SINGLE_STAT_VALUE = ModConfig.INSTANCE.autoCompatibleItems.MAX_SINGLE_STAT_VALUE.get();
+        int MAX_TOTAL_STATS = ModConfig.INSTANCE.autoCompatibleItems.MAX_TOTAL_STATS.get();
 
         this.totalStatNumbers = stats.values()
             .stream()
@@ -59,6 +59,12 @@ public class PowerLevel {
     }
 
     public enum Types {
+        HORRIBLE() {
+            @Override
+            public AutoConfigItemType getConfig() {
+                return ModConfig.INSTANCE.autoCompatibleItems.HORRIBLE;
+            }
+        },
         TRASH() {
             @Override
             public AutoConfigItemType getConfig() {
@@ -73,11 +79,6 @@ public class PowerLevel {
             @Override
             public AutoConfigItemType getConfig() {
                 return ModConfig.INSTANCE.autoCompatibleItems.BEST;
-            }
-        }, NONE() {
-            @Override
-            public AutoConfigItemType getConfig() {
-                return null;
             }
         };
 
@@ -105,7 +106,7 @@ public class PowerLevel {
             return Types.TRASH;
         }
 
-        return Types.NONE;
+        return Types.HORRIBLE;
     }
 
     public boolean isStrongerThan(PowerLevel other) {
