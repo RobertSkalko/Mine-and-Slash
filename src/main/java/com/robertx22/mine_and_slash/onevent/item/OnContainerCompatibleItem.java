@@ -53,7 +53,7 @@ public class OnContainerCompatibleItem {
                         config = matchingItems.random();
                     } else {
 
-                        if (true) {
+                        if (ModConfig.INSTANCE.autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS.get()) {
 
                             final ItemStack finalStack = stack;
 
@@ -68,8 +68,9 @@ public class OnContainerCompatibleItem {
 
                                 PowerLevel.Types type = PowerLevel.getPowerClassification(item);
 
-                                config = type.getAutoCompatibleItem(item, slot);
-
+                                if (type != PowerLevel.Types.NONE) {
+                                    config = type.getAutoCompatibleItem(item, slot);
+                                }
                             }
                         }
                     }

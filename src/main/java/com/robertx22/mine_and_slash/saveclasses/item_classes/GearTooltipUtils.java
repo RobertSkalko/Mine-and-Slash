@@ -123,9 +123,11 @@ public class GearTooltipUtils {
             tip.add(TooltipUtils.rarity(rarity));
         }
 
-        if (!gear.isSalvagable) {
-            tip.add(Styles.REDCOMP()
-                .appendSibling(Words.Unsalvagable.locName()));
+        if (Screen.hasShiftDown()) {
+            if (!gear.isSalvagable) {
+                tip.add(Styles.REDCOMP()
+                    .appendSibling(Words.Unsalvagable.locName()));
+            }
         }
 
         if (Screen.hasShiftDown()) {

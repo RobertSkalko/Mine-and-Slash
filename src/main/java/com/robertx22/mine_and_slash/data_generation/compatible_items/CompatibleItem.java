@@ -45,7 +45,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
     public int level_variance = 0;
     public int min_level = 1;
-    public int max_level = 100;
+    public int max_level = Integer.MAX_VALUE;
 
     public int if_unique_random_up_to_tier = 10;
     public String unique_id = "";

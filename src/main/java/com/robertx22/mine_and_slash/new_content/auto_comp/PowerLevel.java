@@ -64,6 +64,7 @@ public class PowerLevel {
 
                 CompatibleItem comp = CompatibleItem.getDefaultAuto(item, slot);
                 comp.max_rarity = IRarity.Rare;
+                comp.max_level = 40;
                 return comp;
 
             }
@@ -73,6 +74,7 @@ public class PowerLevel {
 
                 CompatibleItem comp = CompatibleItem.getDefaultAuto(item, slot);
                 comp.max_rarity = IRarity.Legendary;
+                comp.max_level = 80;
                 return comp;
 
             }
@@ -83,6 +85,9 @@ public class PowerLevel {
                 CompatibleItem comp = CompatibleItem.getDefaultAuto(item, slot);
                 comp.max_rarity = IRarity.Mythic;
                 comp.min_rarity = IRarity.Uncommon;
+
+                comp.max_level = Integer.MAX_VALUE;
+
                 return comp;
 
             }

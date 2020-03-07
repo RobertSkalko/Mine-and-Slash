@@ -1,4 +1,24 @@
-3.1.17
+3.2.0
+* Added a config to enable automatic compatible item system. This is very experimental and i have no idea how accurate it is, but here's how it works.
+I determine a power level of the item and then separate it into one of the categories: trash, normal and best.
+Trash are low level gear that can't go above rare.
+Normal can go up to nearly max level and can be legendary.
+Best can go up to max level and be mythic.
+
+Most items should fall in the normal category.
+This setting is recommended for those who care less about balance, and are more irked about other mod's items not getting my mod's stats.
+Even though i tried to balance it as good as i can, it will probably not work ALL the time.
+
+In that case, you can always setup compatible item datapacks for those edge cases,
+because this automatic system will only activate for the item if there isn't a datapack already for it.
+
+Power level is determined by how much stats the item has compared to the best item of that category(sword, helmet etc). 
+This has some caps to make sure a creative OP weapons with 999999 damage don't screw the median.
+
+So if your sword has say 20 stats while best sword has 100. The power will be 0.2 and fall in "trash" category. 
+If it had 30 or more, it would get the "normal" category.
+If it had 80 or more , it would get the "best" category.
+
 * added magic steal stat
 3.1.16
 * nerfed mana battery
