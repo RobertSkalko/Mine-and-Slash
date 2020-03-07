@@ -1,3 +1,5 @@
+3.2.1
+* removed the hacky thing to stop craft grid repair cus it caused server issues
 3.2.0
 * Added a config to enable automatic compatible item system. This is very experimental and i have no idea how accurate it is, but here's how it works.
 I determine a power level of the item and then separate it into one of the categories: trash, normal and best.

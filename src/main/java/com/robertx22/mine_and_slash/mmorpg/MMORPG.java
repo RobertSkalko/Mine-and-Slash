@@ -34,8 +34,6 @@ import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.SpecialRecipeSerializer;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -54,7 +52,6 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.logging.Logger;
 
@@ -134,7 +131,7 @@ public class MMORPG {
 
         ScrabbleTile.loadWordList();
 
-        ForgeRegistries.RECIPE_SERIALIZERS.register(new SpecialRecipeSerializer<>(RepairItemRecipeOverride::new).setRegistryName(IRecipeSerializer.CRAFTING_SPECIAL_REPAIRITEM.getRegistryName()));
+        //ForgeRegistries.RECIPE_SERIALIZERS.register(new SpecialRecipeSerializer<>(RepairItemRecipeOverride::new).setRegistryName(IRecipeSerializer.CRAFTING_SPECIAL_REPAIRITEM.getRegistryName()));
 
     }
 

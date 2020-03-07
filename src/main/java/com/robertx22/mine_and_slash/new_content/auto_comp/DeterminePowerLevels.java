@@ -50,7 +50,5 @@ public class DeterminePowerLevels {
             }
         });
 
-        System.out.println(MAP.toString());
-
     }
 }
