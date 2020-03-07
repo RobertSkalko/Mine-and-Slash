@@ -118,6 +118,7 @@ public class StatMods implements ISlashRegistryInit {
                     add(new ManaRegenPercent());
                     add(new EnergyFlat());
                     add(new MagicShieldFlat());
+                    add(new MagicStealFlat());
                     add(new MagicShieldRegenFlat());
                     add(new MagicShieldPercent());
                     add(new MagicShieldRegenPercent());

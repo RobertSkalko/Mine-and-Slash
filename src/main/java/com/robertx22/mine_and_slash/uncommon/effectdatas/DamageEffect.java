@@ -95,6 +95,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public float damageMultiplier = 1;
 
     public float healthHealed;
+    public float magicShieldRestored;
     public float manaRestored;
     public boolean isFullyBlocked = false;
     public boolean isPartiallyBlocked = false;
@@ -221,6 +222,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             Heal();
             RestoreMana();
+            restoreMagicShield();
 
             if (dmg > 0) {
 
@@ -285,6 +287,16 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         if (healed > 0) {
             sourceData.getResources()
                 .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.HEALTH, healed,
+                    ResourcesData.Use.RESTORE
+                ));
+        }
+    }
+
+    public void restoreMagicShield() {
+        int healed = (int) magicShieldRestored;
+        if (healed > 0) {
+            sourceData.getResources()
+                .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MAGIC_SHIELD, healed,
                     ResourcesData.Use.RESTORE
                 ));
         }

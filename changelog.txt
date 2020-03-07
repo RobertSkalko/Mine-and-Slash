@@ -1,3 +1,5 @@
+3.1.17
+* added magic steal stat
 3.1.16
 * nerfed mana battery
 * reduced ore spawns

@@ -119,6 +119,7 @@
 	"mmorpg.affix.inner_spirit": "Inner Spirit",
 	"mmorpg.affix.life_stealing": "Life Stealing",
 	"mmorpg.affix.looters": "Looter's",
+	"mmorpg.affix.magic_siphon": "Magic Siphon",
 	"mmorpg.affix.magical": "Magical",
 	"mmorpg.affix.nature_heretic": "Venom Heretic",
 	"mmorpg.affix.nature_imbued": "Venom Imbued",
@@ -142,6 +143,7 @@
 	"mmorpg.affix.of_hidden_sense": "Of Hidden Sense",
 	"mmorpg.affix.of_immortality": "Of Immortality",
 	"mmorpg.affix.of_magic_shield": "Of Magic Shield",
+	"mmorpg.affix.of_magic_stealing": "Of Magic Stealing",
 	"mmorpg.affix.of_major_affinity_fire": "Of Major Fire Affinity",
 	"mmorpg.affix.of_major_affinity_nature": "Of Major Nature Affinity",
 	"mmorpg.affix.of_major_affinity_thunder": "Of Major Thunder Affinity",
@@ -277,26 +279,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 	"item.mmorpg.lootbox.big_currency_lootbox_3": "§9Epic Big Currency Treasure Box",
@@ -319,6 +301,26 @@
 	"item.mmorpg.lootbox.small_gear_lootbox_5": "§dMythical Small Gear Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -815,6 +817,7 @@
 	"mmorpg.stat.lucky": "Lucky",
 	"mmorpg.stat.magic_shield": "Magic Shield",
 	"mmorpg.stat.magic_shield_regen": "Magic Shield Regen",
+	"mmorpg.stat.magic_steal": "Magic Steal",
 	"mmorpg.stat.magical_life_trait": "Magical Life",
 	"mmorpg.stat.mana": "Mana",
 	"mmorpg.stat.mana_battery_trait": "Mana Battery",
@@ -1491,6 +1494,7 @@
 	"mmorpg.stat_desc.low_dodge_add_crit_hit": "If Dodge Rating is Less than 5 Percent",
 	"mmorpg.stat_desc.magic_shield": "Works like extra health. But regen is separate.",
 	"mmorpg.stat_desc.magic_shield_regen": "Regen happens every few seconds but is also used for other stats or spells",
+	"mmorpg.stat_desc.magic_steal": "Percent of basic attack DMG will restore magic shield.",
 	"mmorpg.stat_desc.magical_life_trait": "Transforms your magic shield into health.",
 	"mmorpg.stat_desc.mana": "Mana is used to cast spells",
 	"mmorpg.stat_desc.mana_battery_trait": "While mana is above 50 percent absorb 25 percent of damage by spending double that in mana. Dodge rating halved.",

@@ -5,10 +5,7 @@ import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.defense.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.offense.*;
-import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.OfManaRegen;
-import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.OfTheDepths;
-import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.OfTheSage;
-import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.OfVampirism;
+import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfGodhood;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfTheHydra;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfWeaponFlurry;
@@ -66,6 +63,7 @@ public class Suffixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
                     add(new OfVitality());
                     add(new OfManaRegen());
                     add(new OfTheSage());
+                    add(new OfMagicStealing());
 
                 }
             }

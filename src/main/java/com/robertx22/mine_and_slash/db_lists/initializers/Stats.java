@@ -157,6 +157,7 @@ public class Stats implements ISlashRegistryInit {
                     add(HealthRegen.getInstance());
                     add(Lifesteal.getInstance());
                     add(LifeOnHit.getInstance());
+                    add(MagicSteal.getInstance());
                     add(Mana.getInstance());
                     add(ManaRegen.getInstance());
                     add(ManaOnHit.getInstance());

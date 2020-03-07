@@ -43,6 +43,7 @@ public class Prefixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
 
                     add(new Wise());
                     add(new Tenacious());
+                    add(new MagicSiphon());
 
                     add(new Gatekeepers());
 
