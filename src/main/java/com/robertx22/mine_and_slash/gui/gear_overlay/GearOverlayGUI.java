@@ -35,11 +35,11 @@ public class GearOverlayGUI extends AbstractGui {
         elements.add(new GearGuiElement(mc.player.getHeldItemOffhand(), data));
 
         CollectGearEvent.getEquipsExcludingWeapon(mc.player)
-                .forEach(x -> elements.add(new GearGuiElement(x, data)));
+            .forEach(x -> elements.add(new GearGuiElement(x, data)));
 
         elementsToRender = elements.stream()
-                .filter(x -> x.shouldRender())
-                .collect(Collectors.toList());
+            .filter(x -> x.shouldRender())
+            .collect(Collectors.toList());
 
     }
 
@@ -54,7 +54,7 @@ public class GearOverlayGUI extends AbstractGui {
 
             ticks++;
 
-            if (ticks > 25) {
+            if (ticks > 50) {
                 EntityCap.UnitData newData = Load.Unit(mc.player);
 
                 ticks = 0;

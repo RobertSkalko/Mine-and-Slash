@@ -22,19 +22,17 @@ public class GearGuiElement {
 
     ItemStack stack;
     GearItemData gear;
-    EntityCap.UnitData data;
 
     RenderReason reason = RenderReason.NONE;
 
     public GearGuiElement(ItemStack stack, EntityCap.UnitData data) {
         this.stack = stack;
         gear = Gear.Load(stack);
-        this.data = data;
 
-        setReason();
+        setReason(data);
     }
 
-    private void setReason() {
+    private void setReason(EntityCap.UnitData data) {
         if (gear != null && gear.meetsRequirements(data) == false) {
             this.reason = RenderReason.UNMET_REQ;
         } else {
@@ -51,10 +49,12 @@ public class GearGuiElement {
 
     public void render(int x, int y) {
 
-        mc.getItemRenderer().renderItemAndEffectIntoGUI(stack, x, y);
+        mc.getItemRenderer()
+            .renderItemAndEffectIntoGUI(stack, x, y);
 
         if (reason == RenderReason.UNMET_REQ) {
-            mc.getItemRenderer().renderItemAndEffectIntoGUI(barrier, x, y);
+            mc.getItemRenderer()
+                .renderItemAndEffectIntoGUI(barrier, x, y);
         }
     }
 
