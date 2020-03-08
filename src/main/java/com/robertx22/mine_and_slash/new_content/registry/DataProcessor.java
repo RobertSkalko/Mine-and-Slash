@@ -52,6 +52,7 @@ public abstract class DataProcessor {
             mobList.add(new WeightedWrapper(EntityType.ILLUSIONER, 30));
             mobList.add(new WeightedWrapper(EntityType.HUSK, 500));
             mobList.add(new WeightedWrapper(EntityType.RAVAGER, 10));
+            mobList.add(new WeightedWrapper(EntityType.STRAY, 300));
 
         }
 

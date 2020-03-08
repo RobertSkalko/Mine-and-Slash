@@ -1,3 +1,7 @@
+3.2.2
+* code tweaks, attempting to fix memory error that i'm not even sure is a problem
+* torch should now auto equip with shift click like shields
+* added strays to dungeon mobs
 3.2.1
 * removed the hacky thing to stop craft grid repair cus it caused server issues
 3.2.0

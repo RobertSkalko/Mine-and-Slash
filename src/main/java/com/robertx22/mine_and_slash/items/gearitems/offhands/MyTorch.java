@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
@@ -32,6 +33,11 @@ public class MyTorch extends Item implements IAutoLocName, IGearItem {
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
         return rar.textFormatColor() + "Torch";
+    }
+
+    @Override
+    public EquipmentSlotType getEquipmentSlot(ItemStack stack) {
+        return EquipmentSlotType.OFFHAND;
     }
 
     @Override
