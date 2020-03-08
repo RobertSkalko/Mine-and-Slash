@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.packets.BossPacket;
 import com.robertx22.mine_and_slash.packets.EfficientMobUnitPacket;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -27,17 +28,22 @@ public class OnTrackEntity {
 
                     if (entity instanceof PlayerEntity) {
                         MMORPG.sendToClient(
-                                new EntityUnitPacket(entity, Load.Unit(entity)),
-                                (ServerPlayerEntity) event.getPlayer()
+                            new EntityUnitPacket(entity, Load.Unit(entity)),
+                            (ServerPlayerEntity) event.getPlayer()
                         );
                     } else {
 
                         MMORPG.sendToClient(
-                                new EfficientMobUnitPacket(entity, Load.Unit(entity)),
-                                (ServerPlayerEntity) event.getPlayer()
+                            new EfficientMobUnitPacket(entity, Load.Unit(entity)),
+                            (ServerPlayerEntity) event.getPlayer()
                         );
 
-                        MMORPG.sendToClient(new BossPacket(entity), (ServerPlayerEntity) event.getPlayer());
+                        entity.getCapability(BossCap.Data)
+                            .ifPresent(x -> {
+                                if (x.isBoss()) {
+                                    MMORPG.sendToClient(new BossPacket(entity), (ServerPlayerEntity) event.getPlayer());
+                                }
+                            });
 
                     }
 

@@ -2,6 +2,8 @@
 * code tweaks, attempting to fix memory error that i'm not even sure is a problem
 * torch should now auto equip with shift click like shields
 * added strays to dungeon mobs
+* some dungeon mobs now spawn with potion effects.
+* rarity by default wont be shown on gears, this should reduce tooltip size a bunch
 3.2.1
 * removed the hacky thing to stop craft grid repair cus it caused server issues
 3.2.0

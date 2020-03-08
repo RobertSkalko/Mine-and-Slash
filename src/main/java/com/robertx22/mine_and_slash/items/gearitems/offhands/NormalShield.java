@@ -64,7 +64,6 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
     @Override
     public boolean isShield(ItemStack stack, @Nullable LivingEntity entity) {
         return true;
-
     }
 
     @Override
