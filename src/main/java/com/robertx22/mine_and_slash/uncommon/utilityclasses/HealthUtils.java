@@ -7,6 +7,20 @@ import net.minecraft.entity.LivingEntity;
 
 public class HealthUtils {
 
+    public static float setCurrentHealth(LivingEntity entity,
+                                         UnitData data) {
+
+        float maxhp = data.getUnit()
+            .getMaxEffectiveHealth();
+        float maxMChp = entity.getMaxHealth();
+
+        float current = data.getUnit()
+            .getCurrentEffectiveHealth(entity, data);
+
+        return (float) (maxMChp / maxhp * current);
+
+    }
+
     public static float DamageToMinecraftHealth(float dmg, LivingEntity entity,
                                                 UnitData data) {
 

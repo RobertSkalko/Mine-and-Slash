@@ -128,7 +128,9 @@ public class ResourcesData {
     }
 
     public float getHealth(UnitData data, LivingEntity entity) {
-        return data.getUnit().health().CurrentValue(entity, data.getUnit());
+        return data.getUnit()
+            .health()
+            .CurrentValue(entity, data.getUnit());
     }
 
     public float getModifiedValue(Context ctx) {
@@ -150,7 +152,9 @@ public class ResourcesData {
         } else if (ctx.type == Type.BLOOD) {
             return blood;
         } else if (ctx.type == Type.HEALTH) {
-            return ctx.targetData.getUnit().health().CurrentValue(ctx.target, ctx.targetData.getUnit());
+            return ctx.targetData.getUnit()
+                .health()
+                .CurrentValue(ctx.target, ctx.targetData.getUnit());
         }
         return 0;
 
@@ -159,19 +163,25 @@ public class ResourcesData {
     private void modifyBy(Context ctx) {
 
         if (ctx.type == Type.ENERGY) {
-            energy = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit().energyData().val);
+            energy = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
+                .energyData().val);
         } else if (ctx.type == Type.MANA) {
-            mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit().manaData().val);
+            mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
+                .manaData().val);
         } else if (ctx.type == Type.MAGIC_SHIELD) {
-            magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit().magicShieldData().val);
+            magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
+                .magicShieldData().val);
+
         } else if (ctx.type == Type.BLOOD) {
-            blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit().getMaximumBlood());
+            blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
+                .getMaximumBlood());
         } else if (ctx.type == Type.HEALTH) {
             if (ctx.use == Use.RESTORE) {
                 heal(ctx);
             } else {
                 ctx.target.setHealth(
-                        HealthUtils.DamageToMinecraftHealth(getModifiedValue(ctx), ctx.target, ctx.targetData));
+                    HealthUtils.DamageToMinecraftHealth(getModifiedValue(ctx), ctx.target, ctx.targetData));
+
             }
         }
     }

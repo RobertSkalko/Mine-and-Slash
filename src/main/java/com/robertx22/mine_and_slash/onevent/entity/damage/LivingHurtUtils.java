@@ -242,10 +242,10 @@ public class LivingHurtUtils {
             .getTrueSource() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) event.getSource()
                 .getTrueSource();
-            data.onDamagedBy(attacker, event.getAmount());
+            data.onDamagedBy(attacker, event.getAmount(), defender);
 
         } else {
-            data.onDamagedBy(null, event.getAmount());
+            data.onDamagedBy(null, event.getAmount(), defender);
         }
 
     }

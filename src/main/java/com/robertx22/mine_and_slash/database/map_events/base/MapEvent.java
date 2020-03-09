@@ -16,8 +16,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.monster.SlimeEntity;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -106,13 +104,6 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
 
         if (RandomUtils.roll(25)) {
             elite.addPotionEffect(new EffectInstance(MobPotionEffects.getRandom(), Integer.MAX_VALUE, RandomUtils.RandomRange(1, 3)));
-        }
-
-        if (elite instanceof SlimeEntity) {
-            SlimeEntity slime = (SlimeEntity) elite;
-            CompoundNBT nbt = slime.serializeNBT();
-            nbt.putInt("Size", 10);
-            slime.deserializeNBT(nbt);
         }
 
         world.addEntity(elite);

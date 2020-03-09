@@ -1,3 +1,6 @@
+3.2.3
+* magic shield now gets hurt by enviromental damage too. (this includes poison). Magic shield was a big issue because it was basically a way to negate TOO MANY mechanics. 
+Enviromental damage, poison.. All things that are usually what causes deaths. I'll monitor the balance and maybe decrease how much damage is taken if it ends up being too weak because of the nerf.
 3.2.2
 * code tweaks, attempting to fix memory error that i'm not even sure is a problem
 * torch should now auto equip with shift click like shields
@@ -5,7 +8,7 @@
 * some dungeon mobs now spawn with potion effects.
 * rarity by default wont be shown on gears, this should reduce tooltip size a bunch
 * added dev command to get out of dungeon
-* should fix mobs getting stuck in walls in dungeons
+* should fix mobs getting stuck in walls in dungeons, big mobs like spiders can still get stuck though
 * added new dungeon rooms
 3.2.1
 * removed the hacky thing to stop craft grid repair cus it caused server issues
