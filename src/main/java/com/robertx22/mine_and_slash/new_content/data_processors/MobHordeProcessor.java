@@ -14,7 +14,7 @@ public class MobHordeProcessor extends DataProcessor {
     }
 
     @Override
-    public void processImplementation(BlockPos pos, IWorld world, ChunkProcessData data) {
+    public void processImplementation(String key, BlockPos pos, IWorld world, ChunkProcessData data) {
 
         EntityType<? extends MobEntity> type = randomMob();
         MapEvent.summonMinions(type, 5, world, pos);

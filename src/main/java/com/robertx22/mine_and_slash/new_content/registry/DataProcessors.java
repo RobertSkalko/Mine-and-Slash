@@ -18,6 +18,7 @@ public class DataProcessors {
         list.add(new EliteMobHorde());
         list.add(new PuzzleProcessor());
         list.add(new ChanceChestProcessor());
+        list.add(new RemoveAllBesidesOneProcessor());
 
         return list;
 

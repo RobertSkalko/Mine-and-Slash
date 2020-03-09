@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.block.AbstractButtonBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -17,14 +18,14 @@ import java.util.function.Function;
 public class RemoveAllBesidesOneProcessor extends DataProcessor {
 
     public RemoveAllBesidesOneProcessor() {
-        super("remove_all_besides_one:", Type.CONTAINS);
+        super("remove_all_besides_one", Type.CONTAINS);
     }
 
     @Override
-    public void processImplementation(BlockPos pos, IWorld world, ChunkProcessData data) {
+    public void processImplementation(String key, BlockPos pos, IWorld world, ChunkProcessData data) {
 
         try {
-            String[] parts = this.data.split(":");
+            String[] parts = key.split(":");
             String blockID = parts[1];
 
             Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockID));
@@ -35,8 +36,10 @@ public class RemoveAllBesidesOneProcessor extends DataProcessor {
 
             if (blockID.equals("button")) {
                 function = x -> {
-                    if (data.chunk.getBlockState(x)
-                        .getBlock()
+
+                    BlockState state = world.getBlockState(x);
+
+                    if (state.getBlock()
                         instanceof AbstractButtonBlock) {
                         return true;
 
@@ -50,11 +53,15 @@ public class RemoveAllBesidesOneProcessor extends DataProcessor {
                     list.add(blockPos);
                 }
             }
+            if (!list.isEmpty()) {
 
-            list.remove(RandomUtils.RandomRange(0, list.size() - 1));
+                list.remove(RandomUtils.RandomRange(0, list.size() - 1));
 
-            list.forEach(x -> data.chunk.setBlockState(x, Blocks.AIR.getDefaultState(), false));
+                list.forEach(x -> world.setBlockState(x, Blocks.AIR.getDefaultState(), 2));
 
+            } else {
+                System.out.println("Didn't find any correct blocks?");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

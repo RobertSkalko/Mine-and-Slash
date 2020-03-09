@@ -23,7 +23,7 @@ public class Dungeon {
 
     public Dungeon(int size) {
         this.size = size;
-        this.capacity = size / 2;
+        this.capacity = 20;
 
         rooms = new BuiltRoom[capacity][capacity];
 

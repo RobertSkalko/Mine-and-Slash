@@ -31,12 +31,12 @@ public abstract class DataProcessor {
 
     public String data;
 
-    public final boolean process(String data, BlockPos pos, IWorld world, ChunkProcessData chunkData) {
-        if (type == Type.EQUALS && this.data.equals(data)) {
-            processImplementation(pos, world, chunkData);
+    public final boolean process(String key, BlockPos pos, IWorld world, ChunkProcessData chunkData) {
+        if (type == Type.EQUALS && this.data.equals(key)) {
+            processImplementation(key, pos, world, chunkData);
             return true;
-        } else if (type == Type.CONTAINS && this.data.contains(data)) {
-            processImplementation(pos, world, chunkData);
+        } else if (type == Type.CONTAINS && key.contains(this.data)) {
+            processImplementation(key, pos, world, chunkData);
             return true;
         }
 
@@ -77,6 +77,6 @@ public abstract class DataProcessor {
 
     }
 
-    public abstract void processImplementation(BlockPos pos, IWorld world, ChunkProcessData data);
+    public abstract void processImplementation(String key, BlockPos pos, IWorld world, ChunkProcessData data);
 
 }

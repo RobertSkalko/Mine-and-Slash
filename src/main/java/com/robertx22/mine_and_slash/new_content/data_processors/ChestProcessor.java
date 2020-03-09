@@ -19,7 +19,7 @@ public class ChestProcessor extends DataProcessor {
     }
 
     @Override
-    public void processImplementation(BlockPos pos, IWorld world, ChunkProcessData data) {
+    public void processImplementation(String key, BlockPos pos, IWorld world, ChunkProcessData data) {
 
         world.setBlockState(pos, ModBlocks.MAP_CHEST.get()
             .getDefaultState(), 2);
@@ -37,7 +37,7 @@ public class ChestProcessor extends DataProcessor {
 
             int times = 1;
 
-            if (this.data.contains("big")) {
+            if (key.contains("big")) {
                 times = 3;
             }
 

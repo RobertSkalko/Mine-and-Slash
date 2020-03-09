@@ -22,7 +22,10 @@ public class ChunkProcessData {
         for (int x = 0; x < 16; x++) {
             for (int y = 0; y < 100; y++) {
                 for (int z = 0; z < 16; z++) {
-                    function.apply(new BlockPos(x, z, y));
+                    function.apply(chunk.getPos()
+                        .asBlockPos()
+                        .add(
+                            x, y, z));
                 }
             }
         }
@@ -36,7 +39,10 @@ public class ChunkProcessData {
         for (int x = 0; x < 16; x++) {
             for (int y = 0; y < 100; y++) {
                 for (int z = 0; z < 16; z++) {
-                    list.add(new BlockPos(x, z, y));
+                    list.add(chunk.getPos()
+                        .asBlockPos()
+                        .add(
+                            x, y, z));
                 }
             }
         }
