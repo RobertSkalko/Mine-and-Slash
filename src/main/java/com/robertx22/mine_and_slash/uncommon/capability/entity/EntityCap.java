@@ -106,7 +106,7 @@ public class EntityCap {
 
         void setEquipsChanged(boolean bool);
 
-        void onDamagedBy(LivingEntity entity, float dmg);
+        void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self);
 
         Entity getHighestDamageEntity(Entity entity);
 
@@ -464,9 +464,21 @@ public class EntityCap {
         }
 
         @Override
-        public void onDamagedBy(LivingEntity entity, float dmg) {
+        public void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self) {
 
             this.dmgStats.onDamage(entity, dmg);
+
+            if (entity == null) {
+                float msDamage = this.getUnit()
+                    .magicShieldData().val * (dmg / self.getMaxHealth());
+                ResourcesData.Context ms = new ResourcesData.Context(this, self,
+                    ResourcesData.Type.MAGIC_SHIELD,
+                    msDamage,
+                    ResourcesData.Use.SPEND
+                );
+                getResources()
+                    .modify(ms);
+            }
 
         }
 
