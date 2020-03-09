@@ -61,7 +61,7 @@ public class ProcessChunkBlocks {
 
                             if (!c.isDoneProcessing()) {
 
-                                ChunkProcessData data = new ChunkProcessData();
+                                ChunkProcessData data = new ChunkProcessData(chunk);
 
                                 DungeonData dungeonData = mapdata.getData()
                                     .getData(cpos);

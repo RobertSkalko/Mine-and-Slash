@@ -14,6 +14,8 @@ public class RoomList {
 
         if (rooms.isEmpty()) {
 
+            rooms.add(new DungeonRoom("hidden_button2", RoomType.TRIPLE_HALLWAY, RoomGroup.STONE_BRICK).weight(50000));
+
             rooms.add(new DungeonRoom("slime_puzzle", RoomType.CURVED_HALLWAY, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("hidden_lever0", RoomType.END, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("simple1", RoomType.FOUR_WAY, RoomGroup.STONE_BRICK));

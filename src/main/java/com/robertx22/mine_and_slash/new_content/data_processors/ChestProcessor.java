@@ -15,7 +15,7 @@ import net.minecraft.world.IWorld;
 public class ChestProcessor extends DataProcessor {
 
     public ChestProcessor() {
-        super("chest");
+        super("chest", Type.CONTAINS);
     }
 
     @Override
@@ -34,8 +34,17 @@ public class ChestProcessor extends DataProcessor {
 
             LootCrate crate = SlashRegistry.LootCrates()
                 .random();
-            crate.generateItems(new LootInfo(world.getWorld(), pos))
-                .forEach(x -> items.add(x));
+
+            int times = 1;
+
+            if (this.data.contains("big")) {
+                times = 3;
+            }
+
+            for (int i = 0; i < times; i++) {
+                crate.generateItems(new LootInfo(world.getWorld(), pos))
+                    .forEach(x -> items.add(x));
+            }
 
             chest.addItems(items);
 

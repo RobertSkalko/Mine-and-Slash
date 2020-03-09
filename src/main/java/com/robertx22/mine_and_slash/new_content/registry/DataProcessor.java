@@ -14,15 +14,32 @@ public abstract class DataProcessor {
 
     public DataProcessor(String data) {
         this.data = data;
+        this.type = Type.EQUALS;
     }
 
-    String data;
+    public DataProcessor(String data, Type type) {
+        this.data = data;
+        this.type = type;
+    }
+
+    public enum Type {
+        EQUALS, CONTAINS
+
+    }
+
+    Type type;
+
+    public String data;
 
     public final boolean process(String data, BlockPos pos, IWorld world, ChunkProcessData chunkData) {
-        if (this.data.equals(data)) {
+        if (type == Type.EQUALS && this.data.equals(data)) {
+            processImplementation(pos, world, chunkData);
+            return true;
+        } else if (type == Type.CONTAINS && this.data.contains(data)) {
             processImplementation(pos, world, chunkData);
             return true;
         }
+
         return false;
     }
 
