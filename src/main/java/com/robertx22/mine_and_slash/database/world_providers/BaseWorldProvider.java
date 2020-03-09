@@ -203,7 +203,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
             if (block == Blocks.LEVER || block.isIn(BlockTags.BUTTONS) || block == Blocks.CAULDRON) {
                 return true;
             }
-            if (block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST || block == Blocks.BARREL) {
+            if (block == Blocks.CHEST || block == Blocks.TRAPPED_CHEST || block == Blocks.BARREL || block == Blocks.LECTERN) {
                 return true;
             }
             if (block instanceof FenceGateBlock) {

@@ -4,6 +4,9 @@
 * added strays to dungeon mobs
 * some dungeon mobs now spawn with potion effects.
 * rarity by default wont be shown on gears, this should reduce tooltip size a bunch
+* added dev command to get out of dungeon
+* should fix mobs getting stuck in walls in dungeons
+* added new dungeon rooms
 3.2.1
 * removed the hacky thing to stop craft grid repair cus it caused server issues
 3.2.0

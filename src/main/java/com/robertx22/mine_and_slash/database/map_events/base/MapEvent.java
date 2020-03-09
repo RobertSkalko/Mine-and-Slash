@@ -20,6 +20,7 @@ import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -54,12 +55,12 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
 
     public static <T extends MobEntity> T summonBoss(EntityType<T> type, IWorld world, BlockPos p,
                                                      com.robertx22.mine_and_slash.database.bosses.base.Boss boss) {
-
-        p = p.add(0.5F, 0.5F, 0.5F);
+        Vec3d vec = new Vec3d(p);
+        vec = vec.add(0.5F, 0, 0.5F);
 
         T bossEntity = (T) type.create(world.getWorld());
         bossEntity.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
-        bossEntity.setPosition(p.getX(), p.getY(), p.getZ());
+        bossEntity.setPosition(vec.getX(), vec.getY(), vec.getZ());
 
         OnMobSpawn.setupNewMobOnSpawn(bossEntity);
 
@@ -75,11 +76,12 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
     }
 
     public static <T extends MobEntity> T summonMinion(EntityType<T> type, IWorld world, BlockPos p) {
-        p = p.add(0.5F, 0.5F, 0.5F);
+        Vec3d vec = new Vec3d(p);
+        vec = vec.add(0.5F, 0, 0.5F);
 
         T minion = (T) type.create(world.getWorld());
         minion.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
-        minion.setPosition(p.getX(), p.getY(), p.getZ());
+        minion.setPosition(vec.getX(), vec.getY(), vec.getZ());
 
         OnMobSpawn.setupNewMobOnSpawn(minion);
 
@@ -89,11 +91,12 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
     }
 
     public static <T extends MobEntity> T summonElite(EntityType<T> type, IWorld world, BlockPos p) {
-        p = p.add(0.5F, 0.5F, 0.5F);
+        Vec3d vec = new Vec3d(p);
+        vec = vec.add(0.5F, 0, 0.5F);
 
         T elite = (T) type.create(world.getWorld());
         elite.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
-        elite.setPosition(p.getX(), p.getY(), p.getZ());
+        elite.setPosition(vec.getX(), vec.getY(), vec.getZ());
 
         OnMobSpawn.setupNewMobOnSpawn(elite);
 
