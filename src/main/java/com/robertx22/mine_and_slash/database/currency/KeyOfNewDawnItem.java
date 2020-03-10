@@ -1,30 +1,31 @@
 package com.robertx22.mine_and_slash.database.currency;
 
+import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
+import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.SetPart;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
-import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.SetData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class KeyOfNewDawnItem extends CurrencyItem implements ICurrencyItemEffect, IHasRecipe {
+public class KeyOfNewDawnItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
 
     @Override
     public String GUID() {
@@ -97,18 +98,16 @@ public class KeyOfNewDawnItem extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public BaseRecipe getRecipe() {
-        return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
-            .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 10)
-            .addMaterial(new CrystalOfAscensionItem().getFromForgeRegistry(), 3)
-            .addMaterial(new OrbOfSuffixBlessingItem().getFromForgeRegistry(), 3)
-            .addMaterial(new OrbOfPrefixBlessingItem().getFromForgeRegistry(), 3)
-            .addMaterial(Items.ENDER_EYE, 1)
-            .buildMaterials()
-            .setOutput(this)
-            .levelReq(75)
-            .expGained(50)
-            .build();
-
+    public ShapedRecipeBuilder getRecipe() {
+        return shaped(ModItems.KEY_OF_NEW_DAWN.get())
+            .key('#', SimpleMatItem.MYTHIC_ESSENCE)
+            .key('t', ModItems.CRYSTAL_OF_ASCENSION.get())
+            .key('v', Items.EMERALD)
+            .key('o', ItemOre.ItemOres.get(IRarity.Uncommon))
+            .patternLine("ooo")
+            .patternLine("#t#")
+            .patternLine("vvv")
+            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));
     }
+
 }

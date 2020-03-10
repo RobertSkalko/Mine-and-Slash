@@ -1,21 +1,29 @@
 package com.robertx22.mine_and_slash.database.currency;
 
+import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
+import com.robertx22.mine_and_slash.items.SimpleMatItem;
+import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class CrystalOfLegendItem extends CurrencyItem implements ICurrencyItemEffect, IRenamed {
+public class CrystalOfLegendItem extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IShapedRecipe {
 
     @Override
     public List<String> oldNames() {
@@ -75,4 +83,18 @@ public class CrystalOfLegendItem extends CurrencyItem implements ICurrencyItemEf
     public int instabilityAddAmount() {
         return 10;
     }
+
+    @Override
+    public ShapedRecipeBuilder getRecipe() {
+        return shaped(ModItems.CRYSTAL_OF_LEGEND.get())
+            .key('#', SimpleMatItem.INFUSED_IRON)
+            .key('t', ModItems.ORB_OF_TRANSMUTATION.get())
+            .key('b', Items.SUGAR_CANE)
+            .key('o', ItemOre.ItemOres.get(IRarity.Uncommon))
+            .patternLine("ooo")
+            .patternLine("#t#")
+            .patternLine(" b ")
+            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));
+    }
+
 }

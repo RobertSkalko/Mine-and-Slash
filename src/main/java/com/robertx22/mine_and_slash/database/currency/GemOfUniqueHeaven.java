@@ -1,29 +1,31 @@
 package com.robertx22.mine_and_slash.database.currency;
 
+import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
+import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
-import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class GemOfUniqueHeaven extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IAutoLocMultiLore,
-    IHasRecipe {
+    IShapedRecipe {
 
     private static final String GUID = Ref.MODID + ":currency/create_new_unique";
 
@@ -108,18 +110,16 @@ public class GemOfUniqueHeaven extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public BaseRecipe getRecipe() {
-        return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
-            .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 25)
-            .addMaterial(new StoneOfHopeItem().getFromForgeRegistry(), 3)
-            .addMaterial(new OrbOfPrefixBlessingItem().getFromForgeRegistry(), 2)
-            .addMaterial(new OrbOfSuffixBlessingItem().getFromForgeRegistry(), 2)
-            .buildMaterials()
-            .setOutput(this)
-            .levelReq(25)
-            .expGained(50)
-            .build();
-
+    public ShapedRecipeBuilder getRecipe() {
+        return shaped(ModItems.GEM_OF_UNIQUE_HEAVEN.get())
+            .key('#', SimpleMatItem.MYTHIC_ESSENCE)
+            .key('t', ModItems.STONE_OF_HOPE.get())
+            .key('v', Items.GOLD_INGOT)
+            .key('o', ItemOre.ItemOres.get(IRarity.Rare))
+            .patternLine("ooo")
+            .patternLine("#t#")
+            .patternLine("vvv")
+            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));
     }
 
 }

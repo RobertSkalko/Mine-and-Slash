@@ -45,7 +45,7 @@ public class ServerContainer {
 
         REPAIR_FUEL_NEEDED_MULTI = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("REPAIR_FUEL_NEEDED_MULTI", 3D, 0, 100000D);
+            .defineInRange("REPAIR_FUEL_NEEDED_MULTI", 1D, 0, 100000D);
 
         MAP_EVENT_CHANCE_PER_MINUTE = builder.comment(".")
             .translation("mmorpg.word.")
