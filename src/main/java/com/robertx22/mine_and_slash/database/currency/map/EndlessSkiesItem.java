@@ -1,27 +1,26 @@
 package com.robertx22.mine_and_slash.database.currency.map;
 
-import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
+import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.MapReq;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
+import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
-import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class EndlessSkiesItem extends CurrencyItem implements ICurrencyItemEffect, IHasRecipe {
+public class EndlessSkiesItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
 
     @Override
     public String GUID() {
@@ -48,17 +47,16 @@ public class EndlessSkiesItem extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public BaseRecipe getRecipe() {
-        return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
-            .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 40)
-            .addMaterial(new OrbOfTransmutationItem().getFromForgeRegistry(), 1)
-            .addMaterial(Items.GOLD_INGOT, 1)
-            .buildMaterials()
-            .setOutput(this)
-            .levelReq(5)
-            .expGained(50)
-            .build();
-
+    public ShapedRecipeBuilder getRecipe() {
+        return shaped(ModItems.ENDLESS_SKIES.get())
+            .key('#', SimpleMatItem.GOLDEN_ORB)
+            .key('t', ModItems.CRYSTAL_OF_LEGEND.get())
+            .key('v', Items.GOLD_INGOT)
+            .key('b', Items.GLASS_BOTTLE)
+            .patternLine("#v#")
+            .patternLine("vtv")
+            .patternLine(" b ")
+            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));
     }
 
     @Override

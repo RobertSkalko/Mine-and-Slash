@@ -21,7 +21,6 @@ public class ModBlockItems {
     public static RegistryObject<Item> GEAR_SALVAGE = of(ModBlocks.GEAR_SALVAGE);
     public static RegistryObject<Item> MAP_DEVICE = of(ModBlocks.MAP_DEVICE);
 
-    public static RegistryObject<Item> TINKERING = of(ModBlocks.TINKERING);
     public static RegistryObject<Item> ALCHEMY = of(ModBlocks.ALCHEMY);
 
     public static RegistryObject<Item> MAGMA_FLOWER = invi(ModBlocks.MAGMA_FLOWER);

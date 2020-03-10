@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.chests.MapChestTile;
 import com.robertx22.mine_and_slash.professions.blocks.alchemy.AlchemyTile;
-import com.robertx22.mine_and_slash.professions.blocks.tinkering.TinkeringTile;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
@@ -45,12 +44,6 @@ public class ModTileEntities {
         REG.register(ModBlocks.ALCHEMY.getId()
                 .getPath(),
             () -> TileEntityType.Builder.create(AlchemyTile::new, ModBlocks.ALCHEMY.get())
-                .build(null));
-
-    public static RegistryObject<TileEntityType<TinkeringTile>> TINKERING =
-        REG.register(ModBlocks.TINKERING.getId()
-                .getPath(),
-            () -> TileEntityType.Builder.create(TinkeringTile::new, ModBlocks.TINKERING.get())
                 .build(null));
 
     public static RegistryObject<TileEntityType<TileMapPortal>> MAP_PORTAL =

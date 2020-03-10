@@ -68,7 +68,6 @@ public enum Words implements IAutoLocName {
     NotSpell("Not a Spell Item"),
     NotRune("Not a Rune Item"),
     Locked("Locked"),
-    Tinkering("Tinkering"),
     Broken("Broken"),
     Alchemy("Alchemy"),
     InstabilityLimitReached("Instability Limit Reached"),

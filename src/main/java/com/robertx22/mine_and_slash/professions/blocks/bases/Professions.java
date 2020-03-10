@@ -15,8 +15,7 @@ import java.util.List;
 
 public enum Professions {
 
-    ALCHEMY(Words.Alchemy, ModTileEntities.ALCHEMY.get()),
-    TINKERERING(Words.Tinkering, ModTileEntities.TINKERING.get());
+    ALCHEMY(Words.Alchemy, ModTileEntities.ALCHEMY.get());
 
     Professions(Words word, TileEntityType<?> tileEntityType) {
         this.tileEntityType = tileEntityType;

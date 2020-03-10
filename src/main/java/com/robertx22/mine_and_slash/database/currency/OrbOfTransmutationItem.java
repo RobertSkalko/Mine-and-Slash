@@ -1,29 +1,29 @@
 package com.robertx22.mine_and_slash.database.currency;
 
+import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
+import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
-import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IHasRecipe {
+public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IShapedRecipe {
     @Override
     public String GUID() {
         return "currency/orb_of_transmutation";
@@ -103,18 +103,15 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
     }
 
     @Override
-    public BaseRecipe getRecipe() {
-        return SimpleRecipe.Builder.create(GUID(), Professions.TINKERERING)
-            .addMaterial(ItemOre.ItemOres.get(getRarityRank()), 2)
-            .addMaterial(Items.GOLD_INGOT, 1)
-            .addMaterial(Items.COAL, 2)
-            .addMaterial(Items.REDSTONE, 3)
-            .buildMaterials()
-            .setOutput(this)
-            .levelReq(1)
-            .expGained(25)
-            .build();
-
+    public ShapedRecipeBuilder getRecipe() {
+        return shaped(ModItems.ORB_OF_TRANSMUTATION.get())
+            .key('t', Items.REDSTONE)
+            .key('v', Items.COAL)
+            .key('o', ItemOre.ItemOres.get(IRarity.Common))
+            .patternLine("ovo")
+            .patternLine("vtv")
+            .patternLine("ovo")
+            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));
     }
 
 }
