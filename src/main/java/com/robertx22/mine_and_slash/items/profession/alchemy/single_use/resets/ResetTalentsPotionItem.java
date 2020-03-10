@@ -1,15 +1,15 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.single_use.resets;
 
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
+import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
+import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BasePotion;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
-import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
-import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
-import com.robertx22.mine_and_slash.professions.recipe.builders.SimpleRecipeBuilders;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class ResetTalentsPotionItem extends BaseInstantPotion {
+public class ResetTalentsPotionItem extends BaseInstantPotion implements IShapedRecipe {
 
     public ResetTalentsPotionItem() {
         super(Professions.Levels.ONE);
@@ -35,7 +35,8 @@ public class ResetTalentsPotionItem extends BaseInstantPotion {
     public void onFinish(ItemStack stack, World world, LivingEntity player, EntityCap.UnitData unitdata) {
 
         if (player instanceof PlayerEntity) {
-            Load.talents((PlayerEntity) player).reset();
+            Load.talents((PlayerEntity) player)
+                .reset();
         }
     }
 
@@ -46,20 +47,21 @@ public class ResetTalentsPotionItem extends BaseInstantPotion {
 
     @Override
     public String locNameForLangFile() {
-        return level.color + level.name + " " + "Potion of Reset Talents";
+        return level.color + level.name + " " + "Potion of Talents Reset";
     }
 
     @Override
-    public BaseRecipe getRecipe() {
-
-        SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
-                .addMaterial(Items.GLASS_BOTTLE, 1)
-                .addMaterial(Items.DIAMOND, 3)
-                .addMaterial(Items.GOLDEN_APPLE, 1)
-                .addMaterial(ItemOre.ItemOres.get(IRarity.Common), 10);
-
-        return mats.buildMaterials().setOutput(this).levelReq(10).expGained(20).build();
-
+    public ShapedRecipeBuilder getRecipe() {
+        return shaped(ModItems.RESET_TALENTS.get())
+            .key('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
+            .key('t', ModItems.CRYSTAL_OF_LEGEND.get())
+            .key('v', Items.GOLD_INGOT)
+            .key('b', Items.GLASS_BOTTLE)
+            .key('c', Items.COAL)
+            .patternLine("#v#")
+            .patternLine("vtv")
+            .patternLine("cbc")
+            .addCriterion("player_level", new PlayerLevelTrigger.Instance(5));
     }
 
     @Override

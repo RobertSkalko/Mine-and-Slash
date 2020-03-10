@@ -10,7 +10,10 @@ public class RegisterProfessionRecipesFromItems {
         for (Item item : ForgeRegistries.ITEMS) {
             if (item instanceof IHasRecipe) {
                 IHasRecipe has = (IHasRecipe) item;
-                has.getRecipe().registerToSlashRegistry();
+                if (has.getRecipe() != null) {
+                    has.getRecipe()
+                        .registerToSlashRegistry();
+                }
             }
         }
     }

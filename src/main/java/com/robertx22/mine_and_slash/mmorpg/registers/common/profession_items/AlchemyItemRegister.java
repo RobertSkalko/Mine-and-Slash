@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantE
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantHealthPotionItem;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.InstantManaPotionItem;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.LesserRecallPotionItem;
-import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.resets.*;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -44,14 +43,6 @@ public class AlchemyItemRegister {
         }
 
         r.register(new LesserRecallPotionItem().setRegistryName(new LesserRecallPotionItem().GUID()));
-
-        r.register(new ResetStatsPotionItem().setRegistryName(new ResetStatsPotionItem().GUID()));
-
-        r.register(new ResetTalentsPotionItem().setRegistryName(new ResetTalentsPotionItem().GUID()));
-        r.register(new AddRemoveTalentPotionItem().setRegistryName(new AddRemoveTalentPotionItem().GUID()));
-
-        r.register(new ResetSpellsPotionItem().setRegistryName(new ResetSpellsPotionItem().GUID()));
-        r.register(new AddRemoveSpellPotionItem().setRegistryName(new AddRemoveSpellPotionItem().GUID()));
 
     }
 

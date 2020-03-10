@@ -32,7 +32,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class BaseBuffPotion extends BasePotion {
+public abstract class BaseBuffPotion extends BasePotion implements IHasRecipe {
 
     public BaseBuffPotion(Professions.Levels lvl) {
         super(lvl);
@@ -50,7 +50,8 @@ public abstract class BaseBuffPotion extends BasePotion {
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     public int useDurationInTicks() {
@@ -68,10 +69,10 @@ public abstract class BaseBuffPotion extends BasePotion {
     public void onFinish(ItemStack stack, World world, LivingEntity player, EntityCap.UnitData unitdata) {
 
         player.getActivePotionEffects()
-                .stream()
-                .filter(x -> x.getPotion() instanceof BaseAlchemyEffect)
-                .findFirst()
-                .ifPresent(x -> player.removePotionEffect(x.getPotion()));
+            .stream()
+            .filter(x -> x.getPotion() instanceof BaseAlchemyEffect)
+            .findFirst()
+            .ifPresent(x -> player.removePotionEffect(x.getPotion()));
 
         EffectInstance instance = new EffectInstance(getEffect(), durationInMinutes() * 20 * 60, 0, false, false);
         player.addPotionEffect(instance);
@@ -87,7 +88,8 @@ public abstract class BaseBuffPotion extends BasePotion {
 
         info.statTooltipType = StatTooltipType.PRIMARY_STATS;
 
-        tooltip.add(Styles.GREENCOMP().appendText("Stats: "));
+        tooltip.add(Styles.GREENCOMP()
+            .appendText("Stats: "));
 
         for (StatModData mod : mods()) {
             tooltip.addAll(mod.GetTooltipString(info));
@@ -95,7 +97,8 @@ public abstract class BaseBuffPotion extends BasePotion {
 
         TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(Styles.BLUECOMP().appendText("Duration: " + durationInMinutes() + " Minutes"));
+        tooltip.add(Styles.BLUECOMP()
+            .appendText("Duration: " + durationInMinutes() + " Minutes"));
         tooltip.add(TooltipUtils.level(this.level.number));
 
     }
@@ -128,7 +131,9 @@ public abstract class BaseBuffPotion extends BasePotion {
 
     public boolean hasAlchemyPotion(LivingEntity en) {
 
-        return en.getActivePotionEffects().stream().anyMatch(x -> x.getPotion() instanceof BaseAlchemyEffect);
+        return en.getActivePotionEffects()
+            .stream()
+            .anyMatch(x -> x.getPotion() instanceof BaseAlchemyEffect);
 
     }
 
@@ -136,7 +141,8 @@ public abstract class BaseBuffPotion extends BasePotion {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player, Hand handIn) {
         ItemStack itemstack = player.getHeldItem(handIn);
 
-        if (Load.Unit(player).getLevel() >= this.level.number) {
+        if (Load.Unit(player)
+            .getLevel() >= this.level.number) {
             player.setActiveHand(handIn);
             return new ActionResult<>(ActionResultType.SUCCESS, itemstack);
         } else {

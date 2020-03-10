@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
 
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IAmount;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
@@ -16,7 +17,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class InstantManaPotionItem extends BaseInstantPotion implements IAmount {
+public class InstantManaPotionItem extends BaseInstantPotion implements IAmount, IHasRecipe {
 
     public InstantManaPotionItem(Professions.Levels lvl) {
         super(lvl);
@@ -59,19 +60,19 @@ public class InstantManaPotionItem extends BaseInstantPotion implements IAmount 
     public BaseRecipe getRecipe() {
 
         SimpleRecipeBuilders.SimpleRecipeMatBuilder mats = SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
-                .addMaterial(Items.GLASS_BOTTLE, 1)
-                .addMaterial(Items.COAL, 5 * this.level.materialCostMulti)
-                .addMaterial(Items.LAPIS_LAZULI, 5 * level.materialCostMulti);
+            .addMaterial(Items.GLASS_BOTTLE, 1)
+            .addMaterial(Items.COAL, 5 * this.level.materialCostMulti)
+            .addMaterial(Items.LAPIS_LAZULI, 5 * level.materialCostMulti);
 
         if (level.number >= Professions.Levels.FIFTY.number) {
             mats.addMaterial(Items.ENDER_PEARL, 2 * level.materialCostMulti);
         }
 
         return mats.buildMaterials()
-                .setOutput(this, 3)
-                .levelReq(level.number)
-                .expGained(10)
-                .build();
+            .setOutput(this, 3)
+            .levelReq(level.number)
+            .expGained(10)
+            .build();
 
     }
 

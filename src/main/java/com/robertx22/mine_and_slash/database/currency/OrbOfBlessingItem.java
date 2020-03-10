@@ -97,7 +97,7 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
             .key('t', ModItems.CRYSTAL_OF_LEGEND.get())
             .key('v', Items.COAL)
             .key('o', ItemOre.ItemOres.get(IRarity.Epic))
-            .patternLine("#v#")
+            .patternLine("v#v")
             .patternLine("vtv")
             .patternLine("ovo")
             .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));

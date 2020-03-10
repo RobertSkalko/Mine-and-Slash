@@ -12,7 +12,8 @@
 * reduced loot drops default config (needs server config clear)
 * some currencies are now salvagable. (ones with crafting recipes) This should help balance economy a bit.
 * updated chinese lang
-* removed tinkering station. Added most currencies back as recipes.
+* removed tinkering station. Added most currencies back as recipes. (i really thought the tinkering station would be more fun.. IT'S NOT. So it's gone)
+* unified naming of reset potions and now they're craftable instead of needing alchemy station
 3.2.3
 * magic shield now gets hurt by enviromental damage too. (this includes poison). Magic shield was a big issue because it was basically a way to negate TOO MANY mechanics. 
 Enviromental damage, poison.. All things that are usually what causes deaths. I'll monitor the balance and maybe decrease how much damage is taken if it ends up being too weak because of the nerf.

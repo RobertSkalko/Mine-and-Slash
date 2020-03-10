@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
 
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IAmount;
+import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IHasRecipe;
 import com.robertx22.mine_and_slash.professions.blocks.bases.Professions;
 import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
@@ -26,7 +27,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class LesserRecallPotionItem extends BaseInstantPotion implements IAmount {
+public class LesserRecallPotionItem extends BaseInstantPotion implements IAmount, IHasRecipe {
 
     public LesserRecallPotionItem() {
         super(Professions.Levels.TWENTY_FIVE);
@@ -87,14 +88,14 @@ public class LesserRecallPotionItem extends BaseInstantPotion implements IAmount
     @Override
     public BaseRecipe getRecipe() {
         return SimpleRecipe.Builder.create(GUID(), Professions.ALCHEMY)
-                .addMaterial(Items.GLASS_BOTTLE, 1)
-                .addMaterial(Items.ENDER_EYE, 1)
-                .addMaterial(Items.NETHER_WART, 5)
-                .buildMaterials()
-                .setOutput(this)
-                .levelReq(level.number)
-                .expGained(3)
-                .build();
+            .addMaterial(Items.GLASS_BOTTLE, 1)
+            .addMaterial(Items.ENDER_EYE, 1)
+            .addMaterial(Items.NETHER_WART, 5)
+            .buildMaterials()
+            .setOutput(this)
+            .levelReq(level.number)
+            .expGained(3)
+            .build();
 
     }
 

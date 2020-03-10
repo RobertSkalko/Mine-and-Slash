@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
+import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.currency.*;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.infusions.AttackInfusionItem;
@@ -11,6 +12,7 @@ import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.Wondrous
 import com.robertx22.mine_and_slash.database.currency.map.EndlessRoadItem;
 import com.robertx22.mine_and_slash.database.currency.map.EndlessSkiesItem;
 import com.robertx22.mine_and_slash.database.currency.map.PainfulLessonItem;
+import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.resets.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
@@ -63,6 +65,22 @@ public class ModItems {
     public static RegistryObject<CurrencyItem> NORMAL = of(() -> new NormalUpgradeInfusion());
     public static RegistryObject<CurrencyItem> SUPERIOR = of(() -> new SuperiorUpgradeInfusion());
     public static RegistryObject<CurrencyItem> WONDROUS = of(() -> new WondrousUpgradeInfusion());
+
+    public static RegistryObject<ResetStatsPotionItem> RESET_STATS = item(() -> new ResetStatsPotionItem());
+    public static RegistryObject<ResetSpellsPotionItem> RESET_SPELLS = item(() -> new ResetSpellsPotionItem());
+    public static RegistryObject<ResetTalentsPotionItem> RESET_TALENTS = item(() -> new ResetTalentsPotionItem());
+
+    public static RegistryObject<AddRemoveSpellPotionItem> ADD_RESET_SPELLS = item(() -> new AddRemoveSpellPotionItem());
+    public static RegistryObject<AddRemoveTalentPotionItem> ADD_RESET_TALENTS = item(() -> new AddRemoveTalentPotionItem());
+
+    static <T extends Item & IGUID> RegistryObject<T> item(Supplier<T> c) {
+
+        RegistryObject<T> wrap = REG.register(c.get()
+            .GUID(), c);
+
+        return wrap;
+
+    }
 
     static RegistryObject<CurrencyItem> of(Supplier<CurrencyItem> c) {
 
