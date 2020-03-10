@@ -19,6 +19,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
@@ -312,6 +313,10 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
             int min = 1;
             int max = 2;
 
+            if (Rarity == IRarity.Common) {
+                max = 1;
+            }
+
             min = tryIncreaseAmount(salvageBonus, min);
             max = tryIncreaseAmount(salvageBonus, max);
 
@@ -346,7 +351,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
                 int amount = RandomUtils.RandomRange(min, max);
 
-                ItemOre ore = (ItemOre) ItemOre.ItemOres.get(getSalvagedOreRarity());
+                ItemOre ore = (ItemOre) ItemOre.ItemOres.get(getSalvagedOreRarity(getRarityRank()));
                 stack = new ItemStack(ore);
                 stack.setCount(amount);
 

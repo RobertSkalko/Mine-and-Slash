@@ -36,7 +36,7 @@ public class GiveGear {
                                     .then(argument(
                                         "rarity",
                                         IntegerArgumentType.integer(
-                                            0, 5)
+                                            -1, 5)
                                     )
                                         .then(argument(
                                             "amount",

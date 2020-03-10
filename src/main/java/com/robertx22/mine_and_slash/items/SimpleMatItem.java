@@ -14,6 +14,7 @@ public class SimpleMatItem extends Item {
     public SimpleMatItem() {
         super(new Item.Properties().group(CreativeTabs.MyModTab)
             .maxStackSize(64));
+
     }
 }
 

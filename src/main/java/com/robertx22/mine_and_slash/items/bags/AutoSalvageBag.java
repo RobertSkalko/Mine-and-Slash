@@ -132,38 +132,49 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
             nbt = new CompoundNBT();
         }
 
-        tooltip.add(Styles.GREENCOMP().appendSibling(Words.Automatically_salvages_items.locName()).appendText("!"));
+        tooltip.add(Styles.GREENCOMP()
+            .appendSibling(Words.Automatically_salvages_items.locName())
+            .appendText("!"));
 
         TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Gears.locName().appendText(":")));
+        tooltip.add(Styles.YELLOWCOMP()
+            .appendSibling(Words.Gears.locName()
+                .appendText(":")));
         tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Gears.getAllRarities()), this.getGear(nbt)));
 
-        tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Maps.locName().appendText(":")));
+        tooltip.add(Styles.YELLOWCOMP()
+            .appendSibling(Words.Maps.locName()
+                .appendText(":")));
         tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Maps.getAllRarities()), this.getMap(nbt)));
 
-        tooltip.add(Styles.YELLOWCOMP().appendSibling(Words.Runes.locName().appendText(":")));
+        tooltip.add(Styles.YELLOWCOMP()
+            .appendSibling(Words.Runes.locName()
+                .appendText(":")));
         tooltip.add(getSalvagedRarities(new ArrayList<Rarity>(Rarities.Runes.getAllRarities()), this.getRune(nbt)));
 
         TooltipUtils.addEmpty(tooltip);
 
         tooltip.add(Styles.LIGHT_PURPLECOMP()
-                            .appendSibling(Words.Bonus_Salvage_Chance.locName())
-                            .appendText(": " + this.getBonusSalvageChance() + "%"));
+            .appendSibling(Words.Bonus_Salvage_Chance.locName())
+            .appendText(": " + this.getBonusSalvageChance() + "%"));
 
         TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(Styles.GREENCOMP().appendSibling(Words.Works_when_equipped.locName()));
+        tooltip.add(Styles.GREENCOMP()
+            .appendSibling(Words.Works_when_equipped.locName()));
         TooltipUtils.addEmpty(tooltip);
 
         if (Screen.hasShiftDown() == false) {
 
-            tooltip.add(Styles.GREENCOMP().appendSibling(Words.Press_Shift_For_Setup_Info.locName()));
+            tooltip.add(Styles.GREENCOMP()
+                .appendSibling(Words.Press_Shift_For_Setup_Info.locName()));
 
         } else {
 
             for (ITextComponent lore : this.getComponents()) {
-                tooltip.add(Styles.GREENCOMP().appendSibling(lore));
+                tooltip.add(Styles.GREENCOMP()
+                    .appendSibling(lore));
             }
 
         }
@@ -177,14 +188,17 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
         for (GearRarity rar : Rarities.Gears.getNormalRarities()) {
             if (rar.Rank() <= rarity) {
 
-                if (text.getSiblings().size() > 0) {
+                if (text.getSiblings()
+                    .size() > 0) {
                     text.appendText(TextFormatting.GRAY + ", ");
                 }
-                text.appendText(rar.textFormatColor() + "").appendSibling(rar.locName());
+                text.appendText(rar.textFormatColor() + "")
+                    .appendSibling(rar.locName());
             }
         }
 
-        if (text.getSiblings().size() < 1) {
+        if (text.getSiblings()
+            .size() < 1) {
             text.appendSibling(Words.None.locName());
         }
 
@@ -256,8 +270,8 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
     @Override
     public List<String> loreLines() {
         return Arrays.asList("Place An Item Of Maximum Rarity You want to", "salvage in your off-hand.",
-                             "Then right click with this bag.", "To Not Salvage Any Items, clear the config by",
-                             "Right Clicking the bag while shield slot is empty."
+            "Then right click with this bag.", "To Not Salvage Any Items, clear the config by",
+            "Right Clicking the bag while shield slot is empty."
         );
     }
 
@@ -268,12 +282,14 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     @Override
     public String locNameForLangFile() {
-        return Rarities.Gears.get(this.rarity).Color() + "Auto Salvage Bag";
+        return Rarities.Gears.get(this.rarity)
+            .Color() + "Auto Salvage Bag";
     }
 
     @Override

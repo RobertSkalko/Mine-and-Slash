@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Rune;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -83,6 +84,10 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
         int min = tryIncreaseAmount(salvageBonus, 1);
         int max = tryIncreaseAmount(salvageBonus, 2);
 
+        if (this.rarity == IRarity.Common) {
+            max = 1;
+        }
+
         ItemStack stack = ItemStack.EMPTY;
 
         if (RandomUtils.roll(this.getRarity()
@@ -99,7 +104,7 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
 
             int amount = RandomUtils.RandomRange(min, max);
 
-            ItemOre ore = (ItemOre) ItemOre.ItemOres.get(getSalvagedOreRarity());
+            ItemOre ore = (ItemOre) ItemOre.ItemOres.get(getSalvagedOreRarity(getRarityRank()));
 
             stack = new ItemStack(ore);
             stack.setCount(amount);

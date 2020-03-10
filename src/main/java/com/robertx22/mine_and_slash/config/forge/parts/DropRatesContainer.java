@@ -21,11 +21,11 @@ public class DropRatesContainer {
 
         UNIQUE_RUNE_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.unique_rune_droprate")
-            .defineInRange("UNIQUE_RUNE_DROPRATE", 0.12D, 0, Integer.MAX_VALUE);
+            .defineInRange("UNIQUE_RUNE_DROPRATE", 0.1D, 0, Integer.MAX_VALUE);
 
         RUNED_GEAR_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.runed_gear_droprate")
-            .defineInRange("RUNED_GEAR_DROPRATE", 1.6D, 0, Integer.MAX_VALUE);
+            .defineInRange("RUNED_GEAR_DROPRATE", 1.5D, 0, Integer.MAX_VALUE);
 
         LOOTBOX_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.lootbox_droprate")
@@ -33,7 +33,7 @@ public class DropRatesContainer {
 
         RUNE_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.rune_droprate")
-            .defineInRange("RUNE_DROPRATE", 1.3D, 0, Integer.MAX_VALUE);
+            .defineInRange("RUNE_DROPRATE", 1.2D, 0, Integer.MAX_VALUE);
 
         MAP_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.map_droprate")
@@ -41,7 +41,7 @@ public class DropRatesContainer {
 
         GEAR_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.gear_droprate")
-            .defineInRange("GEAR_DROPRATE", 8.2F, 0, Integer.MAX_VALUE);
+            .defineInRange("GEAR_DROPRATE", 7F, 0, Integer.MAX_VALUE);
 
         UNIQUE_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.unique_droprate")
@@ -49,11 +49,11 @@ public class DropRatesContainer {
 
         CURRENCY_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.currency_droprate")
-            .defineInRange("CURRENCY_DROPRATE", 2F, 0, Integer.MAX_VALUE);
+            .defineInRange("CURRENCY_DROPRATE", 1.5F, 0, Integer.MAX_VALUE);
 
         AWAKEN_RUNEWORD_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.awaken_runeword_droprate")
-            .defineInRange("AWAKEN_RUNEWORD_DROPRATE", 0.14F, 0, Integer.MAX_VALUE);
+            .defineInRange("AWAKEN_RUNEWORD_DROPRATE", 0.1F, 0, Integer.MAX_VALUE);
 
         COMPATIBLE_ITEMS_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.compatible_items_droprate")

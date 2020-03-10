@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
 
-public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable<R>, ITooltip, IType, ILevel {
+public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable, ITooltip, IType, ILevel, IRarity {
 
     DataItemType getDataType();
 

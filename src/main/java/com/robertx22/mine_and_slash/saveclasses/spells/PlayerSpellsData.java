@@ -119,6 +119,11 @@ public class PlayerSpellsData {
                     .contains(spell)) {
                     spell.cast(player, spell.useTimeTicks());
 
+                    player.getHeldItemMainhand()
+                        .damageItem(1, player, x -> {
+                            player.sendBreakAnimation(player.getActiveHand());
+                        });
+
                     spellBeingCast = "";
 
                     onSpellCast(spell, player, spells);

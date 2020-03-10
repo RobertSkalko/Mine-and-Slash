@@ -83,6 +83,15 @@ public class TileGearSalvage extends BaseTile {
             if (data.isSalvagable(ISalvagable.SalvageContext.SALVAGE_STATION)) {
                 return data.getSalvageResult(bonus);
             }
+        } else {
+
+            Item item = st.getItem();
+            if (item instanceof ISalvagable) {
+                ISalvagable sal = (ISalvagable) item;
+                if (sal.isSalvagable(ISalvagable.SalvageContext.SALVAGE_STATION)) {
+                    return sal.getSalvageResult(bonus);
+                }
+            }
         }
 
         return ItemStack.EMPTY;

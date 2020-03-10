@@ -8,6 +8,9 @@
 * fixed loot crates in maps having too high chance to drop maps.
 * repair station now needs durability to repair times 3 to repair. 
 * altered repair station fuel per ore rarity to be more in line with the actual craft value of the ores.
+* casting spells now damages weapon
+* reduced loot drops default config (needs server config clear)
+* some currencies are now salvagable. (ones with crafting recipes) This should help balance economy a bit.
 3.2.3
 * magic shield now gets hurt by enviromental damage too. (this includes poison). Magic shield was a big issue because it was basically a way to negate TOO MANY mechanics. 
 Enviromental damage, poison.. All things that are usually what causes deaths. I'll monitor the balance and maybe decrease how much damage is taken if it ends up being too weak because of the nerf.
