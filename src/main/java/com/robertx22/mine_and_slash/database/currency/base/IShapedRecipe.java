@@ -9,6 +9,10 @@ public interface IShapedRecipe {
     default ShapedRecipeBuilder shaped(IItemProvider pro) {
         return ShapedRecipeBuilder.shapedRecipe(pro, 1);
     }
+
+    default ShapedRecipeBuilder shaped(IItemProvider pro, int i) {
+        return ShapedRecipeBuilder.shapedRecipe(pro, i);
+    }
 }
 
 

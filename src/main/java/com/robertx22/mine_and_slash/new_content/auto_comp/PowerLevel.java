@@ -17,21 +17,25 @@ public class PowerLevel {
 
     public PowerLevel(Item item, GearItemSlot slot) {
 
-        this.item = item;
+        try {
+            this.item = item;
 
-        Multimap<String, AttributeModifier> stats = item.getAttributeModifiers(slot.getVanillaSlotType());
+            Multimap<String, AttributeModifier> stats = item.getAttributeModifiers(slot.getVanillaSlotType());
 
-        this.statAmount = stats.size();
+            this.statAmount = stats.size();
 
-        int MAX_SINGLE_STAT_VALUE = ModConfig.INSTANCE.autoCompatibleItems.MAX_SINGLE_STAT_VALUE.get();
-        int MAX_TOTAL_STATS = ModConfig.INSTANCE.autoCompatibleItems.MAX_TOTAL_STATS.get();
+            int MAX_SINGLE_STAT_VALUE = ModConfig.INSTANCE.autoCompatibleItems.MAX_SINGLE_STAT_VALUE.get();
+            int MAX_TOTAL_STATS = ModConfig.INSTANCE.autoCompatibleItems.MAX_TOTAL_STATS.get();
 
-        this.totalStatNumbers = stats.values()
-            .stream()
-            .mapToInt(x -> (int) MathHelper.clamp(x.getAmount(), -MAX_SINGLE_STAT_VALUE, MAX_SINGLE_STAT_VALUE))
-            .sum();
+            this.totalStatNumbers = stats.values()
+                .stream()
+                .mapToInt(x -> (int) MathHelper.clamp(x.getAmount(), -MAX_SINGLE_STAT_VALUE, MAX_SINGLE_STAT_VALUE))
+                .sum();
 
-        totalStatNumbers = MathHelper.clamp(totalStatNumbers, -MAX_TOTAL_STATS, MAX_TOTAL_STATS);
+            totalStatNumbers = MathHelper.clamp(totalStatNumbers, -MAX_TOTAL_STATS, MAX_TOTAL_STATS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -131,8 +131,6 @@ public class MMORPG {
 
         ScrabbleTile.loadWordList();
 
-        //ForgeRegistries.RECIPE_SERIALIZERS.register(new SpecialRecipeSerializer<>(RepairItemRecipeOverride::new).setRegistryName(IRecipeSerializer.CRAFTING_SPECIAL_REPAIRITEM.getRegistryName()));
-
     }
 
     public static void logError(String s) {
