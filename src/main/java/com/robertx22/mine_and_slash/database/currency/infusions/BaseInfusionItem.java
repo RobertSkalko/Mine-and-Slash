@@ -35,7 +35,7 @@ public abstract class BaseInfusionItem extends CurrencyItem implements ICurrency
 
     @Override
     public int instabilityAddAmount() {
-        return 15;
+        return 25;
     }
 
     @Override

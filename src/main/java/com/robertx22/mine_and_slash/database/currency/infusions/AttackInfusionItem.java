@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.PhysicalDamagePercent;
@@ -40,7 +40,7 @@ public class AttackInfusionItem extends BaseInfusionItem {
 
     @Override
     public List<StatMod> jewerlyInfusions() {
-        return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
+        return new ElementalPeneFlat(Elements.Physical).allSingleElementVariations();
     }
 
     @Override
