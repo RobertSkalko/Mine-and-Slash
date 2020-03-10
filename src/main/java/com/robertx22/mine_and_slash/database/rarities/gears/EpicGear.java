@@ -19,6 +19,11 @@ public class EpicGear extends BaseEpic implements GearRarity {
     }
 
     @Override
+    public float unidentifiedChance() {
+        return 40;
+    }
+
+    @Override
     public int AffixChance() {
         return 60;
     }

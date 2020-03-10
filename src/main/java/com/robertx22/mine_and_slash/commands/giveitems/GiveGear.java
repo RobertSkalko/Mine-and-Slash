@@ -7,11 +7,9 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.commands.suggestions.GearTypeSuggestions;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -100,8 +98,7 @@ public class GiveGear {
             }
             blueprint.level.LevelRange = false;
 
-            ItemStack stack = GearCreationUtils.CreateStack(blueprint);
-            player.addItemStackToInventory(stack);
+            player.addItemStackToInventory(blueprint.createStack());
         }
 
         return 0;

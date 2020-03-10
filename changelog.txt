@@ -6,7 +6,7 @@
 * gear and runes now salvage for ore 1 rarity bellow, capped at common at the bottom.
 * altered rarity drops
 * fixed loot crates in maps having too high chance to drop maps.
-* repair station now needs durability to repair times 3 to repair. 
+* repair station now needs durability to repair times 3. 
 * altered repair station fuel per ore rarity to be more in line with the actual craft value of the ores.
 * casting spells now damages weapon
 * reduced loot drops default config (needs server config clear)

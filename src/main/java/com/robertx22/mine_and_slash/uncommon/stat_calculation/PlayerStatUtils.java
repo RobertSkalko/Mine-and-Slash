@@ -69,33 +69,37 @@ public class PlayerStatUtils {
     public static void AddAllGearStats(Entity entity, List<GearItemData> gears, UnitData unitdata, int level) {
 
         for (GearItemData gear : gears) {
+
             if (gear.level > unitdata.getLevel()) {
+                continue;
+            }
+            if (!gear.isIdentified()) {
+                continue;
+            }
 
-            } else {
+            List<IStatModsContainer.LevelAndStats> levelstats = gear.GetAllStats(gear.level);
 
-                List<IStatModsContainer.LevelAndStats> levelstats = gear.GetAllStats(gear.level);
-                for (IStatModsContainer.LevelAndStats datas : levelstats) {
-                    for (StatModData data : datas.mods) {
+            for (IStatModsContainer.LevelAndStats datas : levelstats) {
+                for (StatModData data : datas.mods) {
 
-                        StatMod mod = data.getStatMod();
+                    StatMod mod = data.getStatMod();
 
-                        if (mod == null) {
-                            //  System.out.println(data.baseModName + " is null");
-                        } else {
-                            Stat stat = data.getStatMod()
-                                .GetBaseStat();
+                    if (mod == null) {
+                        //  System.out.println(data.baseModName + " is null");
+                    } else {
+                        Stat stat = data.getStatMod()
+                            .GetBaseStat();
 
-                            if (stat != null) {
-                                StatData statdata = unitdata.getUnit()
-                                    .getCreateStat(stat);
-                                if (statdata != null) {
-                                    data.Add(statdata, datas.level);
-                                }
+                        if (stat != null) {
+                            StatData statdata = unitdata.getUnit()
+                                .getCreateStat(stat);
+                            if (statdata != null) {
+                                data.Add(statdata, datas.level);
                             }
                         }
                     }
-
                 }
+
             }
         }
 

@@ -14,4 +14,6 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
     float powerMultiplier();
 
     float requirementMulti();
+
+    float unidentifiedChance();
 }

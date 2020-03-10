@@ -19,6 +19,11 @@ public class CommonGear extends BaseCommon implements GearRarity {
     }
 
     @Override
+    public float unidentifiedChance() {
+        return 0;
+    }
+
+    @Override
     public int AffixChance() {
         return 10;
     }

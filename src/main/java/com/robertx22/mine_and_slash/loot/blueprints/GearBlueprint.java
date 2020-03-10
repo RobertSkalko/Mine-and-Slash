@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor
 import com.robertx22.mine_and_slash.loot.blueprints.bases.GearItemSlotPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.SetPart;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
+import com.robertx22.mine_and_slash.loot.gens.stack_changers.UnidentifiedGear;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -18,11 +19,13 @@ public class GearBlueprint extends ItemBlueprint {
     public GearBlueprint(int level) {
         super(level);
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
+        actionsAfterGeneration.add(UnidentifiedGear.getInstance());
     }
 
     public GearBlueprint(int level, int tier) {
         super(level, tier);
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
+        actionsAfterGeneration.add(UnidentifiedGear.getInstance());
     }
 
     public GearItemSlotPart gearItemSlot = new GearItemSlotPart(this);

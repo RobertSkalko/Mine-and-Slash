@@ -19,6 +19,11 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     }
 
     @Override
+    public float unidentifiedChance() {
+        return 100;
+    }
+
+    @Override
     public int Weight() {
         return 0;
     }

@@ -40,6 +40,22 @@ public class GearTooltipUtils {
 
         tip.add(gear.GetDisplayName(stack));
 
+        if (!gear.isIdentified()) {
+
+            tip.add(new SText(""));
+
+            tip.add(Styles.GRAYCOMP()
+                .appendSibling(Words.ItemIsUnidentified.locName()));
+            tip.add(Styles.GRAYCOMP()
+                .appendSibling(Words.UseAnIdentifyScroll.locName()));
+
+            tip.add(new SText(""));
+
+            tip.add(TooltipUtils.lvlReq(gear.level, data));
+
+            return;
+        }
+
         if (gear.primaryStats != null) {
             tip.addAll(gear.primaryStats.GetTooltipString(info));
         }

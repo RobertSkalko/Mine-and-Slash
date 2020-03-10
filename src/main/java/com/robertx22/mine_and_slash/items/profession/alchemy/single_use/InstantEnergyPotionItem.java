@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.items.profession.alchemy.single_use;
 
+import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseInstantPotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BasePotion;
 import com.robertx22.mine_and_slash.items.profession.alchemy.bases.IAmount;
@@ -10,7 +11,6 @@ import com.robertx22.mine_and_slash.professions.recipe.SimpleRecipe;
 import com.robertx22.mine_and_slash.professions.recipe.builders.SimpleRecipeBuilders;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -44,7 +44,8 @@ public class InstantEnergyPotionItem extends BaseInstantPotion implements IAmoun
 
     @Override
     public float amount() {
-        return StatUtils.roundNumber(level.effectMultiplier * lvl_1_amount);
+        return Energy.getInstance()
+            .calculateScalingStatGrowth(lvl_1_amount * level.effectMultiplier, level.number);
     }
 
     @Override

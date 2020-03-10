@@ -6,6 +6,8 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
+    ItemIsUnidentified("This item is currently sealed."),
+    UseAnIdentifyScroll("An Identify Scroll can reveal it."),
     KillBoss("Kill Boss: "), BlinkStrike("Blink Strike"),
     Kill("Kill"),
     Magic_Missile("Magic Missiles"),
@@ -148,7 +150,7 @@ public enum Words implements IAutoLocName {
     Elemental_Attack_Damage("Elemental Attack Damage"),
 
     Main("Main"),
-
+    Unidentified("Unidentified"),
     Activation_Time("Activation Time"),
 
     Affixes_Affecting_All("Affixes Affecting All"),

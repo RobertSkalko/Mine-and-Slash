@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.Wondrous
 import com.robertx22.mine_and_slash.database.currency.map.EndlessRoadItem;
 import com.robertx22.mine_and_slash.database.currency.map.EndlessSkiesItem;
 import com.robertx22.mine_and_slash.database.currency.map.PainfulLessonItem;
+import com.robertx22.mine_and_slash.items.misc.IdentifyTomeItem;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.resets.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
@@ -73,10 +74,20 @@ public class ModItems {
     public static RegistryObject<AddRemoveSpellPotionItem> ADD_RESET_SPELLS = item(() -> new AddRemoveSpellPotionItem());
     public static RegistryObject<AddRemoveTalentPotionItem> ADD_RESET_TALENTS = item(() -> new AddRemoveTalentPotionItem());
 
+    public static RegistryObject<IdentifyTomeItem> IDENTIFY_TOME = item(() -> new IdentifyTomeItem(), "identify_tome");
+
     static <T extends Item & IGUID> RegistryObject<T> item(Supplier<T> c) {
 
         RegistryObject<T> wrap = REG.register(c.get()
             .GUID(), c);
+
+        return wrap;
+
+    }
+
+    static <T extends Item> RegistryObject<T> item(Supplier<T> c, String id) {
+
+        RegistryObject<T> wrap = REG.register(id, c);
 
         return wrap;
 
@@ -92,4 +103,5 @@ public class ModItems {
         return wrap;
 
     }
+
 }

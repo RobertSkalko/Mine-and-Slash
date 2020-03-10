@@ -22,6 +22,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataIt
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
@@ -72,6 +73,17 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     @Store
     public String rightClickSpell = "";
+
+    @Store
+    private boolean ided = true;
+
+    public boolean isIdentified() {
+        return ided;
+    }
+
+    public void setIdentified(boolean bool) {
+        this.ided = bool;
+    }
 
     @Nullable
     public BaseSpell getRightClickSpell() {
@@ -147,6 +159,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     @Store
     public boolean isSalvagable = true;
+
     // crafting limits
     @Store
     public int timesLeveledUp = 0;
@@ -217,6 +230,17 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     }
 
     public ITextComponent GetDisplayName(ItemStack stack) {
+
+        if (!isIdentified()) {
+            ITextComponent text = new SText(getRarity().textFormatColor() + "")
+                .appendSibling(Words.Unidentified.locName())
+                .appendText(" ")
+                .appendSibling(getRarity().locName())
+                .appendText(" ")
+                .appendSibling(GetBaseGearType().locName());
+
+            return text;
+        }
 
         ITextComponent text = new StringTextComponent(this.getRarity()
             .textFormatColor() + "");

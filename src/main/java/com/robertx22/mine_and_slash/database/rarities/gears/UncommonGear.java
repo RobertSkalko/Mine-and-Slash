@@ -14,6 +14,11 @@ public class UncommonGear extends BaseUncommon implements GearRarity {
     }
 
     @Override
+    public float unidentifiedChance() {
+        return 0;
+    }
+
+    @Override
     public float requirementMulti() {
         return 0.4F;
     }
