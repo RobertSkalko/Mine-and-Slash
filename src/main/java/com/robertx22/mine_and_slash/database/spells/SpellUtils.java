@@ -6,7 +6,9 @@ import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.network.play.server.SSpawnGlobalEntityPacket;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.server.ServerWorld;
 
@@ -15,13 +17,21 @@ public class SpellUtils {
     public static void summonLightningStrike(Entity entity) {
 
         LightningBoltEntity lightningboltentity = new LightningBoltEntity(entity.world,
-                                                                          (double) entity.getPosX() + 0.5D,
-                                                                          (double) entity.getPosY(),
-                                                                          (double) entity.getPosZ() + 0.5D, true
+            (double) entity.getPosX() + 0.5D,
+            (double) entity.getPosY(),
+            (double) entity.getPosZ() + 0.5D, true
         );  //boolean true means it's only an effect!'
 
-        ((ServerWorld) entity.world).addLightningBolt(lightningboltentity);
+        addLightningBolt(((ServerWorld) entity.world), lightningboltentity);
+        //((ServerWorld) entity.world).addLightningBolt(lightningboltentity);
 
+    }
+
+    public static void addLightningBolt(ServerWorld world, LightningBoltEntity entityIn) {
+        world.getServer()
+            .getPlayerList()
+            .sendToAllNearExcept((PlayerEntity) null, entityIn.getPosX(), entityIn.getPosY(), entityIn.getPosZ(), 50, world.getDimension()
+                .getType(), new SSpawnGlobalEntityPacket(entityIn));
     }
 
     public static void setupProjectileForCasting(AbstractArrowEntity projectile, LivingEntity caster, float speed) {

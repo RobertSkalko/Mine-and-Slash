@@ -1,11 +1,13 @@
 package com.robertx22.mine_and_slash.saveclasses.dungeon_dimension;
 
+import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.border.WorldBorder;
 
 import java.util.HashMap;
 
@@ -48,10 +50,15 @@ public class DungeonDimensionData {
 
         int tries = 0;
 
+        WorldBorder border = MapManager.getWorld(MapManager.getDungeonDimensionType())
+            .getWorldBorder();
+
+        int max = border.getSize() / 16 / 2;
+
         while (id.isEmpty() || hasData(id) || tries > 1000) {
 
-            int x = RandomUtils.RandomRange(50, 50000);
-            int z = RandomUtils.RandomRange(50, 50000);
+            int x = RandomUtils.RandomRange(50, max);
+            int z = RandomUtils.RandomRange(50, max);
 
             pos = new ChunkPos(x, z);
 

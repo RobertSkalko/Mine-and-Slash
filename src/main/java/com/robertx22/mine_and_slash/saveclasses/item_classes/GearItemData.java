@@ -346,7 +346,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
                 int amount = RandomUtils.RandomRange(min, max);
 
-                ItemOre ore = (ItemOre) ItemOre.ItemOres.get(Rarity);
+                ItemOre ore = (ItemOre) ItemOre.ItemOres.get(getSalvagedOreRarity());
                 stack = new ItemStack(ore);
                 stack.setCount(amount);
 

@@ -228,7 +228,7 @@ public class Unit {
             return getCreateStat(Health.GUID);
         } catch (Exception e) {
         }
-        return null;
+        return StatData.empty();
     }
 
     public StatData magicShieldData() {
@@ -237,7 +237,7 @@ public class Unit {
         } catch (Exception e) {
 
         }
-        return null;
+        return StatData.empty();
     }
 
     public StatData manaData() {
@@ -246,7 +246,7 @@ public class Unit {
         } catch (Exception e) {
 
         }
-        return null;
+        return StatData.empty();
     }
 
     public StatData energyData() {
@@ -255,7 +255,7 @@ public class Unit {
         } catch (Exception e) {
 
         }
-        return null;
+        return StatData.empty();
     }
 
     public int randomRarity(LivingEntity entity, UnitData data, BossCap.IBossData boss) {

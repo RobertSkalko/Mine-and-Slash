@@ -99,7 +99,7 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
 
             int amount = RandomUtils.RandomRange(min, max);
 
-            ItemOre ore = (ItemOre) ItemOre.ItemOres.get(rarity);
+            ItemOre ore = (ItemOre) ItemOre.ItemOres.get(getSalvagedOreRarity());
 
             stack = new ItemStack(ore);
             stack.setCount(amount);

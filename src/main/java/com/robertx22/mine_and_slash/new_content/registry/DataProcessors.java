@@ -7,20 +7,23 @@ import java.util.List;
 
 public class DataProcessors {
 
+    static List<DataProcessor> all = new ArrayList<>();
+
     public static List<DataProcessor> getAll() {
 
-        List<DataProcessor> list = new ArrayList<>();
-        list.add(new BossProcessor());
-        list.add(new EliteProcessor());
-        list.add(new MobProcessor());
-        list.add(new ChestProcessor());
-        list.add(new MobHordeProcessor());
-        list.add(new EliteMobHorde());
-        list.add(new PuzzleProcessor());
-        list.add(new ChanceChestProcessor());
-        list.add(new RemoveAllBesidesOneProcessor());
+        if (all.isEmpty()) {
+            all.add(new BossProcessor());
+            all.add(new EliteProcessor());
+            all.add(new MobProcessor());
+            all.add(new ChestProcessor());
+            all.add(new MobHordeProcessor());
+            all.add(new EliteMobHorde());
+            all.add(new PuzzleProcessor());
+            all.add(new ChanceChestProcessor());
+            all.add(new RemoveAllBesidesOneProcessor());
+        }
 
-        return list;
+        return all;
 
     }
 

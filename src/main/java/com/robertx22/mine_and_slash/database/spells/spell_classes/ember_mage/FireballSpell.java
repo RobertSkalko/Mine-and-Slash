@@ -48,6 +48,11 @@ public class FireballSpell extends BaseProjectileSpell {
     }
 
     @Override
+    public float getShootSpeed() {
+        return 0.5F;
+    }
+
+    @Override
     public int getCooldownInSeconds() {
         return 0;
     }

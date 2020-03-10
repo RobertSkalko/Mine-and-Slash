@@ -38,9 +38,14 @@ public class ServerContainer {
     public DoubleValue PLAYER_HEART_TO_HEALTH_CONVERSION;
     public DoubleValue STAT_REQUIREMENTS_MULTI;
     public DoubleValue MAP_EVENT_CHANCE_PER_MINUTE;
+    public DoubleValue REPAIR_FUEL_NEEDED_MULTI;
 
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
+
+        REPAIR_FUEL_NEEDED_MULTI = builder.comment(".")
+            .translation("mmorpg.word.")
+            .defineInRange("REPAIR_FUEL_NEEDED_MULTI", 3D, 0, 100000D);
 
         MAP_EVENT_CHANCE_PER_MINUTE = builder.comment(".")
             .translation("mmorpg.word.")

@@ -21,7 +21,7 @@ public enum Words implements IAutoLocName {
     HeartOfIce("Heart of Ice"),
     ThornArmor("Thorn Armor"),
     PoisonedWeapons("Poisoned Weapons"),
-    BlazingInferno("Blazing Inferno"),
+    BlazingInferno("Blazing Inferno"), DivineTribulation("Divine Tribulation"),
     Fireball("Fireball"),
     Frostball("Frostball"),
     ThunderSpear("Thunder Spear"),

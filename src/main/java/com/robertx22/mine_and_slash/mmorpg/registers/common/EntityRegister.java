@@ -59,6 +59,8 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> STAFFPROJECTILE;
     public static final EntityType<? extends Entity> WANDPROJECTILE;
 
+    public static final EntityType<? extends Entity> DIVINE_TRIBULATION;
+
     public static final EntityType<? extends Entity> SEED;
 
     static {
@@ -82,6 +84,8 @@ public class EntityRegister {
 
         RANGER_ARROW = newType(RangerArrowEntity::new, RangerArrowEntity::new, "ranger_arrow");
         ARROW_STORM = newType(ArrowStormEntity::new, ArrowStormEntity::new, "arrow_storm");
+
+        DIVINE_TRIBULATION = newType(DivineTribulationEntity::new, DivineTribulationEntity::new, "divine_tribulation");
 
         SEED = newType(SeedEntity::new, SeedEntity::new, "seed_entity");
     }

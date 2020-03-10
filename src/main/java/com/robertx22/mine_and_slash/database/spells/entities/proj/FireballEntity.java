@@ -30,7 +30,6 @@ public class FireballEntity extends BaseElementalBoltEntity {
 
     public FireballEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
         super(EntityRegister.FIREBOLT, world);
-
     }
 
     @Override

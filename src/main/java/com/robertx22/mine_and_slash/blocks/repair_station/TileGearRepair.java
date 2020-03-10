@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.blocks.repair_station;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.blocks.slots.FuelSlot;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.items.misc.ItemCapacitor;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
@@ -55,7 +56,7 @@ public class TileGearRepair extends BaseTile {
 
     }
 
-    public int MaximumFuel = 5000;
+    public static int MaximumFuel = 50000;
 
     public ItemStack getSmeltingResultForItem(ItemStack stack) {
         if (stack.getItem()
@@ -228,7 +229,7 @@ public class TileGearRepair extends BaseTile {
         for (int inputSlot = FIRST_INPUT_SLOT; inputSlot < FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT; inputSlot++) {
             if (!itemStacks[inputSlot].isEmpty()) { // isEmpty()
 
-                fuelNeeded = itemStacks[inputSlot].getDamage();
+                fuelNeeded = (int) (itemStacks[inputSlot].getDamage() * ModConfig.INSTANCE.Server.REPAIR_FUEL_NEEDED_MULTI.get());
 
                 if (fuelNeeded > this.fuel) {
                     fuelNeeded = this.fuel;

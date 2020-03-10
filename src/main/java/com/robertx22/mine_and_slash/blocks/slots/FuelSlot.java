@@ -22,18 +22,18 @@ public class FuelSlot extends Slot {
     public static HashMap<Item, Integer> FUEL_VALUES = new HashMap<Item, Integer>() {
         {
             {
-                put(Items.DIAMOND, 400);
-                put(Items.GOLD_INGOT, 150);
-                put(Items.IRON_INGOT, 40);
-                put(Items.EMERALD, 250);
+                put(Items.DIAMOND, 300);
+                put(Items.GOLD_INGOT, 100);
+                put(Items.IRON_INGOT, 20);
+                put(Items.EMERALD, 200);
                 put(Items.REDSTONE, 3);
 
-                put(ItemOre.ItemOres.get(0), 25);
-                put(ItemOre.ItemOres.get(1), 75);
+                put(ItemOre.ItemOres.get(0), 5);
+                put(ItemOre.ItemOres.get(1), 25);
                 put(ItemOre.ItemOres.get(2), 125);
-                put(ItemOre.ItemOres.get(3), 250);
-                put(ItemOre.ItemOres.get(4), 500);
-                put(ItemOre.ItemOres.get(5), 1000);
+                put(ItemOre.ItemOres.get(3), 500);
+                put(ItemOre.ItemOres.get(4), 2000);
+                put(ItemOre.ItemOres.get(5), 10000);
 
             }
         }

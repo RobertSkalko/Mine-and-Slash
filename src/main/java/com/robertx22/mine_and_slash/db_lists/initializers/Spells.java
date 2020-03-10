@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.arcanist.MagicMissileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.DivineShieldSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.DivineTribulationSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.InstantHealSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.RighteousFurySpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.*;
@@ -44,6 +45,7 @@ public class Spells implements ISlashRegistryInit {
                     add(InstantHealSpell.getInstance());
                     add(RighteousFurySpell.getInstance());
                     add(DivineShieldSpell.getInstance());
+                    add(DivineTribulationSpell.getInstance());
 
                     add(RegenerateSpell.getInstance());
                     add(GorgonsGazeSpell.getInstance());

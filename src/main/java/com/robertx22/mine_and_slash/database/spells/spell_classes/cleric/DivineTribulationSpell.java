@@ -1,13 +1,13 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.cleric;
 
-import com.robertx22.mine_and_slash.database.spells.entities.proj.FrostballEntity;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.DivineTribulationEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -17,64 +17,63 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FrostballSpell extends BaseProjectileSpell {
+public class DivineTribulationSpell extends BaseProjectileSpell {
 
-    private FrostballSpell() {
-        this.allowedAsRightClickOn = AllowedAsRightClickOn.MAGE_WEAPON;
+    private DivineTribulationSpell() {
     }
 
-    public static FrostballSpell getInstance() {
+    public static DivineTribulationSpell getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public AbstractArrowEntity newEntity(World world) {
-        return new FrostballEntity(world);
+        return new DivineTribulationEntity(world);
+    }
+
+    @Override
+    public int getManaCost() {
+        return 40;
     }
 
     @Override
     public SoundEvent getShootSound() {
-        return SoundEvents.ENTITY_SNOWBALL_THROW;
+        return SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER;
     }
 
     @Override
     public Elements getElement() {
-        return Elements.Water;
-    }
-
-    @Override
-    public float getShootSpeed() {
-        return 0.5F;
+        return Elements.Thunder;
     }
 
     @Override
     public SpellSchools getSchool() {
-        return SpellSchools.OCEAN_MYSTIC;
+        return SpellSchools.CLERIC;
+    }
+
+    @Override
+    public float getShootSpeed() {
+        return 0.2F;
     }
 
     @Override
     public int getCooldownInSeconds() {
-        return 0;
-    }
-
-    @Override
-    public int getCooldownInTicks() {
-        return 10;
+        return 60;
     }
 
     @Override
     public int useTimeTicks() {
-        return 0;
+        return 15;
     }
 
     @Override
     public String GUID() {
-        return "frostball";
+        return "divine_tribulation";
     }
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.one(dmgStat(), 1.25F, 10);
+        return SpellCalcData.one(dmgStat(), 0.4F, 8);
     }
 
     @Override
@@ -82,7 +81,8 @@ public class FrostballSpell extends BaseProjectileSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(SpellTooltips.singleTargetProjectile());
+        list.add(new SText("Throw out a star that floats up the sky."));
+        list.add(new SText("Soon summons tribulation that attacks enemies."));
 
         list.addAll(getCalculation().GetTooltipString(info));
 
@@ -92,10 +92,10 @@ public class FrostballSpell extends BaseProjectileSpell {
 
     @Override
     public Words getName() {
-        return Words.Frostball;
+        return Words.DivineTribulation;
     }
 
     private static class SingletonHolder {
-        private static final FrostballSpell INSTANCE = new FrostballSpell();
+        private static final DivineTribulationSpell INSTANCE = new DivineTribulationSpell();
     }
 }

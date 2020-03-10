@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.game_changers.ManaBatteryEffect;
 import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
+import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
@@ -18,7 +19,7 @@ public class ManaBattery extends BaseGameChangerTrait implements IStatEffects, I
 
     @Override
     public String locDescForLangFile() {
-        return "While mana is above 50 percent absorb 25 percent of damage by spending double that in mana. Dodge rating halved.";
+        return "While mana is above 50 percent absorb 25 percent of damage by spending double that in mana. Dodge rating halved, -15% to health";
     }
 
     @Override
@@ -40,6 +41,8 @@ public class ManaBattery extends BaseGameChangerTrait implements IStatEffects, I
     public void affectStats(EntityCap.UnitData data, StatData statData) {
         data.getUnit()
             .getCreateStat(DodgeRating.GUID).Multi -= 50;
+        data.getUnit()
+            .getCreateStat(Health.GUID).Multi -= 15;
     }
 
     @Override

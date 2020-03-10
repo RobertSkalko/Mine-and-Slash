@@ -72,7 +72,7 @@ public class ThunderspearSpell extends BaseProjectileSpell {
 
     @Override
     public int getManaCost() {
-        return 5;
+        return 7;
     }
 
     @Override

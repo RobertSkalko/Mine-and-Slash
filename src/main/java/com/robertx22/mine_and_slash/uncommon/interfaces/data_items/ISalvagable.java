@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.interfaces.data_items;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 public interface ISalvagable<R extends Rarity> extends IRarity<R> {
 
@@ -12,6 +13,13 @@ public interface ISalvagable<R extends Rarity> extends IRarity<R> {
     }
 
     ItemStack getSalvageResult(float salvageBonus);
+
+    default int getSalvagedOreRarity() {
+        if (this.isUnique()) {
+            return IRarity.Mythic;
+        }
+        return MathHelper.clamp(getRarityRank() - 1, IRarity.Common, IRarity.Mythic);
+    }
 
     boolean isSalvagable(SalvageContext context);
 

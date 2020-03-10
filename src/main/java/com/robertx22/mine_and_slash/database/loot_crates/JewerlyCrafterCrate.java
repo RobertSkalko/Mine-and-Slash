@@ -49,7 +49,7 @@ public class JewerlyCrafterCrate extends LootCrate {
 
     @Override
     public int maxItems() {
-        return 5;
+        return 4;
     }
 
     @Override

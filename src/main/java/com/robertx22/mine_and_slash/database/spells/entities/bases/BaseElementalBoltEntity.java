@@ -27,6 +27,12 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
         return 20;
     }
 
+    @Override
+    public void initSpellEntity() {
+        this.setNoGravity(true);
+        this.setDeathTime(60);
+    }
+
     public BaseElementalBoltEntity(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
 
@@ -35,9 +41,6 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
     @Override
     public double radius() {
         return 0.5D;
-    }
-
-    protected void entityInit() {
     }
 
     public abstract void onHit(LivingEntity entity);

@@ -34,7 +34,7 @@ public class CartographerCrate extends LootCrate {
 
     @Override
     public int maxItems() {
-        return 3;
+        return 2;
     }
 
     @Override

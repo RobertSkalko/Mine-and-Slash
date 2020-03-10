@@ -79,22 +79,46 @@ public class OnServerTick {
                                 x.getResources()
                                     .modify(ene);
 
-                                float healthrestored = unit.peekAtStat(HealthRegen.GUID).val;
-                                ResourcesData.Context hp = new ResourcesData.Context(x, player, ResourcesData.Type.HEALTH,
-                                    healthrestored,
-                                    ResourcesData.Use.RESTORE
-                                );
-                                x.getResources()
-                                    .modify(hp);
+                                boolean restored = false;
 
-                                float magicshieldrestored = unit.peekAtStat(MagicShieldRegen.GUID).val;
-                                ResourcesData.Context ms = new ResourcesData.Context(x, player,
-                                    ResourcesData.Type.MAGIC_SHIELD,
-                                    magicshieldrestored,
-                                    ResourcesData.Use.RESTORE
-                                );
-                                x.getResources()
-                                    .modify(ms);
+                                boolean canHeal = player.getFoodStats()
+                                    .getFoodLevel() >= 10;
+
+                                if (canHeal) {
+                                    if (player.getHealth() < player.getMaxHealth()) {
+                                        restored = true;
+
+                                    }
+                                    float healthrestored = unit.peekAtStat(HealthRegen.GUID).val;
+                                    ResourcesData.Context hp = new ResourcesData.Context(x, player, ResourcesData.Type.HEALTH,
+                                        healthrestored,
+                                        ResourcesData.Use.RESTORE
+                                    );
+
+                                    x.getResources()
+                                        .modify(hp);
+
+                                    if (x.getResources()
+                                        .getMagicShield() < x.getUnit()
+                                        .magicShieldData().val) {
+                                        restored = true;
+                                    }
+
+                                    float magicshieldrestored = unit.peekAtStat(MagicShieldRegen.GUID).val;
+                                    ResourcesData.Context ms = new ResourcesData.Context(x, player,
+                                        ResourcesData.Type.MAGIC_SHIELD,
+                                        magicshieldrestored,
+                                        ResourcesData.Use.RESTORE
+                                    );
+                                    x.getResources()
+                                        .modify(ms);
+
+                                    if (restored) {
+                                        player.getFoodStats()
+                                            .addExhaustion(6.0F);
+                                    }
+                                }
+
                             });
                     }
                 }

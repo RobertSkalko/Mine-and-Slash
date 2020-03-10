@@ -12,13 +12,13 @@ public class RarityWeight {
     public ForgeConfigSpec.IntValue MYTHICAL_WEIGHT;
 
     public static class DefaultConfig {
-        
-        public int COMMON_WEIGHT = 27500;
-        public int UNCOMMON_WEIGHT = 17500;
-        public int RARE_WEIGHT = 5000;
-        public int EPIC_WEIGHT = 3000;
-        public int LEGENDARY_WEIGHT = 1250;
-        public int MYTHICAL_WEIGHT = 250;
+
+        public int COMMON_WEIGHT = 30000;
+        public int UNCOMMON_WEIGHT = 10000;
+        public int RARE_WEIGHT = 2250;
+        public int EPIC_WEIGHT = 750;
+        public int LEGENDARY_WEIGHT = 250;
+        public int MYTHICAL_WEIGHT = 80;
 
         public DefaultConfig higherChanceByMulti(float multi) {
 
@@ -41,22 +41,22 @@ public class RarityWeight {
         builder.push(prefix);
 
         COMMON_WEIGHT = builder.translation("mmorpg.rarity.common")
-                .defineInRange("COMMON_WEIGHT", config.COMMON_WEIGHT, 0, Integer.MAX_VALUE);
+            .defineInRange("COMMON_WEIGHT", config.COMMON_WEIGHT, 0, Integer.MAX_VALUE);
 
         UNCOMMON_WEIGHT = builder.translation("mmorpg.rarity.uncommon")
-                .defineInRange("UNCOMMON_WEIGHT", config.UNCOMMON_WEIGHT, 0, Integer.MAX_VALUE);
+            .defineInRange("UNCOMMON_WEIGHT", config.UNCOMMON_WEIGHT, 0, Integer.MAX_VALUE);
 
         RARE_WEIGHT = builder.translation("mmorpg.rarity.rare")
-                .defineInRange("RARE_WEIGHT", config.RARE_WEIGHT, 0, Integer.MAX_VALUE);
+            .defineInRange("RARE_WEIGHT", config.RARE_WEIGHT, 0, Integer.MAX_VALUE);
 
         EPIC_WEIGHT = builder.translation("mmorpg.rarity.epic")
-                .defineInRange("EPIC_WEIGHT", config.EPIC_WEIGHT, 0, Integer.MAX_VALUE);
+            .defineInRange("EPIC_WEIGHT", config.EPIC_WEIGHT, 0, Integer.MAX_VALUE);
 
         LEGENDARY_WEIGHT = builder.translation("mmorpg.rarity.legendary")
-                .defineInRange("LEGENDARY_WEIGHT", config.LEGENDARY_WEIGHT, 0, Integer.MAX_VALUE);
+            .defineInRange("LEGENDARY_WEIGHT", config.LEGENDARY_WEIGHT, 0, Integer.MAX_VALUE);
 
         MYTHICAL_WEIGHT = builder.translation("mmorpg.rarity.mythical")
-                .defineInRange("MYTHICAL_WEIGHT", config.MYTHICAL_WEIGHT, 0, Integer.MAX_VALUE);
+            .defineInRange("MYTHICAL_WEIGHT", config.MYTHICAL_WEIGHT, 0, Integer.MAX_VALUE);
 
         builder.pop();
     }

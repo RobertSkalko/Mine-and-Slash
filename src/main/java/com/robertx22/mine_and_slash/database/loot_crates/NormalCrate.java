@@ -29,8 +29,8 @@ public class NormalCrate extends LootCrate {
     public ItemStack generateStack(LootInfo info) {
 
         try {
+
             List<ItemStack> items = MasterLootGen.generateLoot(info);
-            info.minItems = 1;
             ItemStack stack = RandomUtils.randomFromList(items);
 
             return stack;

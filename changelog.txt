@@ -1,6 +1,19 @@
+3.2.4
+* try fix lightning strikes being heard from everyone on server
+* confine random dungeons to world border as some mods might change it
+* regen should now cost hunger same as vanilla regen did before
+* health and magic shield no longer regen at low hunger.
+* gear and runes now salvage for ore 1 rarity bellow, capped at common at the bottom.
+* altered rarity drops
+* fixed loot crates in maps having too high chance to drop maps.
+* repair station now needs durability to repair times 3 to repair. 
+* altered repair station fuel per ore rarity to be more in line with the actual craft value of the ores.
 3.2.3
 * magic shield now gets hurt by enviromental damage too. (this includes poison). Magic shield was a big issue because it was basically a way to negate TOO MANY mechanics. 
 Enviromental damage, poison.. All things that are usually what causes deaths. I'll monitor the balance and maybe decrease how much damage is taken if it ends up being too weak because of the nerf.
+* bolt spells now have no gravity and are slower
+* switched righteous fury to be closer to ember page perks
+* added new cleric spell, divine tribulation
 3.2.2
 * code tweaks, attempting to fix memory error that i'm not even sure is a problem
 * torch should now auto equip with shift click like shields
