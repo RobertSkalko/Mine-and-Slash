@@ -53,6 +53,7 @@ public class PlayerUtils {
         if (player.addItemStackToInventory(stack) == false) {
             player.entityDropItem(stack, 1F);
         }
+        player.inventory.markDirty();
     }
 
     public static void sendPlayersMSGofStructureSpawnTEST(BlockPos pos, String name) {

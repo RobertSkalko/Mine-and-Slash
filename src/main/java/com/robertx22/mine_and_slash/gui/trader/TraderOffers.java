@@ -45,11 +45,11 @@ public enum TraderOffers implements IWeighted {
 
         if (data instanceof ISellPrice) {
             ISellPrice sell = (ISellPrice) data;
-            price = sell.getPriceInCommonOres();
+            price = sell.getSavedPriceInCommonOres();
         } else {
             if (stack.getItem() instanceof ISellPrice) {
                 ISellPrice sell = (ISellPrice) stack.getItem();
-                price = sell.getPriceInCommonOres();
+                price = sell.getSavedPriceInCommonOres();
             }
         }
 

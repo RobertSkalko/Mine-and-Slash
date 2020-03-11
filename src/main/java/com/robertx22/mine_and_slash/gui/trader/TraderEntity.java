@@ -3,16 +3,20 @@ package com.robertx22.mine_and_slash.gui.trader;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
-import com.robertx22.mine_and_slash.packets.TraderPacket;
+import com.robertx22.mine_and_slash.packets.trader.TraderPacket;
 import com.robertx22.mine_and_slash.uncommon.datasaving.TraderSaving;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.network.FMLPlayMessages;
@@ -40,6 +44,27 @@ public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpa
     public void init() {
         this.ageUp(100000, false);
         this.addGrowth(10000);
+    }
+
+    public void tryBuyItem(PlayerEntity player, int item) {
+
+        ItemStack stack = data.stacks.get(item);
+
+        int price = ISellPrice.getSavedPriceInCommonOres(stack);
+
+        if (ISellPrice.hasEnoughMoney(player, price)) {
+            ISellPrice.spendMoney(player, price);
+
+            PlayerUtils.giveItem(stack, player);
+
+            SoundUtils.playSound(this, SoundEvents.ENTITY_VILLAGER_TRADE, 1, 1);
+
+        } else {
+            SoundUtils.playSound(this, SoundEvents.ENTITY_VILLAGER_NO, 1, 1);
+        }
+
+        MMORPG.sendToClient(new TraderPacket(data, this), (ServerPlayerEntity) player);
+
     }
 
     @Override
@@ -102,7 +127,7 @@ public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpa
     public boolean processInteract(PlayerEntity player, Hand hand) {
 
         if (!world.isRemote) {
-            MMORPG.sendToClient(new TraderPacket(data), (ServerPlayerEntity) player);
+            MMORPG.sendToClient(new TraderPacket(data, this), (ServerPlayerEntity) player);
         }
 
         return true;

@@ -8,6 +8,8 @@ import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
 import com.robertx22.mine_and_slash.packets.spells.WeaponRightClickSpellPacket;
 import com.robertx22.mine_and_slash.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
+import com.robertx22.mine_and_slash.packets.trader.BuyTraderItemPacket;
+import com.robertx22.mine_and_slash.packets.trader.TraderPacket;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
@@ -98,6 +100,8 @@ public class PacketRegister {
         reg(WeaponRightClickSpellPacket.class, WeaponRightClickSpellPacket::encode, WeaponRightClickSpellPacket::decode, WeaponRightClickSpellPacket::handle);
 
         reg(TraderPacket.class, TraderPacket::encode, TraderPacket::decode, TraderPacket::handle);
+
+        reg(BuyTraderItemPacket.class, BuyTraderItemPacket::encode, BuyTraderItemPacket::decode, BuyTraderItemPacket::handle);
 
     }
 

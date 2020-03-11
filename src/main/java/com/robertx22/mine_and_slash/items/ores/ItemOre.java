@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.items.ores;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.gui.trader.ISellPrice;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -39,6 +40,10 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAuto
 
         return RepairValues.get(rarity);
 
+    }
+
+    public int getValueInCommonOres() {
+        return ISellPrice.rarityOresToCommons(Rarities.Gears.get(rarity), 1);
     }
 
     @Override

@@ -11,12 +11,14 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.MathHelper;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
+import java.util.ArrayList;
+
 public interface ISellPrice {
-    int getPriceInCommonOres();
+    int getSavedPriceInCommonOres();
 
     static String LOC = "mmorpg:sell_price";
 
-    static int getPriceInCommonOres(ItemStack stack) {
+    static int getSavedPriceInCommonOres(ItemStack stack) {
 
         try {
             return stack.getTag()
@@ -44,10 +46,10 @@ public interface ISellPrice {
 
         int current = 0;
 
-        for (ItemStack x : player.inventory.mainInventory) {
-            if (x.getItem() instanceof ItemOre) {
-                ItemOre ore = (ItemOre) x.getItem();
-                current += rarityOresToCommons(Rarities.Gears.get(ore.rarity), x.getCount());
+        for (ItemStack stack : player.inventory.mainInventory) {
+            if (stack.getItem() instanceof ItemOre) {
+                ItemOre ore = (ItemOre) stack.getItem();
+                current += stack.getCount() * ore.getValueInCommonOres();
             }
         }
 
@@ -56,44 +58,64 @@ public interface ISellPrice {
 
     public static void spendMoney(PlayerEntity player, int toSpend) {
 
-        for (ItemStack x : player.inventory.mainInventory) {
-            if (x.getItem() instanceof ItemOre) {
-                ItemOre ore = (ItemOre) x.getItem();
+        ImmutablePair<Rarity, Integer> cost = commonOresToBiggestPossibleRarity(toSpend);
 
-                for (int i = 0; i < x.getCount(); i++) {
+        for (ItemStack stack : new ArrayList<>(player.inventory.mainInventory)) {
+            if (stack.getItem() instanceof ItemOre) {
+                ItemOre ore = (ItemOre) stack.getItem();
+
+                for (int i = 0; i < stack.getCount(); i++) {
                     if (toSpend > 0) {
-                        int val = rarityOresToCommons(Rarities.Gears.get(ore.rarity), 1);
+                        int val = ore.getValueInCommonOres();
+                        stack.shrink(1);
                         toSpend -= val;
+                        player.inventory.markDirty();
                     }
                 }
             }
         }
+        ImmutablePair<Rarity, Integer> change = commonOresToBiggestPossibleRarity(Math.abs(toSpend));
+
+        if (toSpend > 0) {
+            try {
+                throw new RuntimeException("Tried to spend money when player didn't have enough!");
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (toSpend < 0) {
+            giveBackChange(player, Math.abs(toSpend));
+        }
 
     }
 
-    public static ImmutablePair<Rarity, Integer> commonOresToBiggestPossibleRarity(int commons) {
+    public static ImmutablePair<Rarity, Integer> commonOresToBiggestPossibleRarity(int ores) {
 
         int rarity = 0;
 
         for (int i = IRarity.Uncommon; i < IRarity.Mythic; i++) {
-            if (commons > 40) {
-                commons /= 9;
+            if (ores >= 9) {
+                ores /= 9;
                 rarity++;
             }
         }
 
-        return ImmutablePair.of(Rarities.Gears.get(rarity), commons);
+        return ImmutablePair.of(Rarities.Gears.get(rarity), ores);
     }
 
     public static ItemStack getHighestRarityStackFromCommons(int ores) {
 
         ItemStack stack = ItemStack.EMPTY;
 
-        ImmutablePair<Rarity, Integer> pair = ISellPrice.commonOresToBiggestPossibleRarity(ores);
+        ImmutablePair<Rarity, Integer> pair = commonOresToBiggestPossibleRarity(ores);
 
-        if (pair.right > 0) {
-            stack = new ItemStack(ItemOre.ItemOres.get(pair.left.Rank()));
-            stack.setCount(pair.right);
+        Rarity rar = pair.left;
+        int amount = pair.right;
+
+        if (amount > 0) {
+            stack = new ItemStack(ItemOre.ItemOres.get(rar.Rank()));
+            stack.setCount(amount);
         }
 
         return stack;
@@ -107,7 +129,7 @@ public interface ISellPrice {
 
     public static int rarityOresToCommons(Rarity rar, int ores) {
 
-        return (int) (ores * Math.pow(9, MathHelper.clamp(rar.Rank() + 1, 1, 6)));
+        return (int) (ores * Math.pow(9, MathHelper.clamp(rar.Rank(), 1, 6)));
     }
 
 }

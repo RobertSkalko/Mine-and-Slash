@@ -31,14 +31,20 @@ public class ClientOnly {
 
     }
 
-    public static void openOrUpdateTradeGui(TraderData data) {
+    public static void openOrUpdateTradeGui(TraderData data, int traderID) {
         if (Minecraft.getInstance().currentScreen instanceof TraderScreen) {
             TraderScreen screen = (TraderScreen) Minecraft.getInstance().currentScreen;
+
+            if (screen.traderID != traderID) {
+                System.out.println("Activated another trader while trader gui is open???");
+                return;
+            }
+
             screen.data = data;
             screen.init();
         } else {
             Minecraft.getInstance()
-                .displayGuiScreen(new TraderScreen(data));
+                .displayGuiScreen(new TraderScreen(data, traderID));
         }
 
     }

@@ -3,7 +3,9 @@ package com.robertx22.mine_and_slash.gui.trader;
 import com.google.common.base.Preconditions;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.packets.trader.BuyTraderItemPacket;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
@@ -16,10 +18,12 @@ import java.awt.*;
 public class TraderScreen extends BaseScreen {
 
     public TraderData data;
+    public int traderID;
 
-    public TraderScreen(TraderData data) {
+    public TraderScreen(TraderData data, int traderID) {
         super(176, 166);
 
+        this.traderID = traderID;
         this.data = data;
 
         Preconditions.checkArgument(data.stacks.size() < 28);
@@ -33,6 +37,11 @@ public class TraderScreen extends BaseScreen {
         super.render(mouseX, mouseY, partialTicks);
 
         drawTooltips(mouseX, mouseY);
+    }
+
+    @Override
+    public boolean isPauseScreen() {
+        return false;
     }
 
     @Override
@@ -53,7 +62,7 @@ public class TraderScreen extends BaseScreen {
                     int x = guiLeft + 8 + ypos * 18;
                     int y = guiTop + 18 + xpos * 18;
 
-                    this.addButton(new SoldItemButton(data.stacks.get(i), x, y));
+                    this.addButton(new SoldItemButton(i, data.stacks.get(i), traderID, x, y));
                     i++;
                 }
             }
@@ -92,10 +101,15 @@ public class TraderScreen extends BaseScreen {
 
         ItemStack stack;
 
-        public SoldItemButton(ItemStack stack, int xPos, int yPos) {
+        int traderID;
+        int number;
+
+        public SoldItemButton(int number, ItemStack stack, int traderID, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
             });
 
+            this.number = number;
+            this.traderID = traderID;
             this.stack = stack;
 
         }
@@ -112,6 +126,13 @@ public class TraderScreen extends BaseScreen {
         @Override
         public void onPress() {
             super.onPress();
+
+            try {
+                MMORPG.sendToServer(new BuyTraderItemPacket(number,
+                    (TraderEntity) Minecraft.getInstance().world.getEntityByID(traderID)));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
 
