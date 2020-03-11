@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.gui.trader;
+package com.robertx22.mine_and_slash.new_content.trader;
 
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;

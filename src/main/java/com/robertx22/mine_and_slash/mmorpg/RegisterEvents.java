@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
-import com.robertx22.mine_and_slash.gui.trader.TraderTooltipEvent;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.ItemDyeRegister;
+import com.robertx22.mine_and_slash.new_content.trader.TraderTooltipEvent;
 import com.robertx22.mine_and_slash.onevent.entity.*;
 import com.robertx22.mine_and_slash.onevent.entity.damage.OnHurtEvent;
 import com.robertx22.mine_and_slash.onevent.item.*;

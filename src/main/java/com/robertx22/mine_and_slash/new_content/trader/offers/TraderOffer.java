@@ -1,7 +1,7 @@
-package com.robertx22.mine_and_slash.gui.trader.offers;
+package com.robertx22.mine_and_slash.new_content.trader.offers;
 
-import com.robertx22.mine_and_slash.gui.trader.ISellPrice;
 import com.robertx22.mine_and_slash.loot.LootInfo;
+import com.robertx22.mine_and_slash.new_content.trader.ISellPrice;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import net.minecraft.item.ItemStack;

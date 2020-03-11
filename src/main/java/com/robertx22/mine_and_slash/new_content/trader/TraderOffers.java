@@ -1,7 +1,7 @@
-package com.robertx22.mine_and_slash.gui.trader;
+package com.robertx22.mine_and_slash.new_content.trader;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.gui.trader.offers.*;
+import com.robertx22.mine_and_slash.new_content.trader.offers.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

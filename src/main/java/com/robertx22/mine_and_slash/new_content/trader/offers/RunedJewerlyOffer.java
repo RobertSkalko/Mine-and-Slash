@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.gui.trader.offers;
+package com.robertx22.mine_and_slash.new_content.trader.offers;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.loot.LootInfo;

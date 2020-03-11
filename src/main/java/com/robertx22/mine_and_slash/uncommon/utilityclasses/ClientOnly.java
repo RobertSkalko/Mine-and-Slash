@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.gui.trader.TraderData;
 import com.robertx22.mine_and_slash.gui.trader.TraderScreen;
+import com.robertx22.mine_and_slash.new_content.trader.TraderData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;

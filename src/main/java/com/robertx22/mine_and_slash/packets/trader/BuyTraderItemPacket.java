@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.packets.trader;
 
-import com.robertx22.mine_and_slash.gui.trader.TraderEntity;
+import com.robertx22.mine_and_slash.new_content.trader.TraderEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;

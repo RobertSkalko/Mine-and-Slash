@@ -21,6 +21,7 @@ public class DataProcessors {
             all.add(new PuzzleProcessor());
             all.add(new ChanceChestProcessor());
             all.add(new RemoveAllBesidesOneProcessor());
+            all.add(new TraderProcessor());
         }
 
         return all;

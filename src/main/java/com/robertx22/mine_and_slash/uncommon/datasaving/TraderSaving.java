@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.datasaving;
 
-import com.robertx22.mine_and_slash.gui.trader.TraderData;
+import com.robertx22.mine_and_slash.new_content.trader.TraderData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;

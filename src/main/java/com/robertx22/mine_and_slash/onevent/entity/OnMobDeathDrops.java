@@ -96,6 +96,8 @@ public class OnMobDeathDrops {
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mobData, killerData, exp);
 
+        exp = (int) (exp * (1 + victim.getMaxHealth() / 20));
+
         if (victim instanceof SlimeEntity) {
             exp /= 10;
         }

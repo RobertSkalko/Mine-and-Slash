@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.gui.trader;
+package com.robertx22.mine_and_slash.new_content.trader;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

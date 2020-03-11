@@ -1,4 +1,14 @@
-3.2.4
+3.3.0
+
+This is basically an economy update! I added new resource sinks, increased repair costs, reduced salvaged ores etc..
+I also added a new way to gain ores, salvaging currencies! 
+I'm trying to make it so there's no such thing as a useless item, and currencies before were useless if you didn't need them.
+Map device now needs fuel to start maps (why was dimensional travel free before!?) and now you can find a dungeon merchant in dungeons to spend your extra ores on.
+Oh and lots of items now need to be identified to be used. 
+In short, prepare for scarcity!
+
+The good thing is even if you hate the scarcity, i added some configs to let you control the costs of these resource sinks.
+
 * try fix lightning strikes being heard from everyone on server
 * confine random dungeons to world border as some mods might change it
 * regen should now cost hunger same as vanilla regen did before
@@ -6,7 +16,6 @@
 * gear and runes now salvage for ore 1 rarity bellow, capped at common at the bottom.
 * altered rarity drops
 * fixed loot crates in maps having too high chance to drop maps.
-* repair station now needs durability to repair times 3. 
 * altered repair station fuel per ore rarity to be more in line with the actual craft value of the ores.
 * casting spells now damages weapon
 * reduced loot drops default config (needs server config clear)
@@ -17,43 +26,6 @@
 * map device now needs fuel same as repair station to activate maps.
 * added identify tome
 * items of higher rarities now have chance to be unidentified and need an identify tome to reveal it.
-3.2.3
-* magic shield now gets hurt by enviromental damage too. (this includes poison). Magic shield was a big issue because it was basically a way to negate TOO MANY mechanics. 
-Enviromental damage, poison.. All things that are usually what causes deaths. I'll monitor the balance and maybe decrease how much damage is taken if it ends up being too weak because of the nerf.
-* bolt spells now have no gravity and are slower
-* switched righteous fury to be closer to ember page perks
-* added new cleric spell, divine tribulation
-3.2.2
-* code tweaks, attempting to fix memory error that i'm not even sure is a problem
-* torch should now auto equip with shift click like shields
-* added strays to dungeon mobs
-* some dungeon mobs now spawn with potion effects.
-* rarity by default wont be shown on gears, this should reduce tooltip size a bunch
-* added dev command to get out of dungeon
-* should fix mobs getting stuck in walls in dungeons, big mobs like spiders can still get stuck though
-* added new dungeon rooms
-3.2.1
-* removed the hacky thing to stop craft grid repair cus it caused server issues
-3.2.0
-* Added a config to enable automatic compatible item system. This is very experimental and i have no idea how accurate it is, but here's how it works.
-I determine a power level of the item and then separate it into one of the categories: trash, normal and best.
-Trash are low level gear that can't go above rare.
-Normal can go up to nearly max level and can be legendary.
-Best can go up to max level and be mythic.
-
-Most items should fall in the normal category.
-This setting is recommended for those who care less about balance, and are more irked about other mod's items not getting my mod's stats.
-Even though i tried to balance it as good as i can, it will probably not work ALL the time.
-
-In that case, you can always setup compatible item datapacks for those edge cases,
-because this automatic system will only activate for the item if there isn't a datapack already for it.
-
-Power level is determined by how much stats the item has compared to the best item of that category(sword, helmet etc). 
-This has some caps to make sure a creative OP weapons with 999999 damage don't screw the median.
-
-So if your sword has say 20 stats while best sword has 100. The power will be 0.2 and fall in "trash" category. 
-If it had 30 or more, it would get the "normal" category.
-If it had 80 or more , it would get the "best" category.
-
-* added magic steal stat
-* used a hacky way to replace vanilla craft grid repair, now it shouldn't work on any items with my mod's stats.
+* vanilla hp now factors into mob xp gained
+* added a trader npc
+* added a dungeon room that has the trader npc

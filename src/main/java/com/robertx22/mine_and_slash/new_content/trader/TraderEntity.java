@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.gui.trader;
+package com.robertx22.mine_and_slash.new_content.trader;
 
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.packets.trader.TraderPacket;
 import com.robertx22.mine_and_slash.uncommon.datasaving.TraderSaving;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -78,7 +79,10 @@ public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpa
             data.generated = true;
 
             data.generateMerchandise(new LootInfo(world, getPosition()));
+        }
 
+        if (!WorldUtils.isMapWorldClass(this.world)) {
+            // TODO this.damageEntity(DamageSource.causeThornsDamage(this), 10000);
         }
 
     }
