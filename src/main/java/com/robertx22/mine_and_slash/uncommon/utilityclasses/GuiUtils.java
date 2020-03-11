@@ -4,6 +4,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -41,7 +43,23 @@ public class GuiUtils {
 
             TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
             screen.renderTooltip(TooltipUtils.compsToStrings(tooltip), mouseX, mouseY,
-                                 Minecraft.getInstance().fontRenderer
+                Minecraft.getInstance().fontRenderer
+            );
+        }
+
+    }
+
+    public static void renderTooltip(ItemStack stack, int mouseX, int mouseY) {
+
+        Screen screen = Minecraft.getInstance().currentScreen;
+
+        List<ITextComponent> tooltip = stack.getTooltip(Minecraft.getInstance().player, ITooltipFlag.TooltipFlags.NORMAL);
+
+        if (screen != null) {
+
+            TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
+            screen.renderTooltip(TooltipUtils.compsToStrings(tooltip), mouseX, mouseY,
+                Minecraft.getInstance().fontRenderer
             );
         }
 
@@ -91,13 +109,13 @@ public class GuiUtils {
 
         // Calculate the middle of the expected curve.
         float factor = (float) Math.sqrt(
-                (pRadius * pRadius) / ((pTo.x - pFrom.x) * (pTo.x - pFrom.x) + (pTo.y - pFrom.y) * (pTo.y - pFrom.y)) - 0.25f);
+            (pRadius * pRadius) / ((pTo.x - pFrom.x) * (pTo.x - pFrom.x) + (pTo.y - pFrom.y) * (pTo.y - pFrom.y)) - 0.25f);
         PointF circleMiddlePoint = new PointF(0, 0);
 
         float middleDistance1 =
-                0.5f * (pFrom.x + pTo.x) + factor * (pTo.y - pFrom.y) + 0.5f * (pFrom.y + pTo.y) + factor * (pFrom.x - pTo.x);
+            0.5f * (pFrom.x + pTo.x) + factor * (pTo.y - pFrom.y) + 0.5f * (pFrom.y + pTo.y) + factor * (pFrom.x - pTo.x);
         float middleDistance2 =
-                0.5f * (pFrom.x + pTo.x) - factor * (pTo.y - pFrom.y) + 0.5f * (pFrom.y + pTo.y) - factor * (pFrom.x - pTo.x);
+            0.5f * (pFrom.x + pTo.x) - factor * (pTo.y - pFrom.y) + 0.5f * (pFrom.y + pTo.y) - factor * (pFrom.x - pTo.x);
 
         boolean side2 = middleDistance1 < middleDistance2;
 
@@ -135,7 +153,7 @@ public class GuiUtils {
         }
         for (float f = angle1; f < angle2; f += step) {
             PointF p = new PointF((float) Math.cos(f) * pRadius + circleMiddlePoint.x,
-                                  (float) Math.sin(f) * pRadius + circleMiddlePoint.y
+                (float) Math.sin(f) * pRadius + circleMiddlePoint.y
             );
             pOutPut.add(p);
         }

@@ -93,7 +93,21 @@ public class LootInfo {
         this.pos = pos;
         this.mapData = Load.world(world);
 
-        this.level = WorldUtils.isMapWorldClass(world) ? mapData.getLevel(pos) : playerData.getLevel();
+        if (WorldUtils.isMapWorldClass(world)) {
+
+            if (mapData != null) {
+                level = mapData.getLevel(pos);
+            } else {
+                level = 1;
+            }
+
+        } else {
+            if (playerData != null) {
+                level = playerData.getLevel();
+            } else {
+                level = 1;
+            }
+        }
 
         setTier();
     }

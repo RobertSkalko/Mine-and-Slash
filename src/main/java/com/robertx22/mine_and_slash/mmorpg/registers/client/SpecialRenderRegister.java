@@ -13,6 +13,7 @@ public class SpecialRenderRegister {
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.MAP_PORTAL.get(), MapPortalRenderer::new);
 
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.MAP_CHEST.get(), MapChestRenderer::new);
+
     }
 
 }

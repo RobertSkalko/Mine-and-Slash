@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.proj.*;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityStaffProjectile;
 import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityWandProjectile;
+import com.robertx22.mine_and_slash.gui.trader.TraderEntity;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -63,6 +64,8 @@ public class EntityRegister {
 
     public static final EntityType<? extends Entity> SEED;
 
+    public static final EntityType<TraderEntity> TRADER;
+
     static {
 
         MAGIC_MISSILE = newType(MagicMissileEntity::new, MagicMissileEntity::new, "magic_missile", false);
@@ -88,6 +91,14 @@ public class EntityRegister {
         DIVINE_TRIBULATION = newType(DivineTribulationEntity::new, DivineTribulationEntity::new, "divine_tribulation");
 
         SEED = newType(SeedEntity::new, SeedEntity::new, "seed_entity");
+
+        TRADER = EntityType.Builder.<TraderEntity>create(TraderEntity::new, EntityClassification.MISC).setCustomClientFactory(
+            TraderEntity::new)
+            .size(0.5F, 2F)
+            .build(Ref.MODID + ":trader");
+        TRADER.setRegistryName(new ResourceLocation(Ref.MODID, "trader"));
+        ENTITY_TYPES.add(TRADER);
+
     }
 
     private static <T extends Entity> EntityType<T> newType(EntityType.IFactory<T> factory,
