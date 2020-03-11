@@ -41,9 +41,9 @@ public class ParticleUtils {
 
     public static void spawnParticles(ParticleType particle, LivingEntity en, int amount) {
 
-        ParticleEnum.sendToClients(en, new ParticlePacketData(en.getPosition(), ParticleEnum.AOE).radius(1)
-                .type(particle)
-                .amount(amount));
+        ParticleEnum.sendToClients(en, new ParticlePacketData(en.getPositionVector(), ParticleEnum.AOE).radius(1)
+            .type(particle)
+            .amount(amount));
 
     }
 

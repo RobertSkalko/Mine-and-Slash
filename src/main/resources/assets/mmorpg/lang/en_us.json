@@ -45,6 +45,7 @@
 "item.mmorpg.mat.golden_orb": "Golden Orb",
 "item.mmorpg.mat.mythic_essence": "Mythic Essence",
 "item.mmorpg.awaken_runeword": "Awaken RuneWord",
+"item.mmorpg.identify_tome": "Identify Tome",
 "_comment": "SPELL TOOLTIPS",
 "mmorpg.tooltip.aoe_spell_explosion": "Casts an elemental projectile that does AOE dmg on hit.",
 "mmorpg.tooltip.single_target_spell_bolt": "Casts a Single Target elemental projectile.",
@@ -76,7 +77,6 @@
 	"item.mmorpg.auto_salvage_bag3": "§9Auto Salvage Bag",
 	"item.mmorpg.auto_salvage_bag4": "§6Auto Salvage Bag",
 	"item.mmorpg.auto_salvage_bag5": "§dAuto Salvage Bag",
-	"item.mmorpg.identify_tome": "Identify Tome",
 	"item.mmorpg.master_bag": "§eMaster Bag",
 	"item.mmorpg.ore0": "§7Common Ore",
 	"item.mmorpg.ore1": "§aUncommon Ore",
@@ -277,26 +277,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 	"item.mmorpg.lootbox.big_currency_lootbox_3": "§9Epic Big Currency Treasure Box",
@@ -319,6 +299,26 @@
 	"item.mmorpg.lootbox.small_gear_lootbox_5": "§dMythical Small Gear Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -646,6 +646,7 @@
 	"mmorpg.word.requirements": "Requirements",
 	"mmorpg.word.requirementsnotmet": "Requirements not met",
 	"mmorpg.word.resources": "Resources",
+	"mmorpg.word.rightclicktoidentifyfirst": "Use to identify first item in inventory.",
 	"mmorpg.word.righteousfury": "Righteous Fury",
 	"mmorpg.word.rogue": "Rogue",
 	"mmorpg.word.runecrate": "Runecrafter's Crate",
