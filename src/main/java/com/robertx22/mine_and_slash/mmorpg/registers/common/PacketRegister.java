@@ -97,6 +97,8 @@ public class PacketRegister {
 
         reg(WeaponRightClickSpellPacket.class, WeaponRightClickSpellPacket::encode, WeaponRightClickSpellPacket::decode, WeaponRightClickSpellPacket::handle);
 
+        reg(TraderPacket.class, TraderPacket::encode, TraderPacket::decode, TraderPacket::handle);
+
     }
 
 }

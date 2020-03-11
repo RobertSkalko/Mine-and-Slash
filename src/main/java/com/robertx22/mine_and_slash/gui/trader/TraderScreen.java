@@ -12,18 +12,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import java.awt.*;
-import java.util.List;
 
 public class TraderScreen extends BaseScreen {
 
-    public TraderScreen(List<ItemStack> stacks) {
+    public TraderData data;
+
+    public TraderScreen(TraderData data) {
         super(176, 166);
-        this.stacks = stacks;
 
-        Preconditions.checkArgument(stacks.size() < 28);
+        this.data = data;
+
+        Preconditions.checkArgument(data.stacks.size() < 28);
     }
-
-    List<ItemStack> stacks;
 
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
@@ -36,8 +36,10 @@ public class TraderScreen extends BaseScreen {
     }
 
     @Override
-    protected void init() {
+    public void init() {
         super.init();
+
+        this.buttons.clear();
 
         int xpos;
         int ypos;
@@ -46,12 +48,12 @@ public class TraderScreen extends BaseScreen {
         for (xpos = 0; xpos < 3; ++xpos) {
             for (ypos = 0; ypos < 9; ++ypos) {
 
-                if (stacks.size() > i) {
+                if (data.stacks.size() > i) {
 
                     int x = guiLeft + 8 + ypos * 18;
                     int y = guiTop + 18 + xpos * 18;
 
-                    this.addButton(new SoldItemButton(stacks.get(i), x, y));
+                    this.addButton(new SoldItemButton(data.stacks.get(i), x, y));
                     i++;
                 }
             }

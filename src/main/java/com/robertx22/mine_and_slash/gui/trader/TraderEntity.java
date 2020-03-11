@@ -1,12 +1,15 @@
 package com.robertx22.mine_and_slash.gui.trader;
 
 import com.robertx22.mine_and_slash.loot.LootInfo;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
+import com.robertx22.mine_and_slash.packets.TraderPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import net.minecraft.client.Minecraft;
+import com.robertx22.mine_and_slash.uncommon.datasaving.TraderSaving;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
@@ -26,6 +29,8 @@ public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpa
         init();
     }
 
+    public TraderData data = new TraderData();
+
     public TraderEntity(EntityType type, World world) {
         super(type, world);
         init();
@@ -42,13 +47,39 @@ public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpa
     }
 
     @Override
+    public void tick() {
+
+        super.tick();
+
+        if (!data.generated) {
+            data.generated = true;
+
+            List<ItemStack> stacks = SlashRegistry.LootCrates()
+                .random()
+                .generateItems(new LootInfo(world, getPosition()));
+
+            data.stacks = stacks;
+        }
+
+    }
+
+    @Override
     public void readAdditional(CompoundNBT nbt) {
         super.readAdditional(nbt);
+
+        this.data = TraderSaving.Load(nbt);
+
+        if (data == null) {
+            data = new TraderData();
+        }
     }
 
     @Override
     public void writeAdditional(CompoundNBT nbt) {
         super.writeAdditional(nbt);
+
+        TraderSaving.Save(nbt, data);
+
     }
 
     @Override
@@ -76,16 +107,10 @@ public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpa
 
     @Override
     public boolean processInteract(PlayerEntity player, Hand hand) {
-        // TODO TESTING
 
-        boolean bool = this.isChild();
-
-        List<ItemStack> stacks = SlashRegistry.LootCrates()
-            .random()
-            .generateItems(new LootInfo(player.world, player.getPosition()));
-
-        Minecraft.getInstance()
-            .displayGuiScreen(new TraderScreen(stacks));
+        if (!world.isRemote) {
+            MMORPG.sendToClient(new TraderPacket(data), (ServerPlayerEntity) player);
+        }
 
         return true;
     }

@@ -68,29 +68,29 @@ public class EntityRegister {
 
     static {
 
-        MAGIC_MISSILE = newType(MagicMissileEntity::new, MagicMissileEntity::new, "magic_missile", false);
+        MAGIC_MISSILE = projectile(MagicMissileEntity::new, MagicMissileEntity::new, "magic_missile", false);
 
-        BLIZZARD = newType(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
-        FROSTBOLT = newType(FrostballEntity::new, FrostballEntity::new, "frostball");
-        WHIRPOOL = newType(WhirlpoolEntity::new, WhirlpoolEntity::new, "whirlpool");
-        GEYSER = newType(GeyserEntity::new, GeyserEntity::new, "geyser");
+        BLIZZARD = projectile(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
+        FROSTBOLT = projectile(FrostballEntity::new, FrostballEntity::new, "frostball");
+        WHIRPOOL = projectile(WhirlpoolEntity::new, WhirlpoolEntity::new, "whirlpool");
+        GEYSER = projectile(GeyserEntity::new, GeyserEntity::new, "geyser");
 
-        THUNDERSTORM = newType(ThunderstormEntity::new, ThunderstormEntity::new, "thunderstorm");
-        THUNDER_SPEAR = newType(ThunderspearEntity::new, ThunderspearEntity::new, "thunder_spear", false);
-        LIGHTNING_TOTEM = newType(LightningTotemEntity::new, LightningTotemEntity::new, "lightning_totem");
+        THUNDERSTORM = projectile(ThunderstormEntity::new, ThunderstormEntity::new, "thunderstorm");
+        THUNDER_SPEAR = projectile(ThunderspearEntity::new, ThunderspearEntity::new, "thunder_spear", false);
+        LIGHTNING_TOTEM = projectile(LightningTotemEntity::new, LightningTotemEntity::new, "lightning_totem");
 
-        FIREBOLT = newType(FireballEntity::new, FireballEntity::new, "fireball");
-        VOLCANO = newType(VolcanoEntity::new, VolcanoEntity::new, "volcano");
+        FIREBOLT = projectile(FireballEntity::new, FireballEntity::new, "fireball");
+        VOLCANO = projectile(VolcanoEntity::new, VolcanoEntity::new, "volcano");
 
-        STAFFPROJECTILE = newType(EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
-        WANDPROJECTILE = newType(EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");
+        STAFFPROJECTILE = projectile(EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
+        WANDPROJECTILE = projectile(EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");
 
-        RANGER_ARROW = newType(RangerArrowEntity::new, RangerArrowEntity::new, "ranger_arrow");
-        ARROW_STORM = newType(ArrowStormEntity::new, ArrowStormEntity::new, "arrow_storm");
+        RANGER_ARROW = projectile(RangerArrowEntity::new, RangerArrowEntity::new, "ranger_arrow");
+        ARROW_STORM = projectile(ArrowStormEntity::new, ArrowStormEntity::new, "arrow_storm");
 
-        DIVINE_TRIBULATION = newType(DivineTribulationEntity::new, DivineTribulationEntity::new, "divine_tribulation");
+        DIVINE_TRIBULATION = projectile(DivineTribulationEntity::new, DivineTribulationEntity::new, "divine_tribulation");
 
-        SEED = newType(SeedEntity::new, SeedEntity::new, "seed_entity");
+        SEED = projectile(SeedEntity::new, SeedEntity::new, "seed_entity");
 
         TRADER = EntityType.Builder.<TraderEntity>create(TraderEntity::new, EntityClassification.MISC).setCustomClientFactory(
             TraderEntity::new)
@@ -101,17 +101,17 @@ public class EntityRegister {
 
     }
 
-    private static <T extends Entity> EntityType<T> newType(EntityType.IFactory<T> factory,
-                                                            BiFunction<FMLPlayMessages.SpawnEntity, World, T> bif,
-                                                            String id) {
+    private static <T extends Entity> EntityType<T> projectile(EntityType.IFactory<T> factory,
+                                                               BiFunction<FMLPlayMessages.SpawnEntity, World, T> bif,
+                                                               String id) {
 
-        return newType(factory, bif, id, true);
+        return projectile(factory, bif, id, true);
 
     }
 
-    private static <T extends Entity> EntityType<T> newType(EntityType.IFactory<T> factory,
-                                                            BiFunction<FMLPlayMessages.SpawnEntity, World, T> bif,
-                                                            String id, boolean itemRender) {
+    private static <T extends Entity> EntityType<T> projectile(EntityType.IFactory<T> factory,
+                                                               BiFunction<FMLPlayMessages.SpawnEntity, World, T> bif,
+                                                               String id, boolean itemRender) {
 
         EntityType<T> type = EntityType.Builder.<T>create(factory, EntityClassification.MISC).setCustomClientFactory(
             bif)
