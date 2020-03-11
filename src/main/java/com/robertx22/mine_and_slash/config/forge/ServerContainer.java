@@ -22,6 +22,7 @@ public class ServerContainer {
     public IntValue RUNES_AND_RUNED_GEAR_DROP_AFTER_LEVEL;
     public IntValue MAXIMUM_PLAYER_LEVEL;
     public IntValue MAXIMUM_ITEM_INSTABILITY;
+    public IntValue FUEL_NEEDED_PER_MAP_ACTIVATION;
 
     public IntValue STARTING_SPELL_POINTS;
 
@@ -42,6 +43,10 @@ public class ServerContainer {
 
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
+
+        FUEL_NEEDED_PER_MAP_ACTIVATION = builder.comment("")
+            .translation("mmorpg.word.")
+            .defineInRange("FUEL_NEEDED_PER_MAP_ACTIVATION", 1000, 0, 100000);
 
         REPAIR_FUEL_NEEDED_MULTI = builder.comment(".")
             .translation("mmorpg.word.")

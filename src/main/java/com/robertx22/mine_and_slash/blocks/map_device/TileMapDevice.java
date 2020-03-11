@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.blocks.map_device;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.blocks.slots.FuelSlot;
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
@@ -12,6 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -30,7 +32,7 @@ import javax.annotation.Nullable;
 
 public class TileMapDevice extends BaseTile {
 
-    public static final int size = 0;
+    public static final int size = 1;
 
     @Override
     public boolean isAutomatable() {
@@ -73,12 +75,14 @@ public class TileMapDevice extends BaseTile {
         return 10;
     }
 
+    public static int MaximumFuel = 50000;
+
     @Override
     public void doActionEveryTime() {
 
         ItemStack fuel = itemStacks[0];
 
-        if (!fuel.isEmpty()) {
+        if (this.fuel < MaximumFuel && !fuel.isEmpty()) {
 
             int val = FuelSlot.FUEL_VALUES.getOrDefault(fuel.getItem(), 0);
 
@@ -163,6 +167,7 @@ public class TileMapDevice extends BaseTile {
     public void sacrificeMap(PlayerEntity player, MapItemData mapdata, ItemStack map) {
 
         if (!hasEnoughFuel()) {
+            player.sendMessage(new SText("Not enough fuel"));
             return;
         }
 
@@ -187,7 +192,7 @@ public class TileMapDevice extends BaseTile {
     }
 
     public int getFuelNeeded() {
-        return 1000;
+        return ModConfig.INSTANCE.Server.FUEL_NEEDED_PER_MAP_ACTIVATION.get();
     }
 
     @Override

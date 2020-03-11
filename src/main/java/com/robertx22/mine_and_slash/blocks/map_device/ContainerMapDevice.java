@@ -54,7 +54,7 @@ public class ContainerMapDevice extends BaseTileContainer {
             }
         }
 
-        addSlot(new FuelSlot(inventory, 0, 79, 92));
+        addSlot(new FuelSlot(inventory, 0, 80, 93));
 
     }
 
