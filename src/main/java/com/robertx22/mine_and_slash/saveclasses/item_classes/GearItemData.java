@@ -458,10 +458,19 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
     @Override
     public int getSavedPriceInCommonOres() {
 
+        int price = 0;
+
         if (this.isUnique()) {
-            return ISellPrice.rarityOresToCommons(Rarities.Gears.get(IRarity.Mythic), 50);
+            price = ISellPrice.rarityOresToCommons(Rarities.Gears.get(IRarity.Mythic), 30);
+        } else {
+            price = ISellPrice.rarityOresToCommons(getRarity(), 5);
         }
 
-        return ISellPrice.rarityOresToCommons(getRarity(), 10);
+        if (this.isIdentified()) {
+            price *= 3;
+        }
+
+        return price;
+
     }
 }

@@ -30,6 +30,11 @@ public class Ring extends BaseCurio {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.NONE;
+    }
+
+    @Override
     public Item getBaseUniqueItem() {
         return new BaseUniqueRing();
     }

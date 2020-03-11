@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.database.gearitemslots.cloth;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BasePants;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothPantsItem;
 import net.minecraft.item.Item;
 
@@ -21,6 +21,11 @@ public class ClothPants extends BasePants {
     @Override
     public List<PosStats> getPossiblePrimaryStats() {
         return clothPrimary();
+    }
+
+    @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.MAGE;
     }
 
     @Override

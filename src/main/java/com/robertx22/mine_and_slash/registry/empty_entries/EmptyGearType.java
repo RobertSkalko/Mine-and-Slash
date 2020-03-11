@@ -29,6 +29,11 @@ public class EmptyGearType extends GearItemSlot {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return null;
+    }
+
+    @Override
     public Item getBaseUniqueItem() {
         return null;
     }

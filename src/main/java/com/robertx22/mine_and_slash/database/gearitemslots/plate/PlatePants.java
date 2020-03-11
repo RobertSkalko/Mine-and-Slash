@@ -33,6 +33,11 @@ public class PlatePants extends BasePants {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.WARRIOR;
+    }
+
+    @Override
     public Item getDefaultItem() {
         return PlatePantsItem.Items.get(0);
     }

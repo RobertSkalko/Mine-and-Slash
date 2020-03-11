@@ -33,6 +33,11 @@ public class PlateHelmet extends BaseHelmet {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.WARRIOR;
+    }
+
+    @Override
     public Item getDefaultItem() {
         return PlateHelmetItem.Items.get(0);
     }

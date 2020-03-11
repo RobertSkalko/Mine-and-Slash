@@ -34,6 +34,11 @@ public class Bow extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.THIEF;
+    }
+
+    @Override
     public StatReq getRequirements() {
         return req;
     }

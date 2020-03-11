@@ -41,6 +41,11 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
     static StatReq req = new StatReq(LvlPointStat.INTELLIGENCE, StatReq.Size.MEDIUM);
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.MAGE;
+    }
+
+    @Override
     public StatReq getRequirements() {
         return req;
     }

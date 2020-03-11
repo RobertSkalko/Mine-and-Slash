@@ -25,6 +25,11 @@ public class ClothBoots extends BaseBoots {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.MAGE;
+    }
+
+    @Override
     public List<PosStats> getPossiblePrimaryStats() {
         return clothPrimary();
     }

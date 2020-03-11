@@ -33,6 +33,11 @@ public class PlateBoots extends BaseBoots {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.WARRIOR;
+    }
+
+    @Override
     public Item getDefaultItem() {
         return PlateBootsItem.Items.get(0);
     }

@@ -46,6 +46,11 @@ public class Wand extends BaseWeapon implements ISpecificStatReq {
     static StatReq req = new StatReq(LvlPointStat.WISDOM, StatReq.Size.MEDIUM);
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.MAGE;
+    }
+
+    @Override
     public Item getBaseUniqueItem() {
         return new BaseUniqueWand();
     }

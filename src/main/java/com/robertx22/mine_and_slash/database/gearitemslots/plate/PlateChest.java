@@ -33,6 +33,11 @@ public class PlateChest extends BaseChest {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.WARRIOR;
+    }
+
+    @Override
     public Item getDefaultItem() {
         return PlateChestItem.Items.get(0);
     }

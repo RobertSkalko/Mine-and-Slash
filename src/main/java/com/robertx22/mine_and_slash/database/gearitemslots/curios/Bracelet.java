@@ -27,6 +27,11 @@ public class Bracelet extends BaseCurio {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.NONE;
+    }
+
+    @Override
     public StatReq getRequirements() {
         return noReq;
     }

@@ -34,6 +34,11 @@ public class Sword extends BaseWeapon implements ISpecificStatReq {
     static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.TINY);
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.THIEF;
+    }
+
+    @Override
     public StatReq getRequirements() {
         return req;
     }

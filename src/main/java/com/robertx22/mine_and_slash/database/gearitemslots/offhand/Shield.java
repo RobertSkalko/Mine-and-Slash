@@ -37,6 +37,11 @@ public class Shield extends BaseOffHand implements ISpecificStatReq {
         LvlPointStat.VITALITY, StatReq.Size.TINY, LvlPointStat.STAMINA, StatReq.Size.TINY);
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.WARRIOR;
+    }
+
+    @Override
     public StatReq getRequirements() {
         return req;
     }

@@ -36,6 +36,11 @@ public class Necklace extends BaseCurio {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.NONE;
+    }
+
+    @Override
     public String resourceID() {
         return "necklace";
     }

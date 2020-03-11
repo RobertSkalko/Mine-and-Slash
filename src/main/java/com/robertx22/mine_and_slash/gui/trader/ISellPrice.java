@@ -78,8 +78,10 @@ public interface ISellPrice {
             if (stack.getItem() instanceof ItemOre) {
                 ItemOre ore = (ItemOre) stack.getItem();
 
-                for (int i = 0; i < stack.getCount(); i++) {
-                    if (toSpend > 0) {
+                int c = stack.getCount();
+
+                for (int i = 0; i < c; i++) {
+                    if (toSpend > 0 && stack.getCount() > 0) {
                         int val = ore.getValueInCommonOres();
                         stack.shrink(1);
                         toSpend -= val;

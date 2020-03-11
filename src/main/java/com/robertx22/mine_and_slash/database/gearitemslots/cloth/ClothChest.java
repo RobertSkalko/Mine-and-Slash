@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.database.gearitemslots.cloth;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothChestItem;
 import net.minecraft.item.Item;
 
@@ -22,6 +22,11 @@ public class ClothChest extends BaseChest {
     @Override
     public StatReq getRequirements() {
         return clothArmorReq;
+    }
+
+    @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.MAGE;
     }
 
     @Override

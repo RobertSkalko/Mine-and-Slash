@@ -1,61 +1,31 @@
 package com.robertx22.mine_and_slash.gui.trader;
 
-import com.robertx22.mine_and_slash.loot.LootInfo;
-import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
-import net.minecraft.item.ItemStack;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.gui.trader.offers.*;
 
-public enum TraderOffers implements IWeighted {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-    HIGH_RARITY {
-        @Override
-        public ItemStack generateStackInternal(LootInfo info) {
-            GearBlueprint gearB = new GearBlueprint(info);
-            gearB.rarity.minRarity = 3;
-            return gearB.createStack();
+public class TraderOffers {
 
-        }
-    },
-    HIGH_RARITY_RUNED {
-        @Override
-        public ItemStack generateStackInternal(LootInfo info) {
-            RunedGearBlueprint gearB = new RunedGearBlueprint(info.level, info.tier);
-            gearB.rarity.minRarity = 3;
-            return gearB.createStack();
+    public static List<TraderOffer> ALL = new ArrayList();
 
-        }
-    };
+    static {
 
-    @Override
-    public int Weight() {
-        return 1000;
-    }
+        ALL.add(new ChaosStatsOffer());
+        ALL.add(new HighRarityOffer());
+        ALL.add(new HighRarityRunedOffer());
+        ALL.add(new MythicOffer());
+        ALL.add(new UniqueOffer());
+        ALL.add(new RunedJewerlyOffer());
 
-    public abstract ItemStack generateStackInternal(LootInfo info);
-
-    public ItemStack generateStack(LootInfo info) {
-
-        ItemStack stack = generateStackInternal(info);
-
-        int price = Integer.MAX_VALUE;
-
-        ICommonDataItem data = ICommonDataItem.load(stack);
-
-        if (data instanceof ISellPrice) {
-            ISellPrice sell = (ISellPrice) data;
-            price = sell.getSavedPriceInCommonOres();
-        } else {
-            if (stack.getItem() instanceof ISellPrice) {
-                ISellPrice sell = (ISellPrice) stack.getItem();
-                price = sell.getSavedPriceInCommonOres();
-            }
-        }
-
-        ISellPrice.savePriceInCommonOres(stack, price);
-
-        return stack;
+        Arrays.stream(GearItemSlot.PlayStyle.values())
+            .forEach(x -> {
+                if (x != GearItemSlot.PlayStyle.NONE) {
+                    ALL.add(new PlayStyleOffer(x));
+                }
+            });
 
     }
 

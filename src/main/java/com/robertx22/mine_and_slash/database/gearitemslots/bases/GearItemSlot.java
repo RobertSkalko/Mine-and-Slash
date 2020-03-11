@@ -48,6 +48,12 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public static StatReq noReq = StatReq.nothing();
 
+    public enum PlayStyle {
+        MAGE, THIEF, WARRIOR, NONE
+    }
+
+    public abstract PlayStyle getPlayStyle();
+
     public abstract Item getBaseUniqueItem();
 
     public boolean isMeleeWeapon() {

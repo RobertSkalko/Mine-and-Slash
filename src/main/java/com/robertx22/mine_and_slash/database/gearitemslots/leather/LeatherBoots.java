@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.database.gearitemslots.leather;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherBootsItem;
 import net.minecraft.item.Item;
 
@@ -26,6 +26,11 @@ public class LeatherBoots extends BaseBoots {
     @Override
     public List<PosStats> getPossiblePrimaryStats() {
         return leatherPrimary();
+    }
+
+    @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.THIEF;
     }
 
     @Override

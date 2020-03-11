@@ -30,6 +30,11 @@ public class Hammer extends BaseWeapon implements ISpecificStatReq {
         return true;
     }
 
+    @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.WARRIOR;
+    }
+
     static StatReq req = new StatReq(
         LvlPointStat.STRENGTH, StatReq.Size.SMALL, LvlPointStat.VITALITY, StatReq.Size.SMALL);
 

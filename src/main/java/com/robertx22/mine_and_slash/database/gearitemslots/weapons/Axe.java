@@ -34,6 +34,11 @@ public class Axe extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.WARRIOR;
+    }
+
+    @Override
     public String resourceID() {
         return "axe";
     }
