@@ -55,6 +55,8 @@ public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpa
         if (ISellPrice.hasEnoughMoney(player, price)) {
             ISellPrice.spendMoney(player, price);
 
+            ISellPrice.removePrice(stack);
+
             PlayerUtils.giveItem(stack, player);
 
             SoundUtils.playSound(this, SoundEvents.ENTITY_VILLAGER_TRADE, 1, 1);

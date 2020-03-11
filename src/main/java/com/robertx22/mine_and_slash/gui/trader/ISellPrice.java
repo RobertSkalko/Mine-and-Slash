@@ -18,6 +18,16 @@ public interface ISellPrice {
 
     static String LOC = "mmorpg:sell_price";
 
+    static void removePrice(ItemStack stack) {
+        try {
+            stack.getTag()
+                .remove(LOC);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     static int getSavedPriceInCommonOres(ItemStack stack) {
 
         try {
@@ -29,6 +39,11 @@ public interface ISellPrice {
 
         return Integer.MAX_VALUE;
 
+    }
+
+    static boolean hasPrice(ItemStack stack) {
+        return stack.hasTag() && stack.getTag()
+            .contains(LOC);
     }
 
     static void savePriceInCommonOres(ItemStack stack, int ores) {
@@ -94,10 +109,14 @@ public interface ISellPrice {
 
         int rarity = 0;
 
-        for (int i = IRarity.Uncommon; i < IRarity.Mythic; i++) {
-            if (ores >= 9) {
-                ores /= 9;
-                rarity++;
+        for (int i = 0; i < 6; i++) {
+
+            if (rarity < IRarity.Mythic) {
+
+                if (ores >= 9) {
+                    ores /= 9;
+                    rarity++;
+                }
             }
         }
 

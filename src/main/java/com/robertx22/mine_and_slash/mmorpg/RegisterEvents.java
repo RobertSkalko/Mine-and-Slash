@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
+import com.robertx22.mine_and_slash.gui.trader.TraderTooltipEvent;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.ItemDyeRegister;
 import com.robertx22.mine_and_slash.onevent.entity.*;
 import com.robertx22.mine_and_slash.onevent.entity.damage.OnHurtEvent;
@@ -79,6 +80,7 @@ public class RegisterEvents {
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnTooltip.class);
+            register(TraderTooltipEvent.class);
 
             FMLJavaModLoadingContext.get()
                 .getModEventBus()
