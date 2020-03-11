@@ -12,6 +12,7 @@ import net.minecraft.util.math.MathHelper;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface ISellPrice {
     int getSavedPriceInCommonOres();
@@ -73,8 +74,6 @@ public interface ISellPrice {
 
     public static void spendMoney(PlayerEntity player, int toSpend) {
 
-        ImmutablePair<Rarity, Integer> cost = commonOresToBiggestPossibleRarity(toSpend);
-
         for (ItemStack stack : new ArrayList<>(player.inventory.mainInventory)) {
             if (stack.getItem() instanceof ItemOre) {
                 ItemOre ore = (ItemOre) stack.getItem();
@@ -89,7 +88,6 @@ public interface ISellPrice {
                 }
             }
         }
-        ImmutablePair<Rarity, Integer> change = commonOresToBiggestPossibleRarity(Math.abs(toSpend));
 
         if (toSpend > 0) {
             try {
@@ -121,6 +119,37 @@ public interface ISellPrice {
         }
 
         return ImmutablePair.of(Rarities.Gears.get(rarity), ores);
+    }
+
+    public static HashMap<Rarity, Integer> commonOresToExactListOfHigherRarities(int ores) {
+        HashMap<Rarity, Integer> map = new HashMap<>();
+
+        int rarity = 0;
+
+        for (int i = 0; i < 6; i++) {
+
+            if (rarity < IRarity.Mythic) {
+
+                if (ores >= 9) {
+
+                    int rem = ores % 9;
+
+                    if (rem > 0) {
+                        Rarity rar = Rarities.Gears.get(rarity);
+                        map.put(rar, map.getOrDefault(rar, 0) + rem);
+                    }
+                    ores /= 9;
+                    rarity++;
+
+                }
+
+            }
+        }
+
+        Rarity rar = Rarities.Gears.get(rarity);
+        map.put(rar, map.getOrDefault(rar, 0) + ores);
+
+        return map;
     }
 
     public static ItemStack getHighestRarityStackFromCommons(int ores) {
