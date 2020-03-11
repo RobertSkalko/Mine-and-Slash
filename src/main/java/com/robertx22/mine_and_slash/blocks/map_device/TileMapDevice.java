@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.blocks.map_device;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
+import com.robertx22.mine_and_slash.blocks.slots.FuelSlot;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
@@ -8,7 +9,6 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.datasaving.MapDeviceSaving;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -31,8 +31,6 @@ import javax.annotation.Nullable;
 public class TileMapDevice extends BaseTile {
 
     public static final int size = 0;
-
-    public MapDeviceData mapDeviceData = new MapDeviceData();
 
     @Override
     public boolean isAutomatable() {
@@ -72,21 +70,34 @@ public class TileMapDevice extends BaseTile {
 
     @Override
     public int tickRate() {
-        return 0;
+        return 10;
     }
 
     @Override
     public void doActionEveryTime() {
 
+        ItemStack fuel = itemStacks[0];
+
+        if (!fuel.isEmpty()) {
+
+            int val = FuelSlot.FUEL_VALUES.getOrDefault(fuel.getItem(), 0);
+
+            if (val > 0) {
+                this.fuel += val;
+                fuel.shrink(1);
+            }
+        }
+
     }
 
     @Override
     public int getCookTime() {
-        return 0;
+        return 2;
     }
 
     @Override
     public void tick() {
+        super.tick();
     }
 
     private boolean summonPortals(MapItemData map) {
@@ -151,15 +162,32 @@ public class TileMapDevice extends BaseTile {
 
     public void sacrificeMap(PlayerEntity player, MapItemData mapdata, ItemStack map) {
 
+        if (!hasEnoughFuel()) {
+            return;
+        }
+
         boolean summoned = summonPortals(mapdata);
 
         if (summoned) {
+
+            this.spendFuelForActivation();
+
             mapdata.setupPlayerMapData(this.pos, player);
             map.setCount(0);
 
-            this.mapDeviceData = new MapDeviceData(mapdata, player);
-
         }
+    }
+
+    public boolean hasEnoughFuel() {
+        return this.fuel > getFuelNeeded();
+    }
+
+    public void spendFuelForActivation() {
+        this.fuel -= getFuelNeeded();
+    }
+
+    public int getFuelNeeded() {
+        return 1000;
     }
 
     @Override
@@ -180,16 +208,12 @@ public class TileMapDevice extends BaseTile {
     public CompoundNBT write(CompoundNBT nbt) {
         super.write(nbt);
 
-        MapDeviceSaving.Save(nbt, this.mapDeviceData);
-
         return nbt;
     }
 
     @Override
     public void read(CompoundNBT nbt) {
         super.read(nbt);
-
-        this.mapDeviceData = MapDeviceSaving.Load(nbt);
 
     }
 

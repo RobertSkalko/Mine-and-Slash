@@ -33,8 +33,8 @@ public class ModContainers {
     public static RegistryObject<ContainerType<ContainerGearModify>> GEAR_MODIFY = REG.register(of(ModBlocks.GEAR_MODIFY), () -> IForgeContainerType.create(ContainerGearModify::new));
     public static RegistryObject<ContainerType<ContainerGearRepair>> GEAR_REPAIR = REG.register(of(ModBlocks.GEAR_REPAIR), () -> IForgeContainerType.create(ContainerGearRepair::new));
     public static RegistryObject<ContainerType<ContainerGearSalvage>> GEAR_SALVAGE = REG.register(of(ModBlocks.GEAR_SALVAGE), () -> IForgeContainerType.create(ContainerGearSalvage::new));
-    public static RegistryObject<ContainerType<ContainerMapDevice>> MAP_DEVICE = REG.register(of(ModBlocks.MAP_DEVICE), () -> IForgeContainerType.create(ContainerMapDevice::new));
     public static RegistryObject<ContainerType<MapChestContainer>> MAP_CHEST = REG.register(of(ModBlocks.MAP_CHEST), () -> IForgeContainerType.create(MapChestContainer::new));
+    public static RegistryObject<ContainerType<ContainerMapDevice>> MAP_DEVICE = REG.register(of(ModBlocks.MAP_DEVICE), () -> IForgeContainerType.create(ContainerMapDevice::new));
 
     static Item.Properties stationProp = new Item.Properties().group(CreativeTabs.MyModTab);
 

@@ -66,10 +66,6 @@ public class PacketRegister {
             TryRemovePerkPacket::handle
         );
 
-        reg(UseMapTicketPacket.class, UseMapTicketPacket::encode, UseMapTicketPacket::decode,
-            UseMapTicketPacket::handle
-        );
-
         reg(EfficientMobUnitPacket.class, EfficientMobUnitPacket::encode, EfficientMobUnitPacket::decode,
             EfficientMobUnitPacket::handle
         );

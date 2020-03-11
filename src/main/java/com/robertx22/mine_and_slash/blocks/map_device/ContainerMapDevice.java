@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.blocks.map_device;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTileContainer;
+import com.robertx22.mine_and_slash.blocks.slots.FuelSlot;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -52,6 +53,8 @@ public class ContainerMapDevice extends BaseTileContainer {
                 addSlot(new Slot(playerInventory, slotNumber, xpos, ypos));
             }
         }
+
+        addSlot(new FuelSlot(inventory, 0, 79, 92));
 
     }
 

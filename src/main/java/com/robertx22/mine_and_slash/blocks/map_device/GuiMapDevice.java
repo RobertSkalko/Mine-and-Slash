@@ -34,8 +34,6 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice, TileMapDevice> {
         super.init();
         super.init();
 
-        this.addButton(new MapGetGroupMapButton(tile.getPos(), guiLeft + 10, guiTop + 95));
-
     }
 
     @Override
@@ -62,21 +60,9 @@ public class GuiMapDevice extends TileGui<ContainerMapDevice, TileMapDevice> {
 
         try {
 
-            if (tile == null || tile.mapDeviceData == null) {
+            if (tile == null) {
                 return;
             }
-
-            final int REM_XPOS = 5;
-            final int REM_YPOS = 15;
-            //  font.drawString("Remaining Group Map Tickets: " + tile.mapDeviceData.getRemainingTickets(), REM_XPOS, REM_YPOS, Color.darkGray
-            //         .getRGB());
-
-            String text = "Take Group Map Ticket";
-
-            final int textx = 10 + (MapGetGroupMapButton.xSize / 2) - font.getStringWidth(text) / 2;
-            final int texty = 100;
-
-            font.drawString(text, textx, texty, Color.white.getRGB());
 
         } catch (Exception e) {
             e.printStackTrace();

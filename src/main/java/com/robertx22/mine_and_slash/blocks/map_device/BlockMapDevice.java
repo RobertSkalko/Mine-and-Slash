@@ -53,11 +53,7 @@ public class BlockMapDevice extends BaseInventoryBlock {
 
         }
 
-        return ActionResultType.FAIL;
-
-        // no need for map device gui anymore?
-        // return super.onBlockActivated(state, world, pos, player, hand, ray);
-
+        return super.onBlockActivated(state, world, pos, player, hand, ray);
     }
 
 }
