@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.loot.blueprints;
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.containers.GearRarities;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
+import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.GearItemSlotPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.SetPart;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
@@ -18,6 +19,12 @@ public class GearBlueprint extends ItemBlueprint {
 
     public GearBlueprint(int level) {
         super(level);
+        actionsAfterGeneration.add(DamagedGear.INSTANCE);
+        actionsAfterGeneration.add(UnidentifiedGear.getInstance());
+    }
+
+    public GearBlueprint(LootInfo info) {
+        super(info);
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
         actionsAfterGeneration.add(UnidentifiedGear.getInstance());
     }

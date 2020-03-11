@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
+import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.LevelPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.RarityPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.TierPart;
@@ -16,6 +17,13 @@ public abstract class ItemBlueprint {
 
     public ItemBlueprint(int level) {
         this.level.number = level;
+
+        this.onConstruct();
+    }
+
+    public ItemBlueprint(LootInfo info) {
+        this.level.number = info.level;
+        this.tier.number = info.tier;
 
         this.onConstruct();
     }

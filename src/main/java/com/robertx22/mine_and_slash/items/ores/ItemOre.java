@@ -31,7 +31,7 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAuto
     public static HashMap<Integer, BlockItem> ItemBlocks = new HashMap<Integer, BlockItem>();
     public static HashMap<Integer, Block> Blocks = new HashMap<Integer, Block>();
 
-    int rarity;
+    public int rarity;
 
     public List<Integer> RepairValues = Arrays.asList(20, 30, 75, 125, 300, 600);
 
@@ -43,7 +43,8 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAuto
 
     @Override
     public int Weight() {
-        return Rarities.Gears.get(rarity).Weight();
+        return Rarities.Gears.get(rarity)
+            .Weight();
     }
 
     public ItemOre(String name, int rarity) {
@@ -62,7 +63,8 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAuto
                                ITooltipFlag flagIn) {
 
         for (ITextComponent lore : this.getComponents()) {
-            tooltip.add(Styles.GREENCOMP().appendSibling(lore));
+            tooltip.add(Styles.GREENCOMP()
+                .appendSibling(lore));
         }
 
     }
@@ -70,10 +72,14 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAuto
     public static void RegisterItems(RegistryEvent.Register<Item> event) {
 
         Rarities.Gears.getNormalRarities()
-                .forEach((x) -> ItemOres.put(x.Rank(), new ItemOre("ore" + x.Rank(), x.Rank())));
+            .forEach((x) -> ItemOres.put(x.Rank(), new ItemOre("ore" + x.Rank(), x.Rank())));
 
-        ItemOres.values().forEach((x) -> event.getRegistry().register(x));
-        ItemBlocks.values().forEach((x) -> event.getRegistry().register(x));
+        ItemOres.values()
+            .forEach((x) -> event.getRegistry()
+                .register(x));
+        ItemBlocks.values()
+            .forEach((x) -> event.getRegistry()
+                .register(x));
 
     }
 
@@ -87,11 +93,13 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAuto
             Blocks.put(i, block);
 
             BlockItem itemblock = (BlockItem) new BlockItem(
-                    block, new Properties().group(CreativeTabs.MyModTab)).setRegistryName(Ref.MODID + ":ore_block" + i);
+                block, new Properties().group(CreativeTabs.MyModTab)).setRegistryName(Ref.MODID + ":ore_block" + i);
             ItemBlocks.put(i, itemblock);
         }
 
-        Blocks.values().forEach((x) -> event.getRegistry().register(x));
+        Blocks.values()
+            .forEach((x) -> event.getRegistry()
+                .register(x));
 
     }
 
@@ -102,12 +110,15 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAuto
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     @Override
     public String locNameForLangFile() {
-        return Rarities.Gears.get(rarity).textFormatColor() + Rarities.Gears.get(rarity).locNameForLangFile() + " Ore";
+        return Rarities.Gears.get(rarity)
+            .textFormatColor() + Rarities.Gears.get(rarity)
+            .locNameForLangFile() + " Ore";
     }
 
     @Override

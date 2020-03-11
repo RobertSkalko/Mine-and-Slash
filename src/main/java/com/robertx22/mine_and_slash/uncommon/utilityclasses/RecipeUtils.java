@@ -3,15 +3,14 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
+import com.robertx22.mine_and_slash.gui.trader.ISellPrice;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,33 +21,9 @@ public class RecipeUtils {
 
     private static HashMap<Item, Integer> ITEM_COMMONS = new HashMap<>();
 
-    public static int rarityOresToCommons(GearRarity rar, int ores) {
-        return (int) (ores * Math.pow(9, MathHelper.clamp(rar.Rank() + 1, 1, 6)));
-    }
-
     public static ItemStack getSalvageStack(Item item) {
 
-        ItemStack stack = ItemStack.EMPTY;
-
-        int rarity = 0;
-        int ores = getCommonOresNeededToCraftItem(item);
-
-        for (GearRarity rar : Rarities.Gears.getNormalRarities()) {
-            if (ores > 40) {
-                ores /= 9;
-                rarity++;
-            }
-
-        }
-
-        rarity = MathHelper.clamp(rarity, 0, IRarity.Mythic);
-
-        if (ores > 0) {
-            stack = new ItemStack(ItemOre.ItemOres.get(rarity));
-            stack.setCount(ores);
-        }
-
-        return stack;
+        return ISellPrice.getHighestRarityStackFromCommons(getCommonOresNeededToCraftItem(item));
 
     }
 
@@ -131,7 +106,7 @@ public class RecipeUtils {
                     return x.test(new ItemStack(ore));
                 })
                 .collect(Collectors.toList());
-            commons += rarityOresToCommons(rar, oreIngredients.size());
+            commons += ISellPrice.rarityOresToCommons(rar, oreIngredients.size());
 
         }
         return (int) commons;

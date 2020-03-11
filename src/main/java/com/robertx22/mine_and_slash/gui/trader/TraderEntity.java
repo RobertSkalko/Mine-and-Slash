@@ -4,13 +4,11 @@ import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.packets.TraderPacket;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.datasaving.TraderSaving;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
@@ -19,8 +17,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 import net.minecraftforge.fml.network.NetworkHooks;
-
-import java.util.List;
 
 public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpawnData {
 
@@ -54,11 +50,8 @@ public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpa
         if (!data.generated) {
             data.generated = true;
 
-            List<ItemStack> stacks = SlashRegistry.LootCrates()
-                .random()
-                .generateItems(new LootInfo(world, getPosition()));
+            data.generateMerchandise(new LootInfo(world, getPosition()));
 
-            data.stacks = stacks;
         }
 
     }

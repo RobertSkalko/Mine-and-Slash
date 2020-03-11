@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.gui.trader.ISellPrice;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
@@ -39,7 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
+public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, ISellPrice {
 
     @Store
     public StatRequirementsData requirements = null;
@@ -452,5 +453,15 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     @Override
     public void increaseInstability(int amount) {
         this.instability += amount;
+    }
+
+    @Override
+    public int getPriceInCommonOres() {
+
+        if (this.isUnique()) {
+            return ISellPrice.rarityOresToCommons(Rarities.Gears.get(IRarity.Mythic), 50);
+        }
+
+        return ISellPrice.rarityOresToCommons(getRarity(), 10);
     }
 }
