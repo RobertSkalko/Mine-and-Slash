@@ -30,3 +30,11 @@ The good thing is even if you hate the scarcity, i added some configs to let you
 * added a trader npc
 * added a dungeon room that has the trader npc
 * added identify tomes and some food to dungeon chests
+
+Please tell me how the new changes feel.
+The goal is for normal play (without using mob farmers or automated ore farming) for resources to be scarce. 
+If i succeeded you're probably asking yourself whether to spend your ores buying gear from the merchant or crafting currencies. 
+You should also feel like completing the whole dungeon and taking everything from chests.
+
+If you feel lazy taking items from dungeon chests, feel the merchant prices are too cheap etc, then i probably failed.
+It's also possible i made it too hard and you won't have ores to repair gear.. Will see!
