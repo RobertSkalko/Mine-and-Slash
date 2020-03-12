@@ -13,26 +13,31 @@ public class RandomUtils {
     private static Random ran = new Random();
 
     public static int RandomRange(int min, int max) {
-        // prevents trying to nextin on 0
-        if (min == max) {
-            return min;
-        }
-
-        int result = ran.nextInt(max - min + 1);
-
-        return MathHelper.clamp(result + min, min, max);
-
+        return RandomRange(min, max, ran);
     }
 
     public static int RandomRange(int min, int max, Random rand) {
-        // prevents trying to nextin on 0
-        if (min == max) {
-            return min;
+
+        try {
+            if (max < 1) {
+                return 0;
+            }
+            if (min > max) {
+                return min;
+            }
+            // prevents trying to nextin on 0
+            if (min == max) {
+                return min;
+            }
+
+            int result = rand.nextInt(max - min + 1);
+
+            return MathHelper.clamp(result + min, min, max);
+        } catch (Exception e) {
+            System.out.println("min " + min + " " + "max " + max);
+            e.printStackTrace();
         }
-
-        int result = rand.nextInt(max - min + 1);
-
-        return MathHelper.clamp(result + min, min, max);
+        return 0;
 
     }
 

@@ -6,6 +6,8 @@
 * fixed salvage outputs being stuck and not put into hoppers
 * repair station is now automatable too
 * fixed control not showing enchants
+* added vanilla like gui option that doesnt show numbers for hp energy etc and neither lvl or exp, but it looks nicer to me.
+* should fix crash on random
 
 3.3.0
 

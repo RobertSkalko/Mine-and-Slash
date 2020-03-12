@@ -46,9 +46,6 @@ public class VanillaOverlay extends IngameGui {
             mc.getTextureManager()
                 .bindTexture(TEX);
 
-            int leftY = 0;
-            int rightY = 0;
-
             int SPACING_Y = 10;
 
             int width = event.getWindow()
@@ -63,16 +60,19 @@ public class VanillaOverlay extends IngameGui {
                 y -= SPACING_Y;
             }
 
-            renderElement(Type.MAGIC_SHIELD, x, y, mc, en, data);
+            int leftY = ClientContainer.INSTANCE.LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
+            int rightY = ClientContainer.INSTANCE.RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
+
+            renderElement(Type.MAGIC_SHIELD, x, y + leftY, mc, en, data);
 
             x = width / 2 + 11;
             y = height - 39 - SPACING_Y;
 
-            renderElement(Type.MANA, x, y, mc, en, data);
+            renderElement(Type.MANA, x, y + rightY, mc, en, data);
 
             y -= SPACING_Y;
 
-            renderElement(Type.ENERGY, x, y, mc, en, data);
+            renderElement(Type.ENERGY, x, y + rightY, mc, en, data);
 
         } catch (Exception e) {
             e.printStackTrace();
