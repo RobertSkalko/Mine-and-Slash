@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class TraderOffer implements IWeighted {
 
-    public int amount = 15;
+    public int amount = 9;
 
     @Override
     public int Weight() {

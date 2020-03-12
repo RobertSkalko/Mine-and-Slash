@@ -29,3 +29,4 @@ The good thing is even if you hate the scarcity, i added some configs to let you
 * vanilla hp now factors into mob xp gained
 * added a trader npc
 * added a dungeon room that has the trader npc
+* added identify tomes and some food to dungeon chests

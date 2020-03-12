@@ -14,7 +14,7 @@ public class MapChestContainer extends Container {
 
     private final IInventory inventory;
 
-    static int SIZE = 27;
+    public static int SIZE = 27;
     static int rowLength = 9;
     static int rowCount = 3;
 
