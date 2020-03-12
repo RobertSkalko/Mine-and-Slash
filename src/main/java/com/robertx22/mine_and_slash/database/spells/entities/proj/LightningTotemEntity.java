@@ -5,8 +5,6 @@ import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
@@ -71,8 +69,8 @@ public class LightningTotemEntity extends EntityBaseProjectile {
             if (!world.isRemote) {
 
                 List<LivingEntity> entities = EntityFinder.start(getCaster(), LivingEntity.class, getPositionVector())
-                        .radius(radius())
-                        .build();
+                    .radius(radius())
+                    .build();
 
                 entities.forEach(x -> {
 
@@ -83,8 +81,6 @@ public class LightningTotemEntity extends EntityBaseProjectile {
                     if (Synergies.LIGHTNING_TOTEM_STATIC.has((PlayerEntity) getCaster())) {
                         Synergies.LIGHTNING_TOTEM_STATIC.tryActivate(new AfterDamageContext(getCaster(), x, dmg));
                     }
-
-                    PotionEffectUtils.apply(StaticEffect.INSTANCE, getCaster(), x);
 
                     SoundUtils.playSound(this, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1, 1);
 
