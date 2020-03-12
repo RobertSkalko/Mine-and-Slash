@@ -18,7 +18,7 @@ public class BonusEleDmgAffix extends BaseElementalMapAffix {
 
     @Override
     public StatMod.Size getSize() {
-        return StatMod.Size.MAJOR;
+        return StatMod.Size.NORMAL;
     }
 
     @Override
