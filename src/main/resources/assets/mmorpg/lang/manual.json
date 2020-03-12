@@ -45,6 +45,7 @@
 "item.mmorpg.mat.mythic_essence": "Mythic Essence",
 "item.mmorpg.awaken_runeword": "Awaken RuneWord",
 "item.mmorpg.identify_tome": "Identify Tome",
+"item.mmorpg.teleport_scroll": "Teleport Back Scroll",
 "_comment": "SPELL TOOLTIPS",
 "mmorpg.tooltip.aoe_spell_explosion": "Casts an elemental projectile that does AOE dmg on hit.",
 "mmorpg.tooltip.single_target_spell_bolt": "Casts a Single Target elemental projectile.",

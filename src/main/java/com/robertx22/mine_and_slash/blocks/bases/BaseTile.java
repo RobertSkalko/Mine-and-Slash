@@ -138,9 +138,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
                 return false; // temp fix
             }
 
-            Boolean isValidInput = this.isItemValidInput(stack);
-
-            return isValidInput == false;
+            return isOutputSlot(index);
         }
         return false;
     }

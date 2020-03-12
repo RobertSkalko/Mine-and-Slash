@@ -10,6 +10,8 @@ public interface IOBlock {
 
     boolean isAutomatable();
 
+    boolean isOutputSlot(int slot);
+
     int[] inputSlots();
 
 }

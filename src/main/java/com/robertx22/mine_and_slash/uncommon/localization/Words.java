@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
+    RightClickToTeleport("Use to teleport back from Adventure Map."),
     RightClickToIdentifyFirst("Use to identify first item in inventory."),
     ItemIsUnidentified("This item is currently sealed."),
     UseAnIdentifyScroll("An Identify Scroll can reveal it."),

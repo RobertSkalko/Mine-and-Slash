@@ -46,7 +46,7 @@ public class ServerContainer {
 
         FUEL_NEEDED_PER_MAP_ACTIVATION = builder.comment("")
             .translation("mmorpg.word.")
-            .defineInRange("FUEL_NEEDED_PER_MAP_ACTIVATION", 1000, 0, 100000);
+            .defineInRange("FUEL_NEEDED_PER_MAP_ACTIVATION", 2500, 0, 100000);
 
         REPAIR_FUEL_NEEDED_MULTI = builder.comment(".")
             .translation("mmorpg.word.")

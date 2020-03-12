@@ -56,6 +56,11 @@ public class TileMapDevice extends BaseTile {
     }
 
     @Override
+    public boolean isOutputSlot(int slot) {
+        return false;
+    }
+
+    @Override
     public int ticksRequired() {
         return 0;
     }

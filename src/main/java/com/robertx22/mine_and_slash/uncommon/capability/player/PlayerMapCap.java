@@ -53,6 +53,8 @@ public class PlayerMapCap {
 
         MapItemData getMap();
 
+        boolean isRefreshedForMap();
+
         BlockPos getMapDevicePos(World world);
 
         DimensionType getOriginalDimension();
@@ -211,6 +213,11 @@ public class PlayerMapCap {
             } else {
                 return MapItemData.empty();
             }
+        }
+
+        @Override
+        public boolean isRefreshedForMap() {
+            return this.data.mapDropPoints > 1.5F;
         }
 
         @Override

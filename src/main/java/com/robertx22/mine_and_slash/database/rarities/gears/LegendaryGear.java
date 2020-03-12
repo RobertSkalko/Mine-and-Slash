@@ -20,7 +20,7 @@ public class LegendaryGear extends BaseLegendary implements GearRarity {
 
     @Override
     public float unidentifiedChance() {
-        return 80;
+        return 100;
     }
 
     @Override

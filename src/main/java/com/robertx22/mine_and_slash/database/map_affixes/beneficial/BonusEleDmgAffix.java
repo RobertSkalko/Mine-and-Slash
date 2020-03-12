@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.map_affixes.beneficial;
 
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IElementalGenerated;
@@ -23,7 +23,7 @@ public class BonusEleDmgAffix extends BaseElementalMapAffix {
 
     @Override
     public IElementalGenerated<StatMod> getGenStat() {
-        return new ElementalSpellToAttackDMGFlat(Elements.Nature);
+        return new ElementalAttackDamageFlat(Elements.Nature);
     }
 
     @Override

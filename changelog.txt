@@ -1,3 +1,12 @@
+3.3.1
+* increased map startup cost.
+* when you sleep you now get a message you're refreshed, meaning map droprate is high for you now.
+* added a teleport back scroll, its craftable
+* changed mob dmg from spell to atk dmg to attack element dmg in maps.
+* fixed salvage outputs being stuck and not put into hoppers
+* repair station is now automatable too
+* fixed control not showing enchants
+
 3.3.0
 
 This is basically an economy update! I added new resource sinks, increased repair costs, reduced salvaged ores etc..

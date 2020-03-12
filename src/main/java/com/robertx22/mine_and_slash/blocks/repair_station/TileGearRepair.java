@@ -22,12 +22,22 @@ public class TileGearRepair extends BaseTile {
 
     @Override
     public boolean isAutomatable() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isItemValidInput(ItemStack stack) {
-        return getSmeltingResultForItem(stack).isEmpty() == false;
+        return true;
+    }
+
+    @Override
+    public int[] inputSlots() {
+        int[] ints = new int[INPUT_SLOTS_COUNT];
+        for (int i = 0; i < INPUT_SLOTS_COUNT; i++) {
+            ints[i] = FIRST_INPUT_SLOT + i;
+        }
+
+        return ints;
     }
 
     @Override
@@ -39,6 +49,11 @@ public class TileGearRepair extends BaseTile {
         }
 
         return COOK_TIME_FOR_COMPLETION;
+    }
+
+    @Override
+    public boolean isOutputSlot(int slot) {
+        return slot >= FIRST_OUTPUT_SLOT && slot <= FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
     }
 
     public ItemCapacitor getCapacitor() {

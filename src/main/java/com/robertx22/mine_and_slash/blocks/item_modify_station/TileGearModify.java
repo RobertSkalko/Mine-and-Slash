@@ -36,6 +36,11 @@ public class TileGearModify extends BaseTile {
         return COOK_TIME_FOR_COMPLETION;
     }
 
+    @Override
+    public boolean isOutputSlot(int slot) {
+        return false;
+    }
+
     public ItemStack getSmeltingResultForItem(ItemStack stack) {
 
         LocReqContext context = getLocReqContext();

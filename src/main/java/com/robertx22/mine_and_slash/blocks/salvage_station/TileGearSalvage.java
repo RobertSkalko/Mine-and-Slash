@@ -22,7 +22,7 @@ public class TileGearSalvage extends BaseTile {
     public int[] inputSlots() {
         int[] ints = new int[INPUT_SLOTS_COUNT];
         for (int i = 0; i < INPUT_SLOTS_COUNT; i++) {
-            ints[i] = i;
+            ints[i] = FIRST_INPUT_SLOT + i;
         }
 
         return ints;
@@ -57,6 +57,11 @@ public class TileGearSalvage extends BaseTile {
     @Override
     public boolean isAutomatable() {
         return true;
+    }
+
+    @Override
+    public boolean isOutputSlot(int slot) {
+        return slot >= FIRST_OUTPUT_SLOT && slot <= FIRST_OUTPUT_SLOT + OUTPUT_SLOTS_COUNT;
     }
 
     private float getCapacitorBonus() {

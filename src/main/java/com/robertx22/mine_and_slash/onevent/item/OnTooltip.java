@@ -49,10 +49,8 @@ public class OnTooltip {
 
         try {
             if (Screen.hasControlDown()) {
-
                 GearItemData gear = Gear.Load(event.getItemStack());
-
-                if (gear == null) {
+                if (gear != null) {
                     return;
                 }
             }

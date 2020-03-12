@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.database.currency.map.EndlessRoadItem;
 import com.robertx22.mine_and_slash.database.currency.map.EndlessSkiesItem;
 import com.robertx22.mine_and_slash.database.currency.map.PainfulLessonItem;
 import com.robertx22.mine_and_slash.items.misc.IdentifyTomeItem;
+import com.robertx22.mine_and_slash.items.misc.TeleportScrollItem;
 import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.resets.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
@@ -75,6 +76,7 @@ public class ModItems {
     public static RegistryObject<AddRemoveTalentPotionItem> ADD_RESET_TALENTS = item(() -> new AddRemoveTalentPotionItem());
 
     public static RegistryObject<IdentifyTomeItem> IDENTIFY_TOME = item(() -> new IdentifyTomeItem(), "identify_tome");
+    public static RegistryObject<TeleportScrollItem> TELEPORT_SCROLL = item(() -> new TeleportScrollItem(), "teleport_scroll");
 
     static <T extends Item & IGUID> RegistryObject<T> item(Supplier<T> c) {
 
