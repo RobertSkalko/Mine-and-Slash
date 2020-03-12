@@ -2,13 +2,13 @@ package com.robertx22.mine_and_slash.loot;
 
 import com.robertx22.mine_and_slash.database.stats.types.generated.LootTypeBonus;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
-import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.BaseLootGen;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,11 +33,6 @@ public class LootInfo {
 
     public BlockPos pos;
 
-    public LootInfo(ItemBlueprint blueprint) {
-        this.level = blueprint.level.get();
-
-    }
-
     public LootInfo setMaximum(int max) {
         this.maxItems = max;
         return this;
@@ -58,7 +53,43 @@ public class LootInfo {
         return this;
     }
 
-    public LootInfo setTier() {
+    public LootInfo(UnitData mobData, UnitData playerData, LivingEntity victim, PlayerEntity killer) {
+        this.world = victim.world;
+        this.mapData = Load.world(world);
+        this.mobData = mobData;
+        this.playerData = playerData;
+        this.victim = victim;
+        this.killer = killer;
+        this.pos = victim.getPosition();
+
+        setTier();
+        setLevel();
+        errorIfClient();
+    }
+
+    public LootInfo(World world, BlockPos pos) {
+
+        this.world = world;
+        this.pos = pos;
+        this.mapData = Load.world(this.world);
+
+        setTier();
+        setLevel();
+        errorIfClient();
+    }
+
+    public LootInfo(PlayerEntity player) {
+        this.world = player.world;
+        this.mapData = Load.world(world);
+        this.playerData = Load.Unit(player);
+        this.pos = player.getPosition();
+
+        setTier();
+        setLevel();
+        errorIfClient();
+    }
+
+    private LootInfo setTier() {
 
         if (this.mobData != null) {
             this.tier = mobData.getTier();
@@ -73,25 +104,13 @@ public class LootInfo {
 
     }
 
-    public LootInfo(UnitData mobData, UnitData playerData, LivingEntity victim, PlayerEntity killer) {
-        this.world = victim.world;
-        this.mapData = Load.world(world);
-        this.mobData = mobData;
-        this.playerData = playerData;
-        this.victim = victim;
-        this.killer = killer;
-        this.pos = victim.getPosition();
-
-        this.level = WorldUtils.isMapWorldClass(world) ? mapData.getLevel(pos) : mobData.getLevel();
-
-        setTier();
-
+    private void errorIfClient() {
+        if (world != null && world.isRemote) {
+            throw new RuntimeException("Can't use Loot Info on client side!!!");
+        }
     }
 
-    public LootInfo(World theworld, BlockPos pos) {
-        this.world = theworld;
-        this.pos = pos;
-        this.mapData = Load.world(world);
+    private void setLevel() {
 
         if (WorldUtils.isMapWorldClass(world)) {
 
@@ -105,22 +124,9 @@ public class LootInfo {
             if (playerData != null) {
                 level = playerData.getLevel();
             } else {
-                level = 1;
+                level = LevelUtils.determineLevel(world, pos, killer);
             }
         }
-
-        setTier();
-    }
-
-    public LootInfo(PlayerEntity player) {
-        this.world = player.world;
-        this.mapData = Load.world(world);
-        this.playerData = Load.Unit(player);
-        this.pos = player.getPosition();
-
-        this.level = WorldUtils.isMapWorldClass(world) ? mapData.getLevel(pos) : playerData.getLevel();
-
-        setTier();
 
     }
 

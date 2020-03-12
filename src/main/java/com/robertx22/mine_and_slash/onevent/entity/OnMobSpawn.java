@@ -56,6 +56,10 @@ public class OnMobSpawn {
 
     public static void setupNewMobOnSpawn(LivingEntity entity) {
 
+        if (entity.world.isRemote) {
+            throw new RuntimeException("Don't run this code on client!");
+        }
+
         UnitData endata = Load.Unit(entity);
 
         if (endata != null) {

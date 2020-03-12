@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
@@ -73,16 +74,19 @@ public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpa
     @Override
     public void tick() {
 
-        super.tick();
-
-        if (!data.generated) {
-            data.generated = true;
-
-            data.generateMerchandise(new LootInfo(world, getPosition()));
+        if (!world.isRemote) {
+            if (!WorldUtils.isMapWorldClass(this.world)) {
+                this.damageEntity(DamageSource.IN_WALL, Integer.MAX_VALUE);
+            }
         }
 
-        if (!WorldUtils.isMapWorldClass(this.world)) {
-            // TODO this.damageEntity(DamageSource.causeThornsDamage(this), 10000);
+        super.tick();
+
+        if (!world.isRemote) {
+            if (!data.generated) {
+                data.generated = true;
+                data.generateMerchandise(new LootInfo(world, getPosition()));
+            }
         }
 
     }

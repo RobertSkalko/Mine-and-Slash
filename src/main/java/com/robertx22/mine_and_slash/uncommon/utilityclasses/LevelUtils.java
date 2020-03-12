@@ -18,7 +18,10 @@ public class LevelUtils {
 
         if (dimConfig.SCALE_MOB_LEVEL_TO_NEAREST_PLAYER) {
             if (nearestPlayer != null) {
-                lvl = Load.Unit(nearestPlayer).getLevel();
+                lvl = Load.Unit(nearestPlayer)
+                    .getLevel();
+            } else {
+                lvl = determineLevelPerDistanceFromSpawn(world, pos, dimConfig);
             }
         } else {
             lvl = determineLevelPerDistanceFromSpawn(world, pos, dimConfig);
@@ -33,7 +36,8 @@ public class LevelUtils {
 
         BlockPos spawnPos = config.getSpawnPos(world);
 
-        double distance = world.getSpawnPoint().manhattanDistance(pos);
+        double distance = world.getSpawnPoint()
+            .manhattanDistance(pos);
 
         int lvl = 1;
 
@@ -55,7 +59,8 @@ public class LevelUtils {
 
         int distance = config.MOB_LEVEL_PER_DISTANCE * level;
 
-        BlockPos pos = new BlockPos(distance, 0, world.getSpawnPoint().getZ());
+        BlockPos pos = new BlockPos(distance, 0, world.getSpawnPoint()
+            .getZ());
 
         return pos;
 

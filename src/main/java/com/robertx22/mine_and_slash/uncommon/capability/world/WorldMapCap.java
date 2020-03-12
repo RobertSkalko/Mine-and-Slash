@@ -145,8 +145,20 @@ public class WorldMapCap {
             return this.getMap(pos).tier;
         }
 
+        static BlockPos EMPTY_POS = new BlockPos(0, 0, 0);
+
         @Override
         public MapItemData getMap(BlockPos pos) {
+
+            if (pos.equals(EMPTY_POS)) {
+                try {
+                    throw new Exception("Empty block pos, this appears to happen sometimes with zombie's chickens?");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return new MapItemData();
+                }
+            }
+
             try {
                 return data.getData(pos).mapData;
             } catch (Exception e) {

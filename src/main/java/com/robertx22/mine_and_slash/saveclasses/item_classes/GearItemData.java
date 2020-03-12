@@ -470,6 +470,10 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
             price *= 3;
         }
 
+        float lvlMulti = 1 + this.level / 100;
+
+        price *= lvlMulti;
+
         return price;
 
     }
