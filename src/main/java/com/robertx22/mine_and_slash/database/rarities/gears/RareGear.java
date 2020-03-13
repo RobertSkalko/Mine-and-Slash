@@ -15,7 +15,7 @@ public class RareGear extends BaseRare implements GearRarity {
 
     @Override
     public float unidentifiedChance() {
-        return 33;
+        return 50;
     }
 
     @Override

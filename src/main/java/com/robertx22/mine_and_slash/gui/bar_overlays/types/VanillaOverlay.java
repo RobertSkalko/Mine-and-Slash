@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.gui.bar_overlays.types;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -37,7 +38,7 @@ public class VanillaOverlay extends IngameGui {
             PlayerEntity en = mc.player;
             UnitData data = Load.Unit(en);
 
-            if (en.isCreative()) {
+            if (en.isCreative() || en.isSpectator()) {
                 return;
             }
 
@@ -60,19 +61,21 @@ public class VanillaOverlay extends IngameGui {
                 y -= SPACING_Y;
             }
 
+            float ticks = event.getPartialTicks();
+
             int leftY = ClientContainer.INSTANCE.LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
             int rightY = ClientContainer.INSTANCE.RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
 
-            renderElement(Type.MAGIC_SHIELD, x, y + leftY, mc, en, data);
+            renderElement(ticks, Type.MAGIC_SHIELD, x, y + leftY, mc, en, data);
 
-            x = width / 2 + 11;
+            x = width / 2 + 81;
             y = height - 39 - SPACING_Y;
 
-            renderElement(Type.MANA, x, y + rightY, mc, en, data);
+            renderElement(ticks, Type.MANA, x, y + rightY, mc, en, data);
 
             y -= SPACING_Y;
 
-            renderElement(Type.ENERGY, x, y + rightY, mc, en, data);
+            renderElement(ticks, Type.ENERGY, x, y + rightY, mc, en, data);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,6 +85,11 @@ public class VanillaOverlay extends IngameGui {
     public enum Type {
 
         MANA {
+            @Override
+            public Side getSide() {
+                return Side.RIGHT;
+            }
+
             @Override
             public float getCurrent(LivingEntity en, UnitData data) {
                 if (data.getUnit()
@@ -107,11 +115,22 @@ public class VanillaOverlay extends IngameGui {
             }
 
             @Override
-            public int yPosTexture() {
-                return 10;
-            } // if bloodmage 30
+            public int yPosTexture(UnitData data) {
+                if (data.getUnit()
+                    .isBloodMage()) {
+                    return 30;
+                } else {
+                    return 10;
+                }
+            }
         },
         ENERGY {
+            @Override
+            public Side getSide() {
+                return Side.RIGHT;
+
+            }
+
             @Override
             public float getCurrent(LivingEntity en, UnitData data) {
                 return data.getResources()
@@ -125,11 +144,16 @@ public class VanillaOverlay extends IngameGui {
             }
 
             @Override
-            public int yPosTexture() {
+            public int yPosTexture(UnitData data) {
                 return 20;
             }
         },
         MAGIC_SHIELD {
+            @Override
+            public Side getSide() {
+                return Side.LEFT;
+            }
+
             @Override
             public float getCurrent(LivingEntity en, UnitData data) {
                 return data.getResources()
@@ -143,46 +167,69 @@ public class VanillaOverlay extends IngameGui {
             }
 
             @Override
-            public int yPosTexture() {
+            public int yPosTexture(UnitData data) {
                 return 0;
             }
         };
+
+        public abstract Side getSide();
 
         public abstract float getCurrent(LivingEntity en, UnitData data);
 
         public abstract float getMax(LivingEntity en, UnitData data);
 
-        public abstract int yPosTexture();
+        public abstract int yPosTexture(UnitData data);
 
     }
 
-    public void renderElement(Type type, int x, int y, Minecraft mc, LivingEntity en, UnitData data) {
+    enum Side {
+        LEFT, RIGHT;
+    }
+
+    public void renderElement(float ticks, Type type, int x, int y, Minecraft mc, LivingEntity en, UnitData data) {
+
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+        RenderSystem.enableBlend();
 
         int current = (int) type.getCurrent(en, data);
         int max = (int) type.getMax(en, data);
 
+        boolean needsRegen = current < max;
+
         if (max < 1) {
             return;
         }
-        int tenth = current / 10;
+        int tenth = max / 10;
 
         int X_SPACING = 8;
 
+        int halfSpacing = type.getSide()
+            .equals(Side.LEFT) ? 0 : +5;
+
         for (int i = 0; i < 10; i++) {
 
+            blit(x, y, 16, type.yPosTexture(data), 9, 9); // empty background
+
             if (current > 0) {
-                if (current > tenth) { // fullbar
-                    blit(x, y, 0, type.yPosTexture(), 9, 9);
-                    x += X_SPACING;
+                if (current >= tenth) { // fullbar
+                    blit(x, y, 0, type.yPosTexture(data), 9, 9);
                 } else { // half
-                    blit(x, y, 10, type.yPosTexture(), 9, 9);
-                    x += X_SPACING;
+                    blit(x + halfSpacing, y, 10, type.yPosTexture(data), 5, 9);
                 }
+            }
+            if (type.getSide()
+                .equals(Side.LEFT)) {
+                x += X_SPACING;
+            } else {
+                x -= X_SPACING;
             }
 
             current -= tenth;
 
         }
+
+        RenderSystem.disableBlend();
 
     }
 

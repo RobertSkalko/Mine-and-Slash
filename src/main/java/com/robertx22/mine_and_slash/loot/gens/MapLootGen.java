@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.item.ItemStack;
 
 public class MapLootGen extends BaseLootGen<MapBlueprint> {
@@ -20,14 +19,12 @@ public class MapLootGen extends BaseLootGen<MapBlueprint> {
         float chance = ModConfig.INSTANCE.DropRates.MAP_DROPRATE.get()
             .floatValue();
 
-        if (info.killer != null) {
-            PlayerMapCap.IPlayerMapData map = Load.playerMapData(info.killer);
-            chance *= map.getMapLootMultiplierForTime();
-        }
-
-        if (info.world != null) {
-            if (WorldUtils.isMapWorldClass(info.world)) {
-                chance *= 0.05F;
+        if (info.isMapWorld) {
+            chance *= 0.04F;
+        } else {
+            if (info.killer != null) {
+                PlayerMapCap.IPlayerMapData map = Load.playerMapData(info.killer);
+                chance *= map.getMapLootMultiplierForTime();
             }
         }
 

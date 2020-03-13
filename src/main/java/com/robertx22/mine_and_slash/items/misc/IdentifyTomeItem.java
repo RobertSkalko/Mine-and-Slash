@@ -101,7 +101,7 @@ public class IdentifyTomeItem extends Item implements IShapedRecipe {
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
-        return shaped(ModItems.IDENTIFY_TOME.get(), 16)
+        return shaped(ModItems.IDENTIFY_TOME.get(), 8)
             .key('b', Items.BOOK)
             .key('v', Items.COAL)
             .key('o', ItemOre.ItemOres.get(IRarity.Rare))

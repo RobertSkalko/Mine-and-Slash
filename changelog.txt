@@ -1,3 +1,6 @@
+3.3.3
+* fix vanilla gui type not correctly showing percentages
+
 3.3.2
 * fix too high map dmg affix
 3.3.1

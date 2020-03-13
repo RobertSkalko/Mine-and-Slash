@@ -30,6 +30,7 @@ public class LootInfo {
     public float multi = 1;
     public int minItems = 0;
     public int maxItems = 50;
+    public boolean isMapWorld = false;
 
     public BlockPos pos;
 
@@ -55,38 +56,36 @@ public class LootInfo {
 
     public LootInfo(UnitData mobData, UnitData playerData, LivingEntity victim, PlayerEntity killer) {
         this.world = victim.world;
-        this.mapData = Load.world(world);
         this.mobData = mobData;
         this.playerData = playerData;
         this.victim = victim;
         this.killer = killer;
         this.pos = victim.getPosition();
 
-        setTier();
-        setLevel();
-        errorIfClient();
+        setupAllFields();
     }
 
     public LootInfo(World world, BlockPos pos) {
 
         this.world = world;
         this.pos = pos;
-        this.mapData = Load.world(this.world);
 
-        setTier();
-        setLevel();
-        errorIfClient();
+        setupAllFields();
     }
 
     public LootInfo(PlayerEntity player) {
         this.world = player.world;
-        this.mapData = Load.world(world);
         this.playerData = Load.Unit(player);
         this.pos = player.getPosition();
 
+        setupAllFields();
+    }
+
+    private void setupAllFields() {
         setTier();
         setLevel();
         errorIfClient();
+        setWorld();
     }
 
     private LootInfo setTier() {
@@ -107,6 +106,13 @@ public class LootInfo {
     private void errorIfClient() {
         if (world != null && world.isRemote) {
             throw new RuntimeException("Can't use Loot Info on client side!!!");
+        }
+    }
+
+    private void setWorld() {
+        if (world != null) {
+            this.isMapWorld = WorldUtils.isMapWorld(world);
+            this.mapData = Load.world(world);
         }
     }
 

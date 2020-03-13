@@ -20,7 +20,7 @@ public class EpicGear extends BaseEpic implements GearRarity {
 
     @Override
     public float unidentifiedChance() {
-        return 66;
+        return 75;
     }
 
     @Override

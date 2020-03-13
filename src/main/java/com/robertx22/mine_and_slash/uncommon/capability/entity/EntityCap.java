@@ -159,8 +159,6 @@ public class EntityCap {
 
         ITextComponent getName(LivingEntity entity);
 
-        void HandleCloneEvent(UnitData old);
-
         void tryRecalculateStats(LivingEntity entity);
 
         void forceRecalculateStats(LivingEntity entity);
@@ -674,14 +672,11 @@ public class EntityCap {
         @Override
         public Unit getUnit() {
             return unit;
-
         }
 
         @Override
         public void setUnit(Unit unit, LivingEntity entity) {
-
             this.unit = unit;
-
         }
 
         @Override
@@ -732,11 +727,6 @@ public class EntityCap {
                 return lvlcomp.appendSibling(suffix);
 
             }
-        }
-
-        @Override
-        public void HandleCloneEvent(UnitData old) {
-            this.loadFromNBT(old.saveToNBT());
         }
 
         @Override
