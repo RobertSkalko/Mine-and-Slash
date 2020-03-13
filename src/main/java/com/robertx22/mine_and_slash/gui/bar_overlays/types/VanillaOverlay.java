@@ -9,16 +9,21 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IngameGui;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.HashMap;
 
 public class VanillaOverlay extends IngameGui {
 
     public VanillaOverlay(Minecraft mc) {
         super(mc);
     }
+
+    int ticks = 0;
 
     @SubscribeEvent
     public void render(RenderGameOverlayEvent event) {
@@ -42,6 +47,8 @@ public class VanillaOverlay extends IngameGui {
                 return;
             }
 
+            ticks++;
+
             ResourceLocation TEX = new ResourceLocation("mmorpg", "textures/gui/overlay/vanilla_overlay.png");
 
             mc.getTextureManager()
@@ -61,8 +68,6 @@ public class VanillaOverlay extends IngameGui {
                 y -= SPACING_Y;
             }
 
-            float ticks = event.getPartialTicks();
-
             int leftY = ClientContainer.INSTANCE.LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
             int rightY = ClientContainer.INSTANCE.RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST.get();
 
@@ -70,6 +75,11 @@ public class VanillaOverlay extends IngameGui {
 
             x = width / 2 + 81;
             y = height - 39 - SPACING_Y;
+
+            int air = en.getAir();
+            if (en.areEyesInFluid(FluidTags.WATER) || air < 300) {
+                y -= SPACING_Y;
+            }
 
             renderElement(ticks, Type.MANA, x, y + rightY, mc, en, data);
 
@@ -186,7 +196,10 @@ public class VanillaOverlay extends IngameGui {
         LEFT, RIGHT;
     }
 
-    public void renderElement(float ticks, Type type, int x, int y, Minecraft mc, LivingEntity en, UnitData data) {
+    HashMap<Type, Integer> lastValues = new HashMap<>();
+    HashMap<Type, Integer> changedTicksLeft = new HashMap<>();
+
+    public void renderElement(int ticks, Type type, int x, int y, Minecraft mc, LivingEntity en, UnitData data) {
 
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
@@ -194,6 +207,18 @@ public class VanillaOverlay extends IngameGui {
 
         int current = (int) type.getCurrent(en, data);
         int max = (int) type.getMax(en, data);
+
+        boolean changed = lastValues.getOrDefault(type, 0) != current;
+
+        int changedTicksRem = changedTicksLeft.getOrDefault(type, 0);
+        if (changed) {
+            changedTicksLeft.put(type, 10);
+        } else {
+            changedTicksLeft.put(type, changedTicksRem - 1);
+        }
+        changedTicksRem = changedTicksLeft.getOrDefault(type, 0);
+
+        lastValues.put(type, current);
 
         boolean needsRegen = current < max;
 
@@ -209,13 +234,19 @@ public class VanillaOverlay extends IngameGui {
 
         for (int i = 0; i < 10; i++) {
 
-            blit(x, y, 16, type.yPosTexture(data), 9, 9); // empty background
+            int randomY = 0;
+
+            if (changedTicksRem > 0) {
+                randomY = rand.nextInt(3) - 1;
+            }
+
+            blit(x, y + randomY, 16, type.yPosTexture(data), 9, 9); // empty background
 
             if (current > 0) {
                 if (current >= tenth) { // fullbar
-                    blit(x, y, 0, type.yPosTexture(data), 9, 9);
+                    blit(x, y + randomY, 0, type.yPosTexture(data), 9, 9);
                 } else { // half
-                    blit(x + halfSpacing, y, 10, type.yPosTexture(data), 5, 9);
+                    blit(x + halfSpacing, y + randomY, 10, type.yPosTexture(data), 5, 9);
                 }
             }
             if (type.getSide()
