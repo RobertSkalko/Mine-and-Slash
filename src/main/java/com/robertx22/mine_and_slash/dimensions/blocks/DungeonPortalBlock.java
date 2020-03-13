@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.dimensions.blocks;
 
 import com.google.common.cache.LoadingCache;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
@@ -11,6 +12,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.pattern.BlockPattern;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.EnumProperty;
@@ -22,6 +24,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -55,16 +58,19 @@ public class DungeonPortalBlock extends Block {
     }
 
     @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return this.getDefaultState()
+            .with(AXIS, context.getPlacementHorizontalFacing()
+                .rotateYCCW()
+                .getAxis());
+    }
+
+    @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         Direction.Axis direction$axis = facing.getAxis();
         Direction.Axis direction$axis1 = stateIn.get(AXIS);
-
-        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-        /*
         boolean flag = direction$axis1 != direction$axis && direction$axis.isHorizontal();
-        return !flag && facingState.getBlock() != this && !(new DungeonPortalBlock.Size(worldIn, currentPos, direction$axis1)).func_208508_f() ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-*/
-
+        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
@@ -150,43 +156,43 @@ public class DungeonPortalBlock extends Block {
 
     public static BlockPattern.PatternHelper createPatternHelper(IWorld p_181089_0_, BlockPos worldIn) {
         Direction.Axis direction$axis = Direction.Axis.Z;
-        DungeonPortalBlock.Size NetherLikePortalBlock$size = new DungeonPortalBlock.Size(p_181089_0_, worldIn, Direction.Axis.X);
+        DungeonPortalBlock.Size size = new DungeonPortalBlock.Size(p_181089_0_, worldIn, Direction.Axis.X);
         LoadingCache<BlockPos, CachedBlockInfo> loadingcache = BlockPattern.createLoadingCache(p_181089_0_, true);
-        if (!NetherLikePortalBlock$size.isValid()) {
+        if (!size.isValid()) {
             direction$axis = Direction.Axis.X;
-            NetherLikePortalBlock$size = new DungeonPortalBlock.Size(p_181089_0_, worldIn, Direction.Axis.Z);
+            size = new DungeonPortalBlock.Size(p_181089_0_, worldIn, Direction.Axis.Z);
         }
 
-        if (!NetherLikePortalBlock$size.isValid()) {
+        if (!size.isValid()) {
             return new BlockPattern.PatternHelper(worldIn, Direction.NORTH, Direction.UP, loadingcache, 1, 1, 1);
         } else {
             int[] aint = new int[Direction.AxisDirection.values().length];
-            Direction direction = NetherLikePortalBlock$size.rightDir.rotateYCCW();
-            BlockPos blockpos = NetherLikePortalBlock$size.bottomLeft.up(NetherLikePortalBlock$size.getHeight() - 1);
+            Direction direction = size.rightDir.rotateYCCW();
+            BlockPos blockpos = size.bottomLeft.up(size.getHeight() - 1);
 
-            for (Direction.AxisDirection direction$axisdirection : Direction.AxisDirection.values()) {
-                BlockPattern.PatternHelper blockpattern$patternhelper = new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection ? blockpos : blockpos.offset(NetherLikePortalBlock$size.rightDir, NetherLikePortalBlock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection, direction$axis), Direction.UP, loadingcache, NetherLikePortalBlock$size.getWidth(), NetherLikePortalBlock$size.getHeight(), 1);
+            for (Direction.AxisDirection dir : Direction.AxisDirection.values()) {
+                BlockPattern.PatternHelper helper = new BlockPattern.PatternHelper(direction.getAxisDirection() == dir ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.getFacingFromAxis(dir, direction$axis), Direction.UP, loadingcache, size.getWidth(), size.getHeight(), 1);
 
-                for (int i = 0; i < NetherLikePortalBlock$size.getWidth(); ++i) {
-                    for (int j = 0; j < NetherLikePortalBlock$size.getHeight(); ++j) {
-                        CachedBlockInfo cachedblockinfo = blockpattern$patternhelper.translateOffset(i, j, 1);
+                for (int i = 0; i < size.getWidth(); ++i) {
+                    for (int j = 0; j < size.getHeight(); ++j) {
+                        CachedBlockInfo cachedblockinfo = helper.translateOffset(i, j, 1);
                         if (!cachedblockinfo.getBlockState()
                             .isAir()) {
-                            ++aint[direction$axisdirection.ordinal()];
+                            ++aint[dir.ordinal()];
                         }
                     }
                 }
             }
 
-            Direction.AxisDirection direction$axisdirection1 = Direction.AxisDirection.POSITIVE;
+            Direction.AxisDirection dir1 = Direction.AxisDirection.POSITIVE;
 
-            for (Direction.AxisDirection direction$axisdirection2 : Direction.AxisDirection.values()) {
-                if (aint[direction$axisdirection2.ordinal()] < aint[direction$axisdirection1.ordinal()]) {
-                    direction$axisdirection1 = direction$axisdirection2;
+            for (Direction.AxisDirection dir2 : Direction.AxisDirection.values()) {
+                if (aint[dir2.ordinal()] < aint[dir1.ordinal()]) {
+                    dir1 = dir2;
                 }
             }
 
-            return new BlockPattern.PatternHelper(direction.getAxisDirection() == direction$axisdirection1 ? blockpos : blockpos.offset(NetherLikePortalBlock$size.rightDir, NetherLikePortalBlock$size.getWidth() - 1), Direction.getFacingFromAxis(direction$axisdirection1, direction$axis), Direction.UP, loadingcache, NetherLikePortalBlock$size.getWidth(), NetherLikePortalBlock$size.getHeight(), 1);
+            return new BlockPattern.PatternHelper(direction.getAxisDirection() == dir1 ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.getFacingFromAxis(dir1, direction$axis), Direction.UP, loadingcache, size.getWidth(), size.getHeight(), 1);
         }
     }
 
@@ -236,15 +242,14 @@ public class DungeonPortalBlock extends Block {
             int i;
             for (i = 0; i < 22; ++i) {
                 BlockPos blockpos = pos.offset(directionIn, i);
-                if (!this.func_196900_a(this.world.getBlockState(blockpos)) || !this.world.getBlockState(blockpos.down())
-                    .isPortalFrame(this.world, blockpos.down())) {
+                if (!this.func_196900_a(this.world.getBlockState(blockpos)) || !isMyPortalFrame(this.world, blockpos.down())) {
                     break;
                 }
             }
 
             BlockPos framePos = pos.offset(directionIn, i);
-            return this.world.getBlockState(framePos)
-                .isPortalFrame(this.world, framePos) ? i : 0;
+            return
+                isMyPortalFrame(this.world, framePos) ? i : 0;
         }
 
         public int getHeight() {
@@ -267,20 +272,20 @@ public class DungeonPortalBlock extends Block {
                     }
 
                     Block block = blockstate.getBlock();
-                    if (block == Blocks.NETHER_PORTAL) {
+                    if (block == ModBlocks.DUNGEON_PORTAL.get()) {
                         ++this.portalBlockCount;
                     }
 
                     if (i == 0) {
                         BlockPos framePos = blockpos.offset(this.leftDir);
-                        if (!this.world.getBlockState(framePos)
-                            .isPortalFrame(this.world, framePos)) {
+                        if (!
+                            isMyPortalFrame(this.world, framePos)) {
                             break label56;
                         }
                     } else if (i == this.width - 1) {
                         BlockPos framePos = blockpos.offset(this.rightDir);
-                        if (!this.world.getBlockState(framePos)
-                            .isPortalFrame(this.world, framePos)) {
+                        if (!
+                            isMyPortalFrame(this.world, framePos)) {
                             break label56;
                         }
                     }
@@ -290,8 +295,7 @@ public class DungeonPortalBlock extends Block {
             for (int j = 0; j < this.width; ++j) {
                 BlockPos framePos = this.bottomLeft.offset(this.rightDir, j)
                     .up(this.height);
-                if (!this.world.getBlockState(framePos)
-                    .isPortalFrame(this.world, framePos)) {
+                if (!isMyPortalFrame(this.world, framePos)) {
                     this.height = 0;
                     break;
                 }
@@ -307,13 +311,18 @@ public class DungeonPortalBlock extends Block {
             }
         }
 
+        boolean isMyPortalFrame(IWorldReader world, BlockPos pos) {
+            return world.getBlockState(pos)
+                .getBlock() == ModBlocks.DUNGEON_PORTAL.get();
+        }
+
         protected boolean func_196900_a(BlockState pos) {
             Block block = pos.getBlock();
-            return pos.isAir() || block == Blocks.FIRE || block == Blocks.NETHER_PORTAL;
+            return pos.isAir() || block == Blocks.FIRE || block == ModBlocks.DUNGEON_PORTAL.get();
         }
 
         public boolean isValid() {
-            return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3 && this.height <= 21;
+            return this.bottomLeft != null && this.width >= 1 && this.width <= 21 && this.height >= 3 && this.height <= 21;
         }
 
         public void placePortalBlocks() {
@@ -321,7 +330,8 @@ public class DungeonPortalBlock extends Block {
                 BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 
                 for (int j = 0; j < this.height; ++j) {
-                    this.world.setBlockState(blockpos.up(j), Blocks.NETHER_PORTAL.getDefaultState()
+                    this.world.setBlockState(blockpos.up(j), ModBlocks.DUNGEON_PORTAL.get()
+                        .getDefaultState()
                         .with(DungeonPortalBlock.AXIS, this.axis), 18);
                 }
             }
