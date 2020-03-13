@@ -18,6 +18,6 @@ public class UniqueOffer extends TraderOffer {
 
     @Override
     public int Weight() {
-        return 50;
+        return 75;
     }
 }

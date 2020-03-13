@@ -82,10 +82,11 @@ public class LootInfo {
     }
 
     private void setupAllFields() {
-        setTier();
-        setLevel();
+        // order matters
         errorIfClient();
         setWorld();
+        setTier();
+        setLevel();
     }
 
     private LootInfo setTier() {

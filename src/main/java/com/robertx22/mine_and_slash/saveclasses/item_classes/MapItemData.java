@@ -107,13 +107,17 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         if (isExp) {
             return 1;
         } else {
-            return 0.1F + (1 * getAffixMulti());
+            return 1 + bonusFormula();
         }
+    }
+
+    public float bonusFormula() {
+        return (1 * getAffixMulti());
     }
 
     public float getBonusExpMulti() {
         if (isExp) {
-            return getBonusLootMulti() * 2;
+            return 1 + (bonusFormula() * 2);
         } else {
             return 1;
         }
@@ -147,7 +151,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
     private float getAffixMulti() {
 
-        float total = 1F;
+        float total = 0;
         for (MapAffixData affix : affixes) {
             total += affix.getBonusLootMultiplier();
         }

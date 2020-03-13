@@ -159,7 +159,29 @@ public class LivingHurtUtils {
                 .getItem();
 
             if (item instanceof BowItem || item instanceof CrossbowItem) {
-                return !source.isProjectile();
+                if (source.damageType.contains("arrow")) {
+                    return false;
+                }
+                if (source.damageType.contains("bolt")) {
+                    return false;
+                }
+                if (source.damageType.contains("ammo")) {
+                    return false;
+                }
+                if (source.damageType.contains("bullet")) {
+                    return false;
+                }
+                if (source.damageType.contains("firework")) {
+                    return false;
+                }
+                if (source.damageType.contains("dart")) {
+                    return false;
+                }
+                if (source.damageType.contains("missile")) {
+                    return false;
+                }
+                return true;
+
             } else {
                 if (source instanceof IndirectEntityDamageSource) {
                     IndirectEntityDamageSource indi = (IndirectEntityDamageSource) source;

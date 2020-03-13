@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.gui.main_hub;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
+import com.robertx22.mine_and_slash.gui.bar_overlays.bases.BaseBarsOverlay;
+import com.robertx22.mine_and_slash.gui.bar_overlays.types.BottomMiddleCornersOverlay;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
@@ -12,6 +14,7 @@ import com.robertx22.mine_and_slash.gui.stat_allocation_screen.StatAllocationScr
 import com.robertx22.mine_and_slash.gui.stats_overview.StatOverviewScreen;
 import com.robertx22.mine_and_slash.gui.talent_tree_gui.TalentPerkTreeScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
@@ -75,6 +78,8 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
     }
 
+    BottomMiddleCornersOverlay overlay = new BottomMiddleCornersOverlay(); // todo temporary
+
     @Override
     public void render(int x, int y, float ticks) {
 
@@ -83,6 +88,11 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         super.render(x, y, ticks);
 
         renderTitle();
+
+        int expx = this.guiLeft + sizeX / 2 - BaseBarsOverlay.BAR_WIDTH / 2;
+        int expy = this.guiTop + sizeY - BaseBarsOverlay.BAR_HEIGHT - 5;
+
+        overlay.DrawBar(BaseBarsOverlay.BarType.EXP, Load.Unit(mc.player), expx, expy);
 
     }
 

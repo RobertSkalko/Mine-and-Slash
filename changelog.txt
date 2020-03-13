@@ -1,5 +1,10 @@
+3.3.4
+* fix map loot being all lvl 1
+* fix painful lesson item giving a bit more than intended
+* made identify tomes more expensive
 3.3.3
 * fix vanilla gui type and polish a bit
+* can see lvl and exp in main hub now
 
 3.3.2
 * fix too high map dmg affix

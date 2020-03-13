@@ -47,6 +47,10 @@ public class VanillaOverlay extends IngameGui {
                 return;
             }
 
+            if (en == null || data == null) {
+                return;
+            }
+
             ticks++;
 
             ResourceLocation TEX = new ResourceLocation("mmorpg", "textures/gui/overlay/vanilla_overlay.png");
