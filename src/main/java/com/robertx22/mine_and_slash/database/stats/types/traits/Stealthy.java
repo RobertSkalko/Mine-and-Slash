@@ -24,6 +24,11 @@ public class Stealthy extends Trait implements IAffectsOtherStats {
     }
 
     @Override
+    public int Weight() {
+        return 0;
+    }
+
+    @Override
     public String locNameForLangFile() {
         return "Stealthy";
     }

@@ -29,8 +29,9 @@ public abstract class BasePerksData<T extends BasePerk> implements IApplyableSta
 
     public boolean hasSynergy(Synergy syn) {
         return getAllCurrentPerks().stream()
-                .filter(x -> x.effect instanceof SynergyPerkEffect)
-                .anyMatch(x -> ((SynergyPerkEffect) x.effect).GUID().equals(syn.GUID()));
+            .filter(x -> x.effect instanceof SynergyPerkEffect)
+            .anyMatch(x -> ((SynergyPerkEffect) x.effect).GUID()
+                .equals(syn.GUID()));
 
     }
 
@@ -85,6 +86,15 @@ public abstract class BasePerksData<T extends BasePerk> implements IApplyableSta
         }
         if (resetPoints <= 0) {
             return false;
+        }
+
+        int amount = this.getAllocatedPerks();
+
+        if (amount == 2 && !toRemove.isStart) {
+            return true;
+        }
+        if (amount == 1 && toRemove.isStart) {
+            return true;
         }
 
         for (Object obj : toRemove.connections) {
@@ -146,9 +156,9 @@ public abstract class BasePerksData<T extends BasePerk> implements IApplyableSta
 
     public List<BaseSpell> getAvailableSpells() {
         return getAllCurrentPerks().stream()
-                .filter(x -> x.effect instanceof SpellPerkEffect)
-                .map(x -> ((SpellPerkEffect) x.effect).spell)
-                .collect(Collectors.toList());
+            .filter(x -> x.effect instanceof SpellPerkEffect)
+            .map(x -> ((SpellPerkEffect) x.effect).spell)
+            .collect(Collectors.toList());
 
     }
 }

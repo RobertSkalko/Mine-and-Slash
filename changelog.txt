@@ -1,3 +1,6 @@
+3.3.5
+* adjusted capacitor recipes
+* mobs in dungeons can now open wooden doors to haunt player, this doesnt seem to work all the time unfortunately but should add some more danger. 
 3.3.4
 * fix map loot being all lvl 1
 * fix painful lesson item giving a bit more than intended

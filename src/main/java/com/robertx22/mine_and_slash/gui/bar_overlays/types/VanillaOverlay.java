@@ -13,6 +13,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.HashMap;
@@ -24,6 +25,16 @@ public class VanillaOverlay extends IngameGui {
     }
 
     int ticks = 0;
+
+    public static int fix(int old, int scaledHeight) {
+        int leftHeight = ForgeIngameGui.left_height;
+        int rightHeight = ForgeIngameGui.right_height;
+        int offsetHeight = Math.max(leftHeight, rightHeight);
+        if (offsetHeight > 59) {
+            return scaledHeight - offsetHeight;
+        }
+        return old;
+    }
 
     @SubscribeEvent
     public void render(RenderGameOverlayEvent event) {

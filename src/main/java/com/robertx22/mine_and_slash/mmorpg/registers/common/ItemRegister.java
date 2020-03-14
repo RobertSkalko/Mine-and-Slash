@@ -44,7 +44,7 @@ public class ItemRegister {
 
         for (GearRarity x : Rarities.Gears.getNormalRarities()) {
             AutoSalvageBag.Items.put(x.Rank(), new AutoSalvageBag(x.Rank()));
-            ItemCapacitor.Items.put(x.Rank(), new ItemCapacitor(x.Rank()));
+            ItemCapacitor.ITEMS.put(x.Rank(), new ItemCapacitor(x.Rank()));
         }
 
         for (GearRarity rarity : Rarities.Gears.getNormalRarities()
@@ -70,7 +70,7 @@ public class ItemRegister {
 
         AutoSalvageBag.Items.values()
             .forEach((x) -> r.register(x));
-        ItemCapacitor.Items.values()
+        ItemCapacitor.ITEMS.values()
             .forEach((x) -> r.register(x));
         ItemLootbox.Items.values()
             .forEach((x) -> r.register(x));
