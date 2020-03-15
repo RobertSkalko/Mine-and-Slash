@@ -1,7 +1,8 @@
-package com.robertx22.mine_and_slash.new_content.registry;
+package com.robertx22.mine_and_slash.new_content.registry.rooms;
 
 import com.robertx22.mine_and_slash.new_content.enums.RoomGroup;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
+import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,10 @@ import java.util.List;
 public class RoomList {
 
     private static List<DungeonRoom> rooms = new ArrayList<>();
+
+    public static List<DungeonRoom> getRoomsINTERNAL() {
+        return rooms;
+    }
 
     public static List<DungeonRoom> getAllRooms() {
 

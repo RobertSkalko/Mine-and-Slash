@@ -17,6 +17,8 @@ public class AutoConfigItemType {
     public IntValue MIN_RARITY;
     public IntValue MAX_RARITY;
 
+    public ForgeConfigSpec.BooleanValue CAN_BE_SALVAGED;
+
     public AutoConfigItemType(float req, ForgeConfigSpec.Builder builder, String type, int maxlvl, int minrar, int maxrar) {
         builder.push(type);
 
@@ -26,6 +28,8 @@ public class AutoConfigItemType {
 
         MIN_RARITY = builder.defineInRange("MIN_RARITY", minrar, 0, IRarity.Mythic);
         MAX_RARITY = builder.defineInRange("MAX_RARITY", maxrar, 0, IRarity.Mythic);
+
+        CAN_BE_SALVAGED = builder.define("CAN_BE_SALVAGED", false);
 
         builder.pop();
     }
@@ -38,6 +42,8 @@ public class AutoConfigItemType {
         comp.min_rarity = MIN_RARITY.get();
 
         comp.max_level = MAX_LEVEL.get();
+
+        comp.can_be_salvaged = CAN_BE_SALVAGED.get();
 
         return comp;
 

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.new_content.RoomSides;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
 import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
-import com.robertx22.mine_and_slash.new_content.registry.RoomList;
+import com.robertx22.mine_and_slash.new_content.registry.rooms.RoomList;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.Rotation;
@@ -101,7 +101,7 @@ public enum RoomType implements IWeighted {
 
     public abstract List<RoomRotation> getRotations();
 
-    public final List<DungeonRoom> getAllRooms() {
+    public final List<DungeonRoom> getAllOfThisTypeRooms() {
         return RoomList.getAllRooms()
             .stream()
             .filter(x -> x.type.equals(this))
@@ -115,27 +115,29 @@ public enum RoomType implements IWeighted {
         } else {
             RoomGroup g = group;
 
-            if (RandomUtils.roll(15, builder.rand)) {
-                g = RoomGroup.MISC;
-            } else if (RandomUtils.roll(5, builder.rand)) {
+            if (g.allowsOtherTypes()) {
+                if (RandomUtils.roll(15, builder.rand)) {
+                    g = RoomGroup.MISC;
+                } else if (RandomUtils.roll(5, builder.rand)) {
 
-                List<RoomGroup> posGroups = new ArrayList<>();
-                Arrays.stream(RoomGroup.values())
-                    .forEach(x -> {
-                        if (x != RoomGroup.MISC && x != group) {
-                            posGroups.add(x);
-                        }
-                    });
+                    List<RoomGroup> posGroups = new ArrayList<>();
+                    Arrays.stream(RoomGroup.values())
+                        .forEach(x -> {
+                            if (x != RoomGroup.MISC && x != group) {
+                                posGroups.add(x);
+                            }
+                        });
 
-                g = RandomUtils.weightedRandom(posGroups, builder.rand.nextDouble());
-            }
+                    g = RandomUtils.weightedRandom(posGroups, builder.rand.nextDouble());
+                }
 
-            if (g == null || g == RoomGroup.TEST) {
-                g = RoomGroup.MISC;
+                if (g == null || g == RoomGroup.TEST) {
+                    g = RoomGroup.MISC;
+                }
             }
 
             List<DungeonRoom> possible = new ArrayList<>();
-            for (DungeonRoom x : getAllRooms()) {
+            for (DungeonRoom x : getAllOfThisTypeRooms()) {
                 if (x.group.equals(g)) {
                     possible.add(x);
                 }
