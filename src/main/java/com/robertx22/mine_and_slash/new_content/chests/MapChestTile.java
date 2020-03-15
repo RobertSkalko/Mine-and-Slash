@@ -27,8 +27,7 @@ public class MapChestTile extends ChestTileEntity implements INamedContainerProv
     }
 
     public enum ChestTypes {
-        NORMAL
-
+        NORMAL, TRAPPED
     }
 
     public NonNullList<ItemStack> getItems() {

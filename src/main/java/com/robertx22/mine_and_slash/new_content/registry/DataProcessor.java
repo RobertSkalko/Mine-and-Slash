@@ -21,7 +21,6 @@ public abstract class DataProcessor {
 
     public enum Type {
         EQUALS, CONTAINS
-
     }
 
     Type type;

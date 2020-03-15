@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.dimensions.blocks.MapPortalBlock;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.chests.MapChestBlock;
+import com.robertx22.mine_and_slash.new_content.chests.trapped.TrappedMapChestBlock;
 import com.robertx22.mine_and_slash.professions.blocks.alchemy.AlchemyBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -42,6 +43,7 @@ public class ModBlocks {
     public static RegistryObject<DungeonPortalBlock> DUNGEON_PORTAL = REG.register("dungeon_portal", DungeonPortalBlock::new);
 
     public static RegistryObject<MapChestBlock> MAP_CHEST = REG.register("map_chest", MapChestBlock::new);
+    public static RegistryObject<MapChestBlock> TRAPPED_MAP_CHEST = REG.register("trapped_map_chest", TrappedMapChestBlock::new);
     public static RegistryObject<ScrabbleBlock> SCRABBLE = REG.register("scrabble", ScrabbleBlock::new);
 
     @SubscribeEvent

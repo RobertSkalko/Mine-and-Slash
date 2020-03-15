@@ -54,6 +54,10 @@ public class MapChestRenderer<T extends TileEntity & IChestLid> extends TileEnti
 
         MapChestTile.ChestTypes type = MapChestTile.ChestTypes.NORMAL;
 
+        if (block == ModBlocks.TRAPPED_MAP_CHEST.get()) {
+            type = MapChestTile.ChestTypes.TRAPPED;
+        }
+
         if (block instanceof MapChestBlock) {
             MapChestBlock chestBlock = (MapChestBlock) block;
 

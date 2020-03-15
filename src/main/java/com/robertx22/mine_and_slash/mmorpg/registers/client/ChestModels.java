@@ -15,9 +15,12 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = Ref.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ChestModels {
 
+    // TODO THIS COULD BE OBJECTIFIED
+
     public static final ResourceLocation chestAtlas = new ResourceLocation("textures/atlas/chest.png");
 
     public static final Material NORMAL_CHEST_LOCATION = getChestMaterial("normal");
+    public static final Material TRAPPPED_CHEST_LOCATION = getChestMaterial("trapped");
 
     public static void addTextures(MessagePassingQueue.Consumer<Material> consumer) {
         consumer.accept(NORMAL_CHEST_LOCATION);
@@ -31,6 +34,8 @@ public class ChestModels {
         switch (type) {
             case NORMAL:
                 return NORMAL_CHEST_LOCATION;
+            case TRAPPED:
+                return TRAPPPED_CHEST_LOCATION;
             default:
                 return Atlases.CHEST_MATERIAL;
         }
@@ -45,6 +50,7 @@ public class ChestModels {
         }
 
         event.addSprite(NORMAL_CHEST_LOCATION.getTextureLocation());
+        event.addSprite(TRAPPPED_CHEST_LOCATION.getTextureLocation());
 
     }
 }

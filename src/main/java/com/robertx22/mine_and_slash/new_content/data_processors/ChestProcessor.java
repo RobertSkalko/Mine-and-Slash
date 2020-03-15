@@ -22,8 +22,15 @@ public class ChestProcessor extends DataProcessor {
     @Override
     public void processImplementation(String key, BlockPos pos, IWorld world, ChunkProcessData data) {
 
-        world.setBlockState(pos, ModBlocks.MAP_CHEST.get()
-            .getDefaultState(), 2);
+        boolean isTrapped = this.data.contains("trap");
+
+        if (isTrapped) {
+            world.setBlockState(pos, ModBlocks.TRAPPED_MAP_CHEST.get()
+                .getDefaultState(), 2);
+        } else {
+            world.setBlockState(pos, ModBlocks.MAP_CHEST.get()
+                .getDefaultState(), 2);
+        }
 
         TileEntity tile = world.getTileEntity(pos);
 

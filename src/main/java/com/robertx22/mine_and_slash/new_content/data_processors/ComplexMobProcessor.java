@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 public class ComplexMobProcessor extends DataProcessor {
 
     public ComplexMobProcessor() {
-        super("spawn");
+        super("spawn", Type.CONTAINS);
     }
 
     @Override
