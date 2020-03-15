@@ -23,6 +23,12 @@ public enum RoomGroup implements IWeighted {
             return false;
         }
     },
+    NATURE("nature", 50000) {
+        @Override
+        public boolean allowsOtherTypes() {
+            return false;
+        }
+    },
 
     SNOW("snow", 0) {
         @Override

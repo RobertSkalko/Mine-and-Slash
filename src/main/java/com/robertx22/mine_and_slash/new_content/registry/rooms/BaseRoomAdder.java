@@ -4,11 +4,11 @@ import com.robertx22.mine_and_slash.new_content.enums.RoomGroup;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
 
-public class RoomsHelper {
+public abstract class BaseRoomAdder {
 
     RoomGroup group;
 
-    public RoomsHelper(RoomGroup group) {
+    public BaseRoomAdder(RoomGroup group) {
         this.group = group;
     }
 
@@ -16,5 +16,7 @@ public class RoomsHelper {
         RoomList.getRoomsINTERNAL()
             .add(new DungeonRoom(id, type, group));
     }
+
+    public abstract void addAllRooms();
 
 }

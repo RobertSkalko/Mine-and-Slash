@@ -19,6 +19,8 @@ public class RoomList {
 
         if (rooms.isEmpty()) {
 
+            new NatureRoomAdder().addAllRooms();
+
             rooms.add(new DungeonRoom("hidden_button2", RoomType.TRIPLE_HALLWAY, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("boss_trap", RoomType.STRAIGHT_HALLWAY, RoomGroup.STONE_BRICK).setBoss());
             rooms.add(new DungeonRoom("trader", RoomType.END, RoomGroup.STONE_BRICK).setTrader());
