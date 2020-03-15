@@ -12,9 +12,13 @@ public abstract class BaseRoomAdder {
         this.group = group;
     }
 
-    public void add(String id, RoomType type) {
+    public DungeonRoom add(String id, RoomType type) {
+        DungeonRoom room = new DungeonRoom(id, type, group);
+
         RoomList.getRoomsINTERNAL()
-            .add(new DungeonRoom(id, type, group));
+            .add(room);
+
+        return room;
     }
 
     public abstract void addAllRooms();

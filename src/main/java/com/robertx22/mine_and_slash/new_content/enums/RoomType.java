@@ -144,6 +144,15 @@ public enum RoomType implements IWeighted {
             }
 
             if (possible.isEmpty()) {
+                // fallback to misc if no possible
+                possible.addAll(RoomList.getAllRooms()
+                    .stream()
+                    .filter(x -> x.type.equals(this) && x.group.equals(RoomGroup.MISC))
+                    .collect(Collectors.toList()));
+
+            }
+
+            if (possible.isEmpty()) {
                 System.out.println("No possible rooms?");
             }
 

@@ -23,6 +23,7 @@ public class DataProcessors {
             all.add(new RemoveAllBesidesOneProcessor());
             all.add(new TraderProcessor());
             all.add(new ComplexMobProcessor());
+            all.add(new BossAltSpellingProcessor());
         }
 
         return all;

@@ -23,7 +23,7 @@ public enum RoomGroup implements IWeighted {
             return false;
         }
     },
-    NATURE("nature", 50000) {
+    NATURE("nature", 250) {
         @Override
         public boolean allowsOtherTypes() {
             return false;
@@ -44,14 +44,14 @@ public enum RoomGroup implements IWeighted {
         }
     },
 
-    STEAMPUNK("steampunk", 0) {
+    STEAMPUNK("steampunk", 100) {
         @Override
         public boolean allowsOtherTypes() {
             return false;
         }
     },
 
-    TENTS("tents", 0) {
+    TENT("tent", 100) {
         @Override
         public boolean allowsOtherTypes() {
             return false;
@@ -65,7 +65,7 @@ public enum RoomGroup implements IWeighted {
         }
     },
 
-    MINE("mine", 0) {
+    MINE("mine", 5555555) {
         @Override
         public boolean allowsOtherTypes() {
             return false;

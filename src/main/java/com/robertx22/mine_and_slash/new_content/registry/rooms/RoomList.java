@@ -20,6 +20,9 @@ public class RoomList {
         if (rooms.isEmpty()) {
 
             new NatureRoomAdder().addAllRooms();
+            new SteampunkRoomAdder().addAllRooms();
+            new TentRoomAdder().addAllRooms();
+            new MineRoomAdder().addAllRooms();
 
             rooms.add(new DungeonRoom("hidden_button2", RoomType.TRIPLE_HALLWAY, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("boss_trap", RoomType.STRAIGHT_HALLWAY, RoomGroup.STONE_BRICK).setBoss());
