@@ -22,6 +22,7 @@ public class DataProcessors {
             all.add(new ChanceChestProcessor());
             all.add(new RemoveAllBesidesOneProcessor());
             all.add(new TraderProcessor());
+            all.add(new ComplexMobProcessor());
         }
 
         return all;

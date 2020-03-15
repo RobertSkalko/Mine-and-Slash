@@ -17,7 +17,7 @@ public class DungeonRoom implements IWeighted {
     public boolean isTrader = false;
 
     public DungeonRoom(String id, RoomType type, RoomGroup group) {
-        this.loc = new ResourceLocation(Ref.MODID, "dun/" + type.id + "/" + group.folder + "/" + id);
+        this.loc = new ResourceLocation(Ref.MODID, "dun/" + group.folder + "/" + type.id + "/" + id);
         this.type = type;
         this.group = group;
     }

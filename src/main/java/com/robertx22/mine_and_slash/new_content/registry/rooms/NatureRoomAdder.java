@@ -19,13 +19,13 @@ public class NatureRoomAdder extends BaseRoomAdder {
 
         add("simple", RoomType.ENTRANCE);
 
-        add("simple5", RoomType.FOUR_WAY);
+        add("simple4", RoomType.TRIPLE_HALLWAY);
+        add("simple5", RoomType.TRIPLE_HALLWAY);
 
         add("hard_to_find_mobs", RoomType.STRAIGHT_HALLWAY);
         add("tent_treasure", RoomType.STRAIGHT_HALLWAY);
 
-        add("simple2", RoomType.TRIPLE_HALLWAY);
-        add("simple4", RoomType.TRIPLE_HALLWAY);
+        add("simple2", RoomType.FOUR_WAY);
 
     }
 }
