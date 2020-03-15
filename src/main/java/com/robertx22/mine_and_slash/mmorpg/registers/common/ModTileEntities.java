@@ -73,7 +73,7 @@ public class ModTileEntities {
     public static RegistryObject<TileEntityType<MapChestTile>> MAP_CHEST =
         REG.register(ModBlocks.MAP_CHEST.getId()
                 .getPath(),
-            () -> TileEntityType.Builder.create(MapChestTile::new, ModBlocks.MAP_CHEST.get())
+            () -> TileEntityType.Builder.create(MapChestTile::new, ModBlocks.MAP_CHEST.get(), ModBlocks.TRAPPED_MAP_CHEST.get())
                 .build(null));
 
     public static RegistryObject<TileEntityType<ScrabbleTile>> SCRABBLE =

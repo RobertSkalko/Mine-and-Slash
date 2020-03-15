@@ -17,7 +17,6 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.tileentity.IChestLid;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMerger;
-import net.minecraft.util.Direction;
 import net.minecraft.world.World;
 
 public class MapChestRenderer<T extends TileEntity & IChestLid> extends TileEntityRenderer<T> {
@@ -45,11 +44,13 @@ public class MapChestRenderer<T extends TileEntity & IChestLid> extends TileEnti
         MapChestTile tileEntity = (MapChestTile) tileEntityIn;
 
         World world = tileEntity.getWorld();
-        boolean flag = world != null;
 
-        BlockState blockstate = flag ? tileEntity.getBlockState() : (BlockState) ModBlocks.MAP_CHEST.get()
-            .getDefaultState()
-            .with(MapChestBlock.FACING, Direction.SOUTH);
+        if (world == null) {
+            return;
+        }
+
+        BlockState blockstate = tileEntity.getBlockState();
+
         Block block = blockstate.getBlock();
 
         MapChestTile.ChestTypes type = MapChestTile.ChestTypes.NORMAL;
@@ -69,11 +70,8 @@ public class MapChestRenderer<T extends TileEntity & IChestLid> extends TileEnti
             matrixStack.translate(-0.5D, -0.5D, -0.5D);
 
             TileEntityMerger.ICallbackWrapper<? extends MapChestTile> iCallbackWrapper;
-            if (flag) {
-                iCallbackWrapper = chestBlock.getWrapper(blockstate, world, tileEntity.getPos(), true);
-            } else {
-                iCallbackWrapper = TileEntityMerger.ICallback::func_225537_b_;
-            }
+
+            iCallbackWrapper = chestBlock.getWrapper(blockstate, world, tileEntity.getPos(), true);
 
             float f1 = iCallbackWrapper.apply(MapChestBlock.getLid((IChestLid) tileEntity))
                 .get(partialTicks);

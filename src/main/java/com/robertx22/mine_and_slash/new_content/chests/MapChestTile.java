@@ -111,7 +111,10 @@ public class MapChestTile extends ChestTileEntity implements INamedContainerProv
         if (block instanceof MapChestBlock) {
             this.world.addBlockEvent(this.pos, block, 1, this.numPlayersUsing);
             this.world.notifyNeighborsOfStateChange(this.pos, block);
+
+            this.world.notifyNeighborsOfStateChange(this.pos.down(), block); // allow it to function as trap chest too
         }
+
     }
 
 }
