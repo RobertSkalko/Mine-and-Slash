@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.new_content.data_processors;
+package com.robertx22.mine_and_slash.new_content.data_processors.bases;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.Chunk;

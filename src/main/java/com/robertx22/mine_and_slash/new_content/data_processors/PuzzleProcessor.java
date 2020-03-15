@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.new_content.data_processors;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
+import com.robertx22.mine_and_slash.new_content.data_processors.bases.ChunkProcessData;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;

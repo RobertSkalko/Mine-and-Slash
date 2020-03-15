@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.map_events.base;
 
+import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.MythicalMob;
@@ -7,6 +8,7 @@ import com.robertx22.mine_and_slash.database.rarities.mobs.RareMob;
 import com.robertx22.mine_and_slash.new_content.registry.MobPotionEffects;
 import com.robertx22.mine_and_slash.onevent.entity.OnMobSpawn;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.MapEventsData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -86,6 +88,36 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
         world.addEntity(minion);
 
         return minion;
+    }
+
+    public static <T extends MobEntity> T summon(EntityType<T> type, IWorld world, BlockPos p, MobRarity rarity, boolean addPotion, boolean isBoss) {
+        Vec3d vec = new Vec3d(p);
+        vec = vec.add(0.5F, 0, 0.5F);
+
+        T mob = (T) type.create(world.getWorld());
+        mob.onInitialSpawn(world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, null);
+        mob.setPosition(vec.getX(), vec.getY(), vec.getZ());
+
+        OnMobSpawn.setupNewMobOnSpawn(mob);
+
+        Load.Unit(mob)
+            .setRarity(rarity.Rank());
+
+        if (isBoss) {
+            Load.boss(mob)
+                .setBoss(SlashRegistry.Bosses()
+                    .random());
+            Load.Unit(mob)
+                .setRarity(IRarity.Boss);
+        }
+
+        if (addPotion) {
+            mob.addPotionEffect(new EffectInstance(MobPotionEffects.getRandom(), Integer.MAX_VALUE, RandomUtils.RandomRange(1, 3)));
+        }
+
+        world.addEntity(mob);
+
+        return mob;
     }
 
     public static <T extends MobEntity> T summonElite(EntityType<T> type, IWorld world, BlockPos p) {

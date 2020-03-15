@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import com.robertx22.mine_and_slash.new_content.chests.MapChestTile;
+import com.robertx22.mine_and_slash.new_content.data_processors.bases.ChunkProcessData;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.item.ItemStack;
