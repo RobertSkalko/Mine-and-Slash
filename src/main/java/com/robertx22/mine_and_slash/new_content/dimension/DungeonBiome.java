@@ -26,7 +26,7 @@ public class DungeonBiome extends Biome {
             .scale(0.025F)
             .temperature(0.8F)
             .downfall(0.4F)
-            .waterColor(0x676767)
+            .waterColor(4159204)
             .waterFogColor(329011)
             .parent((String) null));
 

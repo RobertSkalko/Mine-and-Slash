@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.new_content.registry.rooms;
 import com.robertx22.mine_and_slash.new_content.enums.RoomGroup;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
+import com.robertx22.mine_and_slash.new_content.registry.rooms.adders.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,11 @@ public class RoomList {
             new SteampunkRoomAdder().addAllRooms();
             new TentRoomAdder().addAllRooms();
             new MineRoomAdder().addAllRooms();
+            new StoneBrickRoomAdder().addAllRooms();
+            new SandstoneRoomAdder().addAllRooms();
+            new MossyBrickRoomAdder().addAllRooms();
+            new SpruceMansionRoomAdder().addAllRooms();
+            new BrickRoomAdder().addAllRooms();
 
             rooms.add(new DungeonRoom("hidden_button2", RoomType.TRIPLE_HALLWAY, RoomGroup.STONE_BRICK));
             rooms.add(new DungeonRoom("boss_trap", RoomType.STRAIGHT_HALLWAY, RoomGroup.STONE_BRICK).setBoss());

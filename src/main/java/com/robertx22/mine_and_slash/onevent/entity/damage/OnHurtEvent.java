@@ -19,6 +19,7 @@ public class OnHurtEvent {
         LivingHurtUtils.onHurtRecordNonPlayerDmg(event);
         LivingHurtUtils.damageCurioItems(event.getEntityLiving());
         LivingHurtUtils.onBossHurt(event.getEntityLiving());
+        LivingHurtUtils.stopMobInWallDamageInMaps(event);
 
     }
 

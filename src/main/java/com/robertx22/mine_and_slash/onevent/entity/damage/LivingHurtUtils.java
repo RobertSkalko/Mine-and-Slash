@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
@@ -29,6 +30,21 @@ public class LivingHurtUtils {
     public static void onBossHurt(LivingEntity en) {
         en.getCapability(BossCap.Data)
             .ifPresent(x -> x.onHealthChanged(en, x));
+    }
+
+    public static void stopMobInWallDamageInMaps(LivingHurtEvent event) {
+        try {
+            if (event.getSource()
+                .equals(DamageSource.IN_WALL)) {
+                if (event.getEntityLiving() instanceof PlayerEntity == false) {
+                    if (WorldUtils.isMapWorldClass(event.getEntityLiving().world)) {
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void damageCurioItems(LivingEntity en) {

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content;
 
+import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
 import com.robertx22.mine_and_slash.new_content.data_processors.bases.ChunkProcessData;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessors;
@@ -16,6 +17,7 @@ import net.minecraft.tileentity.StructureBlockTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 
 import java.util.ArrayList;
@@ -24,6 +26,24 @@ import java.util.List;
 import java.util.Map;
 
 public class ProcessChunkBlocks {
+
+    private static void logRoomForPos(World world, BlockPos pos) {
+
+        try {
+            ChunkPos cpos = new ChunkPos(pos);
+
+            DungeonBuilder builder = new DungeonBuilder(world.getSeed(), cpos);
+            builder.build();
+
+            BuiltRoom room = builder.dungeon.getRoomForChunk(cpos);
+
+            System.out.println("Room affected: " + room.getStructure()
+                .toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public static void process(LivingEntity player) {
 
@@ -103,7 +123,9 @@ public class ProcessChunkBlocks {
                                                 }
 
                                             } else {
-                                                System.out.println("Data block with tag: " + metadata + " had no matching processors!");
+                                                System.out.println("Data block with tag: " + metadata + " matched no processors! " + tilePos.toString());
+                                                logRoomForPos(player.world, tilePos);
+
                                             }
                                         }
                                     }

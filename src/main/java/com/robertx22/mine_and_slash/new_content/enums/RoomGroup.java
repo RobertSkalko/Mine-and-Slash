@@ -10,7 +10,7 @@ public enum RoomGroup implements IWeighted {
 
     MISC("misc", 10),
 
-    BRICK("brick", 0) {
+    BRICK("brick", 50) {
         @Override
         public boolean allowsOtherTypes() {
             return false;
@@ -37,7 +37,7 @@ public enum RoomGroup implements IWeighted {
         }
     },
 
-    MOSSY_BRICK("mossy_brick", 0) {
+    MOSSY_BRICK("mossy_brick", 500) {
         @Override
         public boolean allowsOtherTypes() {
             return false;
@@ -58,14 +58,14 @@ public enum RoomGroup implements IWeighted {
         }
     },
 
-    SPRUCE_MANSION("spruce_mansion", 0) {
+    SPRUCE_MANSION("spruce_mansion", 1000) {
         @Override
         public boolean allowsOtherTypes() {
             return false;
         }
     },
 
-    MINE("mine", 5555555) {
+    MINE("mine", 500) {
         @Override
         public boolean allowsOtherTypes() {
             return false;
