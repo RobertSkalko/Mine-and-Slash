@@ -22,6 +22,7 @@ public abstract class RoomGroup implements IWeighted {
     public static NatureGroup NATURE = new NatureGroup();
     public static MiscGroup MISC = new MiscGroup();
     public static NetherGroup NETHER = new NetherGroup();
+    public static SewersGroup SEWERS = new SewersGroup();
 
     private static List<RoomGroup> all = new ArrayList<>();
 
@@ -41,6 +42,7 @@ public abstract class RoomGroup implements IWeighted {
             all.add(NATURE);
             all.add(MISC);
             all.add(NETHER);
+            all.add(SEWERS);
 
         }
 

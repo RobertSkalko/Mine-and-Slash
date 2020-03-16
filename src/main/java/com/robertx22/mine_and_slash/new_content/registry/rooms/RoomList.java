@@ -29,12 +29,7 @@ public class RoomList {
             new MossyBrickRoomAdder().addAllRooms();
             new SpruceMansionRoomAdder().addAllRooms();
             new BrickRoomAdder().addAllRooms();
-
-            rooms.add(new DungeonRoom("hidden_button0", RoomType.CURVED_HALLWAY, RoomGroup.SANDSTONE));
-            rooms.add(new DungeonRoom("tnt_pyramid", RoomType.END, RoomGroup.SANDSTONE));
-            rooms.add(new DungeonRoom("simple1", RoomType.FOUR_WAY, RoomGroup.SANDSTONE));
-            rooms.add(new DungeonRoom("simple_magma0", RoomType.STRAIGHT_HALLWAY, RoomGroup.SANDSTONE));
-            rooms.add(new DungeonRoom("parkour_puzzle_magma", RoomType.TRIPLE_HALLWAY, RoomGroup.SANDSTONE));
+            new SewersRoomAdder().addAllRooms();
 
             rooms.add(new DungeonRoom("simple_prismarine", RoomType.FOUR_WAY, RoomGroup.MISC));
             rooms.add(new DungeonRoom("prismarine", RoomType.ENTRANCE, RoomGroup.MISC));
@@ -42,13 +37,6 @@ public class RoomList {
             rooms.add(new DungeonRoom("obsidian_lava0", RoomType.TRIPLE_HALLWAY, RoomGroup.MISC));
             rooms.add(new DungeonRoom("easy_sandstone_puzzle", RoomType.CURVED_HALLWAY, RoomGroup.MISC));
             rooms.add(new DungeonRoom("infested_cellar", RoomType.STRAIGHT_HALLWAY, RoomGroup.MISC));
-
-            rooms.add(new DungeonRoom("sewers", RoomType.FOUR_WAY, RoomGroup.MISC));
-            rooms.add(new DungeonRoom("sewers", RoomType.ENTRANCE, RoomGroup.MISC));
-            rooms.add(new DungeonRoom("sewers_treasure", RoomType.END, RoomGroup.MISC).weight(300));
-            rooms.add(new DungeonRoom("sewers_puzzle_easy", RoomType.TRIPLE_HALLWAY, RoomGroup.MISC));
-            rooms.add(new DungeonRoom("sewers", RoomType.CURVED_HALLWAY, RoomGroup.MISC));
-            rooms.add(new DungeonRoom("sewers", RoomType.STRAIGHT_HALLWAY, RoomGroup.MISC));
 
         }
 
