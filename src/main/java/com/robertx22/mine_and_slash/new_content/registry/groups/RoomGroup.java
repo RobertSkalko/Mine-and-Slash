@@ -3,9 +3,11 @@ package com.robertx22.mine_and_slash.new_content.registry.groups;
 import com.robertx22.mine_and_slash.new_content.data_processors.bases.SpawnedMob;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public abstract class RoomGroup implements IWeighted {
 
@@ -80,8 +82,12 @@ public abstract class RoomGroup implements IWeighted {
         return true;
     }
 
-    public RoomGroup getFallbackGroup() {
-        return MISC;
+    public RoomGroup getFallbackGroup(Random rand) {
+        if (possibleOtherTypes().isEmpty()) {
+            return MISC;
+        } else {
+            return RandomUtils.weightedRandom(possibleOtherTypes(), rand.nextDouble());
+        }
     }
 
     public abstract List<RoomGroup> possibleOtherTypes();

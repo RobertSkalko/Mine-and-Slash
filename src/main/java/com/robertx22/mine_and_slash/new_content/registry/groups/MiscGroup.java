@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.new_content.registry.groups;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class MiscGroup extends RoomGroup {
 
@@ -16,7 +17,7 @@ public class MiscGroup extends RoomGroup {
     }
 
     @Override
-    public RoomGroup getFallbackGroup() {
+    public RoomGroup getFallbackGroup(Random rand) {
         return RoomGroup.STONE_BRICK;
     }
 }

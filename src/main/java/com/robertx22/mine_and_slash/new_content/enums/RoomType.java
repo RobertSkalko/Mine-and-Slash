@@ -135,10 +135,13 @@ public enum RoomType implements IWeighted {
             }
 
             if (possible.isEmpty()) {
+
+                RoomGroup fallback = group.getFallbackGroup(builder.rand);
+
                 // fallback to misc if no possible
                 possible.addAll(RoomList.getAllRooms()
                     .stream()
-                    .filter(x -> x.type.equals(this) && x.group.equals(group.getFallbackGroup()))
+                    .filter(x -> x.type.equals(this) && x.group.equals(fallback))
                     .collect(Collectors.toList()));
 
             }
