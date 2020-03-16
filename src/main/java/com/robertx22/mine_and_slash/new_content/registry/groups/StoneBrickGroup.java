@@ -7,6 +7,7 @@ public class StoneBrickGroup extends RoomGroup {
 
     public StoneBrickGroup() {
         super("stone_brick", 1000);
+        this.canSpawnFireMobs = true;
     }
 
     @Override

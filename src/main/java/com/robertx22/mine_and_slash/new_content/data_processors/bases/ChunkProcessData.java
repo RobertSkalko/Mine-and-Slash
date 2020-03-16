@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.new_content.data_processors.bases;
 
+import com.robertx22.mine_and_slash.new_content.BuiltRoom;
+import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.Chunk;
 
@@ -9,13 +11,18 @@ import java.util.function.Function;
 
 public class ChunkProcessData {
 
-    public ChunkProcessData(Chunk chunk) {
+    public ChunkProcessData(Chunk chunk, BuiltRoom room) {
         this.chunk = chunk;
-
+        this.room = room;
     }
 
     public Chunk chunk;
+    private BuiltRoom room;
     public boolean chanceChest = false;
+
+    public DungeonRoom getRoom() {
+        return room.room;
+    }
 
     public void iterateBlocks(Function<BlockPos, BlockPos> function) {
 

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.new_content.registry;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content.data_processors.bases.SpawnedMob;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.new_content.registry.groups.RoomGroup;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -20,6 +21,10 @@ public class DungeonRoom implements IWeighted {
         this.loc = new ResourceLocation(Ref.MODID, "dun/" + group.folder + "/" + type.id + "/" + id);
         this.type = type;
         this.group = group;
+    }
+
+    public boolean canSpawnMob(SpawnedMob mob) {
+        return group.canSpawnMob(mob);
     }
 
     public DungeonRoom setTest() {

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.registry.groups;
 
+import com.robertx22.mine_and_slash.new_content.data_processors.bases.SpawnedMob;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
@@ -53,7 +54,8 @@ public abstract class RoomGroup implements IWeighted {
 
     public String folder;
     int weight;
-    public boolean canBeMainTheme = true; // TODO
+    public boolean canBeMainTheme = true;
+    public boolean canSpawnFireMobs = false;
     public int chanceForOtherGroups = 20;
 
     public final boolean hasRoomFor(RoomType type) {
@@ -66,6 +68,14 @@ public abstract class RoomGroup implements IWeighted {
     public final boolean allowsOtherTypes() {
         return !this.possibleOtherTypes()
             .isEmpty();
+    }
+
+    public boolean canSpawnMob(SpawnedMob mob) {
+        if (mob.isFire && !canSpawnFireMobs) {
+            return false;
+        }
+
+        return true;
     }
 
     public RoomGroup getFallbackGroup() {

@@ -34,7 +34,6 @@ public class ProcessChunkBlocks {
 
             DungeonBuilder builder = new DungeonBuilder(world.getSeed(), cpos);
             builder.build();
-
             BuiltRoom room = builder.dungeon.getRoomForChunk(cpos);
 
             System.out.println("Room affected: " + room.getStructure()
@@ -81,7 +80,11 @@ public class ProcessChunkBlocks {
 
                             if (!c.isDoneProcessing()) {
 
-                                ChunkProcessData data = new ChunkProcessData(chunk);
+                                DungeonBuilder builder = new DungeonBuilder(player.world.getSeed(), cpos);
+                                builder.build();
+                                BuiltRoom room = builder.dungeon.getRoomForChunk(cpos);
+
+                                ChunkProcessData data = new ChunkProcessData(chunk, room);
 
                                 DungeonData dungeonData = mapdata.getData()
                                     .getData(cpos);

@@ -1,9 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.registry;
 
 import com.robertx22.mine_and_slash.new_content.data_processors.bases.ChunkProcessData;
-import com.robertx22.mine_and_slash.new_content.data_processors.bases.SpawnedMob;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 
@@ -37,11 +34,6 @@ public abstract class DataProcessor {
         }
 
         return false;
-    }
-
-    public EntityType<? extends MobEntity> randomMob() {
-        return (EntityType<? extends MobEntity>) SpawnedMob.random().type;
-
     }
 
     public abstract void processImplementation(String key, BlockPos pos, IWorld world, ChunkProcessData data);

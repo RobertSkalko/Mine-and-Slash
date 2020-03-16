@@ -8,6 +8,7 @@ public class NetherGroup extends RoomGroup {
     public NetherGroup() {
         super("nether", 200);
         this.canBeMainTheme = false;
+        this.canSpawnFireMobs = true;
     }
 
     @Override

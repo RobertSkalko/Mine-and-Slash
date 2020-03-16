@@ -7,6 +7,7 @@ public class SandstoneGroup extends RoomGroup {
 
     public SandstoneGroup() {
         super("sandstone", 800);
+        this.canSpawnFireMobs = true;
     }
 
     @Override
