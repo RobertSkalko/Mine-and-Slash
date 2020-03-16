@@ -52,18 +52,18 @@ public class MapChestTile extends ChestTileEntity implements INamedContainerProv
 
     public void addMiscResources(NonNullList<ItemStack> items) {
 
-        if (RandomUtils.roll(15)) {
+        if (RandomUtils.roll(5)) {
             ItemStack tome = new ItemStack(ModItems.IDENTIFY_TOME.get());
             tome.setCount(RandomUtils.RandomRange(1, 2));
             items.add(tome);
 
         }
 
-        if (RandomUtils.roll(25)) {
+        if (RandomUtils.roll(20)) {
             ItemStack apple = new ItemStack(Items.APPLE);
             items.add(apple);
         }
-        if (RandomUtils.roll(10)) {
+        if (RandomUtils.roll(5)) {
             ItemStack food = new ItemStack(Items.COOKED_PORKCHOP);
             items.add(food);
         }

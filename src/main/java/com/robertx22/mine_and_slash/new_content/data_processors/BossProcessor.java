@@ -20,7 +20,6 @@ public class BossProcessor extends DataProcessor {
     public void processImplementation(String key, BlockPos pos, IWorld world, ChunkProcessData data) {
 
         EntityType<? extends MobEntity> type = SpawnedMob.random(data.getRoom()).type;
-        ;
 
         MapEvent.summonBoss(type, world, pos, SlashRegistry.Bosses()
             .random());
