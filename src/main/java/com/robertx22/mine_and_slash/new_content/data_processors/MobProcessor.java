@@ -18,7 +18,7 @@ public class MobProcessor extends DataProcessor {
     @Override
     public void processImplementation(String key, BlockPos pos, IWorld world, ChunkProcessData data) {
 
-        EntityType<? extends MobEntity> type = SpawnedMob.random().type;
+        EntityType<? extends MobEntity> type = SpawnedMob.random(data.getRoom()).type;
 
         MapEvent.summonMinion(type, world, pos);
 
