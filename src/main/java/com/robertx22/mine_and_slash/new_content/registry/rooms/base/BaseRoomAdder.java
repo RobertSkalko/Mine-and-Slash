@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.new_content.registry.rooms.base;
 
-import com.robertx22.mine_and_slash.new_content.enums.RoomGroup;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
+import com.robertx22.mine_and_slash.new_content.registry.groups.RoomGroup;
 import com.robertx22.mine_and_slash.new_content.registry.rooms.RoomList;
 
 public abstract class BaseRoomAdder {

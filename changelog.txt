@@ -4,7 +4,13 @@
 * added a trapped chest for dungeons 
 * added more structure block processors to accomodate some builds from the build-a-thon
 * added config for auto compatible items to be salvagable
-* made mobs in maps not take dmg from suffocation.
+* made mobs in maps not take dmg from being stuck in wall, also they get knocked back around until they get unstuck now!
+
+Build-a-thon results:
+* Added whole new dungeon themes you'll see often: icy spruce mansion, nature, mossy brick and mineshaft.
+* Added some other dungeon themes that will be rare because there aren't enough rooms: 	tent, brick, steampunk.
+* Added some dungeon rooms of existing types and some misc ones.
+
 3.3.4
 * fix map loot being all lvl 1
 * fix painful lesson item giving a bit more than intended

@@ -5,13 +5,13 @@ import com.robertx22.mine_and_slash.new_content.RoomSides;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
 import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
+import com.robertx22.mine_and_slash.new_content.registry.groups.RoomGroup;
 import com.robertx22.mine_and_slash.new_content.registry.rooms.RoomList;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.Rotation;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -116,24 +116,7 @@ public enum RoomType implements IWeighted {
             RoomGroup g = group;
 
             if (g.allowsOtherTypes()) {
-                if (RandomUtils.roll(15, builder.rand)) {
-                    g = RoomGroup.MISC;
-                } else if (RandomUtils.roll(5, builder.rand)) {
-
-                    List<RoomGroup> posGroups = new ArrayList<>();
-                    Arrays.stream(RoomGroup.values())
-                        .forEach(x -> {
-                            if (x != RoomGroup.MISC && x != group) {
-                                posGroups.add(x);
-                            }
-                        });
-
-                    g = RandomUtils.weightedRandom(posGroups, builder.rand.nextDouble());
-                }
-
-                if (g == null || g == RoomGroup.TEST) {
-                    g = RoomGroup.MISC;
-                }
+                g = RandomUtils.weightedRandom(group.possibleOtherTypes(), builder.rand.nextDouble());
             }
 
             List<DungeonRoom> possible = new ArrayList<>();
@@ -147,7 +130,7 @@ public enum RoomType implements IWeighted {
                 // fallback to misc if no possible
                 possible.addAll(RoomList.getAllRooms()
                     .stream()
-                    .filter(x -> x.type.equals(this) && x.group.equals(RoomGroup.MISC))
+                    .filter(x -> x.type.equals(this) && x.group.equals(group.getFallbackGroup()))
                     .collect(Collectors.toList()));
 
             }

@@ -4,16 +4,16 @@ import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.new_content.BuiltRoom;
 import com.robertx22.mine_and_slash.new_content.RoomRotation;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
-import com.robertx22.mine_and_slash.new_content.enums.RoomGroup;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
+import com.robertx22.mine_and_slash.new_content.registry.groups.RoomGroup;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.math.ChunkPos;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class DungeonBuilder {
 
@@ -25,7 +25,10 @@ public class DungeonBuilder {
         long newSeed = (worldSeed + (long) (chunkX * chunkX * 4987142) + (long) (chunkX * 5947611) + (long) (chunkZ * chunkZ) * 4392871L + (long) (chunkZ * 389711) ^ worldSeed);
         rand = new Random(newSeed);
 
-        this.group = RandomUtils.weightedRandom(Arrays.asList(RoomGroup.values()), rand.nextDouble());
+        this.group = RandomUtils.weightedRandom(RoomGroup.getAll()
+            .stream()
+            .filter(x -> x.canBeMainTheme)
+            .collect(Collectors.toList()), rand.nextDouble());
 
         this.size = RandomUtils.RandomRange(15, 25, rand);
 

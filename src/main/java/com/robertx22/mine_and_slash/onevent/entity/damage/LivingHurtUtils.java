@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,6 +40,9 @@ public class LivingHurtUtils {
                 if (event.getEntityLiving() instanceof PlayerEntity == false) {
                     if (WorldUtils.isMapWorldClass(event.getEntityLiving().world)) {
                         event.setCanceled(true);
+                        // kick them in random directions until they get out of a wall
+                        event.getEntityLiving()
+                            .knockBack(event.getEntityLiving(), 1, RandomUtils.RandomRange(-2, 2), RandomUtils.RandomRange(-2, 2));
                     }
                 }
             }
