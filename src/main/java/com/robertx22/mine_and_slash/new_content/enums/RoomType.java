@@ -109,14 +109,22 @@ public enum RoomType implements IWeighted {
 
     }
 
-    public DungeonRoom getRandomRoom(RoomGroup group, DungeonBuilder builder) {
+    public DungeonRoom getRandomRoom(final RoomGroup group, DungeonBuilder builder) {
         if (builder.debug) {
             return this.getTestRoom();
         } else {
             RoomGroup g = group;
 
             if (g.allowsOtherTypes()) {
-                g = RandomUtils.weightedRandom(group.possibleOtherTypes(), builder.rand.nextDouble());
+                if (RandomUtils.roll(20, builder.rand)) {
+                    RoomGroup tryGroup = RandomUtils.weightedRandom(group.possibleOtherTypes(), builder.rand.nextDouble());
+
+                    if (tryGroup.hasRoomFor(this)) {
+                        g = tryGroup;
+                        // only accept the other type if it has a room for this.
+                        // if not, it'll use the fallback group and possibly look ugly for this one.
+                    }
+                }
             }
 
             List<DungeonRoom> possible = new ArrayList<>();

@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.new_content.registry.rooms.RoomList;
 
 public abstract class BaseRoomAdder {
 
-    RoomGroup group;
+    final RoomGroup group;
 
     public BaseRoomAdder(RoomGroup group) {
         this.group = group;

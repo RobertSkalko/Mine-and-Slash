@@ -21,6 +21,7 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.PrioritizedGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -141,7 +142,9 @@ public class OnMobSpawn {
         }
 
         if (!hasOpenDoorGoal) {
-            en.goalSelector.addGoal(count + 1, new OpenDungeonDoorsGoal(en));
+            if (en.getNavigator() instanceof GroundPathNavigator) {
+                en.goalSelector.addGoal(count + 1, new OpenDungeonDoorsGoal(en));
+            }
         }
         if (!hasFindPlayerGoal) {
             en.goalSelector.addGoal(count + 2, new FindPlayerGoal(en, 30));

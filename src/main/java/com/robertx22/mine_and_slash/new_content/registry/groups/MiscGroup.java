@@ -13,6 +13,11 @@ public class MiscGroup extends RoomGroup {
     public List<RoomGroup> possibleOtherTypes() {
         return Arrays.asList();
     }
+
+    @Override
+    public RoomGroup getFallbackGroup() {
+        return RoomGroup.STONE_BRICK;
+    }
 }
 
 

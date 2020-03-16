@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.registry.groups;
 
+import com.robertx22.mine_and_slash.new_content.enums.RoomType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 import java.util.ArrayList;
@@ -7,19 +8,19 @@ import java.util.List;
 
 public abstract class RoomGroup implements IWeighted {
 
-    public static RoomGroup TEST = new TestGroup();
+    public static TestGroup TEST = new TestGroup();
 
-    public static RoomGroup MOSSY_BRICK = new MossyBrickGroup();
-    public static RoomGroup STONE_BRICK = new StoneBrickGroup();
-    public static RoomGroup SANDSTONE = new SandstoneGroup();
-    public static RoomGroup SPRUCE_MANSION = new SpruceMansionGroup();
-    public static RoomGroup MINESHAFT = new MineGroup();
-    public static RoomGroup BRICK = new BrickGroup();
-    public static RoomGroup TENT = new TentGroup();
-    public static RoomGroup STEAMPUNK = new SteampunkGroup();
-    public static RoomGroup NATURE = new NatureGroup();
-    public static RoomGroup MISC = new MiscGroup();
-    public static RoomGroup NETHER = new NetherGroup();
+    public static MossyBrickGroup MOSSY_BRICK = new MossyBrickGroup();
+    public static StoneBrickGroup STONE_BRICK = new StoneBrickGroup();
+    public static SandstoneGroup SANDSTONE = new SandstoneGroup();
+    public static SpruceMansionGroup SPRUCE_MANSION = new SpruceMansionGroup();
+    public static MineGroup MINESHAFT = new MineGroup();
+    public static BrickGroup BRICK = new BrickGroup();
+    public static TentGroup TENT = new TentGroup();
+    public static SteampunkGroup STEAMPUNK = new SteampunkGroup();
+    public static NatureGroup NATURE = new NatureGroup();
+    public static MiscGroup MISC = new MiscGroup();
+    public static NetherGroup NETHER = new NetherGroup();
 
     private static List<RoomGroup> all = new ArrayList<>();
 
@@ -53,6 +54,13 @@ public abstract class RoomGroup implements IWeighted {
     public String folder;
     int weight;
     public boolean canBeMainTheme = true; // TODO
+
+    public final boolean hasRoomFor(RoomType type) {
+        return type.getAllOfThisTypeRooms()
+            .stream()
+            .anyMatch(x -> x.group.equals(this));
+
+    }
 
     public final boolean allowsOtherTypes() {
         return !this.possibleOtherTypes()

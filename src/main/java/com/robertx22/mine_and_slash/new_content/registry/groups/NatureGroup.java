@@ -6,7 +6,7 @@ import java.util.List;
 public class NatureGroup extends RoomGroup {
 
     public NatureGroup() {
-        super("sandstone", 300);
+        super("nature", 300);
     }
 
     @Override
