@@ -116,7 +116,7 @@ public enum RoomType implements IWeighted {
             RoomGroup g = group;
 
             if (g.allowsOtherTypes()) {
-                if (RandomUtils.roll(20, builder.rand)) {
+                if (RandomUtils.roll(group.chanceForOtherGroups, builder.rand)) {
                     RoomGroup tryGroup = RandomUtils.weightedRandom(group.possibleOtherTypes(), builder.rand.nextDouble());
 
                     if (tryGroup.hasRoomFor(this)) {

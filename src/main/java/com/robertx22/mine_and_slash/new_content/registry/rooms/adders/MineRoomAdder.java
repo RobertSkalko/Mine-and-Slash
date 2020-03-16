@@ -13,16 +13,21 @@ public class MineRoomAdder extends BaseRoomAdder {
     @Override
     public void addAllRooms() {
 
+        add("boss1", RoomType.END).setBoss();
+
         add("nasty_lava_parkour", RoomType.CURVED_HALLWAY);
 
         add("simple2", RoomType.ENTRANCE);
 
         add("shaft0", RoomType.FOUR_WAY);
+        add("huge_pit", RoomType.FOUR_WAY);
         add("trader", RoomType.FOUR_WAY).setTrader();
 
         add("parkour0", RoomType.STRAIGHT_HALLWAY);
+        add("chest_down_pit", RoomType.STRAIGHT_HALLWAY);
 
         add("redstone_ore_hidden_room", RoomType.TRIPLE_HALLWAY);
+        add("simple2", RoomType.TRIPLE_HALLWAY);
 
     }
 }

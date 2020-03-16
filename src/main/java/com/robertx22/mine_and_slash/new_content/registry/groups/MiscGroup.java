@@ -7,6 +7,7 @@ public class MiscGroup extends RoomGroup {
 
     public MiscGroup() {
         super("misc", 10);
+        this.canBeMainTheme = false;
     }
 
     @Override

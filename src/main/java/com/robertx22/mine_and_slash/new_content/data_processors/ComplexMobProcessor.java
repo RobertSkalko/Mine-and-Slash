@@ -29,7 +29,7 @@ public class ComplexMobProcessor extends DataProcessor {
     public void processImplementation(String key, BlockPos pos, IWorld world, ChunkProcessData data) {
 
         try {
-            String[] parts = StringUtils.split(this.data, ";");
+            String[] parts = StringUtils.split(key, ";");
 
             MobRarity rarity = null;
             boolean isBoss = false;

@@ -54,6 +54,7 @@ public abstract class RoomGroup implements IWeighted {
     public String folder;
     int weight;
     public boolean canBeMainTheme = true; // TODO
+    public int chanceForOtherGroups = 20;
 
     public final boolean hasRoomFor(RoomType type) {
         return type.getAllOfThisTypeRooms()

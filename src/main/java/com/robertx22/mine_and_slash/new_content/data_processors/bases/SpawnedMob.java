@@ -27,7 +27,7 @@ public class SpawnedMob implements IWeighted {
             all.add(new SpawnedMob(EntityType.ZOMBIE, 1200));
             all.add(new SpawnedMob(EntityType.WITHER_SKELETON, 50));
             all.add(new SpawnedMob(EntityType.SKELETON, 400).setRanged());
-            all.add(new SpawnedMob(EntityType.BLAZE, 15).setRanged());
+            all.add(new SpawnedMob(EntityType.BLAZE, 5).setRanged());
             all.add(new SpawnedMob(EntityType.MAGMA_CUBE, 10));
             all.add(new SpawnedMob(EntityType.ENDERMITE, 5));
             all.add(new SpawnedMob(EntityType.CAVE_SPIDER, 200).setSpider());

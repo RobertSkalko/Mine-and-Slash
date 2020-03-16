@@ -21,5 +21,10 @@ public class StoneBrickRoomAdder extends BaseRoomAdder {
         add("crypt", RoomType.STRAIGHT_HALLWAY);
         add("fast_or_slow", RoomType.STRAIGHT_HALLWAY);
 
+        add("shooting_gallery", RoomType.CURVED_HALLWAY);
+        add("throne_boss", RoomType.END);
+        add("loot_behind_portal", RoomType.ENTRANCE);
+        add("blocked_spiders", RoomType.STRAIGHT_HALLWAY);
+
     }
 }
