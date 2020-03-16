@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.server;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.robertx22.mine_and_slash.commands.dev.LogDungeonRoom;
 import com.robertx22.mine_and_slash.commands.dev.TpOut;
 import com.robertx22.mine_and_slash.commands.entity.*;
 import com.robertx22.mine_and_slash.commands.giveitems.*;
@@ -36,6 +37,7 @@ public class CommandRegister {
         SetEntityRarity.register(dispatcher);
         SummonBoss.register(dispatcher);
         TpOut.register(dispatcher);
+        LogDungeonRoom.register(dispatcher);
 
         GiveStatMod.register(dispatcher);
         RemoveStatMod.register(dispatcher);

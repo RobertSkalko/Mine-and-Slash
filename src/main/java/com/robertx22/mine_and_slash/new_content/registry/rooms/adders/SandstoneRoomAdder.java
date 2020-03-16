@@ -27,7 +27,6 @@ public class SandstoneRoomAdder extends BaseRoomAdder {
 
         add("trap_puzzle0", RoomType.CURVED_HALLWAY);
         add("trap_prison0", RoomType.END);
-        add("simple0", RoomType.FOUR_WAY);
         add("simple0", RoomType.STRAIGHT_HALLWAY);
         add("simple_maze0", RoomType.TRIPLE_HALLWAY).weight(200);
 

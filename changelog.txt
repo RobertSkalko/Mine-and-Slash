@@ -1,4 +1,8 @@
+3.3.6
+* fix crash in map
+
 3.3.5
+* updated to newest forge
 * adjusted capacitor recipes
 * mobs in dungeons can now open wooden doors to haunt player, this doesnt seem to work all the time unfortunately but should add some more danger. 
 * added a trapped chest for dungeons 
@@ -12,6 +16,9 @@ Build-a-thon results:
 * Added whole new dungeon themes you'll see often: icy spruce mansion, nature, mossy brick and mineshaft.
 * Added some other dungeon themes that will be rare because there aren't enough rooms: 	tent, brick, steampunk.
 * Added some dungeon rooms of existing types and some misc ones.
+
+The leaderboard rankings and rewards will be coming soonish when i discuss things with dreckz. 
+
 
 3.3.4
 * fix map loot being all lvl 1
