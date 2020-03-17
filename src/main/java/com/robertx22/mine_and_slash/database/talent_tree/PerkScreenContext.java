@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.talent_tree;
 
 import com.robertx22.mine_and_slash.gui.bases.BasePerkTreeScreen;
-import com.robertx22.mine_and_slash.gui.talent_tree_gui.TalentPerkTreeScreen;
+import com.robertx22.mine_and_slash.gui.screens.talent_tree_gui.TalentPerkTreeScreen;
 import net.minecraft.client.Minecraft;
 
 public class PerkScreenContext {
@@ -27,9 +27,9 @@ public class PerkScreenContext {
 
     private void setupOffsets() {
         offsetX = (int) (Minecraft.getInstance().mainWindow.getScaledWidth() * getZoomMulti() / 2 - TalentPerkTreeScreen
-                .sizeX() * getZoomMulti() / 2);
+            .sizeX() * getZoomMulti() / 2);
         offsetY =
-                (int) (Minecraft.getInstance().mainWindow.getScaledHeight() * getZoomMulti() / 2 - TalentPerkTreeScreen
+            (int) (Minecraft.getInstance().mainWindow.getScaledHeight() * getZoomMulti() / 2 - TalentPerkTreeScreen
                 .sizeY() * getZoomMulti() / 2);
     }
 

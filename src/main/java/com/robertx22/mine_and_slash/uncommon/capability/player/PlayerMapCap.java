@@ -244,7 +244,13 @@ public class PlayerMapCap {
 
             if (WorldUtils.isMapWorldClass(player.world)) {
 
-                BlockPos pos = getMapDevicePos(player.world);
+                BlockPos pos = null;
+
+                try {
+                    pos = getMapDevicePos(player.world);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 if (pos == null) {
                     error("Map device pos is null");

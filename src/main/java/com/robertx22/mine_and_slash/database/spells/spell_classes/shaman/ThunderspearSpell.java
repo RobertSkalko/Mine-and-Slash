@@ -77,7 +77,7 @@ public class ThunderspearSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.one(dmgStat(), 1.25F, 15);
+        return SpellCalcData.one(dmgStat(), 1F, 5);
     }
 
     @Override

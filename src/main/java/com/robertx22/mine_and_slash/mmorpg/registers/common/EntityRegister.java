@@ -55,8 +55,6 @@ public class EntityRegister {
     public static final EntityType<RangerArrowEntity> RANGER_ARROW;
     public static final EntityType<? extends Entity> ARROW_STORM;
 
-    public static final EntityType<MagicMissileEntity> MAGIC_MISSILE;
-
     public static final EntityType<? extends Entity> STAFFPROJECTILE;
     public static final EntityType<? extends Entity> WANDPROJECTILE;
 
@@ -67,8 +65,6 @@ public class EntityRegister {
     public static final EntityType<TraderEntity> TRADER;
 
     static {
-
-        MAGIC_MISSILE = projectile(MagicMissileEntity::new, MagicMissileEntity::new, "magic_missile", false);
 
         BLIZZARD = projectile(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
         FROSTBOLT = projectile(FrostballEntity::new, FrostballEntity::new, "frostball");

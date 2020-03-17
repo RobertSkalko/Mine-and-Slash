@@ -20,7 +20,7 @@ public class MythicalGear extends BaseMythical implements GearRarity {
 
     @Override
     public float unidentifiedChance() {
-        return 80;
+        return 99;
     }
 
     @Override

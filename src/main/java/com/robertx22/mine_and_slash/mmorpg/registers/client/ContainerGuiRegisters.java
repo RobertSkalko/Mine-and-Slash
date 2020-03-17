@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.blocks.repair_station.ContainerGearRepair;
 import com.robertx22.mine_and_slash.blocks.repair_station.GuiGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.ContainerGearSalvage;
 import com.robertx22.mine_and_slash.blocks.salvage_station.GuiGearSalvage;
-import com.robertx22.mine_and_slash.gui.professions.ProfessionGui;
+import com.robertx22.mine_and_slash.gui.screens.professions.ProfessionGui;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.ContainerCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.GuiCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.loot_bag.ContainerLootBag;

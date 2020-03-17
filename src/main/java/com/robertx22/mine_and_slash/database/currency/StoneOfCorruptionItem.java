@@ -38,7 +38,7 @@ public class StoneOfCorruptionItem extends CurrencyItem implements ICurrencyItem
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-        gear.setLevel(gear.getLevel() + 5);
+        gear.setLevel(gear.getLevel() + 2);
         Gear.Save(stack, gear);
 
         return stack;
@@ -71,12 +71,17 @@ public class StoneOfCorruptionItem extends CurrencyItem implements ICurrencyItem
 
     @Override
     public String locDescForLangFile() {
-        return "Increase Gears's lvl by 5";
+        return "Increase Gears's lvl by 2";
     }
 
     @Override
     public int instabilityAddAmount() {
         return 250;
+    }
+
+    @Override
+    public float additionalBreakChance() {
+        return 20;
     }
 
     @Override

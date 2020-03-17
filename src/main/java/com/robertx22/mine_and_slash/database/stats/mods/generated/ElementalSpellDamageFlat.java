@@ -30,7 +30,7 @@ public class ElementalSpellDamageFlat extends ElementalStatMod {
 
     @Override
     public float Max() {
-        return 10;
+        return 8;
     }
 
     @Override

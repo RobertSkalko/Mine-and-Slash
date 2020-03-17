@@ -39,13 +39,13 @@ public class Wisdom extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new MagicShieldRegenFlat(), new ElementalResistFlat(Elements.Nature).size(StatMod.Size.LOW),
-            new ElementalResistFlat(Elements.Fire).size(StatMod.Size.LOW), new ElementalResistFlat(Elements.Thunder).size(StatMod.Size.LOW),
+        return Arrays.asList(
+            new MagicShieldRegenFlat().size(StatMod.Size.LOW),
+            new ElementalResistFlat(Elements.Nature).size(StatMod.Size.LOW),
+            new ElementalResistFlat(Elements.Fire).size(StatMod.Size.LOW),
+            new ElementalResistFlat(Elements.Thunder).size(StatMod.Size.LOW),
             new ElementalResistFlat(Elements.Water).size(StatMod.Size.LOW)
-
-        )
-
-            ;
+        );
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.arcanist.MagicMissileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.DivineShieldSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.DivineTribulationSpell;
@@ -33,8 +32,6 @@ public class Spells implements ISlashRegistryInit {
         List<BaseSpell> All = new ArrayList<BaseSpell>() {
             {
                 {
-
-                    add(MagicMissileSpell.getInstance());
 
                     add(FrostballSpell.getInstance());
                     add(BlizzardSpell.getInstance());

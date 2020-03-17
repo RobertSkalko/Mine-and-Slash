@@ -55,7 +55,12 @@ public class DungeonDimensionData {
 
         int max = border.getSize() / 16 / 2;
 
-        while (id.isEmpty() || hasData(id) || tries > 1000) {
+        while (id.isEmpty() || hasData(id)) {
+
+            if (tries > 2500) {
+                System.out.println("Tried too many times to find random dungeon pos and failed, please delete the map dimension folder");
+                return null;
+            }
 
             int x = RandomUtils.RandomRange(50, max);
             int z = RandomUtils.RandomRange(50, max);
@@ -65,6 +70,7 @@ public class DungeonDimensionData {
             pos = DungeonUtils.getStartChunk(pos);
 
             id = getId(pos);
+
         }
 
         if (tries > 1000) {

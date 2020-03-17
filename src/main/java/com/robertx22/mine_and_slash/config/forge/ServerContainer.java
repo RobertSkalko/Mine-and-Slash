@@ -40,9 +40,14 @@ public class ServerContainer {
     public DoubleValue STAT_REQUIREMENTS_MULTI;
     public DoubleValue MAP_EVENT_CHANCE_PER_MINUTE;
     public DoubleValue REPAIR_FUEL_NEEDED_MULTI;
+    public DoubleValue MOB_STRENGTH_PER_LEVEL_MULTI;
 
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
+
+        MOB_STRENGTH_PER_LEVEL_MULTI = builder.comment("This makes mobs increasingly stronger, by default at lvl 100 mobs will be 50% stronger, formula works as multiplying by 1 + [CONFIG_VALUE]")
+            .translation("mmorpg.word.")
+            .defineInRange("MOB_STRENGTH_PER_LEVEL_MULTI", 0.005F, 0, 1);
 
         FUEL_NEEDED_PER_MAP_ACTIVATION = builder.comment("")
             .translation("mmorpg.word.")

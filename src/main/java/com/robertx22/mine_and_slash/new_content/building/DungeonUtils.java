@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.building;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 
 public class DungeonUtils {
@@ -13,4 +14,13 @@ public class DungeonUtils {
 
         return new ChunkPos(chunkX, chunkZ);
     }
+
+    public static BlockPos getDungeonStartTeleportPos(ChunkPos pos) {
+        BlockPos p = DungeonUtils.getStartChunk(pos)
+            .asBlockPos();
+        p = new BlockPos(p.getX() + 8, 55, p.getZ() + 8);
+        return p;
+
+    }
+
 }

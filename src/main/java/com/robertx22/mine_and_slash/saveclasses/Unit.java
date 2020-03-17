@@ -410,6 +410,7 @@ public class Unit {
         } else {
             MobStatUtils.AddMobcStats(data, data.getLevel());
             MobStatUtils.worldMultiplierStats(entity.world, this);
+            MobStatUtils.increaseMobStatsPerLevel(data);
 
             if (isMapWorld) {
                 MobStatUtils.increaseMobStatsPerTier(data, this);

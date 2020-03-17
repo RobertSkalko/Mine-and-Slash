@@ -48,8 +48,11 @@ public class ElementalResistEffect extends BaseDamageEffect {
 
             IElementalEffect ele = (IElementalEffect) effect;
 
-            if (ele.GetElement().equals(stat.getElement()) || stat.getElement().equals(Elements.Elemental)) {
-                return true;
+            if (ele.GetElement() != Elements.Physical) {
+                if (ele.GetElement()
+                    .equals(stat.getElement())) {
+                    return true;
+                }
             }
 
         }

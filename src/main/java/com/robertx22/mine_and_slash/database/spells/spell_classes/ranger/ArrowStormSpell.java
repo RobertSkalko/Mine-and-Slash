@@ -63,7 +63,7 @@ public class ArrowStormSpell extends BaseSummonAtSightSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.04F, 0.2F, 2);
+        return SpellCalcData.allAttackAndSpellDamages(0.05F, 0.2F, 2);
     }
 
     @Override

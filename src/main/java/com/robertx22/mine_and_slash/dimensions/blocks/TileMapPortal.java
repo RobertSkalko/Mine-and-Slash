@@ -85,10 +85,7 @@ public class TileMapPortal extends TileEntity {
                     if (WorldUtils.isMapWorld(mapworld)) {
                         player.sendMessage(Chats.Teleport_started.locName());
 
-                        BlockPos p = DungeonUtils.getStartChunk(cpos)
-                            .asBlockPos();
-
-                        p = new BlockPos(p.getX() + 8, 55, p.getZ() + 8);
+                        BlockPos p = DungeonUtils.getDungeonStartTeleportPos(cpos);
 
                         Entity tped = PlayerUtils.changeDimension((ServerPlayerEntity) player, MapManager.getDungeonDimensionType(), p);
 

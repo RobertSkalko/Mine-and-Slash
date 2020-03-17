@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -32,18 +33,38 @@ public class MobStatUtils {
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
         for (StatData data : unit.getStats()
-                .values()
-                .stream()
-                .filter(x -> x.GetStat().IsPercent() == false)
-                .collect(Collectors.toList())) {
+            .values()
+            .stream()
+            .filter(x -> x.GetStat()
+                .IsPercent() == false)
+            .collect(Collectors.toList())) {
 
             data.Flat = data.Flat * mobdata.getStatMultiplierIncreaseByTier();
         }
 
     }
 
+    public static void increaseMobStatsPerLevel(UnitData mobdata) {
+
+        float lvlMulti = 1 + (ModConfig.INSTANCE.Server.MOB_STRENGTH_PER_LEVEL_MULTI.get()
+            .floatValue() * mobdata.getLevel());
+
+        for (StatData data : mobdata.getUnit()
+            .getStats()
+            .values()
+            .stream()
+            .filter(x -> x.GetStat()
+                .IsPercent() == false)
+            .collect(Collectors.toList())) {
+
+            data.Flat = data.Flat * lvlMulti;
+        }
+
+    }
+
     public static void worldMultiplierStats(World world, Unit unit) {
-        for (StatData stat : unit.getStats().values()) {
+        for (StatData stat : unit.getStats()
+            .values()) {
             stat.Flat *= SlashRegistry.getDimensionConfig(world).MOB_STRENGTH_MULTIPLIER;
         }
 
@@ -54,11 +75,13 @@ public class MobStatUtils {
         Unit unit = unitdata.getUnit();
         ModEntityConfig config = SlashRegistry.getEntityConfig(entity, unitdata);
 
-        for (StatData data : unit.getStats().values()) {
+        for (StatData data : unit.getStats()
+            .values()) {
             Stat stat = data.GetStat();
             if (stat instanceof PhysicalDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
                 data.Flat *= config.DMG_MULTI;
-            } else if (data.getId().equals(Health.GUID)) {
+            } else if (data.getId()
+                .equals(Health.GUID)) {
                 data.Flat *= config.HP_MULTI;
             } else {
                 data.Flat *= config.STAT_MULTI;
@@ -73,18 +96,22 @@ public class MobStatUtils {
         Unit unit = unitdata.getUnit();
 
         unit.getCreateStat(Armor.GUID)
-                .addFlat(Armor.getInstance().AverageStat() * resMulti * rar.StatMultiplier(), level);
+            .addFlat(Armor.getInstance()
+                .AverageStat() * resMulti * rar.StatMultiplier(), level);
         unit.getCreateStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
         unit.getCreateStat(CriticalDamage.GUID).Flat += 5 * rar.DamageMultiplier();
 
         ElementalResist.MAP.getList()
-                .forEach(x -> unit.getCreateStat(x).addFlat(x.AverageStat() * resMulti * rar.StatMultiplier(), level));
+            .forEach(x -> unit.getCreateStat(x)
+                .addFlat(x.AverageStat() * resMulti * rar.StatMultiplier(), level));
 
         ElementalSpellDamage.MAP.getList()
-                .forEach(x -> unit.getCreateStat(x).addFlat(spelldmg * rar.DamageMultiplier(), level));
+            .forEach(x -> unit.getCreateStat(x)
+                .addFlat(spelldmg * rar.DamageMultiplier(), level));
 
         ElementalPene.MAP.getList()
-                .forEach(x -> unit.getCreateStat(x).addFlat(elePene * rar.DamageMultiplier(), level));
+            .forEach(x -> unit.getCreateStat(x)
+                .addFlat(elePene * rar.DamageMultiplier(), level));
 
     }
 
@@ -94,15 +121,19 @@ public class MobStatUtils {
         int max = rarity.MaxMobEffects();
 
         if (max > 0) {
-            if (max > SlashRegistry.StatusEffects().getSize()) {
+            if (max > SlashRegistry.StatusEffects()
+                .getSize()) {
                 System.out.println("ERROR! Can't have more unique effects than there are effects!");
-                max = SlashRegistry.StatusEffects().getSize() - 1;
+                max = SlashRegistry.StatusEffects()
+                    .getSize() - 1;
             }
 
             int amount = RandomUtils.RandomRange(0, max);
 
-            SlashRegistry.StatusEffects().getWrapped().randomAmountWithoutDuplicates(amount).list.forEach(
-                    x -> unit.statusEffects.put(x.GUID(), new StatusEffectData(x)));
+            SlashRegistry.StatusEffects()
+                .getWrapped()
+                .randomAmountWithoutDuplicates(amount).list.forEach(
+                x -> unit.statusEffects.put(x.GUID(), new StatusEffectData(x)));
 
         }
     }

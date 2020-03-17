@@ -29,12 +29,18 @@ public class LogDungeonRoom {
 
     private static int run(@Nullable PlayerEntity player) {
 
+        // Watch watch = new Watch();
         DungeonBuilder builder = new DungeonBuilder(player.world.getSeed(), new ChunkPos(player.getPosition()));
         builder.build();
+        // watch.print("Gen dungeon took: ");
+
         BuiltRoom room = builder.dungeon.getRoomForChunk(new ChunkPos(player.getPosition()));
 
-        player.sendMessage(new SText(room.room.group.folder + ": " + room.getStructure()
-            .toString()));
+        String s = room.room.group.folder + ": " + room.getStructure()
+            .toString();
+
+        System.out.println(s);
+        player.sendMessage(new SText(s));
 
         return 1;
     }

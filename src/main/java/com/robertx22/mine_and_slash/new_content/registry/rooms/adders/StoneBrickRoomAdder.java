@@ -46,7 +46,7 @@ public class StoneBrickRoomAdder extends BaseRoomAdder {
         add("simple_trap0", RoomType.CURVED_HALLWAY);
         add("simple_prison0", RoomType.END);
         add("simple0", RoomType.FOUR_WAY);
-        add("simple0", RoomType.STRAIGHT_HALLWAY);
+        add("simple0", RoomType.STRAIGHT_HALLWAY).weight(2000);
         add("simple_maze0", RoomType.TRIPLE_HALLWAY).weight(200);
 
     }

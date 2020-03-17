@@ -1,18 +1,21 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
+import com.robertx22.mine_and_slash.database.stats.ConversionMethod;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.ElementalResistEffect;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IStatConversion;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class ElementalResist extends ElementalStat implements IStatEffects, IUsableStat {
+public class ElementalResist extends ElementalStat implements IStatEffects, IUsableStat, IStatConversion {
 
     public static MapWrapper<Elements, ElementalResist> MAP = new MapWrapper();
 
@@ -82,7 +85,29 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
 
     @Override
     public String locNameForLangFile() {
-        return this.getElement().name() + " Resist";
+        return this.getElement()
+            .name() + " Resist";
+    }
+
+    @Override
+    public boolean IsShownOnStatGui() {
+        return getElement() != Elements.Elemental;
+    }
+
+    @Override
+    public List<ConversionMethod> conversion() {
+
+        if (this.getElement()
+            .equals(Elements.Elemental)) {
+            return Arrays.asList(
+                new ConversionMethod(new ElementalResist(Elements.Elemental), new ElementalResist(Elements.Nature)),
+                new ConversionMethod(new ElementalResist(Elements.Elemental), new ElementalResist(Elements.Fire)),
+                new ConversionMethod(new ElementalResist(Elements.Elemental), new ElementalResist(Elements.Thunder)),
+                new ConversionMethod(new ElementalResist(Elements.Elemental), new ElementalResist(Elements.Water))
+            );
+        }
+
+        return Arrays.asList();
     }
 
 }

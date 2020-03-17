@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
-import com.robertx22.mine_and_slash.gui.main_hub.MainHubScreen;
-import com.robertx22.mine_and_slash.gui.spell_hotbar.SpellHotbarOverlay;
+import com.robertx22.mine_and_slash.gui.overlays.spell_hotbar.SpellHotbarOverlay;
+import com.robertx22.mine_and_slash.gui.screens.main_hub.MainHubScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
@@ -36,22 +36,23 @@ public class OnKeyPress {
                 } else if (isCorrectKey(KeybindsRegister.swapHotbar, event)) {
 
                     SpellHotbarOverlay.CURRENT_HOTBAR =
-                            SpellHotbarOverlay.CURRENT_HOTBAR == PlayerSpellsData.Hotbar.FIRST ?
-                                    PlayerSpellsData.Hotbar.SECOND : PlayerSpellsData.Hotbar.FIRST;
+                        SpellHotbarOverlay.CURRENT_HOTBAR == PlayerSpellsData.Hotbar.FIRST ?
+                            PlayerSpellsData.Hotbar.SECOND : PlayerSpellsData.Hotbar.FIRST;
                 } else {
 
                     for (KeyBinding entry : KeybindsRegister.HOTBAR.keySet()) {
 
                         if (isCorrectKey(entry, event)) {
                             MMORPG.sendToServer(new CastSpellPacket(KeybindsRegister.HOTBAR.get(entry),
-                                                                    SpellHotbarOverlay.CURRENT_HOTBAR
+                                SpellHotbarOverlay.CURRENT_HOTBAR
                             ));
                         }
                     }
                 }
             } else {
 
-                if (key == KeybindsRegister.hubScreen.getKey().getKeyCode()) {
+                if (key == KeybindsRegister.hubScreen.getKey()
+                    .getKeyCode()) {
 
                     if (mc.currentScreen instanceof INamedScreen) {
                         mc.displayGuiScreen(null);
@@ -66,8 +67,10 @@ public class OnKeyPress {
 
     private static boolean isCorrectKey(KeyBinding keybind, InputEvent.KeyInputEvent event) {
 
-        if (event.getKey() == keybind.getKey().getKeyCode()) {
-            if (keybind.getKeyModifier().equals(KeyModifier.getActiveModifier())) {
+        if (event.getKey() == keybind.getKey()
+            .getKeyCode()) {
+            if (keybind.getKeyModifier()
+                .equals(KeyModifier.getActiveModifier())) {
                 return true;
             }
         }

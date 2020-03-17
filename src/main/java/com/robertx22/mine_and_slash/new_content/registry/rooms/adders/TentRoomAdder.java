@@ -13,7 +13,6 @@ public class TentRoomAdder extends BaseRoomAdder {
     @Override
     public void addAllRooms() {
 
-        add("2", RoomType.CURVED_HALLWAY);
         add("4", RoomType.CURVED_HALLWAY);
 
         add("6", RoomType.END);
@@ -26,6 +25,7 @@ public class TentRoomAdder extends BaseRoomAdder {
         add("trader0", RoomType.STRAIGHT_HALLWAY).setTrader();
 
         add("boss1", RoomType.TRIPLE_HALLWAY).setBoss();
+        add("2", RoomType.TRIPLE_HALLWAY);
 
     }
 }
