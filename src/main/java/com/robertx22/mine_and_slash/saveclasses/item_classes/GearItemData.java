@@ -154,8 +154,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
     public SetData set;
     @Store
     public ChaosStatsData chaosStats;
-    @Store
-    public InfusionData infusion;
+
     // Stats
 
     @Store
@@ -287,7 +286,6 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
         IfNotNullAdd(suffix, list);
         IfNotNullAdd(chaosStats, list);
         IfNotNullAdd(uniqueStats, list);
-        IfNotNullAdd(infusion, list);
         IfNotNullAdd(runes, list);
 
         return list;

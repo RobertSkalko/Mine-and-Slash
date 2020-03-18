@@ -28,8 +28,11 @@ public class ChaosStatsData extends StatGroupData implements ICreateSpecific<Sta
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
-        list.add(Styles.REDCOMP()
-                .appendSibling(Words.Chaos_Stats.locName().appendText(":")));
+        if (info.hasShiftDown) {
+            list.add(Styles.REDCOMP()
+                .appendSibling(Words.Chaos_Stats.locName()
+                    .appendText(":")));
+        }
 
         for (LevelAndStats part : this.GetAllStats(info.unitdata.getLevel())) {
             for (StatModData data : part.mods) {
@@ -46,7 +49,8 @@ public class ChaosStatsData extends StatGroupData implements ICreateSpecific<Sta
 
         this.Mods = new ArrayList<StatModData>();
 
-        StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType().ChaosStats());
+        StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
+            .ChaosStats());
 
         this.create(gear, mod);
 

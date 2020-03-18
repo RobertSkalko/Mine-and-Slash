@@ -3,12 +3,6 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.currency.*;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
-import com.robertx22.mine_and_slash.database.currency.infusions.AttackInfusionItem;
-import com.robertx22.mine_and_slash.database.currency.infusions.DefenseInfusionItem;
-import com.robertx22.mine_and_slash.database.currency.infusions.ResourceInfusionItem;
-import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.NormalUpgradeInfusion;
-import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.SuperiorUpgradeInfusion;
-import com.robertx22.mine_and_slash.database.currency.infusions.upgrade.WondrousUpgradeInfusion;
 import com.robertx22.mine_and_slash.database.currency.map.EndlessRoadItem;
 import com.robertx22.mine_and_slash.database.currency.map.EndlessSkiesItem;
 import com.robertx22.mine_and_slash.database.currency.map.PainfulLessonItem;
@@ -59,14 +53,6 @@ public class ModItems {
     public static RegistryObject<CurrencyItem> ENDLESS_SKIES = of(() -> new EndlessSkiesItem());
     public static RegistryObject<CurrencyItem> ENDLESS_ROAD = of(() -> new EndlessRoadItem());
     public static RegistryObject<CurrencyItem> PAINFUL_LESSON = of(() -> new PainfulLessonItem());
-
-    public static RegistryObject<CurrencyItem> ATTACK = of(() -> new AttackInfusionItem());
-    public static RegistryObject<CurrencyItem> DEFENSE = of(() -> new DefenseInfusionItem());
-    public static RegistryObject<CurrencyItem> RESOURCE = of(() -> new ResourceInfusionItem());
-
-    public static RegistryObject<CurrencyItem> NORMAL = of(() -> new NormalUpgradeInfusion());
-    public static RegistryObject<CurrencyItem> SUPERIOR = of(() -> new SuperiorUpgradeInfusion());
-    public static RegistryObject<CurrencyItem> WONDROUS = of(() -> new WondrousUpgradeInfusion());
 
     public static RegistryObject<ResetStatsPotionItem> RESET_STATS = item(() -> new ResetStatsPotionItem());
     public static RegistryObject<ResetSpellsPotionItem> RESET_SPELLS = item(() -> new ResetSpellsPotionItem());

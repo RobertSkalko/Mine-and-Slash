@@ -1,5 +1,7 @@
 3.3.7
 * made mobs stronger at higher levels. 
+* removed infusion stats and the 6 items associated with them. I feel the system is kinda lame. It was basically just a power update
+* reduced currency drops as a result
 I feel this is a problem caused by addition of skill, spell and talent points, player gets increasingly stronger so game gets easier the higher level you are..
 You can also get stronger affixes, sets etc at high lvls. Gonna start with a 50% strength multiplier to lvl 100 mobs.
 * added more dev commands. 

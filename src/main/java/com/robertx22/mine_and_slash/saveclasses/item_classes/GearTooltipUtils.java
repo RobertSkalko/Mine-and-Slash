@@ -81,7 +81,6 @@ public class GearTooltipUtils {
             list.add(gear.secondaryStats);
             list.add(gear.prefix);
             list.add(gear.suffix);
-            list.add(gear.infusion);
         } else {
 
             List<IStatModsContainer.LevelAndStats> lvlstatsmerged = new ArrayList<>();
@@ -98,9 +97,6 @@ public class GearTooltipUtils {
             }
             if (gear.prefix != null) {
                 lvlstatsmerged.addAll(gear.prefix.GetAllStats(gear.level));
-            }
-            if (gear.infusion != null) {
-                lvlstatsmerged.addAll(gear.infusion.GetAllStats(gear.level));
             }
 
             MergedStats merged = new MergedStats(lvlstatsmerged, info);

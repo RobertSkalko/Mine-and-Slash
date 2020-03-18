@@ -49,7 +49,7 @@ public class DropRatesContainer {
 
         CURRENCY_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.currency_droprate")
-            .defineInRange("CURRENCY_DROPRATE", 1.5F, 0, Integer.MAX_VALUE);
+            .defineInRange("CURRENCY_DROPRATE", 1.2F, 0, Integer.MAX_VALUE);
 
         AWAKEN_RUNEWORD_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.awaken_runeword_droprate")

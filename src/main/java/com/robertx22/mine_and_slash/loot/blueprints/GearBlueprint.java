@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
-import com.robertx22.mine_and_slash.database.rarities.containers.GearRarities;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.GearItemSlotPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.SetPart;
@@ -47,9 +47,7 @@ public class GearBlueprint extends ItemBlueprint {
 
     @Override
     public BaseRaritiesContainer<? extends Rarity> getRarityContainer() {
-
-        return new GearRarities();
-
+        return Rarities.Gears;
     }
 
     public boolean getsChaosStats() {
