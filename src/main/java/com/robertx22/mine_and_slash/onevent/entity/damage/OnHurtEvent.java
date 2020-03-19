@@ -1,11 +1,29 @@
 package com.robertx22.mine_and_slash.onevent.entity.damage;
 
+import net.minecraft.entity.LivingEntity;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 //  seems atk speed isnt actually atk speed, but some weird dmg modification?
 public class OnHurtEvent {
+
+    @SubscribeEvent
+    public static void attack(LivingAttackEvent event) {
+        try {
+            // all entity dmg should bypass armor and be unblockable with normal shields except mine
+            // so my block stat actually has meaning
+            if (event.getSource()
+                .getTrueSource() instanceof LivingEntity) {
+                event.getSource()
+                    .setDamageBypassesArmor();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onHurtEvent(LivingHurtEvent event) {

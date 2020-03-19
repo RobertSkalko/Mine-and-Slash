@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.currency.base;
 
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
+
 public interface IAddsInstability {
 
     default boolean addsInstability() {
@@ -21,7 +23,7 @@ public interface IAddsInstability {
     }
 
     default boolean canBeUsedAtFullInstability() {
-        return !activatesBreakRoll() && instabilityAddAmount() <= 0;
+        return ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS.get();
     }
 
 }

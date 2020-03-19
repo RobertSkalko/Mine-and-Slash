@@ -99,7 +99,7 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
                     if (context.data instanceof IInstability) {
                         IInstability i = (IInstability) context.data;
 
-                        if (i.isInstabilityCapReached()) {
+                        if (i.isInstabilityCapReached() && !insta.canBeUsedAtFullInstability()) {
                             String breaktxt = Words.InstabilityLimitReached.translate();
                             font.drawString(
                                 breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y,

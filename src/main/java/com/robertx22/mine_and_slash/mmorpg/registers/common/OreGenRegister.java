@@ -38,7 +38,7 @@ public class OreGenRegister {
 
     public static void genOre(Block block, int amount, int rarity) {
 
-        CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 25 / (rarity + 1));
+        CountRangeConfig countConfig = new CountRangeConfig(amount, 0, 0, 40 / (rarity + 1));
         OreFeatureConfig minableConfig = new OreFeatureConfig(
             OreFeatureConfig.FillerBlockType.NATURAL_STONE, block.getDefaultState(), 8);
 

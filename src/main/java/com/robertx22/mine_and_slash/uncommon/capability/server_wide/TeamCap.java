@@ -19,7 +19,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -226,12 +226,13 @@ public class TeamCap {
                     .map(x -> MapManager.getServer()
                         .getPlayerList()
                         .getPlayerByUUID(UUID.fromString(x)))
+                    .filter(x -> x != null)
                     .collect(Collectors.toList());
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            return new ArrayList<>();
+            return Arrays.asList(player);
         }
     }
 

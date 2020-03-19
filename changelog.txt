@@ -1,7 +1,8 @@
 3.3.7
 * made mobs stronger at higher levels. 
-* removed infusion stats and the 6 items associated with them. I feel the system is kinda lame. It was basically just a power update
+* removed infusion stats and the 6 items associated with them. I feel the system is kinda lame. It was basically just a power upgrade
 * reduced currency drops as a result
+* increased ore spawns
 I feel this is a problem caused by addition of skill, spell and talent points, player gets increasingly stronger so game gets easier the higher level you are..
 You can also get stronger affixes, sets etc at high lvls. Gonna start with a 50% strength multiplier to lvl 100 mobs.
 * added more dev commands. 
@@ -18,6 +19,10 @@ And send me the log. The command should tell me what room is faulty.
 * elemental resist no longer reduces physical damage (... i found the balance problem)
 * elemental resist no longer reduces ele dmg after normal resists..
 In short, players with elemental resists should lose their immortality this patch.
+* fix shields blocking full amount always
+* items can now be modified even at max instability. But only if the config for breaking modified items is enabled.
+Basically, if you enable breaking, you can modify as much as you like as long as it doesn't break, but 
+if you disable breaking, the instability limit will act as the cap instead of the break chance.
 
 3.3.6
 * fix crash in map

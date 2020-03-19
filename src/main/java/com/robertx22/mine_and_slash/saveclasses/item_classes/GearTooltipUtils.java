@@ -175,18 +175,17 @@ public class GearTooltipUtils {
         if (Screen.hasShiftDown() == false) {
 
         } else {
+            /*
             event.getToolTip()
                 .add(Styles.GOLDCOMP()
                     .appendSibling(new StringTextComponent("Power Level: " + gear.getPowerLevel())));
+
+             */
 
             if (gear.usesInstability()) {
                 event.getToolTip()
                     .add(TooltipUtils.instability(gear));
             }
-
-            event.getToolTip()
-                .add(Styles.BLUECOMP()
-                    .appendSibling(new StringTextComponent("[Alt]: Show Detailed Stat Descriptions")));
 
         }
 
