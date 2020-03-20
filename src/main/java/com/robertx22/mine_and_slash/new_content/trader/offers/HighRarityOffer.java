@@ -9,7 +9,7 @@ public class HighRarityOffer extends TraderOffer {
     @Override
     public ItemStack generateStackInternal(LootInfo info) {
         GearBlueprint blueprint = new GearBlueprint(info);
-        blueprint.rarity.minRarity = 3;
+        blueprint.rarity.minRarity = 2;
         return blueprint.createStack();
 
     }

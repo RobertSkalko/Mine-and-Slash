@@ -41,9 +41,14 @@ public class ServerContainer {
     public DoubleValue MAP_EVENT_CHANCE_PER_MINUTE;
     public DoubleValue REPAIR_FUEL_NEEDED_MULTI;
     public DoubleValue MOB_STRENGTH_PER_LEVEL_MULTI;
+    public DoubleValue REGEN_HUNGER_COST;
 
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
+
+        REGEN_HUNGER_COST = builder.comment(".")
+            .translation("mmorpg.word.")
+            .defineInRange("REGEN_HUNGER_COST", 5D, 0, 1000D);
 
         MOB_STRENGTH_PER_LEVEL_MULTI = builder.comment("This makes mobs increasingly stronger, by default at lvl 100 mobs will be 50% stronger, formula works as multiplying by 1 + [CONFIG_VALUE]")
             .translation("mmorpg.word.")

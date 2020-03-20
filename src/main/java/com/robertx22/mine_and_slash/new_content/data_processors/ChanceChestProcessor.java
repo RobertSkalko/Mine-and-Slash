@@ -10,12 +10,12 @@ import net.minecraft.world.IWorld;
 public class ChanceChestProcessor extends DataProcessor {
 
     public ChanceChestProcessor() {
-        super("chance_chest");
+        super("chance_chest", Type.CONTAINS);
     }
 
     @Override
     public void processImplementation(String key, BlockPos pos, IWorld world, ChunkProcessData data) {
-        if (!data.chanceChest && RandomUtils.roll(75)) {
+        if (!data.chanceChest && RandomUtils.roll(25)) {
             data.chanceChest = true;
             new ChestProcessor().processImplementation(key, pos, world, data);
         } else {

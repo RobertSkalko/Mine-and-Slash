@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.ontick;
 
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.stats.types.resources.EnergyRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
@@ -128,7 +129,8 @@ public class OnServerTick {
                                         float maxHealthedEffectiveness = Math.max(hpRegenEffectiveness, msRegenEffectiveness);
 
                                         player.getFoodStats()
-                                            .addExhaustion(6F / maxHealthedEffectiveness);
+                                            .addExhaustion(ModConfig.INSTANCE.Server.REGEN_HUNGER_COST.get()
+                                                .floatValue() / maxHealthedEffectiveness);
 
                                     }
                                 }

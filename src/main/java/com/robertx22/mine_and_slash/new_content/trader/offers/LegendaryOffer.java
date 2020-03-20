@@ -4,16 +4,16 @@ import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import net.minecraft.item.ItemStack;
 
-public class MythicOffer extends TraderOffer {
+public class LegendaryOffer extends TraderOffer {
 
-    public MythicOffer() {
+    public LegendaryOffer() {
         this.amount = 5;
     }
 
     @Override
     public ItemStack generateStackInternal(LootInfo info) {
         GearBlueprint blueprint = new GearBlueprint(info);
-        blueprint.rarity.minRarity = 5;
+        blueprint.rarity.minRarity = 4;
         return blueprint.createStack();
 
     }

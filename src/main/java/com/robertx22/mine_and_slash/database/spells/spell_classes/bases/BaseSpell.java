@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Wand;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
@@ -100,7 +99,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
                 return slot.isMeleeWeapon();
             }
             case MAGE_WEAPON: {
-                return slot == Wand.INSTANCE || slot == Staff.INSTANCE;
+                return slot == Staff.INSTANCE;
             }
         }
         return false;

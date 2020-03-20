@@ -16,7 +16,7 @@ public class TraderOffers {
         ALL.add(new ChaosStatsOffer());
         ALL.add(new HighRarityOffer());
         ALL.add(new HighRarityRunedOffer());
-        ALL.add(new MythicOffer());
+        ALL.add(new LegendaryOffer());
         ALL.add(new UniqueOffer());
         ALL.add(new RunedJewerlyOffer());
 

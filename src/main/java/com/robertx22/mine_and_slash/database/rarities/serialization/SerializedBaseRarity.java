@@ -15,6 +15,7 @@ public class SerializedBaseRarity implements Rarity {
         this.weight = o.weight;
         this.textFormatting = o.textFormatting;
         this.locNameID = o.locNameID;
+        this.locName = o.locName;
         this.spawnDurabilityHit = o.spawnDurabilityHit;
     }
 
@@ -27,6 +28,7 @@ public class SerializedBaseRarity implements Rarity {
     public int weight;
     public TextFormatting textFormatting;
     public String locNameID;
+    public String locName;
     public MinMax spawnDurabilityHit;
 
     @Override
@@ -66,7 +68,7 @@ public class SerializedBaseRarity implements Rarity {
 
     @Override
     public String locNameForLangFile() {
-        return "";
+        return locName;
     }
 
 }

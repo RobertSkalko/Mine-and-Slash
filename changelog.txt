@@ -5,6 +5,7 @@
 * higher rarities now have more secondary stats
 * made mobs stronger at higher levels. 
 * removed item rarity configs, now they are configurable as datapacks
+* removed wands
 * removed infusion stats and the 6 items associated with them. I feel the system is kinda lame. It was basically just a power upgrade
 * reduced currency drops as a result
 * increased ore spawns

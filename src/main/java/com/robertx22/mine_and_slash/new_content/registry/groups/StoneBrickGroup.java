@@ -6,7 +6,7 @@ import java.util.List;
 public class StoneBrickGroup extends RoomGroup {
 
     public StoneBrickGroup() {
-        super("stone_brick", 1000);
+        super("stone_brick", 1200);
         this.canSpawnFireMobs = true;
     }
 

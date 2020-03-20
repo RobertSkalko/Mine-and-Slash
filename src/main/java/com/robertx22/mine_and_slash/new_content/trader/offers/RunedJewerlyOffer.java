@@ -10,7 +10,7 @@ public class RunedJewerlyOffer extends TraderOffer {
     @Override
     public ItemStack generateStackInternal(LootInfo info) {
         RunedGearBlueprint blueprint = new RunedGearBlueprint(info.level, info.tier);
-        blueprint.rarity.minRarity = 3;
+        blueprint.rarity.minRarity = 2;
 
         blueprint.gearItemSlot.set(SlashRegistry.GearTypes()
             .getFilterWrapped(x -> x.slotType()

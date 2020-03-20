@@ -79,11 +79,11 @@
 	"item.mmorpg.auto_salvage_bag3": "§dAuto Salvage Bag",
 	"item.mmorpg.auto_salvage_bag4": "§6Auto Salvage Bag",
 	"item.mmorpg.master_bag": "§eMaster Bag",
-	"item.mmorpg.ore0": "§7 Ore",
-	"item.mmorpg.ore1": "§a Ore",
-	"item.mmorpg.ore2": "§9 Ore",
-	"item.mmorpg.ore3": "§d Ore",
-	"item.mmorpg.ore4": "§6 Ore",
+	"item.mmorpg.ore0": "§7Common Ore",
+	"item.mmorpg.ore1": "§aUncommon Ore",
+	"item.mmorpg.ore2": "§9Rare Ore",
+	"item.mmorpg.ore3": "§dEpic Ore",
+	"item.mmorpg.ore4": "§6Legendary Ore",
 
 "_comment": " [CATEGORY]: MISC - NAMES",
 
@@ -256,18 +256,18 @@
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§d Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6 Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§d Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6 Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§d Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6 Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§d Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6 Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§d Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6 Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§d Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6 Small Gear Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
@@ -309,6 +309,7 @@
 	"mmorpg.rarity.legendary": "Legendary",
 	"mmorpg.rarity.rare": "Rare",
 	"mmorpg.rarity.uncommon": "Uncommon",
+	"mmorpg.rarity.unique": "Unique",
 
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
@@ -991,9 +992,36 @@
 	"mmorpg.gear_type.sword": "Sword",
 	"mmorpg.gear_type.torch": "Torch",
 	"mmorpg.gear_type.trident": "Trident",
-	"mmorpg.gear_type.wand": "Staff",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.blazing_inferno": "Blazing Inferno",
+	"effect.mmorpg.bleed": "Bleed",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
+	"effect.mmorpg.divine_shield": "Divine Shield",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Frost Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.major_thorns": "Major Thorns",
+	"effect.mmorpg.minor_thorns": "Minor Thorns",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.righteous_fury": "Righteous Fury",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.stealth": "Stealth",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.wounds": "Wounds",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -1118,41 +1146,8 @@
 	"item.mmorpg.torch.torch2": "§9Torch",
 	"item.mmorpg.torch.torch3": "§dTorch",
 	"item.mmorpg.torch.torch4": "§6Torch",
-	"item.mmorpg.wand.wand0": "§7Wand",
-	"item.mmorpg.wand.wand1": "§aWand",
-	"item.mmorpg.wand.wand2": "§9Wand",
-	"item.mmorpg.wand.wand3": "§dWand",
-	"item.mmorpg.wand.wand4": "§6Wand",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.blazing_inferno": "Blazing Inferno",
-	"effect.mmorpg.bleed": "Bleed",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
-	"effect.mmorpg.divine_shield": "Divine Shield",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Frost Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.major_thorns": "Major Thorns",
-	"effect.mmorpg.minor_thorns": "Minor Thorns",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.righteous_fury": "Righteous Fury",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.stealth": "Stealth",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",

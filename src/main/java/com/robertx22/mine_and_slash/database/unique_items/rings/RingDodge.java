@@ -2,14 +2,13 @@ package com.robertx22.mine_and_slash.database.unique_items.rings;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.DodgeRatingPercent;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -50,7 +49,7 @@ public class RingDodge implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new DodgeRatingFlat(), new DodgeRatingPercent(), new ElementalResistFlat(Elements.Nature),
+            new DodgeRatingFlat().size(StatMod.Size.HIGH), new ElementalResistFlat(Elements.Nature),
             new WeaponDamageFlat(WeaponTypes.Bow)
         );
     }

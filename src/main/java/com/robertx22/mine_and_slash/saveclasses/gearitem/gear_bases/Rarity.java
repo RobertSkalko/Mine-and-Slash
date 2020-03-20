@@ -26,6 +26,7 @@ public interface Rarity extends IWeighted, IAutoLocName, ISerializable<Rarity> {
 
         json.addProperty("color_number", colorInt());
         json.addProperty("rank", Rank());
+        json.addProperty("loc_name_internal", locNameForLangFile());
 
         json.add("spawn_durability_hit", SpawnDurabilityHit().toJson());
 
@@ -43,6 +44,8 @@ public interface Rarity extends IWeighted, IAutoLocName, ISerializable<Rarity> {
 
         obj.colorNumber = json.get("color_number")
             .getAsInt();
+        obj.locName = json.get("loc_name_internal")
+            .getAsString();
         obj.rank = json.get("rank")
             .getAsInt();
         obj.spawnDurabilityHit = MinMax.getSerializer()

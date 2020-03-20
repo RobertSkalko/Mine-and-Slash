@@ -2,13 +2,13 @@ package com.robertx22.mine_and_slash.database.unique_items.rings;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.SpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -47,7 +47,7 @@ public class RingCrit implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalHitPercent().size(StatMod.Size.HIGH), new CriticalDamagePercent().size(StatMod.Size.HIGH), new EnergyRegenFlat());
+        return Arrays.asList(new CriticalHitPercent().size(StatMod.Size.VERY_HIGH), new CriticalDamagePercent().size(StatMod.Size.HIGH), new EnergyRegenFlat());
     }
 
     @Override

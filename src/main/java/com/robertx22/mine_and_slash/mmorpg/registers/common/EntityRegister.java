@@ -6,8 +6,6 @@ import com.robertx22.mine_and_slash.database.spells.entities.cloud.ThunderstormE
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.VolcanoEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.*;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityStaffProjectile;
-import com.robertx22.mine_and_slash.database.spells.entities.weapon_proj.EntityWandProjectile;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.trader.TraderEntity;
 import net.minecraft.entity.Entity;
@@ -55,9 +53,6 @@ public class EntityRegister {
     public static final EntityType<RangerArrowEntity> RANGER_ARROW;
     public static final EntityType<? extends Entity> ARROW_STORM;
 
-    public static final EntityType<? extends Entity> STAFFPROJECTILE;
-    public static final EntityType<? extends Entity> WANDPROJECTILE;
-
     public static final EntityType<? extends Entity> DIVINE_TRIBULATION;
 
     public static final EntityType<? extends Entity> SEED;
@@ -77,9 +72,6 @@ public class EntityRegister {
 
         FIREBOLT = projectile(FireballEntity::new, FireballEntity::new, "fireball");
         VOLCANO = projectile(VolcanoEntity::new, VolcanoEntity::new, "volcano");
-
-        STAFFPROJECTILE = projectile(EntityStaffProjectile::new, EntityStaffProjectile::new, "staff_projectile");
-        WANDPROJECTILE = projectile(EntityWandProjectile::new, EntityWandProjectile::new, "wand_projectile");
 
         RANGER_ARROW = projectile(RangerArrowEntity::new, RangerArrowEntity::new, "ranger_arrow");
         ARROW_STORM = projectile(ArrowStormEntity::new, ArrowStormEntity::new, "arrow_storm");

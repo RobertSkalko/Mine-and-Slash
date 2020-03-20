@@ -35,7 +35,8 @@ public class SpruceMansionRoomAdder extends BaseRoomAdder {
         add("peek_secret_ice", RoomType.STRAIGHT_HALLWAY);
         add("simple3", RoomType.STRAIGHT_HALLWAY);
 
-        add("hidden_trapdoor_room", RoomType.TRIPLE_HALLWAY);
+        add("hidden_trapdoor_room", RoomType.TRIPLE_HALLWAY).weight(100);
+        add("simple", RoomType.TRIPLE_HALLWAY);
 
     }
 }

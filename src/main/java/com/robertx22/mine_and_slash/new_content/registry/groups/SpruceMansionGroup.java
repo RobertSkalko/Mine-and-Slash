@@ -6,7 +6,7 @@ import java.util.List;
 public class SpruceMansionGroup extends RoomGroup {
 
     public SpruceMansionGroup() {
-        super("spruce_mansion", 800);
+        super("spruce_mansion", 700);
     }
 
     @Override
