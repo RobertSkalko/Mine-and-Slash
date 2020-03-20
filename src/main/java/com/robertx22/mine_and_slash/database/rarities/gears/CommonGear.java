@@ -15,7 +15,7 @@ public class CommonGear extends BaseCommon implements GearRarity {
 
     @Override
     public float requirementMulti() {
-        return 0.3F;
+        return 0.2F;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class CommonGear extends BaseCommon implements GearRarity {
 
     @Override
     public MinMax secondaryStatAmount() {
-        return new MinMax(0, 1);
+        return new MinMax(0, 0);
     }
 
     @Override

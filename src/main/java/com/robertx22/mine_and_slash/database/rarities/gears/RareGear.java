@@ -20,12 +20,12 @@ public class RareGear extends BaseRare implements GearRarity {
 
     @Override
     public float requirementMulti() {
-        return 0.5F;
+        return 0.6F;
     }
 
     @Override
     public int AffixChance() {
-        return 35;
+        return 50;
     }
 
     @Override
