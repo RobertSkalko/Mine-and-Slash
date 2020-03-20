@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.rarities.gears;
 
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseRare;
@@ -50,7 +49,7 @@ public class RareGear extends BaseRare implements GearRarity {
 
     @Override
     public int Weight() {
-        return ModConfig.INSTANCE.RarityWeightConfig.ITEMS.RARE_WEIGHT.get();
+        return 2500;
     }
 
     @Override
