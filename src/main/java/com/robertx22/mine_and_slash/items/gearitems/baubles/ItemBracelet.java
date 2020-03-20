@@ -18,7 +18,7 @@ public class ItemBracelet extends BaseBaublesItem implements IBracelet {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Bracelet";
+        return rar.textFormatting() + "Bracelet";
     }
 
 }

@@ -30,11 +30,6 @@ public class LegendaryMap extends BaseLegendary implements MapRarity {
     }
 
     @Override
-    public float groupPlayChance() {
-        return 25;
-    }
-
-    @Override
     public int Weight() {
         return ModConfig.INSTANCE.RarityWeightConfig.MAPS.LEGENDARY_WEIGHT.get();
     }

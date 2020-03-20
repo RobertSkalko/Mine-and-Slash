@@ -1,16 +1,52 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 
+import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.database.MinMax;
-import com.robertx22.mine_and_slash.database.rarities.base.DropSoundData;
+import com.robertx22.mine_and_slash.database.rarities.serialization.SerializedBaseRarity;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IColor;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.util.text.TextFormatting;
 
-public interface Rarity extends IWeighted, IAutoLocName, IColor {
+public interface Rarity extends IWeighted, IAutoLocName, ISerializable<Rarity> {
 
-    int colorInt();
+    @Override
+    default JsonObject toJson() {
+        JsonObject json = getDefaultJson();
+
+        json.addProperty("color", Color());
+        json.addProperty("color_number", colorInt());
+        json.addProperty("rank", Rank());
+
+        json.add("spawn_durability_hit", SpawnDurabilityHit().toJson());
+
+        json.addProperty("text_formatting", textFormatting().name());
+
+        return json;
+    }
+
+    @Override
+    default Rarity fromJson(JsonObject json) {
+
+        SerializedBaseRarity obj = new SerializedBaseRarity();
+
+        obj.locNameID = getLangNameStringFromJson(json);
+        obj.weight = getWeightFromJson(json);
+
+        obj.colorNumber = json.get("color_number")
+            .getAsInt();
+        obj.rank = json.get("rank")
+            .getAsInt();
+        obj.spawnDurabilityHit = MinMax.getSerializer()
+            .fromJson(json);
+        obj.textFormatting = TextFormatting.valueOf(json.get("text_formatting")
+            .getAsString());
+
+        return obj;
+    }
+
+    public abstract int colorInt();
 
     MinMax SpawnDurabilityHit();
 
@@ -18,15 +54,13 @@ public interface Rarity extends IWeighted, IAutoLocName, IColor {
 
     int Rank();
 
-    String Color();
+    default String Color() {
+        return textFormatting().toString();
+    }
 
     int Weight();
 
-    default DropSoundData getDropSound() {
-        return new DropSoundData();
-    }
-
-    TextFormatting textFormatColor();
+    TextFormatting textFormatting();
 
     @Override
     public default String locNameLangFileGUID() {

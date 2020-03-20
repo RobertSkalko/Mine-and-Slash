@@ -232,7 +232,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
     public ITextComponent GetDisplayName(ItemStack stack) {
 
         if (!isIdentified()) {
-            ITextComponent text = new SText(getRarity().textFormatColor() + "")
+            ITextComponent text = new SText(getRarity().textFormatting() + "")
                 .appendSibling(Words.Unidentified.locName())
                 .appendText(" ")
                 .appendSibling(getRarity().locName())
@@ -243,7 +243,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
         }
 
         ITextComponent text = new StringTextComponent(this.getRarity()
-            .textFormatColor() + "");
+            .textFormatting() + "");
 
         if (this.isRuned()) {
             text.appendSibling(Words.Runed.locName()

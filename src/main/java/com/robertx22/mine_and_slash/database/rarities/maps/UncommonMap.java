@@ -30,11 +30,6 @@ public class UncommonMap extends BaseUncommon implements MapRarity {
     }
 
     @Override
-    public float groupPlayChance() {
-        return 1;
-    }
-
-    @Override
     public int Weight() {
         return ModConfig.INSTANCE.RarityWeightConfig.MAPS.UNCOMMON_WEIGHT.get();
     }

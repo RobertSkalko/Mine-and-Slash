@@ -19,7 +19,7 @@ public class LeatherChestItem extends BaseDyableArmorItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Leather Breastplate";
+        return rar.textFormatting() + "Leather Breastplate";
     }
 }
 

@@ -720,7 +720,7 @@ public class EntityCap {
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
                     .appendSibling(new StringTextComponent("[Lv:" + this.getLevel() + "] "));
 
-                ITextComponent suffix = new StringTextComponent(rarity.textFormatColor() + "").appendSibling(
+                ITextComponent suffix = new StringTextComponent(rarity.textFormatting() + "").appendSibling(
                     rarityprefix.appendText(" ")
                         .appendSibling(name));
 

@@ -238,7 +238,7 @@ public class SlashRegistry {
         getAllRegistries()
             .forEach(x -> {
                 if (x.getType()
-                    .getEmpty() != null) {
+                    .getSerializer() != null) {
                     try {
 
                         List<ISerializedRegistryEntry> list = x.getFromDatapacks();

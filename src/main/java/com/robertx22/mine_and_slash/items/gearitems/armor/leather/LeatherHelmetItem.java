@@ -19,6 +19,6 @@ public class LeatherHelmetItem extends BaseDyableArmorItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Leather Hat";
+        return rar.textFormatting() + "Leather Hat";
     }
 }

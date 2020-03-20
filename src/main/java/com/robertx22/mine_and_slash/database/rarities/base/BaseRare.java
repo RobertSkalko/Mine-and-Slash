@@ -2,14 +2,13 @@ package com.robertx22.mine_and_slash.database.rarities.base;
 
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.text.TextFormatting;
 
 public abstract class BaseRare implements Rarity {
     @Override
     public int colorInt() {
-        return 16777045;
+        return 5592575;
     }
 
     @Override
@@ -30,18 +29,8 @@ public abstract class BaseRare implements Rarity {
     }
 
     @Override
-    public TextFormatting textFormatColor() {
+    public TextFormatting textFormatting() {
         return TextFormatting.BLUE;
-    }
-
-    @Override
-    public String Color() {
-        return TextFormatting.BLUE.toString();
-    }
-
-    @Override
-    public RGB getRGBColor() {
-        return new RGB(51, 102, 255);
     }
 
     @Override

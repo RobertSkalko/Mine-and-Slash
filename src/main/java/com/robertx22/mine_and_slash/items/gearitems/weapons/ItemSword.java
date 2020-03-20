@@ -51,7 +51,7 @@ public class ItemSword extends SwordItem implements IAutoLocName, IGearItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Sword";
+        return rar.textFormatting() + "Sword";
     }
 
     public int rarity = 0;

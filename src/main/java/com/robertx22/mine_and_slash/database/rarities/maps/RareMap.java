@@ -30,11 +30,6 @@ public class RareMap extends BaseRare implements MapRarity {
     }
 
     @Override
-    public float groupPlayChance() {
-        return 10;
-    }
-
-    @Override
     public int Weight() {
         return ModConfig.INSTANCE.RarityWeightConfig.MAPS.RARE_WEIGHT.get();
     }

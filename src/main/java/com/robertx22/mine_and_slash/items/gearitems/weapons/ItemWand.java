@@ -42,7 +42,7 @@ public class ItemWand extends BaseWeaponItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Wand";
+        return rar.textFormatting() + "Wand";
     }
 
 }

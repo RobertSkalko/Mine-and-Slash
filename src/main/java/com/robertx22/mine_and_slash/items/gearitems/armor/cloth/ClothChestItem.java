@@ -19,7 +19,7 @@ public class ClothChestItem extends BaseDyableArmorItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Cloth Shirt";
+        return rar.textFormatting() + "Cloth Shirt";
     }
 }
 

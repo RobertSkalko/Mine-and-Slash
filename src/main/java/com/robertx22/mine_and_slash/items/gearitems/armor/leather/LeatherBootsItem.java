@@ -19,7 +19,7 @@ public class LeatherBootsItem extends BaseDyableArmorItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Leather Boots";
+        return rar.textFormatting() + "Leather Boots";
     }
 }
 

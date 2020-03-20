@@ -192,7 +192,7 @@ public class AutoSalvageBag extends Item implements ISalvageBag, IAutoLocName, I
                     .size() > 0) {
                     text.appendText(TextFormatting.GRAY + ", ");
                 }
-                text.appendText(rar.textFormatColor() + "")
+                text.appendText(rar.textFormatting() + "")
                     .appendSibling(rar.locName());
             }
         }

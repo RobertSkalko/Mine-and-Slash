@@ -18,7 +18,7 @@ public class ItemNecklace extends BaseBaublesItem implements INecklace {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Necklace";
+        return rar.textFormatting() + "Necklace";
     }
 
 }

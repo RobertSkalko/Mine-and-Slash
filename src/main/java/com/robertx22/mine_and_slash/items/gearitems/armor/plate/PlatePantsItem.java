@@ -19,6 +19,6 @@ public class PlatePantsItem extends BaseArmorItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Plate Greaves";
+        return rar.textFormatting() + "Plate Greaves";
     }
 }

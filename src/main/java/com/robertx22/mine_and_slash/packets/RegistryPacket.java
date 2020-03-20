@@ -100,7 +100,7 @@ public class RegistryPacket {
                         .map(x -> {
                             try {
                                 JsonObject json = (JsonObject) PARSER.parse(x);
-                                return pkt.type.getEmpty()
+                                return pkt.type.getSerializer()
                                     .fromJson(json);
                             } catch (JsonSyntaxException e) {
                                 System.out.println("Failed to parse Mine and Slash registry Json!!!");

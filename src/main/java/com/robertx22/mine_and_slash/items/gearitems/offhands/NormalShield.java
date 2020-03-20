@@ -47,7 +47,7 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Shield";
+        return rar.textFormatting() + "Shield";
     }
 
     @Override

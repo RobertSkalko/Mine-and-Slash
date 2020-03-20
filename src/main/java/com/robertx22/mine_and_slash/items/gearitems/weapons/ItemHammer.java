@@ -17,7 +17,7 @@ public class ItemHammer extends BaseWeaponItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Hammer";
+        return rar.textFormatting() + "Hammer";
     }
 
 }

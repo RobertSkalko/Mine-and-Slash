@@ -56,7 +56,7 @@ public class ItemLootbox extends BaseItem implements IWeighted, IAutoLocName {
     @Override
     public String locNameForLangFile() {
         return Rarities.Gears.get(rarity)
-            .textFormatColor() + Rarities.Gears.get(rarity)
+            .textFormatting() + Rarities.Gears.get(rarity)
             .locNameForLangFile() + " " + this.size.name() + " " + this.lootType.name() + " " + "Treasure Box";
     }
 

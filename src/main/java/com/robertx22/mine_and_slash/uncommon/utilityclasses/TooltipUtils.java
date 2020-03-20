@@ -32,21 +32,24 @@ public class TooltipUtils {
     }
 
     public static List<String> compsToStrings(List<ITextComponent> list) {
-        return list.stream().map(ITextComponent::getFormattedText).collect(Collectors.toList());
+        return list.stream()
+            .map(ITextComponent::getFormattedText)
+            .collect(Collectors.toList());
     }
 
     public static ITextComponent instability(IInstability insta) {
         ITextComponent comp;
 
         comp = Styles.REDCOMP()
-                .appendSibling(Words.Instability.locName()
-                                       .appendText(": " + insta.getInstability() + "/" + insta.getMaxInstability()));
+            .appendSibling(Words.Instability.locName()
+                .appendText(": " + insta.getInstability() + "/" + insta.getMaxInstability()));
 
         if (insta.usesBreakChance()) {
             comp.appendText(" ")
-                    .appendSibling((Styles.REDCOMP()
-                            .appendSibling(
-                                    Words.BreakChance.locName().appendText(": " + insta.getBreakChance() + "%"))));
+                .appendSibling((Styles.REDCOMP()
+                    .appendSibling(
+                        Words.BreakChance.locName()
+                            .appendText(": " + insta.getBreakChance() + "%"))));
 
         }
 
@@ -56,13 +59,15 @@ public class TooltipUtils {
 
     public static ITextComponent level(int lvl) {
         return new StringTextComponent(TextFormatting.YELLOW + "").appendSibling(Words.Level.locName())
-                .appendText((": " + lvl));
+            .appendText((": " + lvl));
 
     }
 
     public static List<ITextComponent> cutIfTooLong(ITextComponent comp) {
         List<String> stringList = cutIfTooLong(CLOC.translate(comp));
-        return stringList.stream().map(x -> new SText(x)).collect(Collectors.toList());
+        return stringList.stream()
+            .map(x -> new SText(x))
+            .collect(Collectors.toList());
 
     }
 
@@ -117,7 +122,8 @@ public class TooltipUtils {
         }
 
         return comp.appendSibling(
-                new StringTextComponent(TextFormatting.GRAY + " ").appendSibling(text).appendText(": " + req));
+            new StringTextComponent(TextFormatting.GRAY + " ").appendSibling(text)
+                .appendText(": " + req));
 
     }
 
@@ -135,7 +141,9 @@ public class TooltipUtils {
 
         for (int i = 0; i < list.size(); i++) {
 
-            if (list.get(i).getFormattedText().length() > 2) {
+            if (list.get(i)
+                .getFormattedText()
+                .length() > 2) {
                 lastIsEmpty = false;
                 newt.add(list.get(i));
             } else {
@@ -157,25 +165,30 @@ public class TooltipUtils {
 
     public static ITextComponent rarity(Rarity rarity) {
 
-        return (new StringTextComponent(rarity.textFormatColor() + "").appendSibling(
-                Words.Rarity.locName().appendText(": ").appendSibling(rarity.locName())));
+        return (new StringTextComponent(rarity.textFormatting() + "").appendSibling(
+            Words.Rarity.locName()
+                .appendText(": ")
+                .appendSibling(rarity.locName())));
     }
 
     public static ITextComponent rarityShort(Rarity rarity) {
-        return (new StringTextComponent(rarity.textFormatColor() + "").appendSibling(rarity.locName()));
+        return (new StringTextComponent(rarity.textFormatting() + "").appendSibling(rarity.locName()));
     }
 
     public static ITextComponent tier(int tier) {
 
-        return Styles.YELLOWCOMP().appendSibling(Words.Tier.locName()).appendText(": " + tier);
+        return Styles.YELLOWCOMP()
+            .appendSibling(Words.Tier.locName())
+            .appendText(": " + tier);
 
     }
 
     public static ITextComponent uniqueTier(int tier) {
         return Styles.YELLOWCOMP()
-                .appendSibling(Words.Tier.locName())
-                .appendText(" " + tier + " ")
-                .appendSibling(UniqueGear.getInstance().locName());
+            .appendSibling(Words.Tier.locName())
+            .appendText(" " + tier + " ")
+            .appendSibling(UniqueGear.getInstance()
+                .locName());
 
     }
 

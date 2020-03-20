@@ -50,7 +50,7 @@ public class RuneItem extends Item implements IAutoLocName, ICurrencyItemEffect,
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Runes.get(rarity);
-        return rar.textFormatColor() + rune
+        return rar.textFormatting() + rune
             .toUpperCase(Locale.ROOT) + " - " + rar.locNameForLangFile() + " Rune";
 
     }

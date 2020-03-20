@@ -32,7 +32,7 @@ public class MyTorch extends Item implements IAutoLocName, IGearItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Torch";
+        return rar.textFormatting() + "Torch";
     }
 
     @Override

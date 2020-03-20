@@ -27,7 +27,7 @@ public class ItemBow extends BowItem implements IAutoLocName, IGearItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Bow";
+        return rar.textFormatting() + "Bow";
     }
 
     @Override

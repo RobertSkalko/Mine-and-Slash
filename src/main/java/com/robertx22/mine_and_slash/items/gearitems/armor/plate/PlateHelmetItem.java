@@ -19,6 +19,6 @@ public class PlateHelmetItem extends BaseArmorItem {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Plate Helm";
+        return rar.textFormatting() + "Plate Helm";
     }
 }

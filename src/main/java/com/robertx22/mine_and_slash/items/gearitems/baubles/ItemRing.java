@@ -18,7 +18,7 @@ public class ItemRing extends BaseBaublesItem implements IRing {
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatColor() + "Ring";
+        return rar.textFormatting() + "Ring";
     }
 
 }

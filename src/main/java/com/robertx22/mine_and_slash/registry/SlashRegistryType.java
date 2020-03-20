@@ -8,18 +8,21 @@ import com.robertx22.mine_and_slash.registry.empty_entries.EmptyRune;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyRuneWord;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyUnique;
 
+import javax.annotation.Nullable;
+
 public enum SlashRegistryType {
+    NONE("none"),
     STAT("stat"),
     STATMOD("stat_mod"),
     RUNE("rune") {
         @Override
-        public ISerializable getEmpty() {
+        public ISerializable getSerializer() {
             return EmptyRune.getInstance();
         }
     },
     RUNEWORD("runeword") {
         @Override
-        public ISerializable getEmpty() {
+        public ISerializable getSerializer() {
             return EmptyRuneWord.getInstance();
         }
     },
@@ -28,20 +31,20 @@ public enum SlashRegistryType {
     SPELL("spell"),
     AFFIX("affix") {
         @Override
-        public ISerializable getEmpty() {
+        public ISerializable getSerializer() {
             return EmptyAffix.getInstance();
         }
     },
     UNIQUE_GEAR("unique_gear") {
         @Override
-        public ISerializable getEmpty() {
+        public ISerializable getSerializer() {
             return EmptyUnique.getInstance();
         }
     },
     WORLD_PROVIDER("world_provider"),
     SET("item_set") {
         @Override
-        public ISerializable getEmpty() {
+        public ISerializable getSerializer() {
             return Set.EMPTY;
         }
     },
@@ -53,7 +56,7 @@ public enum SlashRegistryType {
     CURRENCY_ITEMS("currency_item"),
     COMPATIBLE_ITEM("compatible_item") {
         @Override
-        public ISerializable getEmpty() {
+        public ISerializable getSerializer() {
             return CompatibleItem.EMPTY;
         }
     },
@@ -75,7 +78,8 @@ public enum SlashRegistryType {
         this.id = id;
     }
 
-    public ISerializable getEmpty() { // TODO this could be better
+    @Nullable
+    public ISerializable getSerializer() { // TODO this could be better
         return null;
     }
 

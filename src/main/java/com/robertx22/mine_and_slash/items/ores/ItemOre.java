@@ -122,7 +122,7 @@ public class ItemOre extends Item implements IWeighted, IAutoLocMultiLore, IAuto
     @Override
     public String locNameForLangFile() {
         return Rarities.Gears.get(rarity)
-            .textFormatColor() + Rarities.Gears.get(rarity)
+            .textFormatting() + Rarities.Gears.get(rarity)
             .locNameForLangFile() + " Ore";
     }
 
