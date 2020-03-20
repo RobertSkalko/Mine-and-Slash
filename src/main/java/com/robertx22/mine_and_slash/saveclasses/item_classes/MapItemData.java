@@ -237,7 +237,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         ItemStack stack = ItemStack.EMPTY;
 
         if (RandomUtils.roll(this.getRarity()
-            .specialItemChance())) {
+            .salvageLotteryWinChance())) {
 
             Item item = SlashRegistry.CurrencyItems()
                 .getWrapped()

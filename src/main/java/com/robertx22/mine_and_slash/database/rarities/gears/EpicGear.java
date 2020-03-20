@@ -39,7 +39,7 @@ public class EpicGear extends BaseEpic implements GearRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 4.5F;
     }
 

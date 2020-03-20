@@ -25,7 +25,7 @@ public class RareMap extends BaseRare implements MapRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 25;
     }
 

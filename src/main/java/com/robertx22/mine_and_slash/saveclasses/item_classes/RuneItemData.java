@@ -91,7 +91,7 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
         ItemStack stack = ItemStack.EMPTY;
 
         if (RandomUtils.roll(this.getRarity()
-            .specialItemChance())) {
+            .salvageLotteryWinChance())) {
 
             Item item = SlashRegistry.CurrencyItems()
                 .getWrapped()

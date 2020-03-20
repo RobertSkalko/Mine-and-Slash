@@ -208,7 +208,6 @@ public class EntityCap {
 
         int getLvlForResourceCosts();
 
-        ;
     }
 
     @EventBusSubscriber

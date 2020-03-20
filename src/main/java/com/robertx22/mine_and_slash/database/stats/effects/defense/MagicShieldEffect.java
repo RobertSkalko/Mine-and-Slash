@@ -23,18 +23,20 @@ public class MagicShieldEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        float dmgReduced = MathHelper.clamp(effect.number, 0, effect.targetData.getResources().getMagicShield());
+        float dmgReduced = MathHelper.clamp(effect.number, 0, effect.targetData.getResources()
+            .getMagicShield());
 
         if (dmgReduced > 0) {
 
             effect.number -= dmgReduced;
 
             ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
-                                                                  ResourcesData.Type.MAGIC_SHIELD, dmgReduced,
-                                                                  ResourcesData.Use.SPEND
+                ResourcesData.Type.MAGIC_SHIELD, dmgReduced,
+                ResourcesData.Use.SPEND
             );
 
-            effect.targetData.getResources().modify(ctx);
+            effect.targetData.getResources()
+                .modify(ctx);
 
         }
         return effect;
@@ -42,7 +44,8 @@ public class MagicShieldEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.targetData.getResources().getMagicShield() > 0;
+        return effect.targetData.getResources()
+            .getMagicShield() > 0;
     }
 
 }

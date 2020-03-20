@@ -25,7 +25,7 @@ public class MythicalMap extends BaseMythical implements MapRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 75F;
     }
 

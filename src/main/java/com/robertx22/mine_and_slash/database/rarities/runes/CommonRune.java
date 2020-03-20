@@ -25,7 +25,7 @@ public class CommonRune extends BaseCommon implements RuneRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 5;
     }
 

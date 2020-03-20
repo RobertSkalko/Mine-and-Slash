@@ -39,7 +39,7 @@ public class LegendaryGear extends BaseLegendary implements GearRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 6.5F;
     }
 

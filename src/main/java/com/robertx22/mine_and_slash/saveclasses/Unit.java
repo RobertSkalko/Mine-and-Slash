@@ -318,6 +318,10 @@ public class Unit {
                 .CalcVal(stat, data));
     }
 
+    public float getMissingHealth(LivingEntity en) {
+        return healthData().val - health().CurrentValue(en, this);
+    }
+
     class DirtyCheck {
         int hp;
 

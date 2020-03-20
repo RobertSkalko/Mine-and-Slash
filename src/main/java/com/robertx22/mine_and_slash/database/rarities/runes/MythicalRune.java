@@ -25,7 +25,7 @@ public class MythicalRune extends BaseMythical implements RuneRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 55;
     }
 

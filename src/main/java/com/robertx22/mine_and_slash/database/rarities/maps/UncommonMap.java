@@ -25,7 +25,7 @@ public class UncommonMap extends BaseUncommon implements MapRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 20F;
     }
 

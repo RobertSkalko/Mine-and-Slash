@@ -30,12 +30,12 @@ public class UniqueGear extends BaseUnique implements GearRarity {
 
     @Override
     public int AffixChance() {
-        return 25;
+        return 100;
     }
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(25, 100);
+        return new MinMax(50, 100);
     }
 
     @Override
@@ -44,8 +44,8 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     }
 
     @Override
-    public float specialItemChance() {
-        return 100;
+    public float salvageLotteryWinChance() {
+        return 50;
     }
 
     @Override

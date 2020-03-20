@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -87,8 +88,11 @@ public class OnServerTick {
                                 if (canHeal) {
                                     if (player.getHealth() < player.getMaxHealth()) {
                                         restored = true;
-
                                     }
+
+                                    float missingHp = x.getUnit()
+                                        .getMissingHealth(player);
+
                                     float healthrestored = unit.peekAtStat(HealthRegen.GUID).val;
                                     ResourcesData.Context hp = new ResourcesData.Context(x, player, ResourcesData.Type.HEALTH,
                                         healthrestored,
@@ -104,6 +108,10 @@ public class OnServerTick {
                                         restored = true;
                                     }
 
+                                    float missingMs = x.getUnit()
+                                        .magicShieldData().val - x.getResources()
+                                        .getMagicShield();
+
                                     float magicshieldrestored = unit.peekAtStat(MagicShieldRegen.GUID).val;
                                     ResourcesData.Context ms = new ResourcesData.Context(x, player,
                                         ResourcesData.Type.MAGIC_SHIELD,
@@ -114,8 +122,15 @@ public class OnServerTick {
                                         .modify(ms);
 
                                     if (restored) {
+
+                                        float hpRegenEffectiveness = MathHelper.clamp(missingHp / healthrestored, 0, 1);
+                                        float msRegenEffectiveness = MathHelper.clamp(missingMs / magicshieldrestored, 0, 1);
+
+                                        float maxHealthedEffectiveness = Math.max(hpRegenEffectiveness, msRegenEffectiveness);
+
                                         player.getFoodStats()
-                                            .addExhaustion(6.0F);
+                                            .addExhaustion(6F / maxHealthedEffectiveness);
+
                                     }
                                 }
 

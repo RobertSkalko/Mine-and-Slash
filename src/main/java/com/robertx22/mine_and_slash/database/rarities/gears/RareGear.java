@@ -39,7 +39,7 @@ public class RareGear extends BaseRare implements GearRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 2.5F;
     }
 

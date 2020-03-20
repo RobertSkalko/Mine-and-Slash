@@ -30,7 +30,7 @@ public class CommonGear extends BaseCommon implements GearRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(3, 60);
+        return new MinMax(3, 50);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CommonGear extends BaseCommon implements GearRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 0.5F;
     }
 

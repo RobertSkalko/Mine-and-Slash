@@ -25,7 +25,7 @@ public class UncommonRune extends BaseUncommon implements RuneRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 15;
     }
 

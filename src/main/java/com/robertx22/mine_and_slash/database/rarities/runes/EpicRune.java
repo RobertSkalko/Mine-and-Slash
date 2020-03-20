@@ -25,7 +25,7 @@ public class EpicRune extends BaseEpic implements RuneRarity {
     }
 
     @Override
-    public float specialItemChance() {
+    public float salvageLotteryWinChance() {
         return 25;
     }
 
