@@ -20,7 +20,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundEvents;
@@ -173,20 +172,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             }
 
             return;
-        }
-
-        if (source instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) source;
-
-            float dmg = getDmgByElement().totalDmg;
-
-            float cooled = player.getCooledAttackStrength(0.5F);
-            dmg = dmg * (0.2F + cooled * cooled * 0.8F);
-
-            if (dmg < 1) {
-                //return;
-            }
-
         }
 
         MyDamageSource dmgsource = new MyDamageSource(dmgSourceName, this.source, element, (int) number);
