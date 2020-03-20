@@ -8,6 +8,20 @@ import java.util.Locale;
 
 public class SerializedBaseRarity implements Rarity {
 
+    public SerializedBaseRarity(SerializedBaseRarity o) {
+
+        this.colorNumber = o.colorNumber;
+        this.rank = o.rank;
+        this.weight = o.weight;
+        this.textFormatting = o.textFormatting;
+        this.locNameID = o.locNameID;
+        this.spawnDurabilityHit = o.spawnDurabilityHit;
+    }
+
+    public SerializedBaseRarity() {
+
+    }
+
     public int colorNumber;
     public int rank;
     public int weight;

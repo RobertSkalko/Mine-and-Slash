@@ -14,7 +14,7 @@ public abstract class BaseLegendary implements Rarity {
     @Override
     public String GUID() {
 
-        return "Legendary";
+        return "legendary";
     }
 
     @Override

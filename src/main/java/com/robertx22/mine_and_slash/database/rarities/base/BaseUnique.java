@@ -14,7 +14,7 @@ public abstract class BaseUnique implements Rarity {
     @Override
     public String GUID() {
 
-        return "Unique";
+        return "unique";
     }
 
     @Override

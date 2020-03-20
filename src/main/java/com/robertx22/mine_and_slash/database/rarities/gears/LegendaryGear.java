@@ -63,11 +63,6 @@ public class LegendaryGear extends BaseLegendary implements GearRarity {
         return 3;
     }
 
-    @Override
-    public float powerMultiplier() {
-        return 7F;
-    }
-
     private static class SingletonHolder {
         private static final LegendaryGear INSTANCE = new LegendaryGear();
     }

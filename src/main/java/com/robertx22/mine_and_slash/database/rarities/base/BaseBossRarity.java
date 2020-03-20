@@ -14,7 +14,7 @@ public abstract class BaseBossRarity implements Rarity {
 
     @Override
     public String GUID() {
-        return "Boss";
+        return "boss";
     }
 
     @Override

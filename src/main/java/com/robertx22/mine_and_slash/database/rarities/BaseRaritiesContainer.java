@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.rarities;
 
+import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -10,17 +11,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class BaseRaritiesContainer<RarityType extends Rarity> {
+public abstract class BaseRaritiesContainer<T extends Rarity> {
 
     public int minRarity;
     public int maxRarity;
 
-    public List<RarityType> normalRarities;
+    public List<T> normalRarities;
 
-    HashMap<Integer, RarityType> map = new HashMap<>();
+    HashMap<Integer, T> map = new HashMap<>();
 
     public BaseRaritiesContainer() {
 
+    }
+
+    public void updateFromDatapack(List<T> rarities) {
+
+        Preconditions.checkArgument(rarities.size() == map.size(), "Rarities can't be added or removed through datapacks. This is a hard limitation.");
+
+        map = new HashMap<>();
+        rarities.forEach(x -> map.put(x.Rank(), x));
+        onInit();
     }
 
     public final void onInit() {
@@ -40,28 +50,28 @@ public abstract class BaseRaritiesContainer<RarityType extends Rarity> {
 
     }
 
-    public final HashMap<Integer, RarityType> getMap() {
+    public final HashMap<Integer, T> getMap() {
         return map;
     }
 
-    public List<RarityType> getNormalRarities() {
+    public List<T> getNormalRarities() {
         return new ArrayList<>(normalRarities);
     }
 
-    protected void add(RarityType r) {
+    protected void add(T r) {
         this.getMap()
             .put(r.Rank(), r);
     }
 
-    public List<RarityType> getAllRarities() {
+    public List<T> getAllRarities() {
         return new ArrayList<>(getMap().values());
     }
 
-    public RarityType random() {
+    public T random() {
         return RandomUtils.weightedRandom(getNormalRarities());
     }
 
-    public final RarityType get(int i) {
+    public final T get(int i) {
 
         if (i < minRarity) {
             try {
@@ -82,4 +92,5 @@ public abstract class BaseRaritiesContainer<RarityType extends Rarity> {
 
     }
 
+    public abstract RarityTypeEnum getType();
 }

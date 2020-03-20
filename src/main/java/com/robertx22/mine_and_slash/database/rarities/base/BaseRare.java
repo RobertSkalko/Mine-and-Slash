@@ -14,7 +14,7 @@ public abstract class BaseRare implements Rarity {
     @Override
     public String GUID() {
 
-        return "Rare";
+        return "rare";
     }
 
     @Override

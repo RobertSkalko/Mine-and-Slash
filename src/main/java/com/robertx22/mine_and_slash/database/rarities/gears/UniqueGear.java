@@ -63,11 +63,6 @@ public class UniqueGear extends BaseUnique implements GearRarity {
         return 3.5F;
     }
 
-    @Override
-    public float powerMultiplier() {
-        return 15F;
-    }
-
     private static class SingletonHolder {
         private static final UniqueGear INSTANCE = new UniqueGear();
     }

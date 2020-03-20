@@ -13,9 +13,17 @@ public interface Rarity extends IWeighted, IAutoLocName, ISerializable<Rarity> {
 
     @Override
     default JsonObject toJson() {
+        return null;
+    }
+
+    @Override
+    default Rarity fromJson(JsonObject json) {
+        return null;
+    }
+
+    default JsonObject getRarityJsonObject() {
         JsonObject json = getDefaultJson();
 
-        json.addProperty("color", Color());
         json.addProperty("color_number", colorInt());
         json.addProperty("rank", Rank());
 
@@ -26,8 +34,7 @@ public interface Rarity extends IWeighted, IAutoLocName, ISerializable<Rarity> {
         return json;
     }
 
-    @Override
-    default Rarity fromJson(JsonObject json) {
+    default SerializedBaseRarity baseSerializedRarityFromJson(JsonObject json) {
 
         SerializedBaseRarity obj = new SerializedBaseRarity();
 
@@ -39,7 +46,7 @@ public interface Rarity extends IWeighted, IAutoLocName, ISerializable<Rarity> {
         obj.rank = json.get("rank")
             .getAsInt();
         obj.spawnDurabilityHit = MinMax.getSerializer()
-            .fromJson(json);
+            .fromJson(json.getAsJsonObject("spawn_durability_hit"));
         obj.textFormatting = TextFormatting.valueOf(json.get("text_formatting")
             .getAsString());
 

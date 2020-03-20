@@ -99,6 +99,8 @@ public class PacketRegister {
 
         reg(BuyTraderItemPacket.class, BuyTraderItemPacket::encode, BuyTraderItemPacket::decode, BuyTraderItemPacket::handle);
 
+        reg(RarityPacket.class, RarityPacket::encode, RarityPacket::decode, RarityPacket::handle);
+
     }
 
 }

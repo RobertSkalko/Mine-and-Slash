@@ -15,6 +15,10 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     public float salvageLotteryChance;
     public int unidentifiedChance;
 
+    public SerializedGearRarity(SerializedBaseRarity baseRarity) {
+        super(baseRarity);
+    }
+
     @Override
     public int AffixChance() {
         return affixChance;
@@ -38,11 +42,6 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     @Override
     public float itemTierPower() {
         return itemTierPower;
-    }
-
-    @Override
-    public float powerMultiplier() {
-        return 0;
     }
 
     @Override

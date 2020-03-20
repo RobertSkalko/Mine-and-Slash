@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.rarities.containers;
 
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
+import com.robertx22.mine_and_slash.database.rarities.RarityTypeEnum;
 import com.robertx22.mine_and_slash.database.rarities.maps.*;
 
 public class MapRarities extends BaseRaritiesContainer<MapRarity> {
@@ -17,4 +18,8 @@ public class MapRarities extends BaseRaritiesContainer<MapRarity> {
         this.onInit();
     }
 
+    @Override
+    public RarityTypeEnum getType() {
+        return null;
+    }
 }

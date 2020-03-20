@@ -63,11 +63,6 @@ public class RareGear extends BaseRare implements GearRarity {
         return 1.5F;
     }
 
-    @Override
-    public float powerMultiplier() {
-        return 1.4F;
-    }
-
     private static class SingletonHolder {
         private static final RareGear INSTANCE = new RareGear();
     }

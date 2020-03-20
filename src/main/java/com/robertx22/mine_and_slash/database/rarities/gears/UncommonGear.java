@@ -63,11 +63,6 @@ public class UncommonGear extends BaseUncommon implements GearRarity {
         return 1.2F;
     }
 
-    @Override
-    public float powerMultiplier() {
-        return 1.2F;
-    }
-
     private static class SingletonHolder {
         private static final UncommonGear INSTANCE = new UncommonGear();
     }

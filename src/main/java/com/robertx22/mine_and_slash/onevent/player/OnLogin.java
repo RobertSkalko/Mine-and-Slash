@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
@@ -50,6 +51,9 @@ public class OnLogin {
             ConfigRegister.CONFIGS.values()
                 .forEach(x -> x.sendToClient(player));
             SlashRegistry.sendAllPacketsToClientOnLogin(player);
+
+            Rarities.sendAllPacketsToClientOnLogin(player);
+
             MMORPG.sendToClient(new OnLoginClientPacket(OnLoginClientPacket.When.AFTER), player);
 
             SlashRegistry.restoreFromBackupifEmpty();

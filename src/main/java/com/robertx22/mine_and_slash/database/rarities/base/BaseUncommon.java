@@ -13,7 +13,7 @@ public abstract class BaseUncommon implements Rarity {
 
     @Override
     public String GUID() {
-        return "Uncommon";
+        return "uncommon";
     }
 
     @Override

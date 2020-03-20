@@ -14,7 +14,7 @@ public abstract class BaseEpic implements Rarity {
     @Override
     public String GUID() {
 
-        return "Epic";
+        return "epic";
     }
 
     @Override

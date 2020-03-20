@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.onevent.data_gen;
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
+import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
 import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
@@ -28,6 +29,9 @@ public class OnGatherData {
             gen.addProvider(new CompatibleItemDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new RuneDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new SlashRecipeProvider(gen));
+
+            gen.addProvider(new GearRarityManager().getProvider(gen));
+
         }
 
         if (event.includeClient()) {

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.rarities.containers;
 
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
+import com.robertx22.mine_and_slash.database.rarities.RarityTypeEnum;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.database.rarities.runes.*;
 
@@ -18,4 +19,8 @@ public class RuneRarities extends BaseRaritiesContainer<RuneRarity> {
         this.onInit();
     }
 
+    @Override
+    public RarityTypeEnum getType() {
+        return null;
+    }
 }

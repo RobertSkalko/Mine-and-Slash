@@ -63,11 +63,6 @@ public class CommonGear extends BaseCommon implements GearRarity {
         return 1;
     }
 
-    @Override
-    public float powerMultiplier() {
-        return 1F;
-    }
-
     private static class SingletonHolder {
         private static final CommonGear INSTANCE = new CommonGear();
     }
