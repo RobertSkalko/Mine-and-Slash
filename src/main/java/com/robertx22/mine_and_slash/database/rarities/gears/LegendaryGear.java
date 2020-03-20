@@ -15,22 +15,27 @@ public class LegendaryGear extends BaseLegendary implements GearRarity {
 
     @Override
     public float requirementMulti() {
-        return 0.8F;
+        return 1;
     }
 
     @Override
     public float unidentifiedChance() {
-        return 95;
+        return 99;
     }
 
     @Override
     public int AffixChance() {
-        return 80;
+        return 100;
+    }
+
+    @Override
+    public MinMax secondaryStatAmount() {
+        return new MinMax(3, 3);
     }
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(25, 90);
+        return new MinMax(50, 100);
     }
 
     @Override
@@ -40,7 +45,7 @@ public class LegendaryGear extends BaseLegendary implements GearRarity {
 
     @Override
     public float salvageLotteryWinChance() {
-        return 6.5F;
+        return 15;
     }
 
     @Override
@@ -50,17 +55,17 @@ public class LegendaryGear extends BaseLegendary implements GearRarity {
 
     @Override
     public int runeSlots() {
-        return 4;
+        return 5;
     }
 
     @Override
     public float itemTierPower() {
-        return 2.5F;
+        return 3;
     }
 
     @Override
     public float powerMultiplier() {
-        return 2.5F;
+        return 7F;
     }
 
     private static class SingletonHolder {

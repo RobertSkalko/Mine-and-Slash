@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.map_events.base;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
-import com.robertx22.mine_and_slash.database.rarities.mobs.MythicalMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.RareMob;
 import com.robertx22.mine_and_slash.new_content.registry.MobPotionEffects;
 import com.robertx22.mine_and_slash.onevent.entity.OnMobSpawn;
@@ -131,7 +130,7 @@ public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
         OnMobSpawn.setupNewMobOnSpawn(elite);
 
         Load.Unit(elite)
-            .setRarity(RandomUtils.weightedRandom(Arrays.asList(MythicalMob.getInstance(), LegendaryMob.getInstance(), EpicMob.getInstance(), RareMob.getInstance()))
+            .setRarity(RandomUtils.weightedRandom(Arrays.asList(LegendaryMob.getInstance(), EpicMob.getInstance(), RareMob.getInstance()))
                 .Rank());
 
         if (RandomUtils.roll(25)) {

@@ -74,7 +74,7 @@ public class KeyOfNewDawnItem extends CurrencyItem implements ICurrencyItemEffec
 
     @Override
     public int getRarityRank() {
-        return IRarity.Mythic;
+        return IRarity.Legendary;
     }
 
     @Override

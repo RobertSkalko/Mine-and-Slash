@@ -25,23 +25,23 @@ public abstract class BaseRare implements Rarity {
     }
 
     @Override
-    public TextFormatting textFormatColor() {
-        return TextFormatting.YELLOW;
-    }
-
-    @Override
     public MinMax SpawnDurabilityHit() {
         return new MinMax(70, 90);
     }
 
     @Override
+    public TextFormatting textFormatColor() {
+        return TextFormatting.BLUE;
+    }
+
+    @Override
     public String Color() {
-        return TextFormatting.YELLOW.toString();
+        return TextFormatting.BLUE.toString();
     }
 
     @Override
     public RGB getRGBColor() {
-        return new RGB(255, 255, 102);
+        return new RGB(51, 102, 255);
     }
 
     @Override

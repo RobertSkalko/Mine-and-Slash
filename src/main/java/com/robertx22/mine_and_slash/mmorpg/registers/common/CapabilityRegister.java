@@ -22,9 +22,6 @@ public class CapabilityRegister {
             new PlayerCapBackupCap.Storage(), PlayerCapBackupCap.DefaultImpl::new
         );
 
-        CapabilityManager.INSTANCE.register(
-            ProfessionsCap.IProfessionsData.class, new ProfessionsCap.Storage(), ProfessionsCap.DefaultImpl::new);
-
         CapabilityManager.INSTANCE.register(PlayerStatsPointsCap.IPlayerStatPointsData.class,
             new PlayerStatsPointsCap.Storage(), PlayerStatsPointsCap.DefaultImpl::new
         );
@@ -35,9 +32,6 @@ public class CapabilityRegister {
         CapabilityManager.INSTANCE.register(PlayerTalentsCap.IPlayerTalentsData.class, new PlayerTalentsCap.Storage(),
             PlayerTalentsCap.DefaultImpl::new
         );
-
-        CapabilityManager.INSTANCE.register(
-            QuestsCap.IQuestsData.class, new QuestsCap.Storage(), QuestsCap.DefaultImpl::new);
 
         CapabilityManager.INSTANCE.register(
             PlayerSpellCap.ISpellsCap.class, new PlayerSpellCap.Storage(), PlayerSpellCap.DefaultImpl::new);

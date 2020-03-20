@@ -33,7 +33,9 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
         this.Mods = new ArrayList<StatModData>();
 
-        int Stats = RandomUtils.RandomRange(1, 2);
+        int Stats = gear.getRarity()
+            .secondaryStatAmount()
+            .random();
 
         while (Stats > 0) {
             StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
@@ -61,7 +63,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
         for (StatModData data : this.Mods) {
             data.setPercent(gear.getRarity()
                 .StatPercents()
-                .genPercent());
+                .random());
         }
 
     }

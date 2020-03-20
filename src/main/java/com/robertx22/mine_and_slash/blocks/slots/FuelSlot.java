@@ -32,9 +32,8 @@ public class FuelSlot extends Slot {
                 put(ItemOre.ItemOres.get(0), 4);
                 put(ItemOre.ItemOres.get(1), 20);
                 put(ItemOre.ItemOres.get(2), 100);
-                put(ItemOre.ItemOres.get(3), 500);
-                put(ItemOre.ItemOres.get(4), 2000);
-                put(ItemOre.ItemOres.get(5), 10000);
+                put(ItemOre.ItemOres.get(3), 1000);
+                put(ItemOre.ItemOres.get(4), 10000);
 
             }
         }

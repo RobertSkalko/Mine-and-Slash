@@ -71,7 +71,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_LOWER_THAN_MYTHIC, SimpleGearLocReq.IS_NOT_UNIQUE);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_LOWER_THAN_LEGENDARY, SimpleGearLocReq.IS_NOT_UNIQUE);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public int Tier() {
-        return 2;
+        return 5;
     }
 
     @Override
@@ -100,6 +100,11 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
+    public float additionalBreakChance() {
+        return 25;
+    }
+
+    @Override
     public int instabilityAddAmount() {
         return 0;
     }
@@ -110,8 +115,8 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
             .key('#', SimpleMatItem.MYTHIC_ESSENCE)
             .key('t', ModItems.ORB_OF_TRANSMUTATION.get())
             .key('v', Items.DIAMOND)
-            .key('o', ItemOre.ItemOres.get(IRarity.Epic))
-            .patternLine("ooo")
+            .key('o', ItemOre.ItemOres.get(IRarity.Legendary))
+            .patternLine("#o#")
             .patternLine("#t#")
             .patternLine("vvv")
             .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));

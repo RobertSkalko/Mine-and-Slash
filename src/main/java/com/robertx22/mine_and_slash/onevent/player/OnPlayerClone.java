@@ -17,37 +17,40 @@ public class OnPlayerClone {
 
         try {
             EntityCap.UnitData data = Load.Unit(current);
-            data.loadFromNBT(Load.Unit(original).saveToNBT());
+            data.loadFromNBT(Load.Unit(original)
+                .saveToNBT());
             data.syncToClient(current);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            Load.playerMapData(current).loadFromNBT(Load.playerMapData(original).saveToNBT());
+            Load.playerMapData(current)
+                .loadFromNBT(Load.playerMapData(original)
+                    .saveToNBT());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            Load.statPoints(current).loadFromNBT(Load.statPoints(original).saveToNBT());
+            Load.statPoints(current)
+                .loadFromNBT(Load.statPoints(original)
+                    .saveToNBT());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-            Load.professions(current).loadFromNBT(Load.professions(original).saveToNBT());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Load.talents(current).loadFromNBT(Load.talents(original).saveToNBT());
+            Load.talents(current)
+                .loadFromNBT(Load.talents(original)
+                    .saveToNBT());
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            Load.spells(current).loadFromNBT(Load.spells(original).saveToNBT());
+            Load.spells(current)
+                .loadFromNBT(Load.spells(original)
+                    .saveToNBT());
         } catch (Exception e) {
             e.printStackTrace();
         }

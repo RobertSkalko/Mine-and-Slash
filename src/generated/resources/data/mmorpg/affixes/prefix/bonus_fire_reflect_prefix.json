@@ -1,6 +1,6 @@
 {
   "id": "bonus_fire_reflect_prefix",
-  "weight": 750,
+  "weight": 250,
   "rarity": 3,
   "tier": 0,
   "registry": "affix",

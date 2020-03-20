@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.chests.MapChestBlock;
 import com.robertx22.mine_and_slash.new_content.chests.trapped.TrappedMapChestBlock;
-import com.robertx22.mine_and_slash.professions.blocks.alchemy.AlchemyBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -34,8 +33,6 @@ public class ModBlocks {
     public static RegistryObject<BlockGearRepair> GEAR_REPAIR = REG.register("repair_station", BlockGearRepair::new);
     public static RegistryObject<BlockMapDevice> MAP_DEVICE = REG.register("map_device", BlockMapDevice::new);
     public static RegistryObject<MapPortalBlock> MAP_PORTAL = REG.register("map_portal_block", MapPortalBlock::new);
-
-    public static RegistryObject<AlchemyBlock> ALCHEMY = REG.register("alchemy_station", AlchemyBlock::new);
 
     public static RegistryObject<MagmaFlowerBlock> MAGMA_FLOWER = REG.register("magma_flower", MagmaFlowerBlock::new);
     public static RegistryObject<ThornBushBlock> THORN_BUSH = REG.register("thorn_bush", ThornBushBlock::new);

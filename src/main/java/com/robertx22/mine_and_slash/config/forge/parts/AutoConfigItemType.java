@@ -26,8 +26,8 @@ public class AutoConfigItemType {
 
         POWER_REQ = builder.defineInRange("POWER_REQ", req, 0F, 1F);
 
-        MIN_RARITY = builder.defineInRange("MIN_RARITY", minrar, 0, IRarity.Mythic);
-        MAX_RARITY = builder.defineInRange("MAX_RARITY", maxrar, 0, IRarity.Mythic);
+        MIN_RARITY = builder.defineInRange("MIN_RARITY", minrar, 0, IRarity.Legendary);
+        MAX_RARITY = builder.defineInRange("MAX_RARITY", maxrar, 0, IRarity.Legendary);
 
         CAN_BE_SALVAGED = builder.define("CAN_BE_SALVAGED", false);
 

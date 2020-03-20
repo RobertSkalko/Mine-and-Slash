@@ -13,7 +13,6 @@ public class GearRarities extends BaseRaritiesContainer<GearRarity> {
         add(RareGear.getInstance());
         add(EpicGear.getInstance());
         add(LegendaryGear.getInstance());
-        add(MythicalGear.getInstance());
         add(UniqueGear.getInstance());
 
         this.onInit();

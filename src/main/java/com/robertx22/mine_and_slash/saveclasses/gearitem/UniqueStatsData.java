@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
@@ -49,7 +49,7 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatModsCont
         for (int i = 0; i < 10; i++) {
             percents.add(gear.getRarity()
                 .StatPercents()
-                .genPercent());
+                .random());
         }
 
     }

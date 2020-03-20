@@ -1,4 +1,8 @@
-3.3.7
+3.4.0
+
+* removed mythic rarity, epics are now purple, rares are now blue. Higher rarities are now much better than lower ones
+* removed alchemy station, professions are a failed system. 
+* higher rarities now have more secondary stats
 * made mobs stronger at higher levels. 
 * removed infusion stats and the 6 items associated with them. I feel the system is kinda lame. It was basically just a power upgrade
 * reduced currency drops as a result
@@ -25,6 +29,7 @@ Basically, if you enable breaking, you can modify as much as you like as long as
 if you disable breaking, the instability limit will act as the cap instead of the break chance.
 * should fix too much hunger spending, maybe it'd still be too high
 * unique gear now always has affixes and has a higher lower limit on stats.
+
 
 3.3.6
 * fix crash in map

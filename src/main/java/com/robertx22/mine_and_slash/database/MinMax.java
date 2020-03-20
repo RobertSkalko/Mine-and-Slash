@@ -23,7 +23,7 @@ public class MinMax {
 
     }
 
-    public int genPercent() {
+    public int random() {
         return RandomUtils.RandomRange(min, max);
     }
 }

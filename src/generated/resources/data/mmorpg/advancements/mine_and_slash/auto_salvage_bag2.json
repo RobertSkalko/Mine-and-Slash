@@ -5,7 +5,7 @@
       "item": "mmorpg:auto_salvage_bag2"
     },
     "title": {
-      "text": "§eAuto Salvage Bag"
+      "text": "§9Auto Salvage Bag"
     },
     "description": {
       "translate": "mmorpg.advancement.desc.autosalvagebag"

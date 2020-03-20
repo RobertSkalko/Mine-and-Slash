@@ -9,16 +9,14 @@ public class RarityWeight {
     public ForgeConfigSpec.IntValue RARE_WEIGHT;
     public ForgeConfigSpec.IntValue EPIC_WEIGHT;
     public ForgeConfigSpec.IntValue LEGENDARY_WEIGHT;
-    public ForgeConfigSpec.IntValue MYTHICAL_WEIGHT;
 
     public static class DefaultConfig {
 
         public int COMMON_WEIGHT = 30000;
         public int UNCOMMON_WEIGHT = 10000;
-        public int RARE_WEIGHT = 2250;
-        public int EPIC_WEIGHT = 750;
-        public int LEGENDARY_WEIGHT = 250;
-        public int MYTHICAL_WEIGHT = 80;
+        public int RARE_WEIGHT = 2500;
+        public int EPIC_WEIGHT = 250;
+        public int LEGENDARY_WEIGHT = 50;
 
         public DefaultConfig higherChanceByMulti(float multi) {
 
@@ -29,7 +27,6 @@ public class RarityWeight {
 
             EPIC_WEIGHT *= multi;
             LEGENDARY_WEIGHT *= multi;
-            MYTHICAL_WEIGHT *= multi;
 
             return this;
 
@@ -54,9 +51,6 @@ public class RarityWeight {
 
         LEGENDARY_WEIGHT = builder.translation("mmorpg.rarity.legendary")
             .defineInRange("LEGENDARY_WEIGHT", config.LEGENDARY_WEIGHT, 0, Integer.MAX_VALUE);
-
-        MYTHICAL_WEIGHT = builder.translation("mmorpg.rarity.mythical")
-            .defineInRange("MYTHICAL_WEIGHT", config.MYTHICAL_WEIGHT, 0, Integer.MAX_VALUE);
 
         builder.pop();
     }

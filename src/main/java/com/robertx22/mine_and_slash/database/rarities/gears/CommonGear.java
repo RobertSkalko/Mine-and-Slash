@@ -25,12 +25,12 @@ public class CommonGear extends BaseCommon implements GearRarity {
 
     @Override
     public int AffixChance() {
-        return 10;
+        return 0;
     }
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(3, 50);
+        return new MinMax(3, 25);
     }
 
     @Override
@@ -51,6 +51,11 @@ public class CommonGear extends BaseCommon implements GearRarity {
     @Override
     public int runeSlots() {
         return 1;
+    }
+
+    @Override
+    public MinMax secondaryStatAmount() {
+        return new MinMax(0, 1);
     }
 
     @Override

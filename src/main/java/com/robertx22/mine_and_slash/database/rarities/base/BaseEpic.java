@@ -20,13 +20,7 @@ public abstract class BaseEpic implements Rarity {
 
     @Override
     public int Rank() {
-
         return IRarity.Epic;
-    }
-
-    @Override
-    public TextFormatting textFormatColor() {
-        return TextFormatting.BLUE;
     }
 
     @Override
@@ -35,13 +29,18 @@ public abstract class BaseEpic implements Rarity {
     }
 
     @Override
+    public TextFormatting textFormatColor() {
+        return TextFormatting.LIGHT_PURPLE;
+    }
+
+    @Override
     public String Color() {
-        return TextFormatting.BLUE.toString();
+        return TextFormatting.LIGHT_PURPLE.toString();
     }
 
     @Override
     public RGB getRGBColor() {
-        return new RGB(51, 102, 255);
+        return new RGB(204, 0, 255);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class GiveMap {
                             .then(Commands.argument("level", IntegerArgumentType.integer())
                                 .then(Commands.argument("world_type", StringArgumentType.string())
                                     .suggests(new WorldTypesSuggestions())
-                                    .then(Commands.argument("rarity", IntegerArgumentType.integer(0, 5))
+                                    .then(Commands.argument("rarity", IntegerArgumentType.integer(0, 4))
                                         .then(Commands.argument("tier", IntegerArgumentType
                                             .integer(0, 30))
                                             .then(Commands.argument("amount", IntegerArgumentType

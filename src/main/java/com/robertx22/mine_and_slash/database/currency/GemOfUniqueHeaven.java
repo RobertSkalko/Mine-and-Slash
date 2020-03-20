@@ -86,7 +86,7 @@ public class GemOfUniqueHeaven extends CurrencyItem implements ICurrencyItemEffe
 
     @Override
     public int getRarityRank() {
-        return IRarity.Mythic;
+        return IRarity.Legendary;
     }
 
     @Override

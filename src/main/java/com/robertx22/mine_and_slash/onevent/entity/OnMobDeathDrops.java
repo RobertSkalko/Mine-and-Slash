@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
-import com.robertx22.mine_and_slash.database.quests.actions.KilledMobData;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
@@ -15,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.server_wide.TeamCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.QuestUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -53,8 +51,6 @@ public class OnMobDeathDrops {
 
                         ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
                         UnitData playerData = Load.Unit(player);
-
-                        QuestUtils.onAction(player, new KilledMobData(mobKilled, mobKilledData, player, playerData));
 
                         BossCap.IBossData boss = Load.boss(mobKilled);
 

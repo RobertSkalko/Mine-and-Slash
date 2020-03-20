@@ -17,9 +17,6 @@ import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.map_events.base.MapEvent;
 import com.robertx22.mine_and_slash.database.map_events.impl.ZombieHordeEvent;
-import com.robertx22.mine_and_slash.database.quests.base.Quest;
-import com.robertx22.mine_and_slash.database.quests.base.QuestReward;
-import com.robertx22.mine_and_slash.database.quests.quests.SimpleKillMobsQuest;
 import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
@@ -41,7 +38,6 @@ import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.packets.RegistryPacket;
-import com.robertx22.mine_and_slash.professions.recipe.BaseRecipe;
 import com.robertx22.mine_and_slash.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import net.minecraft.entity.LivingEntity;
@@ -137,10 +133,6 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.SPELL_PERK_EFFECT);
     }
 
-    public static SlashRegistryContainer<BaseRecipe> Recipes() {
-        return getRegistry(SlashRegistryType.RECIPE);
-    }
-
     public static SlashRegistryContainer<CurrencyItem> CurrencyItems() {
         return getRegistry(SlashRegistryType.CURRENCY_ITEMS);
     }
@@ -171,14 +163,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<IUnique> UniqueGears() {
         return getRegistry(SlashRegistryType.UNIQUE_GEAR);
-    }
-
-    public static SlashRegistryContainer<Quest> Quests() {
-        return getRegistry(SlashRegistryType.QUEST);
-    }
-
-    public static SlashRegistryContainer<QuestReward> QuestRewards() {
-        return getRegistry(SlashRegistryType.QUEST_REWARD);
     }
 
     public static SlashRegistryContainer<Set> Sets() {
@@ -337,8 +321,6 @@ public class SlashRegistry {
         new SpellPerks().registerAll();
 
         new LootCrates().registerAll();
-        new Quests().registerAll();
-        new QuestRewards().registerAll();
 
         new Bosses().registerAll();
         new MapEvents().registerAll();
@@ -373,7 +355,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new DungeonIWP(null, null)));
         addRegistry(new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
-        addRegistry(new SlashRegistryContainer<BaseRecipe>(SlashRegistryType.RECIPE, null));
         addRegistry(new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()
             ).logAdditions()
                 .dontErrorMissingEntriesOnAccess()
@@ -382,8 +363,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
         addRegistry(new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
         addRegistry(new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
-        addRegistry(new SlashRegistryContainer<Quest>(SlashRegistryType.QUEST, SimpleKillMobsQuest.INSTANCE));
-        addRegistry(new SlashRegistryContainer<QuestReward>(SlashRegistryType.QUEST_REWARD, null));
         addRegistry(new SlashRegistryContainer<SpellPerk>(SlashRegistryType.SPELL_PERK, null));
         addRegistry(new SlashRegistryContainer<SpellPerkEffect>(SlashRegistryType.SPELL_PERK_EFFECT, null));
         addRegistry(new SlashRegistryContainer<SynergyPerkEffect>(SlashRegistryType.SYNERGY_EFFECT, null));

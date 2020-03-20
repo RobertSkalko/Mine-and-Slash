@@ -29,7 +29,7 @@ public class CartographerCrate extends LootCrate {
 
     @Override
     public int getRarityRank() {
-        return IRarity.Mythic;
+        return IRarity.Legendary;
     }
 
     @Override

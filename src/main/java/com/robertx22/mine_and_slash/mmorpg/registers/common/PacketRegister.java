@@ -42,10 +42,6 @@ public class PacketRegister {
 
         reg(MasterBagPacket.class, MasterBagPacket::encode, MasterBagPacket::decode, MasterBagPacket::handle);
 
-        reg(ProfessionRecipePacket.class, ProfessionRecipePacket::encode, ProfessionRecipePacket::decode,
-            ProfessionRecipePacket::handle
-        );
-
         reg(SyncCapabilityToClient.class, SyncCapabilityToClient::encode, SyncCapabilityToClient::decode,
             SyncCapabilityToClient::handle
         );

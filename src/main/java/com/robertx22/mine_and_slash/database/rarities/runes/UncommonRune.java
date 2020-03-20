@@ -16,7 +16,7 @@ public class UncommonRune extends BaseUncommon implements RuneRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(5, 65);
+        return new MinMax(15, 50);
     }
 
     @Override

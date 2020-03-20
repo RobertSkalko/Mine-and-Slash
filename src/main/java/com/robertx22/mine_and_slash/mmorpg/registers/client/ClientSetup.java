@@ -22,7 +22,6 @@ public class ClientSetup {
 
         RenderTypeLookup.setRenderLayer(ModBlocks.GEAR_MODIFY.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.GEAR_SALVAGE.get(), RenderType.getCutout());//cutout
-        RenderTypeLookup.setRenderLayer(ModBlocks.ALCHEMY.get(), RenderType.getCutout());//cutout
         RenderTypeLookup.setRenderLayer(ModBlocks.GEAR_REPAIR.get(), RenderType.getCutout());//cutout
 
         RenderTypeLookup.setRenderLayer(ModBlocks.MAGMA_FLOWER.get(), RenderType.getCutout());

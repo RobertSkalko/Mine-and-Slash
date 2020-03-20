@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.db_lists;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
 import com.robertx22.mine_and_slash.items.misc.ItemLootbox;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.profession_items.AlchemyItemRegister;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
@@ -13,7 +12,7 @@ public class CreativeTabs {
 
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(ItemSword.Items.get(5));
+            return new ItemStack(ItemSword.Items.get(4));
         }
 
     };
@@ -22,15 +21,7 @@ public class CreativeTabs {
 
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(ItemLootbox.GetItem(5, ItemLootbox.LootTypes.Gear, ItemLootbox.LootBoxSizes.Big));
-        }
-    };
-
-    public static final ItemGroup Alchemy = new ItemGroup(Ref.MODID + "_alchemy") {
-
-        @Override
-        public ItemStack createIcon() {
-            return new ItemStack(AlchemyItemRegister.LVL_100_HP_POT);
+            return new ItemStack(ItemLootbox.GetItem(4, ItemLootbox.LootTypes.Gear, ItemLootbox.LootBoxSizes.Big));
         }
     };
 

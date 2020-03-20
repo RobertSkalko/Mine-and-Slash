@@ -13,7 +13,6 @@ public class MapRarities extends BaseRaritiesContainer<MapRarity> {
         add(RareMap.getInstance());
         add(EpicMap.getInstance());
         add(LegendaryMap.getInstance());
-        add(MythicalMap.getInstance());
 
         this.onInit();
     }

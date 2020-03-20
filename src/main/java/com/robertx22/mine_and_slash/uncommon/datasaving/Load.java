@@ -69,27 +69,6 @@ public class Load {
             .orElse(new PlayerSpellCap.DefaultImpl());
     }
 
-    public static QuestsCap.IQuestsData quests(PlayerEntity provider) {
-
-        if (provider != null) {
-            return provider.getCapability(QuestsCap.Data)
-                .orElse(new QuestsCap.DefaultImpl());
-
-        }
-        return null;
-    }
-
-    public static ProfessionsCap.IProfessionsData professions(PlayerEntity provider) {
-
-        if (provider != null) {
-
-            return provider.getCapability(ProfessionsCap.Data)
-                .orElse(new ProfessionsCap.DefaultImpl());
-
-        }
-        return null;
-    }
-
     public static PlayerCapBackupCap.IPlayerCapBackupData playersCapBackup(World world) {
 
         if (world != null) {

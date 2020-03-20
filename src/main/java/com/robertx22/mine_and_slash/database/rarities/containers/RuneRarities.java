@@ -13,7 +13,6 @@ public class RuneRarities extends BaseRaritiesContainer<RuneRarity> {
         add(RareRune.getInstance());
         add(EpicRune.getInstance());
         add(LegendaryRune.getInstance());
-        add(MythicalRune.getInstance());
         add(UniqueRune.getInstance());
 
         this.onInit();

@@ -287,9 +287,6 @@ public class Unit {
             if (config.LEVEL_FOR_MOBS_TO_BE_LEGENDARY > level) {
                 rarities.removeIf(x -> x.Rank() == IRarity.Legendary);
             }
-            if (config.LEVEL_FOR_MOBS_TO_BE_MYTHICAL > level) {
-                rarities.removeIf(x -> x.Rank() == IRarity.Mythic);
-            }
         }
 
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);

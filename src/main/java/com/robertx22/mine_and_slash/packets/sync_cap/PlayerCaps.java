@@ -24,12 +24,6 @@ public enum PlayerCaps {
             return Load.playerMapData(player);
         }
     },
-    PROFESSIONS {
-        @Override
-        public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.professions(player);
-        }
-    },
     TALENTS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {
@@ -40,12 +34,6 @@ public enum PlayerCaps {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.spells(player);
-        }
-    },
-    QUESTS {
-        @Override
-        public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.quests(player);
         }
     },
     STAT_POINTS {

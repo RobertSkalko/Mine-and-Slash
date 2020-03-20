@@ -52,7 +52,7 @@ public class RarityPart extends BlueprintPart<Rarity> {
 
         Rarity rar = RandomUtils.weightedRandom(possible);
 
-        if (rar.Rank() < IRarity.Mythic && RandomUtils.roll(chanceForHigherRarity)) {
+        if (rar.Rank() < IRarity.Legendary && RandomUtils.roll(chanceForHigherRarity)) {
             rar = container.get(rar.Rank() + 1);
         }
 

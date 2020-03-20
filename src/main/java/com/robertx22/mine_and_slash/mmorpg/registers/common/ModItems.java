@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.currency.map.EndlessSkiesItem;
 import com.robertx22.mine_and_slash.database.currency.map.PainfulLessonItem;
 import com.robertx22.mine_and_slash.items.misc.IdentifyTomeItem;
 import com.robertx22.mine_and_slash.items.misc.TeleportScrollItem;
-import com.robertx22.mine_and_slash.items.profession.alchemy.single_use.resets.*;
+import com.robertx22.mine_and_slash.items.reset_potions.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;

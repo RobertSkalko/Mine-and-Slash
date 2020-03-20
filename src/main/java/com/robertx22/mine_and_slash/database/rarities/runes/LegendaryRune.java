@@ -12,7 +12,7 @@ public class LegendaryRune extends BaseLegendary implements RuneRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(25, 90);
+        return new MinMax(75, 100);
     }
 
     public static LegendaryRune getInstance() {

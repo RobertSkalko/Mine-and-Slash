@@ -1,5 +1,5 @@
 {
-  "parent": "mmorpg:mine_and_slash/kill_mob_rarity_5",
+  "parent": "mmorpg:mine_and_slash/kill_mob_rarity_4",
   "display": {
     "icon": {
       "item": "minecraft:dragon_head"

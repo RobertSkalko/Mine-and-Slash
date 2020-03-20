@@ -42,7 +42,7 @@ public class AutoCompatibleItemConfig {
             .getLeft();
         BEST = builder.comment("")
             .configure((ForgeConfigSpec.Builder b) -> {
-                return new AutoConfigItemType(0.8F, b, "BEST", Integer.MAX_VALUE, IRarity.Uncommon, IRarity.Mythic);
+                return new AutoConfigItemType(0.8F, b, "BEST", Integer.MAX_VALUE, IRarity.Uncommon, IRarity.Highest);
             })
             .getLeft();
 

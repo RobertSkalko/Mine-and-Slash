@@ -16,7 +16,7 @@ public class EpicRune extends BaseEpic implements RuneRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(20, 75);
+        return new MinMax(50, 90);
     }
 
     @Override

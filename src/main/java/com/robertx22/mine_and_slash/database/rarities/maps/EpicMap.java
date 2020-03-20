@@ -21,7 +21,7 @@ public class EpicMap extends BaseEpic implements MapRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(50, 80);
+        return new MinMax(65, 90);
     }
 
     @Override

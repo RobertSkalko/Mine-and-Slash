@@ -32,6 +32,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
@@ -863,7 +864,7 @@ public class EntityCap {
         @Override
         public boolean increaseRarity(LivingEntity entity) {
 
-            if (rarity == 5) {
+            if (rarity == IRarity.Highest) {
                 return false;
             } else {
                 rarity = rarity + 1;

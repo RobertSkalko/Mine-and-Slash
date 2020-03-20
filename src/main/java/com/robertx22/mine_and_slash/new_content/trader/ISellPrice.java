@@ -111,7 +111,7 @@ public interface ISellPrice {
 
         for (int i = 0; i < 6; i++) {
 
-            if (rarity < IRarity.Mythic) {
+            if (rarity < IRarity.Highest) {
 
                 if (ores >= 9) {
                     ores /= 9;
@@ -130,7 +130,7 @@ public interface ISellPrice {
 
         for (int i = 0; i < 6; i++) {
 
-            if (rarity < IRarity.Mythic) {
+            if (rarity < IRarity.Highest) {
 
                 if (ores >= 9) {
 

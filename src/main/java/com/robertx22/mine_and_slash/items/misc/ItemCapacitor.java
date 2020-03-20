@@ -116,16 +116,6 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
                 .patternLine("#c#")
                 .addCriterion("player_level", new PlayerLevelTrigger.Instance(5));
         }
-        if (rarity == 5) {
-            return shaped(ITEMS.get(rarity))
-                .key('#', SimpleMatItem.MYTHIC_ESSENCE)
-                .key('t', ITEMS.get(rarity - 1))
-                .key('c', ModItems.GEM_OF_UNIQUE_HEAVEN.get())
-                .patternLine("#c#")
-                .patternLine("ctc")
-                .patternLine("#c#")
-                .addCriterion("player_level", new PlayerLevelTrigger.Instance(5));
-        }
 
         return null;
     }

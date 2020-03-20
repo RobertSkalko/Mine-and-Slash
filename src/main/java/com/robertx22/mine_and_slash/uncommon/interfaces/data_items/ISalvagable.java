@@ -15,9 +15,9 @@ public interface ISalvagable extends IRarity {
 
     default int getSalvagedOreRarity(int rarity) {
         if (rarity == IRarity.Unique) {
-            return IRarity.Mythic;
+            return IRarity.Highest;
         }
-        return MathHelper.clamp(rarity - 1, IRarity.Common, IRarity.Mythic);
+        return MathHelper.clamp(rarity - 1, IRarity.Common, IRarity.Highest);
     }
 
     boolean isSalvagable(SalvageContext context);

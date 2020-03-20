@@ -67,7 +67,7 @@ public class RingElemental implements IElementalUnique {
 
     @Override
     public int getRarityRank() {
-        return IRarity.Mythic;
+        return IRarity.Legendary;
     }
 
     @Override

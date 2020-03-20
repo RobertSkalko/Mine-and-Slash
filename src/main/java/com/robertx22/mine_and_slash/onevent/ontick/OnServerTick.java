@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRe
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.new_content.ProcessChunkBlocks;
 import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
-import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -173,11 +172,6 @@ public class OnServerTick {
 
                 if (data.playerSyncTick > TicksToUpdatePlayer) {
                     data.playerSyncTick = 0;
-
-                    if (player.openContainer instanceof ProfessionContainer) {
-                        ProfessionContainer prof = (ProfessionContainer) player.openContainer;
-                        prof.tile.onOpenByPlayer(player);
-                    }
 
                     CapSyncUtil.syncAll(player);
 

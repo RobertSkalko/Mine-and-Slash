@@ -56,7 +56,7 @@ public class StoneOfCorruptionItem extends CurrencyItem implements ICurrencyItem
 
     @Override
     public int getRarityRank() {
-        return IRarity.Rare;
+        return IRarity.Epic;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class StoneOfCorruptionItem extends CurrencyItem implements ICurrencyItem
 
     @Override
     public int instabilityAddAmount() {
-        return 250;
+        return 500;
     }
 
     @Override

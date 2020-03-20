@@ -118,7 +118,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
 
     @Override
     public int getRarityRank() {
-        return this.Rarity;
+        return MathHelper.clamp(Rarity, -1, IRarity.Highest);
     }
 
     @Override
@@ -459,7 +459,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
         int price = 0;
 
         if (this.isUnique()) {
-            price = ISellPrice.rarityOresToCommons(Rarities.Gears.get(IRarity.Mythic), 30);
+            price = ISellPrice.rarityOresToCommons(Rarities.Gears.get(IRarity.Highest), 30);
         } else {
             price = ISellPrice.rarityOresToCommons(getRarity(), 5);
         }

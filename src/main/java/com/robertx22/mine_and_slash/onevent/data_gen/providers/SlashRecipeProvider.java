@@ -52,7 +52,7 @@ public class SlashRecipeProvider extends RecipeProvider {
             .build(c);
 
         shaped(SimpleMatItem.MYTHIC_ESSENCE)
-            .key('#', ItemOre.ItemOres.get(IRarity.Mythic))
+            .key('#', ItemOre.ItemOres.get(IRarity.Legendary))
             .key('b', Items.BOWL)
             .patternLine("###")
             .patternLine("###")

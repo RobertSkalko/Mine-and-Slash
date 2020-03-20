@@ -36,7 +36,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     public int runed_item_weight = 20;
 
     public int min_rarity = 0;
-    public int max_rarity = 5;
+    public int max_rarity = 4;
 
     public boolean only_add_stats_if_loot_drop = false;
     public boolean add_to_loot_drops = true;

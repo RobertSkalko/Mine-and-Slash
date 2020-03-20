@@ -22,6 +22,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
@@ -181,7 +182,7 @@ public class RuneItemData implements ICommonDataItem<RuneRarity> {
 
     @Override
     public int getRarityRank() {
-        return this.rarity;
+        return MathHelper.clamp(rarity, -1, IRarity.Highest);
     }
 
     @Override

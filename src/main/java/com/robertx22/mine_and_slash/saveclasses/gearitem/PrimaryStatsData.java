@@ -58,7 +58,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
         for (StatModData data : this.Mods) {
             data.setPercent(gear.getRarity()
                 .StatPercents()
-                .genPercent());
+                .random());
         }
 
     }

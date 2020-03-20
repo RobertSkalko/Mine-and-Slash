@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.items.profession.alchemy.bases.BaseBuffPotion;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.all.BleedPotion;
 import com.robertx22.mine_and_slash.potion_effects.all.CleansePoisonPotion;
@@ -23,7 +22,6 @@ import net.minecraft.potion.Effect;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -57,15 +55,6 @@ public class PotionRegister {
         reg.register(HunterInstinctEffect.getInstance());
         reg.register(WoundsEffect.getInstance());
         reg.register(StealthEffect.getInstance());
-
-        for (net.minecraft.item.Item item : ForgeRegistries.ITEMS) {
-            if (item instanceof BaseBuffPotion) {
-                BaseBuffPotion pot = (BaseBuffPotion) item;
-                reg.register(pot.createEffect()
-                    .setRegistryName(pot.GUID()));
-            }
-
-        }
 
     }
 

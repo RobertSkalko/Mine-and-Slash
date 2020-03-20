@@ -20,7 +20,7 @@ import java.util.List;
 
 @Storable
 public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>, Serializable, ITooltipList,
-        IRerollable {
+    IRerollable {
 
     private static final long serialVersionUID = -110285627065158395L;
 
@@ -39,10 +39,10 @@ public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>,
     public void RerollFully(GearItemData gear) {
 
         BaseAffix prefix = SlashRegistry.Affixes()
-                .getWrapped()
-                .of(x -> x.type == BaseAffix.Type.prefix)
-                .allThatMeetRequirement(new GearRequestedFor(gear))
-                .random();
+            .getWrapped()
+            .of(x -> x.type == BaseAffix.Type.prefix)
+            .allThatMeetRequirement(new GearRequestedFor(gear))
+            .random();
 
         this.create(gear, prefix);
 
@@ -54,7 +54,9 @@ public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>,
         percents = new ArrayList<Integer>();
 
         for (StatMod mod : BaseAffix().StatMods()) {
-            percents.add(gear.getRarity().StatPercents().genPercent());
+            percents.add(gear.getRarity()
+                .StatPercents()
+                .random());
 
         }
 
@@ -71,7 +73,8 @@ public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>,
 
     @Override
     public BaseAffix BaseAffix() {
-        return SlashRegistry.Affixes().get(baseAffix);
+        return SlashRegistry.Affixes()
+            .get(baseAffix);
     }
 
     @Override
@@ -82,7 +85,9 @@ public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>,
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(Styles.GRAYCOMP()
-                         .appendSibling(Words.Prefix.locName().appendText(": ").appendSibling(affix.locName())));
+            .appendSibling(Words.Prefix.locName()
+                .appendText(": ")
+                .appendSibling(affix.locName())));
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {

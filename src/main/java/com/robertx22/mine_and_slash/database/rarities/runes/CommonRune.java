@@ -21,7 +21,7 @@ public class CommonRune extends BaseCommon implements RuneRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(3, 60);
+        return new MinMax(5, 25);
     }
 
     @Override

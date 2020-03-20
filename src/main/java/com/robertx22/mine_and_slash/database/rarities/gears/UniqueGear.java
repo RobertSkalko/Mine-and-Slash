@@ -24,6 +24,11 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     }
 
     @Override
+    public MinMax secondaryStatAmount() {
+        return new MinMax(0, 0); // uniques dont have secondaries, they have unique stats
+    }
+
+    @Override
     public int Weight() {
         return 0;
     }

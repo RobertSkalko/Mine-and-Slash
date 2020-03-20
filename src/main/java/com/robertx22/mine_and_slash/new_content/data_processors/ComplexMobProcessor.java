@@ -66,8 +66,8 @@ public class ComplexMobProcessor extends DataProcessor {
                     rarity = EpicMob.getInstance();
                 } else if (x.equals("legendary")) {
                     rarity = LegendaryMob.getInstance();
-                } else if (x.equals("mythic")) {
-                    rarity = MythicalMob.getInstance();
+                } else if (x.equals("mythic")) { // TODO
+                    rarity = LegendaryMob.getInstance();
                 } else if (x.equals("boss")) {
                     rarity = BossMobRarity.getInstance();
                     isBoss = true;

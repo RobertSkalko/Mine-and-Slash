@@ -51,11 +51,15 @@ public class StatModData implements ITooltipList {
     }
 
     public void useOnPlayer(UnitData unit) {
-        Add(unit.getUnit().getCreateStat(this.getStatMod().GetBaseStat()), unit.getLevel());
+        Add(unit.getUnit()
+            .getCreateStat(this.getStatMod()
+                .GetBaseStat()), unit.getLevel());
     }
 
     public void useOnPlayer(UnitData unit, int level) {
-        Add(unit.getUnit().getCreateStat(this.getStatMod().GetBaseStat()), level);
+        Add(unit.getUnit()
+            .getCreateStat(this.getStatMod()
+                .GetBaseStat()), level);
     }
 
     public int getPercent() {
@@ -91,7 +95,8 @@ public class StatModData implements ITooltipList {
     }
 
     public StatMod getStatMod() {
-        return SlashRegistry.StatMods().get(baseModName);
+        return SlashRegistry.StatMods()
+            .get(baseModName);
 
     }
 
@@ -109,7 +114,8 @@ public class StatModData implements ITooltipList {
             val = mod.getFloatByPercentWithoutMin(percent);
         }
 
-        if (mod.getModType().equals(StatModTypes.Flat)) {
+        if (mod.getModType()
+            .equals(StatModTypes.Flat)) {
             val = stat.calculateScalingStatGrowth(val, level);
         }
 
@@ -138,7 +144,8 @@ public class StatModData implements ITooltipList {
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
         try {
-            return getStatMod().GetBaseStat().getTooltipList(new TooltipStatInfo(this, info));
+            return getStatMod().GetBaseStat()
+                .getTooltipList(new TooltipStatInfo(this, info));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -151,7 +158,7 @@ public class StatModData implements ITooltipList {
     }
 
     public void randomize(MinMax minmax) {
-        this.percent = minmax.genPercent();
+        this.percent = minmax.random();
     }
 
     public void Add(StatData data, int level) {

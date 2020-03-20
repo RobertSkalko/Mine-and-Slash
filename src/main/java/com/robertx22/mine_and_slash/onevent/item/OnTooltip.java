@@ -6,11 +6,9 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.RecipeItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Recipe;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -98,11 +96,6 @@ public class OnTooltip {
 
                     }
                 }
-            }
-
-            RecipeItemData recipe = Recipe.Load(stack);
-            if (recipe != null) {
-                recipe.BuildTooltip(ctx);
             }
 
             ITextComponent broken = TooltipUtils.itemBrokenText(stack, data);

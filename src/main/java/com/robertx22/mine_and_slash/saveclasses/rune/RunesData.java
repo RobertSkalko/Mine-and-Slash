@@ -74,8 +74,12 @@ public class RunesData implements ITooltipList, IStatModsContainer {
         for (int i = 0; i < word.size(); i++) {
             for (InsertedRuneData inserted : runes) {
                 if (inserted.isNotUsedByAnyRuneWord()) {
-                    if (inserted.rune.equals(word.runes().get(i).GUID())) {
-                        text += word.runes().get(i).name();
+                    if (inserted.rune.equals(word.runes()
+                        .get(i)
+                        .GUID())) {
+                        text += word.runes()
+                            .get(i)
+                            .name();
                         break;
                     }
                 }
@@ -83,14 +87,17 @@ public class RunesData implements ITooltipList, IStatModsContainer {
 
         }
 
-        String wordToAwaken = word.getRuneWordCombo().toUpperCase();
+        String wordToAwaken = word.getRuneWordCombo()
+            .toUpperCase();
 
-        return text.toUpperCase().contains(wordToAwaken);
+        return text.toUpperCase()
+            .contains(wordToAwaken);
 
     }
 
     public boolean AwakenRuneWord(String word) {
-        RuneWord runeword = SlashRegistry.RuneWords().get(word);
+        RuneWord runeword = SlashRegistry.RuneWords()
+            .get(word);
 
         if (runeword != null) {
 
@@ -99,7 +106,9 @@ public class RunesData implements ITooltipList, IStatModsContainer {
             for (int i = 0; i < runeword.size(); i++) {
                 for (InsertedRuneData inserted : runes) {
                     if (inserted.usedForRuneWord.length() == 0 && inserted.rune.equals(
-                            runeword.runes().get(i).name())) {
+                        runeword.runes()
+                            .get(i)
+                            .name())) {
 
                         inserted.usedForRuneWord = runeword.GUID();
                         break;
@@ -144,10 +153,8 @@ public class RunesData implements ITooltipList, IStatModsContainer {
         int avg = this.getAveragePercents();
 
         if (avg > 90) {
-            return IRarity.Mythic;
-        } else if (avg > 80) {
             return IRarity.Legendary;
-        } else if (avg > 65) {
+        } else if (avg > 75) {
             return IRarity.Epic;
         } else if (avg > 50) {
             return IRarity.Rare;
@@ -186,7 +193,8 @@ public class RunesData implements ITooltipList, IStatModsContainer {
 
         list.add(new StringTextComponent(""));
 
-        list.add(Styles.GRAYCOMP().appendSibling(new StringTextComponent("Runes: ")));
+        list.add(Styles.GRAYCOMP()
+            .appendSibling(new StringTextComponent("Runes: ")));
 
         for (InsertedRuneData rune : runes) {
 
@@ -197,7 +205,8 @@ public class RunesData implements ITooltipList, IStatModsContainer {
 
         for (int i = 0; i < empty; i++) {
 
-            list.add(Styles.GRAYCOMP().appendSibling(new StringTextComponent("Rune: [Empty ]")));
+            list.add(Styles.GRAYCOMP()
+                .appendSibling(new StringTextComponent("Rune: [Empty ]")));
 
         }
 
@@ -213,6 +222,7 @@ public class RunesData implements ITooltipList, IStatModsContainer {
     }
 
     public boolean hasUniqueRune() {
-        return runes.stream().anyMatch(x -> x.getRune() instanceof BaseUniqueRune);
+        return runes.stream()
+            .anyMatch(x -> x.getRune() instanceof BaseUniqueRune);
     }
 }

@@ -93,7 +93,7 @@ public class ChaoticWispItem extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public int getRarityRank() {
-        return IRarity.Mythic;
+        return IRarity.Legendary;
     }
 
     @Override

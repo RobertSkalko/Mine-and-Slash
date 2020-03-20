@@ -23,7 +23,7 @@ public class LootCrates implements ISlashRegistryInit {
                     add(CurrencyCrate.INSTANCE);
                     add(RuneCrate.INSTANCE);
 
-                    add(MythicCrate.INSTANCE);
+                    add(LegendaryCrate.INSTANCE);
                     add(ArmorcrafterCrate.INSTANCE);
                     add(WeaponCraftersCrate.INSTANCE);
                     add(JewerlyCrafterCrate.INSTANCE);

@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.items.bags.map_bag.ContainerMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ContainerMasterBag;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.chests.MapChestContainer;
-import com.robertx22.mine_and_slash.professions.blocks.bases.ProfessionContainer;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
@@ -50,9 +49,6 @@ public class ModContainers {
 
     static final String PROFESSION_RECIPE_CONTAINER_ID = Ref.MODID + ":" + "profession_recipe_container";
 
-    @ObjectHolder(PROFESSION_RECIPE_CONTAINER_ID)
-    public static final ContainerType<ProfessionContainer> PROFESSION_RECIPE_CONTAINER = null;
-
     @ObjectHolder(LOOT_BAG_ID)
     public static final ContainerType<ContainerLootBag> LOOT_BAG = null;
     @ObjectHolder(MAP_BAG_ID)
@@ -67,9 +63,6 @@ public class ModContainers {
         final RegistryEvent.Register<ContainerType<?>> event) {
 
         IForgeRegistry<ContainerType<?>> r = event.getRegistry();
-
-        r.register(IForgeContainerType.create(ProfessionContainer::new)
-            .setRegistryName(PROFESSION_RECIPE_CONTAINER_ID));
 
         r.register(IForgeContainerType.create(ContainerMasterBag::new)
             .setRegistryName(MASTER_BAG_ID));

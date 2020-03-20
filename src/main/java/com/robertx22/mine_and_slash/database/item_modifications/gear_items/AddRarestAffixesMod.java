@@ -34,18 +34,18 @@ public class AddRarestAffixesMod extends BaseGearMod {
 
     @Override
     public int getRarityRank() {
-        return IRarity.Mythic;
+        return IRarity.Legendary;
     }
 
     @Override
     public void modifyGear(GearItemData gear) {
 
         Prefix prefix = (Prefix) SlashRegistry.Affixes()
-                .getWrapped()
-                .ofAffixType(BaseAffix.Type.prefix)
-                .allThatMeetRequirement(gear)
-                .ofHighestRarity()
-                .random();
+            .getWrapped()
+            .ofAffixType(BaseAffix.Type.prefix)
+            .allThatMeetRequirement(gear)
+            .ofHighestRarity()
+            .random();
 
         gear.prefix = new PrefixData();
         gear.prefix.create(gear, prefix);
@@ -53,11 +53,11 @@ public class AddRarestAffixesMod extends BaseGearMod {
         // line
 
         Suffix suffix = (Suffix) SlashRegistry.Affixes()
-                .getWrapped()
-                .ofAffixType(BaseAffix.Type.suffix)
-                .allThatMeetRequirement(gear)
-                .ofHighestRarity()
-                .random();
+            .getWrapped()
+            .ofAffixType(BaseAffix.Type.suffix)
+            .allThatMeetRequirement(gear)
+            .ofHighestRarity()
+            .random();
 
         gear.suffix = new SuffixData();
         gear.suffix.create(gear, suffix);

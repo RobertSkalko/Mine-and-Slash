@@ -14,7 +14,7 @@ public class RingsOfImpossibility extends Set {
 
     @Override
     public int getRarityRank() {
-        return IRarity.Mythic;
+        return IRarity.Legendary;
     }
 
     @Override

@@ -20,8 +20,8 @@ public class OfWeaponFlurry extends WeaponSuffix {
 
     public OfWeaponFlurry(WeaponTypes type) {
         super(
-                new Requirements(
-                        SlotRequirement.bracelet(), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)), type);
+            new Requirements(
+                SlotRequirement.bracelet(), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)), type);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class OfWeaponFlurry extends WeaponSuffix {
 
     @Override
     public int getRarityRank() {
-        return IRarity.Mythic;
+        return IRarity.Legendary;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class OreGenRegister {
 
             int amount = 3;
 
-            for (int i = 0; i < IRarity.Mythic; i++) {
+            for (int i = 0; i < IRarity.Legendary; i++) {
 
                 Block block = ItemOre.Blocks.get(i);
 

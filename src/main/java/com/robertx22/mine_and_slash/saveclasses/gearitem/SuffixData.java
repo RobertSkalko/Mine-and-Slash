@@ -21,7 +21,7 @@ import java.util.List;
 
 @Storable
 public class SuffixData extends AffixData implements ICreateSpecific<BaseAffix>, Serializable, ITooltipList,
-        IRerollable {
+    IRerollable {
 
     private static final long serialVersionUID = 8802998468539898482L;
 
@@ -56,14 +56,17 @@ public class SuffixData extends AffixData implements ICreateSpecific<BaseAffix>,
         percents = new ArrayList<Integer>();
 
         for (StatMod mod : BaseAffix().StatMods()) {
-            percents.add(gear.getRarity().StatPercents().genPercent());
+            percents.add(gear.getRarity()
+                .StatPercents()
+                .random());
         }
 
     }
 
     @Override
     public BaseAffix BaseAffix() {
-        return SlashRegistry.Affixes().get(baseAffix);
+        return SlashRegistry.Affixes()
+            .get(baseAffix);
     }
 
     @Override
@@ -74,7 +77,9 @@ public class SuffixData extends AffixData implements ICreateSpecific<BaseAffix>,
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(Styles.GRAYCOMP()
-                         .appendSibling(Words.Suffix.locName().appendText(": ").appendSibling(affix.locName())));
+            .appendSibling(Words.Suffix.locName()
+                .appendText(": ")
+                .appendSibling(affix.locName())));
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
             for (StatModData data : part.mods) {

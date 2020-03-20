@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.BlueprintUtils;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -38,7 +37,7 @@ public class JewerlyCrafterCrate extends LootCrate {
                     .equals(GearItemSlot.GearSlotType.Jewerly))
             .random());
 
-        return GearCreationUtils.CreateStack(blueprint);
+        return blueprint.createStack();
 
     }
 

@@ -24,13 +24,19 @@ public abstract class BaseRaritiesContainer<RarityType extends Rarity> {
     }
 
     public final void onInit() {
-        this.minRarity = getAllRarities().stream().min((Comparator.comparingInt(Rarity::Rank))).get().Rank();
-        this.maxRarity = getAllRarities().stream().max((Comparator.comparingInt(Rarity::Rank))).get().Rank();
+        this.minRarity = getAllRarities().stream()
+            .min((Comparator.comparingInt(Rarity::Rank)))
+            .get()
+            .Rank();
+        this.maxRarity = getAllRarities().stream()
+            .max((Comparator.comparingInt(Rarity::Rank)))
+            .get()
+            .Rank();
 
         normalRarities = getMap().values()
-                .stream()
-                .filter(x -> x.Rank() >= IRarity.Common && x.Rank() <= IRarity.Mythic)
-                .collect(Collectors.toList());
+            .stream()
+            .filter(x -> x.Rank() >= IRarity.Common && x.Rank() <= IRarity.Highest)
+            .collect(Collectors.toList());
 
     }
 
@@ -43,7 +49,8 @@ public abstract class BaseRaritiesContainer<RarityType extends Rarity> {
     }
 
     protected void add(RarityType r) {
-        this.getMap().put(r.Rank(), r);
+        this.getMap()
+            .put(r.Rank(), r);
     }
 
     public List<RarityType> getAllRarities() {

@@ -39,7 +39,7 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
 
     public void accept(Consumer<Advancement> consu) {
         Advancement parent = Advancement.Builder.builder()
-            .withDisplay(ItemSword.Items.get(5), AdvTitles.WelcomeMineandslash.locName(),
+            .withDisplay(ItemSword.Items.get(4), AdvTitles.WelcomeMineandslash.locName(),
                 AdvDescs.WelcomeMineandslash.locName(),
                 new ResourceLocation("textures/gui/advancements/backgrounds/end.png"), FrameType.TASK,
                 false, false, false
@@ -56,25 +56,20 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
             .register(consu, id("lvl_penalty"));
 
         Advancement lvl_10 = levelAdv(10, AdvDescs.LevelUp10, parent, consu, ItemHammer.Items.get(0));
-        Advancement lvl_25 = levelAdv(20, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items.get(1));
-        Advancement lvl_50 = levelAdv(50, AdvDescs.LevelUp, lvl_25, consu, ItemHammer.Items.get(2));
-        Advancement lvl_75 = levelAdv(75, AdvDescs.LevelUp, lvl_50, consu, ItemHammer.Items.get(3));
-        Advancement lvl_90 = levelAdv(90, AdvDescs.LevelUp, lvl_75, consu, ItemHammer.Items.get(4));
-        Advancement lvl_100 = levelAdv(100, AdvDescs.LevelUp, lvl_90, consu, ItemHammer.Items.get(5));
+        Advancement lvl_25 = levelAdv(20, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items.get(0));
+        Advancement lvl_50 = levelAdv(50, AdvDescs.LevelUp, lvl_25, consu, ItemHammer.Items.get(1));
+        Advancement lvl_75 = levelAdv(75, AdvDescs.LevelUp, lvl_50, consu, ItemHammer.Items.get(2));
+        Advancement lvl_90 = levelAdv(90, AdvDescs.LevelUp, lvl_75, consu, ItemHammer.Items.get(3));
+        Advancement lvl_100 = levelAdv(100, AdvDescs.LevelUp, lvl_90, consu, ItemHammer.Items.get(4));
 
         Advancement legendaryMob = mobRarityKill(Rarities.Mobs.get(IRarity.Legendary),
             AdvDescs.MobRaritySpawnAt.locName()
                 .appendText("10"), parent, consu,
             Items.ZOMBIE_HEAD
         );
-        Advancement mythicMob = mobRarityKill(Rarities.Mobs.get(IRarity.Mythic),
-            AdvDescs.MobRaritySpawnAt.locName()
-                .appendText("20"), legendaryMob, consu,
-            Items.CREEPER_HEAD
-        );
 
         Advancement bossMob = mobRarityKill(
-            Rarities.Mobs.get(IRarity.Boss), AdvDescs.BossSpawnAt.locName(), mythicMob, consu, Items.DRAGON_HEAD);
+            Rarities.Mobs.get(IRarity.Boss), AdvDescs.BossSpawnAt.locName(), legendaryMob, consu, Items.DRAGON_HEAD);
 
         SlashRegistry.Bosses()
             .getList()
@@ -134,7 +129,6 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement sal2 = salvageBag(AutoSalvageBag.Items.get(2), sal1, consu);
         Advancement sal3 = salvageBag(AutoSalvageBag.Items.get(3), sal2, consu);
         Advancement sal4 = salvageBag(AutoSalvageBag.Items.get(4), sal3, consu);
-        Advancement sal5 = salvageBag(AutoSalvageBag.Items.get(5), sal4, consu);
 
     }
 

@@ -71,7 +71,7 @@ public class KeyOfUnityItem extends CurrencyItem implements ICurrencyItemEffect,
 
     @Override
     public int getRarityRank() {
-        return Mythic;
+        return Legendary;
     }
 
     @Override

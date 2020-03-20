@@ -15,22 +15,27 @@ public class EpicGear extends BaseEpic implements GearRarity {
 
     @Override
     public float requirementMulti() {
-        return 0.6F;
+        return 0.8F;
     }
 
     @Override
     public float unidentifiedChance() {
-        return 75;
+        return 85;
     }
 
     @Override
     public int AffixChance() {
-        return 60;
+        return 80;
+    }
+
+    @Override
+    public MinMax secondaryStatAmount() {
+        return new MinMax(2, 2);
     }
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(20, 75);
+        return new MinMax(50, 90);
     }
 
     @Override
@@ -40,7 +45,7 @@ public class EpicGear extends BaseEpic implements GearRarity {
 
     @Override
     public float salvageLotteryWinChance() {
-        return 4.5F;
+        return 10;
     }
 
     @Override
@@ -50,12 +55,12 @@ public class EpicGear extends BaseEpic implements GearRarity {
 
     @Override
     public int runeSlots() {
-        return 3;
+        return 4;
     }
 
     @Override
     public float itemTierPower() {
-        return 2;
+        return 2.5F;
     }
 
     @Override

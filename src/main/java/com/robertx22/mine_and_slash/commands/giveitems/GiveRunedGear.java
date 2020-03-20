@@ -34,7 +34,7 @@ public class GiveRunedGear {
                                     .then(Commands.argument(
                                         "rarity",
                                         IntegerArgumentType.integer(
-                                            0, 5)
+                                            0, 4)
                                     )
                                         .then(Commands.argument(
                                             "amount",

@@ -13,7 +13,6 @@ public class RunedGearRarities extends BaseRaritiesContainer<GearRarity> {
         add(RareRunedGear.getInstance());
         add(EpicRunedGear.getInstance());
         add(LegendaryRunedGear.getInstance());
-        add(MythicalRunedGear.getInstance());
 
         this.onInit();
     }

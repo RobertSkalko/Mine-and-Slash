@@ -167,11 +167,9 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
             return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.EPIC_WEIGHT.get();
         } else if (getRarityRank() == 4) {
             return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.LEGENDARY_WEIGHT.get();
-        } else if (getRarityRank() == 5) {
-            return ModConfig.INSTANCE.RarityWeightConfig.CURRENCY.MYTHICAL_WEIGHT.get();
         }
-        return 0;
 
+        return 0;
     }
 
     @Override
