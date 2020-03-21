@@ -78,16 +78,19 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
     protected void init() {
         super.init();
 
+        MMORPG.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
+
         data = Load.statPoints(Minecraft.getInstance().player);
         unitdata = Load.Unit(Minecraft.getInstance().player);
 
         if (data == null || unitdata == null) {
             this.onClose();
+            return;
         }
+        //LvlPointStat
 
         this.guiLeft = (this.width - sizeX) / 2;
         this.guiTop = (this.height - sizeY) / 2;
-        MMORPG.sendToServer(new RequestSyncCapToClient(PlayerCaps.STAT_POINTS));
 
         int y = 0;
 
@@ -202,22 +205,26 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
 
         @Override
         public void renderButton(int x, int y, float f) {
-            super.renderButton(x, y, f);
+            try {
+                super.renderButton(x, y, f);
 
-            TextFormatting format = TextFormatting.YELLOW;
+                TextFormatting format = TextFormatting.YELLOW;
 
-            SingleStatPointData single = data.getStatData(stat);
+                SingleStatPointData single = data.getStatData(stat);
 
-            Stat stat = single.getStat();
+                Stat stat = single.getStat();
 
-            String str =
-                single.stat.formatting + single.stat.shortName + format + ": " + TextFormatting.GREEN + single.points + format;
-            str += ", Current(" + TextFormatting.GREEN + (int) this.unitdata.getUnit()
-                .getCreateStat(stat).val + format + ")";
+                String str =
+                    single.stat.formatting + single.stat.shortName + format + ": " + TextFormatting.GREEN + single.points + format;
+                str += ", Current(" + TextFormatting.GREEN + (int) this.unitdata.getUnit()
+                    .getCreateStat(stat).val + format + ")";
 
-            font.drawStringWithShadow(str, this.x - button_sizeX - 5 - font.getStringWidth(str),
-                this.y - button_sizeY / 2 + font.FONT_HEIGHT, format.getColor()
-            );
+                font.drawStringWithShadow(str, this.x - button_sizeX - 5 - font.getStringWidth(str),
+                    this.y - button_sizeY / 2 + font.FONT_HEIGHT, format.getColor()
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
 

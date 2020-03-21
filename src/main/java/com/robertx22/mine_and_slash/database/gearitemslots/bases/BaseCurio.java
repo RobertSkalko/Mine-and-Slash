@@ -12,6 +12,11 @@ public abstract class BaseCurio extends GearItemSlot {
     }
 
     @Override
+    public int Weight() {
+        return 750;
+    }
+
+    @Override
     public final boolean isGearOfThisType(Item item) { // TODO unsure if this works
         return CuriosAPI.getCurioTags(item)
             .stream()

@@ -66,7 +66,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
 
         if (!world.isRemote) {
 
-            ItemStack bag = player.getHeldItemMainhand();
+            ItemStack bag = player.getHeldItem(hand);
 
             if (bag.getItem() instanceof ItemMasterBag) {
                 NetworkHooks.openGui((ServerPlayerEntity) player, getNamedContainer(bag), extraData -> {
@@ -75,7 +75,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
             }
         }
 
-        return ActionResult.resultFail(player.getHeldItemMainhand());
+        return ActionResult.resultFail(player.getHeldItem(hand));
     }
 
     @Override

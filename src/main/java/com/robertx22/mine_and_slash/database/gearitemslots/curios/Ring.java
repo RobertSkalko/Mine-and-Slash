@@ -71,7 +71,7 @@ public class Ring extends BaseCurio {
 
     @Override
     public int Weight() {
-        return 1500;
+        return super.Weight() * 2;
     }
 
     @Override
