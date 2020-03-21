@@ -59,7 +59,7 @@ public class ElementalAttackDamage extends SingleElementalStat implements IStatE
 
     @Override
     public String locNameForLangFile() {
-        return "Attack " + getElement().name() + " Damage";
+        return getElement().name() + " Damage";
     }
 
     @Override

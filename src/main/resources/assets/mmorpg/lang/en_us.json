@@ -88,17 +88,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.arcanists": "Arcanist's",
@@ -196,6 +185,17 @@
 	"mmorpg.affix.wise": "Wise",
 
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
@@ -657,10 +657,10 @@
 	"mmorpg.stat.arcane_devotion_trait": "Arcane Devotion",
 	"mmorpg.stat.armor": "Armor",
 	"mmorpg.stat.armored": "Armored",
-	"mmorpg.stat.attack_fire_damage": "Attack Fire Damage",
-	"mmorpg.stat.attack_nature_damage": "Attack Nature Damage",
-	"mmorpg.stat.attack_thunder_damage": "Attack Thunder Damage",
-	"mmorpg.stat.attack_water_damage": "Attack Water Damage",
+	"mmorpg.stat.attack_fire_damage": "Fire Damage",
+	"mmorpg.stat.attack_nature_damage": "Nature Damage",
+	"mmorpg.stat.attack_thunder_damage": "Thunder Damage",
+	"mmorpg.stat.attack_water_damage": "Water Damage",
 	"mmorpg.stat.axe_damage": "Axe Damage",
 	"mmorpg.stat.barbarian": "Barbarian",
 	"mmorpg.stat.bleed_mastery_trait": "Bleed Mastery",

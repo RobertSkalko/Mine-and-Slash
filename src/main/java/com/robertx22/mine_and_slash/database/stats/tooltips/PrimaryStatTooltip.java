@@ -22,17 +22,19 @@ public class PrimaryStatTooltip implements IStatTooltipType {
         ITextComponent str = new StringTextComponent("");
 
         if (info.type.equals(StatModTypes.Flat) && stat.IsPercent()) {
-            str.appendSibling(Words.Flat.locName()).appendText(" ");
+            str.appendSibling(Words.Flat.locName())
+                .appendText(" ");
         }
 
         str.appendSibling(stat.locName());
 
         if (info.tooltipInfo.isSet == false) {
             return Styles.REDCOMP()
-                    .appendSibling(new StringTextComponent(" " + stat.getFormattedIcon() + " ").appendSibling(str)
-                                           .appendText(": "));
+                .appendSibling(new StringTextComponent(" " + stat.getFormattedIcon() + " ").appendSibling(str)
+                    .appendText(": "));
         } else {
-            return Styles.GREENCOMP().appendSibling(str.appendText(": "));
+            return Styles.GREENCOMP()
+                .appendSibling(str.appendText(": "));
         }
     }
 
@@ -41,7 +43,7 @@ public class PrimaryStatTooltip implements IStatTooltipType {
 
         float val = info.amount;
 
-        String minusplus = val > 0 ? "+" : "";
+        String minusplus = val > 0 ? "" : "-";
 
         return NameText(info).appendText(minusplus + info.stat.printValue(info.amount));
     }
@@ -66,14 +68,17 @@ public class PrimaryStatTooltip implements IStatTooltipType {
 
             if (type.equals(StatModTypes.Percent) && stat.IsPercent()) {
                 if (info.amount > 0) {
-                    text.appendText(" ").appendSibling(Words.Increased.locName());
+                    text.appendText(" ")
+                        .appendSibling(Words.Increased.locName());
                 } else {
-                    text.appendText(" ").appendSibling(Words.Decreased.locName());
+                    text.appendText(" ")
+                        .appendSibling(Words.Decreased.locName());
                 }
             }
 
         } else {
-            text.appendText("% ").appendSibling(Words.Multi.locName());
+            text.appendText("% ")
+                .appendSibling(Words.Multi.locName());
         }
 
         if (info.useInDepthStats()) {

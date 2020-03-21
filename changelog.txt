@@ -10,6 +10,7 @@
 * removed infusion stats and the 6 items associated with them. I feel the system is kinda lame. It was basically just a power upgrade
 * reduced currency drops as a result
 * reduced player base stats (clear base stats config to notice)
+* armor is no longer given for free as a base stat. This means mages should rely less on it. No more free 20% armor!
 * reduced hunger default cost a bit (config)
 * made jewerly rarer
 * made wisdom the mage defense stat while int is the offense stat

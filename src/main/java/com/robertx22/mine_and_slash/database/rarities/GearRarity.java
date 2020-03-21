@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.rarities;
 
+import com.google.common.base.Preconditions;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.rarities.serialization.SerializedBaseRarity;
@@ -47,6 +48,8 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
             .fromJson(json.getAsJsonObject("stat_percents"));
         rar.secondaryStatsAmount = MinMax.getSerializer()
             .fromJson(json.getAsJsonObject("secondary_stat_amount"));
+
+        Preconditions.checkArgument(!StatPercents().isEmpty());
 
         return rar;
     }

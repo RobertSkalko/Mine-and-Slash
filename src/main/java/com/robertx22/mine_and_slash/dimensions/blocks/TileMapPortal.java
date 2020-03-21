@@ -93,7 +93,7 @@ public class TileMapPortal extends TileEntity {
 
                     }
                 } else {
-                    player.sendMessage(Chats.Not_enough_time.locName());
+
                 }
 
             }

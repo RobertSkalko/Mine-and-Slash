@@ -10,8 +10,8 @@ public class MinMax implements ISerializable<MinMax> {
         return new MinMax(0, 0);
     }
 
-    public int min;
-    public int max;
+    public final int min;
+    public final int max;
 
     public MinMax(int min, int max) {
         this.min = min;
@@ -43,10 +43,17 @@ public class MinMax implements ISerializable<MinMax> {
         return json;
     }
 
+    public boolean isEmpty() {
+        return min == 0 && max == 0;
+    }
+
     @Override
     public MinMax fromJson(JsonObject json) {
-        return new MinMax(json.get("min")
-            .getAsInt(), json.get("max")
-            .getAsInt());
+        int mi = json.get("min")
+            .getAsInt();
+        int ma = json.get("max")
+            .getAsInt();
+
+        return new MinMax(mi, ma);
     }
 }

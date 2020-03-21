@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips;
 
+import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
@@ -31,9 +32,11 @@ public class TooltipStatInfo implements ITooltipList {
     public TooltipInfo tooltipInfo;
 
     public TooltipStatInfo(StatModData data, TooltipInfo info) {
-        this.stat = data.getStatMod().GetBaseStat();
+        this.stat = data.getStatMod()
+            .GetBaseStat();
         this.amount = data.GetActualVal(info.level);
-        this.type = data.getStatMod().getModType();
+        this.type = data.getStatMod()
+            .getModType();
         this.tooltipInfo = info;
         this.statRange = new StatRangeContext(data, info.minmax, info.level);
 
@@ -58,8 +61,12 @@ public class TooltipStatInfo implements ITooltipList {
     public void combine(TooltipStatInfo another) {
         this.amount += another.amount;
         if (this.statRange != null && another.statRange != null) {
-            this.statRange.minmax.min += another.statRange.minmax.min;
-            this.statRange.minmax.max += another.statRange.minmax.max;
+
+            this.statRange.minmax = new MinMax(
+                statRange.minmax.min + another.statRange.minmax.min,
+                statRange.minmax.max + another.statRange.minmax.max
+            );
+
         }
     }
 
@@ -70,7 +77,8 @@ public class TooltipStatInfo implements ITooltipList {
         if (another.statRange != null && this.statRange == null) {
             return false;
         }
-        return stat.GUID().equals(another.stat.GUID()) && type.equals(another.type);
+        return stat.GUID()
+            .equals(another.stat.GUID()) && type.equals(another.type);
     }
 
     @Override
@@ -84,10 +92,13 @@ public class TooltipStatInfo implements ITooltipList {
 
         for (TooltipStatInfo duplicate : duplicates) {
 
-            Optional<TooltipStatInfo> found = list.stream().filter(x -> x.canBeCombined(duplicate)).findFirst();
+            Optional<TooltipStatInfo> found = list.stream()
+                .filter(x -> x.canBeCombined(duplicate))
+                .findFirst();
 
             if (found.isPresent()) {
-                found.get().combine(duplicate);
+                found.get()
+                    .combine(duplicate);
 
             } else {
                 list.add(duplicate);
