@@ -24,6 +24,7 @@ And send me the log. The command should tell me what room is faulty.
 * nerfed stone of corruption, now increases gear lvl by 2 and has 20% more break chance
 * overlays shouldnt render in spectator mode anymore
 * nerfed wis and int a bit
+* dungeons are now filled with obsidian if theres no room there. So less problems with mobs escaping into void.
 * reduced spell dmg gotten from stats
 * buffed arrow barrage and arrow storm
 * buffed higher rarity mob dmg a bit

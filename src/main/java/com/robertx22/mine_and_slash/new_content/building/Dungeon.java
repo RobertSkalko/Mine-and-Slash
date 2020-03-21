@@ -1,17 +1,11 @@
 package com.robertx22.mine_and_slash.new_content.building;
 
-import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.BuiltRoom;
-import com.robertx22.mine_and_slash.new_content.RoomRotation;
 import com.robertx22.mine_and_slash.new_content.RoomSides;
 import com.robertx22.mine_and_slash.new_content.UnbuiltRoom;
 import com.robertx22.mine_and_slash.new_content.enums.RoomSide;
 import com.robertx22.mine_and_slash.new_content.enums.RoomType;
-import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
-import com.robertx22.mine_and_slash.new_content.registry.groups.RoomGroup;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.ChunkPos;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
@@ -121,10 +115,8 @@ public class Dungeon {
     }
 
     public void setupBarriers() {
-        DungeonRoom barrier = new DungeonRoom("", RoomType.END, RoomGroup.TEST);
-        barrier.loc = new ResourceLocation(Ref.MODID, "dun/barrier");
-        RoomRotation rot = new RoomRotation(RoomType.END, new RoomSides(RoomSide.BLOCKED, RoomSide.BLOCKED, RoomSide.BLOCKED, RoomSide.BLOCKED), Rotation.NONE);
-        BuiltRoom built = new BuiltRoom(rot, barrier);
+
+        BuiltRoom built = BuiltRoom.getBarrier();
 
         // add barriers to edges
         for (int i = 0; i < rooms.length; i++) {
@@ -134,6 +126,21 @@ public class Dungeon {
                 }
             }
         }
+
+    }
+
+    public void fillWithBarriers() {
+
+        BuiltRoom built = BuiltRoom.getBarrier();
+
+        for (int i = 0; i < rooms.length; i++) {
+            for (int j = 0; j < rooms[i].length; j++) {
+                if (getRoom(i, j) == null) {
+                    addBarrier(i, j, built);
+                }
+            }
+        }
+
     }
 
     public BuiltRoom getRoomFacing(Direction dir, int x, int z) {

@@ -88,8 +88,9 @@ public class DungeonBuilder {
                     }
 
                 });
-
         }
+
+        dungeon.fillWithBarriers();
 
     }
 
