@@ -48,7 +48,7 @@ public class ServerContainer {
 
         REGEN_HUNGER_COST = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("REGEN_HUNGER_COST", 5D, 0, 1000D);
+            .defineInRange("REGEN_HUNGER_COST", 4D, 0, 1000D);
 
         MOB_STRENGTH_PER_LEVEL_MULTI = builder.comment("This makes mobs increasingly stronger, by default at lvl 100 mobs will be 50% stronger, formula works as multiplying by 1 + [CONFIG_VALUE]")
             .translation("mmorpg.word.")

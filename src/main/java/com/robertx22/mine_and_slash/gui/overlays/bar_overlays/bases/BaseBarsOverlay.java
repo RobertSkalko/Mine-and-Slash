@@ -62,6 +62,9 @@ public abstract class BaseBarsOverlay extends AbstractGui {
 
                     int barPercent = (int) ((int) ((curMS / data.getUnit()
                         .magicShieldData().val * 100)) * maxperc);
+
+                    barPercent = MathHelper.clamp(barPercent, 0, 100);
+
                     Minecraft.getInstance()
                         .getTextureManager()
                         .bindTexture(MAG_SHIELD_TEX);
@@ -210,6 +213,8 @@ public abstract class BaseBarsOverlay extends AbstractGui {
 
         float current = type.getCurrent(p, data);
         float max = type.getMax(p, data);
+
+        current = MathHelper.clamp(current, 0, max);
 
         RenderSystem.color4f(1F, 1F, 1F, 1F);
 

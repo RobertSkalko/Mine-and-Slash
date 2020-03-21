@@ -4,11 +4,13 @@
 * removed alchemy station, professions are a failed system. 
 * higher rarities now have more secondary stats
 * made mobs stronger at higher levels. 
-* removed item rarity configs, now they are configurable as datapacks
+* removed item rarity configs, now they are configurable as datapacks (still unsure if they should be configs or datapacks..)
 * removed wands
 * fixed item dupe with bags with right clicking on offhand
 * removed infusion stats and the 6 items associated with them. I feel the system is kinda lame. It was basically just a power upgrade
 * reduced currency drops as a result
+* reduced player base stats (clear base stats config to notice)
+* reduced hunger default cost a bit (config)
 * made jewerly rarer
 * made wisdom the mage defense stat while int is the offense stat
 * increased ore spawns

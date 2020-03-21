@@ -34,7 +34,7 @@ public class LegendaryGear extends BaseLegendary implements GearRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(50, 100);
+        return new MinMax(60, 100);
     }
 
     @Override

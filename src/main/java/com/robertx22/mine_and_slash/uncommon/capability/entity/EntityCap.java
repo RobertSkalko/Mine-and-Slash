@@ -688,7 +688,7 @@ public class EntityCap {
 
         @Override
         public int getRarity() {
-            return rarity;
+            return MathHelper.clamp(rarity, -2, IRarity.Highest);
         }
 
         @Override
