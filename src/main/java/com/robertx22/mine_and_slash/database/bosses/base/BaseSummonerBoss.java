@@ -24,8 +24,9 @@ public abstract class BaseSummonerBoss extends com.robertx22.mine_and_slash.data
             amount = 10;
         }
 
-        en.addPotionEffect(new EffectInstance(Effects.LEVITATION, 200, 1));
-        en.addPotionEffect(new EffectInstance(Effects.SLOW_FALLING, 5000, 10));
+        en.addPotionEffect(new EffectInstance(Effects.LEVITATION, 50, 1));
+        en.addPotionEffect(new EffectInstance(Effects.SLOW_FALLING, 100, 10));
+        en.addPotionEffect(new EffectInstance(Effects.SPEED, 150, 2));
 
         spawnMinions(en, amount);
 
