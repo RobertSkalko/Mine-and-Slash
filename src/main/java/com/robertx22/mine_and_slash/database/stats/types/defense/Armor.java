@@ -61,7 +61,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat {
 
     @Override
     public float AverageStat() {
-        return 9;
+        return 10;
     }
 
     @Override

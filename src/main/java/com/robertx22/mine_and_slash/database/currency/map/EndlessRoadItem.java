@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
+import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleMapLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.MapReq;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -61,7 +62,7 @@ public class EndlessRoadItem extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(MapReq.INSTANCE);
+        return Arrays.asList(MapReq.INSTANCE, SimpleMapLocReq.LOWER_THAN_MAX_TIER);
     }
 
     @Override

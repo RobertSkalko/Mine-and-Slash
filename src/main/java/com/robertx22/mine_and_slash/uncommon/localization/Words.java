@@ -107,6 +107,7 @@ public enum Words implements IAutoLocName {
     CanOnlyUseOnce("Can only use once"),
     CanOnlyUse10times("Can only use 10 times"),
     Doesnthaveset("Doesn't have set"),
+    TierLessThanMax("Tier less than maximum"),
     AllowedOn("Allowed on"),
     NotAllowedOn("Not Allowed on: "),
     Unique_Gear("Unique Gear"),
