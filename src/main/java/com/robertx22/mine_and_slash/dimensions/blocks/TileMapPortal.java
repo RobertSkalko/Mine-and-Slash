@@ -7,13 +7,12 @@ import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.onevent.world.OnShutdownResetMaps;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
+import com.robertx22.mine_and_slash.uncommon.Statics;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
-import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -57,6 +56,15 @@ public class TileMapPortal extends TileEntity {
     }
 
     public void onDone(PlayerEntity player) {
+
+        if (Statics.EMPTY_POS.equals(pos)) {
+            try {
+                throw new Exception("Empty pos!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         if (WorldUtils.isMapWorldClass(player.world)) {
             Load.playerMapData(player)
                 .teleportPlayerBack(player);
@@ -83,11 +91,10 @@ public class TileMapPortal extends TileEntity {
                         return;
                     }
                     if (WorldUtils.isMapWorld(mapworld)) {
-                        player.sendMessage(Chats.Teleport_started.locName());
 
                         BlockPos p = DungeonUtils.getDungeonStartTeleportPos(cpos);
 
-                        Entity tped = PlayerUtils.changeDimension((ServerPlayerEntity) player, MapManager.getDungeonDimensionType(), p);
+                        PlayerUtils.changeDimension((ServerPlayerEntity) player, MapManager.getDungeonDimensionType(), p);
 
                         MMORPG.devToolsLog("tp to map succeeded");
 
@@ -113,9 +120,13 @@ public class TileMapPortal extends TileEntity {
             ticks = nbt.getInt("ticks");
             dungeonID = nbt.getString("dungeon_id");
 
-            mapDevicePos = new BlockPos(nbt.getInt("xmap"), nbt.getInt("ymap"), nbt.getInt("zmap"));
+            try {
+                mapDevicePos = new BlockPos(nbt.getInt("xmap"), nbt.getInt("ymap"), nbt.getInt("zmap"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-            if (mapDevicePos == new BlockPos(0, 0, 0)) {
+            if (mapDevicePos == null || Statics.EMPTY_POS.equals(mapDevicePos)) {
                 mapDevicePos = this.getPos()
                     .up()
                     .south();

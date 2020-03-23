@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.PlayerWholeMapData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
+import com.robertx22.mine_and_slash.uncommon.Statics;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
@@ -144,6 +145,14 @@ public class PlayerMapCap {
 
         @Override
         public void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player) {
+
+            if (Statics.EMPTY_POS.equals(pos)) {
+                try {
+                    throw new Exception("Empty pos!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
             this.data = new PlayerWholeMapData();
 

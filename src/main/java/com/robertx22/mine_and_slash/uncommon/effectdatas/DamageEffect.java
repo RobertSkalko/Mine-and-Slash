@@ -20,6 +20,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundEvents;
@@ -165,6 +166,33 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             this.canceled = true;
         }
 
+        DmgByElement info = getDmgByElement();
+        float dmg = info.totalDmg;
+
+        if (this.getEffectType()
+            .equals(EffectTypes.BASIC_ATTACK)) {
+
+            if (this.source instanceof PlayerEntity) {
+
+                PlayerEntity player = (PlayerEntity) source;
+
+                float cooldown = sourceData.getAttackCooldown();
+
+                dmg = dmg * (0.2F + cooldown * cooldown * 0.8F);
+
+                if (cooldown < 0.1F || dmg <= 0) {
+
+                    if (event != null) {
+                        player.resetCooldown();
+                        event.setCanceled(true);
+                    }
+
+                    return;
+                }
+
+            }
+        }
+
         if (this.canceled) {
             if (event != null) {
                 event.setAmount(0);
@@ -197,9 +225,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             this.sourceData.onAttackEntity(source, target);
 
-            DmgByElement info = getDmgByElement();
-
-            float dmg = info.totalDmg;
             dmg += getEventDmg() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI.get()
                 .floatValue();
 

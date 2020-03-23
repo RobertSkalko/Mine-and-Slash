@@ -105,6 +105,10 @@ public class EntityCap {
 
         GearItemData getWeaponData(LivingEntity entity);
 
+        void setAttackCooldown(PlayerEntity player);
+
+        float getAttackCooldown();
+
         void setEquipsChanged(boolean bool);
 
         void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self);
@@ -260,6 +264,8 @@ public class EntityCap {
         int tier = 0;
         boolean shouldSync = false;
 
+        float lastHitCooldownStr = 1; //test
+
         EntityDmgStatsData dmgStats = new EntityDmgStatsData();
         ResourcesData resources = new ResourcesData();
         CustomStatsData customStats = new CustomStatsData();
@@ -318,6 +324,8 @@ public class EntityCap {
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
             nbt.putBoolean(SHOULD_SYNC, shouldSync);
 
+            nbt.putFloat("cdr", lastHitCooldownStr);
+
             if (customStats != null) {
                 CustomStats.Save(nbt, customStats);
             }
@@ -351,6 +359,8 @@ public class EntityCap {
             this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
             this.equipsChanged = nbt.getBoolean(EQUIPS_CHANGED);
             this.shouldSync = nbt.getBoolean(SHOULD_SYNC);
+
+            this.lastHitCooldownStr = nbt.getFloat("cdr");
 
             try {
                 this.resources = LoadSave.Load(ResourcesData.class, new ResourcesData(), nbt, RESOURCES_LOC);
@@ -388,9 +398,11 @@ public class EntityCap {
 
             MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
 
-            float vanilla = event_damage * sourcedata.getLevel() * sourcedata.getDMGMultiplierIncreaseByTier();
+            float vanilla = PhysicalDamage.getInstance()
+                .getScaling()
+                .scale(event_damage, sourcedata.getLevel());
 
-            float num = vanilla * rar.DamageMultiplier();
+            float num = vanilla * rar.DamageMultiplier() * sourcedata.getDMGMultiplierIncreaseByTier();
 
             num *= SlashRegistry.getEntityConfig(source, sourcedata).DMG_MULTI;
 
@@ -768,6 +780,16 @@ public class EntityCap {
         }
 
         @Override
+        public void setAttackCooldown(PlayerEntity player) {
+            this.lastHitCooldownStr = player.getCooledAttackStrength(0.5F);
+        }
+
+        @Override
+        public float getAttackCooldown() {
+            return this.lastHitCooldownStr;
+        }
+
+        @Override
         public boolean tryUseWeapon(GearItemData weaponData, LivingEntity source) {
             return tryUseWeapon(weaponData, source, 1);
         }
@@ -783,8 +805,17 @@ public class EntityCap {
 
                     float energyCost = iwep.mechanic()
                         .GetEnergyCost(getLvlForResourceCosts()) * multi;
+
+                    float cooldown = getAttackCooldown();
+
                     float manaCost = iwep.mechanic()
                         .GetManaCost(getLvlForResourceCosts()) * multi;
+
+                    if (cooldown > 0.85F) {
+                        energyCost *= cooldown;
+                        manaCost *= cooldown;
+                        // if player is using attack cooldown nicely, refund a bit of their costs.
+                    }
 
                     ResourcesData.Context ene = new ResourcesData.Context(
                         this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);

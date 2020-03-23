@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonData;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
+import com.robertx22.mine_and_slash.uncommon.Statics;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCap;
@@ -145,12 +146,10 @@ public class WorldMapCap {
             return this.getMap(pos).tier;
         }
 
-        static BlockPos EMPTY_POS = new BlockPos(0, 0, 0);
-
         @Override
         public MapItemData getMap(BlockPos pos) {
 
-            if (pos.equals(EMPTY_POS)) {
+            if (pos.equals(Statics.EMPTY_POS)) {
                 try {
                     throw new Exception("Empty block pos, this appears to happen sometimes with zombie's chickens?");
                 } catch (Exception e) {

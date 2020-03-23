@@ -1,13 +1,26 @@
 package com.robertx22.mine_and_slash.onevent.entity.damage;
 
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 //  seems atk speed isnt actually atk speed, but some weird dmg modification?
 public class OnHurtEvent {
+
+    @SubscribeEvent
+    public static void onPlayerAttackRecordCooldown(AttackEntityEvent event) {
+        try {
+            Load.Unit(event.getPlayer())
+                .setAttackCooldown(event.getPlayer());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @SubscribeEvent
     public static void attack(LivingAttackEvent event) {
