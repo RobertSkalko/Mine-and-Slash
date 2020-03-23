@@ -80,10 +80,13 @@ public class ComplexMobProcessor extends DataProcessor {
             }
 
             for (String x : parts) {
+
                 ResourceLocation loc = new ResourceLocation(x);
+
                 if (ForgeRegistries.ENTITIES.containsKey(loc)) {
                     type = (EntityType<? extends MobEntity>) ForgeRegistries.ENTITIES.getValue(loc);
                 }
+
             }
 
             if (type == null) {
@@ -97,6 +100,10 @@ public class ComplexMobProcessor extends DataProcessor {
                         filter = SpawnedMob.getAll()
                             .stream()
                             .filter(m -> m.isSpider);
+                    } else if (x.equals("nether")) {
+                        filter = SpawnedMob.getAll()
+                            .stream()
+                            .filter(m -> m.isNether);
                     }
 
                 }

@@ -30,10 +30,10 @@ public class RoomList {
             new SpruceMansionRoomAdder().addAllRooms();
             new BrickRoomAdder().addAllRooms();
             new SewersRoomAdder().addAllRooms();
+            new NetherRoomAdder().addAllRooms();
 
             rooms.add(new DungeonRoom("simple_prismarine", RoomType.FOUR_WAY, RoomGroup.MISC));
             rooms.add(new DungeonRoom("prismarine", RoomType.ENTRANCE, RoomGroup.MISC));
-            rooms.add(new DungeonRoom("nether0", RoomType.END, RoomGroup.MISC));
             rooms.add(new DungeonRoom("obsidian_lava0", RoomType.TRIPLE_HALLWAY, RoomGroup.MISC));
             rooms.add(new DungeonRoom("easy_sandstone_puzzle", RoomType.CURVED_HALLWAY, RoomGroup.MISC));
             rooms.add(new DungeonRoom("infested_cellar", RoomType.STRAIGHT_HALLWAY, RoomGroup.MISC));

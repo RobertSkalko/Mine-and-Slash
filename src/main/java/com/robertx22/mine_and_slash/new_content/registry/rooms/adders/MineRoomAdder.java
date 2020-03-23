@@ -31,6 +31,7 @@ public class MineRoomAdder extends BaseRoomAdder {
 
         add("lava_boss_room", RoomType.END);
         add("infested_house", RoomType.CURVED_HALLWAY);
+        add("hideout", RoomType.CURVED_HALLWAY);
         add("tight_mine", RoomType.STRAIGHT_HALLWAY);
         add("train_station", RoomType.TRIPLE_HALLWAY);
 

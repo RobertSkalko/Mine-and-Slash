@@ -29,11 +29,14 @@ public class SpawnedMob implements IWeighted {
 
         if (all.isEmpty()) {
             all.add(new SpawnedMob(EntityType.ZOMBIE, 1200));
-            all.add(new SpawnedMob(EntityType.WITHER_SKELETON, 50));
-            all.add(new SpawnedMob(EntityType.SKELETON, 400).setRanged());
+            all.add(new SpawnedMob(EntityType.WITHER_SKELETON, 50).setNether());
+            all.add(new SpawnedMob(EntityType.SKELETON, 400).setRanged()
+                .setNether());
             all.add(new SpawnedMob(EntityType.BLAZE, 20).setRanged()
-                .setFire());
-            all.add(new SpawnedMob(EntityType.MAGMA_CUBE, 10).setFire());
+                .setFire()
+                .setNether());
+            all.add(new SpawnedMob(EntityType.MAGMA_CUBE, 10).setFire()
+                .setNether());
             all.add(new SpawnedMob(EntityType.ENDERMITE, 5));
             all.add(new SpawnedMob(EntityType.CAVE_SPIDER, 200).setSpider());
             all.add(new SpawnedMob(EntityType.SPIDER, 300).setSpider());
@@ -55,6 +58,7 @@ public class SpawnedMob implements IWeighted {
     public EntityType<? extends MobEntity> type;
     public boolean isRanged = false;
     public boolean isSpider = false;
+    public boolean isNether = false;
     public boolean isFire = false;
 
     int weight = 1000;
@@ -62,6 +66,11 @@ public class SpawnedMob implements IWeighted {
 
     public SpawnedMob setRanged() {
         this.isRanged = true;
+        return this;
+    }
+
+    public SpawnedMob setNether() {
+        this.isNether = true;
         return this;
     }
 
