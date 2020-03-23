@@ -109,6 +109,8 @@ public class EntityCap {
 
         float getAttackCooldown();
 
+        boolean isAttackCooldownInSweepRange();
+
         void setEquipsChanged(boolean bool);
 
         void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self);
@@ -790,6 +792,11 @@ public class EntityCap {
         }
 
         @Override
+        public boolean isAttackCooldownInSweepRange() {
+            return getAttackCooldown() > 0.9F;
+        }
+
+        @Override
         public boolean tryUseWeapon(GearItemData weaponData, LivingEntity source) {
             return tryUseWeapon(weaponData, source, 1);
         }
@@ -806,15 +813,19 @@ public class EntityCap {
                     float energyCost = iwep.mechanic()
                         .GetEnergyCost(getLvlForResourceCosts()) * multi;
 
-                    float cooldown = getAttackCooldown();
-
                     float manaCost = iwep.mechanic()
                         .GetManaCost(getLvlForResourceCosts()) * multi;
 
-                    if (cooldown > 0.85F) {
-                        energyCost *= cooldown;
-                        manaCost *= cooldown;
-                        // if player is using attack cooldown nicely, refund a bit of their costs.
+                    float cooldown = getAttackCooldown();
+
+                    energyCost *= cooldown;
+                    manaCost *= cooldown;
+
+                    // if player is using attack cooldown nicely, dont add any penalty
+                    if (!isAttackCooldownInSweepRange()) {
+                        float penalty = 1.2F;
+                        energyCost *= penalty;
+                        manaCost *= penalty;
                     }
 
                     ResourcesData.Context ene = new ResourcesData.Context(

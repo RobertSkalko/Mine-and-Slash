@@ -22,6 +22,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.common.MinecraftForge;
@@ -169,27 +170,37 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         DmgByElement info = getDmgByElement();
         float dmg = info.totalDmg;
 
-        if (this.getEffectType()
+        if (getEffectType()
             .equals(EffectTypes.BASIC_ATTACK)) {
+            if (weaponType != null && weaponType.isMelee) {
 
-            if (this.source instanceof PlayerEntity) {
+                if (this.source instanceof PlayerEntity) {
 
-                PlayerEntity player = (PlayerEntity) source;
+                    PlayerEntity player = (PlayerEntity) source;
 
-                float cooldown = sourceData.getAttackCooldown();
+                    float cooldown = sourceData.getAttackCooldown();
 
-                dmg = dmg * (0.2F + cooldown * cooldown * 0.8F);
+                    dmg = dmg * (0.2F + cooldown * cooldown * 0.8F);
 
-                if (cooldown < 0.1F || dmg <= 0) {
+                    if (cooldown > 0.9F) {
+                        if (player.getActiveItemStack()
+                            .getItem() instanceof SwordItem == false) {
+                            player.spawnSweepParticles();
+                        }
 
-                    if (event != null) {
-                        player.resetCooldown();
-                        event.setCanceled(true);
                     }
 
-                    return;
-                }
+                    if (cooldown < 0.1F || dmg <= 0) {
 
+                        if (event != null) {
+                            player.resetCooldown();
+                            event.setCanceled(true);
+                        }
+
+                        return;
+                    }
+
+                }
             }
         }
 

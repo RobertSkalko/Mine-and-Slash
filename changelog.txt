@@ -1,6 +1,11 @@
 3.4.1
 * fix unique compatible items
 * fix mob damage level scaling being wrong.
+* implemented attack cooldown. Unsure if perfect. But at least i know it reduces damage based on the attack speed.
+* made attacks with 90%> attack cooldown get refunded energy and mana costs. So if you attack at 95%, you only use 95% energy.
+But if you attack with 20% attack cooldown, you use 100% energy. (up to change) Intended to encourage healthy clicking and some timing.
+* tuned up stat scaling
+* hammers now only aoe when atk cooldown is refreshed enough
 
 3.4.0
 

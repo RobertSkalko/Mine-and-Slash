@@ -13,11 +13,13 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
+import java.util.List;
+
 public class HammerWeaponMechanic extends WeaponMechanic {
 
     @Override
     public ITextComponent tooltipDesc() {
-        return new StringTextComponent(Styles.GREEN + "Aoe Attack");
+        return new StringTextComponent(Styles.GREEN + "Aoe Attack/Single Double Damage");
     }
 
     @Override
@@ -39,22 +41,30 @@ public class HammerWeaponMechanic extends WeaponMechanic {
         int num = (int) unitsource.getUnit()
             .getCreateStat(PhysicalDamage.GUID).val;
 
-        for (LivingEntity en : EntityFinder.start(source, LivingEntity.class, target.getPositionVector())
+        List<LivingEntity> targets = EntityFinder.start(source, LivingEntity.class, target.getPositionVector())
             .radius(radius)
-            .build()) {
+            .build();
 
-            if (en.equals(target)) {
-                DamageEffect dmg = new DamageEffect(event, source, en, num, unitsource, targetUnit,
-                    EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
-                );
-                dmg.Activate();
-            } else {
-                DamageEffect dmg = new DamageEffect(null, source, en, num, unitsource, targetUnit,
-                    EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
-                );
-                dmg.Activate();
+        if (unitsource.isAttackCooldownInSweepRange()) {
+            if (targets.size() == 1) {
+                num *= 2;
             }
 
+            for (LivingEntity en : targets) {
+
+                if (en.equals(target)) {
+                    DamageEffect dmg = new DamageEffect(event, source, en, num, unitsource, targetUnit,
+                        EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
+                    );
+                    dmg.Activate();
+                } else {
+                    DamageEffect dmg = new DamageEffect(null, source, en, num, unitsource, targetUnit,
+                        EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.Hammer
+                    );
+                    dmg.Activate();
+                }
+
+            }
         }
 
         return true;

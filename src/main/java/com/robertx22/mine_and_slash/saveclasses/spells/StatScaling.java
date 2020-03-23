@@ -12,8 +12,10 @@ public enum StatScaling {
 
             StatScaleValue config = ModConfig.INSTANCE.StatScaling.CORE_STAT_SCALING;
 
-            float FIRST_VALUE = config.FIRST_VALUE.get().floatValue();
-            float SECOND_VALUE = config.SECOND_VALUE.get().floatValue();
+            float FIRST_VALUE = config.FIRST_VALUE.get()
+                .floatValue();
+            float SECOND_VALUE = config.SECOND_VALUE.get()
+                .floatValue();
 
             return val * (FIRST_VALUE + (float) lvl / SECOND_VALUE);
         }
@@ -30,13 +32,17 @@ public enum StatScaling {
 
             StatScaleValue config = ModConfig.INSTANCE.StatScaling.NORMAL_SCALING;
 
-            float FIRST_VALUE = config.FIRST_VALUE.get().floatValue();
-            float SECOND_VALUE = config.SECOND_VALUE.get().floatValue();
-            float THIRD_VALUE = config.THIRD_VALUE.get().floatValue();
-            float FOURTH_VALUE = config.FOURTH_VALUE.get().floatValue();
+            float FIRST_VALUE = config.FIRST_VALUE.get()
+                .floatValue();
+            float SECOND_VALUE = config.SECOND_VALUE.get()
+                .floatValue();
+            float THIRD_VALUE = config.THIRD_VALUE.get()
+                .floatValue();
+            float FOURTH_VALUE = config.FOURTH_VALUE.get()
+                .floatValue();
 
             return val * (float) Math.pow(
-                    lvl, MathHelper.clamp(FIRST_VALUE + (float) lvl / SECOND_VALUE, THIRD_VALUE, FOURTH_VALUE));
+                lvl, MathHelper.clamp(FIRST_VALUE + (float) lvl / SECOND_VALUE, THIRD_VALUE, FOURTH_VALUE));
 
         }
     };
