@@ -41,7 +41,7 @@ public class MysticalOrnaments extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL50());
+        return new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromHighLevel());
     }
 
     @Override

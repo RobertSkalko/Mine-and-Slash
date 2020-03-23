@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.cloud.VolcanoEntity
 import com.robertx22.mine_and_slash.database.spells.entities.proj.*;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.mobs.entity.LeapingZombie;
 import com.robertx22.mine_and_slash.new_content.trader.TraderEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -59,6 +60,8 @@ public class EntityRegister {
 
     public static final EntityType<TraderEntity> TRADER;
 
+    public static final EntityType<LeapingZombie> LEAPING_ZOMBIE;
+
     static {
 
         BLIZZARD = projectile(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
@@ -86,6 +89,13 @@ public class EntityRegister {
             .build(Ref.MODID + ":trader");
         TRADER.setRegistryName(new ResourceLocation(Ref.MODID, "trader"));
         ENTITY_TYPES.add(TRADER);
+
+        LEAPING_ZOMBIE = EntityType.Builder.<LeapingZombie>create(LeapingZombie::new, EntityClassification.MISC).setCustomClientFactory(
+            LeapingZombie::new)
+            .size(0.5F, 2F)
+            .build(Ref.MODID + ":leaping_zombie");
+        LEAPING_ZOMBIE.setRegistryName(new ResourceLocation(Ref.MODID, "leaping_zombie"));
+        ENTITY_TYPES.add(LEAPING_ZOMBIE);
 
     }
 

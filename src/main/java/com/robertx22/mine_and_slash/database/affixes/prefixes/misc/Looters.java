@@ -15,7 +15,7 @@ import java.util.List;
 public class Looters extends Prefix {
 
     public Looters() {
-        super(new Requirements(SlotRequirement.bracelet(), LevelRequirement.fromLVL50()));
+        super(new Requirements(SlotRequirement.bracelet(), LevelRequirement.fromHighLevel()));
     }
 
     @Override

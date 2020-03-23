@@ -13,7 +13,7 @@ import java.util.List;
 public class OfCriticalDamage extends Suffix {
 
     public OfCriticalDamage() {
-        super(new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL10()));
+        super(new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLowLevel()));
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 public abstract class BaseRareResourcePrefix extends Prefix {
 
     public BaseRareResourcePrefix() {
-        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL10()));
+        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLowLevel()));
     }
 
     @Override

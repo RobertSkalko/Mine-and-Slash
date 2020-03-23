@@ -11,7 +11,7 @@ import java.util.List;
 public class EmptyAffix extends Suffix {
 
     private EmptyAffix() {
-        super(new Requirements(LevelRequirement.fromLVL50()));
+        super(new Requirements(LevelRequirement.fromHighLevel()));
     }
 
     public static EmptyAffix getInstance() {

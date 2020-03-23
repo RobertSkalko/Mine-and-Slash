@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.advacements;
 
-import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.currency.ChaosOrbItem;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.StoneOfHopeItem;
@@ -17,7 +16,6 @@ import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.AdvDescs;
 import com.robertx22.mine_and_slash.uncommon.localization.AdvTitles;
@@ -56,11 +54,9 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
             .register(consu, id("lvl_penalty"));
 
         Advancement lvl_10 = levelAdv(10, AdvDescs.LevelUp10, parent, consu, ItemHammer.Items.get(0));
-        Advancement lvl_25 = levelAdv(20, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items.get(0));
-        Advancement lvl_50 = levelAdv(50, AdvDescs.LevelUp, lvl_25, consu, ItemHammer.Items.get(1));
-        Advancement lvl_75 = levelAdv(75, AdvDescs.LevelUp, lvl_50, consu, ItemHammer.Items.get(2));
-        Advancement lvl_90 = levelAdv(90, AdvDescs.LevelUp, lvl_75, consu, ItemHammer.Items.get(3));
-        Advancement lvl_100 = levelAdv(100, AdvDescs.LevelUp, lvl_90, consu, ItemHammer.Items.get(4));
+        Advancement lvl_25 = levelAdv(20, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items.get(1));
+        Advancement lvl_50 = levelAdv(50, AdvDescs.LevelUp, lvl_25, consu, ItemHammer.Items.get(2));
+        Advancement lvl_60 = levelAdv(75, AdvDescs.LevelUp, lvl_50, consu, ItemHammer.Items.get(3));
 
         Advancement legendaryMob = mobRarityKill(Rarities.Mobs.get(IRarity.Legendary),
             AdvDescs.MobRaritySpawnAt.locName()
@@ -70,10 +66,6 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
 
         Advancement bossMob = mobRarityKill(
             Rarities.Mobs.get(IRarity.Boss), AdvDescs.BossSpawnAt.locName(), legendaryMob, consu, Items.DRAGON_HEAD);
-
-        SlashRegistry.Bosses()
-            .getList()
-            .forEach(x -> bossKill(x, bossMob, consu));
 
         Advancement first_adv_map = Advancement.Builder.builder()
             .withParent(lvl_10)
@@ -177,22 +169,6 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
                 FrameType.CHALLENGE, true, true, false
             )
             .withCriterion(id, new KillRarityMobTrigger.Instance(rar.Rank()))
-            .register(consumerAdv, id(id));
-
-        return adv;
-    }
-
-    private Advancement bossKill(Boss boss, Advancement parent, Consumer<Advancement> consumerAdv) {
-        String id = "kill_specific_boss_" + boss.GUID();
-
-        Advancement adv = Advancement.Builder.builder()
-            .withParent(parent)
-            .withDisplay(Items.DRAGON_HEAD, Words.KillBoss.locName()
-                    .appendText(" ")
-                    .appendSibling(boss.getName()),
-                AdvDescs.KillSpecificBoss.locName(), null, FrameType.CHALLENGE, true, true, false
-            )
-            .withCriterion(id, new KillBossTrigger.Instance(boss.GUID()))
             .register(consumerAdv, id(id));
 
         return adv;

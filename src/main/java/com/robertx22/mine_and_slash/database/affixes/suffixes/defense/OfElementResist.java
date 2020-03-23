@@ -15,7 +15,7 @@ import java.util.List;
 public class OfElementResist extends Suffix {
 
     public OfElementResist() {
-        super(new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL20()));
+        super(new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromMidLevel()));
     }
 
     @Override

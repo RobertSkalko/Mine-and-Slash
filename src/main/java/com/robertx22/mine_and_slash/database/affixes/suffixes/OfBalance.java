@@ -14,7 +14,7 @@ import java.util.List;
 public class OfBalance extends Suffix {
 
     public OfBalance() {
-        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20()));
+        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromMidLevel()));
     }
 
     @Override

@@ -6,6 +6,10 @@
 But if you attack with 20% attack cooldown, you use 100% energy. (up to change) Intended to encourage healthy clicking and some timing.
 * tuned up stat scaling
 * hammers now only aoe when atk cooldown is refreshed enough
+* hammers do double damage if attacking only 1 target at refreshed cooldown. They should be good as main weapon now
+* reduced max default player lvl to 60
+* tweaked xp formula
+* reduced boss xp 
 
 3.4.0
 

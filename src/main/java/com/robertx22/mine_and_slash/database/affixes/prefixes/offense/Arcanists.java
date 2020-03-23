@@ -17,7 +17,7 @@ import java.util.List;
 public class Arcanists extends Prefix {
 
     public Arcanists() {
-        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20()));
+        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromMidLevel()));
     }
 
     @Override

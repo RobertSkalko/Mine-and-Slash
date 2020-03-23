@@ -39,7 +39,7 @@ public class BossMobRarity extends BaseBossRarity implements MobRarity {
 
     @Override
     public float ExpOnKill() {
-        return 300;
+        return 150;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class SeersGuidance extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.helmetCharmAndNecklace(), LevelRequirement.fromLVL50());
+        return new Requirements(SlotRequirement.helmetCharmAndNecklace(), LevelRequirement.fromHighLevel());
     }
 
     @Override

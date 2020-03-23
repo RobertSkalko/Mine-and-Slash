@@ -16,7 +16,7 @@ import java.util.List;
 public class Magical extends Prefix {
 
     public Magical() {
-        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL10()));
+        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLowLevel()));
     }
 
     @Override

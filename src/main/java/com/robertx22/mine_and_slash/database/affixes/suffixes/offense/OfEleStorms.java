@@ -17,7 +17,7 @@ import java.util.List;
 public class OfEleStorms extends ElementalSuffix {
 
     public OfEleStorms(Elements element) {
-        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL20()), element);
+        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromMidLevel()), element);
     }
 
     @Override

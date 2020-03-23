@@ -17,7 +17,7 @@ import java.util.List;
 public class OfMajorAffinity extends ElementalSuffix {
 
     public OfMajorAffinity(Elements element) {
-        super(new Requirements(SlotRequirement.ring(), LevelRequirement.fromLVL50()), element);
+        super(new Requirements(SlotRequirement.ring(), LevelRequirement.fromHighLevel()), element);
     }
 
     @Override

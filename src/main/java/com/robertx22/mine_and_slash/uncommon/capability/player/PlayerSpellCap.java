@@ -142,7 +142,7 @@ public class PlayerSpellCap {
         @Override
         public int getAllowedPoints(EntityCap.UnitData data) {
 
-            int perlvl = (int) (data.getLevel() * ModConfig.INSTANCE.Server.SPELL_POINTS_PER_LEVEL.get());
+            int perlvl = (int) ((float) ModConfig.INSTANCE.Server.SPELL_POINTS_AT_MAX_LEVEL.get() / (float) ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get() * data.getLevel());
 
             int starting = ModConfig.INSTANCE.Server.STARTING_SPELL_POINTS.get();
 

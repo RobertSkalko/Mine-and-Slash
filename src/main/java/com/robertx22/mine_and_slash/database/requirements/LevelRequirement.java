@@ -45,35 +45,31 @@ public class LevelRequirement extends BaseRequirement<LevelRequirement> {
     }
 
     public static LevelRequirement lowLVLOnly() {
-        return new LevelRequirement(0, 20);
+        return new LevelRequirement(0, 10);
     }
 
     public static LevelRequirement midLVLOnly() {
-        return new LevelRequirement(20, 50);
+        return new LevelRequirement(10, 25);
     }
 
     public static LevelRequirement highLVLOnly() {
-        return new LevelRequirement(50, 75);
+        return new LevelRequirement(25, 50);
     }
 
     public static LevelRequirement endgameLVLOnly() {
-        return new LevelRequirement(75, Integer.MAX_VALUE);
+        return new LevelRequirement(50, Integer.MAX_VALUE);
     }
 
-    public static LevelRequirement fromLVL10() {
+    public static LevelRequirement fromLowLevel() {
         return new LevelRequirement(10);
     }
 
-    public static LevelRequirement fromLVL20() {
-        return new LevelRequirement(20);
+    public static LevelRequirement fromMidLevel() {
+        return new LevelRequirement(25);
     }
 
-    public static LevelRequirement fromLVL50() {
+    public static LevelRequirement fromHighLevel() {
         return new LevelRequirement(50);
-    }
-
-    public static LevelRequirement fromLVL75() {
-        return new LevelRequirement(75);
     }
 
     @Override

@@ -25,6 +25,6 @@ public class EmptySet extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(LevelRequirement.fromLVL50());
+        return new Requirements(LevelRequirement.fromHighLevel());
     }
 }

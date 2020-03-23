@@ -24,12 +24,13 @@ public class ServerContainer {
     public IntValue MAXIMUM_ITEM_INSTABILITY;
     public IntValue FUEL_NEEDED_PER_MAP_ACTIVATION;
 
+    public IntValue TALENT_POINTS_AT_MAX_LEVEL;
+    public IntValue SPELL_POINTS_AT_MAX_LEVEL;
+
     public IntValue STARTING_SPELL_POINTS;
 
-    public DoubleValue MOB_BOSS_CHANCE_IN_MAPS;
     public DoubleValue STAT_POINTS_PER_LEVEL;
-    public DoubleValue TALENT_POINTS_PER_LEVEL;
-    public DoubleValue SPELL_POINTS_PER_LEVEL;
+    public DoubleValue MOB_BOSS_CHANCE_IN_MAPS;
     public DoubleValue NON_MOD_DAMAGE_MULTI;
     public DoubleValue XP_LOSS_ON_DEATH;
     public DoubleValue MOB_ENVIRONMENT_DAMAGE_MULTI;
@@ -74,13 +75,13 @@ public class ServerContainer {
             .translation("mmorpg.word.")
             .defineInRange("STAT_POINTS_PER_LEVEL", 1D, 0, 100);
 
-        TALENT_POINTS_PER_LEVEL = builder.comment(".")
+        TALENT_POINTS_AT_MAX_LEVEL = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("TALENT_POINTS_PER_LEVEL", 1.25D, 0, 100);
+            .defineInRange("TALENT_POINTS_AT_MAX_LEVEL", 120, 0, 100);
 
-        SPELL_POINTS_PER_LEVEL = builder.comment(".")
+        SPELL_POINTS_AT_MAX_LEVEL = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("SPELL_POINTS_PER_LEVEL", 0.25D, 0, 100);
+            .defineInRange("SPELL_POINTS_AT_MAX_LEVEL", 25, 0, 1000);
 
         STARTING_SPELL_POINTS = builder.comment(".")
             .translation("mmorpg.word.")
@@ -155,7 +156,7 @@ public class ServerContainer {
 
         MAXIMUM_PLAYER_LEVEL = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("MAXIMUM_PLAYER_LEVEL", 100, 0, Integer.MAX_VALUE);
+            .defineInRange("MAXIMUM_PLAYER_LEVEL", 60, 0, Integer.MAX_VALUE);
 
         NON_MOD_DAMAGE_MULTI = builder.comment(".")
             .translation("mmorpg.word.")

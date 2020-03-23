@@ -17,7 +17,7 @@ import java.util.List;
 public class OfRockPiercing extends Suffix {
 
     public OfRockPiercing() {
-        super(new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL50()));
+        super(new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromHighLevel()));
     }
 
     @Override
@@ -28,7 +28,7 @@ public class OfRockPiercing extends Suffix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(new ElementalPeneFlat(Elements.Physical), new PhysicalDamagePercent(),
-                             new ElementalPenePercent(Elements.Physical)
+            new ElementalPenePercent(Elements.Physical)
         );
     }
 

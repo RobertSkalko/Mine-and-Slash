@@ -15,7 +15,7 @@ import java.util.List;
 public class ElementImbued extends ElementalPrefix {
 
     public ElementImbued(Elements element) {
-        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLVL10()), element);
+        super(new Requirements(SlotRequirement.jewerlyOnly(), LevelRequirement.fromLowLevel()), element);
     }
 
     @Override

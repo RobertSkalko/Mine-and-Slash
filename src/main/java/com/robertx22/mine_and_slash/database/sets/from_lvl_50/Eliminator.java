@@ -39,7 +39,7 @@ public class Eliminator extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(LevelRequirement.fromLVL50(), SlotRequirement.armorsOnlyNoOffHand());
+        return new Requirements(LevelRequirement.fromHighLevel(), SlotRequirement.armorsOnlyNoOffHand());
     }
 
     @Override

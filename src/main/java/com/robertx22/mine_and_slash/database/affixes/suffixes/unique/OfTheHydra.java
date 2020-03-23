@@ -16,7 +16,7 @@ import java.util.List;
 public class OfTheHydra extends Suffix {
 
     public OfTheHydra() {
-        super(new Requirements(SlotRequirement.helmet(), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)));
+        super(new Requirements(SlotRequirement.helmet(), LevelRequirement.fromHighLevel(), new UniqueTierRequirement(10)));
     }
 
     @Override

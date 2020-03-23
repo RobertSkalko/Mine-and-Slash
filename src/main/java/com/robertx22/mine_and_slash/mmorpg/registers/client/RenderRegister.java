@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.bases.MySpriteRende
 import com.robertx22.mine_and_slash.database.spells.entities.special.RangerArrowRenderer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
+import com.robertx22.mine_and_slash.mobs.renderer.ModZombieRenderer;
 import com.robertx22.mine_and_slash.new_content.trader.TraderRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.TridentRenderer;
@@ -27,6 +28,8 @@ public class RenderRegister {
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.THUNDER_SPEAR, TridentRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.RANGER_ARROW, RangerArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.TRADER, TraderRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.LEAPING_ZOMBIE, ModZombieRenderer::new);
 
     }
 

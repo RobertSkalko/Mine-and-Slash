@@ -15,7 +15,7 @@ import java.util.List;
 public class OfBehemoths extends Suffix {
 
     public OfBehemoths() {
-        super(new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL50()));
+        super(new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromHighLevel()));
     }
 
     @Override

@@ -17,7 +17,7 @@ import java.util.List;
 public class OfGodhood extends Suffix {
 
     public OfGodhood() {
-        super(new Requirements(SlotRequirement.helmet(), LevelRequirement.fromLVL50(), new UniqueTierRequirement(10)));
+        super(new Requirements(SlotRequirement.helmet(), LevelRequirement.fromHighLevel(), new UniqueTierRequirement(10)));
     }
 
     @Override

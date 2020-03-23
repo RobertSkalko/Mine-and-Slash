@@ -36,7 +36,7 @@ public class RoyalThiefAdornments extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromLVL50());
+        return new Requirements(SlotRequirement.armorsOnly(), LevelRequirement.fromHighLevel());
     }
 
     @Override

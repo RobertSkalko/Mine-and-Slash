@@ -15,7 +15,7 @@ import java.util.List;
 public class OfCriticalUnity extends Suffix {
 
     public OfCriticalUnity() {
-        super(new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL10()));
+        super(new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLowLevel()));
     }
 
     @Override

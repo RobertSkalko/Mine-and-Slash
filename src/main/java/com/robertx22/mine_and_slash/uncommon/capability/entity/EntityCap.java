@@ -436,11 +436,15 @@ public class EntityCap {
 
         }
 
-        public static int equateXp(double xp) {
-            return (int) Math.floor(xp + 340 * Math.pow(2, xp / 9));
+        public static int equateXp(double lvl) {
+            return (int) Math.floor(lvl + 340 * Math.pow(2, lvl / 9));
         }
 
         public static int levelToExp(int level) {
+            if (true) {
+                return level * level * level * 10;
+            }
+
             double xp = 0;
 
             for (int i = 1; i < level; i++)

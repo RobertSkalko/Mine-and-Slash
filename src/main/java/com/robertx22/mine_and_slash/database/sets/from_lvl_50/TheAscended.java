@@ -41,7 +41,7 @@ public class TheAscended extends Set {
 
     @Override
     public Requirements requirements() {
-        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.fromLVL50());
+        return new Requirements(SlotRequirement.armorsOnlyNoOffHand(), LevelRequirement.fromHighLevel());
     }
 
     @Override

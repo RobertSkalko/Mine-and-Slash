@@ -14,7 +14,7 @@ import java.util.List;
 public class MagicSiphon extends Prefix {
 
     public MagicSiphon() {
-        super(new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromLVL20()));
+        super(new Requirements(SlotRequirement.weaponsOnly(), LevelRequirement.fromMidLevel()));
     }
 
     @Override
