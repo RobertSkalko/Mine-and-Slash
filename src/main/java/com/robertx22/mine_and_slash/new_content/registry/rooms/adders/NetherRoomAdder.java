@@ -18,8 +18,10 @@ public class NetherRoomAdder extends BaseRoomAdder {
 
         add("boss2", RoomType.END).setBoss();
         add("nether0", RoomType.END);
+        add("hidden_lever_boss", RoomType.END).setBoss();
 
         add("0", RoomType.ENTRANCE);
+        add("hidden_chest_lava", RoomType.ENTRANCE);
 
         add("blazes", RoomType.FOUR_WAY);
         add("wart_farm", RoomType.FOUR_WAY);

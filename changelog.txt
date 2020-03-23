@@ -3,8 +3,8 @@
 * fix mob damage level scaling being wrong.
 * implemented attack cooldown. Unsure if perfect. But at least i know it reduces damage based on the attack speed.
 * made attacks with 90%> attack cooldown get refunded energy and mana costs. So if you attack at 95%, you only use 95% energy.
-But if you attack with 20% attack cooldown, you use 100% energy. (up to change) Intended to encourage healthy clicking and some timing.
-* tuned up stat scaling
+But if you attack with 20% attack cooldown, you use more energy. (up to change) Intended to encourage healthy clicking and some timing.
+* tuned up stat scaling (config)
 * hammers now only aoe when atk cooldown is refreshed enough
 * hammers do double damage if attacking only 1 target at refreshed cooldown. They should be good as main weapon now
 * reduced max default player lvl to 60
