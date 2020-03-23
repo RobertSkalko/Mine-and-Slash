@@ -64,7 +64,7 @@ public class ItemMasterBag extends BaseBagItem implements IAutoLocName {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, @Nonnull Hand hand) {
 
-        if (!world.isRemote) {
+        if (!world.isRemote && hand == Hand.MAIN_HAND) {
 
             ItemStack bag = player.getHeldItem(hand);
 

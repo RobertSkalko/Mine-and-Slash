@@ -137,7 +137,7 @@ public enum Words implements IAutoLocName {
     Offhand("Offhand"),
     RunesNeeded("Runes needed"),
 
-    Item_modifiable_in_station("Can be used inside Gear Modify Station"),
+    Item_modifiable_in_station("Can be used inside Modify Station"),
     unlocks_runeword_combo("Unlocks RuneWord combination."),
 
     Press_Shift_For_Setup_Info("Press Shift For Setup Info"),
@@ -321,8 +321,6 @@ public enum Words implements IAutoLocName {
     DoNotBuildInMaps("Do not build in maps!"),
 
     World_Type("World Type"),
-
-    Gear_Modify("Gear Modify"),
 
     Repair_Station("Repair Station");
 

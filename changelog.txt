@@ -1,3 +1,5 @@
+3.4.1
+* fix unique compatible items
 3.4.0
 
 * removed mythic rarity, epics are now purple, rares are now blue. Higher rarities are now much better than lower ones
