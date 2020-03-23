@@ -10,6 +10,7 @@ But if you attack with 20% attack cooldown, you use 100% energy. (up to change) 
 * reduced max default player lvl to 60
 * tweaked xp formula
 * reduced boss xp 
+* added nether dungeon theme
 
 3.4.0
 

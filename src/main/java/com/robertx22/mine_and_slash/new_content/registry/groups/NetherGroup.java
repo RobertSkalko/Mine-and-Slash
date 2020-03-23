@@ -6,7 +6,7 @@ import java.util.List;
 public class NetherGroup extends RoomGroup {
 
     public NetherGroup() {
-        super("nether", 50099999);
+        super("nether", 750);
         this.canBeMainTheme = true;
         this.canSpawnFireMobs = true;
     }

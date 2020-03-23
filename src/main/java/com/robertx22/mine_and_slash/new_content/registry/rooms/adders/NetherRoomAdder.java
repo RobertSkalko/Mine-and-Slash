@@ -19,6 +19,8 @@ public class NetherRoomAdder extends BaseRoomAdder {
         add("boss2", RoomType.END).setBoss();
         add("nether0", RoomType.END);
 
+        add("0", RoomType.ENTRANCE);
+
         add("blazes", RoomType.FOUR_WAY);
         add("wart_farm", RoomType.FOUR_WAY);
         add("tower_of_doom", RoomType.FOUR_WAY);
