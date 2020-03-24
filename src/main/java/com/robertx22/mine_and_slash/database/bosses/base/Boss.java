@@ -24,7 +24,17 @@ public abstract class Boss implements ISlashRegistryEntry<Boss>, IApplyableStats
     public List<TickAction> tickActions = new ArrayList<>();
 
     public final void onTick(LivingEntity en) {
-        tickActions.forEach(x -> x.onTick(en));
+
+        if (en instanceof MobEntity) {
+            MobEntity mob = (MobEntity) en;
+
+            if (mob.getAttackTarget() != null) {
+                tickActions.forEach(x -> x.onTick(en));
+            }
+        } else {
+            tickActions.forEach(x -> x.onTick(en));
+        }
+
     }
 
     public abstract IParticleData getParticle();
@@ -32,7 +42,8 @@ public abstract class Boss implements ISlashRegistryEntry<Boss>, IApplyableStats
     public abstract ITextComponent getName();
 
     public final ITextComponent getNameFor(LivingEntity en) {
-        return getName().appendText(" ").appendSibling(en.getDisplayName());
+        return getName().appendText(" ")
+            .appendSibling(en.getDisplayName());
     }
 
     public void onSpawn(LivingEntity en) {
@@ -47,10 +58,11 @@ public abstract class Boss implements ISlashRegistryEntry<Boss>, IApplyableStats
 
     public void spawnMinion(BlockPos p, MobEntity minion, World world) {
         minion.setPosition(p.getX(), p.getY(), p.getZ());
-        minion.getCapability(BossCap.Data).ifPresent(x -> x.setIsBoss(false));
+        minion.getCapability(BossCap.Data)
+            .ifPresent(x -> x.setIsBoss(false));
 
         minion.onInitialSpawn(
-                world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, (CompoundNBT) null);
+            world, world.getDifficultyForLocation(p), SpawnReason.REINFORCEMENT, null, (CompoundNBT) null);
 
         world.addEntity(minion);
 

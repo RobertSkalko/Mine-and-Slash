@@ -64,7 +64,6 @@ public class RegisterEvents {
         register(OnTrackEntity.class);
         register(OnMobSpawn.class);
         register(OnTargetEvent.class);
-        register(TridentSpawn.class);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 

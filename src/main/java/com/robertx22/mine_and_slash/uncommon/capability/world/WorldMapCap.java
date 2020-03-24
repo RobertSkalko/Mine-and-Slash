@@ -150,22 +150,17 @@ public class WorldMapCap {
         public MapItemData getMap(BlockPos pos) {
 
             if (pos.equals(Statics.EMPTY_POS)) {
-                try {
-                    throw new Exception("Empty block pos, this appears to happen sometimes with zombie's chickens?");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return new MapItemData();
-                }
+                return MapItemData.empty();
             }
 
             try {
                 return data.getData(pos).mapData;
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Failed getting map data for pos: " + pos.toString());
             }
 
             System.out.println("No data map found, returning blank default.");
-            return new MapItemData();
+            return MapItemData.empty();
 
         }
 

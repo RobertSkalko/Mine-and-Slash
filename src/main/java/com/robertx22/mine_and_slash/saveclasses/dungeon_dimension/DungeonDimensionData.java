@@ -7,6 +7,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.border.WorldBorder;
 
 import java.util.HashMap;
@@ -54,6 +55,8 @@ public class DungeonDimensionData {
             .getWorldBorder();
 
         int max = border.getSize() / 16 / 2;
+
+        max = MathHelper.clamp(max, 0, 29999984 / 2); // don't be higher than normal mc border
 
         while (id.isEmpty() || hasData(id)) {
 

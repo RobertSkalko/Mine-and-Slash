@@ -79,10 +79,16 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
         Map.Save(stack, this);
     }
 
+    private static MapItemData empty;
+
     public static MapItemData empty() {
-        MapItemData map = new MapItemData();
-        map.mapUUID = "error";
-        return map;
+
+        if (empty == null) {
+            empty = new MapItemData();
+            empty.mapUUID = "error";
+        }
+
+        return empty;
 
     }
 

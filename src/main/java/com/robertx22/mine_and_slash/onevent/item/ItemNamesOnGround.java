@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.item;
 
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -15,33 +16,43 @@ public class ItemNamesOnGround {
     @SubscribeEvent
     public static void onJoin(RenderNameplateEvent event) {
 
-        if (ClientContainer.INSTANCE.RENDER_ITEM_NAMES_ON_GROUND.get()) {
-            if (event.getEntity() instanceof ItemEntity) {
+        try {
+            if (ClientContainer.INSTANCE.RENDER_ITEM_NAMES_ON_GROUND.get()) {
+                if (event.getEntity() instanceof ItemEntity) {
 
-                ItemEntity item = (ItemEntity) event.getEntity();
+                    ItemEntity item = (ItemEntity) event.getEntity();
 
-                boolean render = false;
+                    float distance = item.getDistance(MMORPG.proxy.getPlayerEntityFromContext(null));
 
-                if (item.getItem()
-                    .getItem()
-                    .getRegistryName()
-                    .getNamespace()
-                    .equals(Ref.MODID)) {
+                    if (distance < 20) {
 
-                    render = true;
-                }
+                        boolean render = false;
 
-                GearItemData gear = Gear.Load(item.getItem());
+                        if (item.getItem()
+                            .getItem()
+                            .getRegistryName()
+                            .getNamespace()
+                            .equals(Ref.MODID)) {
 
-                if (gear != null) {
-                    render = true;
-                    event.setContent(CLOC.translate(gear.GetDisplayName(item.getItem())));
-                }
+                            render = true;
+                        }
 
-                if (render) {
-                    event.setResult(Event.Result.ALLOW);
+                        GearItemData gear = Gear.Load(item.getItem());
+
+                        if (gear != null) {
+                            render = true;
+                            event.setContent(CLOC.translate(gear.getOnGroundDisplayName()));
+                        }
+
+                        if (render) {
+
+                            event.setResult(Event.Result.ALLOW);
+                        }
+                    }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

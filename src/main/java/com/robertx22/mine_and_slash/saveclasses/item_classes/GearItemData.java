@@ -229,6 +229,10 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
 
     }
 
+    public ITextComponent getOnGroundDisplayName() {
+        return new SText(getRarity().textFormatting() + "").appendSibling(GetBaseGearType().locName());
+    }
+
     public ITextComponent GetDisplayName(ItemStack stack) {
 
         if (!isIdentified()) {

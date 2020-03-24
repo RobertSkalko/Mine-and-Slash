@@ -1,5 +1,10 @@
 3.4.3
 * added experimental way that makes thrown weapons work.
+ (mod devs literally just have to set player as the true damage source and have the itemstack saved somewhere in either the class fields, nbt or datamanager.)
+* better item names on ground, now also works for all items with stats
+* reduced log spam
+* item names only render when close now, woops.
+
 3.4.2
 * creative players can now destroy dungeon blocks and place them.
 * should fix mending wasting lvls if cant be repaired
