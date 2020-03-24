@@ -82,6 +82,7 @@ public class RegisterEvents {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnTooltip.class);
             register(TraderTooltipEvent.class);
+            register(ItemNamesOnGround.class);
 
             FMLJavaModLoadingContext.get()
                 .getModEventBus()

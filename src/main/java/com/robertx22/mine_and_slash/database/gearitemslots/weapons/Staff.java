@@ -34,6 +34,11 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
+    public boolean isMageWeapon() {
+        return true;
+    }
+
+    @Override
     public boolean isMeleeWeapon() {
         return true;
     }

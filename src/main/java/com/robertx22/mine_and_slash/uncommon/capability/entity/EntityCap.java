@@ -105,6 +105,8 @@ public class EntityCap {
 
         GearItemData getWeaponData(LivingEntity entity);
 
+        int getLastHitTicksExisted();
+
         void setAttackCooldown(PlayerEntity player);
 
         float getAttackCooldown();
@@ -266,7 +268,8 @@ public class EntityCap {
         int tier = 0;
         boolean shouldSync = false;
 
-        float lastHitCooldownStr = 1; //test
+        float lastHitCooldownStr = 1;
+        int lastHitTicks = 0;
 
         EntityDmgStatsData dmgStats = new EntityDmgStatsData();
         ResourcesData resources = new ResourcesData();
@@ -327,6 +330,7 @@ public class EntityCap {
             nbt.putBoolean(SHOULD_SYNC, shouldSync);
 
             nbt.putFloat("cdr", lastHitCooldownStr);
+            nbt.putInt("lht", lastHitTicks);
 
             if (customStats != null) {
                 CustomStats.Save(nbt, customStats);
@@ -363,6 +367,7 @@ public class EntityCap {
             this.shouldSync = nbt.getBoolean(SHOULD_SYNC);
 
             this.lastHitCooldownStr = nbt.getFloat("cdr");
+            this.lastHitTicks = nbt.getInt("lht");
 
             try {
                 this.resources = LoadSave.Load(ResourcesData.class, new ResourcesData(), nbt, RESOURCES_LOC);
@@ -786,8 +791,14 @@ public class EntityCap {
         }
 
         @Override
+        public int getLastHitTicksExisted() {
+            return this.lastHitTicks;
+        }
+
+        @Override
         public void setAttackCooldown(PlayerEntity player) {
             this.lastHitCooldownStr = player.getCooledAttackStrength(0.5F);
+            this.lastHitTicks = player.ticksExisted;
         }
 
         @Override

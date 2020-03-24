@@ -29,11 +29,13 @@ public class FuelSlot extends Slot {
                 put(Items.EMERALD, 200);
                 put(Items.REDSTONE, 3);
 
-                put(ItemOre.ItemOres.get(0), 4);
-                put(ItemOre.ItemOres.get(1), 20);
-                put(ItemOre.ItemOres.get(2), 100);
-                put(ItemOre.ItemOres.get(3), 1000);
-                put(ItemOre.ItemOres.get(4), 10000);
+                int ore = 3;
+
+                for (int i = 0; i < 5; i++) {
+                    put(ItemOre.ItemOres.get(i), ore);
+                    ore *= 9;
+
+                }
 
             }
         }

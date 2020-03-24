@@ -19,6 +19,7 @@ public class ItemStaff extends BaseWeaponItem {
 
     public ItemStaff(int rar) {
         super(rar);
+        this.attackSpeed = -2.6F;
     }
 
     @Override

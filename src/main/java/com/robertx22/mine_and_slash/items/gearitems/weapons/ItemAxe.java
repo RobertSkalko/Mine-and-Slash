@@ -17,12 +17,15 @@ public class ItemAxe extends BaseWeaponItem {
 
     public ItemAxe(int rar) {
         super(rar);
+
+        this.attackSpeed = -2.6F;
     }
 
     @Override
     public String locNameForLangFile() {
         Rarity rar = Rarities.Gears.get(rarity);
         return rar.textFormatting() + "Axe";
+
     }
 
     /**

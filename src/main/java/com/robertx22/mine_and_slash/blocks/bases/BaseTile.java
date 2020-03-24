@@ -108,7 +108,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
         return ints;
     }
 
-    private boolean containsSlot(int index, int[] slots) {
+    public boolean containsSlot(int index, int[] slots) {
 
         for (int i : this.inputSlots()) {
             if (i == index) {

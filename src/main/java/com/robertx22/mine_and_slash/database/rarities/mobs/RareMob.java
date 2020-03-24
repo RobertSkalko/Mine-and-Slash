@@ -15,22 +15,22 @@ public class RareMob extends BaseRare implements MobRarity {
 
     @Override
     public float StatMultiplier() {
-        return 1.5F;
+        return 2;
     }
 
     @Override
     public float DamageMultiplier() {
-        return 1.5F;
+        return 2F;
     }
 
     @Override
     public float HealthMultiplier() {
-        return 1.5F;
+        return 2F;
     }
 
     @Override
     public float LootMultiplier() {
-        return 1.75F;
+        return 2;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class RareMob extends BaseRare implements MobRarity {
 
     @Override
     public float ExpOnKill() {
-        return 10;
+        return 15;
     }
 
     @Override

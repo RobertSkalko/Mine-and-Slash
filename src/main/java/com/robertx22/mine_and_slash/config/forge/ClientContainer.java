@@ -26,6 +26,7 @@ public class ClientContainer {
     public DmgParticleConfig dmgParticleConfig;
 
     public BooleanValue SHOW_AFFIXED_NAME;
+    public BooleanValue RENDER_ITEM_NAMES_ON_GROUND;
     public BooleanValue RENDER_MOB_HEALTH_GUI;
     public BooleanValue SHOW_LOW_ENERGY_MANA_WARNING;
     public BooleanValue SHOW_VANILLA_HEARTS;
@@ -58,6 +59,9 @@ public class ClientContainer {
         RENDER_SIMPLE_MOB_BAR = builder.comment(".")
             .translation("mmorpg.config.")
             .define("RENDER_SIMPLE_MOB_BAR", true);
+
+        RENDER_ITEM_NAMES_ON_GROUND = builder.comment(".")
+            .define("RENDER_ITEM_NAMES_ON_GROUND", true);
 
         SHOW_AFFIXED_NAME = builder.comment(".")
             .translation("mmorpg.config.show_item_affixes")

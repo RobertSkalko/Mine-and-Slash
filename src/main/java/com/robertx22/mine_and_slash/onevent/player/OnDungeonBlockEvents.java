@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.new_content.chests.MapChestBlock;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -41,7 +42,13 @@ public class OnDungeonBlockEvents {
     public static void onBreak(BlockEvent.BreakEvent event) {
 
         try {
+
             if (isDungeon(event.getPlayer())) {
+
+                if (event.getPlayer()
+                    .isCreative()) {
+                    return;
+                }
 
                 boolean can = canBreakBlock(event.getState()
                     .getBlock());
@@ -60,6 +67,15 @@ public class OnDungeonBlockEvents {
     @SubscribeEvent
     public static void onPlace(BlockEvent.EntityPlaceEvent event) {
         if (isDungeon(event.getEntity())) {
+
+            if (event.getEntity() instanceof PlayerEntity) {
+                PlayerEntity player = (PlayerEntity) event.getEntity();
+
+                if (player.isCreative()) {
+                    return;
+                }
+            }
+
             event.setCanceled(true);
         }
     }

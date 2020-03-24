@@ -52,8 +52,12 @@ public class SpellHotbarOverlay extends AbstractGui {
         int x = 0;
         int y = (int) (mc.mainWindow.getScaledHeight() / 2 - HEIGHT / 2);
 
+        RenderSystem.enableBlend(); // enables transparency
+
         renderHotbar(x, y);
         renderSpellsOnHotbar(x, y);
+
+        RenderSystem.disableBlend(); // enables transparency
 
     }
 
@@ -87,13 +91,9 @@ public class SpellHotbarOverlay extends AbstractGui {
 
                         percent = MathHelper.clamp(percent + 0.1F, 0.03F, 1F); // this is a hacky way to make spell cooldowns more predictable
 
-                        RenderSystem.enableBlend(); // enables transparency
-
                         mc.getTextureManager()
                             .bindTexture(COOLDOWN_TEX);
                         this.blit(xs, ys, 0, 0, 32, (int) (32 * percent), 32, 32);
-
-                        RenderSystem.disableBlend(); // enables transparency
 
                     }
                 }

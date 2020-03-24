@@ -17,4 +17,18 @@ public interface MyForgeItem extends IForgeItem {
         return !ModConfig.INSTANCE.Server.ONLY_REPAIR_IN_STATION.get();
     }
 
+    @Override
+    default boolean isDamaged(ItemStack stack) {
+        if (ModConfig.INSTANCE.Server.ONLY_REPAIR_IN_STATION.get()) {
+            return false; // say its fine so mending doesnt spend exp
+        } else {
+            return stack.getDamage() > 0;
+        }
+    }
+
+    @Override
+    default boolean showDurabilityBar(ItemStack stack) {
+        return stack.getDamage() > 0;
+    }
+
 }

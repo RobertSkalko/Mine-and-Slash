@@ -170,6 +170,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     }
 
+    public boolean isMageWeapon() {
+        return false;
+    }
+
     public Item getItemForRarity(int rarityNum) {
 
         if (getItemsForRaritiesMap().containsKey(rarityNum)) {

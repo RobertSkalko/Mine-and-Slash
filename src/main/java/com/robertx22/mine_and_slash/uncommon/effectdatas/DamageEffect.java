@@ -178,6 +178,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
                     PlayerEntity player = (PlayerEntity) source;
 
+                    // TODO SEEMS NOT NEEDED if (false && player.ticksExisted != sourceData.getLastHitTicksExisted()) { // allow sword sweep and other aoe stuff that happens at same tick
+
                     float cooldown = sourceData.getAttackCooldown();
 
                     dmg = dmg * (0.2F + cooldown * cooldown * 0.8F);
@@ -199,8 +201,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
                         return;
                     }
-
                 }
+
             }
         }
 

@@ -212,6 +212,11 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
             if (OnDungeonBlockEvents.canBreakBlock(block)) {
                 return true;
             }
+
+            if (player.isCreative()) {
+                return true;
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

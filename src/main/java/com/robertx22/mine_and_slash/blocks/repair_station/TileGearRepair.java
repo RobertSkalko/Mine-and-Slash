@@ -13,6 +13,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 
@@ -28,6 +29,26 @@ public class TileGearRepair extends BaseTile {
     @Override
     public boolean isItemValidInput(ItemStack stack) {
         return true;
+    }
+
+    @Override
+    public boolean canInsertItem(int index, ItemStack itemStackIn, Direction direction) {
+
+        if (this.isAutomatable() && containsSlot(index, this.inputSlots())) {
+            // don't insert shit
+            return this.isItemValidInput(itemStackIn);
+        }
+
+        if (FIRST_FUEL_SLOT == index) {
+            if (direction == Direction.NORTH || direction == Direction.EAST ||
+                direction == Direction.SOUTH || direction == Direction.WEST) {
+
+                return true;
+
+            }
+        }
+
+        return false;
     }
 
     @Override

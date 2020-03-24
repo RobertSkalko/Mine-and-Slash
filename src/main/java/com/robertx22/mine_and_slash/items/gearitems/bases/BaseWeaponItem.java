@@ -34,6 +34,8 @@ public abstract class BaseWeaponItem extends TieredItem implements IAutoLocName,
         this.rarity = rar;
     }
 
+    public float attackSpeed = -2.4F;
+
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment) {
         return enchantment.type.canEnchantItem(Items.DIAMOND_SWORD) && isNotInEnchantBlackList(enchantment);
@@ -82,6 +84,11 @@ public abstract class BaseWeaponItem extends TieredItem implements IAutoLocName,
                     AttributeModifier.Operation.ADDITION
                 )
             );
+            map.put(
+                SharedMonsterAttributes.ATTACK_SPEED.getName(),
+                new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier",
+                    (double) this.attackSpeed, AttributeModifier.Operation.ADDITION));
+
         }
 
         return map;

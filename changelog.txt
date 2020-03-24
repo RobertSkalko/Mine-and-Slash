@@ -1,3 +1,11 @@
+3.4.2
+* creative players can now destroy dungeon blocks and place them.
+* should fix mending wasting lvls if cant be repaired
+* repair station should accept fuels now with hoppers by side
+* now by default renders loot item names on ground
+* added a recipe to break down ores
+* ore/fuel ratio should have no loss now
+
 3.4.1
 * fix unique compatible items
 * fix mob damage level scaling being wrong.
