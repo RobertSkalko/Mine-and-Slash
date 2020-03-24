@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -19,7 +20,7 @@ import java.util.List;
 public class CollectGearEvent {
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
-    public static void onGiveExp(MineAndSlashEvents.CollectGearStacksEvent event) {
+    public static void collectStacks(MineAndSlashEvents.CollectGearStacksEvent event) {
 
         getEquipsExcludingWeapon(event.getEntityLiving()).forEach(x -> event.add(x));
         addHeldItems(event);
@@ -93,6 +94,19 @@ public class CollectGearEvent {
                     .sendMessage(new StringTextComponent("You can't wear a weapon in offhand."));
             }
 
+        }
+
+        if (!hasWep) {
+            if (event.damageSourceEntity != null) {
+                ItemStack tryThrownStack = EntityUtils.getWeaponStackFromThrownEntity(event.damageSourceEntity);
+
+                if (tryThrownStack != null) {
+                    GearItemData wep = Gear.Load(tryThrownStack);
+                    if (wep != null) {
+                        event.add(wep);
+                    }
+                }
+            }
         }
     }
 

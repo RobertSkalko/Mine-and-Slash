@@ -24,7 +24,7 @@ public class SpruceMansionRoomAdder extends BaseRoomAdder {
 
         add("0", RoomType.ENTRANCE);
 
-        add("2", RoomType.FOUR_WAY);
+        add("2", RoomType.TRIPLE_HALLWAY);
         add("ice_pillar", RoomType.FOUR_WAY);
         add("redstone_ore_secret", RoomType.FOUR_WAY);
 

@@ -170,6 +170,8 @@ public class EntityCap {
 
         void tryRecalculateStats(LivingEntity entity);
 
+        void forceRecalculateStats(LivingEntity entity, Entity thrownEntity);
+
         void forceRecalculateStats(LivingEntity entity);
 
         void forceSetUnit(Unit unit);
@@ -760,9 +762,14 @@ public class EntityCap {
             }
 
             if (needsToRecalcStats()) {
-                unit.recalculateStats(entity, this, level);
+                unit.recalculateStats(entity, this, level, null);
             }
 
+        }
+
+        @Override
+        public void forceRecalculateStats(LivingEntity entity, Entity thrownEntity) {
+            unit.recalculateStats(entity, this, level, thrownEntity);
         }
 
         @Override
@@ -771,7 +778,7 @@ public class EntityCap {
             if (unit == null) {
                 unit = new Unit();
             }
-            unit.recalculateStats(entity, this, level);
+            unit.recalculateStats(entity, this, level, null);
         }
 
         // This reduces stat calculation by about 4 TIMES!

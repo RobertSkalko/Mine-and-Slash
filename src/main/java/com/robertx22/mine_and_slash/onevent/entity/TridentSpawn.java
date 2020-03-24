@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -16,11 +15,13 @@ public class TridentSpawn {
         }
 
         if (event.getEntity() instanceof TridentEntity) {
+
             TridentEntity trident = (TridentEntity) event.getEntity();
+
             if (trident.thrownStack != null && !trident.thrownStack.isEmpty()) {
                 if (trident.getShooter() instanceof PlayerEntity) {
-                    Load.lastThrown((PlayerEntity) trident.getShooter())
-                        .set(trident.thrownStack, (PlayerEntity) trident.getShooter());
+                    // Load.lastThrown((PlayerEntity) trident.getShooter())
+                    //   .set(trident.thrownStack, (PlayerEntity) trident.getShooter());
                 }
             }
 

@@ -158,7 +158,7 @@ public class OnMobSpawn {
 
         endata.setUnit(mob, entity);
 
-        mob.recalculateStats(entity, endata, endata.getLevel());
+        mob.recalculateStats(entity, endata, endata.getLevel(), null);
 
         return mob;
 

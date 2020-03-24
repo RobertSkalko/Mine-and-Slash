@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
@@ -77,6 +78,26 @@ public class LivingHurtUtils {
         stacks.forEach(x -> x.damageItem(1, en, (entity) -> {
             entity.sendBreakAnimation(EquipmentSlotType.MAINHAND);
         }));
+
+    }
+
+    public static void recalcStatsIfThrownWeapon(LivingHurtEvent event) {
+        try {
+            Entity is = event.getSource()
+                .getImmediateSource();
+            Entity ts = event.getSource()
+                .getTrueSource();
+
+            if (is != null && is instanceof PlayerEntity == false && is instanceof LivingEntity == false) {
+                if (ts instanceof LivingEntity) {
+                    Load.Unit(ts)
+                        .forceRecalculateStats((LivingEntity) ts, is);
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

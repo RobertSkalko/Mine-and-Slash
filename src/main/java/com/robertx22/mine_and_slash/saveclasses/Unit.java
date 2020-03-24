@@ -41,6 +41,7 @@ import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -366,7 +367,7 @@ public class Unit {
         return hpadded;
     }
 
-    public void recalculateStats(LivingEntity entity, UnitData data, int level) {
+    public void recalculateStats(LivingEntity entity, UnitData data, int level, @Nullable Entity damageSourceEntity) {
 
         data.setEquipsChanged(false);
 
@@ -378,7 +379,7 @@ public class Unit {
 
         List<GearItemData> gears = new ArrayList<>();
 
-        MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.CollectGearStacksEvent(entity, gears));
+        MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, damageSourceEntity));
 
         boolean gearIsValid = this.isGearCombinationValid(gears, entity);
 

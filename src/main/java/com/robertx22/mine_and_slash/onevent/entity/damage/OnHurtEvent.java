@@ -45,6 +45,7 @@ public class OnHurtEvent {
             return;
         }
 
+        LivingHurtUtils.recalcStatsIfThrownWeapon(event);
         LivingHurtUtils.onAttack(event);
         LivingHurtUtils.modifyDamage(event);
         LivingHurtUtils.onHurtRecordNonPlayerDmg(event);

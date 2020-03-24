@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitDat
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -71,9 +72,12 @@ public class MineAndSlashEvents {
 
         public List<GearItemData> gears;
 
-        public CollectGearStacksEvent(LivingEntity entity, List<GearItemData> gears) {
+        public Entity damageSourceEntity;
+
+        public CollectGearStacksEvent(LivingEntity entity, List<GearItemData> gears, Entity damageSourceEntity) {
             super(entity);
             this.gears = gears;
+            this.damageSourceEntity = damageSourceEntity;
         }
 
         public void add(GearItemData data) {
