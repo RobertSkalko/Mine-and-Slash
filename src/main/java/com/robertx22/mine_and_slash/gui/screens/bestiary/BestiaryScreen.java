@@ -12,6 +12,7 @@ import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
     ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/window.png");
     ResourceLocation FRAME_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/frame.png");
     ResourceLocation BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/buttons.png");
+    ResourceLocation SPLITTER_BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/split.png");
+
     public Minecraft mc;
 
     public static int entryButtonX = 200;
@@ -29,11 +32,11 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
     static int x = 318;
     static int y = 232;
 
-    public BestiaryGroup currentGroup = BestiaryGroup.UNIQUE_GEAR;
+    public BestiaryGroup currentBestiaryGroup = BestiaryGroup.UNIQUE_GEAR;
 
     int currentElement = 0;
 
-    public List<ItemStack> stacks = new ArrayList<>();
+    public List<BestiaryEntry> entries = new ArrayList<>();
 
     int level = 1;
     int elementsAmount = 1;
@@ -50,26 +53,35 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
         this.level = Load.Unit(mc.player)
             .getLevel();
-        this.stacks = currentGroup.getAll(level);
-        this.elementsAmount = stacks
-            .size();
+        this.entries = currentBestiaryGroup.getAll(level);
+        this.elementsAmount = currentBestiaryGroup
+            .getSize();
 
         setupEntryButtons();
     }
 
     public void setupEntryButtons() {
 
-        this.buttons.removeIf(x -> x instanceof EntryButton);
+        this.buttons.removeIf(x -> x instanceof EntryButton || x instanceof SplitterButton);
 
-        int x = this.guiLeft + 50;
+        int x = this.guiLeft + BestiaryScreen.x / 2 - entryButtonX / 2;
         int y = this.guiTop + 50;
 
         for (int i = currentElement; i < currentElement + 5; i++) {
             if (i >= elementsAmount) {
                 continue;
             } else {
-                this.buttons.add(new EntryButton(stacks.get(i), x, y));
-                y += entryButtonY + 2;
+
+                BestiaryEntry entry = entries.get(i);
+
+                if (entry.isSplitter()) {
+                    this.buttons.add(new SplitterButton((BestiaryEntry.Splitter) entry, x, y));
+                    y += entryButtonY + 2;
+                } else if (entry.isItem()) {
+                    this.buttons.add(new EntryButton(entry.stack, x, y));
+                    y += entryButtonY + 2;
+                }
+
             }
 
         }
@@ -120,6 +132,29 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
         return false;
     }
 
+    class SplitterButton extends ImageButton {
+        BestiaryEntry.Splitter splitter;
+
+        public SplitterButton(BestiaryEntry.Splitter splitter, int xPos, int yPos) {
+            super(xPos, yPos, entryButtonX, entryButtonY, 0, 0, entryButtonY + 1, SPLITTER_BUTTON_TEXTURE, (button) -> {
+            });
+
+            this.splitter = splitter;
+
+        }
+
+        @Override
+        public void renderButton(int x, int y, float ticks) {
+            super.renderButton(x, y, ticks);
+
+            double scale = 1.5F;
+            int xp = (int) (this.x + 35);
+            int yp = (int) (this.y + entryButtonY / 2);
+            GuiUtils.renderScaledText(xp, yp, scale, splitter.splitReason, TextFormatting.YELLOW);
+        }
+
+    }
+
     class EntryButton extends ImageButton {
         ItemStack stack;
 
@@ -133,6 +168,9 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
         @Override
         public void renderButton(int x, int y, float ticks) {
+
+            super.renderButton(x, y, ticks);
+
             if (stack != null) {
                 mc.getItemRenderer()
                     .renderItemAndEffectIntoGUI(stack, this.x + 12, this.y + 8);

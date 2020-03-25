@@ -173,6 +173,10 @@ public class GearCreationUtils {
             data.runes.capacity = rarity.runeSlots();
         }
 
+        if (blueprint.unidentifiedPart.get()) {
+            data.setIdentified(false);
+        }
+
         return data;
     }
 }
