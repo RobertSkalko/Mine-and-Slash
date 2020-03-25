@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.ItemStack;
 
 public class GearCreationUtils {
@@ -150,17 +149,14 @@ public class GearCreationUtils {
         }
 
         if (type.canGetAffixes()) {
-            if (RandomUtils.roll(rarity.AffixChance())) {
-
+            if (blueprint.suffixChancePart.get()) {
                 data.suffix = new SuffixData();
                 data.suffix.RerollFully(data);
 
             }
-            if (RandomUtils.roll(rarity.AffixChance())) {
-
+            if (blueprint.prefixChancePart.get()) {
                 data.prefix = new PrefixData();
                 data.prefix.RerollFully(data);
-
             }
         }
         if (type.canGetSet()) {

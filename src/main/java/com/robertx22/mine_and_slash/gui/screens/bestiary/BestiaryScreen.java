@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.gui.screens.bestiary;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
+import com.robertx22.mine_and_slash.gui.screens.bestiary.groups.BestiaryGroup;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -29,7 +30,7 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
     public static int entryButtonX = 200;
     public static int entryButtonY = 32;
 
-    static int x = 318;
+    static int x = 248;
     static int y = 232;
 
     public BestiaryGroup currentBestiaryGroup = BestiaryGroup.UNIQUE_GEAR;
