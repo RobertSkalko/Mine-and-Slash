@@ -6,7 +6,7 @@ import java.util.List;
 public class MineGroup extends RoomGroup {
 
     public MineGroup() {
-        super("mine", 500);
+        super("mine", 600);
     }
 
     @Override

@@ -58,15 +58,12 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
                     .getStructureTemplateManager();
 
                 Template template = templatemanager.getTemplate(room.getStructure());
-                PlacementSettings settings = (new PlacementSettings()).setMirror(Mirror.NONE)
-                    .setRotation(Rotation.NONE)
+                PlacementSettings settings = new PlacementSettings().setMirror(Mirror.NONE)
+                    .setRotation(room.data.rotation)
                     .setIgnoreEntities(false)
                     .setChunk(cpos);
                 settings.setBoundingBox(settings.getBoundingBox());
 
-                // settings.addProcessor();
-
-                settings.setRotation(room.data.rotation);
                 BlockPos position = new BlockPos(cpos.getXStart(), Y_POS, cpos.getZStart());
 
                 if (template == null) {

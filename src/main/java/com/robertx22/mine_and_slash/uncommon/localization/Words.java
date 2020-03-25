@@ -54,6 +54,7 @@ public enum Words implements IAutoLocName {
     StatOverview("Stat Info"),
     StatPoints("Stat Points"),
     MapInfo("Map Info"),
+    Bestiary("Bestiary"),
     KillMobsCollectRarityPoints("Kill mobs, collect rarity points"),
     KillMobs("Kill Mobs"),
     Bad("Bad"),
