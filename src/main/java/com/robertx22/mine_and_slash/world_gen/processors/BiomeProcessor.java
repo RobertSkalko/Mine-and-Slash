@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.world_gen.processors;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.DynamicOps;
-import com.robertx22.mine_and_slash.database.world_providers.DungeonIWP;
+import com.robertx22.mine_and_slash.database.world_providers.DungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.util.math.BlockPos;
@@ -31,7 +31,7 @@ public class BiomeProcessor extends StructureProcessor {
     public BiomeProcessor(Dynamic<?> dynamic) {
         iwp = SlashRegistry.WorldProviders()
             .get(dynamic.get("iwp")
-                .asString(new DungeonIWP(null, null).GUID()));
+                .asString(new DungeonDimension(null, null).GUID()));
     }
 
     IWP iwp;

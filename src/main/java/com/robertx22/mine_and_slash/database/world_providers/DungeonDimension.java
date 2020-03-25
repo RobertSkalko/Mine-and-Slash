@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 
-public class DungeonIWP extends BaseWorldProvider {
+public class DungeonDimension extends BaseDungeonDimension {
 
-    public DungeonIWP(World world, DimensionType type) {
+    public DungeonDimension(World world, DimensionType type) {
         super(world, type);
     }
 
@@ -27,7 +27,7 @@ public class DungeonIWP extends BaseWorldProvider {
 
     @Override
     public BiFunction<World, DimensionType, ? extends Dimension> classFactory() {
-        return DungeonIWP::new;
+        return DungeonDimension::new;
     }
 
     @Override

@@ -21,6 +21,9 @@ import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
 import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -253,4 +256,19 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
     }
 
+    @Override
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(new SText("Allowed on: "));
+
+        ITextComponent comp = new SText("");
+        this.slots.forEach(x -> {
+            comp.appendSibling(x.locName());
+
+        });
+
+        return list;
+    }
 }

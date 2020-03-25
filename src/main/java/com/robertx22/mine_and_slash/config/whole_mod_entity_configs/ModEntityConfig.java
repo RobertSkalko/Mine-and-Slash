@@ -24,6 +24,7 @@ public class ModEntityConfig implements ISlashRegistryEntry<ModEntityConfig> {
     public int MAX_RARITY = 5;
     public int MIN_LEVEL = 0;
     public int MAX_LEVEL = 100;
+    public boolean LEVEL_TO_NEAREST_PLAYER = false;
     public int LEVEL_MODIFIER = 0;
     public double DMG_MULTI = 1;
     public double HP_MULTI = 1;

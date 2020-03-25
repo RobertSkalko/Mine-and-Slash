@@ -38,8 +38,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.BiFunction;
 
-public abstract class BaseWorldProvider extends Dimension implements IWP, IRarity,
-    ISlashRegistryEntry<BaseWorldProvider> {
+public abstract class BaseDungeonDimension extends Dimension implements IWP, IRarity,
+    ISlashRegistryEntry<BaseDungeonDimension> {
 
     public ModDimension moddim;
     private DimensionType type;
@@ -157,7 +157,7 @@ public abstract class BaseWorldProvider extends Dimension implements IWP, IRarit
         return new ResourceLocation(Ref.MODID, RESETTABLE + "_" + this.GUID());
     }
 
-    public BaseWorldProvider(World world, DimensionType type) {
+    public BaseDungeonDimension(World world, DimensionType type) {
         super(world, type, 0F);
         this.type = type;
         this.setModDim();

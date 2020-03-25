@@ -22,7 +22,6 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber
 public class TeamCap {
@@ -219,20 +218,30 @@ public class TeamCap {
 
         @Override
         public List<PlayerEntity> getPlayersInTeam(ServerPlayerEntity player) {
+
+            List<PlayerEntity> list = Arrays.asList(player);
+
             try {
-                return teams.teamIDxTeamDataMap.get(teams.getTeamId(player))
+                teams.teamIDxTeamDataMap.get(teams.getTeamId(player))
                     .getPlayerIds()
                     .stream()
-                    .map(x -> MapManager.getServer()
-                        .getPlayerList()
-                        .getPlayerByUUID(UUID.fromString(x)))
-                    .filter(x -> x != null)
-                    .collect(Collectors.toList());
+                    .forEach(x -> {
+                        if (x != null) {
+                            PlayerEntity p2 = MapManager.getServer()
+                                .getPlayerList()
+                                .getPlayerByUUID(UUID.fromString(x));
+
+                            if (p2 != null && p2 != player) {
+                                list.add(p2);
+                            }
+                        }
+                    });
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            return Arrays.asList(player);
+            return list;
         }
     }
 

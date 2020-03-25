@@ -1,0 +1,35 @@
+package com.robertx22.mine_and_slash.gui.screens.bestiary.groups;
+
+import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
+import com.robertx22.mine_and_slash.items.misc.BaseAffixItem;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.ITextComponent;
+
+import java.util.List;
+
+public class PrefixBestiary extends BestiaryGroup<BaseAffix> {
+
+    @Override
+    public List<BaseAffix> getAll(int lvl) {
+        return SlashRegistry.Affixes()
+            .getWrapped()
+            .ofAffixType(BaseAffix.Type.prefix).list;
+    }
+
+    @Override
+    public ITextComponent getName(ItemStack stack) {
+        return stack.getDisplayName();
+    }
+
+    @Override
+    public String texName() {
+        return "prefix";
+    }
+
+    @Override
+    public ItemStack createStack(int lvl, BaseAffix entry) {
+        return BaseAffixItem.getItemFor(entry);
+    }
+}
+

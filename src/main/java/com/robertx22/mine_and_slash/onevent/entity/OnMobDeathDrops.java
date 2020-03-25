@@ -115,6 +115,10 @@ public class OnMobDeathDrops {
                     .filter(x -> x.getDistance(killer) < 500)
                     .collect(Collectors.toList()));
             }
+
+            if (list == null) {
+                list = new ArrayList<>();
+            }
             if (list.isEmpty()) {
                 list.add(killer);
             }

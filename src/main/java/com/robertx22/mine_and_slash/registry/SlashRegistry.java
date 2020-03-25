@@ -31,8 +31,8 @@ import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.data.StartPerkEffects;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
-import com.robertx22.mine_and_slash.database.world_providers.DungeonIWP;
+import com.robertx22.mine_and_slash.database.world_providers.BaseDungeonDimension;
+import com.robertx22.mine_and_slash.database.world_providers.DungeonDimension;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -193,7 +193,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.BOSS);
     }
 
-    public static SlashRegistryContainer<BaseWorldProvider> WorldProviders() {
+    public static SlashRegistryContainer<BaseDungeonDimension> WorldProviders() {
         return getRegistry(SlashRegistryType.WORLD_PROVIDER);
     }
 
@@ -352,7 +352,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
         addRegistry(new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
         addRegistry(new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect()));
-        addRegistry(new SlashRegistryContainer<BaseWorldProvider>(SlashRegistryType.WORLD_PROVIDER, new DungeonIWP(null, null)));
+        addRegistry(new SlashRegistryContainer<BaseDungeonDimension>(SlashRegistryType.WORLD_PROVIDER, new DungeonDimension(null, null)));
         addRegistry(new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
         addRegistry(new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()

@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.map.EndlessRoadItem;
 import com.robertx22.mine_and_slash.database.currency.map.EndlessSkiesItem;
 import com.robertx22.mine_and_slash.database.currency.map.PainfulLessonItem;
+import com.robertx22.mine_and_slash.items.misc.BaseAffixItem;
 import com.robertx22.mine_and_slash.items.misc.IdentifyTomeItem;
 import com.robertx22.mine_and_slash.items.misc.TeleportScrollItem;
 import com.robertx22.mine_and_slash.items.reset_potions.*;
@@ -63,6 +64,9 @@ public class ModItems {
 
     public static RegistryObject<IdentifyTomeItem> IDENTIFY_TOME = item(() -> new IdentifyTomeItem(), "identify_tome");
     public static RegistryObject<TeleportScrollItem> TELEPORT_SCROLL = item(() -> new TeleportScrollItem(), "teleport_scroll");
+
+    public static RegistryObject<BaseAffixItem> PREFIX_ITEM = item(() -> new BaseAffixItem(), "prefix");
+    public static RegistryObject<BaseAffixItem> SUFFIX_ITEM = item(() -> new BaseAffixItem(), "suffix");
 
     static <T extends Item & IGUID> RegistryObject<T> item(Supplier<T> c) {
 

@@ -8,17 +8,20 @@ import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyStatMod;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedRegistryEntry<StatMod>,
-    ISerializable<StatMod> {
+    ISerializable<StatMod>, ITooltipList {
 
     public static EmptyStatMod EMPTY = EmptyStatMod.getInstance();
 
@@ -44,6 +47,18 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
             this.prefix = prefix;
             this.multi = multi;
         }
+    }
+
+    @Override
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(this.GetBaseStat()
+            .locName()
+            .appendText(": " + getMin() + " / " + getMax()));
+
+        return list;
     }
 
     public StatMod size(Size size) {

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.world;
 
-import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
+import com.robertx22.mine_and_slash.database.world_providers.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.commons.io.FileUtils;
@@ -61,7 +61,7 @@ public class OnShutdownResetMaps {
 
         if (file.isDirectory()) {
 
-            if (str.contains(BaseWorldProvider.RESETTABLE)) {
+            if (str.contains(BaseDungeonDimension.RESETTABLE)) {
 
                 if (str.contains(Ref.MODID)) {
                     return true;

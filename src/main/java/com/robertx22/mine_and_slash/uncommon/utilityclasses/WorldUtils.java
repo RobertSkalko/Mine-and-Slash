@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
-import com.robertx22.mine_and_slash.database.world_providers.BaseWorldProvider;
+import com.robertx22.mine_and_slash.database.world_providers.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
@@ -177,7 +177,7 @@ public class WorldUtils {
             return false;
         }
 
-        return world.getDimension() instanceof BaseWorldProvider;
+        return world.getDimension() instanceof BaseDungeonDimension;
     }
 
     public static IWP getIWP(IWorld theworld) {

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.dimensions;
 
-import com.robertx22.mine_and_slash.database.world_providers.DungeonIWP;
+import com.robertx22.mine_and_slash.database.world_providers.DungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.IWP;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -73,7 +73,7 @@ public class MapManager {
             if (DimensionType.byName(id) == null) {
 
                 ModDimension moddim = SlashRegistry.WorldProviders()
-                    .get(new DungeonIWP(null, null).GUID()).moddim;
+                    .get(new DungeonDimension(null, null).GUID()).moddim;
                 DUNGEON_DIMENSION =
                     DimensionManager.registerDimension(new ResourceLocation(DUNGEON_ID), moddim, new PacketBuffer(Unpooled.buffer()), true);
                 DimensionManager.keepLoaded(DUNGEON_DIMENSION, false);
@@ -111,7 +111,7 @@ public class MapManager {
 
     public static String getId(IWorld world) {
 
-        if (world.getDimension() instanceof DungeonIWP) {
+        if (world.getDimension() instanceof DungeonDimension) {
             return DUNGEON_ID; // TODO UNSURE WHY NULLP
         }
 
