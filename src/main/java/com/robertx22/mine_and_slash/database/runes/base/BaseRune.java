@@ -26,13 +26,14 @@ import java.util.Locale;
 public abstract class BaseRune implements IWeighted,
     ISerializedRegistryEntry<BaseRune>, ISerializable<BaseRune> {
 
-    public boolean isUnique = false;
+    private boolean isUnique = false;
     public HashMap<Integer, RuneItem> itemMap = new HashMap<>();
 
     public BaseRune(int rarity) {
 
-        if (this instanceof BaseUniqueRune) {
+        if (this instanceof BaseUniqueRune || rarity == IRarity.Unique) {
             itemMap.put(IRarity.Unique, genItemForRegistration(IRarity.Unique));
+            this.isUnique = true;
         } else {
             for (RuneRarity rar : Rarities.Runes.getNormalRarities()) {
                 itemMap.put(rar.Rank(), genItemForRegistration(rar.Rank()));

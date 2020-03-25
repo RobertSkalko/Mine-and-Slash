@@ -23,7 +23,7 @@ public class UniqueRuneLootGen extends BaseLootGen<UniqueRuneBlueprint> {
     @Override
     public boolean condition() {
         return WorldUtils.dropsUniques(info.world) && SlashRegistry.Runes()
-            .getFiltered(x -> x.isUnique)
+            .getFiltered(x -> x.isUnique())
             .stream()
             .anyMatch(x -> info.tier >= x.Tier());
 

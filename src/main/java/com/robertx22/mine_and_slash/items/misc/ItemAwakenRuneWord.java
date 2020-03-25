@@ -51,6 +51,22 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
     }
 
     @Override
+    public ITextComponent getDisplayName(ItemStack stack) {
+        RuneWord runeword = null;
+        try {
+            String word = this.getWord(stack);
+            runeword = SlashRegistry.RuneWords()
+                .get(word);
+        } catch (Exception e) {
+            return super.getDisplayName(stack);
+        }
+        return super.getName()
+            .appendText(": ")
+            .appendSibling(runeword.locName());
+
+    }
+
+    @Override
     @OnlyIn(Dist.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
                                ITooltipFlag flagIn) {

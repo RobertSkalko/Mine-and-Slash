@@ -15,7 +15,7 @@ public class OnlyOneUniqueRuneReq extends BaseLocRequirement {
 
     @Override
     public ITextComponent getText() {
-        return Words.hasMatchingRunes.locName();
+        return Words.OnlyOneUniqueRune.locName();
     }
 
     @Override
