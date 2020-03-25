@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.gui.screens.bestiary.groups.BestiaryGroup;
 import com.robertx22.mine_and_slash.gui.screens.bestiary.groups.UniqueGearBestiary;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
@@ -17,6 +18,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BestiaryScreen extends BaseScreen implements INamedScreen {
@@ -26,6 +28,7 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
     ResourceLocation BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/buttons.png");
     ResourceLocation SPLITTER_BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/split.png");
     ResourceLocation GROUP_BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/bestiary_group_buttons.png");
+    ResourceLocation SCROLLBAR_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/scrollbar.png");
 
     public Minecraft mc;
 
@@ -64,7 +67,19 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
         setupEntryButtons();
         setupGroupButtons();
+        setupSlider();
 
+    }
+
+    public void setupSlider() {
+
+        int sliderXSize = 10;
+        int sliderYSize = 30;
+
+        int sliderX = guiLeft + BestiaryScreen.x - sliderXSize;
+        int sliderY = guiTop + 50;
+
+        // AbstractSlider
     }
 
     public void initEntries() {
@@ -74,7 +89,9 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
     }
 
     public void setupGroupButtons() {
-        int gx = guiLeft + 10;
+
+        int gx = guiLeft + BestiaryScreen.x / 2 - (BestiaryGroup.getAll()
+            .size() * groupButtonX) / 2;
         int gy = guiTop + 5;
 
         for (BestiaryGroup bestiaryGroup : BestiaryGroup.getAll()) {
@@ -222,6 +239,15 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
             screen.setGroup(group);
 
+        }
+
+        @Override
+        public void renderToolTip(int x, int y) {
+            if (this.isHovered) {
+                BestiaryScreen.this.renderTooltip(
+                    Arrays.asList(TextFormatting.BLUE + "" + TextFormatting.BOLD +
+                        CLOC.translate(group.getName())), x, y, Minecraft.getInstance().fontRenderer);
+            }
         }
 
         @Override

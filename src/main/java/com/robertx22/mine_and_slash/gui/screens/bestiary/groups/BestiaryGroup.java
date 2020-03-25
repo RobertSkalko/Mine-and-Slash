@@ -37,6 +37,8 @@ public abstract class BestiaryGroup<T> {
 
     public abstract List<T> getAll(int lvl);
 
+    public abstract ITextComponent getName();
+
     public int getSize() {
         return getAll(1).size();
     }

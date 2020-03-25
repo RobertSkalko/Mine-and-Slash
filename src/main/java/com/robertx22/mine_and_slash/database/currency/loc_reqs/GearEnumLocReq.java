@@ -17,7 +17,6 @@ public class GearEnumLocReq extends BaseLocRequirement {
     public static final GearEnumLocReq SECONDARY_STATS = new GearEnumLocReq(x -> x.canGetSecondaryStats());
     public static final GearEnumLocReq CAN_PRIMARY_STATS = new GearEnumLocReq(x -> x.canGetPrimaryStats());
     public static final GearEnumLocReq CAN_CHAOS_STATS = new GearEnumLocReq(x -> x.canGetChaosStats());
-    public static final GearEnumLocReq INFUSIONS = new GearEnumLocReq(x -> x.canGetInfusions());
     public static final GearEnumLocReq REROLL_NUMBERS = new GearEnumLocReq(x -> x.canRerollNumbers());
     public static final GearEnumLocReq RUNED = new GearEnumLocReq(x -> x == GearItemEnum.RUNED);
 

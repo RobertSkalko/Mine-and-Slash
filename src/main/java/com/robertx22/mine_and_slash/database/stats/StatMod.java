@@ -21,6 +21,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedRegistryEntry<StatMod>,
     ISerializable<StatMod>, ITooltipList {
@@ -49,6 +50,12 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
             this.prefix = prefix;
             this.multi = multi;
         }
+    }
+
+    public static List<StatMod> ofSize(List<StatMod> mod, Size size) {
+        return mod.stream()
+            .map(x -> x.size(size))
+            .collect(Collectors.toList());
     }
 
     @Override

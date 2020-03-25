@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.gui.screens.bestiary.splitters.BaseSplitter;
 import com.robertx22.mine_and_slash.gui.screens.bestiary.splitters.LevelReqAffixSplitter;
 import com.robertx22.mine_and_slash.items.misc.BaseAffixItem;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
@@ -17,6 +18,11 @@ public class PrefixBestiary extends BestiaryGroup<BaseAffix> {
         return SlashRegistry.Affixes()
             .getWrapped()
             .ofAffixType(BaseAffix.Type.prefix).list;
+    }
+
+    @Override
+    public ITextComponent getName() {
+        return Words.Prefix.locName();
     }
 
     @Override

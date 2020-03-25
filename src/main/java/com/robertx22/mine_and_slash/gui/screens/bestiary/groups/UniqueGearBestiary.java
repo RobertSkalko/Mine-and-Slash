@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.gui.screens.bestiary.splitters.TierSplitter;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
@@ -17,6 +18,11 @@ public class UniqueGearBestiary extends BestiaryGroup<IUnique> {
     public List<IUnique> getAll(int lvl) {
         return SlashRegistry.UniqueGears()
             .getList();
+    }
+
+    @Override
+    public ITextComponent getName() {
+        return Words.Unique_Gear.locName();
     }
 
     @Override

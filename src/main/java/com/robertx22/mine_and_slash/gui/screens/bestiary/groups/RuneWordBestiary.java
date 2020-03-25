@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.gui.screens.bestiary.splitters.BaseSplitter;
 import com.robertx22.mine_and_slash.gui.screens.bestiary.splitters.RunewordRunesSplitter;
 import com.robertx22.mine_and_slash.loot.blueprints.AwakenRuneWordBlueprint;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
@@ -15,6 +16,11 @@ public class RuneWordBestiary extends BestiaryGroup<RuneWord> {
     public List<RuneWord> getAll(int lvl) {
         return SlashRegistry.RuneWords()
             .getList();
+    }
+
+    @Override
+    public ITextComponent getName() {
+        return Words.Runeword.locName();
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.gui.screens.bestiary.splitters.BaseSplitter;
 import com.robertx22.mine_and_slash.gui.screens.bestiary.splitters.TierSplitter;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 
@@ -14,6 +15,11 @@ public class CurrencyBestiary extends BestiaryGroup<CurrencyItem> {
     public List<CurrencyItem> getAll(int lvl) {
         return SlashRegistry.CurrencyItems()
             .getList();
+    }
+
+    @Override
+    public ITextComponent getName() {
+        return Words.Currency.locName();
     }
 
     @Override

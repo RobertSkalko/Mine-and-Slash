@@ -36,7 +36,8 @@ public abstract class ElementalStatMod<T extends ElementalStat> extends StatMod 
 
         HashMap<Elements, T> map = getBaseStatMap().MAP;
 
-        Objects.requireNonNull(map, this.getClass().toString() + " stat mod's base stat map is null");
+        Objects.requireNonNull(map, this.getClass()
+            .toString() + " stat mod's base stat map is null");
 
         for (Stat sg : map.values()) {
             list.add(this.newGeneratedInstance(sg.getElement()));
@@ -48,8 +49,8 @@ public abstract class ElementalStatMod<T extends ElementalStat> extends StatMod 
 
     public List<StatMod> allSingleElementVariations() {
         return generateAllPossibleStatVariations().stream()
-                .filter(x -> ((ElementalStatMod) x).element.isSingleElement)
-                .collect(Collectors.toList());
+            .filter(x -> ((ElementalStatMod) x).element.isSingleElement)
+            .collect(Collectors.toList());
     }
 
 }

@@ -11,12 +11,17 @@ public class QAR extends BaseUniqueRune {
 
     @Override
     public List<StatMod> mods() {
-        return new ElementalAffinityFlat(Elements.Physical).allSingleElementVariations();
+        return StatMod.ofSize(new ElementalAffinityFlat(Elements.Physical).allSingleElementVariations(), StatMod.Size.VERY_LOW);
     }
 
     @Override
     public String name() {
         return "QAR";
+    }
+
+    @Override
+    public int Weight() {
+        return super.Weight() / 2;
     }
 
     @Override
