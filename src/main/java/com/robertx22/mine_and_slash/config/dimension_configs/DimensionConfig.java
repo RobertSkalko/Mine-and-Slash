@@ -76,7 +76,7 @@ public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
 
     public int MOB_LEVEL_ONE_AREA = 50;
 
-    public int MAXIMUM_MOB_LEVEL = 100;
+    public int MAXIMUM_MOB_LEVEL = Integer.MAX_VALUE;
 
     public int MINIMUM_MOB_LEVEL = 1;
 

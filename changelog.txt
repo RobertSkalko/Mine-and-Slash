@@ -1,4 +1,5 @@
 3.4.3
+* added bestiary (you'll see it in your main hub anyway)
 * added experimental way that makes thrown weapons work.
  (mod devs literally just have to set player as the true damage source and have the itemstack saved somewhere in either the class fields, nbt or datamanager.)
 * better item names on ground, now also works for all items with stats

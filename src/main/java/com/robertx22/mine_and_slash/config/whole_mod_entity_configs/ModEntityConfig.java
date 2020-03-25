@@ -21,9 +21,9 @@ public class ModEntityConfig implements ISlashRegistryEntry<ModEntityConfig> {
     public double LOOT_MULTI = 1F;
     public double EXP_MULTI = 1F;
     public int MIN_RARITY = 0;
-    public int MAX_RARITY = 5;
+    public int MAX_RARITY = 4;
     public int MIN_LEVEL = 0;
-    public int MAX_LEVEL = 100;
+    public int MAX_LEVEL = Integer.MAX_VALUE;
     public boolean LEVEL_TO_NEAREST_PLAYER = false;
     public int LEVEL_MODIFIER = 0;
     public double DMG_MULTI = 1;

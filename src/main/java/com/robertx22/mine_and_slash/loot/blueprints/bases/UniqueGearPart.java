@@ -2,13 +2,12 @@ package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.registry.FilterListWrap;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 
 public class UniqueGearPart extends BlueprintPart<IUnique> {
 
-    public UniqueGearPart(ItemBlueprint blueprint) {
+    public UniqueGearPart(GearBlueprint blueprint) {
         super(blueprint);
     }
 
