@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 public class StatRangeContext {
 
     public StatModData modData;
-    public MinMax minmax;
+    public MinMax minmax = new MinMax(0, 100);
     public int level;
 
     public StatRangeContext(StatModData modData, MinMax minmax, int level) {

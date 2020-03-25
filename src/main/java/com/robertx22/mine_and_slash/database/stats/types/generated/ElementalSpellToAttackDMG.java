@@ -74,7 +74,8 @@ public class ElementalSpellToAttackDMG extends SingleElementalStat implements IS
 
     @Override
     public String locNameForLangFile() {
-        return this.getElement().name() + " Spell to Atk Dmg";
+        return this.getElement()
+            .name() + " Infusion";
     }
 
     @Override

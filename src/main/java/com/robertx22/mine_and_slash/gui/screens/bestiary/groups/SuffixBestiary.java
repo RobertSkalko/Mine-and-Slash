@@ -10,13 +10,13 @@ import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 
-public class PrefixBestiary extends BestiaryGroup<BaseAffix> {
+public class SuffixBestiary extends BestiaryGroup<BaseAffix> {
 
     @Override
     public List<BaseAffix> getAll(int lvl) {
         return SlashRegistry.Affixes()
             .getWrapped()
-            .ofAffixType(BaseAffix.Type.prefix).list;
+            .ofAffixType(BaseAffix.Type.suffix).list;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class PrefixBestiary extends BestiaryGroup<BaseAffix> {
 
     @Override
     public String texName() {
-        return "prefix";
+        return "suffix";
     }
 
     @Override

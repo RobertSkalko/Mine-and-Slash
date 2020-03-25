@@ -14,7 +14,9 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,8 +56,8 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(this.GetBaseStat()
-            .locName()
+        list.add(new SText(TextFormatting.GREEN + "").appendSibling(GetBaseStat()
+            .locName())
             .appendText(": " + getMin() + " / " + getMax()));
 
         return list;

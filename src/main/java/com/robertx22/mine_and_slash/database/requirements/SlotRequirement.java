@@ -24,6 +24,7 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -145,6 +146,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
     public static SlotRequirement armorsOnly() {
         return new SlotRequirement(armorSlots());
+
     }
 
     public static SlotRequirement armorsOnlyNoOffHand() {
@@ -261,13 +263,48 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new SText("Allowed on: "));
+        list.add(new SText(TextFormatting.GREEN + "Allowed on: "));
 
-        ITextComponent comp = new SText("");
-        this.slots.forEach(x -> {
-            comp.appendSibling(x.locName());
+        List<GearItemSlot> copy = new ArrayList<>(this.slots);
+
+        ITextComponent comp = new SText(TextFormatting.RED + "");
+
+        List<GearItemSlot> armors = SlashRegistry.GearTypes()
+            .getFiltered(x -> x.slotType()
+                .equals(GearItemSlot.GearSlotType.Armor));
+        if (copy.containsAll(armors)) {
+            copy.removeIf(x -> x.slotType()
+                .equals(GearItemSlot.GearSlotType.Armor));
+            comp.appendText(" ")
+                .appendSibling(new SText("All Armors"));
+        }
+
+        List<GearItemSlot> weapons = SlashRegistry.GearTypes()
+            .getFiltered(x -> x.slotType()
+                .equals(GearItemSlot.GearSlotType.Weapon));
+        if (copy.containsAll(weapons)) {
+            copy.removeIf(x -> x.slotType()
+                .equals(GearItemSlot.GearSlotType.Weapon));
+            comp.appendText(" ")
+                .appendSibling(new SText("All Weapons"));
+        }
+
+        List<GearItemSlot> jewerly = SlashRegistry.GearTypes()
+            .getFiltered(x -> x.slotType()
+                .equals(GearItemSlot.GearSlotType.Jewerly));
+        if (copy.containsAll(jewerly)) {
+            copy.removeIf(x -> x.slotType()
+                .equals(GearItemSlot.GearSlotType.Jewerly));
+            comp.appendText(" ")
+                .appendSibling(new SText("All Jewerly"));
+        }
+        copy.forEach(x -> {
+            comp.appendText(" ")
+                .appendSibling(x.locName());
 
         });
+
+        list.add(comp);
 
         return list;
     }

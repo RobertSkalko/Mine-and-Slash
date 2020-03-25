@@ -19,7 +19,7 @@ public class Requirements implements ISerializablePart<Requirements>, ITooltipLi
 
     public static Requirements EMPTY = new Requirements((BaseRequirement) null);
 
-    List<BaseRequirement> requirements = new ArrayList<>();
+    public List<BaseRequirement> requirements = new ArrayList<>();
 
     public Requirements(BaseRequirement req) {
         this.requirements.add(req);

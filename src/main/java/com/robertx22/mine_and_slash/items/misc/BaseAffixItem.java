@@ -1,10 +1,13 @@
 package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
@@ -33,8 +36,15 @@ public class BaseAffixItem extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         BaseAffix affix = getAffix(stack);
 
+        TooltipInfo info = new TooltipInfo();
+        info.level = Load.Unit(MMORPG.proxy.getPlayerEntityFromContext(null))
+            .getLevel();
+
         affix.StatMods()
-            .forEach(x -> tooltip.addAll(x.GetTooltipString(new TooltipInfo())));
+            .forEach(x -> {
+                tooltip.addAll(StatModData.Load(x, 100)
+                    .GetTooltipString(info));
+            });
 
         tooltip.add(new SText(""));
 

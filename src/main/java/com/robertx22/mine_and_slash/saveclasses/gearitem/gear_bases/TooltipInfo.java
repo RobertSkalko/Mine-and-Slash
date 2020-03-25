@@ -50,7 +50,7 @@ public class TooltipInfo implements Cloneable {
 
     public PlayerEntity player;
     public EntityCap.UnitData unitdata;
-    public MinMax minmax;
+    public MinMax minmax = new MinMax(0, 100);
     public int level;
     public boolean isSet = false;
     public StatTooltipType statTooltipType = StatTooltipType.NORMAL;

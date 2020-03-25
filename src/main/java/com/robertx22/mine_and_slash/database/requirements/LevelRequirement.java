@@ -5,12 +5,20 @@ import com.google.gson.JsonPrimitive;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class LevelRequirement extends BaseRequirement<LevelRequirement> {
 
-    int minLevel = 0;
-    int maxLevel = Integer.MAX_VALUE;
+    public int minLevel = 0;
+    public int maxLevel = Integer.MAX_VALUE;
 
     private LevelRequirement(int minLevel) {
         this.minLevel = minLevel;
@@ -18,6 +26,31 @@ public class LevelRequirement extends BaseRequirement<LevelRequirement> {
 
     public LevelRequirement() {
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+
+        if (other instanceof LevelRequirement) {
+            LevelRequirement l = (LevelRequirement) other;
+
+            return l.minLevel == minLevel && l.maxLevel == maxLevel;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(minLevel, maxLevel);
+    }
+
+    public int clampedMax() {
+        return MathHelper.clamp(maxLevel, 0, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get());
+    }
+
+    public static LevelRequirement none() {
+        return new LevelRequirement(0, Integer.MAX_VALUE);
     }
 
     private LevelRequirement(int minLevel, int maxLevel) {
@@ -97,5 +130,10 @@ public class LevelRequirement extends BaseRequirement<LevelRequirement> {
     @Override
     public String getJsonID() {
         return "level_req";
+    }
+
+    @Override
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+        return Arrays.asList(new SText(TextFormatting.YELLOW + "Level: " + minLevel + " - " + MathHelper.clamp(maxLevel, 0, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get())));
     }
 }

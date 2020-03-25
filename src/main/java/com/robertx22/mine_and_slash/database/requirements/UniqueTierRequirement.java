@@ -4,6 +4,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.requirements.bases.UniqueItemRequirement;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class UniqueTierRequirement extends UniqueItemRequirement<UniqueTierRequirement> {
 
@@ -67,4 +76,8 @@ public class UniqueTierRequirement extends UniqueItemRequirement<UniqueTierRequi
         }
     }
 
+    @Override
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+        return Arrays.asList(new SText(TextFormatting.GOLD + "Requires Unique Gear of Tier: " + minTier + " - " + MathHelper.clamp(maxTier, 0, ITiered.MAX_TIER)));
+    }
 }

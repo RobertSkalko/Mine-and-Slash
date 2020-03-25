@@ -23,8 +23,10 @@ public abstract class BestiaryGroup<T> {
             all.add(new RuneWordBestiary());
             all.add(new CurrencyBestiary());
             all.add(new PrefixBestiary());
+            all.add(new SuffixBestiary());
 
         }
+
         return all;
 
     }
