@@ -1,11 +1,10 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
+import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ICreateSpecific;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsOtherStats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -14,18 +13,24 @@ import net.minecraft.util.text.ITextComponent;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class ChaosStatsData extends StatGroupData implements ICreateSpecific<StatMod>, Serializable, IGearPartTooltip, IRerollable {
+public class ChaosStatsData implements IStatModsContainer, ICreateSpecific<StatMod>, Serializable, IGearPartTooltip, IRerollable {
 
     public ChaosStatsData() {
 
     }
 
+    private StatModData chaosStat;
+
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
-        info.minmax = getMinMax(gear);
+
+        int minmax = ((IAffectsOtherStats) chaosStat.getStatMod()
+            .GetBaseStat()).percent();
+        info.minmax = new MinMax(minmax, minmax);
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
@@ -47,14 +52,13 @@ public class ChaosStatsData extends StatGroupData implements ICreateSpecific<Sta
 
     @Override
     public void RerollFully(GearItemData gear) {
+        if (gear.chaosStats.chaosStat == null) {
 
-        this.Mods = new ArrayList<StatModData>();
+            StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
+                .ChaosStats());
 
-        StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
-            .ChaosStats());
-
-        this.create(gear, mod);
-
+            this.create(gear, mod);
+        }
     }
 
     @Override
@@ -64,15 +68,16 @@ public class ChaosStatsData extends StatGroupData implements ICreateSpecific<Sta
 
     @Override
     public void create(GearItemData gear, StatMod mod) {
-
-        this.Mods = new ArrayList<StatModData>();
-        StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
-        this.Mods.add(moddata);
-
+        this.chaosStat = StatModData.Load(mod, 100);
     }
 
     @Override
     public Part getPart() {
         return Part.OTHER;
+    }
+
+    @Override
+    public List<LevelAndStats> GetAllStats(int level) {
+        return Arrays.asList(new LevelAndStats(this.chaosStat, level));
     }
 }

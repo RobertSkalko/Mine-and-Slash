@@ -1,16 +1,16 @@
-package com.robertx22.mine_and_slash.database.stats.types.traits;
+package com.robertx22.mine_and_slash.database.stats.types.traits.good;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.Trait;
-import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.HealthMulti;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleSpellDmgFlat;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsOtherStats;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Golem extends Trait implements IAffectsOtherStats {
+public class Elemental extends Trait implements IAffectsOtherStats {
 
-    public static String GUID = "golem";
+    public static String GUID = "elemental";
 
     @Override
     public String GUID() {
@@ -18,13 +18,18 @@ public class Golem extends Trait implements IAffectsOtherStats {
     }
 
     @Override
+    public int percent() {
+        return 33;
+    }
+
+    @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new HealthMulti());
+        return Arrays.asList(new AllEleSpellDmgFlat());
 
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Golem";
+        return "Elemental";
     }
 }

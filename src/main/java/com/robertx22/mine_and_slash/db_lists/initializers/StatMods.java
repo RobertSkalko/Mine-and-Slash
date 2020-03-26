@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.Trait;
 import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.AllAttributesFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
@@ -27,7 +28,6 @@ import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.Critical
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.PhysicalDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.SpellDamagePercent;
-import com.robertx22.mine_and_slash.database.stats.types.BaseTrait;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -160,8 +160,8 @@ public class StatMods implements ISlashRegistryInit {
         // this makes all StatMod classes for traits cus they are all the same!
         for (Stat stat : SlashRegistry.Stats()
             .getList()) {
-            if (stat instanceof BaseTrait) {
-                BaseTrait trait = (BaseTrait) stat;
+            if (stat instanceof Trait) {
+                Trait trait = (Trait) stat;
                 AllTraitMods traitMod = new AllTraitMods(trait);
                 All.add(traitMod);
             }

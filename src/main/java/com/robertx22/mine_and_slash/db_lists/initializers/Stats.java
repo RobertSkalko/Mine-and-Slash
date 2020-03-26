@@ -14,28 +14,19 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.ManaToEnergyConversion;
-import com.robertx22.mine_and_slash.database.stats.types.traits.*;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.EarthAtronach;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.FireAtronach;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.FrostAtronach;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.ThunderAtronach;
 import com.robertx22.mine_and_slash.database.stats.types.traits.bad_and_good.Barbarian;
 import com.robertx22.mine_and_slash.database.stats.types.traits.bad_and_good.ClumsyScholar;
-import com.robertx22.mine_and_slash.database.stats.types.traits.bad_ones.Crippled;
-import com.robertx22.mine_and_slash.database.stats.types.traits.bad_ones.Diseased;
+import com.robertx22.mine_and_slash.database.stats.types.traits.bad_ones.*;
 import com.robertx22.mine_and_slash.database.stats.types.traits.cause_stats.OnDodgeBuffSpeed;
 import com.robertx22.mine_and_slash.database.stats.types.traits.ele_lords.LordOfBlizzardsTrait;
 import com.robertx22.mine_and_slash.database.stats.types.traits.ele_lords.LordOfEarthquakesTrait;
 import com.robertx22.mine_and_slash.database.stats.types.traits.ele_lords.LordOfThunderstormsTrait;
 import com.robertx22.mine_and_slash.database.stats.types.traits.ele_lords.LordOfVolcanoesTrait;
-import com.robertx22.mine_and_slash.database.stats.types.traits.high_crit.HighCritAddArmor;
-import com.robertx22.mine_and_slash.database.stats.types.traits.high_crit.HighCritAddLifesteal;
-import com.robertx22.mine_and_slash.database.stats.types.traits.high_dodge.HighDodgeAddCritDamage;
-import com.robertx22.mine_and_slash.database.stats.types.traits.high_dodge.HighDodgeAddPhysDamage;
-import com.robertx22.mine_and_slash.database.stats.types.traits.low_crit_hit.LowCritHitAddDodge;
-import com.robertx22.mine_and_slash.database.stats.types.traits.low_crit_hit.LowCritHitAddHealth;
-import com.robertx22.mine_and_slash.database.stats.types.traits.low_dodge.LowDodgeAddArmor;
-import com.robertx22.mine_and_slash.database.stats.types.traits.low_dodge.LowDodgeAddCritHit;
+import com.robertx22.mine_and_slash.database.stats.types.traits.good.*;
 import com.robertx22.mine_and_slash.database.stats.types.traits.major_arcana.*;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
@@ -133,16 +124,6 @@ public class Stats implements ISlashRegistryInit {
 
                     add(new ManaToEnergyConversion());
 
-                    // conditional traits
-                    add(new HighCritAddArmor());
-                    add(new HighCritAddLifesteal());
-                    add(new HighDodgeAddCritDamage());
-                    add(new HighDodgeAddPhysDamage());
-                    add(new LowDodgeAddArmor());
-                    add(new LowDodgeAddCritHit());
-                    add(new LowCritHitAddDodge());
-                    add(new LowCritHitAddHealth());
-
                     // lord traits
                     add(new LordOfVolcanoesTrait());
                     add(new LordOfBlizzardsTrait());
@@ -191,6 +172,13 @@ public class Stats implements ISlashRegistryInit {
                     add(new FireAtronach());
                     add(new ThunderAtronach());
                     add(new OnDodgeBuffSpeed());
+                    add(new Clumsy());
+                    add(new Cursed());
+                    add(new Clueless());
+                    add(new Devoted());
+                    add(new QuickLearner());
+                    add(new WeaponMaster());
+
                     add(HealPower.getInstance());
                     // traits
 

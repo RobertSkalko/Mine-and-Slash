@@ -14,6 +14,7 @@ public enum SlashRegistryType {
     NONE("none"),
     STAT("stat"),
     STATMOD("stat_mod"),
+    CHAOS_STAT("chaos_stat"),
     RUNE("rune") {
         @Override
         public ISerializable getSerializer() {

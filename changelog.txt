@@ -6,6 +6,7 @@
 * reduced log spam
 * item names only render when close now, woops.
 * uniques no longer have affixes but their unique stats are now increased
+* removed conditional chaos stats (on low crit..etc , boring)
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

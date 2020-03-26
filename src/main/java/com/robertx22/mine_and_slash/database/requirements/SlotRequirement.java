@@ -80,6 +80,10 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
         return new SlotRequirement(Ring.INSTANCE);
     }
 
+    public static SlotRequirement allExceptWeapon() {
+        return new SlotRequirement(allSlotsExceptWeapon());
+    }
+
     public static SlotRequirement slots(GearItemSlot... slots) {
         return new SlotRequirement(Arrays.asList(slots));
     }
@@ -204,6 +208,18 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
             .stream()
             .filter(x -> x.slotType()
                 .equals(GearItemSlot.GearSlotType.Armor))
+            .collect(Collectors.toList());
+
+    }
+
+    static List<GearItemSlot> allSlotsExceptWeapon() {
+
+        return SlashRegistry.GearTypes()
+            .getAll()
+            .values()
+            .stream()
+            .filter(x -> !x.slotType()
+                .equals(GearItemSlot.GearSlotType.Weapon))
             .collect(Collectors.toList());
 
     }

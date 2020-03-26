@@ -1,9 +1,13 @@
 package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 
-import com.robertx22.mine_and_slash.database.stats.types.BaseTrait;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.Trait;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
-public abstract class BaseGameChangerTrait extends BaseTrait {
+import java.util.Arrays;
+import java.util.List;
+
+public abstract class BaseGameChangerTrait extends Trait {
 
     @Override
     public Elements getElement() {
@@ -25,6 +29,10 @@ public abstract class BaseGameChangerTrait extends BaseTrait {
         return StatGroup.Misc;
     }
 
+    @Override
+    public List<StatMod> getStats() {
+        return Arrays.asList();
+    }
 }
 
 

@@ -52,6 +52,7 @@ public class BleedMastery extends BaseGameChangerTrait implements IStatEffects, 
                 .getCreateStat(stat).Flat -= LOSE_PERC;
         }
     }
+
 }
 
 
