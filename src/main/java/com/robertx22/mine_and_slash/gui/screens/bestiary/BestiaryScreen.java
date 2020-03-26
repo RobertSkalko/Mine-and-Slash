@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.gui.screens.bestiary;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
+import com.robertx22.mine_and_slash.gui.BaseScrollbar;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.gui.screens.bestiary.groups.BestiaryGroup;
@@ -28,7 +29,6 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
     ResourceLocation BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/buttons.png");
     ResourceLocation SPLITTER_BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/split.png");
     ResourceLocation GROUP_BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/bestiary_group_buttons.png");
-    ResourceLocation SCROLLBAR_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/scrollbar.png");
 
     public Minecraft mc;
 
@@ -37,6 +37,8 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
     public static int groupButtonX = 20;
     public static int groupButtonY = 20;
+
+    Scrollbar scrollbar;
 
     static int x = 248;
     static int y = 232;
@@ -67,17 +69,19 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
         setupEntryButtons();
         setupGroupButtons();
-        setupSlider();
+        setupScrollbar();
 
     }
 
-    public void setupSlider() {
+    public void setupScrollbar() {
 
         int sliderXSize = 10;
         int sliderYSize = 30;
 
         int sliderX = guiLeft + BestiaryScreen.x - sliderXSize;
         int sliderY = guiTop + 50;
+
+        scrollbar = addButton(new Scrollbar(sliderX, sliderY, 180));
 
         // AbstractSlider
     }
@@ -165,12 +169,20 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
     @Override
     public boolean mouseScrolled(double num1, double num2, double num3) {
-        this.currentElement -= num3;
-        this.currentElement = MathHelper.clamp(currentElement, 0, elementsAmount);
 
-        setupEntryButtons();
+        this.setCurrentElement((int) (currentElement - num3));
+
+        scrollbar.setValueFromElement(currentElement, elementsAmount);
 
         return super.mouseScrolled(num1, num2, num3);
+
+    }
+
+    public void setCurrentElement(int element) {
+
+        this.currentElement = MathHelper.clamp(element, 0, elementsAmount);
+
+        setupEntryButtons();
 
     }
 
@@ -216,8 +228,22 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
         initEntries();
 
+        this.currentElement = 0;
+
         this.setupEntryButtons();
 
+    }
+
+    class Scrollbar extends BaseScrollbar {
+
+        protected Scrollbar(int xpos, int ypos, int scrollbarTotalHeight) {
+            super(xpos, ypos, scrollbarTotalHeight);
+        }
+
+        @Override
+        protected void applyValue() {
+            BestiaryScreen.this.setCurrentElement((int) (this.value * BestiaryScreen.this.elementsAmount));
+        }
     }
 
     class GroupButton extends ImageButton {
