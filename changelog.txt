@@ -7,6 +7,8 @@
 * item names only render when close now, woops.
 * uniques no longer have affixes but their unique stats are now increased
 * removed conditional chaos stats (on low crit..etc , boring)
+* chaos stats are now more elaborate, you can't get armor on weapons etc. Also added a few more of them.
+* tweaked unique gears to be more generally useful
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

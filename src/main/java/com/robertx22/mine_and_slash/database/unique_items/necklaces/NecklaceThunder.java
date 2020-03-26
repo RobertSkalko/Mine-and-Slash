@@ -3,10 +3,11 @@ package com.robertx22.mine_and_slash.database.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -47,8 +48,10 @@ public class NecklaceThunder implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Thunder).size(StatMod.Size.HIGH),
-            new ElementalTransferFlat(Elements.Nature, Elements.Thunder), new EnergyRegenFlat()
+        return Arrays.asList(
+            new ElementalSpellToAttackDMGFlat(Elements.Thunder),
+            new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.VERY_HIGH),
+            new EnergyRegenFlat()
         );
 
     }

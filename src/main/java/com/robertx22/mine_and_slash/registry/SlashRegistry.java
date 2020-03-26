@@ -138,6 +138,10 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.CURRENCY_ITEMS);
     }
 
+    public static SlashRegistryContainer<ChaosStat> ChaosStats() {
+        return getRegistry(SlashRegistryType.CHAOS_STAT);
+    }
+
     private static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
         return getRegistry(SlashRegistryType.DIMENSION_CONFIGS);
     }
@@ -325,6 +329,8 @@ public class SlashRegistry {
 
         new Bosses().registerAll();
         new MapEvents().registerAll();
+
+        new ChaosStats().registerAll();
 
     }
 

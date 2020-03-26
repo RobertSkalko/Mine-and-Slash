@@ -3,10 +3,11 @@ package com.robertx22.mine_and_slash.database.chaos_stats;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.stats.Trait;
 import com.robertx22.mine_and_slash.database.stats.types.traits.bad_ones.Crippled;
+import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 
-public class ChaosStat implements ISlashRegistryEntry<ChaosStat> {
+public class ChaosStat implements ISlashRegistryEntry<ChaosStat>, IhasRequirements {
 
     public static ChaosStat empty() {
         return new ChaosStat(Requirements.EMPTY, new Crippled());
@@ -20,10 +21,6 @@ public class ChaosStat implements ISlashRegistryEntry<ChaosStat> {
         this.requirements = requirements;
         this.chaosTrait = chaosTrait;
         this.guid = this.chaosTrait.GUID();
-    }
-
-    public Requirements getRequirements() {
-        return requirements;
     }
 
     public Trait getChaosTrait() {
@@ -43,5 +40,10 @@ public class ChaosStat implements ISlashRegistryEntry<ChaosStat> {
     @Override
     public String GUID() {
         return guid;
+    }
+
+    @Override
+    public Requirements requirements() {
+        return requirements;
     }
 }

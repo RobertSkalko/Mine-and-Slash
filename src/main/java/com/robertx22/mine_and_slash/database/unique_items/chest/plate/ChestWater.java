@@ -2,13 +2,14 @@ package com.robertx22.mine_and_slash.database.unique_items.chest.plate;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Stamina;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -41,8 +42,8 @@ public class ChestWater implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HIGH), new ArmorFlat().size(StatMod.Size.HIGH),
-            new ElementalTransferFlat(Elements.Nature, Elements.Water)
+        return Arrays.asList(new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HIGH), new ArmorFlat().size(StatMod.Size.HIGH), new CoreStatFlat(Stamina.INSTANCE)
+
         );
     }
 

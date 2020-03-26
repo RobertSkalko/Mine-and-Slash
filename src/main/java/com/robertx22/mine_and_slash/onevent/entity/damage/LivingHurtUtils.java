@@ -14,8 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BowItem;
@@ -89,17 +87,6 @@ public class LivingHurtUtils {
                 .getImmediateSource();
             Entity ts = event.getSource()
                 .getTrueSource();
-
-            if (ts == null) {
-                if (is instanceof ThrowableEntity) {
-                    ThrowableEntity t = (ThrowableEntity) ts;
-                    ts = t.getThrower();
-                }
-                if (is instanceof AbstractArrowEntity) {
-                    AbstractArrowEntity t = (AbstractArrowEntity) ts;
-                    ts = t.getShooter();
-                }
-            }
 
             if (is != null && is instanceof PlayerEntity == false && is instanceof LivingEntity == false) {
                 if (ts instanceof LivingEntity) {

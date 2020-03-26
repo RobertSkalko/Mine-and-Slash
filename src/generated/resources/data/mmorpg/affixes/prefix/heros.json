@@ -12,10 +12,6 @@
         "slots": [
           "shield"
         ]
-      },
-      {
-        "min_tier": 7,
-        "max_tier": 2147483647
       }
     ]
   },

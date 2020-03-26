@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.affixes.WeaponSuffix;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
-import com.robertx22.mine_and_slash.database.requirements.UniqueTierRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
@@ -21,7 +20,7 @@ public class OfWeaponFlurry extends WeaponSuffix {
     public OfWeaponFlurry(WeaponTypes type) {
         super(
             new Requirements(
-                SlotRequirement.bracelet(), LevelRequirement.fromHighLevel(), new UniqueTierRequirement(10)), type);
+                SlotRequirement.bracelet(), LevelRequirement.fromHighLevel()), type);
     }
 
     @Override

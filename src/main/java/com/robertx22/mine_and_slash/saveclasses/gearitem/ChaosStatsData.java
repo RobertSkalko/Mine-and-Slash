@@ -1,14 +1,17 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.MinMax;
+import com.robertx22.mine_and_slash.database.chaos_stats.ChaosStat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsOtherStats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
+import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
 
 import java.io.Serializable;
@@ -23,6 +26,7 @@ public class ChaosStatsData implements IStatModsContainer, ICreateSpecific<StatM
 
     }
 
+    @Store
     private StatModData chaosStat;
 
     @Override
@@ -54,10 +58,15 @@ public class ChaosStatsData implements IStatModsContainer, ICreateSpecific<StatM
     public void RerollFully(GearItemData gear) {
         if (gear.chaosStats.chaosStat == null) {
 
-            StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
-                .ChaosStats());
+            ChaosStat stat = SlashRegistry.ChaosStats()
+                .getWrapped()
+                .allThatMeetRequirement(gear)
+                .random();
 
-            this.create(gear, mod);
+            if (stat != null) {
+                StatMod mod = new AllTraitMods(stat.getChaosTrait());
+                this.create(gear, mod);
+            }
         }
     }
 

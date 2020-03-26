@@ -82,7 +82,7 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
         } else if (part == Part.AFFIX) {
             return affixStatPercents();
         } else if (part == Part.UNIQUE_STATS) {
-            return affixStatPercents();
+            return uniqueStatPercents();
         } else {
             return StatPercents();
         }

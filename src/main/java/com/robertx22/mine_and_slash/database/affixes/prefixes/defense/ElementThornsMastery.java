@@ -2,12 +2,13 @@ package com.robertx22.mine_and_slash.database.affixes.prefixes.defense;
 
 import com.robertx22.mine_and_slash.database.affixes.ElementalPrefix;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
-import com.robertx22.mine_and_slash.database.unique_items.shields.ShieldElemental;
-import com.robertx22.mine_and_slash.database.requirements.ExactUniquesRequierement;
+import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
+import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.BlockReflectFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.unique_items.shields.ShieldElemental;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
@@ -18,7 +19,7 @@ import java.util.List;
 public class ElementThornsMastery extends ElementalPrefix {
 
     public ElementThornsMastery(Elements element) {
-        super(new Requirements(new ExactUniquesRequierement(new ShieldElemental(element))), element);
+        super(new Requirements(SlotRequirement.shield(), LevelRequirement.endgameLVLOnly()), element);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class ElementThornsMastery extends ElementalPrefix {
 
     @Override
     public int getRarityRank() {
-        return IRarity.Epic;
+        return IRarity.Legendary;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class ElementThornsMastery extends ElementalPrefix {
     public List<Prefix> generateAllPossibleStatVariations() {
         List<Prefix> list = new ArrayList<>();
         new ShieldElemental(element).generateAllPossibleStatVariations()
-                .forEach(x -> list.add(newGeneratedInstance(((ShieldElemental) x).element)));
+            .forEach(x -> list.add(newGeneratedInstance(((ShieldElemental) x).element)));
         return list;
 
     }

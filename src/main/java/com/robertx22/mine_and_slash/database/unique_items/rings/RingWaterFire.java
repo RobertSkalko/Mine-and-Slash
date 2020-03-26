@@ -2,11 +2,11 @@ package com.robertx22.mine_and_slash.database.unique_items.rings;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalConversionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -46,8 +46,8 @@ public class RingWaterFire implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalConversionFlat(Elements.Fire, Elements.Water),
-            new ElementalConversionFlat(Elements.Water, Elements.Fire)
+            new ElementalConversionFlat(Elements.Fire, Elements.Water).size(StatMod.Size.LOW),
+            new ElementalConversionFlat(Elements.Water, Elements.Fire).size(StatMod.Size.LOW)
         );
     }
 

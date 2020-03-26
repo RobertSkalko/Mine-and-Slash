@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
-import com.robertx22.mine_and_slash.database.requirements.UniqueTierRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
@@ -16,7 +15,7 @@ import java.util.List;
 public class OfTheHydra extends Suffix {
 
     public OfTheHydra() {
-        super(new Requirements(SlotRequirement.helmet(), LevelRequirement.fromHighLevel(), new UniqueTierRequirement(10)));
+        super(new Requirements(SlotRequirement.helmet(), LevelRequirement.fromHighLevel()));
     }
 
     @Override

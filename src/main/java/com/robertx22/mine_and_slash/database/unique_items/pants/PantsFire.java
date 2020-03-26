@@ -2,13 +2,13 @@ package com.robertx22.mine_and_slash.database.unique_items.pants;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffinityFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.ArmorMulti;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -48,7 +48,10 @@ public class PantsFire implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ArmorFlat().size(StatMod.Size.HIGH), new ArmorMulti(), new ElementalTransferFlat(Elements.Nature, Elements.Fire));
+            new ArmorFlat().size(StatMod.Size.HIGH),
+            new ArmorMulti(),
+            new ElementalSpellDamagePercent(Elements.Fire)
+        );
     }
 
     @Override

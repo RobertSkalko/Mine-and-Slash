@@ -3,10 +3,10 @@ package com.robertx22.mine_and_slash.database.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -46,7 +46,7 @@ public class NecklaceFire implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Fire), new ElementalTransferFlat(Elements.Water, Elements.Fire), new ElementalResistFlat(Elements.Water));
+        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Fire), new EnergyFlat().size(StatMod.Size.HIGH), new ElementalResistFlat(Elements.Water));
 
     }
 

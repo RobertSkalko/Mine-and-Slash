@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
@@ -16,7 +15,6 @@ import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -28,7 +26,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -182,21 +179,6 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
         return getDefaultItem();
 
-    }
-
-    public List<StatMod> ChaosStats() {
-
-        List<StatMod> list = new ArrayList<StatMod>();
-
-        for (StatMod mod : SlashRegistry.StatMods()
-            .getAll()
-            .values()) {
-            if (mod instanceof AllTraitMods) {
-                list.add(mod);
-            }
-        }
-
-        return list;
     }
 
 }

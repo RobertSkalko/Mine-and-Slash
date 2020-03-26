@@ -1,7 +1,7 @@
 {
   "id": "bonus_nature_reflect_prefix",
-  "weight": 250,
-  "rarity": 3,
+  "weight": 50,
+  "rarity": 4,
   "tier": 0,
   "registry": "affix",
   "lang_file_string": "mmorpg.affix.bonus_nature_reflect_prefix",
@@ -9,9 +9,13 @@
   "requirements": {
     "list": [
       {
-        "possible_uniques": [
-          "nature_ele_shield0"
+        "slots": [
+          "shield"
         ]
+      },
+      {
+        "min_level": 50,
+        "max_level": 2147483647
       }
     ]
   },

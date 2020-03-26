@@ -2,14 +2,14 @@ package com.robertx22.mine_and_slash.database.unique_items.axes;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Axe;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifeOnHitFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.LifeOnHitPercent;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -41,8 +41,11 @@ public class AxeThunder implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalHitPercent(), new CriticalHitFlat(), new CriticalDamagePercent(),
-            new LifeOnHitPercent().size(StatMod.Size.LESS)
+        return Arrays.asList(
+            new CriticalHitFlat().size(StatMod.Size.VERY_HIGH),
+            new ManaOnHitFlat(),
+            new LifeOnHitFlat().size(StatMod.Size.MUCH_LESS),
+            new LifestealFlat().size(StatMod.Size.MUCH_LESS)
         );
     }
 

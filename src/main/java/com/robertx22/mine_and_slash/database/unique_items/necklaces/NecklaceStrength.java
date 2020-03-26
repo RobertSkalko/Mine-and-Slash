@@ -2,13 +2,14 @@ package com.robertx22.mine_and_slash.database.unique_items.necklaces;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicStealFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -57,7 +58,10 @@ public class NecklaceStrength implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ArmorFlat().size(StatMod.Size.HIGH), new LifestealFlat());
+        return Arrays.asList(
+            new ArmorFlat().size(StatMod.Size.VERY_HIGH),
+            new LifestealFlat().size(StatMod.Size.HIGH),
+            new MagicStealFlat().size(StatMod.Size.HIGH));
     }
 
     @Override
