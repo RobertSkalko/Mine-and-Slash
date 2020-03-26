@@ -23,6 +23,11 @@ public class LegendaryGear extends BaseLegendary implements GearRarity {
     }
 
     @Override
+    public MinMax primaryStatPercents() {
+        return StatPercents();
+    }
+
+    @Override
     public int AffixChance() {
         return 100;
     }

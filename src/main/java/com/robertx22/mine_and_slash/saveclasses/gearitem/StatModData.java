@@ -39,6 +39,17 @@ public class StatModData implements ITooltipList {
         return data;
     }
 
+    public static StatModData NewRandom(MinMax minmax, StatMod mod) {
+
+        StatModData data = new StatModData();
+
+        data.baseModName = mod.GUID();
+        data.type = mod.getModType();
+        data.randomize(minmax);
+
+        return data;
+    }
+
     public static StatModData Load(StatMod mod, int percent) {
 
         StatModData data = new StatModData();

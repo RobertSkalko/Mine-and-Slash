@@ -32,7 +32,8 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
         if (gear.isUnique()) {
             for (StatMod mod : gear.uniqueStats.getUnique()
                 .primaryStats()) {
-                StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
+                StatModData moddata = StatModData.NewRandom(gear.getRarity()
+                    .primaryStatPercents(), mod);
                 this.Mods.add(moddata);
             }
 
@@ -44,7 +45,8 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
             int statsAmount = pos.mods.size();
 
             pos.mods.forEach(mod -> {
-                StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
+                StatModData moddata = StatModData.NewRandom(gear.getRarity()
+                    .primaryStatPercents(), mod);
                 this.Mods.add(moddata);
 
             });
@@ -57,7 +59,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
         for (StatModData data : this.Mods) {
             data.setPercent(gear.getRarity()
-                .StatPercents()
+                .primaryStatPercents()
                 .random());
         }
 

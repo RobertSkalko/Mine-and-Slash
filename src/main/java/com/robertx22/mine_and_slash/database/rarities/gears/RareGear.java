@@ -23,6 +23,11 @@ public class RareGear extends BaseRare implements GearRarity {
     }
 
     @Override
+    public MinMax primaryStatPercents() {
+        return StatPercents();
+    }
+
+    @Override
     public int AffixChance() {
         return 50;
     }
