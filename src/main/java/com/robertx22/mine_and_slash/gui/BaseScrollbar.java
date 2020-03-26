@@ -35,12 +35,17 @@ public abstract class BaseScrollbar extends Widget {
 
         //yPos = (int) MathHelper.clamp(yPos, 0, this.y + (value * (float) totalHeight - sizeY));
 
-        this.blit(this.x, yPos, xadd, 0, sizeX, sizeY);
+        this.blit(this.x, this.y, 50, 0, sizeX, totalHeight); // draw grey background
+
+        this.blit(this.x, yPos, xadd, 0, sizeX, sizeY); // draw the scrollbar
 
     }
 
     public int getScrollBarY() {
-        return (int) ((float) this.y + (value * (float) totalHeight));
+
+        int val = (int) ((float) this.y + (value * (float) totalHeight));
+
+        return MathHelper.clamp(val - sizeY / 2, this.y, this.y + totalHeight - sizeY);
     }
 
     @Override

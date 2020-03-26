@@ -81,7 +81,7 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
         int sliderX = guiLeft + BestiaryScreen.x - sliderXSize;
         int sliderY = guiTop + 50;
 
-        scrollbar = addButton(new Scrollbar(sliderX, sliderY, 180));
+        scrollbar = addButton(new Scrollbar(sliderX, sliderY, 170));
 
         // AbstractSlider
     }
@@ -172,8 +172,6 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
         this.setCurrentElement((int) (currentElement - num3));
 
-        scrollbar.setValueFromElement(currentElement, elementsAmount);
-
         return super.mouseScrolled(num1, num2, num3);
 
     }
@@ -181,6 +179,8 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
     public void setCurrentElement(int element) {
 
         this.currentElement = MathHelper.clamp(element, 0, elementsAmount);
+
+        scrollbar.setValueFromElement(currentElement, elementsAmount);
 
         setupEntryButtons();
 
@@ -228,7 +228,7 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
         initEntries();
 
-        this.currentElement = 0;
+        this.setCurrentElement(0);
 
         this.setupEntryButtons();
 
