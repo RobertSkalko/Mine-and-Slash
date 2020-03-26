@@ -77,33 +77,31 @@ public class TileMapPortal extends TileEntity {
 
                 data.init(mapDevicePos, map, MapManager.getDungeonDimensionType(), player);
 
-                if (data.isMapActive()) {
-                    World mapworld = MapManager.getWorld(MapManager.getDungeonDimensionType());
+                World mapworld = MapManager.getWorld(MapManager.getDungeonDimensionType());
 
-                    try {
-                        OnShutdownResetMaps.shouldDelete = Load.world(mapworld)
-                            .shouldDeleteFolderOnServerShutdown();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    if (mapworld == null) {
-                        return;
-                    }
-                    if (WorldUtils.isMapWorld(mapworld)) {
-
-                        BlockPos p = DungeonUtils.getDungeonStartTeleportPos(cpos);
-
-                        PlayerUtils.changeDimension((ServerPlayerEntity) player, MapManager.getDungeonDimensionType(), p);
-
-                        MMORPG.devToolsLog("tp to map succeeded");
-
-                    }
-                } else {
-
+                try {
+                    OnShutdownResetMaps.shouldDelete = Load.world(mapworld)
+                        .shouldDeleteFolderOnServerShutdown();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
+                if (mapworld == null) {
+                    return;
+                }
+                if (WorldUtils.isMapWorld(mapworld)) {
+
+                    BlockPos p = DungeonUtils.getDungeonStartTeleportPos(cpos);
+
+                    PlayerUtils.changeDimension((ServerPlayerEntity) player, MapManager.getDungeonDimensionType(), p);
+
+                    MMORPG.devToolsLog("tp to map succeeded");
+
+                }
+            } else {
+
             }
+
         }
     }
 

@@ -24,24 +24,23 @@ import java.util.List;
 
 public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
-    ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/window.png");
-    ResourceLocation FRAME_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/frame.png");
+    ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/bestiary.png");
     ResourceLocation BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/buttons.png");
     ResourceLocation SPLITTER_BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/split.png");
     ResourceLocation GROUP_BUTTON_TEXTURE = new ResourceLocation(Ref.MODID, "textures/gui/bestiary/bestiary_group_buttons.png");
 
     public Minecraft mc;
 
-    public static int entryButtonX = 223;
-    public static int entryButtonY = 32;
+    public static int entryButtonX = 235;
+    public static int entryButtonY = 24;
 
     public static int groupButtonX = 20;
     public static int groupButtonY = 20;
 
     Scrollbar scrollbar;
 
-    static int x = 248;
-    static int y = 232;
+    static int x = 276;
+    static int y = 200;
 
     public BestiaryGroup currentBestiaryGroup = new UniqueGearBestiary();
 
@@ -51,6 +50,8 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
     int level = 1;
     int elementsAmount = 1;
+
+    int entryButtonsAtOnce = 7;
 
     public BestiaryScreen() {
         super(x, y);
@@ -78,10 +79,10 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
         int sliderXSize = 10;
         int sliderYSize = 30;
 
-        int sliderX = guiLeft + BestiaryScreen.x - sliderXSize;
-        int sliderY = guiTop + 50;
+        int sliderX = guiLeft + 262;
+        int sliderY = guiTop + 18;
 
-        scrollbar = addButton(new Scrollbar(sliderX, sliderY, 170));
+        scrollbar = addButton(new Scrollbar(sliderX, sliderY, 174));
 
         // AbstractSlider
     }
@@ -94,13 +95,12 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
     public void setupGroupButtons() {
 
-        int gx = guiLeft + BestiaryScreen.x / 2 - (BestiaryGroup.getAll()
-            .size() * groupButtonX) / 2;
-        int gy = guiTop + 5;
+        int gx = guiLeft + 5;
+        int gy = guiTop + 18;
 
         for (BestiaryGroup bestiaryGroup : BestiaryGroup.getAll()) {
             addButton(new GroupButton(this, bestiaryGroup, gx, gy));
-            gx += groupButtonX;
+            gy += groupButtonY;
         }
 
     }
@@ -109,10 +109,10 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
         this.buttons.removeIf(x -> x instanceof EntryButton || x instanceof SplitterButton);
 
-        int x = this.guiLeft + BestiaryScreen.x / 2 - entryButtonX / 2;
-        int y = this.guiTop + 50;
+        int x = this.guiLeft + 27;
+        int y = this.guiTop + 19;
 
-        for (int i = currentElement; i < currentElement + 5; i++) {
+        for (int i = currentElement; i < currentElement + entryButtonsAtOnce; i++) {
             if (i >= elementsAmount) {
                 continue;
             } else {
@@ -121,10 +121,10 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
                 if (entry instanceof BestiaryEntry.Splitter) {
                     addButton(new SplitterButton((BestiaryEntry.Splitter) entry, x, y));
-                    y += entryButtonY + 2;
+                    y += entryButtonY + 0;
                 } else if (entry instanceof BestiaryEntry.Item) {
                     addButton(new EntryButton((BestiaryEntry.Item) entry, x, y));
-                    y += entryButtonY + 2;
+                    y += entryButtonY + 0;
                 }
 
             }
@@ -149,11 +149,7 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
             .getTextureManager()
             .bindTexture(BACKGROUND_TEXTURE);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.x, this.y, 256, 512);
-        Minecraft.getInstance()
-            .getTextureManager()
-            .bindTexture(FRAME_TEXTURE);
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+
         blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, this.x, this.y, 256, 512);
     }
 
@@ -295,6 +291,14 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
         }
 
+        int getStackY() {
+            return this.y + 4;
+        }
+
+        int getStackX() {
+            return this.x + 13;
+        }
+
         @Override
         public void renderButton(int x, int y, float ticks) {
 
@@ -302,7 +306,7 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
             if (item != null) {
                 mc.getItemRenderer()
-                    .renderItemAndEffectIntoGUI(item.stack, this.x + 12, this.y + 8);
+                    .renderItemAndEffectIntoGUI(item.stack, getStackX(), getStackY());
 
                 int xp = (int) (this.x + 35);
                 int yp = (int) (this.y + entryButtonY / 2) - mc.fontRenderer.FONT_HEIGHT / 2;
@@ -315,9 +319,8 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
         @Override
         public void renderToolTip(int x, int y) {
-            if (GuiUtils.isInRect(this.x, this.y, entryButtonX, entryButtonY, x, y)) {
+            if (GuiUtils.isInRect(getStackX(), getStackY(), 18, 18, x, y)) {
                 BestiaryScreen.this.renderTooltip(item.stack, x, y);
-
             }
         }
     }
