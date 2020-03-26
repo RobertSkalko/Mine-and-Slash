@@ -53,12 +53,13 @@ public abstract class BaseTrait extends Stat {
     public ITextComponent TraitText(TooltipStatInfo info) {
         Stat basestat = info.stat;
         ITextComponent comp = Styles.GREENCOMP()
-                .appendSibling(new StringTextComponent(" " + SYMBOL + " ").appendSibling(basestat.locName()));
+            .appendSibling(new StringTextComponent(" " + SYMBOL + " ").appendSibling(basestat.locName()));
 
         if (basestat instanceof INameSuffix) {
             INameSuffix suffix = (INameSuffix) basestat;
             comp.appendText(TextFormatting.LIGHT_PURPLE + " " + MAJOR_ARCANA + "  (");
-            comp.appendSibling(suffix.locSuffix().appendText(") " + MAJOR_ARCANA));
+            comp.appendSibling(suffix.locSuffix()
+                .appendText(") " + MAJOR_ARCANA));
         }
 
         return comp;

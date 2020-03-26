@@ -24,6 +24,6 @@
   },
   "mods": [
     "critical_damage_flat",
-    "very_low_nature_affinity_flat"
+    "high_spell_nature_damage_percent"
   ]
 }

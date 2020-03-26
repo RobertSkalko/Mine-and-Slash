@@ -24,6 +24,6 @@
   },
   "mods": [
     "critical_damage_flat",
-    "very_low_water_affinity_flat"
+    "high_spell_water_damage_percent"
   ]
 }

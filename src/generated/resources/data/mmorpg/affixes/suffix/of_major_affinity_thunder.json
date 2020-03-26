@@ -10,7 +10,7 @@
     "list": [
       {
         "slots": [
-          "ring"
+          "bracelet"
         ]
       },
       {
@@ -20,7 +20,7 @@
     ]
   },
   "mods": [
-    "thunder_affinity_flat",
+    "very_low_thunder_affinity_flat",
     "thunder_spell_to_attack_dmg_flat"
   ]
 }
