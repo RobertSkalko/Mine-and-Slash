@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.tooltips.StatTooltipType;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRerollable {
+public class PrimaryStatsData extends StatGroupData implements IGearPartTooltip, IRerollable {
 
     public PrimaryStatsData() {
 
@@ -32,8 +32,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
         if (gear.isUnique()) {
             for (StatMod mod : gear.uniqueStats.getUnique()
                 .primaryStats()) {
-                StatModData moddata = StatModData.NewRandom(gear.getRarity()
-                    .primaryStatPercents(), mod);
+                StatModData moddata = StatModData.NewRandom(getMinMax(gear), mod);
                 this.Mods.add(moddata);
             }
 
@@ -45,8 +44,7 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
             int statsAmount = pos.mods.size();
 
             pos.mods.forEach(mod -> {
-                StatModData moddata = StatModData.NewRandom(gear.getRarity()
-                    .primaryStatPercents(), mod);
+                StatModData moddata = StatModData.NewRandom(getMinMax(gear), mod);
                 this.Mods.add(moddata);
 
             });
@@ -58,15 +56,15 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
     public void RerollNumbers(GearItemData gear) {
 
         for (StatModData data : this.Mods) {
-            data.setPercent(gear.getRarity()
-                .primaryStatPercents()
-                .random());
+            data.setPercent(getMinMax(gear).random());
         }
 
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
+
+        info.minmax = getMinMax(gear);
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
@@ -93,4 +91,8 @@ public class PrimaryStatsData extends StatGroupData implements ITooltipList, IRe
 
     }
 
+    @Override
+    public Part getPart() {
+        return Part.PRIMARY_STATS;
+    }
 }

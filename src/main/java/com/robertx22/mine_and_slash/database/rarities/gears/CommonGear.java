@@ -28,6 +28,21 @@ public class CommonGear extends BaseCommon implements GearRarity {
     }
 
     @Override
+    public MinMax secondaryStatPercents() {
+        return StatPercents();
+    }
+
+    @Override
+    public MinMax affixStatPercents() {
+        return StatPercents();
+    }
+
+    @Override
+    public MinMax uniqueStatPercents() {
+        return StatPercents();
+    }
+
+    @Override
     public int AffixChance() {
         return 0;
     }

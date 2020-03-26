@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ICreateSpecific;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -17,14 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class ChaosStatsData extends StatGroupData implements ICreateSpecific<StatMod>, Serializable, ITooltipList, IRerollable {
+public class ChaosStatsData extends StatGroupData implements ICreateSpecific<StatMod>, Serializable, IGearPartTooltip, IRerollable {
 
     public ChaosStatsData() {
 
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
+        info.minmax = getMinMax(gear);
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
@@ -68,5 +69,10 @@ public class ChaosStatsData extends StatGroupData implements ICreateSpecific<Sta
         StatModData moddata = StatModData.NewRandom(gear.getRarity(), mod);
         this.Mods.add(moddata);
 
+    }
+
+    @Override
+    public Part getPart() {
+        return Part.OTHER;
     }
 }

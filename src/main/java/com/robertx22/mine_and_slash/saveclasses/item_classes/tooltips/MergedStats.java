@@ -1,15 +1,16 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer.LevelAndStats;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MergedStats implements ITooltipList {
+public class MergedStats implements IGearPartTooltip {
 
     public List<TooltipStatInfo> list;
 
@@ -27,10 +28,15 @@ public class MergedStats implements ITooltipList {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
         List<ITextComponent> tooltip = new ArrayList<>();
         list.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
         return tooltip;
+    }
+
+    @Override
+    public Part getPart() {
+        return Part.OTHER;
     }
 }

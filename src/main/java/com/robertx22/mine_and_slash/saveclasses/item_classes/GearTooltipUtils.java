@@ -8,8 +8,8 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.MergedStats;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
@@ -57,12 +57,12 @@ public class GearTooltipUtils {
         }
 
         if (gear.primaryStats != null) {
-            tip.addAll(gear.primaryStats.GetTooltipString(info));
+            tip.addAll(gear.primaryStats.GetTooltipString(info, gear));
         }
 
         tip.add(new StringTextComponent(""));
 
-        List<ITooltipList> list = new ArrayList<ITooltipList>();
+        List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();
 
         tip.add(TooltipUtils.lvlReq(gear.level, data));
 
@@ -71,13 +71,16 @@ public class GearTooltipUtils {
         }
 
         if (gear.runes != null) {
-            tip.addAll(gear.runes.GetTooltipString(info));
+            tip.addAll(gear.runes.GetTooltipString(info, gear));
+        }
+
+        if (gear.uniqueStats != null) {
+            tip.addAll(gear.uniqueStats.GetTooltipString(info, gear));
         }
 
         tip.add(new StringTextComponent(""));
 
         if (Screen.hasShiftDown()) {
-            list.add(gear.uniqueStats);
             list.add(gear.secondaryStats);
             list.add(gear.prefix);
             list.add(gear.suffix);
@@ -85,10 +88,6 @@ public class GearTooltipUtils {
 
             List<IStatModsContainer.LevelAndStats> lvlstatsmerged = new ArrayList<>();
 
-            if (gear.uniqueStats != null) {
-                tip.add(gear.uniqueStats.getHeader());
-                lvlstatsmerged.addAll(gear.uniqueStats.GetAllStats(gear.level));
-            }
             if (gear.secondaryStats != null) {
                 lvlstatsmerged.addAll(gear.secondaryStats.GetAllStats(gear.level));
             }
@@ -107,10 +106,10 @@ public class GearTooltipUtils {
         list.add(gear.chaosStats);
         list.add(gear.set);
 
-        for (ITooltipList part : list) {
+        for (IGearPartTooltip part : list) {
 
             if (part != null) {
-                tip.addAll(part.GetTooltipString(info));
+                tip.addAll(part.GetTooltipString(info, gear));
                 tip.add(new StringTextComponent(""));
             }
 

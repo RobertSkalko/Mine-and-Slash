@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.saveclasses.rune;
 import com.robertx22.mine_and_slash.database.runes.base.BaseUniqueRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.RuneItemData;
@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class RunesData implements ITooltipList, IStatModsContainer {
+public class RunesData implements IGearPartTooltip, IStatModsContainer {
 
     @Store
     public List<InsertedRuneData> runes = new ArrayList<InsertedRuneData>();
@@ -187,7 +187,7 @@ public class RunesData implements ITooltipList, IStatModsContainer {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
         List<ITextComponent> list = new ArrayList();
 
@@ -224,5 +224,10 @@ public class RunesData implements ITooltipList, IStatModsContainer {
     public boolean hasUniqueRune() {
         return runes.stream()
             .anyMatch(x -> x.getRune() instanceof BaseUniqueRune);
+    }
+
+    @Override
+    public Part getPart() {
+        return Part.OTHER;
     }
 }

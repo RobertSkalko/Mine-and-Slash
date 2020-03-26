@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class SecondaryStatsData extends StatGroupData implements Serializable, ITooltipList, IRerollable {
+public class SecondaryStatsData extends StatGroupData implements Serializable, IGearPartTooltip, IRerollable {
 
     private static final long serialVersionUID = 6149243047165372987L;
 
@@ -40,7 +40,7 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
         while (Stats > 0) {
             StatMod mod = RandomUtils.weightedRandom(gear.GetBaseGearType()
                 .getPossibleSecondaryStats());
-            this.Mods.add(StatModData.NewRandom(gear.getRarity(), mod));
+            this.Mods.add(StatModData.NewRandom(getMinMax(gear), mod));
             Stats--;
 
         }
@@ -61,15 +61,15 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
     public void RerollNumbers(GearItemData gear) {
 
         for (StatModData data : this.Mods) {
-            data.setPercent(gear.getRarity()
-                .StatPercents()
+            data.setPercent(getMinMax(gear)
                 .random());
         }
 
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
+        info.minmax = getMinMax(gear);
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
@@ -90,4 +90,8 @@ public class SecondaryStatsData extends StatGroupData implements Serializable, I
 
     }
 
+    @Override
+    public Part getPart() {
+        return Part.SECONDARY_STATS;
+    }
 }

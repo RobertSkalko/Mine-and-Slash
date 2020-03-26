@@ -23,6 +23,21 @@ public class EpicGear extends BaseEpic implements GearRarity {
     }
 
     @Override
+    public MinMax secondaryStatPercents() {
+        return StatPercents();
+    }
+
+    @Override
+    public MinMax affixStatPercents() {
+        return StatPercents();
+    }
+
+    @Override
+    public MinMax uniqueStatPercents() {
+        return StatPercents();
+    }
+
+    @Override
     public MinMax primaryStatPercents() {
         return StatPercents();
     }

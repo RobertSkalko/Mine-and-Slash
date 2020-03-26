@@ -11,6 +11,9 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     public MinMax secondaryStatsAmount;
     public MinMax statPercents;
     public MinMax primaryStatPercents;
+    public MinMax secondaryStatPercents;
+    public MinMax affixStatPercents;
+    public MinMax uniqueStatPercents;
     public float itemTierPower;
     public float requirementMulti;
     public float salvageLotteryChance;
@@ -23,6 +26,21 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     @Override
     public MinMax primaryStatPercents() {
         return primaryStatPercents;
+    }
+
+    @Override
+    public MinMax secondaryStatPercents() {
+        return secondaryStatPercents;
+    }
+
+    @Override
+    public MinMax affixStatPercents() {
+        return affixStatPercents;
+    }
+
+    @Override
+    public MinMax uniqueStatPercents() {
+        return uniqueStatPercents;
     }
 
     @Override

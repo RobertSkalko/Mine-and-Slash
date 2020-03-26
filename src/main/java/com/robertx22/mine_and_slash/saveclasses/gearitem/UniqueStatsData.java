@@ -3,13 +3,14 @@ package com.robertx22.mine_and_slash.saveclasses.gearitem;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -20,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class UniqueStatsData implements ITooltipList, IRerollable, IStatModsContainer {
+public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatModsContainer {
 
     public UniqueStatsData() {
 
@@ -47,8 +48,7 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatModsCont
 
         // wont ever have more than 10 unique stats.
         for (int i = 0; i < 10; i++) {
-            percents.add(gear.getRarity()
-                .StatPercents()
+            percents.add(getMinMax(gear)
                 .random());
         }
 
@@ -61,10 +61,13 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatModsCont
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
+
+        info.minmax = getMinMax(gear);
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
+        list.add(new SText(""));
         list.add(getHeader());
 
         for (LevelAndStats part : this.GetAllStats(info.level)) {
@@ -101,4 +104,8 @@ public class UniqueStatsData implements ITooltipList, IRerollable, IStatModsCont
         return Arrays.asList(new LevelAndStats(list, level));
     }
 
+    @Override
+    public Part getPart() {
+        return Part.UNIQUE_STATS;
+    }
 }

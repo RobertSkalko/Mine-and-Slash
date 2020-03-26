@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ICreateSpecific;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>, Serializable, ITooltipList,
+public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>, Serializable, IGearPartTooltip,
     IRerollable {
 
     private static final long serialVersionUID = -110285627065158395L;
@@ -54,8 +54,7 @@ public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>,
         percents = new ArrayList<Integer>();
 
         for (StatMod mod : BaseAffix().StatMods()) {
-            percents.add(gear.getRarity()
-                .StatPercents()
+            percents.add(getMinMax(gear)
                 .random());
 
         }
@@ -78,7 +77,9 @@ public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>,
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
+
+        info.minmax = getMinMax(gear);
 
         BaseAffix affix = BaseAffix();
 
@@ -99,4 +100,8 @@ public class PrefixData extends AffixData implements ICreateSpecific<BaseAffix>,
 
     }
 
+    @Override
+    public Part getPart() {
+        return Part.AFFIX;
+    }
 }

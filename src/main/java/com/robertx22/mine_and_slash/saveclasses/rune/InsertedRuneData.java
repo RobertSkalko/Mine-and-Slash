@@ -84,6 +84,8 @@ public class InsertedRuneData extends StatGroupData implements ITooltipList {
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList();
 
+        info.minmax = getRarity().StatPercents();
+
         for (StatModData mod : this.Mods) {
             list.addAll(mod.GetTooltipString(info.withLevel(this.level)));
         }
