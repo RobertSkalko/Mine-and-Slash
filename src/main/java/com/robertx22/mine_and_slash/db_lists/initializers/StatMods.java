@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.Trait;
 import com.robertx22.mine_and_slash.database.stats.mods.AllTraitMods;
+import com.robertx22.mine_and_slash.database.stats.mods.Mod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.AllAttributesFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
@@ -67,6 +68,8 @@ public class StatMods implements ISlashRegistryInit {
 
                     add(new CoreStatFlat(Dexterity.INSTANCE));
                     add(new CoreStatPercent(Dexterity.INSTANCE));
+
+                    add(Mod.LUCK_FLAT);
 
                     add(new CompletePhysDispersionFlat());
                     add(new HealPowerFlat());

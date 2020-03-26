@@ -90,6 +90,17 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.arcanists": "Arcanist's",
@@ -188,17 +199,6 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "Mage's Robes",
@@ -235,24 +235,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -271,6 +253,24 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -429,7 +429,6 @@
 	"mmorpg.word.average": "Average",
 	"mmorpg.word.bad": "Bad",
 	"mmorpg.word.basevalue": "Base Value",
-	"mmorpg.word.bestiary": "Bestiary",
 	"mmorpg.word.betterprimarystats": "Better Primary Stats",
 	"mmorpg.word.beware": "Beware",
 	"mmorpg.word.bewarecreativebagbug1": "Beware, switching to Creative",
@@ -451,6 +450,7 @@
 	"mmorpg.word.chaos_stats": "Chaos Stats",
 	"mmorpg.word.cleric": "Cleric",
 	"mmorpg.word.commonercrate": "Commoner's Dream Crate",
+	"mmorpg.word.compendium": "Compendium",
 	"mmorpg.word.cooldown": "Cooldown",
 	"mmorpg.word.core_stat": "Core Stat",
 	"mmorpg.word.craftingdeletesitemsinside": "Crafting deletes items inside, empty beforehand!",
@@ -748,6 +748,7 @@
 	"mmorpg.stat.lord_of_earthquakes": "Lord of Earthquakes",
 	"mmorpg.stat.lord_of_thunderstorms": "Lord of Thunderstorms",
 	"mmorpg.stat.lord_of_volcanoes": "Lord of Volcanoes",
+	"mmorpg.stat.luck": "Luck",
 	"mmorpg.stat.lucky": "Lucky",
 	"mmorpg.stat.magic_shield": "Magic Shield",
 	"mmorpg.stat.magic_shield_regen": "Magic Shield Regen",
@@ -772,7 +773,7 @@
 	"mmorpg.stat.nature_to_water_conversion": "Boost Nature to Water",
 	"mmorpg.stat.nature_to_water_transfer": "Transfer Nature to Water",
 	"mmorpg.stat.overflowing_vitality_trait": "Overflowing Vitality",
-	"mmorpg.stat.physical_damage": "Physical Damage",
+	"mmorpg.stat.physical_damage": "Damage",
 	"mmorpg.stat.physical_dispersion": "Physical Dispersion",
 	"mmorpg.stat.physical_penetration": "Physical Penetration",
 	"mmorpg.stat.physical_thorns_reflect": "Physical Thorns",
@@ -994,34 +995,6 @@
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.blazing_inferno": "Blazing Inferno",
-	"effect.mmorpg.bleed": "Bleed",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
-	"effect.mmorpg.divine_shield": "Divine Shield",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Frost Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.major_thorns": "Major Thorns",
-	"effect.mmorpg.minor_thorns": "Minor Thorns",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.righteous_fury": "Righteous Fury",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.stealth": "Stealth",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -1146,6 +1119,34 @@
 	"item.mmorpg.torch.torch4": "§6Torch",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.blazing_inferno": "Blazing Inferno",
+	"effect.mmorpg.bleed": "Bleed",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
+	"effect.mmorpg.divine_shield": "Divine Shield",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Frost Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.major_thorns": "Major Thorns",
+	"effect.mmorpg.minor_thorns": "Minor Thorns",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.righteous_fury": "Righteous Fury",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.stealth": "Stealth",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.wounds": "Wounds",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",
@@ -1358,6 +1359,7 @@
 	"mmorpg.stat_desc.life_on_hit": "Gives health on basic attack hit",
 	"mmorpg.stat_desc.lifesteal": "Percent of basic attack DMG added to health",
 	"mmorpg.stat_desc.loot_drop_bonus": "Increases Loot Drops of the type",
+	"mmorpg.stat_desc.luck": "Increases bonus loot and critical hit chance.",
 	"mmorpg.stat_desc.magic_shield": "Works like extra health. But regen is separate.",
 	"mmorpg.stat_desc.magic_shield_regen": "Regen happens every few seconds but is also used for other stats or spells",
 	"mmorpg.stat_desc.magic_steal": "Percent of basic attack DMG will restore magic shield.",

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.PhysicalDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;

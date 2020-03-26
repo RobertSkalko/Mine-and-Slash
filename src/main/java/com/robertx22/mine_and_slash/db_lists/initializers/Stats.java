@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.A
 import com.robertx22.mine_and_slash.database.stats.types.game_changers.*;
 import com.robertx22.mine_and_slash.database.stats.types.generated.*;
 import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
+import com.robertx22.mine_and_slash.database.stats.types.misc.LuckStat;
 import com.robertx22.mine_and_slash.database.stats.types.offense.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.EnergyToManaConversion;
@@ -65,6 +66,8 @@ public class Stats implements ISlashRegistryInit {
                     add(OverflowingVitality.getInstance());
                     add(ArcaneDevotion.getInstance());
                     add(FamiliarInstincts.getInstance());
+
+                    add(new LuckStat());
 
                     add(new ElementalConversion(Elements.Physical, Elements.Physical));
                     add(new ElementalTransfer(Elements.Physical, Elements.Physical));

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;

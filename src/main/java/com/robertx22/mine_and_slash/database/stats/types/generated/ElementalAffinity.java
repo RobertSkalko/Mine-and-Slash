@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.ICoreStat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.ICoreStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -54,7 +54,8 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
     @Override
     public void addToOtherStats(EntityCap.UnitData unitdata, StatData data) {
         for (StatMod statmod : this.statsThatBenefit()) {
-            unitdata.getUnit().getCreateStat(statmod.GetBaseStat()).Flat += data.val;
+            unitdata.getUnit()
+                .getCreateStat(statmod.GetBaseStat()).Flat += data.val;
         }
     }
 
@@ -76,7 +77,7 @@ public class ElementalAffinity extends ElementalStat implements ICoreStat {
     @Override
     public List<StatMod> statsThatBenefit() {
         return Arrays.asList(
-                new ElementalResistFlat(this.getElement()), new ElementalSpellDamageFlat(this.getElement()));
+            new ElementalResistFlat(this.getElement()), new ElementalSpellDamageFlat(this.getElement()));
     }
 
     @Override

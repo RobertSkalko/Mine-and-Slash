@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.loot_crates;
 
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;

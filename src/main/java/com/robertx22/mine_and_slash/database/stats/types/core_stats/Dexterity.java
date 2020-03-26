@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;

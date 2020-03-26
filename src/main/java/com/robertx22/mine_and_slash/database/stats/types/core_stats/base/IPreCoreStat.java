@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.stats.types.core_stats;
+package com.robertx22.mine_and_slash.database.stats.types.core_stats.base;
 
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -7,12 +7,10 @@ import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 
 import java.util.List;
 
-public interface ICoreStat extends IGUID {
+public interface IPreCoreStat extends IGUID {
 
-    void addToOtherStats(EntityCap.UnitData unit, StatData data);
+    void addToCoreStats(EntityCap.UnitData unit, StatData data);
 
-    List<StatMod> statsThatBenefit();
-
-    float amountToReach100Percent();
+    List<StatMod> coreStatsThatBenefit();
 
 }

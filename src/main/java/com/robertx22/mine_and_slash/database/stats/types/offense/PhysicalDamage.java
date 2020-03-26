@@ -48,7 +48,7 @@ public class PhysicalDamage extends Stat {
 
     @Override
     public String locNameForLangFile() {
-        return "Physical Damage";
+        return "Damage";
     }
 
     private static class SingletonHolder {

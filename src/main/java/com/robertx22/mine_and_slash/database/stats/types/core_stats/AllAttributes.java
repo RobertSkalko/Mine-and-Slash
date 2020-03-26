@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.IPreCoreStat;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -31,7 +32,9 @@ public class AllAttributes extends Stat implements IPreCoreStat {
     public void addToCoreStats(EntityCap.UnitData unitdata, StatData data) {
 
         for (StatMod statmod : this.coreStatsThatBenefit()) {
-            unitdata.getUnit().getCreateStat(statmod.GetBaseStat().GUID()).Flat += data.val;
+            unitdata.getUnit()
+                .getCreateStat(statmod.GetBaseStat()
+                    .GUID()).Flat += data.val;
         }
 
     }

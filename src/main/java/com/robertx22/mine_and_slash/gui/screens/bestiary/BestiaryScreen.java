@@ -160,7 +160,7 @@ public class BestiaryScreen extends BaseScreen implements INamedScreen {
 
     @Override
     public Words screenName() {
-        return Words.Bestiary;
+        return Words.Compendium;
     }
 
     @Override

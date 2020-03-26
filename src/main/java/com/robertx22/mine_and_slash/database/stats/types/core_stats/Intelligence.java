@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
