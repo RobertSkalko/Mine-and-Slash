@@ -90,9 +90,9 @@ public class EntityRegister {
         TRADER.setRegistryName(new ResourceLocation(Ref.MODID, "trader"));
         ENTITY_TYPES.add(TRADER);
 
-        LEAPING_ZOMBIE = EntityType.Builder.<LeapingZombie>create(LeapingZombie::new, EntityClassification.MISC).setCustomClientFactory(
+        LEAPING_ZOMBIE = EntityType.Builder.<LeapingZombie>create(LeapingZombie::new, EntityClassification.MONSTER).setCustomClientFactory(
             LeapingZombie::new)
-            .size(0.5F, 2F)
+            .size(0.6F, 1.95F)
             .build(Ref.MODID + ":leaping_zombie");
         LEAPING_ZOMBIE.setRegistryName(new ResourceLocation(Ref.MODID, "leaping_zombie"));
         ENTITY_TYPES.add(LEAPING_ZOMBIE);

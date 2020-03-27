@@ -4,11 +4,13 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
@@ -17,6 +19,18 @@ import net.minecraft.util.math.Vec3d;
 import java.lang.reflect.Field;
 
 public class EntityUtils {
+
+    public static boolean isTryingButCantGetToPlayer(MobEntity mob) {
+        if (mob.getAttackTarget() != null) {
+            Path path = mob.getNavigator()
+                .getPathToEntity(mob.getAttackTarget(), 0);
+            if (path == null || !path.isFinished()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public static ItemStack getWeaponStackFromThrownEntity(Entity en) {
 

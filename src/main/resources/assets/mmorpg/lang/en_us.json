@@ -110,6 +110,9 @@
 	"mmorpg.affix.bonus_thunder_reflect_prefix": "Lightning Thorns Mastery",
 	"mmorpg.affix.bonus_water_reflect_prefix": "Frost Thorns Mastery",
 	"mmorpg.affix.brave_heart": "Brave Heart",
+	"mmorpg.affix.broken": "Broken",
+	"mmorpg.affix.colossal": "Colossal",
+	"mmorpg.affix.cursed_undead": "Cursed Undead",
 	"mmorpg.affix.deep_mind": "Deep Mind",
 	"mmorpg.affix.defenders": "Defender's",
 	"mmorpg.affix.enduring_field": "Enduring Field",
@@ -122,6 +125,7 @@
 	"mmorpg.affix.flaming": "Flaming",
 	"mmorpg.affix.frosty": "Frosty",
 	"mmorpg.affix.gatekeepers": "Gatekeeper's",
+	"mmorpg.affix.generation_curse": "Generational Curse",
 	"mmorpg.affix.hard_hitting": "Hard hitting",
 	"mmorpg.affix.hardened": "Hardened",
 	"mmorpg.affix.heavenly_skin": "Heavenly Skin",
@@ -139,20 +143,26 @@
 	"mmorpg.affix.of_balance": "Of Balance",
 	"mmorpg.affix.of_behemoths": "Of Behemoths",
 	"mmorpg.affix.of_bow_flurry": "Of Bow Flurry",
+	"mmorpg.affix.of_clumsiness": "Of Clumsiness",
 	"mmorpg.affix.of_critical_damage": "Of Critical Damage",
 	"mmorpg.affix.of_critical_hits": "Of Critical Hits",
 	"mmorpg.affix.of_critical_unity": "Of Critical Unity",
 	"mmorpg.affix.of_crossbow_flurry": "Of CrossBow Flurry",
 	"mmorpg.affix.of_ele_resist": "Of Element Resist",
+	"mmorpg.affix.of_exhaustion": "Of Exhaustion",
+	"mmorpg.affix.of_feebleness": "Of Feebleeness",
 	"mmorpg.affix.of_fire_dissonance": "Of Flame's Dissonance",
 	"mmorpg.affix.of_fire_storms": "Of Firestorms",
 	"mmorpg.affix.of_force": "Of Force",
+	"mmorpg.affix.of_frailty": "Of Frailty",
 	"mmorpg.affix.of_giants": "Of Giants",
 	"mmorpg.affix.of_godhood": "Of Godhood",
 	"mmorpg.affix.of_guidance": "Of Guidance",
 	"mmorpg.affix.of_hammer_flurry": "Of Hammer Flurry",
 	"mmorpg.affix.of_hidden_sense": "Of Hidden Sense",
+	"mmorpg.affix.of_idiocy": "Of Idiocy",
 	"mmorpg.affix.of_immortality": "Of Immortality",
+	"mmorpg.affix.of_inexperience": "Of Inexperience",
 	"mmorpg.affix.of_magic_shield": "Of Magic Shield",
 	"mmorpg.affix.of_magic_stealing": "Of Magic Stealing",
 	"mmorpg.affix.of_major_affinity_fire": "Of Major Fire Affinity",
@@ -160,6 +170,7 @@
 	"mmorpg.affix.of_major_affinity_thunder": "Of Major Thunder Affinity",
 	"mmorpg.affix.of_major_affinity_water": "Of Major Water Affinity",
 	"mmorpg.affix.of_mana_regen": "Of Mana Regen",
+	"mmorpg.affix.of_mortality": "Of Mortality",
 	"mmorpg.affix.of_nature_dissonance": "Of Venom's Dissonance",
 	"mmorpg.affix.of_nature_storms": "Of Earthquakes",
 	"mmorpg.affix.of_rock_piercing": "Of Rock Piercing",
@@ -168,6 +179,7 @@
 	"mmorpg.affix.of_swiftness": "Of Swiftness",
 	"mmorpg.affix.of_sword_flurry": "Of Sword Flurry",
 	"mmorpg.affix.of_the_depths": "Of The Depths",
+	"mmorpg.affix.of_the_fallen": "Of The Fallen",
 	"mmorpg.affix.of_the_hydra": "Of the Hydra",
 	"mmorpg.affix.of_the_sage": "Of The Sage",
 	"mmorpg.affix.of_thunder_dissonance": "Of Lightning's Dissonance",
@@ -177,6 +189,11 @@
 	"mmorpg.affix.of_vitality": "Of Vitality",
 	"mmorpg.affix.of_water_dissonance": "Of Frost's Dissonance",
 	"mmorpg.affix.of_water_storms": "Of Blizzards",
+	"mmorpg.affix.old": "Old",
+	"mmorpg.affix.reeking": "Reeking",
+	"mmorpg.affix.sacrificial": "Sacrificial",
+	"mmorpg.affix.shabby": "Shabby",
+	"mmorpg.affix.smelly": "Smelly",
 	"mmorpg.affix.tenacious": "Tenacious",
 	"mmorpg.affix.thirst_of_acid": "Thirst Of Acid",
 	"mmorpg.affix.thirst_of_flame": "Thirst Of Flame",
@@ -235,6 +252,24 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -253,24 +288,6 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -995,6 +1012,34 @@
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.blazing_inferno": "Blazing Inferno",
+	"effect.mmorpg.bleed": "Bleed",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
+	"effect.mmorpg.divine_shield": "Divine Shield",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Frost Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.major_thorns": "Major Thorns",
+	"effect.mmorpg.minor_thorns": "Minor Thorns",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.righteous_fury": "Righteous Fury",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.stealth": "Stealth",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.wounds": "Wounds",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -1119,34 +1164,6 @@
 	"item.mmorpg.torch.torch4": "§6Torch",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.blazing_inferno": "Blazing Inferno",
-	"effect.mmorpg.bleed": "Bleed",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
-	"effect.mmorpg.divine_shield": "Divine Shield",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Frost Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.major_thorns": "Major Thorns",
-	"effect.mmorpg.minor_thorns": "Minor Thorns",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.righteous_fury": "Righteous Fury",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.stealth": "Stealth",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",

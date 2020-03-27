@@ -2,10 +2,12 @@ package com.robertx22.mine_and_slash.mobs.entity;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.ai.goal.HurtByTargetGoal;
+import net.minecraft.entity.ai.goal.LookAtGoal;
+import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.IPacket;
@@ -24,17 +26,20 @@ public class LeapingZombie extends ZombieEntity {
     }
 
     @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(2, new ZombieGriefAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+
+        // targetselecter is not goalselector!!
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(MobEntity.class));
+        this.targetSelector.addGoal(2, new NearestPlayerOpGoal(this));
+
+    }
+
+    @Override
     protected void applyEntityAI() {
-
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.goalSelector.addGoal(1, new SwimGoal(this));
-
-        //this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.0D, false));
-        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
-        this.goalSelector.addGoal(4, new AttackGoal(this));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
 
     }
 
@@ -43,7 +48,9 @@ public class LeapingZombie extends ZombieEntity {
         super.registerAttributes();
 
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED)
-            .setBaseValue((double) 0.4);
+            .setBaseValue((double) 0.3);
+        this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE)
+            .setBaseValue(50);
 
     }
 
@@ -52,35 +59,4 @@ public class LeapingZombie extends ZombieEntity {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    static class AttackGoal extends MeleeAttackGoal {
-        public AttackGoal(MonsterEntity spider) {
-            super(spider, 1.0D, true);
-        }
-
-        /**
-         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-         * method as well.
-         */
-        public boolean shouldExecute() {
-            return super.shouldExecute() && !this.attacker.isBeingRidden();
-        }
-
-        /**
-         * Returns whether an in-progress EntityAIBase should continue executing
-         */
-        public boolean shouldContinueExecuting() {
-            float f = this.attacker.getBrightness();
-            if (f >= 0.5F && this.attacker.getRNG()
-                .nextInt(100) == 0) {
-                this.attacker.setAttackTarget((LivingEntity) null);
-                return false;
-            } else {
-                return super.shouldContinueExecuting();
-            }
-        }
-
-        protected double getAttackReachSqr(LivingEntity attackTarget) {
-            return (double) (4.0F + attackTarget.getWidth());
-        }
-    }
 }

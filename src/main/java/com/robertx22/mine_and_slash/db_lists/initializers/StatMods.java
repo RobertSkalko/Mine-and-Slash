@@ -69,7 +69,7 @@ public class StatMods implements ISlashRegistryInit {
                     add(new CoreStatFlat(Dexterity.INSTANCE));
                     add(new CoreStatPercent(Dexterity.INSTANCE));
 
-                    add(Mod.LUCK_FLAT);
+                    add(Mod.LUCK_FLAT());
 
                     add(new CompletePhysDispersionFlat());
                     add(new HealPowerFlat());

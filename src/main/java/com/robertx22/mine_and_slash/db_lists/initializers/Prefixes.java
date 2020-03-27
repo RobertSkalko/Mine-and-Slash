@@ -2,9 +2,14 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Prefix;
+import com.robertx22.mine_and_slash.database.affixes.prefixes.curses.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.EleShieldPrefix;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.misc.*;
+import com.robertx22.mine_and_slash.database.affixes.prefixes.mixed.Colossal;
+import com.robertx22.mine_and_slash.database.affixes.prefixes.mixed.GenerationalCurse;
+import com.robertx22.mine_and_slash.database.affixes.prefixes.mixed.Sacrificial;
+import com.robertx22.mine_and_slash.database.affixes.prefixes.mixed.UndeadCurse;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.damage_percents.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.*;
@@ -75,6 +80,17 @@ public class Prefixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
 
                     add(new Energetic());
                     add(new Tough());
+
+                    add(new Broken());
+                    add(new Old());
+                    add(new Reeking());
+                    add(new Shabby());
+                    add(new Smelly());
+
+                    add(new Colossal());
+                    add(new GenerationalCurse());
+                    add(new Sacrificial());
+                    add(new UndeadCurse());
 
                 }
             }

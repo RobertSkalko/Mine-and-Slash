@@ -90,6 +90,7 @@ public class GiveGear {
         for (int i = 0; i < amount; i++) {
 
             GearBlueprint blueprint = new GearBlueprint(lvl);
+            blueprint.unidentifiedPart.set(false);
             if (rarity > -1) {
                 blueprint.rarity.setSpecificRarity(rarity);
             }

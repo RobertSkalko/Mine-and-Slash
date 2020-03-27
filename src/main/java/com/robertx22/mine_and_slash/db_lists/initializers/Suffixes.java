@@ -3,7 +3,10 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.Suffix;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.*;
+import com.robertx22.mine_and_slash.database.affixes.suffixes.curses.OfLessCoreStat;
+import com.robertx22.mine_and_slash.database.affixes.suffixes.curses.OfMortality;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.defense.*;
+import com.robertx22.mine_and_slash.database.affixes.suffixes.mixed.OfTheFallen;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.offense.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfGodhood;
@@ -64,6 +67,17 @@ public class Suffixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
                     add(new OfManaRegen());
                     add(new OfTheSage());
                     add(new OfMagicStealing());
+
+                    add(OfLessCoreStat.DEX);
+                    add(OfLessCoreStat.STA);
+                    add(OfLessCoreStat.INT);
+                    add(OfLessCoreStat.WIS);
+                    add(OfLessCoreStat.VIT);
+                    add(OfLessCoreStat.STR);
+
+                    add(new OfTheFallen());
+
+                    add(new OfMortality());
 
                 }
             }

@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class MergedStats implements IGearPartTooltip {
@@ -25,12 +26,15 @@ public class MergedStats implements IGearPartTooltip {
         }
 
         this.list = TooltipStatInfo.mergeDuplicates(infolist);
+
+        this.list.sort(Comparator.comparingInt(x -> -(int) x.amount));
     }
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
         List<ITextComponent> tooltip = new ArrayList<>();
+
         list.forEach(x -> tooltip.addAll(x.GetTooltipString(info)));
         return tooltip;
     }

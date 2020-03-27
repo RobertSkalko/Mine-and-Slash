@@ -9,6 +9,7 @@
 * removed conditional chaos stats (on low crit..etc , boring)
 * chaos stats are now more elaborate, you can't get armor on weapons etc. Also added a few more of them.
 * tweaked unique gears to be more generally useful
+* added new affixes, you won't like them.
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

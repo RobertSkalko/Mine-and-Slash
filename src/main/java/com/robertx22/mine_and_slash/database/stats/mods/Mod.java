@@ -7,7 +7,9 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class Mod extends StatMod {
 
-    public static Mod LUCK_FLAT = new Mod(new LuckStat(), 5, 10);
+    public static Mod LUCK_FLAT() {
+        return new Mod(new LuckStat(), 5, 10);
+    }
 
     Stat stat;
     float min;

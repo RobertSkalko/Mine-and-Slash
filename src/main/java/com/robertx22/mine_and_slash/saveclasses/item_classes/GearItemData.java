@@ -218,7 +218,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
     public List<ITextComponent> getMergedStatsTooltip(List<IStatModsContainer.LevelAndStats> lvlstats,
                                                       TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
-
+// todo remove this
         for (IStatModsContainer.LevelAndStats part : lvlstats) {
             for (StatModData data : part.mods) {
                 list.addAll(data.GetTooltipString(info.withLevel(part.level)));

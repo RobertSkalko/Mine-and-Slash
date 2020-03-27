@@ -83,7 +83,7 @@ public class OrbOfEverChangingSuffixItem extends CurrencyItem implements ICurren
 
     @Override
     public int instabilityAddAmount() {
-        return 5;
+        return 20;
     }
 
     @Override
