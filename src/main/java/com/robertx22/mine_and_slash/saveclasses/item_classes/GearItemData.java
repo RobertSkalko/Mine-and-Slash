@@ -357,7 +357,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
                 }
             }
 
-            if (isUnique || RandomUtils.roll(this.getRarity()
+            if (RandomUtils.roll(this.getRarity()
                 .salvageLotteryWinChance())) {
 
                 Item item = SlashRegistry.CurrencyItems()

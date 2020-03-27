@@ -19,7 +19,7 @@ public class UndeadCurse extends Prefix {
 
     @Override
     public int getRarityRank() {
-        return IRarity.Rare;
+        return IRarity.Epic;
     }
 
     @Override

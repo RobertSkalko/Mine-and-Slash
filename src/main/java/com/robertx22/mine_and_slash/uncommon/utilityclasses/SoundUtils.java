@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -18,6 +19,10 @@ public class SoundUtils {
         //this should be universal
         world.playSound(null, pos, sound, SoundCategory.PLAYERS, volume, pitch);
 
+    }
+
+    public static void ding(World world, BlockPos pos) {
+        SoundUtils.playSound(world, pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
     }
 
 }

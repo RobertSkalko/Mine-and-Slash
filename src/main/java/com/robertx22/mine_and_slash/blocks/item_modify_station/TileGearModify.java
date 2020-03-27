@@ -5,16 +5,22 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.currency.base.IAddsInstability;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 
 import javax.annotation.Nullable;
@@ -36,17 +42,21 @@ public class TileGearModify extends BaseTile {
         return COOK_TIME_FOR_COMPLETION;
     }
 
+    public enum ModifyResult {
+        BREAK, SUCCESS, NONE
+    }
+
     @Override
     public boolean isOutputSlot(int slot) {
         return false;
     }
 
-    public ItemStack getSmeltingResultForItem(ItemStack stack) {
+    public ResultItem getSmeltingResultForItem(ItemStack stack) {
 
         LocReqContext context = getLocReqContext();
 
         if (context.isValid() == false) {
-            return ItemStack.EMPTY;
+            return new ResultItem(ItemStack.EMPTY, ModifyResult.NONE);
         }
 
         if (context.effect != null) {
@@ -75,6 +85,7 @@ public class TileGearModify extends BaseTile {
                                     if (RandomUtils.roll(breakChance)) {
                                         copy = new ItemStack(Items.GUNPOWDER);
                                         broke = true;
+                                        return new ResultItem(new ItemStack(Items.GUNPOWDER), ModifyResult.BREAK);
                                     }
                                 }
                             }
@@ -86,14 +97,14 @@ public class TileGearModify extends BaseTile {
                     }
                 }
 
-                return copy;
+                return new ResultItem(copy, ModifyResult.SUCCESS);
             } else {
-                return ItemStack.EMPTY;
+                return new ResultItem(ItemStack.EMPTY, ModifyResult.NONE);
             }
 
         }
 
-        return ItemStack.EMPTY;
+        return new ResultItem(ItemStack.EMPTY, ModifyResult.NONE);
     }
 
     public LocReqContext getLocReqContext() {
@@ -134,7 +145,7 @@ public class TileGearModify extends BaseTile {
     public static final int FIRST_INPUT_SLOT = 0;
     public static final int FIRST_OUTPUT_SLOT = FIRST_INPUT_SLOT + INPUT_SLOTS_COUNT;
 
-    private static final short COOK_TIME_FOR_COMPLETION = 100; // vanilla value is 200 = 10 seconds
+    private static final short COOK_TIME_FOR_COMPLETION = 80; // vanilla value is 200 = 10 seconds
 
     public TileGearModify() {
         super(ModTileEntities.GEAR_MODIFY.get());
@@ -160,7 +171,7 @@ public class TileGearModify extends BaseTile {
 
     @Override
     public int tickRate() {
-        return 2;
+        return 1;
     }
 
     @Override
@@ -173,7 +184,18 @@ public class TileGearModify extends BaseTile {
         return MathHelper.clamp(fraction, 0.0, 1.0);
     }
 
-    private ItemStack getResult() {
+    static class ResultItem {
+
+        ItemStack stack;
+        ModifyResult resultEnum;
+
+        public ResultItem(ItemStack stack, ModifyResult resultEnum) {
+            this.stack = stack;
+            this.resultEnum = resultEnum;
+        }
+    }
+
+    private ResultItem getResult() {
 
         return getSmeltingResultForItem(this.GearSlot());
 
@@ -187,7 +209,7 @@ public class TileGearModify extends BaseTile {
             return false;
         }
 
-        if (getSmeltingResultForItem(gear).isEmpty()) {
+        if (getSmeltingResultForItem(gear).stack.isEmpty()) {
             return false;
         }
 
@@ -203,16 +225,37 @@ public class TileGearModify extends BaseTile {
 
         if (this.canModifyItem()) {
 
-            ItemStack result = this.getResult();
+            ResultItem result = this.getResult();
 
             this.GearSlot()
                 .shrink(1);
-            this.setOutputSot(result.copy());
-            result = ItemStack.EMPTY;
+            this.setOutputSot(result.stack.copy());
+            result.stack = ItemStack.EMPTY;
             this.CraftItemSlot()
                 .shrink(1);
 
             markDirty();
+
+            if (result.resultEnum.equals(ModifyResult.BREAK)) {
+
+                SoundUtils.playSound(world, pos, SoundEvents.ENTITY_GENERIC_EXPLODE, 1, 1);
+
+                ParticleEnum.sendToClients(
+                    pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
+                        .type(ParticleTypes.POOF)
+                        .motion(new Vec3d(0, 0, 0))
+                        .amount(5));
+
+            } else if (result.resultEnum.equals(ModifyResult.SUCCESS)) {
+                SoundUtils.ding(world, pos);
+
+                ParticleEnum.sendToClients(
+                    pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
+                        .type(ParticleTypes.COMPOSTER)
+                        .amount(15));
+
+            }
+
             return true;
         } else {
             return false;

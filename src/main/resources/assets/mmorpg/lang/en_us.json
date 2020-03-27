@@ -118,7 +118,7 @@
 	"mmorpg.affix.enduring_field": "Enduring Field",
 	"mmorpg.affix.energetic": "Energetic",
 	"mmorpg.affix.eternal_field": "Eternal Field",
-	"mmorpg.affix.evasive": "Evasive",
+	"mmorpg.affix.evasive": "Concealing",
 	"mmorpg.affix.fire_heretic": "Flame Heretic",
 	"mmorpg.affix.fire_imbued": "Flame Imbued",
 	"mmorpg.affix.fire_shield": "Fire Shield",
@@ -148,7 +148,7 @@
 	"mmorpg.affix.of_critical_hits": "Of Critical Hits",
 	"mmorpg.affix.of_critical_unity": "Of Critical Unity",
 	"mmorpg.affix.of_crossbow_flurry": "Of CrossBow Flurry",
-	"mmorpg.affix.of_ele_resist": "Of Element Resist",
+	"mmorpg.affix.of_ele_resist": "Of Elemental Defense",
 	"mmorpg.affix.of_exhaustion": "Of Exhaustion",
 	"mmorpg.affix.of_feebleness": "Of Feebleeness",
 	"mmorpg.affix.of_fire_dissonance": "Of Flame's Dissonance",
@@ -194,7 +194,7 @@
 	"mmorpg.affix.sacrificial": "Sacrificial",
 	"mmorpg.affix.shabby": "Shabby",
 	"mmorpg.affix.smelly": "Smelly",
-	"mmorpg.affix.tenacious": "Tenacious",
+	"mmorpg.affix.tenacious": "Steadfast",
 	"mmorpg.affix.thirst_of_acid": "Thirst Of Acid",
 	"mmorpg.affix.thirst_of_flame": "Thirst Of Flame",
 	"mmorpg.affix.thirst_of_frost": "Thirst of Frost",
@@ -252,24 +252,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -288,6 +270,24 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",

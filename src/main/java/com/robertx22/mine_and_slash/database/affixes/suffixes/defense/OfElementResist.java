@@ -37,7 +37,7 @@ public class OfElementResist extends Suffix {
 
     @Override
     public String locNameForLangFile() {
-        return "Of Element Resist";
+        return "Of Elemental Defense";
     }
 
 }

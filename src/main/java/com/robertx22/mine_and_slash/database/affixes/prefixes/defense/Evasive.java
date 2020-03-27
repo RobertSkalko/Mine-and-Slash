@@ -27,6 +27,6 @@ public class Evasive extends Prefix {
 
     @Override
     public String locNameForLangFile() {
-        return "Evasive";
+        return "Concealing";
     }
 }

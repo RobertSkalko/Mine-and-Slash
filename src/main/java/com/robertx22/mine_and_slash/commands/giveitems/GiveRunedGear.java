@@ -90,6 +90,9 @@ public class GiveRunedGear {
         for (int i = 0; i < amount; i++) {
 
             RunedGearBlueprint blueprint = new RunedGearBlueprint(lvl);
+
+            blueprint.unidentifiedPart.set(false);
+
             if (rarity > -1) {
                 blueprint.rarity.setSpecificRarity(rarity);
             }

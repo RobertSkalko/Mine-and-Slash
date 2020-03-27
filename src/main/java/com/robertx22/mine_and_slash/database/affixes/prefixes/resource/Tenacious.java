@@ -28,6 +28,6 @@ public class Tenacious extends Prefix {
 
     @Override
     public String locNameForLangFile() {
-        return "Tenacious";
+        return "Steadfast";
     }
 }

@@ -21,6 +21,7 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
         json.addProperty("rune_slots", runeSlots());
         json.addProperty("requirements_multi", requirementMulti());
         json.addProperty("unidentified_chance", unidentifiedChance());
+        json.addProperty("salvage_lottery_chance", salvageLotteryWinChance());
 
         json.add("secondary_stat_amount", secondaryStatAmount().toJson());
         json.add("stat_percents", StatPercents().toJson());
@@ -40,6 +41,8 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
         SerializedGearRarity rar = new SerializedGearRarity(baseRarity);
 
         rar.affixChance = json.get("affix_chance")
+            .getAsInt();
+        rar.salvageLotteryChance = json.get("salvage_lottery_chance")
             .getAsInt();
         rar.setChance = json.get("set_chance")
             .getAsInt();

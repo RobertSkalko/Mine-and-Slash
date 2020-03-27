@@ -3,15 +3,21 @@ package com.robertx22.mine_and_slash.blocks.salvage_station;
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.items.misc.ItemCapacitor;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
+import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.ParticleTypes;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 
 import javax.annotation.Nullable;
@@ -141,6 +147,20 @@ public class TileGearSalvage extends BaseTile {
     @Override
     public void finishCooking() {
         this.smeltItem();
+
+        SoundUtils.playSound(world, pos, SoundEvents.BLOCK_ANVIL_USE, 0.3F, 1);
+
+        ParticleEnum.sendToClients(
+            pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
+                .type(ParticleTypes.DUST)
+                .amount(15));
+
+        ParticleEnum.sendToClients(
+            pos.up(), world, new ParticlePacketData(pos.up(), ParticleEnum.AOE).radius(0.5F)
+                .type(ParticleTypes.FLAME)
+                .motion(new Vec3d(0, 0, 0))
+                .amount(15));
+
     }
 
     @Override
@@ -158,12 +178,6 @@ public class TileGearSalvage extends BaseTile {
 
     }
 
-    /**
-     * Check if any of the input items are smeltable and there is sufficient space
-     * in the output slots
-     *
-     * @return true if smelting is possible
-     */
     private boolean canSmelt() {
         return smeltItem(false);
     }
@@ -177,31 +191,9 @@ public class TileGearSalvage extends BaseTile {
 
     ItemStack result = ItemStack.EMPTY;
 
-    /**
-     * checks that there is an item to be smelted in one of the input slots and that
-     * there is room for the result in the output slots If desired, performs the
-     * smelt
-     *
-     * @param performSmelt if true, perform the smelt. if false, check whether
-     *                     smelting is possible, but don't change the inventory
-     * @return false if no items can be smelted, true otherwise
-     */
     private boolean smeltItem(boolean performSmelt) {
         Integer firstSuitableInputSlot = null;
         Integer firstSuitableOutputSlot = null;
-
-        // TODO
-
-        /*
-         * if (!itemStacks[FIRST_CAPACITOR_SLOT].isEmpty()) {
-         *
-         * Item item = itemStacks[FIRST_CAPACITOR_SLOT].getItem();
-         *
-         * if (item instanceof ItemCapacitor) { fuelMulti = ((ItemCapacitor)
-         * item).GetFuelMultiplier(); // System.out.println("it works!"); }
-         *
-         * }
-         */
 
         // finds the first input slot which is smeltable and whose result fits into an
         // output slot (stacking if possible)
