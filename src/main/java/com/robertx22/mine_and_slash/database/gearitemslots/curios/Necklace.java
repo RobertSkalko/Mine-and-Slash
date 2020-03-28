@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthReg
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueNecklace;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemNecklace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
@@ -28,11 +27,6 @@ public class Necklace extends BaseCurio {
     @Override
     public StatReq getRequirements() {
         return noReq;
-    }
-
-    @Override
-    public Item getBaseUniqueItem() {
-        return new BaseUniqueNecklace();
     }
 
     @Override

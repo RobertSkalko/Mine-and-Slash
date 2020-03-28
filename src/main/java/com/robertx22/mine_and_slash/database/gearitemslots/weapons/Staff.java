@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.Lifesteal
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicStealFlat;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueStaff;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.StaffWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemStaff;
@@ -53,11 +52,6 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
     @Override
     public StatReq getRequirements() {
         return req;
-    }
-
-    @Override
-    public Item getBaseUniqueItem() {
-        return new BaseUniqueStaff();
     }
 
     @Override

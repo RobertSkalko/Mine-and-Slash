@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.*;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
@@ -22,9 +24,8 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
+import top.theillusivec4.curios.api.CuriosAPI;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,8 +51,6 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     public abstract PlayStyle getPlayStyle();
-
-    public abstract Item getBaseUniqueItem();
 
     public boolean isMeleeWeapon() {
         return false;
@@ -91,8 +90,68 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return 20;
     }
 
-    public boolean isGearOfThisType(Item item) {
+    public static boolean isGearOfThisType(GearItemSlot slot, Item item) {
+
+        try {
+            if (slot.getVanillaSlotType() != null) {
+                if (slot.getVanillaSlotType()
+                    .equals(EquipmentSlotType.FEET)) {
+
+                    return item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot()
+                        .equals(EquipmentSlotType.FEET);
+
+                } else if (slot.getVanillaSlotType()
+                    .equals(EquipmentSlotType.CHEST)) {
+
+                    return item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot()
+                        .equals(EquipmentSlotType.CHEST);
+
+                } else if (slot.getVanillaSlotType()
+                    .equals(EquipmentSlotType.HEAD)) {
+
+                    return item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot()
+                        .equals(EquipmentSlotType.HEAD);
+
+                } else if (slot.getVanillaSlotType()
+                    .equals(EquipmentSlotType.LEGS)) {
+
+                    return item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot()
+                        .equals(EquipmentSlotType.LEGS);
+                }
+            }
+
+            if (slot.slotType()
+                .equals(GearSlotType.Jewerly)) {
+                return CuriosAPI.getCurioTags(item)
+                    .stream()
+                    .anyMatch(x -> x.toString()
+                        .contains(slot.GUID()));
+
+            } else if (slot.GUID()
+                .equals(Sword.INSTANCE.GUID())) {
+                return item instanceof SwordItem;
+            } else if (slot.GUID()
+                .equals(Trident.INSTANCE.GUID())) {
+                return item instanceof TridentItem;
+            } else if (slot.GUID()
+                .equals(Bow.INSTANCE.GUID())) {
+                return item instanceof BowItem;
+            } else if (slot.GUID()
+                .equals(Axe.INSTANCE.GUID())) {
+                return item instanceof AxeItem;
+            } else if (slot.GUID()
+                .equals(Shield.INSTANCE.GUID())) {
+                return item instanceof ShieldItem;
+            } else if (slot.GUID()
+                .equals(CrossBow.INSTANCE.GUID())) {
+                return item instanceof CrossbowItem;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return false;
+
     }
 
     public abstract String resourceID();
@@ -159,12 +218,6 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public int Weight() {
         return 1000;
-    }
-
-    public ItemStack getStackForRarity(int rarityNum) {
-
-        return new ItemStack(getItemForRarity(rarityNum));
-
     }
 
     public boolean isMageWeapon() {

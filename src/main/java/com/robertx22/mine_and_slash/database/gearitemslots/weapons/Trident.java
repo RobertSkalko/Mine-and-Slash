@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.AxeWeaponMe
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.item.TridentItem;
 
 import java.util.HashMap;
 
@@ -21,11 +20,6 @@ public class Trident extends BaseWeapon implements ISpecificStatReq {
     }
 
     static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.SMALL);
-
-    @Override
-    public Item getBaseUniqueItem() {
-        return null;
-    }
 
     @Override
     public boolean isMeleeWeapon() {
@@ -50,11 +44,6 @@ public class Trident extends BaseWeapon implements ISpecificStatReq {
     @Override
     public String GUID() {
         return "trident";
-    }
-
-    @Override
-    public boolean isGearOfThisType(Item item) {
-        return item instanceof TridentItem;
     }
 
     @Override

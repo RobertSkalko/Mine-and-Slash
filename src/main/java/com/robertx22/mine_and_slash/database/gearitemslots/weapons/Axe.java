@@ -4,12 +4,10 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueAxe;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.AxeWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemAxe;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -22,11 +20,6 @@ public class Axe extends BaseWeapon implements ISpecificStatReq {
     }
 
     static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.SMALL);
-
-    @Override
-    public Item getBaseUniqueItem() {
-        return new BaseUniqueAxe();
-    }
 
     @Override
     public boolean isMeleeWeapon() {
@@ -51,11 +44,6 @@ public class Axe extends BaseWeapon implements ISpecificStatReq {
     @Override
     public String GUID() {
         return "axe";
-    }
-
-    @Override
-    public boolean isGearOfThisType(Item item) {
-        return item instanceof AxeItem;
     }
 
     @Override

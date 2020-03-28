@@ -6,11 +6,9 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueShield;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.NormalShield;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.item.Item;
-import net.minecraft.item.ShieldItem;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -54,16 +52,6 @@ public class Shield extends BaseOffHand implements ISpecificStatReq {
     @Override
     public Item getDefaultItem() {
         return NormalShield.Items.get(0);
-    }
-
-    @Override
-    public Item getBaseUniqueItem() {
-        return new BaseUniqueShield();
-    }
-
-    @Override
-    public boolean isGearOfThisType(Item item) {
-        return item instanceof ShieldItem;
     }
 
     @Override

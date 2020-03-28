@@ -3,12 +3,10 @@ package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueBow;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.BowWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemBow;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -29,11 +27,6 @@ public class Bow extends BaseWeapon implements ISpecificStatReq {
     static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.MEDIUM);
 
     @Override
-    public Item getBaseUniqueItem() {
-        return new BaseUniqueBow();
-    }
-
-    @Override
     public PlayStyle getPlayStyle() {
         return PlayStyle.THIEF;
     }
@@ -51,11 +44,6 @@ public class Bow extends BaseWeapon implements ISpecificStatReq {
     @Override
     public Item getDefaultItem() {
         return ItemBow.Items.get(0);
-    }
-
-    @Override
-    public boolean isGearOfThisType(Item item) {
-        return item instanceof BowItem;
     }
 
     @Override

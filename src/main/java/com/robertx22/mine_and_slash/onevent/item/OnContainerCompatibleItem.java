@@ -60,7 +60,7 @@ public class OnContainerCompatibleItem {
                             final Item item = finalStack.getItem();
 
                             FilterListWrap<GearItemSlot> wrapped = SlashRegistry.GearTypes()
-                                .getFilterWrapped(x -> x.isGearOfThisType(item));
+                                .getFilterWrapped(x -> GearItemSlot.isGearOfThisType(x, item));
 
                             if (!wrapped.list.isEmpty()) {
 

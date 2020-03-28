@@ -34,11 +34,6 @@ public class EmptyGearType extends GearItemSlot {
     }
 
     @Override
-    public Item getBaseUniqueItem() {
-        return null;
-    }
-
-    @Override
     public EquipmentSlotType getVanillaSlotType() {
         return null;
     }

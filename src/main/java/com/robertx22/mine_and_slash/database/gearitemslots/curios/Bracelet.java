@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueBracelet;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemBracelet;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
@@ -19,11 +18,6 @@ public class Bracelet extends BaseCurio {
 
     private Bracelet() {
 
-    }
-
-    @Override
-    public Item getBaseUniqueItem() {
-        return new BaseUniqueBracelet();
     }
 
     @Override

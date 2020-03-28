@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.CrossBowWeaponMechanic;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
@@ -36,11 +35,6 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
         LvlPointStat.DEXTERITY, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.TINY);
 
     @Override
-    public Item getBaseUniqueItem() {
-        return null;
-    }
-
-    @Override
     public PlayStyle getPlayStyle() {
         return PlayStyle.THIEF;
     }
@@ -58,11 +52,6 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
     @Override
     public Item getDefaultItem() {
         return Items.CROSSBOW;
-    }
-
-    @Override
-    public boolean isGearOfThisType(Item item) {
-        return item instanceof CrossbowItem;
     }
 
     @Override

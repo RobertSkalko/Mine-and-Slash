@@ -25,11 +25,6 @@ public class Torch extends BaseOffHand implements ISpecificStatReq {
     }
 
     @Override
-    public Item getBaseUniqueItem() {
-        return null;
-    }
-
-    @Override
     public String resourceID() {
         return "torch";
     }

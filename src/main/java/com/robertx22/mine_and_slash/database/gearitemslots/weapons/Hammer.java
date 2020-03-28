@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueHammer;
 import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.HammerWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemHammer;
@@ -44,11 +43,6 @@ public class Hammer extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public Item getBaseUniqueItem() {
-        return new BaseUniqueHammer();
-    }
-
-    @Override
     public String GUID() {
         return "hammer";
     }
@@ -56,11 +50,6 @@ public class Hammer extends BaseWeapon implements ISpecificStatReq {
     @Override
     public Item getDefaultItem() {
         return ItemHammer.Items.get(0);
-    }
-
-    @Override
-    public boolean isGearOfThisType(Item item) {
-        return false;
     }
 
     @Override

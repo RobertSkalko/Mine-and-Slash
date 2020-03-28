@@ -23,7 +23,7 @@ public class DeterminePowerLevels {
                     SlashRegistry.GearTypes()
                         .getList()
                         .forEach(slot -> {
-                            if (slot.isGearOfThisType(item)) {
+                            if (GearItemSlot.isGearOfThisType(slot, item)) {
 
                                 if (!MAP.containsKey(slot)) {
                                     MAP.put(slot, new ArrayList<>());

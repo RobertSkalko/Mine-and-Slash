@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatF
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Stamina;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueCharm;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
@@ -32,11 +31,6 @@ public class Charm extends BaseCurio {
     @Override
     public PlayStyle getPlayStyle() {
         return PlayStyle.NONE;
-    }
-
-    @Override
-    public Item getBaseUniqueItem() {
-        return new BaseUniqueCharm();
     }
 
     @Override

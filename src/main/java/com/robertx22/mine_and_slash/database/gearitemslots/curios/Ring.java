@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyReg
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.database.unique_items.bases.BaseUniqueRing;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemRing;
 import net.minecraft.item.Item;
 
@@ -32,11 +31,6 @@ public class Ring extends BaseCurio {
     @Override
     public PlayStyle getPlayStyle() {
         return PlayStyle.NONE;
-    }
-
-    @Override
-    public Item getBaseUniqueItem() {
-        return new BaseUniqueRing();
     }
 
     @Override

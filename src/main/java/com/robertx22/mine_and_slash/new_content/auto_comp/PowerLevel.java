@@ -43,7 +43,7 @@ public class PowerLevel {
         List<GearItemSlot> slots = SlashRegistry.GearTypes()
             .getList()
             .stream()
-            .filter(x -> x.isGearOfThisType(item))
+            .filter(x -> GearItemSlot.isGearOfThisType(x, item))
             .collect(Collectors.toList());
 
         float val = 0;
