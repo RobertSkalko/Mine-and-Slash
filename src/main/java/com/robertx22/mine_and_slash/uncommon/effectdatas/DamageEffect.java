@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamage
 import com.robertx22.mine_and_slash.database.stats.effects.defense.BlockEffect;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DmgSourceUtils;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
@@ -39,6 +40,14 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg, UnitData sourceData,
                         UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
         super(source, target, sourceData, targetData);
+
+        this.setEffectType(effectType, weptype);
+        this.number = dmg;
+        this.event = event;
+    }
+
+    public DamageEffect(DamageEventData data, int dmg, EffectTypes effectType, WeaponTypes weptype) {
+        super(data.source, data.target, data.sourceData, data.targetData);
 
         this.setEffectType(effectType, weptype);
         this.number = dmg;

@@ -11,6 +11,7 @@
 * tweaked unique gears to be more generally useful
 * added new affixes, you won't like them.
 * modify station now has particles and sound effects
+* modify station now goes boom when item goes poof
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

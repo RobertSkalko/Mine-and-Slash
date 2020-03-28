@@ -12,12 +12,6 @@ public enum PlayerCaps {
             return Load.Unit(player);
         }
     },
-    LAST_THROWN_ITEM {
-        @Override
-        public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.lastThrown(player);
-        }
-    },
     MAP_DATA {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {

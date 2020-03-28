@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
+import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
@@ -367,7 +368,7 @@ public class Unit {
         return hpadded;
     }
 
-    public void recalculateStats(LivingEntity entity, UnitData data, int level, @Nullable Entity damageSourceEntity) {
+    public void recalculateStats(LivingEntity entity, UnitData data, int level, @Nullable DamageEventData dmgData) {
 
         data.setEquipsChanged(false);
 
@@ -379,7 +380,7 @@ public class Unit {
 
         List<GearItemData> gears = new ArrayList<>();
 
-        MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, damageSourceEntity));
+        MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, dmgData));
 
         boolean gearIsValid = this.isGearCombinationValid(gears, entity);
 

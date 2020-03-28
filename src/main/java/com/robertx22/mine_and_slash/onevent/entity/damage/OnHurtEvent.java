@@ -8,8 +8,26 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-//  seems atk speed isnt actually atk speed, but some weird dmg modification?
 public class OnHurtEvent {
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onHurtEvent(LivingHurtEvent event) {
+
+        if (event.getEntity().world.isRemote) {
+            return;
+        }
+
+        if (DamageEventData.isValidEntityDamage(event)) {
+
+            LivingHurtUtils.onAttack(event);
+            LivingHurtUtils.modifyDamage(event);
+            LivingHurtUtils.onHurtRecordNonPlayerDmg(event);
+            LivingHurtUtils.damageCurioItems(event.getEntityLiving());
+            LivingHurtUtils.onBossHurt(event.getEntityLiving());
+            LivingHurtUtils.stopMobInWallDamageInMaps(event);
+
+        }
+    }
 
     @SubscribeEvent
     public static void onPlayerAttackRecordCooldown(AttackEntityEvent event) {
@@ -35,23 +53,6 @@ public class OnHurtEvent {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-    }
-
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onHurtEvent(LivingHurtEvent event) {
-
-        if (event.getEntity().world.isRemote) {
-            return;
-        }
-
-        LivingHurtUtils.recalcStatsIfThrownWeapon(event);
-        LivingHurtUtils.onAttack(event);
-        LivingHurtUtils.modifyDamage(event);
-        LivingHurtUtils.onHurtRecordNonPlayerDmg(event);
-        LivingHurtUtils.damageCurioItems(event.getEntityLiving());
-        LivingHurtUtils.onBossHurt(event.getEntityLiving());
-        LivingHurtUtils.stopMobInWallDamageInMaps(event);
 
     }
 

@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
+import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.packets.NoEnergyPacket;
@@ -43,7 +44,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -57,7 +57,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
@@ -103,7 +102,7 @@ public class EntityCap {
 
         void onAttackEntity(LivingEntity attacker, LivingEntity victim);
 
-        GearItemData getWeaponData(LivingEntity entity);
+        GearItemData setupWeaponData(LivingEntity entity);
 
         int getLastHitTicksExisted();
 
@@ -130,9 +129,6 @@ public class EntityCap {
         void freelySetLevel(int lvl);
 
         int getLevel();
-
-        void mobBasicAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData sourcedata,
-                            UnitData targetdata, float event_damage);
 
         void setLevel(int lvl, LivingEntity entity);
 
@@ -170,7 +166,7 @@ public class EntityCap {
 
         void tryRecalculateStats(LivingEntity entity);
 
-        void forceRecalculateStats(LivingEntity entity, Entity thrownEntity);
+        void forceRecalculateStats(LivingEntity entity, DamageEventData data);
 
         void forceRecalculateStats(LivingEntity entity);
 
@@ -179,9 +175,6 @@ public class EntityCap {
         boolean tryUseWeapon(GearItemData gear, LivingEntity entity);
 
         boolean tryUseWeapon(GearItemData gear, LivingEntity entity, float multi);
-
-        void attackWithWeapon(LivingHurtEvent event, ItemStack weapon, GearItemData gear, LivingEntity source,
-                              LivingEntity target, UnitData targetdata);
 
         void onLogin(PlayerEntity player);
 
@@ -192,8 +185,6 @@ public class EntityCap {
         boolean hasCurrentMapId();
 
         void clearCurrentMapId();
-
-        void unarmedAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData targetdata);
 
         boolean decreaseRarity(LivingEntity entity);
 
@@ -219,6 +210,11 @@ public class EntityCap {
 
         int getLvlForResourceCosts();
 
+        void attackWithWeapon(DamageEventData data);
+
+        void unarmedAttack(DamageEventData data);
+
+        void mobBasicAttack(DamageEventData data);
     }
 
     @EventBusSubscriber
@@ -398,28 +394,6 @@ public class EntityCap {
             if (this.customExactStats == null) {
                 this.customExactStats = new CustomExactStatsData();
             }
-
-        }
-
-        @Override
-        public void mobBasicAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target, UnitData sourcedata,
-                                   UnitData targetdata, float event_damage) {
-
-            MobRarity rar = Rarities.Mobs.get(sourcedata.getRarity());
-
-            float vanilla = PhysicalDamage.getInstance()
-                .getScaling()
-                .scale(event_damage, sourcedata.getLevel());
-
-            float num = vanilla * rar.DamageMultiplier() * sourcedata.getDMGMultiplierIncreaseByTier();
-
-            num *= SlashRegistry.getEntityConfig(source, sourcedata).DMG_MULTI;
-
-            DamageEffect dmg = new DamageEffect(event, source, target, (int) num, sourcedata, targetdata,
-                EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None
-            );
-
-            dmg.Activate();
 
         }
 
@@ -774,8 +748,8 @@ public class EntityCap {
         }
 
         @Override
-        public void forceRecalculateStats(LivingEntity entity, Entity thrownEntity) {
-            unit.recalculateStats(entity, this, level, thrownEntity);
+        public void forceRecalculateStats(LivingEntity entity, DamageEventData data) {
+            unit.recalculateStats(entity, this, level, data);
         }
 
         @Override
@@ -799,7 +773,7 @@ public class EntityCap {
         }
 
         @Override
-        public GearItemData getWeaponData(LivingEntity entity) {
+        public GearItemData setupWeaponData(LivingEntity entity) {
             return Gear.Load(entity.getHeldItemMainhand());
         }
 
@@ -892,23 +866,6 @@ public class EntityCap {
         }
 
         @Override
-        public void attackWithWeapon(LivingHurtEvent event, ItemStack weapon, GearItemData weaponData,
-                                     LivingEntity source, LivingEntity target, UnitData targetdata) {
-
-            if (weaponData.GetBaseGearType() instanceof IWeapon) {
-
-                if (weapon != null) {
-                    weapon.attemptDamageItem(1, new Random(), null);
-                }
-
-                IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
-                WeaponMechanic iWep = iwep.mechanic();
-                iWep.Attack(event, source, target, this, targetdata);
-
-            }
-        }
-
-        @Override
         public void onLogin(PlayerEntity player) {
 
             try {
@@ -978,31 +935,6 @@ public class EntityCap {
         }
 
         @Override
-        public void unarmedAttack(LivingHurtEvent event, LivingEntity source, LivingEntity target,
-                                  UnitData targetdata) {
-
-            float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get()
-                .floatValue();
-
-            cost = Energy.getInstance()
-                .calculateScalingStatGrowth(cost, getLvlForResourceCosts());
-
-            ResourcesData.Context energy = new ResourcesData.Context(
-                this, source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
-
-            if (this.getResources()
-                .hasEnough(energy)) {
-                this.getResources()
-                    .modify(energy);
-                int num = (int) unit.getCreateStat(PhysicalDamage.GUID).val;
-                DamageEffect dmg = new DamageEffect(
-                    event, source, target, num, this, targetdata, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
-
-                dmg.Activate();
-            }
-        }
-
-        @Override
         public boolean isWeapon(GearItemData gear) {
             try {
 
@@ -1067,6 +999,64 @@ public class EntityCap {
         public int getLvlForResourceCosts() {
 
             return this.getLevel();
+
+        }
+
+        @Override
+        public void attackWithWeapon(DamageEventData data) {
+            if (data.weaponData.GetBaseGearType() instanceof IWeapon) {
+
+                if (data.weapon != null) {
+                    data.weapon.attemptDamageItem(1, new Random(), null);
+                }
+
+                IWeapon iwep = (IWeapon) data.weaponData.GetBaseGearType();
+                WeaponMechanic iWep = iwep.mechanic();
+                iWep.attack(data);
+
+            }
+        }
+
+        @Override
+        public void unarmedAttack(DamageEventData data) {
+            float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get()
+                .floatValue();
+
+            cost = Energy.getInstance()
+                .calculateScalingStatGrowth(cost, getLvlForResourceCosts());
+
+            ResourcesData.Context energy = new ResourcesData.Context(
+                this, data.source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
+
+            if (this.getResources()
+                .hasEnough(energy)) {
+                this.getResources()
+                    .modify(energy);
+                int num = (int) unit.getCreateStat(PhysicalDamage.GUID).val;
+                DamageEffect dmg = new DamageEffect(
+                    data, num, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
+
+                dmg.Activate();
+            }
+        }
+
+        @Override
+        public void mobBasicAttack(DamageEventData data) {
+            MobRarity rar = Rarities.Mobs.get(data.sourceData.getRarity());
+
+            float vanilla = PhysicalDamage.getInstance()
+                .getScaling()
+                .scale(data.getEventDamage(), data.sourceData.getLevel());
+
+            float num = vanilla * rar.DamageMultiplier() * data.sourceData.getDMGMultiplierIncreaseByTier();
+
+            num *= SlashRegistry.getEntityConfig(data.source, data.sourceData).DMG_MULTI;
+
+            DamageEffect dmg = new DamageEffect(
+                data, (int) num, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None
+            );
+
+            dmg.Activate();
 
         }
 

@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
@@ -81,26 +80,6 @@ public class LivingHurtUtils {
 
     }
 
-    public static void recalcStatsIfThrownWeapon(LivingHurtEvent event) {
-        try {
-            Entity is = event.getSource()
-                .getImmediateSource();
-            Entity ts = event.getSource()
-                .getTrueSource();
-
-            if (is != null && is instanceof PlayerEntity == false && is instanceof LivingEntity == false) {
-                if (ts instanceof LivingEntity) {
-                    Load.Unit(ts)
-                        .forceRecalculateStats((LivingEntity) ts, is);
-
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public static void onAttack(LivingHurtEvent event) {
 
         LivingEntity target = event.getEntityLiving();
@@ -126,60 +105,47 @@ public class LivingHurtUtils {
                 LivingEntity source = (LivingEntity) event.getSource()
                     .getTrueSource();
 
-                onAttack(source, target, event.getAmount(), event);
+                onAttack(new DamageEventData(event));
             }
 
         }
 
     }
 
-    public static void onAttack(LivingEntity source, LivingEntity target, float amount, LivingHurtEvent event) {
+    public static void onAttack(DamageEventData data) {
 
         try {
 
-            if (target.isAlive() == false) {
+            if (data.target.isAlive() == false) {
                 return; // stops attacking dead mobs
             }
 
-            UnitData sourceData = Load.Unit(source);
+            GearItemData weapondata = data.weaponData;
 
-            if (sourceData == null) {
-                return;
-            }
+            data.targetData.tryRecalculateStats(data.target);
+            data.sourceData.tryRecalculateStats(data.source);
 
-            GearItemData weapondata = sourceData.getWeaponData(source);
-
-            UnitData targetData = Load.Unit(target);
-
-            if (targetData == null) {
-                return;
-            }
-
-            targetData.tryRecalculateStats(target);
-            sourceData.tryRecalculateStats(source);
-
-            if (source instanceof PlayerEntity) {
+            if (data.source instanceof PlayerEntity) {
 
                 if (weapondata == null) {
-                    ItemStack weapon = source.getHeldItemMainhand();
+                    ItemStack weapon = data.weapon;
                     ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer.getModDmgWhitelist(weapon);
                     if (mod != null) {
                         return;
                     }
                 }
 
-                if (sourceData.isWeapon(weapondata)) {
-                    if (sourceData.tryUseWeapon(weapondata, source)) {
-                        sourceData.attackWithWeapon(
-                            event, source.getHeldItemMainhand(), weapondata, source, target, targetData);
+                if (data.sourceData.isWeapon(weapondata)) {
+                    if (data.sourceData.tryUseWeapon(weapondata, data.source)) {
+                        data.sourceData.attackWithWeapon(data);
                     }
 
                 } else {
-                    sourceData.unarmedAttack(event, source, target, targetData);
+                    data.sourceData.unarmedAttack(data);
                 }
 
             } else { // if its a mob
-                sourceData.mobBasicAttack(event, source, target, sourceData, targetData, amount);
+                data.sourceData.mobBasicAttack(data);
             }
 
         } catch (Exception e) {

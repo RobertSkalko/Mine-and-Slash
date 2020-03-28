@@ -5,8 +5,6 @@ import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -48,23 +46,14 @@ public class CollectGearEvent {
 
         boolean hasWep = false;
 
-        ItemStack weapon = event.getEntityLiving()
-            .getHeldItemMainhand();
-        if (event.isStackValidGear(weapon)) {
-            GearItemData wep = Gear.Load(weapon);
-            if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
-                .slotType()
-                .equals(GearItemSlot.GearSlotType.Weapon)) {
-                hasWep = true;
-                event.add(wep);
-            }
-
+        if (event.data != null && event.data.weaponData != null) {
+            event.add(event.data.weaponData);
+            hasWep = true;
         }
 
-        if (!hasWep && event.getEntityLiving() instanceof PlayerEntity) {
-            weapon = Load.lastThrown((PlayerEntity) event.getEntityLiving())
-                .get((PlayerEntity) event.getEntityLiving());
-
+        if (!hasWep) {
+            ItemStack weapon = event.getEntityLiving()
+                .getHeldItemMainhand();
             if (event.isStackValidGear(weapon)) {
                 GearItemData wep = Gear.Load(weapon);
                 if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
@@ -75,7 +64,6 @@ public class CollectGearEvent {
                 }
 
             }
-
         }
 
         ItemStack offhand = event.getEntityLiving()
@@ -96,18 +84,6 @@ public class CollectGearEvent {
 
         }
 
-        if (!hasWep) {
-            if (event.damageSourceEntity != null) {
-                ItemStack tryThrownStack = EntityUtils.getWeaponStackFromThrownEntity(event.damageSourceEntity);
-
-                if (tryThrownStack != null) {
-                    GearItemData wep = Gear.Load(tryThrownStack);
-                    if (wep != null) {
-                        event.add(wep);
-                    }
-                }
-            }
-        }
     }
 
 }

@@ -3,7 +3,10 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.uncommon.capability.chunk.DungeonChunkCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.capability.player.*;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerStatsPointsCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.capability.server_wide.PlayerCapBackupCap;
 import com.robertx22.mine_and_slash.uncommon.capability.server_wide.TeamCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
@@ -43,9 +46,6 @@ public class CapabilityRegister {
 
         CapabilityManager.INSTANCE.register(
             DungeonChunkCap.IDungeonChunkData.class, new DungeonChunkCap.Storage(), DungeonChunkCap.DefaultImpl::new);
-
-        CapabilityManager.INSTANCE.register(
-            PlayerLastThrownItemCap.ILastThrownItem.class, new PlayerLastThrownItemCap.Storage(), PlayerLastThrownItemCap.DefaultImpl::new);
 
     }
 

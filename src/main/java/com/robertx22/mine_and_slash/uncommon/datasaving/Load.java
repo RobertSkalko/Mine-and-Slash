@@ -3,7 +3,10 @@ package com.robertx22.mine_and_slash.uncommon.datasaving;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.player.*;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerStatsPointsCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.capability.server_wide.PlayerCapBackupCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import net.minecraft.entity.player.PlayerEntity;
@@ -86,17 +89,6 @@ public class Load {
 
             return provider.getCapability(EntityCap.Data)
                 .orElse(new EntityCap.DefaultImpl());
-
-        }
-        return null;
-    }
-
-    public static PlayerLastThrownItemCap.ILastThrownItem lastThrown(PlayerEntity provider) {
-
-        if (provider != null) {
-
-            return provider.getCapability(PlayerLastThrownItemCap.Data)
-                .orElse(new PlayerLastThrownItemCap.DefaultImpl());
 
         }
         return null;
