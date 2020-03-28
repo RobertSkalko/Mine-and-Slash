@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
+import com.robertx22.mine_and_slash.database.gearitemslots.WeaponDamageMulti;
 import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.*;
@@ -79,8 +80,12 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         OffHand
     }
 
+    public WeaponDamageMulti weaponDamageMulti() {
+        return new WeaponDamageMulti(1);
+    }
+
     public WeaponMechanic getWeaponMechanic() {
-        return new NormalWeaponMechanic(1);
+        return new NormalWeaponMechanic();
     }
 
     public WeaponSwingCost getSwingCosts() {

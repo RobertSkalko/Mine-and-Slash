@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.WeaponDamageMulti;
 import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -44,6 +45,11 @@ public class Hammer extends BaseWeapon implements ISpecificStatReq {
     @Override
     public WeaponSwingCost getSwingCosts() {
         return new WeaponSwingCost(10);
+    }
+
+    @Override
+    public WeaponDamageMulti weaponDamageMulti() {
+        return new WeaponDamageMulti(1);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
 import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
+import com.robertx22.mine_and_slash.database.gearitemslots.WeaponDamageMulti;
 import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -60,6 +61,11 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
+    public WeaponDamageMulti weaponDamageMulti() {
+        return new WeaponDamageMulti(2);
+    }
+
+    @Override
     public Item getDefaultItem() {
         return ItemStaff.Items.get(0);
     }
@@ -76,7 +82,7 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
 
     @Override
     public WeaponMechanic getWeaponMechanic() {
-        return new NormalWeaponMechanic(2);
+        return new NormalWeaponMechanic();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
 import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
+import com.robertx22.mine_and_slash.database.gearitemslots.WeaponDamageMulti;
 import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -35,8 +36,13 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
         LvlPointStat.DEXTERITY, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.TINY);
 
     @Override
+    public WeaponDamageMulti weaponDamageMulti() {
+        return new WeaponDamageMulti(3);
+    }
+
+    @Override
     public WeaponMechanic getWeaponMechanic() {
-        return new NormalWeaponMechanic(3);
+        return new NormalWeaponMechanic();
     }
 
     @Override

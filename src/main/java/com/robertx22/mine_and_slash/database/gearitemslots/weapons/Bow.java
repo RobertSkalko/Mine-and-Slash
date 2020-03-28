@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.WeaponDamageMulti;
 import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
@@ -29,8 +30,13 @@ public class Bow extends BaseWeapon implements ISpecificStatReq {
     static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.MEDIUM);
 
     @Override
+    public WeaponDamageMulti weaponDamageMulti() {
+        return new WeaponDamageMulti(4);
+    }
+
+    @Override
     public WeaponMechanic getWeaponMechanic() {
-        return new NormalWeaponMechanic(4);
+        return new NormalWeaponMechanic();
     }
 
     @Override

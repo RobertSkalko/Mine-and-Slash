@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
@@ -35,6 +36,8 @@ public class GearTooltipUtils {
 
         TooltipInfo info = new TooltipInfo(data, gear.getRarity()
             .StatPercents(), gear.level);
+
+        GearItemSlot slot = gear.GetBaseGearType();
 
         tip.clear();
 
@@ -146,10 +149,10 @@ public class GearTooltipUtils {
         }
 
         if (Screen.hasShiftDown()) {
-            if (gear.GetBaseGearType()
+            if (slot
                 .isWeapon()) {
 
-                WeaponSwingCost costs = gear.GetBaseGearType()
+                WeaponSwingCost costs = slot
                     .getSwingCosts();
 
                 tip.add(new StringTextComponent(""));
@@ -170,7 +173,9 @@ public class GearTooltipUtils {
                                 .GetManaCost(data.getLvlForResourceCosts()))));
                 }
 
-                tip.addAll(gear.GetBaseGearType()
+                tip.addAll(slot.weaponDamageMulti()
+                    .tooltipDesc());
+                tip.addAll(slot
                     .getWeaponMechanic()
                     .tooltipDesc());
             }
@@ -179,12 +184,6 @@ public class GearTooltipUtils {
         if (Screen.hasShiftDown() == false) {
 
         } else {
-            /*
-            event.getToolTip()
-                .add(Styles.GOLDCOMP()
-                    .appendSibling(new StringTextComponent("Power Level: " + gear.getPowerLevel())));
-
-             */
 
             if (gear.usesInstability()) {
                 event.getToolTip()

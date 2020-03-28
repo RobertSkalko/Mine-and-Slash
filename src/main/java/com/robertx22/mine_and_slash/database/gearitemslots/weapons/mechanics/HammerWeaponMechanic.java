@@ -16,15 +16,10 @@ import java.util.List;
 
 public class HammerWeaponMechanic extends WeaponMechanic {
 
-    public HammerWeaponMechanic() {
-        super(1, 1);
-    }
-
+    @Override
     public List<ITextComponent> tooltipDesc() {
         return Arrays.asList(
-            new StringTextComponent(TextFormatting.GREEN + "" + normalDmgMulti + "x DMG (normal)"),
-            new StringTextComponent(TextFormatting.GREEN + "" + poweredDmgMulti + "x DMG (powered)"),
-            new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Attacking same target Doubles Damage")
+            new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Attacking single target Doubles Damage")
         );
     }
 
@@ -59,4 +54,8 @@ public class HammerWeaponMechanic extends WeaponMechanic {
         }
     }
 
+    @Override
+    public String GUID() {
+        return "hammer";
+    }
 }

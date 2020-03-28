@@ -1,35 +1,20 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics;
 
+import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class WeaponMechanic {
-
-    protected float normalDmgMulti = 1;
-    protected float poweredDmgMulti = 1;
-
-    public WeaponMechanic(float normalDmgMulti, float poweredDmgMulti) {
-        this.normalDmgMulti = normalDmgMulti;
-        this.poweredDmgMulti = poweredDmgMulti;
-    }
-
-    public WeaponMechanic(float multi) {
-        this.normalDmgMulti = multi;
-        this.poweredDmgMulti = multi;
-    }
+public abstract class WeaponMechanic implements IGUID {
 
     public List<ITextComponent> tooltipDesc() {
         return Arrays.asList(
-            new StringTextComponent(TextFormatting.GREEN + "" + normalDmgMulti + "x DMG (normal)"),
-            new StringTextComponent(TextFormatting.GREEN + "" + poweredDmgMulti + "x DMG (powered)")
+
         );
     }
 
@@ -57,10 +42,12 @@ public abstract class WeaponMechanic {
 
     public void attack(DamageEventData data) {
         if (isPoweredAttack(data)) {
-            data.multiplier = poweredDmgMulti;
+            data.multiplier = data.weaponData.GetBaseGearType()
+                .weaponDamageMulti().poweredDmgMulti;
             doSpecialAttack(data);
         } else {
-            data.multiplier = normalDmgMulti;
+            data.multiplier = data.weaponData.GetBaseGearType()
+                .weaponDamageMulti().normalDmgMulti;
             doNormalAttack(data);
         }
     }
