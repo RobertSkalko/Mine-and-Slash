@@ -79,7 +79,8 @@ public class ItemRegister {
             .getSerializable()
             .stream()
             .forEach(x -> {
-                x.itemMap.values()
+                x.itemMap.getForRegistration()
+                    .values()
                     .forEach(i -> r.register(i));
             });
 

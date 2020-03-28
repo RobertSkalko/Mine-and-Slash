@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.runes.base;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_generation.JsonUtils;
 import com.robertx22.mine_and_slash.data_generation.runes.SerializedRune;
+import com.robertx22.mine_and_slash.data_generation.wrappers.ItemPerRarityHolder;
 import com.robertx22.mine_and_slash.database.rarities.RuneRarity;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.*;
@@ -16,8 +17,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,18 +26,23 @@ public abstract class BaseRune implements IWeighted,
     ISerializedRegistryEntry<BaseRune>, ISerializable<BaseRune> {
 
     private boolean isUnique = false;
-    public HashMap<Integer, RuneItem> itemMap = new HashMap<>();
+    public ItemPerRarityHolder itemMap;
 
     public BaseRune(int rarity) {
 
+        HashMap<Integer, Item> map = new HashMap<>();
+
         if (this instanceof BaseUniqueRune || rarity == IRarity.Unique) {
-            itemMap.put(IRarity.Unique, genItemForRegistration(IRarity.Unique));
+            map.put(IRarity.Unique, genItemForRegistration(IRarity.Unique));
             this.isUnique = true;
         } else {
             for (RuneRarity rar : Rarities.Runes.getNormalRarities()) {
-                itemMap.put(rar.Rank(), genItemForRegistration(rar.Rank()));
+                map.put(rar.Rank(), genItemForRegistration(rar.Rank()));
             }
         }
+
+        this.itemMap = new ItemPerRarityHolder(map);
+
     }
 
     public BaseRune(boolean isUnique) {
@@ -65,15 +69,7 @@ public abstract class BaseRune implements IWeighted,
         JsonUtils.addStatMods(armorStat(), json, "possible_armor_stats");
         JsonUtils.addStatMods(jewerlyStat(), json, "possible_jewerly_stats");
 
-        JsonObject map = new JsonObject();
-        itemMap.entrySet()
-            .forEach(x -> {
-                map.addProperty(x.getKey() + "", x.getValue()
-                    .getRegistryName()
-                    .toString());
-            });
-
-        json.add("item_id_per_rarity", map);
+        json.add("item_id_per_rarity", this.itemMap.toJson());
 
         return json;
     }
@@ -92,22 +88,9 @@ public abstract class BaseRune implements IWeighted,
         List<StatMod> armor = JsonUtils.getStatMods(json, "possible_armor_stats");
         List<StatMod> jewerly = JsonUtils.getStatMods(json, "possible_jewerly_stats");
 
-        HashMap<Integer, RuneItem> itemMap = new HashMap<>();
-        JsonObject map = json.getAsJsonObject("item_id_per_rarity");
-        for (RuneRarity rar : Rarities.Runes.getAllRarities()) {
-            String id = rar.Rank() + "";
-            if (map.has(id)) {
+        ItemPerRarityHolder sItemMap = ItemPerRarityHolder.SERIALIZER.fromJson(json.getAsJsonObject("item_id_per_rarity"));
 
-                String itemid = map.get(id)
-                    .getAsString();
-                Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemid));
-
-                itemMap.put(rar.Rank(), (RuneItem) item);
-
-            }
-        }
-
-        return new SerializedRune(isUnique, guid, weight, tier, weapon, armor, jewerly, itemMap);
+        return new SerializedRune(isUnique, guid, weight, tier, weapon, armor, jewerly, sItemMap);
     }
 
     public RuneItem genItemForRegistration(int rarity) {
@@ -115,7 +98,7 @@ public abstract class BaseRune implements IWeighted,
     }
 
     public RuneItem getItemFromRegistry(int rarity) {
-        return itemMap.get(rarity);
+        return (RuneItem) itemMap.get(rarity);
     }
 
     public final RuneItem byRarityItem(int rar) {

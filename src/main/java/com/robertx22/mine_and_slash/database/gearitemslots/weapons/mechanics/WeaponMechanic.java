@@ -8,14 +8,26 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class WeaponMechanic implements IGUID {
 
-    public List<ITextComponent> tooltipDesc() {
-        return Arrays.asList(
+    private static HashMap<String, WeaponMechanic> ALL = new HashMap<String, WeaponMechanic>() {
+        {
+            {
+                put(new HammerWeaponMechanic().GUID(), new HammerWeaponMechanic());
+                put(new NormalWeaponMechanic().GUID(), new NormalWeaponMechanic());
+            }
+        }
+    };
 
-        );
+    public static WeaponMechanic get(String id) {
+        return ALL.getOrDefault(id, new NormalWeaponMechanic());
+    }
+
+    public List<ITextComponent> tooltipDesc() {
+        return Arrays.asList();
     }
 
     protected boolean isPoweredAttack(DamageEventData data) {

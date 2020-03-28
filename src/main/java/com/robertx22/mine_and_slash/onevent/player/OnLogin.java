@@ -50,9 +50,8 @@ public class OnLogin {
             MMORPG.sendToClient(new OnLoginClientPacket(OnLoginClientPacket.When.BEFORE), player);
             ConfigRegister.CONFIGS.values()
                 .forEach(x -> x.sendToClient(player));
-            SlashRegistry.sendAllPacketsToClientOnLogin(player);
-
             Rarities.sendAllPacketsToClientOnLogin(player);
+            SlashRegistry.sendAllPacketsToClientOnLogin(player);
 
             MMORPG.sendToClient(new OnLoginClientPacket(OnLoginClientPacket.When.AFTER), player);
 
