@@ -72,7 +72,7 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
     public StatMod size(Size size) {
         String newGUID = getGUIDFor(GetBaseStat(), size, getModType()); // cus serializablestatmod takes a guid field
-        return new SerializableStatMod(GetBaseStat().GUID(), Min(), Max(), getModType(), newGUID, size);
+        return new SerializableStatMod(GetBaseStat().GUID(), Min(), Max(), getModType(), newGUID, size, minSecond(), maxSecond());
     }
 
     public String getGUIDFor(Stat stat, Size size, StatModTypes type) {
@@ -124,12 +124,33 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
     public abstract float Max();
 
+    public float minSecond() {
+        return Min();
+    }
+
+    public float maxSecond() {
+        return Max();
+    }
+
+    public boolean usesNumberRanges() {
+        return getModType()
+            .equals(StatModTypes.Flat) && Min() != minSecond() && Max() != maxSecond();
+    }
+
     public final float getMin() {
         return Min() * size.multi;
     }
 
     public final float getMax() {
         return Max() * size.multi;
+    }
+
+    public final float getMinSecond() {
+        return minSecond() * size.multi;
+    }
+
+    public final float getMaxSecond() {
+        return maxSecond() * size.multi;
     }
 
     public abstract StatModTypes getModType();
@@ -150,6 +171,10 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
         json.addProperty("min", Min());
         json.addProperty("max", Max());
+
+        json.addProperty("min_second", minSecond());
+        json.addProperty("max_second", maxSecond());
+
         json.addProperty("stat", GetBaseStat().GUID());
         json.addProperty("type", getModType().name());
         json.addProperty("guid", GUID());
@@ -165,6 +190,12 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
             .getAsFloat();
         float max = json.get("max")
             .getAsFloat();
+
+        float min2 = json.get("min_second")
+            .getAsFloat();
+        float max2 = json.get("max_second")
+            .getAsFloat();
+
         String stat = json.get("stat")
             .getAsString();
         String guid = json.get("guid")
@@ -175,7 +206,7 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
         StatModTypes type = StatModTypes.valueOf(json.get("type")
             .getAsString());
 
-        return new SerializableStatMod(stat, min, max, type, guid, size);
+        return new SerializableStatMod(stat, min, max, type, guid, size, min2, max2);
     }
 
 }

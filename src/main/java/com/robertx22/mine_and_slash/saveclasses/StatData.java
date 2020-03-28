@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -27,7 +28,8 @@ public class StatData {
     }
 
     public Stat GetStat() {
-        return SlashRegistry.Stats().get(id);
+        return SlashRegistry.Stats()
+            .get(id);
     }
 
     @Store// guid
@@ -41,6 +43,34 @@ public class StatData {
 
     @Store
     public float val = 0;
+
+    public void CalcVal(EntityCap.UnitData Source) {
+
+        Stat stat = this.GetStat();
+
+        if (stat.isTrait()) {
+            if (Flat > 0) {
+                val = 1;
+            } else {
+                val = 0;
+            }
+            return;
+        } else {
+
+            float finalValue = stat.BaseFlat;
+
+            finalValue = stat.getScaling()
+                .scale(stat.BaseFlat, Source.getLevel());
+
+            finalValue += Flat;
+
+            finalValue *= 1 + Percent / 100;
+
+            finalValue *= 1 + Multi / 100;
+
+            val = MathHelper.clamp(finalValue, stat.minimumValue, stat.maximumValue);
+        }
+    }
 
     public String getId() {
         return id;
@@ -81,7 +111,8 @@ public class StatData {
     }
 
     public void addFlat(float val, int lvl) {
-        this.Flat += this.GetStat().calculateScalingStatGrowth(val, lvl);
+        this.Flat += this.GetStat()
+            .calculateScalingStatGrowth(val, lvl);
     }
 
     public void Clear() {

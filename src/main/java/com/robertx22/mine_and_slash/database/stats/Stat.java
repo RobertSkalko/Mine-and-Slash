@@ -5,12 +5,10 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -21,7 +19,6 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
@@ -88,6 +85,18 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
         }
         return list;
+    }
+
+    public enum StatType {
+        NORMAL, CORE, TRAIT
+    }
+
+    public StatType getStatType() {
+        return StatType.NORMAL;
+    }
+
+    public boolean isTrait() {
+        return getStatType().equals(StatType.TRAIT);
     }
 
     @Override
@@ -196,23 +205,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     @OnlyIn(Dist.CLIENT)
     public List<ITextComponent> getTooltipList(TooltipStatInfo info) {
         return info.tooltipInfo.statTooltipType.impl.getTooltipList(info);
-    }
-
-    public void CalcVal(StatData data, UnitData Source) {
-
-        float finalValue = BaseFlat;
-
-        finalValue = this.getScaling()
-            .scale(BaseFlat, Source.getLevel());
-
-        finalValue += data.Flat;
-
-        finalValue *= 1 + data.Percent / 100;
-
-        finalValue *= 1 + data.Multi / 100;
-
-        data.val = MathHelper.clamp(finalValue, minimumValue, maximumValue);
-
     }
 
     public boolean IsShownOnStatGui() {

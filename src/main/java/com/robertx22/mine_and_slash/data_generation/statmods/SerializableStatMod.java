@@ -10,16 +10,20 @@ public class SerializableStatMod extends StatMod {
     String stat;
     float min;
     float max;
+    float min2;
+    float max2;
     StatModTypes type;
     String guid;
 
-    public SerializableStatMod(String stat, float min, float max, StatModTypes type, String guid, Size size) {
+    public SerializableStatMod(String stat, float min, float max, StatModTypes type, String guid, Size size, float min2, float max2) {
         this.stat = stat;
         this.min = min;
         this.max = max;
         this.type = type;
         this.guid = guid;
         this.size = size;
+        this.min2 = min2;
+        this.max2 = max2;
     }
 
     @Override
@@ -41,6 +45,16 @@ public class SerializableStatMod extends StatMod {
     @Override
     public float Max() {
         return max;
+    }
+
+    @Override
+    public float minSecond() {
+        return min2;
+    }
+
+    @Override
+    public float maxSecond() {
+        return max2;
     }
 
     @Override

@@ -98,6 +98,10 @@ public class DamageEventData {
             weapon = stack;
         }
 
+        if (weapon == null) {
+            weapon = ItemStack.EMPTY;
+        }
+
     }
 
 }

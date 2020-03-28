@@ -311,10 +311,8 @@ public class Unit {
     }
 
     protected void CalcStats(UnitData data) {
-
         MyStats.values()
-            .forEach((StatData stat) -> stat.GetStat()
-                .CalcVal(stat, data));
+            .forEach((StatData stat) -> stat.CalcVal(data));
     }
 
     public float getMissingHealth(LivingEntity en) {

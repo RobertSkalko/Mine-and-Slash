@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsOtherStats;
@@ -63,16 +62,8 @@ public abstract class Trait extends Stat implements IAffectsOtherStats {
         return false;
     }
 
-    @Override
-    public void CalcVal(StatData data, EntityCap.UnitData Source) {
-
-        if (data.Flat > 0) {
-            data.val = 1;
-        } else {
-            data.val = 0;
-
-        }
-
+    public StatType getStatType() {
+        return StatType.TRAIT;
     }
 
     @OnlyIn(Dist.CLIENT)

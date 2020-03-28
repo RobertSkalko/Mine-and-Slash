@@ -33,7 +33,6 @@ public class StatModData implements ITooltipList {
         StatModData data = new StatModData();
 
         data.baseModName = mod.GUID();
-        data.type = mod.getModType();
         data.randomize(rar);
 
         return data;
@@ -44,7 +43,6 @@ public class StatModData implements ITooltipList {
         StatModData data = new StatModData();
 
         data.baseModName = mod.GUID();
-        data.type = mod.getModType();
         data.randomize(minmax);
 
         return data;
@@ -55,7 +53,6 @@ public class StatModData implements ITooltipList {
         StatModData data = new StatModData();
 
         data.baseModName = mod.GUID();
-        data.type = mod.getModType();
         data.percent = percent;
 
         return data;
@@ -86,9 +83,6 @@ public class StatModData implements ITooltipList {
     }
 
     @Store
-    private StatModTypes type;
-
-    @Store
     private int percent;
 
     @Store
@@ -102,7 +96,11 @@ public class StatModData implements ITooltipList {
     }
 
     public boolean canBeMerged(StatModData mod) {
-        return type == mod.type && baseModName == mod.baseModName;
+        return baseModName == mod.baseModName;
+    }
+
+    public StatModTypes getType() {
+        return getStatMod().getModType();
     }
 
     public StatMod getStatMod() {
@@ -173,6 +171,8 @@ public class StatModData implements ITooltipList {
     }
 
     public void Add(StatData data, int level) {
+
+        StatModTypes type = getType();
 
         if (type == StatModTypes.Flat) {
             data.Flat += GetActualVal(level);
