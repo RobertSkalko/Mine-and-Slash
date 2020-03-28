@@ -16,13 +16,14 @@ public class ItemPerRarityHolder implements ISerializable<ItemPerRarityHolder> {
 
     HashMap<Integer, String> map = new HashMap<>();
 
-    HashMap<Integer, Item> itemMapForRegistration = new HashMap<>();
+    HashMap<Integer, Item> itemMapForRegistration = new HashMap<>(); // literally just there so i can register my runes
 
     public HashMap<Integer, Item> getForRegistration() {
         return itemMapForRegistration;
     }
 
     public ItemPerRarityHolder(HashMap<Integer, Item> itemMap) {
+        this.itemMapForRegistration = new HashMap<>(itemMap);
         itemMap.entrySet()
             .forEach(e -> map.put(e.getKey(), e.getValue()
                 .getRegistryName()

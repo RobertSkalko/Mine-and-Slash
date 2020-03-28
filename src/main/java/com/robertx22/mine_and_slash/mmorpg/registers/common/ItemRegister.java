@@ -81,7 +81,13 @@ public class ItemRegister {
             .forEach(x -> {
                 x.itemMap.getForRegistration()
                     .values()
-                    .forEach(i -> r.register(i));
+                    .forEach(i -> {
+                        if (i.getRegistryName()
+                            .getNamespace()
+                            .equals(Ref.MODID)) {
+                            r.register(i);
+                        }
+                    });
             });
 
     }
