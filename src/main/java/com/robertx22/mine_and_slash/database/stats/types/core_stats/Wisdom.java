@@ -44,7 +44,7 @@ public class Wisdom extends BaseCoreStat {
         return Arrays.asList(
             new MagicShieldRegenFlat().size(StatMod.Size.LOW),
             new MagicShieldPercent().size(StatMod.Size.LOW),
-            new ElementalResistFlat(Elements.Elemental).size(StatMod.Size.TINY)
+            new ElementalResistFlat(Elements.Elemental).size(StatMod.Size.QUARTER)
         );
     }
 

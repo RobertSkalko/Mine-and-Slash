@@ -25,7 +25,7 @@ public class GodKingsPlate extends Set {
             {
                 {
                     put(2, new PhysicalDamagePercent());
-                    put(3, new ArmorFlat().size(StatMod.Size.HIGH));
+                    put(3, new ArmorFlat().size(StatMod.Size.HALF_MORE));
                     put(4, new HealthFlat());
 
                 }

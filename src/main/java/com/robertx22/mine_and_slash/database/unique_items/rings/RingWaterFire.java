@@ -46,8 +46,8 @@ public class RingWaterFire implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalConversionFlat(Elements.Fire, Elements.Water).size(StatMod.Size.VERY_LOW),
-            new ElementalConversionFlat(Elements.Water, Elements.Fire).size(StatMod.Size.VERY_LOW)
+            new ElementalConversionFlat(Elements.Fire, Elements.Water).size(StatMod.Size.HALF),
+            new ElementalConversionFlat(Elements.Water, Elements.Fire).size(StatMod.Size.HALF)
         );
     }
 

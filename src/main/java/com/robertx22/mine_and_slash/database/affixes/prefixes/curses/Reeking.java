@@ -29,7 +29,7 @@ public class Reeking extends Prefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new ManaRegenFlat().size(StatMod.Size.LESS), new EnergyFlat().size(StatMod.Size.LESS));
+        return Arrays.asList(new ManaRegenFlat().size(StatMod.Size.HALF_LESS), new EnergyFlat().size(StatMod.Size.HALF_LESS));
     }
 
     @Override

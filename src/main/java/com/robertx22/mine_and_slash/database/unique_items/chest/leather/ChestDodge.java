@@ -2,13 +2,13 @@ package com.robertx22.mine_and_slash.database.unique_items.chest.leather;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherChest;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -48,7 +48,7 @@ public class ChestDodge implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new DodgeRatingFlat().size(StatMod.Size.HIGH), new WeaponDamageFlat(WeaponTypes.Bow),
+        return Arrays.asList(new DodgeRatingFlat().size(StatMod.Size.HALF_MORE), new WeaponDamageFlat(WeaponTypes.Bow),
             new ElementalResistFlat(Elements.Nature)
         );
     }

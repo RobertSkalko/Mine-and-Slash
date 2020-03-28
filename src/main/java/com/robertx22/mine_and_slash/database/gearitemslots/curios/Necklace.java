@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.BonusExpFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
@@ -52,9 +52,9 @@ public class Necklace extends BaseCurio {
     }
 
     @Override
-    public List<StatMod> getPossibleSecondaryStats() {
+    public StatModsHolder getPossibleSecondaryStats() {
 
-        return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
+        return new StatModsHolder(new ElementalResistFlat(Elements.Physical).allSingleElementVariations());
 
     }
 

@@ -54,8 +54,8 @@ public class BraceletWater implements IUnique {
     @Override
     public List<StatMod> primaryStats() {
         return Arrays.asList(
-            new ElementalSpellDamageFlat(Elements.Water).size(StatMod.Size.VERY_LOW),
-            new ElementalSpellDamageFlat(Elements.Fire).size(StatMod.Size.VERY_LOW)
+            new ElementalSpellDamageFlat(Elements.Water).size(StatMod.Size.HALF),
+            new ElementalSpellDamageFlat(Elements.Fire).size(StatMod.Size.HALF)
         );
     }
 

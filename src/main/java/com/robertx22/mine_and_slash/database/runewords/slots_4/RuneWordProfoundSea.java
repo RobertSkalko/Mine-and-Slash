@@ -17,7 +17,7 @@ public class RuneWordProfoundSea extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new ManaRegenFlat(), new ManaFlat().size(StatMod.Size.HIGH));
+        return Arrays.asList(new ManaRegenFlat(), new ManaFlat().size(StatMod.Size.HALF_MORE));
     }
 
     @Override

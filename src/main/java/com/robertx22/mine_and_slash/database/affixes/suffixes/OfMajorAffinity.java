@@ -37,7 +37,7 @@ public class OfMajorAffinity extends ElementalSuffix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new ElementalAffinityFlat(element).size(StatMod.Size.VERY_LOW), new ElementalSpellToAttackDMGFlat(element));
+        return Arrays.asList(new ElementalAffinityFlat(element).size(StatMod.Size.HALF), new ElementalSpellToAttackDMGFlat(element));
     }
 
     @Override

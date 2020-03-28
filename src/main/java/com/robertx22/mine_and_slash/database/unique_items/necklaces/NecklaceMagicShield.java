@@ -2,14 +2,14 @@ package com.robertx22.mine_and_slash.database.unique_items.necklaces;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Wisdom;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -58,7 +58,7 @@ public class NecklaceMagicShield implements IUnique {
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
             new ElementalResistFlat(Elements.Elemental), new MagicShieldRegenFlat(),
-            new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.HIGH)
+            new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.HALF_MORE)
         );
     }
 

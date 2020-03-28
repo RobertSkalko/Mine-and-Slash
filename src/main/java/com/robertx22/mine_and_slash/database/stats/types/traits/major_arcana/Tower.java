@@ -22,7 +22,7 @@ public class Tower extends BaseMajorArcana {
     @Override
     public List<StatMod> getStats() {
         return Arrays.asList(
-            new CoreStatFlat(Vitality.INSTANCE), new ArmorFlat().size(StatMod.Size.HIGH), new ElementalResistFlat(Elements.Fire));
+            new CoreStatFlat(Vitality.INSTANCE), new ArmorFlat().size(StatMod.Size.HALF_MORE), new ElementalResistFlat(Elements.Fire));
     }
 
     @Override

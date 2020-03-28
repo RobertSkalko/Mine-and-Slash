@@ -47,7 +47,7 @@ public class RingCrit implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalHitPercent().size(StatMod.Size.VERY_HIGH), new CriticalDamagePercent().size(StatMod.Size.HIGH), new EnergyRegenFlat());
+        return Arrays.asList(new CriticalHitPercent().size(StatMod.Size.DOUBLE), new CriticalDamagePercent().size(StatMod.Size.HALF_MORE), new EnergyRegenFlat());
     }
 
     @Override

@@ -36,8 +36,8 @@ public class EleSpellDmgStaff implements IElementalUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalSpellToAttackDMGFlat(element).size(StatMod.Size.HIGH),
-            new ElementalSpellToAttackDMGPercent(element).size(StatMod.Size.HIGH),
+            new ElementalSpellToAttackDMGFlat(element).size(StatMod.Size.HALF_MORE),
+            new ElementalSpellToAttackDMGPercent(element).size(StatMod.Size.HALF_MORE),
             new CompletePhysDispersionFlat()
         );
     }

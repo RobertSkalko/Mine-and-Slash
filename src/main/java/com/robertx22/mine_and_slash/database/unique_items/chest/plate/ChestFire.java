@@ -44,7 +44,7 @@ public class ChestFire implements IUnique {
         return Arrays.asList(
             new ElementalResistFlat(Elements.Fire),
             new ElementalSpellDamageFlat(Elements.Fire),
-            new ElementalResistFlat(Elements.Water).size(StatMod.Size.MUCH_LESS)
+            new ElementalResistFlat(Elements.Water).size(StatMod.Size.ONE_LESS)
         );
     }
 

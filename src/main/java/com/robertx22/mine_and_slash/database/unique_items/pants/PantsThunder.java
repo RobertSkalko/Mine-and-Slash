@@ -47,8 +47,8 @@ public class PantsThunder implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new DodgeRatingFlat().size(StatMod.Size.HIGH),
-            new ElementalResistFlat(Elements.Fire).size(StatMod.Size.HIGH),
+            new DodgeRatingFlat().size(StatMod.Size.HALF_MORE),
+            new ElementalResistFlat(Elements.Fire).size(StatMod.Size.HALF_MORE),
             new HealthRegenFlat()
         );
     }

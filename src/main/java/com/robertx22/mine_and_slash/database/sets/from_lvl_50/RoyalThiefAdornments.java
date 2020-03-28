@@ -26,7 +26,7 @@ public class RoyalThiefAdornments extends Set {
             {
                 {
                     put(2, new DodgeRatingPercent());
-                    put(3, new DodgeRatingFlat().size(StatMod.Size.HIGH));
+                    put(3, new DodgeRatingFlat().size(StatMod.Size.HALF_MORE));
                     put(4, new WeaponDamageFlat(WeaponTypes.Bow));
 
                 }

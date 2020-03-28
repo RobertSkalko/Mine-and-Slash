@@ -21,7 +21,7 @@ public class Death extends BaseMajorArcana {
     @Override
     public List<StatMod> getStats() {
         return Arrays.asList(
-            new HealthFlat().size(StatMod.Size.LESS), new AllElementalDamageMulti(Elements.Water), new PhysicalDamageMulti());
+            new HealthFlat().size(StatMod.Size.HALF_LESS), new AllElementalDamageMulti(Elements.Water), new PhysicalDamageMulti());
     }
 
     @Override

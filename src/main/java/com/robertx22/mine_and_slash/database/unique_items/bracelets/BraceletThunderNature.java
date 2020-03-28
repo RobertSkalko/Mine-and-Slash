@@ -43,9 +43,9 @@ public class BraceletThunderNature implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ManaFlat().size(StatMod.Size.HIGH),
-            new HealthFlat().size(StatMod.Size.HIGH),
-            new EnergyFlat().size(StatMod.Size.HIGH)
+            new ManaFlat().size(StatMod.Size.HALF_MORE),
+            new HealthFlat().size(StatMod.Size.HALF_MORE),
+            new EnergyFlat().size(StatMod.Size.HALF_MORE)
         );
     }
 
@@ -57,8 +57,8 @@ public class BraceletThunderNature implements IUnique {
     @Override
     public List<StatMod> primaryStats() {
         return Arrays.asList(
-            new ElementalSpellDamageFlat(Elements.Nature).size(StatMod.Size.VERY_LOW),
-            new ElementalSpellDamageFlat(Elements.Thunder).size(StatMod.Size.VERY_LOW)
+            new ElementalSpellDamageFlat(Elements.Nature).size(StatMod.Size.HALF),
+            new ElementalSpellDamageFlat(Elements.Thunder).size(StatMod.Size.HALF)
         );
     }
 

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
@@ -24,16 +25,16 @@ public abstract class BaseWeapon extends GearItemSlot implements IWeapon {
     public List<PosStats> getPossiblePrimaryStats() {
         return Arrays.asList(
             new PosStats(new PhysicalDamageFlat()).weight(32000),
-            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.VERY_LOW), new ElementalAttackDamageFlat(Elements.Nature).size(StatMod.Size.VERY_LOW)),
-            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.VERY_LOW), new ElementalAttackDamageFlat(Elements.Fire).size(StatMod.Size.VERY_LOW)),
-            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.VERY_LOW), new ElementalAttackDamageFlat(Elements.Water).size(StatMod.Size.VERY_LOW)),
-            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.VERY_LOW), new ElementalAttackDamageFlat(Elements.Thunder).size(StatMod.Size.VERY_LOW))
+            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.HALF), new ElementalAttackDamageFlat(Elements.Nature).size(StatMod.Size.HALF)),
+            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.HALF), new ElementalAttackDamageFlat(Elements.Fire).size(StatMod.Size.HALF)),
+            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.HALF), new ElementalAttackDamageFlat(Elements.Water).size(StatMod.Size.HALF)),
+            new PosStats(new PhysicalDamageFlat().size(StatMod.Size.HALF), new ElementalAttackDamageFlat(Elements.Thunder).size(StatMod.Size.HALF))
         );
     }
 
     @Override
-    public List<StatMod> getPossibleSecondaryStats() {
-        return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new LifestealFlat(), new LifeOnHitFlat());
+    public StatModsHolder getPossibleSecondaryStats() {
+        return new StatModsHolder(new CriticalDamageFlat(), new CriticalHitFlat(), new LifestealFlat(), new LifeOnHitFlat());
     }
 
     @Override

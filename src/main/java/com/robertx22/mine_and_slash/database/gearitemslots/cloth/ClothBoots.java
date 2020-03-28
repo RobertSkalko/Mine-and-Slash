@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.cloth;
 
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothBootsItem;
 import net.minecraft.item.Item;
@@ -35,8 +35,8 @@ public class ClothBoots extends BaseBoots {
     }
 
     @Override
-    public List<StatMod> getPossibleSecondaryStats() {
-        return this.clothArmorStats();
+    public StatModsHolder getPossibleSecondaryStats() {
+        return new StatModsHolder(clothArmorStats());
     }
 
     @Override

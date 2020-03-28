@@ -20,7 +20,7 @@ public class Barbarian extends Trait implements IAffectsOtherStats {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new PhysicalDamageMulti(), new ManaMulti().size(StatMod.Size.LESS));
+        return Arrays.asList(new PhysicalDamageMulti(), new ManaMulti().size(StatMod.Size.HALF_LESS));
 
     }
 

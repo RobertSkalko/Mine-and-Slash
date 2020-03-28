@@ -2,13 +2,13 @@ package com.robertx22.mine_and_slash.database.unique_items.shields;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Wisdom;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.util.text.TextFormatting;
 
@@ -47,7 +47,7 @@ public class ShieldWisdom implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.HIGH), new MagicShieldFlat());
+        return Arrays.asList(new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.HALF_MORE), new MagicShieldFlat());
     }
 
     @Override

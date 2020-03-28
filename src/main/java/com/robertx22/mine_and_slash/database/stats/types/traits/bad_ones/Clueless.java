@@ -18,7 +18,7 @@ public class Clueless extends Trait {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new ManaRegenFlat().size(StatMod.Size.LESS));
+        return Arrays.asList(new ManaRegenFlat().size(StatMod.Size.HALF_LESS));
 
     }
 

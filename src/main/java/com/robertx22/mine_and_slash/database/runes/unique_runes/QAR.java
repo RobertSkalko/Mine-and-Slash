@@ -11,7 +11,7 @@ public class QAR extends BaseUniqueRune {
 
     @Override
     public List<StatMod> mods() {
-        return StatMod.ofSize(new ElementalAffinityFlat(Elements.Physical).allSingleElementVariations(), StatMod.Size.VERY_LOW);
+        return StatMod.ofSize(new ElementalAffinityFlat(Elements.Physical).allSingleElementVariations(), StatMod.Size.HALF);
     }
 
     @Override

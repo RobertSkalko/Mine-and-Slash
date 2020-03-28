@@ -27,7 +27,7 @@ public class OfGodhood extends Suffix {
     @Override
     public List<StatMod> StatMods() {
 
-        return Arrays.asList(new HealthMulti(), new DodgeRatingFlat().size(StatMod.Size.HIGH), new ArmorFlat());
+        return Arrays.asList(new HealthMulti(), new DodgeRatingFlat().size(StatMod.Size.HALF_MORE), new ArmorFlat());
 
     }
 

@@ -25,7 +25,7 @@ public class OfTheFallen extends Suffix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new HealthFlat().size(StatMod.Size.LESS), new MagicShieldPercent().size(StatMod.Size.HIGH));
+        return Arrays.asList(new HealthFlat().size(StatMod.Size.HALF_LESS), new MagicShieldPercent().size(StatMod.Size.HALF_MORE));
     }
 
     @Override

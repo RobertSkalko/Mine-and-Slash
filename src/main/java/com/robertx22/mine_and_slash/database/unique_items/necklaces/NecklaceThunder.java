@@ -50,7 +50,7 @@ public class NecklaceThunder implements IUnique {
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
             new ElementalSpellToAttackDMGFlat(Elements.Thunder),
-            new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.VERY_HIGH),
+            new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.DOUBLE),
             new EnergyRegenFlat()
         );
 

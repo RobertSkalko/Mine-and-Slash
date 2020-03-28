@@ -29,7 +29,7 @@ public class Old extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(
-            new EnergyRegenFlat().size(StatMod.Size.LESS)
+            new EnergyRegenFlat().size(StatMod.Size.HALF_LESS)
         );
     }
 

@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemBracelet;
@@ -46,8 +46,8 @@ public class Bracelet extends BaseCurio {
     }
 
     @Override
-    public List<StatMod> getPossibleSecondaryStats() {
-        return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
+    public StatModsHolder getPossibleSecondaryStats() {
+        return new StatModsHolder(new ElementalResistFlat(Elements.Physical).allSingleElementVariations());
     }
 
     @Override

@@ -42,9 +42,9 @@ public class BraceletThunder implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new CriticalHitMulti().size(StatMod.Size.VERY_HIGH),
-            new CriticalDamagePercent().size(StatMod.Size.VERY_HIGH),
-            new ArmorFlat().size(StatMod.Size.VERY_HIGH));
+            new CriticalHitMulti().size(StatMod.Size.DOUBLE),
+            new CriticalDamagePercent().size(StatMod.Size.DOUBLE),
+            new ArmorFlat().size(StatMod.Size.DOUBLE));
     }
 
     @Override

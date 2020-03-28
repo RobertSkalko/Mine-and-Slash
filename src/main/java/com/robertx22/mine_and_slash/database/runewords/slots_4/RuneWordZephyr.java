@@ -19,7 +19,7 @@ public class RuneWordZephyr extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new EnergyRegenFlat(), new ElementalResistFlat(Elements.Thunder), new ArmorFlat().size(StatMod.Size.HIGH));
+        return Arrays.asList(new EnergyRegenFlat(), new ElementalResistFlat(Elements.Thunder), new ArmorFlat().size(StatMod.Size.HALF_MORE));
     }
 
     @Override

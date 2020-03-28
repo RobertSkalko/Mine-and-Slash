@@ -38,7 +38,7 @@ public class SwordPhysical implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalHitPercent().size(StatMod.Size.VERY_HIGH), new CriticalDamagePercent().size(StatMod.Size.VERY_HIGH));
+        return Arrays.asList(new CriticalHitPercent().size(StatMod.Size.DOUBLE), new CriticalDamagePercent().size(StatMod.Size.DOUBLE));
     }
 
     @Override

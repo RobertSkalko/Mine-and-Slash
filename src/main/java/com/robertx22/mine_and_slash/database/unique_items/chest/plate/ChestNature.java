@@ -43,14 +43,14 @@ public class ChestNature implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthRegenFlat().size(StatMod.Size.HIGH), new ElementalResistFlat(Elements.Nature), new CoreStatFlat(Stamina.INSTANCE)
+        return Arrays.asList(new HealthRegenFlat().size(StatMod.Size.HALF_MORE), new ElementalResistFlat(Elements.Nature), new CoreStatFlat(Stamina.INSTANCE)
 
         );
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HealthFlat().size(StatMod.Size.HIGH));
+        return Arrays.asList(new HealthFlat().size(StatMod.Size.HALF_MORE));
     }
 
     @Override

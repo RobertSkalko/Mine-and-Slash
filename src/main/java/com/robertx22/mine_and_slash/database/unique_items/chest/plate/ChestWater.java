@@ -42,7 +42,7 @@ public class ChestWater implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HIGH), new ArmorFlat().size(StatMod.Size.HIGH), new CoreStatFlat(Stamina.INSTANCE)
+        return Arrays.asList(new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HALF_MORE), new ArmorFlat().size(StatMod.Size.HALF_MORE), new CoreStatFlat(Stamina.INSTANCE)
 
         );
     }

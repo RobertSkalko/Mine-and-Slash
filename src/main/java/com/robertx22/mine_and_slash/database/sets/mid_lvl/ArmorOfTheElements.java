@@ -24,7 +24,7 @@ public class ArmorOfTheElements extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new ManaFlat().size(StatMod.Size.HIGH));
+                    put(2, new ManaFlat().size(StatMod.Size.HALF_MORE));
                     put(3, new AllEleSpellDmgFlat());
                     put(4, new AllEleDmgFlat());
 

@@ -18,7 +18,7 @@ public class BonusEleResistAffix extends BaseElementalMapAffix {
 
     @Override
     public StatMod.Size getSize() {
-        return StatMod.Size.VERY_HIGH;
+        return StatMod.Size.DOUBLE;
     }
 
     @Override

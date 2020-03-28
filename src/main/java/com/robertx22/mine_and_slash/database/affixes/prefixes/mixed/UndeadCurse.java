@@ -29,7 +29,7 @@ public class UndeadCurse extends Prefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new HealthFlat().size(StatMod.Size.LESS), new MagicStealFlat());
+        return Arrays.asList(new HealthFlat().size(StatMod.Size.HALF_LESS), new MagicStealFlat());
     }
 
     @Override

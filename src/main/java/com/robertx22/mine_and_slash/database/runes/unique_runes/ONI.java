@@ -11,7 +11,7 @@ public class ONI extends BaseUniqueRune {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new ArmorFlat().size(StatMod.Size.VERY_HIGH));
+        return Arrays.asList(new ArmorFlat().size(StatMod.Size.DOUBLE));
     }
 
     @Override

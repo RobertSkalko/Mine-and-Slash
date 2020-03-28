@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.offhand;
 
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
@@ -58,14 +59,14 @@ public class Torch extends BaseOffHand implements ISpecificStatReq {
 
     @Override
     public List<PosStats> getPossiblePrimaryStats() {
-        return Arrays.asList(new PosStats(new ManaRegenFlat().size(StatMod.Size.HIGH)), new PosStats(new EnergyRegenFlat().size(StatMod.Size.HIGH)),
-            new PosStats(new MagicShieldRegenFlat().size(StatMod.Size.HIGH))
+        return Arrays.asList(new PosStats(new ManaRegenFlat().size(StatMod.Size.HALF_MORE)), new PosStats(new EnergyRegenFlat().size(StatMod.Size.HALF_MORE)),
+            new PosStats(new MagicShieldRegenFlat().size(StatMod.Size.HALF_MORE))
         );
     }
 
     @Override
-    public List<StatMod> getPossibleSecondaryStats() {
-        return this.coreStatMods();
+    public StatModsHolder getPossibleSecondaryStats() {
+        return new StatModsHolder(coreStatMods());
     }
 
     @Override

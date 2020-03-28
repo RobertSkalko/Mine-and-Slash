@@ -19,7 +19,7 @@ public class LessEleDmgAffix extends BaseElementalMapAffix {
 
     @Override
     public StatMod.Size getSize() {
-        return StatMod.Size.CRIPPLED;
+        return StatMod.Size.TRIPLE_LESS;
     }
 
     @Override

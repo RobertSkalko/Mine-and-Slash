@@ -23,7 +23,7 @@ public class RingsOfImpossibility extends Set {
         return new HashMap<Integer, StatMod>() {
             {
                 {
-                    put(2, new CriticalDamageFlat().size(StatMod.Size.HIGH));
+                    put(2, new CriticalDamageFlat().size(StatMod.Size.HALF_MORE));
 
                 }
             }

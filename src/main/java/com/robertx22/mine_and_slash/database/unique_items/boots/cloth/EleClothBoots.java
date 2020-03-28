@@ -41,12 +41,12 @@ public class EleClothBoots implements IElementalUnique, IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new MagicShieldRegenFlat().size(StatMod.Size.LESS), new ManaRegenFlat().size(StatMod.Size.TINY), new EnergyRegenFlat().size(StatMod.Size.TINY));
+        return Arrays.asList(new MagicShieldRegenFlat().size(StatMod.Size.HALF_LESS), new ManaRegenFlat().size(StatMod.Size.QUARTER), new EnergyRegenFlat().size(StatMod.Size.QUARTER));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element).size(StatMod.Size.TINY));
+        return Arrays.asList(new ElementalAttackDamageFlat(element).size(StatMod.Size.QUARTER));
     }
 
     @Override

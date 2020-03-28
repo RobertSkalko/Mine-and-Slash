@@ -1,14 +1,13 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.plate;
 
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateChestItem;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class PlateChest extends BaseChest {
     public static GearItemSlot INSTANCE = new PlateChest();
@@ -23,8 +22,8 @@ public class PlateChest extends BaseChest {
     }
 
     @Override
-    public List<StatMod> getPossibleSecondaryStats() {
-        return this.plateArmorStats();
+    public StatModsHolder getPossibleSecondaryStats() {
+        return new StatModsHolder(plateArmorStats());
     }
 
     @Override

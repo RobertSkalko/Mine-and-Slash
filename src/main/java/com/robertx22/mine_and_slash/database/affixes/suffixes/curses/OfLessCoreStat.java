@@ -44,7 +44,7 @@ public class OfLessCoreStat extends Suffix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new CoreStatFlat(stat).size(StatMod.Size.LESS));
+        return Arrays.asList(new CoreStatFlat(stat).size(StatMod.Size.HALF_LESS));
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifeOnHitFlat;
@@ -16,9 +16,7 @@ import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemStaff;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import net.minecraft.item.Item;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class Staff extends BaseWeapon implements ISpecificStatReq {
     public static GearItemSlot INSTANCE = new Staff();
@@ -80,8 +78,8 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public List<StatMod> getPossibleSecondaryStats() {
-        return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new LifestealFlat(), new LifeOnHitFlat(), new MagicStealFlat());
+    public StatModsHolder getPossibleSecondaryStats() {
+        return new StatModsHolder(new CriticalDamageFlat(), new CriticalHitFlat(), new LifestealFlat(), new LifeOnHitFlat(), new MagicStealFlat());
     }
 
     @Override

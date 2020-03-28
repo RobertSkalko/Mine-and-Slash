@@ -37,7 +37,7 @@ public class Heretics extends ElementalPrefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new CriticalDamageFlat(), new ElementalSpellDamagePercent(element).size(StatMod.Size.HIGH));
+        return Arrays.asList(new CriticalDamageFlat(), new ElementalSpellDamagePercent(element).size(StatMod.Size.HALF_MORE));
     }
 
     @Override

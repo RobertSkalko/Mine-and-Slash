@@ -41,7 +41,7 @@ public class BootsNature implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthPercent().size(StatMod.Size.HIGH), new ManaRegenFlat().size(StatMod.Size.HIGH),
+        return Arrays.asList(new HealthPercent().size(StatMod.Size.HALF_MORE), new ManaRegenFlat().size(StatMod.Size.HALF_MORE),
             new ElementalResistFlat(Elements.Nature)
         );
 
@@ -49,7 +49,7 @@ public class BootsNature implements IUnique {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HealthFlat().size(StatMod.Size.HIGH));
+        return Arrays.asList(new HealthFlat().size(StatMod.Size.HALF_MORE));
     }
 
     @Override

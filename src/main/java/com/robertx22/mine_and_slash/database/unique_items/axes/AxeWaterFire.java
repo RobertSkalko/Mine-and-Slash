@@ -43,8 +43,8 @@ public class AxeWaterFire implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalDamagePercent().size(StatMod.Size.CRIPPLED),
-            new LifestealPercent().size(StatMod.Size.CRIPPLED), new ManaOnHitFlat().size(StatMod.Size.CRIPPLED)
+        return Arrays.asList(new CriticalDamagePercent().size(StatMod.Size.TRIPLE_LESS),
+            new LifestealPercent().size(StatMod.Size.TRIPLE_LESS), new ManaOnHitFlat().size(StatMod.Size.TRIPLE_LESS)
         );
     }
 

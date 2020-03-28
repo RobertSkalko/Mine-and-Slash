@@ -30,8 +30,8 @@ public class Colossal extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(
-            new EnergyRegenFlat().size(StatMod.Size.MUCH_LESS),
-            new PhysicalDamagePercent().size(StatMod.Size.VERY_HIGH));
+            new EnergyRegenFlat().size(StatMod.Size.ONE_LESS),
+            new PhysicalDamagePercent().size(StatMod.Size.DOUBLE));
     }
 
     @Override

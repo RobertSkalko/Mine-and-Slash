@@ -24,7 +24,7 @@ public class MagicSiphon extends Prefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new MagicStealFlat().size(StatMod.Size.HIGH));
+        return Arrays.asList(new MagicStealFlat().size(StatMod.Size.HALF_MORE));
     }
 
     @Override

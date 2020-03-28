@@ -26,7 +26,7 @@ public class ArtifactArmor extends Set {
                 {
                     put(2, new BonusExpFlat());
                     put(3, new HealthPercent());
-                    put(4, new ArmorFlat().size(StatMod.Size.VERY_HIGH));
+                    put(4, new ArmorFlat().size(StatMod.Size.DOUBLE));
 
                 }
             }

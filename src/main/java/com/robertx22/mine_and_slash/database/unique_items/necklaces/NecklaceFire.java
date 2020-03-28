@@ -46,7 +46,7 @@ public class NecklaceFire implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Fire), new EnergyFlat().size(StatMod.Size.HIGH), new ElementalResistFlat(Elements.Water));
+        return Arrays.asList(new ElementalSpellToAttackDMGFlat(Elements.Fire), new EnergyFlat().size(StatMod.Size.HALF_MORE), new ElementalResistFlat(Elements.Water));
 
     }
 

@@ -17,7 +17,7 @@ public class RuneWordLimitless extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new EnergyRegenFlat().size(StatMod.Size.HIGH), new DodgeRatingPercent());
+        return Arrays.asList(new EnergyRegenFlat().size(StatMod.Size.HALF_MORE), new DodgeRatingPercent());
     }
 
     @Override

@@ -31,7 +31,7 @@ public class Eliminator extends Set {
             {
                 {
                     put(3, new CoreStatFlat(Stamina.INSTANCE));
-                    put(4, new CoreStatFlat(Dexterity.INSTANCE).size(StatMod.Size.HIGH));
+                    put(4, new CoreStatFlat(Dexterity.INSTANCE).size(StatMod.Size.HALF_MORE));
                 }
             }
         };

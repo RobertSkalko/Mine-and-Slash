@@ -48,12 +48,12 @@ public class RingHermitsInsanity implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthPercent().size(StatMod.Size.CRIPPLED), new CriticalDamagePercent().size(StatMod.Size.MAJOR));
+        return Arrays.asList(new HealthPercent().size(StatMod.Size.TRIPLE_LESS), new CriticalDamagePercent().size(StatMod.Size.TRIPLE));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalPeneFlat(Elements.Elemental).size(StatMod.Size.HIGH));
+        return Arrays.asList(new ElementalPeneFlat(Elements.Elemental).size(StatMod.Size.HALF_MORE));
     }
 
     @Override

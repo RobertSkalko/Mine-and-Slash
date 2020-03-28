@@ -30,7 +30,7 @@ public class Sacrificial extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(
-            new HealthFlat().size(StatMod.Size.LESS),
+            new HealthFlat().size(StatMod.Size.HALF_LESS),
             Mod.LUCK_FLAT()
         );
     }

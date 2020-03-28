@@ -42,10 +42,10 @@ public class AxeThunder implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new CriticalHitFlat().size(StatMod.Size.VERY_HIGH),
+            new CriticalHitFlat().size(StatMod.Size.DOUBLE),
             new ManaOnHitFlat(),
-            new LifeOnHitFlat().size(StatMod.Size.MUCH_LESS),
-            new LifestealFlat().size(StatMod.Size.MUCH_LESS)
+            new LifeOnHitFlat().size(StatMod.Size.ONE_LESS),
+            new LifestealFlat().size(StatMod.Size.ONE_LESS)
         );
     }
 

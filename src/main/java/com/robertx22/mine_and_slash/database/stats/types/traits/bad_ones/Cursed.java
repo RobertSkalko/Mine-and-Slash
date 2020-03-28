@@ -18,7 +18,7 @@ public class Cursed extends Trait {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new CriticalHitFlat().size(StatMod.Size.MUCH_LESS));
+        return Arrays.asList(new CriticalHitFlat().size(StatMod.Size.ONE_LESS));
     }
 
     @Override

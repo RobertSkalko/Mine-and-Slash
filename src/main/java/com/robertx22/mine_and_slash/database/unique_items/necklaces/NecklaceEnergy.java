@@ -45,7 +45,7 @@ public class NecklaceEnergy implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ManaToEnergyConvFlat(), new EnergyRegenFlat().size(StatMod.Size.HIGH), new HealthRegenFlat());
+        return Arrays.asList(new ManaToEnergyConvFlat(), new EnergyRegenFlat().size(StatMod.Size.HALF_MORE), new HealthRegenFlat());
     }
 
     @Override

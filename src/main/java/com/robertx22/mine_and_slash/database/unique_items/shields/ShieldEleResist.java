@@ -2,14 +2,14 @@ package com.robertx22.mine_and_slash.database.unique_items.shields;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Vitality;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
@@ -43,8 +43,8 @@ public class ShieldEleResist implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalResistFlat(Elements.Elemental), new CoreStatFlat(Vitality.INSTANCE).size(StatMod.Size.HIGH),
-            new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.HIGH)
+            new ElementalResistFlat(Elements.Elemental), new CoreStatFlat(Vitality.INSTANCE).size(StatMod.Size.HALF_MORE),
+            new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.HALF_MORE)
         );
     }
 

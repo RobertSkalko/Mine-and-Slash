@@ -35,7 +35,7 @@ public class ElementalSaber implements IElementalUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalHitFlat().size(StatMod.Size.HIGH), new CriticalDamagePercent(), new ElementalSpellToAttackDMGPercent(element).size(StatMod.Size.HIGH)
+        return Arrays.asList(new CriticalHitFlat().size(StatMod.Size.HALF_MORE), new CriticalDamagePercent(), new ElementalSpellToAttackDMGPercent(element).size(StatMod.Size.HALF_MORE)
         );
     }
 

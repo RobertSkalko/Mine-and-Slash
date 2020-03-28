@@ -30,10 +30,10 @@ public class GenerationalCurse extends Prefix {
     @Override
     public List<StatMod> StatMods() {
         return Arrays.asList(
-            new HealthFlat().size(StatMod.Size.LESS),
+            new HealthFlat().size(StatMod.Size.HALF_LESS),
             Mod.LUCK_FLAT()
-                .size(StatMod.Size.LESS)
-                .size(StatMod.Size.HIGH)
+                .size(StatMod.Size.HALF_LESS)
+                .size(StatMod.Size.HALF_MORE)
         );
     }
 

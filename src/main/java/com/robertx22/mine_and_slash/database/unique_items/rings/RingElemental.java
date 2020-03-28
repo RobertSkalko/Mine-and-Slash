@@ -42,7 +42,7 @@ public class RingElemental implements IElementalUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ManaOnHitFlat(), new CoreStatFlat(Intelligence.INSTANCE).size(StatMod.Size.HIGH), new ElementalPeneFlat(element).size(StatMod.Size.HIGH));
+            new ManaOnHitFlat(), new CoreStatFlat(Intelligence.INSTANCE).size(StatMod.Size.HALF_MORE), new ElementalPeneFlat(element).size(StatMod.Size.HALF_MORE));
     }
 
     @Override

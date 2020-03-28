@@ -24,7 +24,7 @@ public class Gatekeepers extends Prefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new ArmorFlat().size(StatMod.Size.HIGH), new HealthPercent());
+        return Arrays.asList(new ArmorFlat().size(StatMod.Size.HALF_MORE), new HealthPercent());
     }
 
     @Override

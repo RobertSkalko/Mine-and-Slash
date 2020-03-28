@@ -31,7 +31,7 @@ public class BowElemental implements IElementalUnique {
         return Arrays.asList(
             new CoreStatFlat(Dexterity.INSTANCE),
             new ElementalSpellToAttackDMGFlat(element),
-            new CriticalHitFlat().size(StatMod.Size.VERY_HIGH)
+            new CriticalHitFlat().size(StatMod.Size.DOUBLE)
         );
     }
 

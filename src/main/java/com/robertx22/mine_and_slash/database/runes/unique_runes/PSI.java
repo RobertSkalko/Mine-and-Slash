@@ -11,7 +11,7 @@ public class PSI extends BaseUniqueRune {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new CriticalDamageFlat().size(StatMod.Size.HIGH));
+        return Arrays.asList(new CriticalDamageFlat().size(StatMod.Size.HALF_MORE));
     }
 
     @Override

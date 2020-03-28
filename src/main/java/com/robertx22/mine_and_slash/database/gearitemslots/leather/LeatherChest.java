@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.leather;
 
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherChestItem;
 import net.minecraft.item.Item;
@@ -34,8 +34,8 @@ public class LeatherChest extends BaseChest {
     }
 
     @Override
-    public List<StatMod> getPossibleSecondaryStats() {
-        return leatherArmorStats();
+    public StatModsHolder getPossibleSecondaryStats() {
+        return new StatModsHolder(leatherArmorStats());
     }
 
     @Override

@@ -27,7 +27,7 @@ public class TheAscended extends Set {
             {
                 {
                     put(2, new ArmorFlat());
-                    put(3, new CoreStatFlat(Vitality.INSTANCE).size(StatMod.Size.HIGH));
+                    put(3, new CoreStatFlat(Vitality.INSTANCE).size(StatMod.Size.HALF_MORE));
                     put(4, new HealthFlat());
                 }
             }

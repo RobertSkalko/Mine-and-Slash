@@ -42,9 +42,9 @@ public class BraceletFire implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalSpellToAttackDMGFlat(Elements.Fire).size(StatMod.Size.HIGH),
-            new ElementalResistFlat(Elements.Fire).size(StatMod.Size.HIGH),
-            new CriticalDamagePercent().size(StatMod.Size.MUCH_LESS));
+            new ElementalSpellToAttackDMGFlat(Elements.Fire).size(StatMod.Size.HALF_MORE),
+            new ElementalResistFlat(Elements.Fire).size(StatMod.Size.HALF_MORE),
+            new CriticalDamagePercent().size(StatMod.Size.ONE_LESS));
 
     }
 

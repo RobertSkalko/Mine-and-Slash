@@ -59,14 +59,14 @@ public class NecklaceStrength implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ArmorFlat().size(StatMod.Size.VERY_HIGH),
-            new LifestealFlat().size(StatMod.Size.HIGH),
-            new MagicStealFlat().size(StatMod.Size.HIGH));
+            new ArmorFlat().size(StatMod.Size.DOUBLE),
+            new LifestealFlat().size(StatMod.Size.HALF_MORE),
+            new MagicStealFlat().size(StatMod.Size.HALF_MORE));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.VERY_HIGH));
+        return Arrays.asList(new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.DOUBLE));
     }
 
     @Override

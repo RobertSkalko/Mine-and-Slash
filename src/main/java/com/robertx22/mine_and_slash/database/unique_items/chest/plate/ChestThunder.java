@@ -44,7 +44,7 @@ public class ChestThunder implements IUnique {
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
             new ElementalResistFlat(Elements.Thunder),
-            new ArmorFlat().size(StatMod.Size.HIGH),
+            new ArmorFlat().size(StatMod.Size.HALF_MORE),
             new ElementalSpellDamageFlat(Elements.Thunder),
             new ElementalSpellToAttackDMGFlat(Elements.Thunder)
         );

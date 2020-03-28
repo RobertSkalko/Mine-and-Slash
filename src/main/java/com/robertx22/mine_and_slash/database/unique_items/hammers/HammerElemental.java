@@ -36,7 +36,7 @@ public class HammerElemental implements IElementalUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalDamageFlat().size(StatMod.Size.VERY_HIGH), new CriticalHitPercent().size(StatMod.Size.VERY_HIGH), new ElementalFocusFlat(element));
+        return Arrays.asList(new CriticalDamageFlat().size(StatMod.Size.DOUBLE), new CriticalHitPercent().size(StatMod.Size.DOUBLE), new ElementalFocusFlat(element));
     }
 
     @Override

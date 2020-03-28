@@ -24,7 +24,7 @@ public class OfMortality extends Suffix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new HealthFlat().size(StatMod.Size.LESS));
+        return Arrays.asList(new HealthFlat().size(StatMod.Size.HALF_LESS));
     }
 
     @Override

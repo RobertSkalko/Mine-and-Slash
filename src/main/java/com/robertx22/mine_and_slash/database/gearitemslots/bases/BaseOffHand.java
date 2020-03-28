@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
-import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -25,8 +25,8 @@ public abstract class BaseOffHand extends GearItemSlot {
     }
 
     @Override
-    public List<StatMod> getPossibleSecondaryStats() {
-        return Arrays.asList(new ArmorFlat());
+    public StatModsHolder getPossibleSecondaryStats() {
+        return new StatModsHolder(new ArmorFlat());
     }
 
     @Override

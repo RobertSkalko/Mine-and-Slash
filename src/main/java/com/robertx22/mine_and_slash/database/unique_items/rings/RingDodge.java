@@ -49,7 +49,7 @@ public class RingDodge implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new DodgeRatingFlat().size(StatMod.Size.HIGH), new ElementalResistFlat(Elements.Nature),
+            new DodgeRatingFlat().size(StatMod.Size.HALF_MORE), new ElementalResistFlat(Elements.Nature),
             new WeaponDamageFlat(WeaponTypes.Bow)
         );
     }

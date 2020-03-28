@@ -48,7 +48,7 @@ public class PantsFire implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ArmorFlat().size(StatMod.Size.HIGH),
+            new ArmorFlat().size(StatMod.Size.HALF_MORE),
             new ArmorMulti(),
             new ElementalSpellDamagePercent(Elements.Fire)
         );

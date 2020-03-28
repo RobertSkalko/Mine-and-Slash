@@ -25,7 +25,7 @@ public class HeavenlyStrikes extends Prefix {
     @Override
     public List<StatMod> StatMods() {
 
-        return Arrays.asList(new CriticalHitFlat(), new CriticalHitPercent().size(StatMod.Size.HIGH));
+        return Arrays.asList(new CriticalHitFlat(), new CriticalHitPercent().size(StatMod.Size.HALF_MORE));
 
     }
 

@@ -32,16 +32,16 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     //protected String afterPrefix = "";
 
     public enum Size {
-        CRIPPLED("crippled_", -3F),
-        MUCH_LESS("much_less_", -1F),
-        LESS("less_", -0.5F),
-        TINY("tiny_", 0.25F),
-        VERY_LOW("very_low_", 0.5F),
+        TRIPLE_LESS("crippled_", -3F),
+        ONE_LESS("much_less_", -1F),
+        HALF_LESS("less_", -0.5F),
+        QUARTER("tiny_", 0.25F),
+        HALF("very_low_", 0.5F),
         LOW("low_", 0.75F),
         NORMAL("", 1),
-        HIGH("high_", 1.5F),
-        VERY_HIGH("very_high_", 2),
-        MAJOR("major_", 3);
+        HALF_MORE("high_", 1.5F),
+        DOUBLE("very_high_", 2),
+        TRIPLE("major_", 3);
 
         public String prefix;
         public float multi;

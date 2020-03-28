@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.*;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
@@ -165,7 +166,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     public static List<StatMod> clothArmorStats() {
-        return Arrays.asList(new ArmorFlat().size(StatMod.Size.LOW), new ManaFlat().size(StatMod.Size.HIGH), new CoreStatFlat(Intelligence.INSTANCE),
+        return Arrays.asList(new ArmorFlat().size(StatMod.Size.LOW), new ManaFlat().size(StatMod.Size.HALF_MORE), new CoreStatFlat(Intelligence.INSTANCE),
             new CoreStatFlat(Wisdom.INSTANCE)
         );
     }
@@ -197,7 +198,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public abstract GearSlotType slotType();
 
-    public List<StatMod> coreStatMods() {
+    public static List<StatMod> coreStatMods() {
         return new CoreStatFlat(Vitality.INSTANCE).generateAllPossibleStatVariations();
     }
 
@@ -208,7 +209,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public abstract List<PosStats> getPossiblePrimaryStats();
 
-    public abstract List<StatMod> getPossibleSecondaryStats();
+    public abstract StatModsHolder getPossibleSecondaryStats();
 
     public Item getDefaultItem() {
         return Items.AIR;

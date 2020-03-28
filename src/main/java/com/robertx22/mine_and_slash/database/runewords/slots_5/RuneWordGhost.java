@@ -16,7 +16,7 @@ public class RuneWordGhost extends RuneWord {
 
     @Override
     public List<StatMod> mods() {
-        return Arrays.asList(new DodgeRatingFlat().size(StatMod.Size.HIGH), new DodgeRatingPercent(), new ElementalResistFlat(Elements.Nature));
+        return Arrays.asList(new DodgeRatingFlat().size(StatMod.Size.HALF_MORE), new DodgeRatingPercent(), new ElementalResistFlat(Elements.Nature));
     }
 
     @Override

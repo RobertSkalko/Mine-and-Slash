@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
+import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
@@ -15,9 +15,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class CrossBow extends BaseWeapon implements ISpecificStatReq {
     public static GearItemSlot INSTANCE = new CrossBow();
@@ -55,8 +53,8 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
-    public List<StatMod> getPossibleSecondaryStats() {
-        return Arrays.asList(new CriticalDamageFlat(), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Physical));
+    public StatModsHolder getPossibleSecondaryStats() {
+        return new StatModsHolder(new CriticalDamageFlat(), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Physical));
     }
 
     @Override

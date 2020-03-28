@@ -19,7 +19,7 @@ public class WeaponMaster extends Trait implements IAffectsOtherStats {
 
     @Override
     public List<StatMod> getStats() {
-        return Arrays.asList(new CriticalHitFlat().size(StatMod.Size.HIGH));
+        return Arrays.asList(new CriticalHitFlat().size(StatMod.Size.HALF_MORE));
 
     }
 

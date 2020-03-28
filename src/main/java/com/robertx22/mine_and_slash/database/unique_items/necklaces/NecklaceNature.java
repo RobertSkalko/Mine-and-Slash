@@ -47,7 +47,7 @@ public class NecklaceNature implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new HealthFlat().size(StatMod.Size.HIGH),
+            new HealthFlat().size(StatMod.Size.HALF_MORE),
             new ManaFlat(),
             new ElementalAffinityFlat(Elements.Nature).size(StatMod.Size.LOW)
         );

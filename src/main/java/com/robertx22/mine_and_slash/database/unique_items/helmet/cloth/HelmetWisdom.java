@@ -2,14 +2,14 @@ package com.robertx22.mine_and_slash.database.unique_items.helmet.cloth;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothHelmet;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Wisdom;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -48,7 +48,7 @@ public class HelmetWisdom implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.HIGH), new ArmorFlat(), new ManaOnHitFlat());
+        return Arrays.asList(new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.HALF_MORE), new ArmorFlat(), new ManaOnHitFlat());
     }
 
     @Override
