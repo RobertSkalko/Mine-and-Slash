@@ -1,63 +1,31 @@
-package com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics;
+package com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics;
 
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class HammerWeaponMechanic extends WeaponMechanic {
 
-    @Override
-    public ITextComponent tooltipDesc() {
-        return new StringTextComponent(Styles.GREEN + "Aoe Attack/Single Double Damage");
+    public HammerWeaponMechanic() {
+        super(1, 1);
     }
 
-    @Override
-    public float energyCostLevelOne() {
-        return 10;
-    }
-
-    @Override
-    public WeaponTypes weaponType() {
-        return WeaponTypes.Hammer;
-    }
-
-    float radius = 1.2F;
-
-    @Override
-    public float getNormalDamageMulti() {
-        return 2;
-    }
-
-    @Override
-    public float getPoweredAttackDamageMulti() {
-        return 1;
-    }
-
-    @Override
-    protected boolean isPoweredAttack(DamageEventData data) {
-
-        if (data.sourceData.isAttackCooldownInSweepRange()) {
-            List<LivingEntity> targets = EntityFinder.start(data.source, LivingEntity.class, data.target.getPositionVector())
-                .radius(radius)
-                .build();
-
-            if (targets.size() > 1) {
-                return true;
-            }
-        }
-
-        return false;
-
+    public List<ITextComponent> tooltipDesc() {
+        return Arrays.asList(
+            new StringTextComponent(TextFormatting.GREEN + "" + normalDmgMulti + "x DMG (normal)"),
+            new StringTextComponent(TextFormatting.GREEN + "" + poweredDmgMulti + "x DMG (powered)"),
+            new StringTextComponent(TextFormatting.LIGHT_PURPLE + "Attacking same target Doubles Damage")
+        );
     }
 
     @Override
@@ -67,8 +35,12 @@ public class HammerWeaponMechanic extends WeaponMechanic {
             .getCreateStat(PhysicalDamage.GUID).val;
 
         List<LivingEntity> targets = EntityFinder.start(data.source, LivingEntity.class, data.target.getPositionVector())
-            .radius(radius)
+            .radius(1.2F)
             .build();
+
+        if (targets.size() == 1) {
+            num *= 2;
+        }
 
         for (LivingEntity en : targets) {
 

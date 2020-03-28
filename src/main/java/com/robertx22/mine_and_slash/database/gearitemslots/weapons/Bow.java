@@ -1,12 +1,14 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
-import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.BowWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemBow;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -27,8 +29,23 @@ public class Bow extends BaseWeapon implements ISpecificStatReq {
     static StatReq req = new StatReq(LvlPointStat.DEXTERITY, StatReq.Size.MEDIUM);
 
     @Override
+    public WeaponMechanic getWeaponMechanic() {
+        return new NormalWeaponMechanic(4);
+    }
+
+    @Override
     public PlayStyle getPlayStyle() {
         return PlayStyle.THIEF;
+    }
+
+    @Override
+    public WeaponSwingCost getSwingCosts() {
+        return new WeaponSwingCost(18F);
+    }
+
+    @Override
+    public WeaponTypes weaponType() {
+        return WeaponTypes.Bow;
     }
 
     @Override
@@ -56,8 +73,4 @@ public class Bow extends BaseWeapon implements ISpecificStatReq {
         return ItemBow.Items;
     }
 
-    @Override
-    public WeaponMechanic mechanic() {
-        return new BowWeaponMechanic();
-    }
 }

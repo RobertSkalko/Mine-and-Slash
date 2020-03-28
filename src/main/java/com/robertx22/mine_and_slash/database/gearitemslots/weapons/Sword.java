@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
-import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.SwordWeaponMechanic;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
@@ -30,6 +30,16 @@ public class Sword extends BaseWeapon implements ISpecificStatReq {
     }
 
     static StatReq req = new StatReq(LvlPointStat.STAMINA, StatReq.Size.TINY);
+
+    @Override
+    public WeaponSwingCost getSwingCosts() {
+        return new WeaponSwingCost(2);
+    }
+
+    @Override
+    public WeaponTypes weaponType() {
+        return WeaponTypes.Sword;
+    }
 
     @Override
     public PlayStyle getPlayStyle() {
@@ -66,8 +76,4 @@ public class Sword extends BaseWeapon implements ISpecificStatReq {
         return 1500;
     }
 
-    @Override
-    public WeaponMechanic mechanic() {
-        return new SwordWeaponMechanic();
-    }
 }

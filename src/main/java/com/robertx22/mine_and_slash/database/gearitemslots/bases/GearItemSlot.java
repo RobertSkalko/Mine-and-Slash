@@ -1,8 +1,11 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
+import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.*;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
@@ -21,6 +24,7 @@ import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -51,6 +55,15 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         MAGE, THIEF, WARRIOR, NONE
     }
 
+    public boolean isWeapon() {
+        return this.slotType()
+            .equals(GearSlotType.Weapon);
+    }
+
+    public WeaponTypes weaponType() {
+        return WeaponTypes.None;
+    }
+
     public abstract PlayStyle getPlayStyle();
 
     public boolean isMeleeWeapon() {
@@ -64,6 +77,14 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         Armor,
         Jewerly,
         OffHand
+    }
+
+    public WeaponMechanic getWeaponMechanic() {
+        return new NormalWeaponMechanic(1);
+    }
+
+    public WeaponSwingCost getSwingCosts() {
+        return new WeaponSwingCost(5);
     }
 
     public List<PosStats> clothPrimary() {

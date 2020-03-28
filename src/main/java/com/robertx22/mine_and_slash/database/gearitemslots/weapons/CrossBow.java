@@ -1,16 +1,18 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
 import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
+import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
-import com.robertx22.mine_and_slash.items.gearitems.weapon_mechanics.CrossBowWeaponMechanic;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -31,6 +33,11 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
 
     static StatReq req = new StatReq(
         LvlPointStat.DEXTERITY, StatReq.Size.SMALL, LvlPointStat.STRENGTH, StatReq.Size.TINY);
+
+    @Override
+    public WeaponMechanic getWeaponMechanic() {
+        return new NormalWeaponMechanic(3);
+    }
 
     @Override
     public PlayStyle getPlayStyle() {
@@ -58,6 +65,16 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
     }
 
     @Override
+    public WeaponSwingCost getSwingCosts() {
+        return new WeaponSwingCost(8F);
+    }
+
+    @Override
+    public WeaponTypes weaponType() {
+        return WeaponTypes.CrossBow;
+    }
+
+    @Override
     public HashMap<Integer, Item> getItemsForRaritiesMap() {
         return new HashMap<>();
     }
@@ -65,11 +82,6 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
     @Override
     public int Weight() {
         return 750;
-    }
-
-    @Override
-    public WeaponMechanic mechanic() {
-        return new CrossBowWeaponMechanic();
     }
 
     @Override

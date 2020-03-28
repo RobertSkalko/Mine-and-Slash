@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
+import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.IEffectItem;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
@@ -146,28 +146,33 @@ public class GearTooltipUtils {
         }
 
         if (Screen.hasShiftDown()) {
-            if (gear.GetBaseGearType() instanceof IWeapon) {
-                IWeapon iwep = (IWeapon) gear.GetBaseGearType();
+            if (gear.GetBaseGearType()
+                .isWeapon()) {
+
+                WeaponSwingCost costs = gear.GetBaseGearType()
+                    .getSwingCosts();
+
                 tip.add(new StringTextComponent(""));
-                if (iwep.mechanic()
+                if (costs
                     .GetEnergyCost(data.getLvlForResourceCosts()) > 0) {
                     tip.add(Styles.GREENCOMP()
                         .appendSibling(Energy.getInstance()
                             .locName()
-                            .appendText(": " + (int) iwep.mechanic()
+                            .appendText(": " + (int) costs
                                 .GetEnergyCost(data.getLvlForResourceCosts()))));
                 }
-                if (iwep.mechanic()
+                if (costs
                     .GetManaCost(data.getLvlForResourceCosts()) > 0) {
                     tip.add(Styles.BLUECOMP()
                         .appendSibling(Mana.getInstance()
                             .locName()
-                            .appendText(": " + (int) iwep.mechanic()
+                            .appendText(": " + (int) costs
                                 .GetManaCost(data.getLvlForResourceCosts()))));
                 }
 
-                tip.add(new StringTextComponent(Styles.GREEN + "[Hit]: ").appendSibling(iwep.mechanic()
-                    .tooltipDesc()));
+                tip.addAll(gear.GetBaseGearType()
+                    .getWeaponMechanic()
+                    .tooltipDesc());
             }
         }
 

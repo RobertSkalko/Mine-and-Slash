@@ -4,14 +4,13 @@ import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.commands.open_gui.OpenHub;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
-import com.robertx22.mine_and_slash.items.gearitems.bases.IWeapon;
-import com.robertx22.mine_and_slash.items.gearitems.bases.WeaponMechanic;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
@@ -808,14 +807,14 @@ public class EntityCap {
 
             try {
 
-                if (weaponData != null && weaponData.GetBaseGearType() instanceof IWeapon) {
+                if (weaponData != null) {
 
-                    IWeapon iwep = (IWeapon) weaponData.GetBaseGearType();
+                    GearItemSlot slot = weaponData.GetBaseGearType();
 
-                    float energyCost = iwep.mechanic()
+                    float energyCost = slot.getSwingCosts()
                         .GetEnergyCost(getLvlForResourceCosts()) * multi;
 
-                    float manaCost = iwep.mechanic()
+                    float manaCost = slot.getSwingCosts()
                         .GetManaCost(getLvlForResourceCosts()) * multi;
 
                     float cooldown = getAttackCooldown();
@@ -941,7 +940,9 @@ public class EntityCap {
                 if (gear == null) {
                     return false;
                 }
-                if (gear.GetBaseGearType() instanceof IWeapon) {
+                if (gear.GetBaseGearType()
+                    .slotType()
+                    .equals(GearItemSlot.GearSlotType.Weapon)) {
                     return true;
                 }
             } catch (Exception e) {
@@ -1004,15 +1005,16 @@ public class EntityCap {
 
         @Override
         public void attackWithWeapon(DamageEventData data) {
-            if (data.weaponData.GetBaseGearType() instanceof IWeapon) {
+            if (data.weaponData.GetBaseGearType()
+                .getWeaponMechanic() != null) {
 
                 if (data.weapon != null) {
                     data.weapon.attemptDamageItem(1, new Random(), null);
                 }
 
-                IWeapon iwep = (IWeapon) data.weaponData.GetBaseGearType();
-                WeaponMechanic iWep = iwep.mechanic();
-                iWep.attack(data);
+                data.weaponData.GetBaseGearType()
+                    .getWeaponMechanic()
+                    .attack(data);
 
             }
         }
