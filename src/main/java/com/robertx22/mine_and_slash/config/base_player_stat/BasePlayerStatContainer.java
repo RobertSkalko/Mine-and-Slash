@@ -67,7 +67,9 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
         this.BASE_PLAYER_STATS.entrySet()
             .forEach(x -> {
                 data.getUnit()
-                    .getCreateStat(x.getKey()).Flat += x.getValue();
+                    .getCreateStat(x.getKey())
+                    .addFlat(x.getValue()
+                        .floatValue());
             });
         this.PLAYER_STATS_THAT_SCALE_TO_LEVEL.entrySet()
             .forEach(x -> {

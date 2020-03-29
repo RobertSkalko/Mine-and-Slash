@@ -23,7 +23,7 @@ public class OverflowingVitality extends BaseGameChangerTrait implements IAffect
     @Override
     public String locDescForLangFile() {
         return "Increases your physical damage by " + INCREASE + " Percent of your Health, but decrease all " +
-                "elemental attack damage by " + ELE_DECREASE + " percent.";
+            "elemental attack damage by " + ELE_DECREASE + " percent.";
     }
 
     @Override
@@ -44,13 +44,19 @@ public class OverflowingVitality extends BaseGameChangerTrait implements IAffect
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
 
-        float num = data.getUnit().getCreateStat(Health.getInstance()).val * INCREASE / 100;
+        float num = data.getUnit()
+            .getCreateStat(Health.getInstance())
+            .getAverageValue() * INCREASE / 100;
 
         for (Stat stat : ElementalAttackDamage.MAP.getList()) {
-            data.getUnit().getCreateStat(stat).Multi -= ELE_DECREASE;
+            data.getUnit()
+                .getCreateStat(stat)
+                .addMulti(-ELE_DECREASE);
         }
 
-        data.getUnit().getCreateStat(PhysicalDamage.getInstance()).Flat += num;
+        data.getUnit()
+            .getCreateStat(PhysicalDamage.getInstance())
+            .addFlat(+num);
     }
 
     private static class SingletonHolder {

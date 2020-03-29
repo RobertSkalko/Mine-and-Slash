@@ -41,11 +41,17 @@ public class PrimaryStatTooltip implements IStatTooltipType {
     @OnlyIn(Dist.CLIENT)
     public ITextComponent NameAndValueText(TooltipStatInfo info) {
 
-        float val = info.amount;
+        float v1 = info.firstValue;
+        float v2 = info.secondValue;
 
-        String minusplus = val > 0 ? "" : "-";
+        if (v1 == v2) {
+            String minusplus = v1 > 0 ? "" : "-";
+            return NameText(info).appendText(minusplus + info.stat.printValue(v1));
+        } else {
+            String minusplus = v1 > 0 ? "" : "-";
+            return NameText(info).appendText(minusplus + info.stat.printValue(v1) + "-" + info.stat.printValue(v2));
+        }
 
-        return NameText(info).appendText(minusplus + info.stat.printValue(info.amount));
     }
 
     @Override
@@ -67,7 +73,7 @@ public class PrimaryStatTooltip implements IStatTooltipType {
             text.appendText("%");
 
             if (type.equals(StatModTypes.Percent) && stat.IsPercent()) {
-                if (info.amount > 0) {
+                if (info.firstValue > 0) {
                     text.appendText(" ")
                         .appendSibling(Words.Increased.locName());
                 } else {

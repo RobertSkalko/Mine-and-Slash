@@ -23,7 +23,7 @@ public class ElementalPeneEffect extends BaseAnyEffect {
     public EffectData activate(EffectData effect, StatData data, Stat stat) {
 
         IElementalPenetrable ipene = (IElementalPenetrable) effect;
-        ipene.addElementalPenetration((int) data.val);
+        ipene.addElementalPenetration((int) data.getAverageValue());
 
         return effect;
     }

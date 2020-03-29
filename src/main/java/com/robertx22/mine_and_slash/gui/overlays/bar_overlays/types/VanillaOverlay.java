@@ -135,7 +135,8 @@ public class VanillaOverlay extends IngameGui {
                         .getMaximumBlood();
                 } else {
                     return data.getUnit()
-                        .manaData().val;
+                        .manaData()
+                        .getAverageValue();
                 }
             }
 
@@ -165,7 +166,8 @@ public class VanillaOverlay extends IngameGui {
             @Override
             public float getMax(LivingEntity en, UnitData data) {
                 return data.getUnit()
-                    .energyData().val;
+                    .energyData()
+                    .getAverageValue();
             }
 
             @Override
@@ -188,7 +190,8 @@ public class VanillaOverlay extends IngameGui {
             @Override
             public float getMax(LivingEntity en, UnitData data) {
                 return data.getUnit()
-                    .magicShieldData().val;
+                    .magicShieldData()
+                    .getAverageValue();
             }
 
             @Override

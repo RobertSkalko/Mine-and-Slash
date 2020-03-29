@@ -29,7 +29,7 @@ public class BlockEffect extends BaseDamageEffect {
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
 
-        float blockval = data.val;
+        float blockval = data.getAverageValue();
 
         float afterblock = effect.number - blockval;
 
@@ -52,22 +52,26 @@ public class BlockEffect extends BaseDamageEffect {
     }
 
     public static AttributeModifier MOD = new AttributeModifier(UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d"),
-                                                                Ref.MODID + "knockbackresist", 100,
-                                                                AttributeModifier.Operation.ADDITION
+        Ref.MODID + "knockbackresist", 100,
+        AttributeModifier.Operation.ADDITION
     );
 
     public static void applyKnockbackResist(LivingEntity entity) {
 
-        if (entity.getAttribute(KNOCKBACK_RESISTANCE).hasModifier(MOD) == false) {
-            entity.getAttribute(KNOCKBACK_RESISTANCE).applyModifier(MOD);
+        if (entity.getAttribute(KNOCKBACK_RESISTANCE)
+            .hasModifier(MOD) == false) {
+            entity.getAttribute(KNOCKBACK_RESISTANCE)
+                .applyModifier(MOD);
         }
 
     }
 
     public static void removeKnockbackResist(LivingEntity entity) {
 
-        if (entity.getAttribute(KNOCKBACK_RESISTANCE).hasModifier(MOD)) {
-            entity.getAttribute(KNOCKBACK_RESISTANCE).removeModifier(MOD);
+        if (entity.getAttribute(KNOCKBACK_RESISTANCE)
+            .hasModifier(MOD)) {
+            entity.getAttribute(KNOCKBACK_RESISTANCE)
+                .removeModifier(MOD);
         }
 
     }
@@ -78,7 +82,8 @@ public class BlockEffect extends BaseDamageEffect {
 
             if (vec3d != null) {
                 Vec3d vec3d1 = target.getLook(1.0F);
-                Vec3d vec3d2 = vec3d.subtractReverse(new Vec3d(target.posX, target.posY, target.posZ)).normalize();
+                Vec3d vec3d2 = vec3d.subtractReverse(new Vec3d(target.posX, target.posY, target.posZ))
+                    .normalize();
                 vec3d2 = new Vec3d(vec3d2.x, 0.0D, vec3d2.z);
 
                 if (vec3d2.dotProduct(vec3d1) < 0.0D) {

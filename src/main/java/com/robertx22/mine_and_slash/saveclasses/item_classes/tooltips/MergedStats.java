@@ -27,7 +27,7 @@ public class MergedStats implements IGearPartTooltip {
 
         this.list = TooltipStatInfo.mergeDuplicates(infolist);
 
-        this.list.sort(Comparator.comparingInt(x -> -(int) x.amount));
+        this.list.sort(Comparator.comparingInt(x -> -(int) (x.firstValue + x.secondValue)));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.effects.offense.SpellToBasicDamageEffect;
+import com.robertx22.mine_and_slash.database.stats.effects.offense.ElementalInfusionEffect;
 import com.robertx22.mine_and_slash.database.stats.types.SingleElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
@@ -50,7 +50,7 @@ public class ElementalInfusion extends SingleElementalStat implements IStatEffec
 
     @Override
     public IStatEffect getEffect() {
-        return new SpellToBasicDamageEffect();
+        return new ElementalInfusionEffect();
     }
 
     @Override

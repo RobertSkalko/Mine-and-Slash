@@ -57,9 +57,11 @@ public class PlayerStatUtils {
             for (Map.Entry<String, StatData> entry : data.getUnit()
                 .getStats()
                 .entrySet()) {
-                if (entry.getValue().val > 0) {
+                if (entry.getValue()
+                    .isMoreThanZero()) {
                     entry.getValue()
-                        .setValue(entry.getValue().val * penalty);
+                        .setValue(entry.getValue()
+                            .getAverageValue() * penalty);
                 }
             }
         }
@@ -94,7 +96,7 @@ public class PlayerStatUtils {
                             StatData statdata = unitdata.getUnit()
                                 .getCreateStat(stat);
                             if (statdata != null) {
-                                data.Add(statdata, datas.level);
+                                statdata.add(data, datas.level);
                             }
                         }
                     }

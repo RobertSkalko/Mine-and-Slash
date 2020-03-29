@@ -26,7 +26,8 @@ public class TooltipStatInfo implements ITooltipList {
 
     public StatMod mod;
 
-    public float amount;
+    public float firstValue;
+    public float secondValue;
 
     @Nonnull
     public StatModTypes type;
@@ -38,7 +39,8 @@ public class TooltipStatInfo implements ITooltipList {
         this.mod = data.getStatMod();
         this.stat = data.getStatMod()
             .GetBaseStat();
-        this.amount = data.GetActualVal(info.level);
+        this.firstValue = data.getFirstValue(info.level);
+        this.secondValue = data.getSecondValue(info.level);
         this.type = data.getStatMod()
             .getModType();
         this.tooltipInfo = info;
@@ -48,7 +50,8 @@ public class TooltipStatInfo implements ITooltipList {
 
     public TooltipStatInfo(ExactStatData data, TooltipInfo info) {
         this.stat = data.getStat();
-        this.amount = data.getValue();
+        this.firstValue = data.getValue();
+        this.secondValue = data.getValue();
         this.type = data.getType();
         this.tooltipInfo = info;
 
@@ -63,7 +66,9 @@ public class TooltipStatInfo implements ITooltipList {
     }
 
     public void combine(TooltipStatInfo another) {
-        this.amount += another.amount;
+        this.firstValue += another.firstValue;
+        this.secondValue += another.secondValue;
+
         if (this.statRange != null && another.statRange != null) {
 
             this.statRange.minmax = new MinMax(

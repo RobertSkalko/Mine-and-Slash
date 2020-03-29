@@ -46,7 +46,8 @@ public abstract class BaseBarsOverlay extends AbstractGui {
             @Override
             public float getMax(LivingEntity en, UnitData data) {
                 return data.getUnit()
-                    .healthData().val;
+                    .healthData()
+                    .getAverageValue();
             }
 
             @Override
@@ -57,11 +58,13 @@ public abstract class BaseBarsOverlay extends AbstractGui {
                 if (curMS > 0) {
 
                     float maxHP = data.getUnit()
-                        .healthData().val;
+                        .healthData()
+                        .getAverageValue();
                     float maxperc = MathHelper.clamp(curMS / maxHP, 0, 1);
 
                     int barPercent = (int) ((int) ((curMS / data.getUnit()
-                        .magicShieldData().val * 100)) * maxperc);
+                        .magicShieldData()
+                        .getAverageValue() * 100)) * maxperc);
 
                     barPercent = MathHelper.clamp(barPercent, 0, 100);
 
@@ -119,7 +122,8 @@ public abstract class BaseBarsOverlay extends AbstractGui {
                         .getMaximumBlood();
                 } else {
                     return data.getUnit()
-                        .manaData().val;
+                        .manaData()
+                        .getAverageValue();
                 }
             }
         },
@@ -138,7 +142,8 @@ public abstract class BaseBarsOverlay extends AbstractGui {
             @Override
             public float getMax(LivingEntity en, UnitData data) {
                 return data.getUnit()
-                    .energyData().val;
+                    .energyData()
+                    .getAverageValue();
             }
         },
         EXP {

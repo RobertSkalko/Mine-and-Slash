@@ -18,6 +18,7 @@
 * elemental resists are now percents
 * penetration can now move resists into minus
 * minus resists mean it not only doesn't decrease damage, it increases damage (this is a penetration buff)
+* phys and ele attack damages now have number ranges (would you believe me if i told you this took about 10 hours to accomplish without bugtesting afterwards?)
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

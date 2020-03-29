@@ -42,7 +42,8 @@ public class ScalingStatCalc extends BaseStatCalc {
     @Override
     public int getCalculatedValue(EntityCap.UnitData data) {
         return (int) (data.getUnit()
-            .peekAtStat(statID).val * multi);
+            .peekAtStat(statID)
+            .getAverageValue() * multi);
     }
 
     @Override

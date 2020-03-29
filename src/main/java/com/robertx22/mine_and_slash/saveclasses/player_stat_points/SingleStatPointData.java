@@ -29,13 +29,14 @@ public class SingleStatPointData implements IStatsContainer {
     public LvlPointStat stat = LvlPointStat.VITALITY;
 
     public Stat getStat() {
-        return SlashRegistry.Stats().get(stat.statguid);
+        return SlashRegistry.Stats()
+            .get(stat.statguid);
     }
 
     @Override
     public List<StatData> GetAllStats(int level) {
         StatData data = new StatData(getStat());
-        data.Flat += points;
+        data.addFlat(points);
         return Arrays.asList(data);
     }
 

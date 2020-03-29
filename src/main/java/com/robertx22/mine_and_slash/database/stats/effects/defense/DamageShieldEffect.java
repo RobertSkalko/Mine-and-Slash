@@ -26,7 +26,7 @@ public class DamageShieldEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.number -= data.val;
+        effect.number -= data.getAverageValue();
 
         return effect;
     }

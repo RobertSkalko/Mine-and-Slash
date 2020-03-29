@@ -65,7 +65,8 @@ public class DruidBoss extends Boss {
     public void applyStats(EntityCap.UnitData data) {
         super.applyStats(data);
         data.getUnit()
-            .getCreateStat(HealthRegen.getInstance()).Multi -= 100;
+            .getCreateStat(HealthRegen.getInstance())
+            .addMulti(-100);
     }
 
     @Override

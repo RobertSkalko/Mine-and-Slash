@@ -33,7 +33,7 @@ public class ElementalResistEffect extends BaseDamageEffect {
             pene = ipen.GetElementalPenetration();
         }
 
-        float resistPercent = MathHelper.clamp(data.val - pene, stat.minimumValue, stat.maximumValue);
+        float resistPercent = MathHelper.clamp(data.getAverageValue() - pene, stat.minimumValue, stat.maximumValue);
 
         effect.number = MathUtils.applyResistMultiplier(effect.number, resistPercent);
 

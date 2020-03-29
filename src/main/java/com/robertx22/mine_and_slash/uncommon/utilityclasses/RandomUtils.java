@@ -16,6 +16,10 @@ public class RandomUtils {
         return RandomRange(min, max, ran);
     }
 
+    public static float RandomRange(float min, float max) {
+        return RandomRange((int) min, (int) max, ran);
+    }
+
     public static int RandomRange(int min, int max, Random rand) {
 
         try {

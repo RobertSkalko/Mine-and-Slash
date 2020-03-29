@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.rarities.IStatPercents;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
@@ -59,9 +58,10 @@ public class StatModData extends BaseStatContainer {
 
     @Override
     public void applyStats(UnitData unit, int level) {
-        Add(unit.getUnit()
+        unit.getUnit()
             .getCreateStat(this.getStatMod()
-                .GetBaseStat()), level);
+                .GetBaseStat())
+            .add(this, level);
     }
 
     public int getPercent() {
@@ -103,18 +103,39 @@ public class StatModData extends BaseStatContainer {
 
     }
 
-    public float GetActualVal(int level) {
+    public enum FirstSecond {
+        FIRST, SECOND
+    }
+
+    public float getFirstValue(int level) {
+        return getActualValue(level, FirstSecond.FIRST);
+    }
+
+    public float getSecondValue(int level) {
+        return getActualValue(level, FirstSecond.SECOND);
+    }
+
+    public float getActualValue(int level, FirstSecond firstOrSecond) {
 
         StatMod mod = getStatMod();
-
         Stat stat = mod.GetBaseStat();
 
         float val;
 
         if (useMinimum) {
-            val = mod.getFloatByPercent(percent);
+            if (firstOrSecond.equals(FirstSecond.FIRST)) {
+                val = getFirstActualValue();
+            } else {
+                val = getSecondActualValue();
+            }
+
         } else {
-            val = mod.getFloatByPercentWithoutMin(percent);
+            if (firstOrSecond.equals(FirstSecond.FIRST)) {
+                val = getFirstActualValueWithoutMin();
+            } else {
+                val = getSecondActualValueWithoutMin();
+            }
+
         }
 
         if (mod.getModType()
@@ -125,20 +146,48 @@ public class StatModData extends BaseStatContainer {
         return val;
     }
 
+    private float getFirstActualValue() {
+        StatMod mod = getStatMod();
+        return (mod.getMin() + (mod.getMax() - mod.getMin()) * percent / 100);
+    }
+
+    private float getFirstActualValueWithoutMin() {
+        StatMod mod = getStatMod();
+        return (mod.getMax() * percent / 100);
+
+    }
+
+    private float getSecondActualValue() {
+        StatMod mod = getStatMod();
+        return (mod.getMinSecond() + (mod.getMaxSecond() - mod.getMinSecond()) * percent / 100);
+    }
+
+    private float getSecondActualValueWithoutMin() {
+        StatMod mod = getStatMod();
+        return (mod.getMaxSecond() * percent / 100);
+    }
+
     public String printValue(int level) {
 
-        float val = GetActualVal(level);
+        float v1 = getFirstValue(level);
+        float v2 = getFirstValue(level);
 
         DecimalFormat format = new DecimalFormat();
+        format.setMaximumFractionDigits(1);
 
-        if (Math.abs(val) < 10) {
-            format.setMaximumFractionDigits(1);
-
-            return format.format(val);
-
+        if (v1 == v2) {
+            if (Math.abs(v1) < 10) {
+                return format.format(v1);
+            } else {
+                int intval = (int) v1;
+                return (int) v1 + "-";
+            }
         } else {
-            int intval = (int) val;
-            return intval + "";
+            if (Math.abs(v1) < 10) {
+                return format.format(v1) + "-" + format.format(v2);
+            } else {
+                return (int) v1 + "-" + (int) v2;
+            }
         }
 
     }
@@ -162,21 +211,6 @@ public class StatModData extends BaseStatContainer {
 
     public void randomize(MinMax minmax) {
         this.percent = minmax.random();
-    }
-
-    public void Add(StatData data, int level) {
-
-        StatModTypes type = getType();
-
-        if (type == StatModTypes.Flat) {
-            data.Flat += GetActualVal(level);
-        } else if (type == StatModTypes.Percent) {
-            data.Percent += GetActualVal(level);
-        } else if (type == StatModTypes.Multi) {
-            data.Multi += GetActualVal(level);
-
-        }
-
     }
 
 }

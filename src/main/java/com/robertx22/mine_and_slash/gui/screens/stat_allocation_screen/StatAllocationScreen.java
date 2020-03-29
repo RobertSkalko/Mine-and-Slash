@@ -217,7 +217,8 @@ public class StatAllocationScreen extends BaseScreen implements INamedScreen, IA
                 String str =
                     single.stat.formatting + single.stat.shortName + format + ": " + TextFormatting.GREEN + single.points + format;
                 str += ", Current(" + TextFormatting.GREEN + (int) this.unitdata.getUnit()
-                    .getCreateStat(stat).val + format + ")";
+                    .getCreateStat(stat)
+                    .getAverageValue() + format + ")";
 
                 font.drawStringWithShadow(str, this.x - button_sizeX - 5 - font.getStringWidth(str),
                     this.y - button_sizeY / 2 + font.FONT_HEIGHT, format.getColor()

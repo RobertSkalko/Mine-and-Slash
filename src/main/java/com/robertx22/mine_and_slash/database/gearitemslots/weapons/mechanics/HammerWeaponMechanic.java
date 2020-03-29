@@ -27,7 +27,8 @@ public class HammerWeaponMechanic extends WeaponMechanic {
     public void doSpecialAttack(DamageEventData data) {
 
         int num = (int) data.sourceData.getUnit()
-            .getCreateStat(PhysicalDamage.GUID).val;
+            .getCreateStat(PhysicalDamage.GUID)
+            .getRandomRangeValue();
 
         List<LivingEntity> targets = EntityFinder.start(data.source, LivingEntity.class, data.target.getPositionVector())
             .radius(1.2F)

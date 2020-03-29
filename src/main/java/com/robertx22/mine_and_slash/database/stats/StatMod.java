@@ -159,15 +159,6 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
     public abstract StatModTypes getModType();
 
-    public float getFloatByPercent(int percent) {
-        return (getMin() + (getMax() - getMin()) * percent / 100);
-    }
-
-    public float getFloatByPercentWithoutMin(int percent) {
-        return (getMax() * percent / 100);
-
-    }
-
     @Override
     public JsonObject toJson() {
 

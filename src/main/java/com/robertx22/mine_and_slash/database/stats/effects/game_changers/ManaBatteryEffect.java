@@ -28,7 +28,8 @@ public class ManaBatteryEffect extends BaseDamageEffect {
             .getMana();
 
         float maxMana = effect.targetData.getUnit()
-            .manaData().val;
+            .manaData()
+            .getAverageValue();
 
         float dmgReduced = MathHelper.clamp(effect.number / 4, 0, currentMana - (maxMana * 0.5F));
 
@@ -55,7 +56,8 @@ public class ManaBatteryEffect extends BaseDamageEffect {
             .getMana();
 
         return currentMana / effect.targetData.getUnit()
-            .manaData().val > 0.5F;
+            .manaData()
+            .getAverageValue() > 0.5F;
     }
 
 }

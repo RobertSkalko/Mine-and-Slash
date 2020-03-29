@@ -39,7 +39,7 @@ public class MobStatUtils {
                 .IsPercent() == false)
             .collect(Collectors.toList())) {
 
-            data.Flat = data.Flat * mobdata.getStatMultiplierIncreaseByTier();
+            data.multiplyFlat(mobdata.getStatMultiplierIncreaseByTier());
         }
 
     }
@@ -57,7 +57,7 @@ public class MobStatUtils {
                 .IsPercent() == false)
             .collect(Collectors.toList())) {
 
-            data.Flat = data.Flat * lvlMulti;
+            data.multiplyFlat(lvlMulti);
         }
 
     }
@@ -65,7 +65,7 @@ public class MobStatUtils {
     public static void worldMultiplierStats(World world, Unit unit) {
         for (StatData stat : unit.getStats()
             .values()) {
-            stat.Flat *= SlashRegistry.getDimensionConfig(world).MOB_STRENGTH_MULTIPLIER;
+            stat.multiplyFlat(SlashRegistry.getDimensionConfig(world).MOB_STRENGTH_MULTIPLIER);
         }
 
     }
@@ -79,12 +79,12 @@ public class MobStatUtils {
             .values()) {
             Stat stat = data.GetStat();
             if (stat instanceof PhysicalDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
-                data.Flat *= config.DMG_MULTI;
+                data.multiplyFlat(config.DMG_MULTI);
             } else if (data.getId()
                 .equals(Health.GUID)) {
-                data.Flat *= config.HP_MULTI;
+                data.multiplyFlat(config.HP_MULTI);
             } else {
-                data.Flat *= config.STAT_MULTI;
+                data.multiplyFlat(config.STAT_MULTI);
             }
         }
 
@@ -98,8 +98,10 @@ public class MobStatUtils {
         unit.getCreateStat(Armor.GUID)
             .addFlat(Armor.getInstance()
                 .AverageStat() * resMulti * rar.StatMultiplier(), level);
-        unit.getCreateStat(CriticalHit.GUID).Flat += 5 * rar.DamageMultiplier();
-        unit.getCreateStat(CriticalDamage.GUID).Flat += 5 * rar.DamageMultiplier();
+        unit.getCreateStat(CriticalHit.GUID)
+            .addFlat(5 * rar.DamageMultiplier());
+        unit.getCreateStat(CriticalDamage.GUID)
+            .addFlat(5 * rar.DamageMultiplier());
 
         ElementalResist.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)

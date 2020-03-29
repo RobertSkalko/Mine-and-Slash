@@ -164,13 +164,16 @@ public class ResourcesData {
 
         if (ctx.type == Type.ENERGY) {
             energy = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                .energyData().val);
+                .energyData()
+                .getAverageValue());
         } else if (ctx.type == Type.MANA) {
             mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                .manaData().val);
+                .manaData()
+                .getAverageValue());
         } else if (ctx.type == Type.MAGIC_SHIELD) {
             magicShield = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                .magicShieldData().val);
+                .magicShieldData()
+                .getAverageValue());
 
         } else if (ctx.type == Type.BLOOD) {
             blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()

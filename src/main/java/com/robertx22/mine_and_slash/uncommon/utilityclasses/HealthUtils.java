@@ -27,7 +27,8 @@ public class HealthUtils {
         try {
             Unit unit = data.getUnit();
 
-            float maxhp = unit.getCreateStat(Health.GUID).val;
+            float maxhp = unit.getCreateStat(Health.GUID)
+                .getAverageValue();
             float maxMChp = entity.getMaxHealth();
 
             return (float) (maxMChp / maxhp * dmg);
@@ -43,7 +44,8 @@ public class HealthUtils {
         try {
             Unit unit = data.getUnit();
 
-            float maxHp = unit.healthData().val;
+            float maxHp = unit.healthData()
+                .getAverageValue();
             float maxVanillaHp = entity.getMaxHealth();
 
             return (float) (dmg / maxVanillaHp * maxHp);

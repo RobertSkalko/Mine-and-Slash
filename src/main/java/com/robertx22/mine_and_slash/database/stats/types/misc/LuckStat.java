@@ -45,9 +45,11 @@ public class LuckStat extends Stat implements IAffectsStats {
     @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
         data.getUnit()
-            .getCreateStat(CriticalHit.getInstance()).Flat += statData.Flat;
+            .getCreateStat(CriticalHit.getInstance())
+            .addFlat(statData.getFlatAverage());
         new LootTypeBonus(LootType.Currency).generateAllPossibleStatVariations()
             .forEach(x -> data.getUnit()
-                .getCreateStat(x).Flat += statData.Flat);
+                .getCreateStat(x)
+                .addFlat(statData.getFlatAverage()));
     }
 }

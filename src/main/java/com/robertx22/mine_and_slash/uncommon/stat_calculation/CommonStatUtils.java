@@ -56,14 +56,14 @@ public class CommonStatUtils {
         for (StatusEffectData status : unit.statusEffects.values()) {
             List<IStatModsContainer.LevelAndStats> levelsandstats = status.GetAllStats(level);
             for (IStatModsContainer.LevelAndStats levelstat : levelsandstats) {
-                for (StatModData data : levelstat.mods) {
-
-                    StatData stat = unit.getCreateStat(data.getStatMod()
+                for (StatModData statModData : levelstat.mods) {
+                    StatData statData = unit.getCreateStat(statModData.getStatMod()
                         .GetBaseStat());
-                    if (stat == null) {
+                    if (statData == null) {
 
                     } else {
-                        data.Add(stat, level);
+
+                        statData.add(statModData, level);
                     }
                 }
             }
@@ -78,7 +78,7 @@ public class CommonStatUtils {
         for (IPreCoreStat core : Stats.allPreGenMapStatLists.get(IPreCoreStat.class)) {
 
             StatData statdata = theunit.peekAtStat(core.GUID());
-            if (statdata.val > 0) {
+            if (statdata.isMoreThanZero()) {
                 core.addToCoreStats(unit, statdata);
             }
 
@@ -86,7 +86,7 @@ public class CommonStatUtils {
         for (ICoreStat core : Stats.allPreGenMapStatLists.get(ICoreStat.class)) {
 
             StatData statdata = theunit.peekAtStat(core.GUID());
-            if (statdata.val > 0) {
+            if (statdata.isMoreThanZero()) {
                 core.addToOtherStats(unit, statdata);
             }
 
@@ -94,7 +94,7 @@ public class CommonStatUtils {
         for (Trait trait : Stats.allPreGenMapStatLists.get(Trait.class)) {
 
             StatData statdata = theunit.peekAtStat(trait.GUID());
-            if (statdata.val > 0) {
+            if (statdata.isMoreThanZero()) {
                 trait.TryAffectOtherStats(unit, statdata);
             }
 
@@ -102,7 +102,7 @@ public class CommonStatUtils {
         for (IAffectsStats trait : Stats.allPreGenMapStatLists.get(IAffectsStats.class)) {
 
             StatData statdata = theunit.peekAtStat(trait.GUID());
-            if (statdata.val > 0) {
+            if (statdata.isMoreThanZero()) {
                 trait.affectStats(unit, statdata);
             }
 
@@ -119,7 +119,7 @@ public class CommonStatUtils {
         for (IStatConversion core : Stats.allPreGenMapStatLists.get(IStatConversion.class)) {
 
             StatData statdata = copy.peekAtStat(core.GUID());
-            if (statdata.val > 0) {
+            if (statdata.isMoreThanZero()) {
                 core.convertStats(copy, unit, copy.getCreateStat(core.GUID()));
             }
 
@@ -127,7 +127,7 @@ public class CommonStatUtils {
         for (IStatTransfer core : Stats.allPreGenMapStatLists.get(IStatTransfer.class)) {
 
             StatData statdata = copy.peekAtStat(core.GUID());
-            if (statdata.val > 0) {
+            if (statdata.isMoreThanZero()) {
                 core.transferStats(copy, unit, copy.getCreateStat(core.GUID()));
             }
 
@@ -139,13 +139,13 @@ public class CommonStatUtils {
 
         for (MapAffixData status : WorldUtils.getAllAffixesThatAffect(mapdata, entity)) {
             List<StatModData> datas = status.GetAllStats();
-            for (StatModData data : datas) {
-                StatData stat = unit.getCreateStat(data.getStatMod()
+            for (StatModData statModData : datas) {
+                StatData statData = unit.getCreateStat(statModData.getStatMod()
                     .GetBaseStat());
-                if (stat == null) {
+                if (statData == null) {
                 } else {
 
-                    data.Add(stat, level);
+                    statData.add(statModData, level);
 
                 }
             }

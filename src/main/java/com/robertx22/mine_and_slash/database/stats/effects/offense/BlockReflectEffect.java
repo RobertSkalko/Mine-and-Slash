@@ -48,7 +48,7 @@ public class BlockReflectEffect extends BaseDamageEffect {
         effect.targetData.getResources()
             .modify(ctx);
 
-        float dmg = data.val;
+        float dmg = data.getAverageValue();
 
         DamageEffect dmgeffect = new DamageEffect(null, effect.target, effect.source, (int) dmg, effect.targetData,
             effect.sourceData, EffectTypes.REFLECT, WeaponTypes.None

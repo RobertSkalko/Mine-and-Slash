@@ -46,7 +46,7 @@ public class NormalStatTooltip implements IStatTooltipType {
         ITextComponent str = new StringTextComponent("");
 
         if (info.type.equals(StatModTypes.Percent) && stat.IsPercent()) {
-            if (info.amount > 0) {
+            if (info.firstValue > 0) {
                 str.appendSibling(Words.Increased.locName());
             } else {
                 str.appendSibling(Words.Decreased.locName());
@@ -73,20 +73,30 @@ public class NormalStatTooltip implements IStatTooltipType {
 
     private ITextComponent getValueComp(TooltipStatInfo info) {
 
-        float val = info.amount;
-        String minusplus = val > 0 ? "+" : "";
+        float v1 = info.firstValue;
+        float v2 = info.secondValue;
+
+        String minusplus = v1 > 0 ? "+" : "";
 
         TextFormatting color = TextFormatting.GREEN;
 
-        if (val < 0) {
+        if (v1 < 0) {
             color = TextFormatting.RED;
         }
-
         ITextComponent comp = new StringTextComponent("");
-        comp.appendText(color + minusplus + info.stat.printValue(info.amount));
-        comp.appendSibling(StatModTypes.getNumberSuffix(info.type, info.stat));
-        comp.appendText(TextFormatting.RESET + "");
-        return comp;
 
+        if (v1 == v2) {
+            comp.appendText(color + minusplus + info.stat.printValue(v1));
+            comp.appendSibling(StatModTypes.getNumberSuffix(info.type, info.stat));
+            comp.appendText(TextFormatting.RESET + "");
+
+        } else {
+            comp.appendText(color + minusplus + info.stat.printValue(v1) + "-" + info.stat.printValue(v2));
+            comp.appendSibling(StatModTypes.getNumberSuffix(info.type, info.stat));
+            comp.appendText(TextFormatting.RESET + "");
+
+        }
+        return comp;
     }
+
 }

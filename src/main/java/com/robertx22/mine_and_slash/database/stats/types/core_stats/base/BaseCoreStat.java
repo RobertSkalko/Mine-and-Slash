@@ -44,7 +44,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     public float getPercent(EntityCap.UnitData unitdata, StatData data) {
         return MathHelper.clamp(
-            data.val / calculateScalingStatGrowth(this.amountToReach100Percent(), unitdata.getLevel()) * 100, 0,
+            data.getAverageValue() / calculateScalingStatGrowth(this.amountToReach100Percent(), unitdata.getLevel()) * 100, 0,
             100000
         );
     }

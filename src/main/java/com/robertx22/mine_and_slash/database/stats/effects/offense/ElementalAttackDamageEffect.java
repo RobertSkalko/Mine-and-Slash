@@ -20,14 +20,15 @@ public class ElementalAttackDamageEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.addBonusEleDmg(stat.getElement(), data.val);
+        effect.addBonusEleDmg(stat.getElement(), data.getAverageValue());
 
         return effect;
     }
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.getEffectType().equals(EffectTypes.BASIC_ATTACK);
+        return effect.getEffectType()
+            .equals(EffectTypes.BASIC_ATTACK);
     }
 
 }

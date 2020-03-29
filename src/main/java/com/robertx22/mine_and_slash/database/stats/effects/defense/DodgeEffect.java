@@ -24,7 +24,7 @@ public class DodgeEffect extends BaseDamageEffect {
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         DodgeRating dodge = (DodgeRating) stat;
 
-        float chance = dodge.GetUsableValue(effect.targetData.getLevel(), (int) data.val) * 100;
+        float chance = dodge.GetUsableValue(effect.targetData.getLevel(), (int) data.getAverageValue()) * 100;
 
         if (RandomUtils.roll(chance)) {
             DamageEffect dmgeffect = (DamageEffect) effect;
@@ -38,7 +38,8 @@ public class DodgeEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return !effect.getEffectType().equals(EffectTypes.SPELL);
+        return !effect.getEffectType()
+            .equals(EffectTypes.SPELL);
     }
 
 }

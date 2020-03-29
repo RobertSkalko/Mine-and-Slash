@@ -26,7 +26,8 @@ public class RefreshingBreezeEffect extends BaseDamageEffect {
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
 
         float energy = effect.targetData.getUnit()
-            .peekAtStat(EnergyRegen.GUID).val * RefreshingBreeze.PERCENT / 100;
+            .peekAtStat(EnergyRegen.GUID)
+            .getAverageValue() * RefreshingBreeze.PERCENT / 100;
 
         ResourcesData.Use use;
 

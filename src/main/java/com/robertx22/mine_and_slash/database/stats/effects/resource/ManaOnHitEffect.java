@@ -20,7 +20,7 @@ public class ManaOnHitEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        int mana_restored = (int) data.val;
+        int mana_restored = (int) data.getAverageValue();
 
         effect.manaRestored += mana_restored;
 
@@ -29,7 +29,8 @@ public class ManaOnHitEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.getEffectType().equals(EffectTypes.BASIC_ATTACK);
+        return effect.getEffectType()
+            .equals(EffectTypes.BASIC_ATTACK);
     }
 
 }

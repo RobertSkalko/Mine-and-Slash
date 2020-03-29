@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
 
-public class SpellToBasicDamageEffect extends BaseDamageEffect {
+public class ElementalInfusionEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
@@ -23,8 +23,9 @@ public class SpellToBasicDamageEffect extends BaseDamageEffect {
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         ElementalInfusion basebonus = (ElementalInfusion) stat;
 
-        float percent = data.val;
-        float derivedvalue = (float) getSource(effect).getCreateStat(basebonus.StatThatGiveDamage()).val;
+        float percent = data.getAverageValue();
+        float derivedvalue = (float) getSource(effect).getCreateStat(basebonus.StatThatGiveDamage())
+            .getAverageValue();
 
         int dmg = (int) (percent * derivedvalue / 100);
 

@@ -20,7 +20,7 @@ public class LifeOnHitEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        int healed = (int) data.val;
+        int healed = (int) data.getAverageValue();
 
         effect.healthHealed += healed;
 
@@ -29,7 +29,8 @@ public class LifeOnHitEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.getEffectType().equals(EffectTypes.BASIC_ATTACK);
+        return effect.getEffectType()
+            .equals(EffectTypes.BASIC_ATTACK);
     }
 
 }

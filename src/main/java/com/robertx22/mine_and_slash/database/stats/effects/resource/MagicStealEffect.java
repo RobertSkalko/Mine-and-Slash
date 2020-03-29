@@ -27,7 +27,7 @@ public class MagicStealEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        float healed = ((float) data.val * effect.number / 100);
+        float healed = ((float) data.getAverageValue() * effect.number / 100);
 
         effect.magicShieldRestored += healed;
 

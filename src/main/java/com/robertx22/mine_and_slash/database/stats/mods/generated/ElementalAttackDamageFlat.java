@@ -26,6 +26,16 @@ public class ElementalAttackDamageFlat extends ElementalStatMod {
 
     @Override
     public float Max() {
+        return 7;
+    }
+
+    @Override
+    public float minSecond() {
+        return 6;
+    }
+
+    @Override
+    public float maxSecond() {
         return 12;
     }
 

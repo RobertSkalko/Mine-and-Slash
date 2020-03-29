@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
@@ -164,13 +163,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public abstract Elements getElement();
 
     public int BaseFlat = 0;
-
-    public String printValue(StatModData data, int level) {
-
-        float val = data.GetActualVal(level);
-        return printValue(val);
-
-    }
 
     public final float calculateScalingStatGrowth(float stat, int lvl) {
         return getScaling().scale(stat, lvl);

@@ -28,7 +28,7 @@ public class CriticalHitEffect extends BaseAnyEffect {
 
     @Override
     public boolean canActivate(EffectData effect, StatData data, Stat stat) {
-        return effect instanceof ICrittable && RandomUtils.roll(data.val);
+        return effect instanceof ICrittable && RandomUtils.roll(data.getAverageValue());
     }
 
 }

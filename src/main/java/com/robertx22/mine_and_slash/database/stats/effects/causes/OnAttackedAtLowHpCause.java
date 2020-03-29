@@ -19,8 +19,9 @@ public class OnAttackedAtLowHpCause extends BaseCause {
             DamageEffect dmgeffect = (DamageEffect) Effect;
 
             if (dmgeffect.targetUnit.health()
-                    .CurrentValue(dmgeffect.source, dmgeffect.sourceUnit) < dmgeffect.targetUnit
-                    .healthData().val / 100 * percenthp) {
+                .CurrentValue(dmgeffect.source, dmgeffect.sourceUnit) < dmgeffect.targetUnit
+                .healthData()
+                .getAverageValue() / 100 * percenthp) {
                 return true;
             }
 

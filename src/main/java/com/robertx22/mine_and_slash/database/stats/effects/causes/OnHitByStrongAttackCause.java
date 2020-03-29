@@ -18,7 +18,8 @@ public class OnHitByStrongAttackCause extends BaseCause {
 
             DamageEffect dmgeffect = (DamageEffect) Effect;
 
-            if (dmgeffect.number > dmgeffect.targetUnit.healthData().val / 100 * percenthp) {
+            if (dmgeffect.number > dmgeffect.targetUnit.healthData()
+                .getAverageValue() / 100 * percenthp) {
                 return true;
             }
 

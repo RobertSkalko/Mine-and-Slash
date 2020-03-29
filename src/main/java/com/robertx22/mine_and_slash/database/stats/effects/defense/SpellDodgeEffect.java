@@ -21,7 +21,7 @@ public class SpellDodgeEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        if (RandomUtils.roll(data.val)) {
+        if (RandomUtils.roll(data.getAverageValue())) {
             effect.number = 0;
             effect.isDodged = true;
             effect.canceled = true;
@@ -31,7 +31,8 @@ public class SpellDodgeEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.getEffectType().equals(EffectTypes.SPELL);
+        return effect.getEffectType()
+            .equals(EffectTypes.SPELL);
     }
 
 }

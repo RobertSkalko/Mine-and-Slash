@@ -137,7 +137,7 @@ public class Unit {
     private void removeEmptyStats() {
 
         for (StatData data : new ArrayList<>(MyStats.values())) {
-            if (data.val == 0 || data.getId()
+            if (!data.isNotZero() || data.getId()
                 .isEmpty()) {
                 //System.out.println(data.Name);
                 MyStats.remove(data.getId());
@@ -207,20 +207,22 @@ public class Unit {
     }
 
     public float getMaxEffectiveHealth() {
-        float hp = healthData().val;
-        hp += magicShieldData().val;
+        float hp = healthData().getAverageValue();
+        hp += magicShieldData().getAverageValue();
 
         return hp;
 
     }
 
     public boolean isBloodMage() {
-        return hasStat(BloodMage.INSTANCE) && this.getCreateStat(BloodMage.INSTANCE).val > 0;
+        return hasStat(BloodMage.INSTANCE) && this.getCreateStat(BloodMage.INSTANCE)
+            .isMoreThanZero();
     }
 
     public float getMaximumBlood() {
-        if (this.getCreateStat(BloodMage.INSTANCE).val > 0) {
-            return healthData().val / 2;
+        if (this.getCreateStat(BloodMage.INSTANCE)
+            .getAverageValue() > 0) {
+            return healthData().getAverageValue() / 2;
         }
         return 0;
     }
@@ -316,7 +318,7 @@ public class Unit {
     }
 
     public float getMissingHealth(LivingEntity en) {
-        return healthData().val - health().CurrentValue(en, this);
+        return healthData().getAverageValue() - health().CurrentValue(en, this);
     }
 
     class DirtyCheck {
@@ -346,7 +348,7 @@ public class Unit {
 
         DirtyCheck check = new DirtyCheck();
 
-        check.hp = (int) getCreateStat(Health.GUID).val;
+        check.hp = (int) getCreateStat(Health.GUID).getAverageValue();
 
         return check;
     }
@@ -388,7 +390,8 @@ public class Unit {
 
         float hpadded = getHpAdded(entity, rar, data);
 
-        MyStats.get(Health.GUID).Flat += hpadded;
+        MyStats.get(Health.GUID)
+            .addFlat(hpadded);
 
         Boolean isMapWorld = WorldUtils.isMapWorld(entity.world);
 

@@ -64,7 +64,8 @@ public class OnServerTick {
 
                                 Unit unit = x.getUnit();
 
-                                float manarestored = unit.peekAtStat(ManaRegen.GUID).val;
+                                float manarestored = unit.peekAtStat(ManaRegen.GUID)
+                                    .getAverageValue();
                                 ResourcesData.Context mana = new ResourcesData.Context(x, player, ResourcesData.Type.MANA,
                                     manarestored,
                                     ResourcesData.Use.RESTORE
@@ -72,7 +73,8 @@ public class OnServerTick {
                                 x.getResources()
                                     .modify(mana);
 
-                                float energyrestored = unit.peekAtStat(EnergyRegen.GUID).val;
+                                float energyrestored = unit.peekAtStat(EnergyRegen.GUID)
+                                    .getAverageValue();
                                 ResourcesData.Context ene = new ResourcesData.Context(x, player, ResourcesData.Type.ENERGY,
                                     energyrestored,
                                     ResourcesData.Use.RESTORE
@@ -93,7 +95,8 @@ public class OnServerTick {
                                     float missingHp = x.getUnit()
                                         .getMissingHealth(player);
 
-                                    float healthrestored = unit.peekAtStat(HealthRegen.GUID).val;
+                                    float healthrestored = unit.peekAtStat(HealthRegen.GUID)
+                                        .getAverageValue();
                                     ResourcesData.Context hp = new ResourcesData.Context(x, player, ResourcesData.Type.HEALTH,
                                         healthrestored,
                                         ResourcesData.Use.RESTORE
@@ -104,15 +107,18 @@ public class OnServerTick {
 
                                     if (x.getResources()
                                         .getMagicShield() < x.getUnit()
-                                        .magicShieldData().val) {
+                                        .magicShieldData()
+                                        .getAverageValue()) {
                                         restored = true;
                                     }
 
                                     float missingMs = x.getUnit()
-                                        .magicShieldData().val - x.getResources()
+                                        .magicShieldData()
+                                        .getAverageValue() - x.getResources()
                                         .getMagicShield();
 
-                                    float magicshieldrestored = unit.peekAtStat(MagicShieldRegen.GUID).val;
+                                    float magicshieldrestored = unit.peekAtStat(MagicShieldRegen.GUID)
+                                        .getAverageValue();
                                     ResourcesData.Context ms = new ResourcesData.Context(x, player,
                                         ResourcesData.Type.MAGIC_SHIELD,
                                         magicshieldrestored,

@@ -24,7 +24,7 @@ public class ArmorPeneEffect extends BaseAnyEffect {
     public EffectData activate(EffectData effect, StatData data, Stat stat) {
 
         IPenetrable ipene = (IPenetrable) effect;
-        ipene.SetArmorPenetration(ipene.GetArmorPenetration() + (int) data.val);
+        ipene.SetArmorPenetration(ipene.GetArmorPenetration() + (int) data.getAverageValue());
 
         return effect;
     }

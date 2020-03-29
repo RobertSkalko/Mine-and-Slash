@@ -472,7 +472,8 @@ public class EntityCap {
 
                 if (entity == null && self != null) {
                     float msDamage = this.getUnit()
-                        .magicShieldData().val * (dmg / self.getMaxHealth());
+                        .magicShieldData()
+                        .getAverageValue() * (dmg / self.getMaxHealth());
                     ResourcesData.Context ms = new ResourcesData.Context(this, self,
                         ResourcesData.Type.MAGIC_SHIELD,
                         msDamage,
@@ -498,7 +499,8 @@ public class EntityCap {
             i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
 
             i *= (double) this.getUnit()
-                .peekAtStat(BonusExp.GUID).val / 100 + 1;
+                .peekAtStat(BonusExp.GUID)
+                .getAverageValue() / 100 + 1;
 
             MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.GiveExpEvent(killed, player, this, i));
 
@@ -1034,7 +1036,8 @@ public class EntityCap {
                 .hasEnough(energy)) {
                 this.getResources()
                     .modify(energy);
-                int num = (int) unit.getCreateStat(PhysicalDamage.GUID).val;
+                int num = (int) unit.getCreateStat(PhysicalDamage.GUID)
+                    .getRandomRangeValue();
                 DamageEffect dmg = new DamageEffect(
                     data, num, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
 
