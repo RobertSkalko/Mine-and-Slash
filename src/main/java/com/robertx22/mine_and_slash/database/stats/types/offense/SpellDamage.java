@@ -26,7 +26,7 @@ public class SpellDamage extends Stat implements IStatEffects {
 
     @Override
     public TextFormatting getIconFormat() {
-        return TextFormatting.AQUA;
+        return TextFormatting.GOLD;
     }
 
     @Override
