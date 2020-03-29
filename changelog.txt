@@ -16,6 +16,8 @@
 * removed elemental affinity stat
 * armor no longer reduces elemental damage (bug)
 * elemental resists are now percents
+* penetration can now move resists into minus
+* minus resists mean it not only doesn't decrease damage, it increases damage (this is a penetration buff)
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

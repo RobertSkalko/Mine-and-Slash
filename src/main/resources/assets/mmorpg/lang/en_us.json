@@ -90,17 +90,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.arcanists": "Arcanist's",
@@ -214,6 +203,17 @@
 	"mmorpg.affix.wise": "Wise",
 
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
@@ -706,7 +706,7 @@
 	"mmorpg.stat.clumsy_scholar": "Clumsy Scholar",
 	"mmorpg.stat.crippled": "Crippled",
 	"mmorpg.stat.critical_damage": "Critical Damage",
-	"mmorpg.stat.critical_hit": "Critical Hit",
+	"mmorpg.stat.critical_hit": "Critical Hit Chance",
 	"mmorpg.stat.crossbow_damage": "CrossBow Damage",
 	"mmorpg.stat.cursed": "Cursed",
 	"mmorpg.stat.damage_shield": "Damage Shield",
@@ -788,7 +788,7 @@
 	"mmorpg.stat.nature_to_water_conversion": "Boost Nature to Water",
 	"mmorpg.stat.nature_to_water_transfer": "Transfer Nature to Water",
 	"mmorpg.stat.overflowing_vitality_trait": "Overflowing Vitality",
-	"mmorpg.stat.physical_damage": "Damage",
+	"mmorpg.stat.physical_damage": "Physical Damage",
 	"mmorpg.stat.physical_dispersion": "Physical Dispersion",
 	"mmorpg.stat.physical_thorns_reflect": "Physical Thorns",
 	"mmorpg.stat.quick_learner": "Quick Learner",
@@ -798,11 +798,11 @@
 	"mmorpg.stat.rogue_stealth": "Stealth",
 	"mmorpg.stat.spell_damage": "Spell Damage",
 	"mmorpg.stat.spell_dodge": "Spell Dodge",
-	"mmorpg.stat.spell_elemental_damage": "Spell Elemental Power",
-	"mmorpg.stat.spell_fire_damage": "Spell Fire Power",
-	"mmorpg.stat.spell_nature_damage": "Spell Nature Power",
-	"mmorpg.stat.spell_thunder_damage": "Spell Thunder Power",
-	"mmorpg.stat.spell_water_damage": "Spell Water Power",
+	"mmorpg.stat.spell_elemental_damage": "Spell Elemental Damage",
+	"mmorpg.stat.spell_fire_damage": "Spell Flame Damage",
+	"mmorpg.stat.spell_nature_damage": "Spell Venom Damage",
+	"mmorpg.stat.spell_thunder_damage": "Spell Lightning Damage",
+	"mmorpg.stat.spell_water_damage": "Spell Frost Damage",
 	"mmorpg.stat.staff_damage": "Staff Damage",
 	"mmorpg.stat.stamina": "Stamina",
 	"mmorpg.stat.star": "The Star",
@@ -1007,6 +1007,34 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.blazing_inferno": "Blazing Inferno",
+	"effect.mmorpg.bleed": "Bleed",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
+	"effect.mmorpg.divine_shield": "Divine Shield",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Frost Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.major_thorns": "Major Thorns",
+	"effect.mmorpg.minor_thorns": "Minor Thorns",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.righteous_fury": "Righteous Fury",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.stealth": "Stealth",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.wounds": "Wounds",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -1131,34 +1159,6 @@
 	"item.mmorpg.torch.torch4": "§6Torch",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.blazing_inferno": "Blazing Inferno",
-	"effect.mmorpg.bleed": "Bleed",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
-	"effect.mmorpg.divine_shield": "Divine Shield",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Frost Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.major_thorns": "Major Thorns",
-	"effect.mmorpg.minor_thorns": "Minor Thorns",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.righteous_fury": "Righteous Fury",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.stealth": "Stealth",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",

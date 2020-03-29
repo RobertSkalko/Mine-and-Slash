@@ -12,19 +12,19 @@ import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 import java.util.List;
 
-public class ElementalSpellToAttackDMG extends SingleElementalStat implements IStatEffects {
+public class ElementalInfusion extends SingleElementalStat implements IStatEffects {
 
-    public static MapWrapper<Elements, ElementalSpellToAttackDMG> MAP = new MapWrapper();
+    public static MapWrapper<Elements, ElementalInfusion> MAP = new MapWrapper();
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = super.generateAllPossibleStatVariations();
-        list.forEach(x -> MAP.put(x.getElement(), (ElementalSpellToAttackDMG) x));
+        list.forEach(x -> MAP.put(x.getElement(), (ElementalInfusion) x));
         return list;
 
     }
 
-    public ElementalSpellToAttackDMG(Elements element) {
+    public ElementalInfusion(Elements element) {
         super(element);
     }
 
@@ -35,7 +35,7 @@ public class ElementalSpellToAttackDMG extends SingleElementalStat implements IS
 
     @Override
     public Stat newGeneratedInstance(Elements element) {
-        return new ElementalSpellToAttackDMG(element);
+        return new ElementalInfusion(element);
     }
 
     @Override

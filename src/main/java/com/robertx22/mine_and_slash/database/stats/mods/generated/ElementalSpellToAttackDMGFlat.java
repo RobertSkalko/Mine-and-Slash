@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.mods.generated;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellToAttackDMG;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalInfusion;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
@@ -14,8 +14,8 @@ public class ElementalSpellToAttackDMGFlat extends ElementalStatMod {
     }
 
     @Override
-    public MapWrapper<Elements, ElementalSpellToAttackDMG> getBaseStatMap() {
-        return ElementalSpellToAttackDMG.MAP;
+    public MapWrapper<Elements, ElementalInfusion> getBaseStatMap() {
+        return ElementalInfusion.MAP;
     }
 
     @Override

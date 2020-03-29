@@ -56,7 +56,8 @@ public class ElementalSpellDamage extends ElementalStat {
 
     @Override
     public String locNameForLangFile() {
-        return "Spell " + this.getElement().name() + " Power";
+        return "Spell " + this.getElement()
+            .dmgName + " Damage";
 
     }
 

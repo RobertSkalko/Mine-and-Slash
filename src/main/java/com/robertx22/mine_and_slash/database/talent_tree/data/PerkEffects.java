@@ -167,17 +167,17 @@ public class PerkEffects {
 
             SPELL_TO_ATK_DAMAGE_MAP.put(
                 ele, PerkEffectBuilder.build(ele.guidName + "_spell_to_attack_dmg",
-                    new ElementalSpellToAttackDMG(ele),
+                    new ElementalInfusion(ele),
                     new ExactStatData(elenum, StatModTypes.Flat,
-                        new ElementalSpellToAttackDMG(ele)
+                        new ElementalInfusion(ele)
                     )
                 ));
 
             SPELL_TO_ATK_DAMAGE_PERCENT_MAP.put(
                 ele, PerkEffectBuilder.build(ele.guidName + "_spell_to_attack_dmg_percent",
-                    new ElementalSpellToAttackDMG(ele),
+                    new ElementalInfusion(ele),
                     new ExactStatData(10, StatModTypes.Percent,
-                        new ElementalSpellToAttackDMG(ele)
+                        new ElementalInfusion(ele)
                     )
                 ));
 

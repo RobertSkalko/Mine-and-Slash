@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellToAttackDMG;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalInfusion;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
@@ -21,7 +21,7 @@ public class SpellToBasicDamageEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        ElementalSpellToAttackDMG basebonus = (ElementalSpellToAttackDMG) stat;
+        ElementalInfusion basebonus = (ElementalInfusion) stat;
 
         float percent = data.val;
         float derivedvalue = (float) getSource(effect).getCreateStat(basebonus.StatThatGiveDamage()).val;
@@ -35,7 +35,8 @@ public class SpellToBasicDamageEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.getEffectType().equals(EffectTypes.BASIC_ATTACK) && stat instanceof ElementalSpellToAttackDMG;
+        return effect.getEffectType()
+            .equals(EffectTypes.BASIC_ATTACK) && stat instanceof ElementalInfusion;
     }
 
 }

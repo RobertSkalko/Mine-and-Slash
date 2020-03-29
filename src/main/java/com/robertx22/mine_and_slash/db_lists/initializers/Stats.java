@@ -76,7 +76,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new LootTypeBonus(LootType.NormalItem));
                     add(new WeaponDamage(WeaponTypes.None));
                     add(new ElementalAttackDamage(Elements.Physical));
-                    add(new ElementalSpellToAttackDMG(Elements.Physical));
+                    add(new ElementalInfusion(Elements.Physical));
                     add(new AllElementalDamage(Elements.Physical));
                     add(new ElementalSpellDamage(Elements.Physical));
                     add(new ElementalResist(Elements.Physical));

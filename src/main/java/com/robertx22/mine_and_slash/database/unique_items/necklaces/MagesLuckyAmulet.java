@@ -38,7 +38,9 @@ public class MagesLuckyAmulet implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Elemental).size(StatMod.Size.HALF_MORE), new ManaFlat().size(StatMod.Size.HALF_MORE),
+        return Arrays.asList(
+            new ElementalResistFlat(Elements.Elemental).size(StatMod.Size.HALF),
+            new ManaFlat().size(StatMod.Size.HALF_MORE),
             new LootTypeBonusFlat(LootType.UniqueItem)
         );
     }

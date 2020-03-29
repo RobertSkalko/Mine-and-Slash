@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalEf
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalPenetrable;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalResistable;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.MathUtils;
 import net.minecraft.util.math.MathHelper;
 
 public class ElementalResistEffect extends BaseDamageEffect {
@@ -32,9 +33,9 @@ public class ElementalResistEffect extends BaseDamageEffect {
             pene = ipen.GetElementalPenetration();
         }
 
-        float EffectiveArmor = MathHelper.clamp(data.val - pene, stat.minimumValue, stat.maximumValue);
+        float resistPercent = MathHelper.clamp(data.val - pene, stat.minimumValue, stat.maximumValue);
 
-        effect.number -= EffectiveArmor * effect.number;
+        effect.number = MathUtils.applyResistMultiplier(effect.number, resistPercent);
 
         return effect;
 
