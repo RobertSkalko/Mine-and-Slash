@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.LootTypeBonus;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
@@ -24,6 +25,11 @@ public class LuckStat extends Stat implements IAffectsStats {
     @Override
     public String locDescForLangFile() {
         return "Increases bonus loot and critical hit chance.";
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.NONE;
     }
 
     @Override

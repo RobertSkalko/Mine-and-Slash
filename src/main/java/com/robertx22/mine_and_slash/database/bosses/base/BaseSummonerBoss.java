@@ -48,9 +48,9 @@ public abstract class BaseSummonerBoss extends com.robertx22.mine_and_slash.data
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data) {
+    public void applyStats(EntityCap.UnitData data, int level) {
 
-        super.applyStats(data);
+        super.applyStats(data, level);
 
     }
 

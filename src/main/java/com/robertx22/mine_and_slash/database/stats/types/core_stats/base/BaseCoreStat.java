@@ -72,7 +72,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     @Override
     public void addToOtherStats(EntityCap.UnitData unitdata, StatData data) {
-        getMods(unitdata, data).forEach(x -> x.useOnPlayer(unitdata));
+        getMods(unitdata, data).forEach(x -> x.applyStats(unitdata));
     }
 
 }

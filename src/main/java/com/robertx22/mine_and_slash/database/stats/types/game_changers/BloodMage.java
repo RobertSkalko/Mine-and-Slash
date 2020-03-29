@@ -6,16 +6,15 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatMultipleEffects;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class BloodMage extends BaseGameChangerTrait implements IStatMultipleEffects, IAffectsStats {
+public class BloodMage extends BaseGameChangerTrait implements IStatMultipleEffects {
 
     private BloodMage() {
     }
@@ -27,7 +26,7 @@ public class BloodMage extends BaseGameChangerTrait implements IStatMultipleEffe
     @Override
     public String locDescForLangFile() {
         return "You have no mana, you use blood instead. Max blood is half of your health. You replenish blood with "
-            + "any non spell related health restoration method like hp regen or lifesteal. " + HP_DECREASE + " percent of your Health and Health regen are taken as a result.";
+            + "any non spell related health restoration method like hp regen or lifesteal.";
     }
 
     @Override
@@ -51,18 +50,15 @@ public class BloodMage extends BaseGameChangerTrait implements IStatMultipleEffe
     }
 
     @Override
-    public void affectStats(EntityCap.UnitData data, StatData statData) {
-        data.getUnit()
-            .getCreateStat(Mana.GUID).Flat -= Integer.MAX_VALUE;
-        data.getUnit()
-            .getCreateStat(ManaRegen.GUID).Flat -= Integer.MAX_VALUE;
-
-        data.getUnit()
-            .getCreateStat(HealthRegen.getInstance()).Multi -= HP_DECREASE;
-        data.getUnit()
-            .getCreateStat(Health.getInstance()).Multi -= HP_DECREASE;
-
+    public List<ExactStatData> getExactStats() {
+        return Arrays.asList(
+            new ExactStatData(-HP_DECREASE, StatModTypes.Multi, Health.getInstance()),
+            new ExactStatData(-1000, StatModTypes.Multi, Mana.getInstance()),
+            new ExactStatData(-1000, StatModTypes.Multi, ManaRegen.getInstance()),
+            new ExactStatData(-HP_DECREASE, StatModTypes.Multi, HealthRegen.getInstance())
+        );
     }
+
 }
 
 

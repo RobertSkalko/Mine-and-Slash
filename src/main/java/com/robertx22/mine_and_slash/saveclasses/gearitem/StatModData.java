@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
@@ -22,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class StatModData implements ITooltipList {
+public class StatModData extends BaseStatContainer {
 
     public StatModData() {
 
@@ -58,13 +57,8 @@ public class StatModData implements ITooltipList {
         return data;
     }
 
-    public void useOnPlayer(UnitData unit) {
-        Add(unit.getUnit()
-            .getCreateStat(this.getStatMod()
-                .GetBaseStat()), unit.getLevel());
-    }
-
-    public void useOnPlayer(UnitData unit, int level) {
+    @Override
+    public void applyStats(UnitData unit, int level) {
         Add(unit.getUnit()
             .getCreateStat(this.getStatMod()
                 .GetBaseStat()), level);
@@ -184,4 +178,5 @@ public class StatModData implements ITooltipList {
         }
 
     }
+
 }

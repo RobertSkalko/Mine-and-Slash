@@ -4,13 +4,15 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.game_changers.ManaBatteryEffect;
 import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-public class ManaBattery extends BaseGameChangerTrait implements IStatEffects, IAffectsStats {
+import java.util.Arrays;
+import java.util.List;
+
+public class ManaBattery extends BaseGameChangerTrait implements IStatEffects {
 
     private ManaBattery() {
     }
@@ -19,7 +21,7 @@ public class ManaBattery extends BaseGameChangerTrait implements IStatEffects, I
 
     @Override
     public String locDescForLangFile() {
-        return "While mana is above 50 percent absorb 25 percent of damage by spending double that in mana. Dodge rating halved, -15 percent to health";
+        return "While mana is above 50 percent absorb 25 percent of damage by spending double that in mana.";
     }
 
     @Override
@@ -38,11 +40,11 @@ public class ManaBattery extends BaseGameChangerTrait implements IStatEffects, I
     }
 
     @Override
-    public void affectStats(EntityCap.UnitData data, StatData statData) {
-        data.getUnit()
-            .getCreateStat(DodgeRating.GUID).Multi -= 50;
-        data.getUnit()
-            .getCreateStat(Health.GUID).Multi -= 15;
+    public List<ExactStatData> getExactStats() {
+        return Arrays.asList(
+            new ExactStatData(-50, StatModTypes.Multi, DodgeRating.getInstance()),
+            new ExactStatData(-15, StatModTypes.Multi, Health.getInstance())
+        );
     }
 
     @Override

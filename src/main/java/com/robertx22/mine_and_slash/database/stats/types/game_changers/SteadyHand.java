@@ -3,13 +3,15 @@ package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 import com.robertx22.mine_and_slash.database.stats.effects.game_changers.SteadyHandEffect;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-public class SteadyHand extends BaseGameChangerTrait implements IStatEffects, IAffectsStats {
+import java.util.Arrays;
+import java.util.List;
+
+public class SteadyHand extends BaseGameChangerTrait implements IStatEffects {
 
     private SteadyHand() {
     }
@@ -20,7 +22,7 @@ public class SteadyHand extends BaseGameChangerTrait implements IStatEffects, IA
 
     @Override
     public String locDescForLangFile() {
-        return "Your crit chance and crit dmg is 0. You deal " + DMG_INCREASE_PERCENT + " percent more " + "damage.";
+        return "You deal " + DMG_INCREASE_PERCENT + " percent more " + "damage.";
     }
 
     @Override
@@ -44,10 +46,11 @@ public class SteadyHand extends BaseGameChangerTrait implements IStatEffects, IA
     }
 
     @Override
-    public void affectStats(EntityCap.UnitData data, StatData statData) {
-        data.getUnit()
-            .getCreateStat(CriticalHit.GUID).Flat -= 1000;
-        data.getUnit()
-            .getCreateStat(CriticalDamage.GUID).Flat -= 1000;
+    public List<ExactStatData> getExactStats() {
+        return Arrays.asList(
+            new ExactStatData(-1000, StatModTypes.Multi, CriticalHit.getInstance()),
+            new ExactStatData(-1000, StatModTypes.Multi, CriticalDamage.getInstance())
+        );
     }
+
 }

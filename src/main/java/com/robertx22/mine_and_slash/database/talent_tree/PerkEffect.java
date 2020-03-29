@@ -91,8 +91,13 @@ public class PerkEffect extends BasePerkEffect implements IApplyableStats, ISlas
         if (after > before) {
             if (!Screen.hasAltDown()) {
                 list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(
+                    Words.Press_Shift_For_More_Info.locName())
+                    .appendText("]"));
+
+                list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(
                     Words.PressAltForStatInfo.locName())
                     .appendText("]"));
+
             }
         }
 
@@ -100,8 +105,8 @@ public class PerkEffect extends BasePerkEffect implements IApplyableStats, ISlas
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data) {
-        exactStats.forEach(x -> x.applyStats(data));
+    public void applyStats(EntityCap.UnitData data, int level) {
+        exactStats.forEach(x -> x.applyStats(data, level));
     }
 
     @Override

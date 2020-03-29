@@ -1,13 +1,14 @@
 package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
-public class ElementalPurity extends BaseGameChangerTrait implements IAffectsStats {
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ElementalPurity extends BaseGameChangerTrait {
 
     private ElementalPurity() {
     }
@@ -21,7 +22,7 @@ public class ElementalPurity extends BaseGameChangerTrait implements IAffectsSta
 
     @Override
     public String locDescForLangFile() {
-        return "Decreases Physical damage by " + PHYS_DECREASE + " percent but increases all elemental damage by " + ELE_INCREASE + " percent";
+        return "Purify yourself of worldly affairs.";
     }
 
     @Override
@@ -40,15 +41,17 @@ public class ElementalPurity extends BaseGameChangerTrait implements IAffectsSta
     }
 
     @Override
-    public void affectStats(EntityCap.UnitData data, StatData statData) {
+    public List<ExactStatData> getExactStats() {
 
-        for (Stat stat : AllElementalDamage.MAP.getList()) {
-            data.getUnit()
-                .getCreateStat(stat).Flat += ELE_INCREASE;
-        }
+        List<ExactStatData> list = AllElementalDamage.MAP.getList()
+            .stream()
+            .map(x -> new ExactStatData(ELE_INCREASE, StatModTypes.Flat, x))
+            .collect(Collectors.toList());
+        ;
 
-        data.getUnit()
-            .getCreateStat(PhysicalDamage.getInstance()).Multi -= PHYS_DECREASE;
+        list.add(new ExactStatData(-PHYS_DECREASE, StatModTypes.Multi, PhysicalDamage.getInstance()));
+
+        return list;
     }
 
     private static class SingletonHolder {

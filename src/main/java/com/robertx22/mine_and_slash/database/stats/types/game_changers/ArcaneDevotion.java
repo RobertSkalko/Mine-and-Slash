@@ -4,11 +4,13 @@ import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
-public class ArcaneDevotion extends BaseGameChangerTrait implements IAffectsStats {
+import java.util.Arrays;
+import java.util.List;
+
+public class ArcaneDevotion extends BaseGameChangerTrait {
 
     static int MS = 50;
 
@@ -21,7 +23,7 @@ public class ArcaneDevotion extends BaseGameChangerTrait implements IAffectsStat
 
     @Override
     public String locDescForLangFile() {
-        return "Your health, health regen and dodge are set to minimum. Multiplies Magic shield by " + MS + " percent";
+        return "Completely devote yourself to the arcane.";
     }
 
     @Override
@@ -40,14 +42,13 @@ public class ArcaneDevotion extends BaseGameChangerTrait implements IAffectsStat
     }
 
     @Override
-    public void affectStats(EntityCap.UnitData data, StatData statData) {
-
-        data.getUnit().getCreateStat(Health.getInstance()).Multi -= 1000;
-        data.getUnit().getCreateStat(HealthRegen.getInstance()).Multi -= 1000;
-        data.getUnit().getCreateStat(DodgeRating.getInstance()).Multi -= 1000;
-
-        data.getUnit().getCreateStat(MagicShield.getInstance()).Multi += MS;
-
+    public List<ExactStatData> getExactStats() {
+        return Arrays.asList(
+            new ExactStatData(-1000, StatModTypes.Multi, Health.getInstance()),
+            new ExactStatData(-1000, StatModTypes.Multi, HealthRegen.getInstance()),
+            new ExactStatData(-1000, StatModTypes.Multi, DodgeRating.getInstance()),
+            new ExactStatData(MS, StatModTypes.Multi, MagicShield.getInstance())
+        );
     }
 
     private static class SingletonHolder {

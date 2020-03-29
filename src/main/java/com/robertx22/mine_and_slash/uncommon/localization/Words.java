@@ -67,7 +67,7 @@ public enum Words implements IAutoLocName {
     CartographerCrate("Cartographer's Crate"),
     CommonerCrate("Commoner's Dream Crate"),
     UniqueCrate("Pharaoh Crate"),
-    PressAltForStatInfo("Press Alt for Stat Info"),
+    PressAltForStatInfo("Press Alt for Stat Desc"),
     MustBeMap("Must be an Adventure Map"),
     MustBeGear("Must be a Gear Item"),
     NotSpell("Not a Spell Item"),

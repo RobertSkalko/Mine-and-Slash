@@ -10,10 +10,12 @@ public interface IStatsContainer extends IApplyableStats {
     public List<StatData> GetAllStats(int level);
 
     @Override
-    default void applyStats(EntityCap.UnitData data) {
-        GetAllStats(data.getLevel()).forEach(x -> {
+    default void applyStats(EntityCap.UnitData data, int level) {
+        GetAllStats(level).forEach(x -> {
             if (x.isNotEmpty()) {
-                data.getUnit().getCreateStat(x.getId()).addExact(x);
+                data.getUnit()
+                    .getCreateStat(x.getId())
+                    .addExact(x);
             }
         });
     }

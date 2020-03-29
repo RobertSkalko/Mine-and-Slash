@@ -2,8 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -16,15 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class ExactStatData implements IApplyableStats, ITooltipList {
+public class ExactStatData extends BaseStatContainer {
 
     public ExactStatData() {
 
     }
 
     public ExactStatData scaleToLvl(int lvl) {
-        Stat stat = SlashRegistry.Stats().get(statGUID);
-        value = stat.calculateScalingStatGrowth(value, lvl);
+        if (type.isFlat()) {
+            Stat stat = SlashRegistry.Stats()
+                .get(statGUID);
+            value = stat.calculateScalingStatGrowth(value, lvl);
+        }
+        this.alreadyScale = true;
         return this;
     }
 
@@ -59,6 +62,8 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
     @Store
     private String statGUID = "";
 
+    private boolean alreadyScale = false;
+
     public float getValue() {
         return value;
     }
@@ -68,12 +73,18 @@ public class ExactStatData implements IApplyableStats, ITooltipList {
     }
 
     public Stat getStat() {
-        return SlashRegistry.Stats().get(statGUID);
+        return SlashRegistry.Stats()
+            .get(statGUID);
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data) {
-        data.getUnit().getCreateStat(statGUID).addExact(type, value);
+    public void applyStats(EntityCap.UnitData data, int level) {
+        if (!alreadyScale) {
+            this.scaleToLvl(level);
+        }
+        data.getUnit()
+            .getCreateStat(statGUID)
+            .addExact(type, value);
     }
 
     @Override

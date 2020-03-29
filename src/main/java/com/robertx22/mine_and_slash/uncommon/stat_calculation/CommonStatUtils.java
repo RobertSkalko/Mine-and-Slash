@@ -27,7 +27,7 @@ public class CommonStatUtils {
 
     public static void addCustomStats(UnitData data, Unit unit, int level) {
         for (StatModData stat : data.getCustomStats().stats.values()) {
-            stat.useOnPlayer(data);
+            stat.applyStats(data, level);
         }
     }
 

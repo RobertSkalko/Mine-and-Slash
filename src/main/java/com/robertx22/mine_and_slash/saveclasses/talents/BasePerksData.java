@@ -67,13 +67,13 @@ public abstract class BasePerksData<T extends BasePerk> implements IApplyableSta
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data) {
+    public void applyStats(EntityCap.UnitData data, int level) {
         for (BasePerk talent : getAllCurrentPerks()) {
             if (talent.effect != null) {
 
                 if (talent.effect instanceof IApplyableStats) {
                     IApplyableStats apply = (IApplyableStats) talent.effect;
-                    apply.applyStats(data);
+                    apply.applyStats(data, level);
                 }
 
             }

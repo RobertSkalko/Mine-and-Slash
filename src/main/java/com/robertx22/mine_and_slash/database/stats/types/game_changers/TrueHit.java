@@ -2,13 +2,15 @@ package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 
 import com.robertx22.mine_and_slash.database.stats.effects.game_changers.HalveNonCritDmgEffect;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-public class TrueHit extends BaseGameChangerTrait implements IStatEffects, IAffectsStats {
+import java.util.Arrays;
+import java.util.List;
+
+public class TrueHit extends BaseGameChangerTrait implements IStatEffects {
 
     private TrueHit() {
     }
@@ -17,7 +19,7 @@ public class TrueHit extends BaseGameChangerTrait implements IStatEffects, IAffe
 
     @Override
     public String locDescForLangFile() {
-        return "+ 50 percent Crit Dmg Multi but non crit dmg is halved.";
+        return "Non crit dmg is halved.";
     }
 
     @Override
@@ -36,8 +38,10 @@ public class TrueHit extends BaseGameChangerTrait implements IStatEffects, IAffe
     }
 
     @Override
-    public void affectStats(EntityCap.UnitData data, StatData statData) {
-        data.getUnit().getCreateStat(CriticalDamage.GUID).Multi += 50;
+    public List<ExactStatData> getExactStats() {
+        return Arrays.asList(
+            new ExactStatData(30, StatModTypes.Multi, CriticalDamage.getInstance())
+        );
     }
 
     @Override

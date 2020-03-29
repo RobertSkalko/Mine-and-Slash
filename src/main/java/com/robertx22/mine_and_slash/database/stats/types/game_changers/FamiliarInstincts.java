@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
-public class FamiliarInstincts extends BaseGameChangerTrait implements IAffectsStats {
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class FamiliarInstincts extends BaseGameChangerTrait {
 
     static int INC = 10;
     static int DEC = 20;
@@ -22,7 +22,7 @@ public class FamiliarInstincts extends BaseGameChangerTrait implements IAffectsS
 
     @Override
     public String locDescForLangFile() {
-        return "Adds " + INC + " percent of your dodge to all your elemental resistances, but reduces health regen " + "by" + " " + DEC + " percent";
+        return "Get in touch with your primal self.";
     }
 
     @Override
@@ -41,15 +41,16 @@ public class FamiliarInstincts extends BaseGameChangerTrait implements IAffectsS
     }
 
     @Override
-    public void affectStats(EntityCap.UnitData data, StatData statData) {
+    public List<ExactStatData> getExactStats() {
 
-        float num = data.getUnit().getCreateStat(DodgeRating.getInstance()).Flat * INC / 100;
+        List<ExactStatData> list = ElementalResist.MAP.getList()
+            .stream()
+            .map(x -> new ExactStatData(INC, StatModTypes.Multi, x))
+            .collect(Collectors.toList());
 
-        for (Stat stat : ElementalResist.MAP.getList()) {
-            data.getUnit().getCreateStat(stat).Flat += num;
-        }
+        list.add(new ExactStatData(-DEC, StatModTypes.Multi, HealthRegen.getInstance()));
 
-        data.getUnit().getCreateStat(HealthRegen.getInstance()).Multi -= DEC;
+        return list;
     }
 
     private static class SingletonHolder {

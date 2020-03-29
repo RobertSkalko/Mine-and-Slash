@@ -24,10 +24,12 @@ public class WornSetsContainerData {
 
     public WornSetData get(String guid) {
 
-        if (SlashRegistry.Sets().isRegistered(guid)) {
+        if (SlashRegistry.Sets()
+            .isRegistered(guid)) {
 
             if (map.containsKey(guid) == false) {
-                map.put(guid, new WornSetData(SlashRegistry.Sets().get(guid)));
+                map.put(guid, new WornSetData(SlashRegistry.Sets()
+                    .get(guid)));
             }
 
             return map.get(guid);
@@ -58,14 +60,16 @@ public class WornSetsContainerData {
 
         for (Map.Entry<String, WornSetData> entry : this.map.entrySet()) {
 
-            Set set = entry.getValue().getSet();
+            Set set = entry.getValue()
+                .getSet();
 
             if (set != null) {
 
-                for (StatMod mod : entry.getValue().getSetStats()) {
-
+                for (StatMod mod : entry.getValue()
+                    .getSetStats()) {
                     StatModData.Load(mod, set.StatPercent)
-                            .useOnPlayer(unitdata, entry.getValue().getAverageLevel());
+                        .applyStats(unitdata, entry.getValue()
+                            .getAverageLevel());
 
                 }
             }

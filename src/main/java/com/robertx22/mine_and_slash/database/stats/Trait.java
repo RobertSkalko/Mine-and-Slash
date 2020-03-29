@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats;
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.stats.types.traits.major_arcana.INameSuffix;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
@@ -30,9 +30,9 @@ public abstract class Trait extends Stat implements IAffectsOtherStats {
     @Override
     public void TryAffectOtherStats(UnitData unit, StatData data) {
         if (this.condition(unit)) {
-            for (StatModData mod : getStatsMods()) {
-                mod.useOnPlayer(unit, unit.getLevel());
-            }
+            this.getAllStatContainers()
+                .applyStats(unit, unit.getLevel());
+
         }
 
     }
@@ -98,11 +98,11 @@ public abstract class Trait extends Stat implements IAffectsOtherStats {
 
         list.add(text);
 
-        if (info.useInDepthStats()) {
+        if (info.useInDepthStats() || info.shouldShowDescriptions()) {
             if (basestat instanceof Trait) {
                 Trait trait = (Trait) basestat;
 
-                for (StatModData moddata : trait.getStatsMods()) {
+                for (BaseStatContainer moddata : trait.getAllStatContainers().list) {
                     TooltipInfo newinfo = info.tooltipInfo.withLevel(info.tooltipInfo.unitdata.getLevel());
                     newinfo.minmax = new MinMax(trait.percent(), trait.percent());
                     list.addAll(moddata.GetTooltipString(newinfo));
@@ -110,7 +110,7 @@ public abstract class Trait extends Stat implements IAffectsOtherStats {
             }
         }
 
-        if (info.shouldShowDescriptions()) {
+        if (info.shouldShowDescriptions() || info.useInDepthStats()) {
             if (locDescForLangFile().isEmpty() == false) {
                 list.addAll(info.stat.getCutDescTooltip());
             }

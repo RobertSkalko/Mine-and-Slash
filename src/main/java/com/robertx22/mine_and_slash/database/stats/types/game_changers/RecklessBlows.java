@@ -1,24 +1,23 @@
 package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalPene;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
-public class RecklessBlows extends BaseGameChangerTrait implements IAffectsStats {
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class RecklessBlows extends BaseGameChangerTrait {
 
     private RecklessBlows() {
     }
 
     public static final RecklessBlows INSTANCE = new RecklessBlows();
 
-    static int INC = 50;
-
     @Override
     public String locDescForLangFile() {
-        return "All your penetrations are increased by " + INC + " percent, but your armor is halved.";
+        return "Expose your weakness to give everything you have.";
     }
 
     @Override
@@ -37,12 +36,16 @@ public class RecklessBlows extends BaseGameChangerTrait implements IAffectsStats
     }
 
     @Override
-    public void affectStats(EntityCap.UnitData data, StatData statData) {
+    public List<ExactStatData> getExactStats() {
 
-        for (Stat stat : ElementalPene.MAP.getList()) {
-            data.getUnit().getCreateStat(stat).Multi += INC;
-        }
+        List<ExactStatData> list = ElementalPene.MAP.getList()
+            .stream()
+            .map(x -> new ExactStatData(50, StatModTypes.Multi, x))
+            .collect(Collectors.toList());
 
-        data.getUnit().getCreateStat(Armor.GUID).Multi -= INC;
+        list.add(new ExactStatData(-50, StatModTypes.Multi, Armor.getInstance()));
+
+        return list;
     }
+
 }

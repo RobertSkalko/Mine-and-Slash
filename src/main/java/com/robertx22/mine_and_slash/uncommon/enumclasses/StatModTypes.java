@@ -14,9 +14,14 @@ public enum StatModTypes {
 
     StatModTypes(String id) {
         this.id = id;
+
     }
 
     public String id;
+
+    public boolean isFlat() {
+        return this == Flat;
+    }
 
     public static ITextComponent getNumberSuffix(StatModTypes type, Stat stat) {
 
@@ -42,7 +47,8 @@ public enum StatModTypes {
         ITextComponent text = new StringTextComponent("");
 
         if (type == StatModTypes.Multi) {
-            text.appendText(TextFormatting.GRAY + " ").appendSibling(Words.Multi.locName());
+            text.appendText(TextFormatting.GRAY + " ")
+                .appendSibling(Words.Multi.locName());
         }
 
         return text;

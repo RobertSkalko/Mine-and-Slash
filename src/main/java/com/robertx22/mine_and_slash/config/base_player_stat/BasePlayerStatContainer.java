@@ -62,7 +62,7 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data) {
+    public void applyStats(EntityCap.UnitData data, int level) {
 
         this.BASE_PLAYER_STATS.entrySet()
             .forEach(x -> {
@@ -74,7 +74,7 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
                 data.getUnit()
                     .getCreateStat(x.getKey())
                     .addFlat(x.getValue()
-                        .floatValue(), data.getLevel());
+                        .floatValue(), level);
             });
 
     }

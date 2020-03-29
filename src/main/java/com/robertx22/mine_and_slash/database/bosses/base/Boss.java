@@ -74,7 +74,7 @@ public abstract class Boss implements ISlashRegistryEntry<Boss>, IApplyableStats
     }
 
     @Override
-    public void applyStats(EntityCap.UnitData data) {
+    public void applyStats(EntityCap.UnitData data, int level) {
         //data.getUnit().getCreateStat(Health.INSTANCE).Multi += 500;
 
     }
