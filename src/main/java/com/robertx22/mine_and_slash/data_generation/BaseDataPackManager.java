@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryContainer;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.Cached;
 import net.minecraft.client.resources.JsonReloadListener;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.profiler.IProfiler;
@@ -38,6 +39,8 @@ public abstract class BaseDataPackManager<T extends ISlashRegistryEntry> extends
 
     @Override
     protected void apply(Map<ResourceLocation, JsonObject> mapToLoad, IResourceManager manager, IProfiler profilerIn) {
+
+        Cached.reset();
 
         SlashRegistryContainer reg = SlashRegistry.getRegistry(registryType);
 

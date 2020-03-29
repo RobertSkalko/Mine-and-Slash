@@ -37,7 +37,7 @@ public class GiveCrate {
                                         .then(argument("amount", IntegerArgumentType
                                             .integer(1, 5000))
                                             .then(argument("tier", IntegerArgumentType
-                                                .integer(0, ITiered.MAX_TIER))
+                                                .integer(0, ITiered.getMaxTier()))
                                                 .executes(e -> execute(e.getSource(), EntityArgument
                                                     .getPlayer(e, "target"), StringArgumentType
                                                     .getString(e, "type"), IntegerArgumentType

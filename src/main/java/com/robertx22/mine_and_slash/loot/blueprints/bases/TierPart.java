@@ -12,7 +12,7 @@ public class TierPart extends BlueprintPart<Integer> {
     public int variance = 2;
 
     public int minTier = 1;
-    public int maxTier = ITiered.MAX_TIER;
+    public int maxTier = ITiered.getMaxTier();
 
     public TierPart(ItemBlueprint blueprint) {
         super(blueprint);

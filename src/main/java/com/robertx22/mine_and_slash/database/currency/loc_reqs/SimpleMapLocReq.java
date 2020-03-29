@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 public class SimpleMapLocReq extends BaseLocRequirement {
 
     public static final SimpleMapLocReq LOWER_THAN_MAX_TIER = new SimpleMapLocReq(
-        x -> x.tier < ITiered.MAX_TIER, Words.TierLessThanMax.locName());
+        x -> x.tier < ITiered.getMaxTier(), Words.TierLessThanMax.locName());
 
     private SimpleMapLocReq(Predicate<MapItemData> pred, ITextComponent text) {
         this.text = text;

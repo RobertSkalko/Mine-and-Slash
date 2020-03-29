@@ -268,6 +268,7 @@ public class SlashRegistry {
                     }
                 }
             });
+
     }
 
     public static void checkGuidValidity() {

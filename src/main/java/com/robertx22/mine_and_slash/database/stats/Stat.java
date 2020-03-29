@@ -175,7 +175,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
         DecimalFormat format = new DecimalFormat();
 
-        if (val < 10) {
+        if (val < 5) {
             format.setMaximumFractionDigits(1);
 
             return format.format(val);

@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.registry.*;
 import com.robertx22.mine_and_slash.saveclasses.ListStringData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.Cached;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -89,6 +90,8 @@ public class RegistryPacket {
         ctx.get()
             .enqueueWork(() -> {
                 try {
+
+                    Cached.reset();
 
                     if (pkt.data.getList()
                         .isEmpty()) {

@@ -78,6 +78,6 @@ public class UniqueTierRequirement extends UniqueItemRequirement<UniqueTierRequi
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
-        return Arrays.asList(new SText(TextFormatting.GOLD + "Requires Unique Gear of Tier: " + minTier + " - " + MathHelper.clamp(maxTier, 0, ITiered.MAX_TIER)));
+        return Arrays.asList(new SText(TextFormatting.GOLD + "Requires Unique Gear of Tier: " + minTier + " - " + MathHelper.clamp(maxTier, 0, ITiered.getMaxTier())));
     }
 }

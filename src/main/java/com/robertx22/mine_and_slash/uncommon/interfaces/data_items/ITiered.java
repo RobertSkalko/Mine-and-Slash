@@ -9,13 +9,14 @@ public interface ITiered {
     public abstract int getTier();
 
     public static int getMaxTier() {
-        return SlashRegistry.Tiers()
-            .getList()
-            .stream()
-            .max(Comparator.comparingInt(x -> x.id_rank))
-            .get().id_rank;
+        if (Cached.maxTier == null) {
+            Cached.maxTier = SlashRegistry.Tiers()
+                .getList()
+                .stream()
+                .max(Comparator.comparingInt(x -> x.id_rank))
+                .get().id_rank;
+        }
+        return Cached.maxTier;
     }
-
-    static final int MAX_TIER = 5;
 
 }

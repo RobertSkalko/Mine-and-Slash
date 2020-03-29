@@ -19,12 +19,23 @@ public interface IStatTooltipType {
         StatModData data = ctx.modData;
         int level = ctx.level;
 
+        String str = "";
+
         StatModData min = StatModData.Load(data.getStatMod(), minmax.min);
         StatModData max = StatModData.Load(data.getStatMod(), minmax.max);
 
+        if (data.getStatMod()
+            .usesNumberRanges()) {
+            str = " (" + min.getFirstValue(level) + " - " + max.getFirstValue(level) + ")/";
+            str += " (" + min.getSecondValue(level) + " - " + max.getSecondValue(level) + ")";
+
+        } else {
+            str = " (" + min.printValue(level) + " - " + max.printValue(level) + ")";
+        }
+
         return Styles.GREENCOMP()
-                .appendSibling(
-                        new StringTextComponent(" (" + min.printValue(level) + " - " + max.printValue(level) + ")"));
+            .appendSibling(
+                new StringTextComponent(str));
 
     }
 }

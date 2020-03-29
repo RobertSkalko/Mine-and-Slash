@@ -7,6 +7,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.commands.suggestions.GearTypeSuggestions;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
 import net.minecraft.command.arguments.EntityArgument;
@@ -35,7 +36,7 @@ public class GiveUniqueGear {
                                         IntegerArgumentType
                                             .integer(
                                                 0,
-                                                30
+                                                ITiered.getMaxTier()
                                             )
                                     )
                                         .then(Commands.argument(

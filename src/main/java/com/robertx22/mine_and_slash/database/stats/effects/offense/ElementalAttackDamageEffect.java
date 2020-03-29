@@ -20,7 +20,7 @@ public class ElementalAttackDamageEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.addBonusEleDmg(stat.getElement(), data.getAverageValue());
+        effect.addBonusEleDmg(stat.getElement(), data.getRandomRangeValue());
 
         return effect;
     }

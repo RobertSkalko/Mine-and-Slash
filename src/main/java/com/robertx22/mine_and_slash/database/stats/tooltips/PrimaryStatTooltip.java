@@ -49,7 +49,10 @@ public class PrimaryStatTooltip implements IStatTooltipType {
             return NameText(info).appendText(minusplus + info.stat.printValue(v1));
         } else {
             String minusplus = v1 > 0 ? "" : "-";
-            return NameText(info).appendText(minusplus + info.stat.printValue(v1) + "-" + info.stat.printValue(v2));
+
+            String str = minusplus + info.stat.printValue(v1) + "-" + info.stat.printValue(v2);
+
+            return NameText(info).appendText(str);
         }
 
     }

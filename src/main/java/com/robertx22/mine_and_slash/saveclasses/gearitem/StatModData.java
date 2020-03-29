@@ -180,7 +180,7 @@ public class StatModData extends BaseStatContainer {
                 return format.format(v1);
             } else {
                 int intval = (int) v1;
-                return (int) v1 + "-";
+                return (int) v1 + "";
             }
         } else {
             if (Math.abs(v1) < 10) {

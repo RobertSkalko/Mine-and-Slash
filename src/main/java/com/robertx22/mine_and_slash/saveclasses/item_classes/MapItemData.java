@@ -148,7 +148,7 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         int tier = this.tier + i;
 
-        if (tier > ITiered.MAX_TIER) {
+        if (tier > ITiered.getMaxTier()) {
             return false;
         }
 
