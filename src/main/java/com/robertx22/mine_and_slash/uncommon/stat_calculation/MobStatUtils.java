@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class MobStatUtils {
 
     static int spelldmg = 12;
-    static int elePene = 6;
+    static int elePene = 3;
     static float resMulti = 1.5F;
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {

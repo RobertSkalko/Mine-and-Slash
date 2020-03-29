@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.tooltips;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -20,8 +21,8 @@ public class NormalStatTooltip implements IStatTooltipType {
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         ITextComponent text = getValueComp(info).appendText(" ")
-                .appendSibling(getStatComp(info))
-                .appendSibling(StatModTypes.getSuffix(info.type));
+            .appendSibling(getStatComp(info))
+            .appendSibling(StatModTypes.getSuffix(info.type));
 
         if (info.useInDepthStats()) {
             if (info.statRange != null) {
@@ -56,11 +57,18 @@ public class NormalStatTooltip implements IStatTooltipType {
 
         str.appendSibling(stat.locName());
 
-        if (info.tooltipInfo.isSet == false) {
-            return Styles.GRAYCOMP().appendSibling(str);
-        } else {
-            return Styles.GREENCOMP().appendSibling(str);
+        if (info.stat.getElement() != null && info.stat.getElement() != Elements.Physical) { // todo unsure if good
+            str.appendText("" + info.stat.getElement().format + " (" + info.stat.getElement().icon + ")" + TextFormatting.GRAY + "");
         }
+
+        if (info.tooltipInfo.isSet == false) {
+            return Styles.GRAYCOMP()
+                .appendSibling(str);
+        } else {
+            return Styles.GREENCOMP()
+                .appendSibling(str);
+        }
+
     }
 
     private ITextComponent getValueComp(TooltipStatInfo info) {

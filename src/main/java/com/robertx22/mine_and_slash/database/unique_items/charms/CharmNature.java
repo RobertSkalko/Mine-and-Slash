@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Charm;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPenePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
@@ -42,7 +42,7 @@ public class CharmNature implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthFlat(), new ElementalPenePercent(Elements.Nature),
+        return Arrays.asList(new HealthFlat(), new ElementalPeneFlat(Elements.Nature),
             new ElementalResistFlat(Elements.Nature).size(StatMod.Size.HALF_MORE)
         );
     }

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.unique_items.charms;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Charm;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPenePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.ManaRegenPercent;
@@ -49,7 +49,7 @@ public class CharmThunder implements IUnique {
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
             new ElementalSpellDamagePercent(Elements.Thunder), new ManaRegenPercent(),
-            new ElementalPenePercent(Elements.Thunder)
+            new ElementalPeneFlat(Elements.Thunder)
         );
     }
 
