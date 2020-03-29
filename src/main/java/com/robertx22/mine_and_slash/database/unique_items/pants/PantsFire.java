@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffinityFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.ArmorMulti;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
@@ -49,14 +49,14 @@ public class PantsFire implements IUnique {
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
             new ArmorFlat().size(StatMod.Size.HALF_MORE),
-            new ArmorMulti(),
+            new ArmorMulti().size(StatMod.Size.DOUBLE),
             new ElementalSpellDamagePercent(Elements.Fire)
         );
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAffinityFlat(Elements.Fire));
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Fire));
     }
 
     @Override

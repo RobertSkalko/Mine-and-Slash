@@ -1,4 +1,4 @@
-3.4.3
+3.5.0
 * added bestiary (you'll see it in your main hub anyway)
 * added experimental way that makes thrown weapons work.
  (mod devs literally just have to set player as the true damage source and have the itemstack saved somewhere in either the class fields, nbt or datamanager.)
@@ -12,6 +12,8 @@
 * added new affixes, you won't like them.
 * modify station now has particles and sound effects
 * modify station now goes boom when item goes poof
+* reworked most gamechanger talents to more accurately show what stats they affect
+* removed elemental affinity stat
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

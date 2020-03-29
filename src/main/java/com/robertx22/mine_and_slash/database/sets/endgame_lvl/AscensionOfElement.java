@@ -6,9 +6,9 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.ElementalSet;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffinityFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalFocusFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
@@ -38,7 +38,7 @@ public class AscensionOfElement extends ElementalSet {
                 {
                     put(2, new ElementalPeneFlat(element));
                     put(3, new ElementalFocusFlat(element));
-                    put(4, new ElementalAffinityFlat(element));
+                    put(4, new ElementalSpellDamageFlat(element));
 
                 }
             }

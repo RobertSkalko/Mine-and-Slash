@@ -32,6 +32,6 @@
   "mods": {
     "2": "fire_penetration_flat",
     "3": "fire_focus_flat",
-    "4": "fire_affinity_flat"
+    "4": "spell_fire_damage_flat"
   }
 }

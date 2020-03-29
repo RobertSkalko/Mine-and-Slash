@@ -20,12 +20,12 @@ public class WeaponDamageFlat extends BaseWeaponMod {
 
     @Override
     public float Min() {
-        return 10;
+        return 5;
     }
 
     @Override
     public float Max() {
-        return 25;
+        return 10;
     }
 
     @Override

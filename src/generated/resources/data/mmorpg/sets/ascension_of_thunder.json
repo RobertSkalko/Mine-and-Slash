@@ -32,6 +32,6 @@
   "mods": {
     "2": "thunder_penetration_flat",
     "3": "thunder_focus_flat",
-    "4": "thunder_affinity_flat"
+    "4": "spell_thunder_damage_flat"
   }
 }

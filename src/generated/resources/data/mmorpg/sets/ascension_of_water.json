@@ -32,6 +32,6 @@
   "mods": {
     "2": "water_penetration_flat",
     "3": "water_focus_flat",
-    "4": "water_affinity_flat"
+    "4": "spell_water_damage_flat"
   }
 }

@@ -20,7 +20,7 @@
     ]
   },
   "mods": [
-    "very_low_fire_affinity_flat",
+    "very_low_spell_fire_damage_flat",
     "fire_spell_to_attack_dmg_flat"
   ]
 }

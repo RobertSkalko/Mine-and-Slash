@@ -7,17 +7,17 @@ public abstract class BaseResourceConversion extends StatMod {
 
     @Override
     public float Min() {
-	return 10;
+        return 10;
     }
 
     @Override
     public float Max() {
-	return 30;
+        return 20;
     }
 
     @Override
     public StatModTypes getModType() {
-	return StatModTypes.Flat;
+        return StatModTypes.Flat;
     }
 
 }

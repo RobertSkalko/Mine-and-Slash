@@ -32,6 +32,6 @@
   "mods": {
     "2": "nature_penetration_flat",
     "3": "nature_focus_flat",
-    "4": "nature_affinity_flat"
+    "4": "spell_nature_damage_flat"
   }
 }

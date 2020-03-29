@@ -51,7 +51,6 @@ public class StatMods implements ISlashRegistryInit {
                     add(new ElementalSpellToAttackDMGPercent(Elements.Nature));
                     add(new ElementalConversionFlat(Elements.Nature, Elements.Nature));
                     add(new ElementalTransferFlat(Elements.Nature, Elements.Nature));
-                    add(new ElementalAffinityFlat(Elements.Nature));
                     add(new LootTypeBonusFlat(LootType.NormalItem));
                     add(new WeaponDamageFlat(WeaponTypes.None));
                     add(new ElementalAttackDamageFlat(Elements.Nature));

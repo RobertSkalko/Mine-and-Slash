@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffinityFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -52,7 +52,7 @@ public class HelmetThunder implements IUnique {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAffinityFlat(Elements.Thunder));
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Thunder));
     }
 
     @Override

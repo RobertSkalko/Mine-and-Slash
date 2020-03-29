@@ -89,11 +89,12 @@ public class PerkEffect extends BasePerkEffect implements IApplyableStats, ISlas
         int after = list.size();
 
         if (after > before) {
-            if (!Screen.hasAltDown()) {
-                list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(
-                    Words.Press_Shift_For_More_Info.locName())
-                    .appendText("]"));
-
+            if (!Screen.hasAltDown() && !Screen.hasShiftDown()) {
+                if (this.isGameChanger()) {
+                    list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(
+                        Words.Press_Shift_For_More_Info.locName())
+                        .appendText("]"));
+                }
                 list.add(new StringTextComponent(TextFormatting.BLUE + "[").appendSibling(
                     Words.PressAltForStatInfo.locName())
                     .appendText("]"));

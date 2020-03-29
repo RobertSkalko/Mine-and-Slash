@@ -3,9 +3,10 @@ package com.robertx22.mine_and_slash.database.unique_items.necklaces;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicStealFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAffinityFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -47,9 +48,10 @@ public class NecklaceNature implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new HealthFlat().size(StatMod.Size.HALF_MORE),
+            new HealthFlat(),
             new ManaFlat(),
-            new ElementalAffinityFlat(Elements.Nature).size(StatMod.Size.LOW)
+            new EnergyFlat(),
+            new MagicStealFlat()
         );
 
     }
