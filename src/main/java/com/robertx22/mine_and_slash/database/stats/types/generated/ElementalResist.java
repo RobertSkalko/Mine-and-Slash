@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.ConversionMethod;
-import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.ElementalResistEffect;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatConversion;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
@@ -15,7 +15,7 @@ import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 import java.util.Arrays;
 import java.util.List;
 
-public class ElementalResist extends ElementalStat implements IStatEffects, IUsableStat, IStatConversion {
+public class ElementalResist extends ElementalStat implements IStatEffects, IStatConversion {
 
     public static MapWrapper<Elements, ElementalResist> MAP = new MapWrapper();
 
@@ -24,7 +24,11 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
         List<Stat> list = super.generateAllPossibleStatVariations();
         list.forEach(x -> MAP.put(x.getElement(), (ElementalResist) x));
         return list;
+    }
 
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SLOW_SCALING;
     }
 
     @Override
@@ -36,6 +40,7 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
         super(element);
         this.minimumValue = 0;
 
+        this.maximumValue = 75;
     }
 
     @Override
@@ -69,18 +74,8 @@ public class ElementalResist extends ElementalStat implements IStatEffects, IUsa
     }
 
     @Override
-    public float MaximumPercent() {
-        return 0.8F;
-    }
-
-    @Override
-    public float AverageStat() {
-        return 2.5F;
-    }
-
-    @Override
     public boolean IsPercent() {
-        return false;
+        return true;
     }
 
     @Override

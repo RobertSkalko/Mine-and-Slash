@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IArmorReducable;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IPenetrable;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.math.MathHelper;
 
 public class ArmorEffect extends BaseStatEffect<DamageEffect> {
@@ -47,7 +48,7 @@ public class ArmorEffect extends BaseStatEffect<DamageEffect> {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect instanceof IArmorReducable;
+        return effect instanceof IArmorReducable && effect.GetElement() == Elements.Physical;
     }
 
 }

@@ -52,6 +52,8 @@ public class Stats implements ISlashRegistryInit {
             {
                 {
 
+                    add(ArmorPenetration.getInstance());
+
                     // GAME CHANGERS
                     add(ManaBattery.INSTANCE);
                     add(BleedMastery.INSTANCE);

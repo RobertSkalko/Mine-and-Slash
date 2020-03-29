@@ -103,7 +103,7 @@ public class MobStatUtils {
 
         ElementalResist.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)
-                .addFlat(x.AverageStat() * resMulti * rar.StatMultiplier(), level));
+                .addFlat(resMulti * rar.StatMultiplier(), level));
 
         ElementalSpellDamage.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)

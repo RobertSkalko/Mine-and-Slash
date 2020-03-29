@@ -57,7 +57,8 @@ public class NecklaceMagicShield implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalResistFlat(Elements.Elemental), new MagicShieldRegenFlat(),
+            new ElementalResistFlat(Elements.Elemental).size(StatMod.Size.HALF),
+            new MagicShieldRegenFlat(),
             new CoreStatFlat(Wisdom.INSTANCE).size(StatMod.Size.HALF_MORE)
         );
     }

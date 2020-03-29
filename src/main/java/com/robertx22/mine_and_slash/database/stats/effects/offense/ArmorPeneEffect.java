@@ -4,10 +4,11 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.base.BaseAnyEffect;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalPenetrable;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IElementalEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IPenetrable;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
-public class ElementalPeneEffect extends BaseAnyEffect {
+public class ArmorPeneEffect extends BaseAnyEffect {
 
     @Override
     public int GetPriority() {
@@ -22,19 +23,18 @@ public class ElementalPeneEffect extends BaseAnyEffect {
     @Override
     public EffectData activate(EffectData effect, StatData data, Stat stat) {
 
-        IElementalPenetrable ipene = (IElementalPenetrable) effect;
-        ipene.addElementalPenetration((int) data.val);
+        IPenetrable ipene = (IPenetrable) effect;
+        ipene.SetArmorPenetration(ipene.GetArmorPenetration() + (int) data.val);
 
         return effect;
     }
 
     @Override
     public boolean canActivate(EffectData effect, StatData data, Stat stat) {
-        if (effect instanceof IElementalPenetrable) {
-            IElementalPenetrable ele = (IElementalPenetrable) effect;
+        if (effect instanceof IElementalEffect) {
+            IElementalEffect ele = (IElementalEffect) effect;
             return ele.GetElement()
-                .equals(stat.getElement()) || stat.getElement()
-                .equals(Elements.Elemental);
+                .equals(Elements.Physical);
         }
 
         return false;

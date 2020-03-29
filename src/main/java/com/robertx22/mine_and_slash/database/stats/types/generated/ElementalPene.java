@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.ElementalPeneEffect;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
@@ -17,10 +18,14 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = super.generateAllPossibleStatVariations();
-        list.add(new ElementalPene(Elements.Physical));
         list.forEach(x -> MAP.put(x.getElement(), (ElementalPene) x));
         return list;
 
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SLOW_SCALING;
     }
 
     @Override
@@ -62,12 +67,13 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
 
     @Override
     public boolean IsPercent() {
-        return false;
+        return true;
     }
 
     @Override
     public String locNameForLangFile() {
-        return this.getElement().name() + " Penetration";
+        return this.getElement()
+            .name() + " Penetration";
     }
 
     @Override

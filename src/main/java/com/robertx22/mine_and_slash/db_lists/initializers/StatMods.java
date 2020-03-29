@@ -48,6 +48,7 @@ public class StatMods implements ISlashRegistryInit {
         List<StatMod> list = new ArrayList<StatMod>() {
             {
                 {
+
                     add(new ElementalSpellToAttackDMGPercent(Elements.Nature));
                     add(new ElementalConversionFlat(Elements.Nature, Elements.Nature));
                     add(new ElementalTransferFlat(Elements.Nature, Elements.Nature));
@@ -78,6 +79,7 @@ public class StatMods implements ISlashRegistryInit {
                     add(new BlockStrengthPercent());
                     add(new SpellDamageFlat());
                     add(new SpellDamagePercent());
+                    add(new ArmorPenetrationFlat());
 
                     add(new BonusExpFlat());
 

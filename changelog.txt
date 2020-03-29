@@ -14,6 +14,8 @@
 * modify station now goes boom when item goes poof
 * reworked most gamechanger talents to more accurately show what stats they affect
 * removed elemental affinity stat
+* armor no longer reduces elemental damage (bug)
+* elemental resists are now percents
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

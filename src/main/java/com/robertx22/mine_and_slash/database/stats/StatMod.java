@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats;
 
+import com.google.common.base.Preconditions;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_generation.statmods.SerializableStatMod;
 import com.robertx22.mine_and_slash.database.IGUID;
@@ -76,6 +77,9 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     }
 
     public String getGUIDFor(Stat stat, Size size, StatModTypes type) {
+        Preconditions.checkNotNull(stat, this);
+        Preconditions.checkNotNull(size, this);
+        Preconditions.checkNotNull(type, this);
         return size.prefix + stat.GUID() + "_" + type.id;
     }
 

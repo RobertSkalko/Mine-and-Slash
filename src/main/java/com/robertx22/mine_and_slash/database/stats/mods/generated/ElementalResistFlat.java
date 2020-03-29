@@ -30,7 +30,7 @@ public class ElementalResistFlat extends ElementalStatMod {
 
     @Override
     public float Max() {
-        return 15;
+        return 10;
     }
 
     @Override

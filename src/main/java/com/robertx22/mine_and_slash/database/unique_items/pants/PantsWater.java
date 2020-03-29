@@ -5,9 +5,9 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -48,8 +48,8 @@ public class PantsWater implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ArmorFlat().size(StatMod.Size.HALF_MORE), new ElementalResistFlat(Elements.Water).size(StatMod.Size.HALF_MORE),
-            new ElementalTransferFlat(Elements.Fire, Elements.Water),
+        return Arrays.asList(new ArmorFlat().size(StatMod.Size.TRIPLE),
+            new ElementalResistFlat(Elements.Water).size(StatMod.Size.HALF_MORE),
             new ElementalSpellDamagePercent(Elements.Water)
         );
 
@@ -57,7 +57,7 @@ public class PantsWater implements IUnique {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HealthFlat());
+        return Arrays.asList(new HealthFlat(), new MagicShieldFlat());
     }
 
     @Override

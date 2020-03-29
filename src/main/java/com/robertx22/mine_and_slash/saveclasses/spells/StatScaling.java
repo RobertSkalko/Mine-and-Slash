@@ -20,6 +20,12 @@ public enum StatScaling {
             return val * (FIRST_VALUE + (float) lvl / SECOND_VALUE);
         }
     },
+    SLOW_SCALING {
+        @Override
+        public float scale(float val, int lvl) {
+            return val * (1 + (float) lvl / ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get());
+        }
+    },
     NONE {
         @Override
         public float scale(float val, int lvl) {
