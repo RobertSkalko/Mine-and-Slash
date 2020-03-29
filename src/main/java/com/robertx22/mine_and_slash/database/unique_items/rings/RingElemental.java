@@ -71,8 +71,8 @@ public class RingElemental implements IElementalUnique {
     }
 
     @Override
-    public int Tier() {
-        return 5;
+    public int getTier() {
+        return 2;
     }
 
     @Override

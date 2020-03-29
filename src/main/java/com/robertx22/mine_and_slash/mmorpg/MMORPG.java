@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
 import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.db_lists.initializers.CurrencyItems;
 import com.robertx22.mine_and_slash.error_checks.DunSameSeedAreSame;
@@ -178,6 +179,7 @@ public class MMORPG {
         IReloadableResourceManager manager = event.getServer()
             .getResourceManager();
 
+        manager.addReloadListener(new TierDatapackManager());
         manager.addReloadListener(new SetDataPackManager());
         manager.addReloadListener(new AffixDataPackManager());
         manager.addReloadListener(new RuneDataPackManager());

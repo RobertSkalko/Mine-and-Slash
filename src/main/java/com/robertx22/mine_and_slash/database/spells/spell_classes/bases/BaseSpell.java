@@ -127,11 +127,6 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return tick % useTimeTicks() == 0;
     }
 
-    @Override
-    public int Tier() {
-        return 0;
-    }
-
     public final ResourceLocation getIcon() {
         return new ResourceLocation(Ref.MODID, "textures/gui/spells/" + getSchool().id + "/" + GUID() + ".png");
     }

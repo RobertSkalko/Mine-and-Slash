@@ -164,11 +164,10 @@ public class TooltipUtils {
     }
 
     public static ITextComponent rarity(Rarity rarity) {
-
-        return (new StringTextComponent(rarity.textFormatting() + "").appendSibling(
-            Words.Rarity.locName()
-                .appendText(": ")
-                .appendSibling(rarity.locName())));
+        return (new StringTextComponent(rarity.textFormatting() + "")
+            .appendSibling(rarity.locName()
+                .appendText(" ")
+                .appendSibling(Words.Item.locName())));
     }
 
     public static ITextComponent rarityShort(Rarity rarity) {

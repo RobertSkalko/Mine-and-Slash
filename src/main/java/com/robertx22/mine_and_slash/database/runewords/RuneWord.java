@@ -34,11 +34,6 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
     public abstract String GUID();
 
     @Override
-    public int Tier() {
-        return 0;
-    }
-
-    @Override
     public String datapackFolder() {
         return runes().size() + "_runes/";
     }

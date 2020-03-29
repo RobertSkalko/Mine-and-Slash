@@ -21,8 +21,8 @@ public class WOR extends BaseUniqueRune {
     }
 
     @Override
-    public int Tier() {
-        return 10;
+    public int getTier() {
+        return 5;
     }
 
     @Override

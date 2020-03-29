@@ -38,8 +38,8 @@ public class RingMagicShield implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 3;
+    public int getTier() {
+        return 1;
     }
 
     @Override

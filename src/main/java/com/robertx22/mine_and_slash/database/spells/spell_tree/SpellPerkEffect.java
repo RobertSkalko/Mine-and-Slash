@@ -128,8 +128,4 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
         return Rarities.Gears.get(getRarityRank());
     }
 
-    @Override
-    public int Tier() {
-        return 0;
-    }
 }

@@ -90,7 +90,7 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
     }
 
     @Override
-    default int Tier() {
+    default int getTier() {
         return 0;
     }
 

@@ -34,8 +34,8 @@ public class RingWaterFire implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 15;
+    public int getTier() {
+        return 5;
     }
 
     @Override

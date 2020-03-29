@@ -42,7 +42,7 @@ public class UniqueTierRequirement extends UniqueItemRequirement<UniqueTierRequi
         }
 
         int tier = requested.gearData.uniqueStats.getUnique()
-            .Tier();
+            .getTier();
 
         if (tier < minTier || tier > maxTier) {
             return false;

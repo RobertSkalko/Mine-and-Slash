@@ -57,7 +57,7 @@ public class OrbOfEverChangingPrefixItem extends CurrencyItem implements ICurren
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 0;
     }
 

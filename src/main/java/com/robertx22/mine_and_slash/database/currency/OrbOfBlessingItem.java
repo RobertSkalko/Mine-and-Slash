@@ -61,7 +61,7 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 0;
     }
 

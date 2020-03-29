@@ -70,8 +70,8 @@ public class ElementalSaber implements IElementalUnique {
     }
 
     @Override
-    public int Tier() {
-        return 14;
+    public int getTier() {
+        return 4;
     }
 
     @Override

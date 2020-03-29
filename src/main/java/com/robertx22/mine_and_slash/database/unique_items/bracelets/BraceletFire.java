@@ -30,7 +30,7 @@ public class BraceletFire implements IUnique {
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 3;
     }
 

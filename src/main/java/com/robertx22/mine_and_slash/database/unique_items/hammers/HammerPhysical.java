@@ -33,8 +33,8 @@ public class HammerPhysical implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 8;
+    public int getTier() {
+        return 2;
     }
 
     @Override

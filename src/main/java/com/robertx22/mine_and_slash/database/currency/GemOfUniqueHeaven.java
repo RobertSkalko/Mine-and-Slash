@@ -52,7 +52,7 @@ public class GemOfUniqueHeaven extends CurrencyItem implements ICurrencyItemEffe
 
         UniqueGearBlueprint gearPrint = new UniqueGearBlueprint(
             gear.level, gear.uniqueStats.getUnique()
-            .Tier(), false);
+            .getTier(), false);
         gearPrint.rarity.setSpecificRarity(UniqueGear.getInstance()
             .Rank());
 
@@ -80,8 +80,8 @@ public class GemOfUniqueHeaven extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public int Tier() {
-        return 13;
+    public int getTier() {
+        return 3;
     }
 
     @Override

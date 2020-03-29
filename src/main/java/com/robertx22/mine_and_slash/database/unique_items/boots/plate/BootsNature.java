@@ -30,8 +30,8 @@ public class BootsNature implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 7;
+    public int getTier() {
+        return 2;
     }
 
     @Override

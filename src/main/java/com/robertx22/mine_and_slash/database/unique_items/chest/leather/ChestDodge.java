@@ -31,8 +31,8 @@ public class ChestDodge implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 14;
+    public int getTier() {
+        return 4;
 
     }
 

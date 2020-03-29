@@ -24,7 +24,8 @@ public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implement
 
     public boolean isConnectedTo(T talent) {
         for (T con : connections) {
-            if (con.GUID().equals(talent.GUID())) {
+            if (con.GUID()
+                .equals(talent.GUID())) {
                 return true;
             }
         }
@@ -70,7 +71,8 @@ public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implement
 
     public PerkConnection.Allocation getStatus(IPerkCap data) {
 
-        if (data.getPerksData().isAllocated(this)) {
+        if (data.getPerksData()
+            .isAllocated(this)) {
             return PerkConnection.Allocation.ALLOCATED;
         } else {
 
@@ -82,7 +84,8 @@ public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implement
 
             boolean hascon = false;
             for (BasePerk con : this.connections) {
-                if (data.getPerksData().isAllocated(con)) {
+                if (data.getPerksData()
+                    .isAllocated(con)) {
                     hascon = true;
                 }
             }
@@ -110,11 +113,6 @@ public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implement
     @Override
     public Rarity getRarity() {
         return Rarities.Gears.get(getRarityRank());
-    }
-
-    @Override
-    public int Tier() {
-        return 0;
     }
 
     @Override

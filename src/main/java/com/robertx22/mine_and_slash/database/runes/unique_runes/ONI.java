@@ -20,7 +20,7 @@ public class ONI extends BaseUniqueRune {
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 4;
     }
 

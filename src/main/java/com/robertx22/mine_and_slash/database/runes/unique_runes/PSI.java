@@ -20,7 +20,7 @@ public class PSI extends BaseUniqueRune {
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 2;
     }
 

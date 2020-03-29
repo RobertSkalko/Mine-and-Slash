@@ -53,7 +53,7 @@ public class SerializableUniqueGear implements IUnique {
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return tier;
     }
 

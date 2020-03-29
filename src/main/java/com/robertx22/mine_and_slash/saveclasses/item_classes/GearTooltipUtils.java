@@ -127,19 +127,15 @@ public class GearTooltipUtils {
                 addRarityTooltip = false;
 
                 tip.add(new StringTextComponent(""));
-
-                tip.add(TooltipUtils.uniqueTier(unique.Tier()));
-
-                tip.add(new StringTextComponent(""));
             }
 
             if (addRarityTooltip) {
 
-                GearRarity rarity = gear.getRarity();
-                tip.add(TooltipUtils.rarity(rarity));
-
             }
         }
+
+        GearRarity rarity = gear.getRarity();
+        tip.add(TooltipUtils.rarity(rarity));
 
         if (Screen.hasShiftDown()) {
             if (!gear.isSalvagable) {

@@ -36,11 +36,6 @@ public abstract class BaseItemModification implements IWeighted, IRarity, ISlash
         return SlashRegistryType.ITEM_MODIFICATION;
     }
 
-    @Override
-    public int Tier() {
-        return 0;
-    }
-
     public boolean canModify(ICommonDataItem data) {
         return isRightDataType(data) && canModifyPRIVATE(data);
     }
@@ -71,7 +66,8 @@ public abstract class BaseItemModification implements IWeighted, IRarity, ISlash
         while (count < amount) {
             tries++;
 
-            BaseItemModification mod = SlashRegistry.ItemModifications().random();
+            BaseItemModification mod = SlashRegistry.ItemModifications()
+                .random();
             if (types.contains(mod.getItemModType()) == false) {
                 types.add(mod.getItemModType());
                 list.add(mod);

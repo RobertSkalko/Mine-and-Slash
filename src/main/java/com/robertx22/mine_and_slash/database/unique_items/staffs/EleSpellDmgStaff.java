@@ -73,8 +73,8 @@ public class EleSpellDmgStaff implements IElementalUnique {
     }
 
     @Override
-    public int Tier() {
-        return 16;
+    public int getTier() {
+        return 4;
     }
 
     @Override

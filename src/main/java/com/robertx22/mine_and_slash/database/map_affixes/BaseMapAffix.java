@@ -19,12 +19,8 @@ public abstract class BaseMapAffix implements IWeighted, IGUID, IRarity, ISlashR
 
     @Override
     public int Weight() {
-        return this.getRarity().Weight();
-    }
-
-    @Override
-    public int Tier() {
-        return 0;
+        return this.getRarity()
+            .Weight();
     }
 
     @Override

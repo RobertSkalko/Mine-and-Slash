@@ -30,8 +30,8 @@ public class StaffThunder implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 5;
+    public int getTier() {
+        return 2;
     }
 
     @Override

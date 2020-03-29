@@ -66,8 +66,8 @@ public class ShieldWisdom implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 12;
+    public int getTier() {
+        return 3;
     }
 }
 

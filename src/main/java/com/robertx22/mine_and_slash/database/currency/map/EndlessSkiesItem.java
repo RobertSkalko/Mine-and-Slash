@@ -65,7 +65,7 @@ public class EndlessSkiesItem extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 3;
     }
 

@@ -42,8 +42,8 @@ public class NecklaceStrength implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 4;
+    public int getTier() {
+        return 2;
     }
 
     @Override

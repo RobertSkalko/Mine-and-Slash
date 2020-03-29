@@ -36,8 +36,8 @@ public class RingCrit implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 4;
+    public int getTier() {
+        return 1;
     }
 
     @Override

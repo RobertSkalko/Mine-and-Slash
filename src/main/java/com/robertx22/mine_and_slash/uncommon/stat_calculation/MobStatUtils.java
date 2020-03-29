@@ -35,11 +35,13 @@ public class MobStatUtils {
         for (StatData data : unit.getStats()
             .values()
             .stream()
-            .filter(x -> x.GetStat()
-                .IsPercent() == false)
+            .filter(x -> {
+                return x.GetStat()
+                    .IsPercent() == false;
+            })
             .collect(Collectors.toList())) {
 
-            data.multiplyFlat(mobdata.getStatMultiplierIncreaseByTier());
+            data.multiplyFlat(mobdata.getMapTier().mob_stat_multi);
         }
 
     }

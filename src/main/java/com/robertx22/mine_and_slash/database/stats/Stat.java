@@ -58,11 +58,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return getIconFormat() + getIcon();
     }
 
-    @Override
-    public int Tier() {
-        return 0;
-    }
-
     public List<ITextComponent> getCutDescTooltip() {
         List<ITextComponent> list = new ArrayList<>();
 

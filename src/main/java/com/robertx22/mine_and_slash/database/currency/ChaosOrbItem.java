@@ -60,8 +60,8 @@ public class ChaosOrbItem extends CurrencyItem implements ICurrencyItemEffect, I
     }
 
     @Override
-    public int Tier() {
-        return 3;
+    public int getTier() {
+        return 2;
     }
 
     @Override

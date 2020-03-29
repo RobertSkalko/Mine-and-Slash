@@ -41,7 +41,7 @@ public class UniqueRuneBlueprint extends ItemBlueprint {
                 .Rank();
             data.name = rune.GUID();
             data.level = level.get();
-            data.tier = rune.Tier();
+            data.tier = rune.getTier();
 
             data.armor = StatModData.NewRandom(data.getRarity(), RandomUtils.weightedRandom(rune.armorStat()));
 

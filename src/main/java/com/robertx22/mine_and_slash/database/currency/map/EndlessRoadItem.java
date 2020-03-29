@@ -66,8 +66,8 @@ public class EndlessRoadItem extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public int Tier() {
-        return 3;
+    public int getTier() {
+        return 2;
     }
 
     @Override

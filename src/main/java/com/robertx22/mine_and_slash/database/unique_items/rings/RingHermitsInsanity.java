@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -31,8 +32,8 @@ public class RingHermitsInsanity implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 4;
+    public int getTier() {
+        return 3;
     }
 
     @Override
@@ -48,7 +49,8 @@ public class RingHermitsInsanity implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new HealthPercent().size(StatMod.Size.TRIPLE_LESS),
+            new HealthPercent().size(StatMod.Size.DOUBLE_LESS),
+            new MagicShieldPercent().size(StatMod.Size.DOUBLE_LESS),
             new CriticalDamagePercent().size(StatMod.Size.TRIPLE));
     }
 

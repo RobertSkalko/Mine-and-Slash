@@ -350,7 +350,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
             if (isUnique) {
                 try {
                     tier = this.uniqueStats.getUnique()
-                        .Tier();
+                        .getTier();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -423,12 +423,12 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
 
         if (this.isUnique()) {
             try {
                 return this.uniqueStats.getUnique()
-                    .Tier();
+                    .getTier();
             } catch (Exception e) {
                 e.printStackTrace();
             }

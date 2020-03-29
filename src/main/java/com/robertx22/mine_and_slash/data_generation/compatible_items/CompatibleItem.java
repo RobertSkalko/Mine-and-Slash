@@ -303,7 +303,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
             List<IUnique> possible = SlashRegistry.UniqueGears()
                 .getFiltered(x -> x.getGearSlot()
                     .GUID()
-                    .equals(item_type) && x.Tier() <= if_unique_random_up_to_tier);
+                    .equals(item_type) && x.getTier() <= if_unique_random_up_to_tier);
             if (possible.isEmpty()) {
                 System.out.println("There are no possible random uniques for item type of: " + item_type + " of unique tier of " + if_unique_random_up_to_tier + " or less.");
                 System.out.println("This won't prevent the compatible item from functioning, but it means whenever it tries to generate as unique, it will turn to fallback normal item.");

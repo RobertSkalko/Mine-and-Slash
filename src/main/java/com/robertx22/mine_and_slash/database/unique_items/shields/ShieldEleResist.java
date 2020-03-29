@@ -64,8 +64,8 @@ public class ShieldEleResist implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 5;
+    public int getTier() {
+        return 2;
     }
 }
 

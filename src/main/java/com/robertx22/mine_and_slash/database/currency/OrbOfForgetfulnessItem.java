@@ -50,8 +50,8 @@ public class OrbOfForgetfulnessItem extends CurrencyItem implements ICurrencyIte
     }
 
     @Override
-    public int Tier() {
-        return 10;
+    public int getTier() {
+        return 3;
     }
 
     @Override

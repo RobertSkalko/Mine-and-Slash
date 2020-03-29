@@ -31,8 +31,8 @@ public class CharmFire implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 12;
+    public int getTier() {
+        return 4;
     }
 
     @Override

@@ -25,7 +25,7 @@ public class QAR extends BaseUniqueRune {
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 3;
     }
 

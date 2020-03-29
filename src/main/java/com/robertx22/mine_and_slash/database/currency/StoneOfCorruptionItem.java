@@ -50,7 +50,7 @@ public class StoneOfCorruptionItem extends CurrencyItem implements ICurrencyItem
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 1;
     }
 

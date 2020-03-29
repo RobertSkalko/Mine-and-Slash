@@ -53,8 +53,8 @@ public class BowElemental implements IElementalUnique {
     }
 
     @Override
-    public int Tier() {
-        return 10;
+    public int getTier() {
+        return 3;
     }
 
     @Override

@@ -208,11 +208,6 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     @Override
-    public int Tier() {
-        return 0;
-    }
-
-    @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.GEAR_TYPE;
     }

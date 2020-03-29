@@ -125,11 +125,6 @@ public abstract class BaseRune implements IWeighted,
     }
 
     @Override
-    public int Tier() {
-        return 0;
-    }
-
-    @Override
     public String GUID() {
         return name().toLowerCase(Locale.ROOT);
     }

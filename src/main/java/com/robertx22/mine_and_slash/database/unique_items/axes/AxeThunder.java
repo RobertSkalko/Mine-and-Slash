@@ -30,8 +30,8 @@ public class AxeThunder implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 11;
+    public int getTier() {
+        return 3;
     }
 
     @Override

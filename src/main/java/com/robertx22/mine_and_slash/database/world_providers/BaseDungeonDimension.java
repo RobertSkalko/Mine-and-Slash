@@ -55,8 +55,8 @@ public abstract class BaseDungeonDimension extends Dimension implements IWP, IRa
     }
 
     @Override
-    public int Tier() {
-        return 0;
+    public int getTier() {
+        return 1;
     }
 
     @Override

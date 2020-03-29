@@ -45,6 +45,10 @@ public class NormalStatTooltip implements IStatTooltipType {
 
         ITextComponent str = new StringTextComponent("");
 
+        if (info.stat.getElement() != null && info.stat.getElement() != Elements.Physical) { // todo unsure if good
+            str.appendText("" + info.stat.getElement().format + "(" + info.stat.getElement().icon + ") " + TextFormatting.GRAY + "");
+        }
+
         if (info.type.equals(StatModTypes.Percent) && stat.IsPercent()) {
             if (info.firstValue > 0) {
                 str.appendSibling(Words.Increased.locName());
@@ -56,10 +60,6 @@ public class NormalStatTooltip implements IStatTooltipType {
         }
 
         str.appendSibling(stat.locName());
-
-        if (info.stat.getElement() != null && info.stat.getElement() != Elements.Physical) { // todo unsure if good
-            str.appendText("" + info.stat.getElement().format + " (" + info.stat.getElement().icon + ")" + TextFormatting.GRAY + "");
-        }
 
         if (info.tooltipInfo.isSet == false) {
             return Styles.GRAYCOMP()

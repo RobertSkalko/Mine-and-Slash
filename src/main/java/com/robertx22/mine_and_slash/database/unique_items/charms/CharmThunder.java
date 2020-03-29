@@ -31,8 +31,8 @@ public class CharmThunder implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 19;
+    public int getTier() {
+        return 5;
     }
 
     @Override

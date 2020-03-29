@@ -37,8 +37,8 @@ public class PantsWater implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 13;
+    public int getTier() {
+        return 3;
     }
 
     @Override

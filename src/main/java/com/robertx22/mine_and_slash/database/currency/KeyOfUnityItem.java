@@ -65,8 +65,8 @@ public class KeyOfUnityItem extends CurrencyItem implements ICurrencyItemEffect,
     }
 
     @Override
-    public int Tier() {
-        return 15;
+    public int getTier() {
+        return 4;
     }
 
     @Override

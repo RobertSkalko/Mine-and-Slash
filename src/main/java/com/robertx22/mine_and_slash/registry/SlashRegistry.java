@@ -31,6 +31,8 @@ import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffe
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.data.StartPerkEffects;
+import com.robertx22.mine_and_slash.database.tiers.base.Tier;
+import com.robertx22.mine_and_slash.database.tiers.impl.TierOne;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.world_providers.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.DungeonDimension;
@@ -178,6 +180,10 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.AFFIX);
     }
 
+    public static SlashRegistryContainer<Tier> Tiers() {
+        return getRegistry(SlashRegistryType.TIER);
+    }
+
     public static SlashRegistryContainer<GearItemSlot> GearTypes() {
         return getRegistry(SlashRegistryType.GEAR_TYPE);
     }
@@ -303,6 +309,8 @@ public class SlashRegistry {
 
     private static void registerFromAllInits() {
 
+        new Tiers().registerAll();
+
         new Spells().registerAll(); // some stats are based on spells, so spells go first
         new Stats().registerAll();// STATS MUST BE INIT before STATMODS  cus statmods ARE DERIVED FROM STATS, or
         // should be at least
@@ -343,6 +351,7 @@ public class SlashRegistry {
 
         // data pack ones
         addRegistry(new SlashRegistryContainer<BaseRune>(SlashRegistryType.RUNE, EmptyRune.getInstance()).isDatapack());
+        addRegistry(new SlashRegistryContainer<Tier>(SlashRegistryType.TIER, new TierOne()).isDatapack());
         addRegistry(new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, EmptyUnique.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, EmptyRuneWord.getInstance()).isDatapack());

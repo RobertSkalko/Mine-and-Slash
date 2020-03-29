@@ -30,8 +30,8 @@ public class AxeWaterFire implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 16;
+    public int getTier() {
+        return 5;
     }
 
     @Override

@@ -13,8 +13,4 @@ public abstract class Suffix extends BaseAffix {
         return "suffix/";
     }
 
-    @Override
-    public int Tier() {
-        return 0;
-    }
 }

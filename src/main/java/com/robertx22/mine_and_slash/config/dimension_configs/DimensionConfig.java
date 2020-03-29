@@ -118,7 +118,7 @@ public class DimensionConfig implements ISlashRegistryEntry<DimensionConfig> {
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return this.MAP_TIER;
     }
 

@@ -76,7 +76,7 @@ public interface ISerializable<T> {
 
         if (this instanceof ITiered) {
             ITiered claz = (ITiered) this;
-            json.addProperty(TIER, claz.Tier());
+            json.addProperty(TIER, claz.getTier());
         }
 
         if (this instanceof ISlashRegistryEntry) {

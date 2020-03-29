@@ -65,8 +65,8 @@ public class PainfulLessonItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public int Tier() {
-        return 3;
+    public int getTier() {
+        return 2;
     }
 
     @Override

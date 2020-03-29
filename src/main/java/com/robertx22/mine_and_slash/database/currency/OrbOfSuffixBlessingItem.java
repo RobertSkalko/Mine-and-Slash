@@ -60,8 +60,8 @@ public class OrbOfSuffixBlessingItem extends CurrencyItem implements ICurrencyIt
     }
 
     @Override
-    public int Tier() {
-        return 14;
+    public int getTier() {
+        return 4;
     }
 
     @Override

@@ -35,8 +35,8 @@ public class HelmetNature implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 19;
+    public int getTier() {
+        return 5;
     }
 
     @Override
@@ -46,7 +46,10 @@ public class HelmetNature implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new HealthRegenFlat().size(StatMod.Size.HALF_MORE), new HealthPercent(), new ElementalResistFlat(Elements.Nature));
+        return Arrays.asList(
+            new HealthRegenFlat().size(StatMod.Size.DOUBLE),
+            new HealthPercent().size(StatMod.Size.DOUBLE),
+            new ElementalResistFlat(Elements.Nature));
     }
 
     @Override

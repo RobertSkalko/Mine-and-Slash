@@ -122,7 +122,7 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
 
         TooltipUtils.addEmpty(tooltip);
 
-        tooltip.add(TooltipUtils.tier(this.Tier()));
+        tooltip.add(TooltipUtils.tier(this.getTier()));
         tooltip.add(TooltipUtils.rarity(getRarity()));
         TooltipUtils.addEmpty(tooltip);
 

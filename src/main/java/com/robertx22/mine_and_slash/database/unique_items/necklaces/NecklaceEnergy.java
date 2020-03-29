@@ -34,8 +34,8 @@ public class NecklaceEnergy implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 16;
+    public int getTier() {
+        return 4;
     }
 
     @Override

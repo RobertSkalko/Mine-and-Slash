@@ -94,11 +94,6 @@ public abstract class LootCrate implements ISlashRegistryEntry {
     }
 
     @Override
-    public int Tier() {
-        return 0;
-    }
-
-    @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.LOOT_CRATE;
     }

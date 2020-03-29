@@ -40,8 +40,8 @@ public class NecklaceMagicShield implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 2;
+    public int getTier() {
+        return 1;
     }
 
     @Override

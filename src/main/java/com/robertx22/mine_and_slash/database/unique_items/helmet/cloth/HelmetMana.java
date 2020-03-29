@@ -30,8 +30,8 @@ public class HelmetMana implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 17;
+    public int getTier() {
+        return 5;
     }
 
     @Override

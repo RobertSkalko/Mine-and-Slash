@@ -13,6 +13,7 @@ import javax.annotation.Nullable;
 public enum SlashRegistryType {
     NONE("none"),
     STAT("stat"),
+    TIER("tier"),
     STATMOD("stat_mod"),
     CHAOS_STAT("chaos_stat"),
     RUNE("rune") {

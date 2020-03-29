@@ -73,7 +73,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 0;
     }
 

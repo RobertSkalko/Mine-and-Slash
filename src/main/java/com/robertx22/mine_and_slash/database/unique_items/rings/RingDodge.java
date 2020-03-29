@@ -37,7 +37,7 @@ public class RingDodge implements IUnique {
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 1;
     }
 

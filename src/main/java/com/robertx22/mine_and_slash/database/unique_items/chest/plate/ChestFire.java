@@ -29,8 +29,8 @@ public class ChestFire implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 6;
+    public int getTier() {
+        return 2;
 
     }
 

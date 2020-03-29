@@ -36,8 +36,8 @@ public class HelmetFire implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 17;
+    public int getTier() {
+        return 4;
     }
 
     @Override

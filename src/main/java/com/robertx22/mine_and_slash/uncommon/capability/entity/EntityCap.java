@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
+import com.robertx22.mine_and_slash.database.tiers.base.Tier;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -193,9 +194,7 @@ public class EntityCap {
 
         int getTier();
 
-        float getStatMultiplierIncreaseByTier();
-
-        float getDMGMultiplierIncreaseByTier();
+        Tier getMapTier();
 
         CustomStatsData getCustomStats();
 
@@ -964,13 +963,9 @@ public class EntityCap {
         }
 
         @Override
-        public float getStatMultiplierIncreaseByTier() {
-            return 1 + tier * 0.15F;
-        }
-
-        @Override
-        public float getDMGMultiplierIncreaseByTier() {
-            return 1 + tier * 0.18F;
+        public Tier getMapTier() {
+            return SlashRegistry.Tiers()
+                .get(this.tier + "");
         }
 
         @Override
@@ -1053,7 +1048,7 @@ public class EntityCap {
                 .getScaling()
                 .scale(data.getEventDamage(), data.sourceData.getLevel());
 
-            float num = vanilla * rar.DamageMultiplier() * data.sourceData.getDMGMultiplierIncreaseByTier();
+            float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
 
             num *= SlashRegistry.getEntityConfig(data.source, data.sourceData).DMG_MULTI;
 

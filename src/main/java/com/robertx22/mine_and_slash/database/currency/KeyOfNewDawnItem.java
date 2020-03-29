@@ -68,8 +68,8 @@ public class KeyOfNewDawnItem extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public int Tier() {
-        return 17;
+    public int getTier() {
+        return 5;
     }
 
     @Override

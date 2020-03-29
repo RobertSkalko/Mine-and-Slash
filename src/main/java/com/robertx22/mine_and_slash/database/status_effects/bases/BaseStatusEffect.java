@@ -40,7 +40,7 @@ public abstract class BaseStatusEffect implements IWeighted, ISlashRegistryEntry
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 0;
     }
 }

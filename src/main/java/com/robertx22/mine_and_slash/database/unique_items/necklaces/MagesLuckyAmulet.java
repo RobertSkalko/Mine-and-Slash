@@ -27,8 +27,8 @@ public class MagesLuckyAmulet implements IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 18;
+    public int getTier() {
+        return 5;
     }
 
     @Override

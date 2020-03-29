@@ -45,7 +45,7 @@ public enum AdvDescs implements IAutoLocName {
     Stoneofhope(
         "Recreates the item completely, giving you a higher rarity. Very useful if you have a legendary item " +
             "with" + " bad/unwanted stats. This item can only be gotten by using the map device to go kill " + "mobs in " + "adventure maps above tier " + new StoneOfHopeItem()
-            .Tier()),
+            .getTier()),
 
     AddAffix("Unique items have lower chance to gain affixes, that's why these currencies are so important"),
 

@@ -70,8 +70,8 @@ public class EleClothBoots implements IElementalUnique, IUnique {
     }
 
     @Override
-    public int Tier() {
-        return 2;
+    public int getTier() {
+        return 1;
     }
 
     @Override

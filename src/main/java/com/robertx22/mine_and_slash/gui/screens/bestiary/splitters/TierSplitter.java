@@ -22,11 +22,12 @@ public class TierSplitter<T extends ITiered> extends BaseSplitter<T> {
 
         List<T> uniques = group.getAll(lvl);
 
-        for (int tier = 0; tier < ITiered.MAX_TIER; tier++) {
+        int max = ITiered.getMaxTier();
+        for (int tier = 0; tier < max + 1; tier++) {
             int finalTier = tier;
 
             List<ItemStack> stackList = uniques.stream()
-                .filter(x -> x.Tier() == finalTier)
+                .filter(x -> x.getTier() == finalTier)
                 .map(x -> {
                     return group.createStack(lvl, x);
                 })

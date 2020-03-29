@@ -34,6 +34,7 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
     public enum Size {
         TRIPLE_LESS("crippled_", -3F),
+        DOUBLE_LESS("double_less_", -2F),
         ONE_LESS("much_less_", -1F),
         HALF_LESS("less_", -0.5F),
         QUARTER("tiny_", 0.25F),
@@ -110,11 +111,6 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     public Rarity getRarity() {
         return Rarities.Gears.get(getRarityRank());
 
-    }
-
-    @Override
-    public int Tier() {
-        return 0;
     }
 
     @Override

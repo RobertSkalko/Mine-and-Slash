@@ -60,7 +60,7 @@ public class CrystalOfLegendItem extends CurrencyItem implements ICurrencyItemEf
     }
 
     @Override
-    public int Tier() {
+    public int getTier() {
         return 0;
     }
 
