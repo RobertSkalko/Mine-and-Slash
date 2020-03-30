@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.map_events.base;
+package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
@@ -6,14 +6,9 @@ import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.RareMob;
 import com.robertx22.mine_and_slash.new_content.registry.MobPotionEffects;
 import com.robertx22.mine_and_slash.onevent.entity.OnMobSpawn;
-import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.saveclasses.MapEventsData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
@@ -26,20 +21,7 @@ import net.minecraft.world.World;
 
 import java.util.Arrays;
 
-public abstract class MapEvent implements ISlashRegistryEntry<MapEvent> {
-
-    public abstract void onActivate(World worlds);
-
-    public abstract int minutesEventLasts();
-
-    public void onMinutePassed(World world, MapEventsData.Data data) {
-
-    }
-
-    @Override
-    public SlashRegistryType getSlashRegistryType() {
-        return SlashRegistryType.MAP_EVENT;
-    }
+public class MobSpawnUtils {
 
     public static void announceEvent(World world, ITextComponent comp) {
         world.getPlayers()

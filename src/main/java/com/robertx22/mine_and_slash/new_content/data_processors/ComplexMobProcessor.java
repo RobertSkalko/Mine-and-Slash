@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.new_content.data_processors;
 
-import com.robertx22.mine_and_slash.database.map_events.base.MapEvent;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.mobs.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.new_content.data_processors.bases.ChunkProcessData;
 import com.robertx22.mine_and_slash.new_content.data_processors.bases.SpawnedMob;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.MobSpawnUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -126,7 +126,7 @@ public class ComplexMobProcessor extends DataProcessor {
 
             }
             for (int i = 0; i < amount; i++) {
-                MapEvent.summon(type, world, pos, rarity, addPotion, isBoss);
+                MobSpawnUtils.summon(type, world, pos, rarity, addPotion, isBoss);
             }
 
         } catch (Exception e) {

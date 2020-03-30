@@ -16,8 +16,6 @@ import com.robertx22.mine_and_slash.database.item_modifications.gear_items.AddCh
 import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
-import com.robertx22.mine_and_slash.database.map_events.base.MapEvent;
-import com.robertx22.mine_and_slash.database.map_events.impl.ZombieHordeEvent;
 import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
@@ -118,10 +116,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<PerkEffect> PerkEffects() {
         return getRegistry(SlashRegistryType.PERK_EFFECT);
-    }
-
-    public static SlashRegistryContainer<MapEvent> MapEvents() {
-        return getRegistry(SlashRegistryType.MAP_EVENT);
     }
 
     public static SlashRegistryContainer<Perk> Perks() {
@@ -337,7 +331,6 @@ public class SlashRegistry {
         new LootCrates().registerAll();
 
         new Bosses().registerAll();
-        new MapEvents().registerAll();
 
         new ChaosStats().registerAll();
 
@@ -385,7 +378,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<SpellPerkEffect>(SlashRegistryType.SPELL_PERK_EFFECT, null));
         addRegistry(new SlashRegistryContainer<SynergyPerkEffect>(SlashRegistryType.SYNERGY_EFFECT, null));
         addRegistry(new SlashRegistryContainer<Boss>(SlashRegistryType.BOSS, NecromancerBoss.getInstance()));
-        addRegistry(new SlashRegistryContainer<MapEvent>(SlashRegistryType.MAP_EVENT, ZombieHordeEvent.getInstance()));
     }
 
 }
