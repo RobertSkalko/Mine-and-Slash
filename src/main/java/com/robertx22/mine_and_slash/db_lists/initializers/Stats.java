@@ -109,6 +109,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new TheHierophant());
                     add(new TheMagician());
                     add(new TheMoon());
+                    add(new TheLovers());
                     add(new TheSun());
                     add(new TheWorld());
                     add(new Tower());

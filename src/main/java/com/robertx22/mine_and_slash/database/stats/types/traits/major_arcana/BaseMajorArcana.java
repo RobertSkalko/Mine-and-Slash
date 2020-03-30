@@ -16,4 +16,10 @@ public abstract class BaseMajorArcana extends Trait implements INameSuffix {
     public int getRarityRank() {
         return IRarity.Legendary;
     }
+
+    @Override
+    public int Weight() {
+        return 300;
+    }
+
 }

@@ -82,6 +82,8 @@ public class ChaosStats implements ISlashRegistryInit {
         all.add(new ChaosStat(majorArcanaReq, new TheFool()));
         all.add(new ChaosStat(majorArcanaReq, new TheHierophant()));
         all.add(new ChaosStat(majorArcanaReq, new TheMoon()));
+        all.add(new ChaosStat(majorArcanaReq, new TheLovers()));
+
         all.add(new ChaosStat(majorArcanaReq, new TheStar()));
         all.add(new ChaosStat(majorArcanaReq, new TheSun()));
         all.add(new ChaosStat(majorArcanaReq, new TheWorld()));
