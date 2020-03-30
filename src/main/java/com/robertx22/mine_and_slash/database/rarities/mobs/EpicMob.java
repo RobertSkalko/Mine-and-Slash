@@ -34,6 +34,11 @@ public class EpicMob extends BaseEpic implements MobRarity {
     }
 
     @Override
+    public String locNameForLangFile() {
+        return "Elite";
+    }
+
+    @Override
     public float oneAffixChance() {
         return 80;
     }

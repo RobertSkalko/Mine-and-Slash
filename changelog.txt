@@ -21,6 +21,8 @@
 * phys and ele attack damages now have number ranges (would you believe me if i told you this took about 10 hours to accomplish without bugtesting afterwards?)
 * trimmed down tiers from 20 to 5. The difficulty spike should be felt now.
 * most gear can now get elemental resists as secondary stats
+* added mob affixes, they're datapacks
+* renamed mob rarities
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

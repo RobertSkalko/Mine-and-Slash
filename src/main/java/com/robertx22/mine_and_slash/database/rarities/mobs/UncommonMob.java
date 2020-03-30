@@ -29,6 +29,11 @@ public class UncommonMob extends BaseUncommon implements MobRarity {
     }
 
     @Override
+    public String locNameForLangFile() {
+        return "Rare";
+    }
+
+    @Override
     public float LootMultiplier() {
         return 1.5F;
     }

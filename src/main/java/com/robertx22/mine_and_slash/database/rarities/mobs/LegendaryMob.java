@@ -34,6 +34,11 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
     }
 
     @Override
+    public String locNameForLangFile() {
+        return "Champion";
+    }
+
+    @Override
     public float oneAffixChance() {
         return 100;
     }

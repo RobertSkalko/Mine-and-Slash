@@ -29,6 +29,11 @@ public class RareMob extends BaseRare implements MobRarity {
     }
 
     @Override
+    public String locNameForLangFile() {
+        return "Veteran";
+    }
+
+    @Override
     public float LootMultiplier() {
         return 2;
     }

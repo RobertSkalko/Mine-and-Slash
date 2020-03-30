@@ -29,6 +29,11 @@ public class CommonMob extends BaseCommon implements MobRarity {
     }
 
     @Override
+    public String locNameForLangFile() {
+        return "Normal";
+    }
+
+    @Override
     public float LootMultiplier() {
         return 0.7F;
     }
