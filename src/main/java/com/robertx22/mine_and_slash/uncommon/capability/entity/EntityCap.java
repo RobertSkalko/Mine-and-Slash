@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.commands.open_gui.OpenHub;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
@@ -76,7 +77,6 @@ public class EntityCap {
     private static final String EXP = "exp";
     private static final String UUID = "uuid";
     private static final String MOB_SAVED_ONCE = "mob_saved_once";
-    private static final String CURRENT_MAP_ID = "current_map_resource_loc";
     private static final String SET_MOB_STATS = "set_mob_stats";
     private static final String NEWBIE_STATUS = "is_a_newbie";
     private static final String DMG_STATS = "dmg_stats";
@@ -86,7 +86,6 @@ public class EntityCap {
     private static final String SHOULD_SYNC = "SHOULD_SYNC";
     private static final String ENTITY_TYPE = "ENTITY_TYPE";
     private static final String RESOURCES_LOC = "RESOURCES_LOC";
-    private static final String AVG_GEAR_LVL = "AVG_GEAR_LVL";
 
     public interface UnitData extends ICommonPlayerCap, INeededForClient {
 
@@ -178,14 +177,6 @@ public class EntityCap {
 
         void onLogin(PlayerEntity player);
 
-        String getCurrentMapId();
-
-        void setCurrentMapId(String res);
-
-        boolean hasCurrentMapId();
-
-        void clearCurrentMapId();
-
         boolean decreaseRarity(LivingEntity entity);
 
         boolean isWeapon(GearItemData gear);
@@ -258,7 +249,6 @@ public class EntityCap {
         int exp = 0;
         boolean setMobStats = false;
         String uuid = "";
-        String currentMapResourceLoc = "";
         boolean isNewbie = true;
         boolean equipsChanged = true;
         int tier = 0;
@@ -319,7 +309,6 @@ public class EntityCap {
             nbt.putInt(TIER, tier);
             nbt.putString(UUID, uuid);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
-            nbt.putString(CURRENT_MAP_ID, currentMapResourceLoc);
             nbt.putBoolean(SET_MOB_STATS, setMobStats);
             nbt.putBoolean(NEWBIE_STATUS, this.isNewbie);
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
@@ -356,7 +345,6 @@ public class EntityCap {
             this.exp = nbt.getInt(EXP);
             this.tier = nbt.getInt(TIER);
             this.uuid = nbt.getString(UUID);
-            this.currentMapResourceLoc = nbt.getString(CURRENT_MAP_ID);
             this.setMobStats = nbt.getBoolean(SET_MOB_STATS);
             this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
             this.equipsChanged = nbt.getBoolean(EQUIPS_CHANGED);
@@ -722,14 +710,28 @@ public class EntityCap {
                 ITextComponent name = boss.isBoss() ? boss.getBoss()
                     .getNameFor(entity) : entity.getDisplayName();
 
+                MobAffix prefix = getUnit().getPrefix();
+                MobAffix suffix = getUnit().getSuffix();
+
+                ITextComponent finalName = prefix == null ? name : prefix.locName()
+                    .appendText(" ")
+                    .appendSibling(name);
+
+                if (suffix != null) {
+                    finalName.appendText(" ")
+                        .appendSibling(suffix.locName());
+                }
+
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
                     .appendSibling(new StringTextComponent("[Lv:" + this.getLevel() + "] "));
 
-                ITextComponent suffix = new StringTextComponent(rarity.textFormatting() + "").appendSibling(
+                ITextComponent part = new StringTextComponent(rarity.textFormatting() + "").appendSibling(
                     rarityprefix.appendText(" ")
-                        .appendSibling(name));
+                        .appendSibling(finalName));
 
-                return lvlcomp.appendSibling(suffix);
+                ITextComponent tx = lvlcomp.appendSibling(part);
+
+                return tx;
 
             }
         }
@@ -912,26 +914,6 @@ public class EntityCap {
                 return true;
 
             }
-        }
-
-        @Override
-        public String getCurrentMapId() {
-            return this.currentMapResourceLoc;
-        }
-
-        @Override
-        public void setCurrentMapId(String id) {
-            this.currentMapResourceLoc = id;
-        }
-
-        @Override
-        public boolean hasCurrentMapId() {
-            return this.currentMapResourceLoc.isEmpty() == false;
-        }
-
-        @Override
-        public void clearCurrentMapId() {
-            this.currentMapResourceLoc = "";
         }
 
         @Override

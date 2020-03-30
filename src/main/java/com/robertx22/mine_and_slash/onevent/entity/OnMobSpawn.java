@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
+import com.robertx22.mine_and_slash.database.rarities.MobRarity;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.onevent.entity.goals.OpenDungeonDoorsGoal;
 import com.robertx22.mine_and_slash.onevent.ontick.OnBossTick;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
@@ -142,7 +144,12 @@ public class OnMobSpawn {
         }
 
         endata.SetMobLevelAtSpawn(mapData, entity, nearestPlayer);
-        endata.setRarity(mob.randomRarity(entity, endata, boss));
+
+        int rar = mob.randomRarity(entity, endata, boss);
+        endata.setRarity(rar);
+
+        MobRarity rarity = Rarities.Mobs.get(rar);
+        mob.setRandomMobAffixes(rarity);
 
         endata.setUnit(mob, entity);
 

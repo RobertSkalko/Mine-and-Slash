@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.blocks.scrabble.ScrabbleTile;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
 import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
@@ -183,6 +184,7 @@ public class MMORPG {
         manager.addReloadListener(new SetDataPackManager());
         manager.addReloadListener(new AffixDataPackManager());
         manager.addReloadListener(new RuneDataPackManager());
+        manager.addReloadListener(new MobAffixDataPackManager());
         manager.addReloadListener(new RunewordDataPackManager());
         manager.addReloadListener(new UniqueGearDatapackManager());
         manager.addReloadListener(new CompatibleItemDataPackManager());

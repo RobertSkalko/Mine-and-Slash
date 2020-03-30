@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.mods.generated;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.BlockReflect;
@@ -16,6 +17,11 @@ public class BlockReflectFlat extends ElementalStatMod {
     @Override
     public MapWrapper<Elements, BlockReflect> getBaseStatMap() {
         return BlockReflect.MAP;
+    }
+
+    @Override
+    public final Stat GetBaseStat() {
+        return new BlockReflect(element);
     }
 
     @Override

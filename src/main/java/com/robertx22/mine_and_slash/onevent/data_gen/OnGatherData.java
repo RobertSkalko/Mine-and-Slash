@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.onevent.data_gen;
 
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
 import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
@@ -23,6 +24,8 @@ public class OnGatherData {
         gen.addProvider(new MyAdvProvider(gen));
 
         if (event.includeServer()) {
+
+            gen.addProvider(new MobAffixDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new TierDatapackManager().getDataPackCreator(gen));
             gen.addProvider(new SetDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new AffixDataPackManager().getDataPackCreator(gen));

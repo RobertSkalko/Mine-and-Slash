@@ -34,8 +34,13 @@ public class RareMob extends BaseRare implements MobRarity {
     }
 
     @Override
-    public int MaxMobEffects() {
-        return 2;
+    public float oneAffixChance() {
+        return 25;
+    }
+
+    @Override
+    public float bothAffixesChance() {
+        return 10;
     }
 
     @Override

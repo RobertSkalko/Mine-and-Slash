@@ -143,6 +143,8 @@ public class CreateLangFile {
 
         list.addAll(SlashRegistry.Sets()
             .getSerializable());
+        list.addAll(SlashRegistry.MobAffixes()
+            .getSerializable());
         list.addAll(SlashRegistry.RuneWords()
             .getSerializable());
         list.addAll(SlashRegistry.UniqueGears()

@@ -16,6 +16,7 @@ import com.robertx22.mine_and_slash.database.item_modifications.gear_items.AddCh
 import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
+import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
@@ -185,6 +186,10 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.RUNE);
     }
 
+    public static SlashRegistryContainer<MobAffix> MobAffixes() {
+        return getRegistry(SlashRegistryType.MOB_AFFIX);
+    }
+
     public static SlashRegistryContainer<RuneWord> RuneWords() {
         return getRegistry(SlashRegistryType.RUNEWORD);
     }
@@ -315,6 +320,7 @@ public class SlashRegistry {
         new WorldProviders().registerAll();
         new Sets().registerAll();
         new ItemModifications().registerAll();
+        new MobAffixes().registerAll();
 
         new PerkEffectsInit().registerAll();
         new SpellPerkEffectsInit().registerAll();
@@ -344,6 +350,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, EmptyRuneWord.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<Set>(SlashRegistryType.SET, new EmptySet()).isDatapack());
+        addRegistry(new SlashRegistryContainer<MobAffix>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
         addRegistry(new SlashRegistryContainer<CompatibleItem>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .isDatapack()

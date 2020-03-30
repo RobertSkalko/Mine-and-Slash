@@ -10,10 +10,12 @@ public interface MobRarity extends Rarity {
 
     public float StatMultiplier();
 
-    public int MaxMobEffects();
-
     public float LootMultiplier();
 
     public float ExpOnKill();
+
+    public float oneAffixChance();
+
+    public float bothAffixesChance();
 
 }

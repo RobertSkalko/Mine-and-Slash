@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.mods.generated;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalFocus;
@@ -16,6 +17,11 @@ public class ElementalFocusFlat extends ElementalStatMod {
     @Override
     public MapWrapper<Elements, ElementalFocus> getBaseStatMap() {
         return ElementalFocus.MAP;
+    }
+
+    @Override
+    public final Stat GetBaseStat() {
+        return new ElementalFocus(element);
     }
 
     @Override

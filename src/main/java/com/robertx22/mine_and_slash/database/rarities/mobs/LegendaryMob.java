@@ -34,8 +34,13 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
     }
 
     @Override
-    public int MaxMobEffects() {
-        return 3;
+    public float oneAffixChance() {
+        return 100;
+    }
+
+    @Override
+    public float bothAffixesChance() {
+        return 50;
     }
 
     @Override

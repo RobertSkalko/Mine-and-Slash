@@ -49,7 +49,7 @@ public class StatMods implements ISlashRegistryInit {
             {
                 {
 
-                    add(new ElementalSpellToAttackDMGPercent(Elements.Nature));
+                    add(new ElementalInfusionPercent(Elements.Nature));
                     add(new ElementalConversionFlat(Elements.Nature, Elements.Nature));
                     add(new ElementalTransferFlat(Elements.Nature, Elements.Nature));
                     add(new LootTypeBonusFlat(LootType.NormalItem));

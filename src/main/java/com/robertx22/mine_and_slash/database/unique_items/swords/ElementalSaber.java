@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.ElementalSpellToAttackDMGPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.ElementalInfusionPercent;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
@@ -35,7 +35,7 @@ public class ElementalSaber implements IElementalUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalHitFlat().size(StatMod.Size.HALF_MORE), new CriticalDamagePercent(), new ElementalSpellToAttackDMGPercent(element).size(StatMod.Size.HALF_MORE)
+        return Arrays.asList(new CriticalHitFlat().size(StatMod.Size.HALF_MORE), new CriticalDamagePercent(), new ElementalInfusionPercent(element).size(StatMod.Size.HALF_MORE)
         );
     }
 

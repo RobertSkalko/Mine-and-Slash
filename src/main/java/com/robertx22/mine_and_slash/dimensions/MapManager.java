@@ -152,8 +152,6 @@ public class MapManager {
 
         DimensionType type = getDungeonDimensionType();
 
-        unit.setCurrentMapId(map.mapUUID);
-
         PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
         data.init(pos, map, type, player);

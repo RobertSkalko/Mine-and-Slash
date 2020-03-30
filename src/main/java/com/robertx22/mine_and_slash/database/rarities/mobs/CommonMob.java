@@ -34,7 +34,12 @@ public class CommonMob extends BaseCommon implements MobRarity {
     }
 
     @Override
-    public int MaxMobEffects() {
+    public float oneAffixChance() {
+        return 0;
+    }
+
+    @Override
+    public float bothAffixesChance() {
         return 0;
     }
 

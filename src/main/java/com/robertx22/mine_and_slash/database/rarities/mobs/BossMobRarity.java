@@ -33,13 +33,18 @@ public class BossMobRarity extends BaseBossRarity implements MobRarity {
     }
 
     @Override
-    public int MaxMobEffects() {
-        return 1;
+    public float ExpOnKill() {
+        return 150;
     }
 
     @Override
-    public float ExpOnKill() {
-        return 150;
+    public float oneAffixChance() {
+        return 0;
+    }
+
+    @Override
+    public float bothAffixesChance() {
+        return 0;
     }
 
     @Override

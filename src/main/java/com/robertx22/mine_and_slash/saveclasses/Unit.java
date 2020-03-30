@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
@@ -60,6 +61,29 @@ public class Unit {
     public String GUID = UUID.randomUUID()
         .toString();
 
+    @Store
+    public String prefix;
+    @Store
+    public String suffix;
+
+    public MobAffix getPrefix() {
+        if (prefix == null) {
+            return null;
+        } else {
+            return SlashRegistry.MobAffixes()
+                .get(prefix);
+        }
+    }
+
+    public MobAffix getSuffix() {
+        if (suffix == null) {
+            return null;
+        } else {
+            return SlashRegistry.MobAffixes()
+                .get(suffix);
+        }
+    }
+
     @Nonnull
     public HashMap<String, StatData> getStats() {
 
@@ -96,6 +120,36 @@ public class Unit {
 
         return MyStats.getOrDefault(guid, StatData.empty());
 
+    }
+
+    public void setRandomMobAffixes(MobRarity rarity) {
+
+        if (RandomUtils.roll(rarity.bothAffixesChance())) {
+            randomizePrefix();
+            randomizeSuffix();
+        } else if (RandomUtils.roll(rarity.oneAffixChance())) {
+
+            if (RandomUtils.roll(50)) {
+                randomizePrefix();
+            } else {
+                randomizeSuffix();
+            }
+        }
+
+    }
+
+    public void randomizePrefix() {
+        this.prefix = SlashRegistry.MobAffixes()
+            .getFilterWrapped(x -> x.isPrefix())
+            .random()
+            .GUID();
+    }
+
+    public void randomizeSuffix() {
+        this.suffix = SlashRegistry.MobAffixes()
+            .getFilterWrapped(x -> x.isSuffix())
+            .random()
+            .GUID();
     }
 
     @Nonnull

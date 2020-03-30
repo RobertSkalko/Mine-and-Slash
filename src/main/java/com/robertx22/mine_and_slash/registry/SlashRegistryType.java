@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.sets.Set;
+import com.robertx22.mine_and_slash.db_lists.initializers.MobAffixes;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyRune;
@@ -14,6 +15,12 @@ public enum SlashRegistryType {
     NONE("none"),
     STAT("stat"),
     TIER("tier"),
+    MOB_AFFIX("mob_affix") {
+        @Override
+        public ISerializable getSerializer() {
+            return MobAffixes.EMPTY;
+        }
+    },
     STATMOD("stat_mod"),
     CHAOS_STAT("chaos_stat"),
     RUNE("rune") {
@@ -28,7 +35,6 @@ public enum SlashRegistryType {
             return EmptyRuneWord.getInstance();
         }
     },
-    STATUS_EFFECT("status_effect"),
     GEAR_TYPE("gear_type"),
     SPELL("spell"),
     AFFIX("affix") {
@@ -70,9 +76,7 @@ public enum SlashRegistryType {
     LOOT_CRATE("loot_crate"),
     QUEST("quest"),
     QUEST_REWARD("quest_reward"),
-    RECIPE("recipe"),
-    BOSS("boss"),
-    MAP_EVENT("map_event");
+    BOSS("boss");
 
     public String id;
 

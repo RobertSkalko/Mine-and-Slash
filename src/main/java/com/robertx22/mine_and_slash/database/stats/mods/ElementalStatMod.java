@@ -25,11 +25,6 @@ public abstract class ElementalStatMod<T extends ElementalStat> extends StatMod 
     public abstract MapWrapper<Elements, T> getBaseStatMap();
 
     @Override
-    public final Stat GetBaseStat() {
-        return getBaseStatMap().get(element);
-    }
-
-    @Override
     public final List<StatMod> generateAllPossibleStatVariations() {
 
         List<StatMod> list = new ArrayList<>();

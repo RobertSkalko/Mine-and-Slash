@@ -34,8 +34,13 @@ public class UncommonMob extends BaseUncommon implements MobRarity {
     }
 
     @Override
-    public int MaxMobEffects() {
-        return 1;
+    public float oneAffixChance() {
+        return 10;
+    }
+
+    @Override
+    public float bothAffixesChance() {
+        return 0;
     }
 
     @Override

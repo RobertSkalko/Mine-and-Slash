@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.mods.generated;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalPene;
@@ -16,6 +17,11 @@ public class ElementalPenePercent extends ElementalStatMod {
     @Override
     public StatMod newGeneratedInstance(Elements element) {
         return new ElementalPenePercent(element);
+    }
+
+    @Override
+    public final Stat GetBaseStat() {
+        return new ElementalPene(element);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.mods.generated;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
@@ -12,6 +13,11 @@ public class ElementalAttackDamageFlat extends ElementalStatMod {
     public ElementalAttackDamageFlat(Elements element) {
         super(element);
 
+    }
+
+    @Override
+    public final Stat GetBaseStat() {
+        return new ElementalAttackDamage(element);
     }
 
     @Override

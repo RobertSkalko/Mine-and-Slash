@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.mods.percent;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalInfusion;
@@ -7,15 +8,20 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
-public class ElementalSpellToAttackDMGPercent extends ElementalStatMod {
+public class ElementalInfusionPercent extends ElementalStatMod {
 
-    public ElementalSpellToAttackDMGPercent(Elements element) {
+    public ElementalInfusionPercent(Elements element) {
         super(element);
     }
 
     @Override
     public MapWrapper getBaseStatMap() {
         return ElementalInfusion.MAP;
+    }
+
+    @Override
+    public final Stat GetBaseStat() {
+        return new ElementalInfusion(element);
     }
 
     @Override
@@ -35,7 +41,7 @@ public class ElementalSpellToAttackDMGPercent extends ElementalStatMod {
 
     @Override
     public StatMod newGeneratedInstance(Elements element) {
-        return new ElementalSpellToAttackDMGPercent(element);
+        return new ElementalInfusionPercent(element);
     }
 
 }

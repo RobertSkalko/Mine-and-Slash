@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CompletePhysDispersionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.ElementalSpellToAttackDMGPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.ElementalInfusionPercent;
 import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -37,7 +37,7 @@ public class EleSpellDmgStaff implements IElementalUnique {
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
             new ElementalSpellToAttackDMGFlat(element).size(StatMod.Size.HALF_MORE),
-            new ElementalSpellToAttackDMGPercent(element).size(StatMod.Size.HALF_MORE),
+            new ElementalInfusionPercent(element).size(StatMod.Size.HALF_MORE),
             new CompletePhysDispersionFlat()
         );
     }
