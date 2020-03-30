@@ -8,9 +8,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
@@ -49,26 +47,6 @@ public class CommonStatUtils {
                 }
             }
         }
-    }
-
-    public static void AddStatusEffectStats(Unit unit, int level) {
-
-        for (StatusEffectData status : unit.statusEffects.values()) {
-            List<IStatModsContainer.LevelAndStats> levelsandstats = status.GetAllStats(level);
-            for (IStatModsContainer.LevelAndStats levelstat : levelsandstats) {
-                for (StatModData statModData : levelstat.mods) {
-                    StatData statData = unit.getCreateStat(statModData.getStatMod()
-                        .GetBaseStat());
-                    if (statData == null) {
-
-                    } else {
-
-                        statData.add(statModData, level);
-                    }
-                }
-            }
-        }
-
     }
 
     public static void CalcTraitsAndCoreStats(UnitData unit) {

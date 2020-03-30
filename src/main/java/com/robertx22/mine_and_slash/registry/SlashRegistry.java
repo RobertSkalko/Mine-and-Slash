@@ -25,7 +25,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerkEffect;
 import com.robertx22.mine_and_slash.database.spells.spell_tree.SynergyPerkEffect;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkEffect;
 import com.robertx22.mine_and_slash.database.talent_tree.data.StartPerkEffects;
@@ -152,10 +151,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<CompatibleItem> CompatibleItems() {
         return getRegistry(SlashRegistryType.COMPATIBLE_ITEM);
-    }
-
-    public static SlashRegistryContainer<BaseStatusEffect> StatusEffects() {
-        return getRegistry(SlashRegistryType.STATUS_EFFECT);
     }
 
     public static SlashRegistryContainer<BaseMapAffix> MapAffixes() {
@@ -316,7 +311,6 @@ public class SlashRegistry {
         new MapAffixes().registerAll();
         new Prefixes().registerAll();
         new Suffixes().registerAll();
-        new StatusEffects().registerAll();
         new UniqueGears().registerAll();
         new WorldProviders().registerAll();
         new Sets().registerAll();
@@ -362,7 +356,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<ChaosStat>(SlashRegistryType.CHAOS_STAT, ChaosStat.empty()));
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
         addRegistry(new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
-        addRegistry(new SlashRegistryContainer<BaseStatusEffect>(SlashRegistryType.STATUS_EFFECT, new EmptyStatusEffect()));
         addRegistry(new SlashRegistryContainer<BaseDungeonDimension>(SlashRegistryType.WORLD_PROVIDER, new DungeonDimension(null, null)));
         addRegistry(new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));

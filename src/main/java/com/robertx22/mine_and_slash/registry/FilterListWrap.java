@@ -13,7 +13,10 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -118,28 +121,6 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
                 .collect(Collectors.toList());
         }
 
-        return this;
-    }
-
-    public FilterListWrap<C> randomAmountWithoutDuplicates(int amount) {
-
-        HashSet<C> set = new HashSet<>();
-
-        if (amount > list.size()) {
-
-            MMORPG.logError("ERROR! Can't have more random items than there are items in registry!");
-
-            amount = SlashRegistry.StatusEffects()
-                .getSize() - 1;
-        }
-        int tries = 0;
-
-        while (set.size() < amount && tries < 5) {
-            set.add(random());
-            tries++;
-        }
-
-        this.list = new ArrayList<>(set);
         return this;
     }
 

@@ -16,9 +16,7 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
 
@@ -117,26 +115,4 @@ public class MobStatUtils {
 
     }
 
-    // this apparently takes 60 ms
-    public static void AddRandomMobStatusEffects(LivingEntity entity, Unit unit, MobRarity rarity) {
-
-        int max = rarity.MaxMobEffects();
-
-        if (max > 0) {
-            if (max > SlashRegistry.StatusEffects()
-                .getSize()) {
-                System.out.println("ERROR! Can't have more unique effects than there are effects!");
-                max = SlashRegistry.StatusEffects()
-                    .getSize() - 1;
-            }
-
-            int amount = RandomUtils.RandomRange(0, max);
-
-            SlashRegistry.StatusEffects()
-                .getWrapped()
-                .randomAmountWithoutDuplicates(amount).list.forEach(
-                x -> unit.statusEffects.put(x.GUID(), new StatusEffectData(x)));
-
-        }
-    }
 }

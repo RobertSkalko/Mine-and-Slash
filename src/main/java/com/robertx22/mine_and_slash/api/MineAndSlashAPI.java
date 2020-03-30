@@ -1,9 +1,7 @@
 package com.robertx22.mine_and_slash.api;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.status_effects.bases.BaseStatusEffect;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 
 //Some methods have been removed as i resigned the system to work with datapacks.
@@ -20,16 +18,6 @@ public class MineAndSlashAPI {
         SlashRegistry.Spells()
             .register(spell);
 
-    }
-
-    public static void addMobEffect(BaseStatusEffect effect) {
-        SlashRegistry.StatusEffects()
-            .register(effect);
-    }
-
-    public static void addGearItemType(GearItemSlot type) {
-        SlashRegistry.GearTypes()
-            .register(type);
     }
 
 }

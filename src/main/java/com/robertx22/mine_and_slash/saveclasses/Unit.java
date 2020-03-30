@@ -18,7 +18,6 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.effects.StatusEffectData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
@@ -56,9 +55,6 @@ public class Unit {
 
     @Store
     public WornSetsContainerData wornSets = new WornSetsContainerData();
-
-    @Store
-    public HashMap<String, StatusEffectData> statusEffects = new HashMap<String, StatusEffectData>();
 
     @Store
     public String GUID = UUID.randomUUID()
@@ -429,8 +425,6 @@ public class Unit {
             PlayerStatUtils.AddAllGearStats(entity, gears, data, level);
             PlayerStatUtils.AddAllSetStats(entity, data, this, level);
         }
-
-        CommonStatUtils.AddStatusEffectStats(this, level);
 
         if (isMapWorld) {
             CommonStatUtils.AddMapAffixStats(mapData, this, level, entity);
