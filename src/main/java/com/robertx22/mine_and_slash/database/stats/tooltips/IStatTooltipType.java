@@ -10,6 +10,8 @@ import net.minecraft.util.text.StringTextComponent;
 
 import java.util.List;
 
+import static com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils.trimFloat;
+
 public interface IStatTooltipType {
     List<ITextComponent> getTooltipList(TooltipStatInfo info);
 
@@ -26,11 +28,12 @@ public interface IStatTooltipType {
 
         if (data.getStatMod()
             .usesNumberRanges()) {
-            str = " (" + min.getFirstValue(level) + " - " + max.getFirstValue(level) + ")/";
-            str += " (" + min.getSecondValue(level) + " - " + max.getSecondValue(level) + ")";
+            str = " (" + trimFloat(min.getFirstValue(level)) + " - " + trimFloat(max.getFirstValue(level)) + ")/";
+            str += " (" + trimFloat(min.getSecondValue(level)) + " - " + trimFloat(max.getSecondValue(level)) + ")";
 
         } else {
-            str = " (" + min.printValue(level) + " - " + max.printValue(level) + ")";
+
+            str = " (" + trimFloat(min.getFirstValue(level)) + " - " + trimFloat(max.getFirstValue(level)) + ")";
         }
 
         return Styles.GREENCOMP()

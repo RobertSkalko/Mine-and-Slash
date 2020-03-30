@@ -15,7 +15,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -165,31 +164,6 @@ public class StatModData extends BaseStatContainer {
     private float getSecondActualValueWithoutMin() {
         StatMod mod = getStatMod();
         return (mod.getMaxSecond() * percent / 100);
-    }
-
-    public String printValue(int level) {
-
-        float v1 = getFirstValue(level);
-        float v2 = getFirstValue(level);
-
-        DecimalFormat format = new DecimalFormat();
-        format.setMaximumFractionDigits(1);
-
-        if (v1 == v2) {
-            if (Math.abs(v1) < 10) {
-                return format.format(v1);
-            } else {
-                int intval = (int) v1;
-                return (int) v1 + "";
-            }
-        } else {
-            if (Math.abs(v1) < 10) {
-                return format.format(v1) + "-" + format.format(v2);
-            } else {
-                return (int) v1 + "-" + (int) v2;
-            }
-        }
-
     }
 
     @Override

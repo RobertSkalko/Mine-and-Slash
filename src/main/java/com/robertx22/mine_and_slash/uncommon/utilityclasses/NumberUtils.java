@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 
+import java.text.DecimalFormat;
+
 public class NumberUtils {
     private static String formatNumber(int number, int divided, String letter) {
         int amount = number / divided;
@@ -21,6 +23,21 @@ public class NumberUtils {
 
     public static String formatNumber(float number) {
         return formatNumber((int) number);
+    }
+
+    static DecimalFormat format = new DecimalFormat();
+
+    static {
+        format = new DecimalFormat();
+        format.setMaximumFractionDigits(1);
+    }
+
+    public static String trimFloat(float num) {
+        if (num < 10) {
+            return format.format(num);
+        } else {
+            return (int) num + "";
+        }
     }
 
     public static String formatNumber(int number) {
