@@ -4,16 +4,15 @@ import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Stamina;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,17 +45,15 @@ public class Charm extends BaseCurio {
 
     @Override
     public List<PosStats> getPossiblePrimaryStats() {
-        List<PosStats> list = new ArrayList<>();
-        new ElementalPeneFlat(Elements.Nature).allSingleElementVariations()
-            .stream()
-            .forEach(x -> list.add(new PosStats((StatMod) x)));
-        return list;
-
+        return Arrays.asList(
+            new PosStats(new HealthFlat()),
+            new PosStats(new MagicShieldFlat())
+        );
     }
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(new CoreStatFlat(Stamina.INSTANCE).generateAllPossibleStatVariations());
+        return new StatModsHolder(allResists(), new CoreStatFlat(Stamina.INSTANCE).generateAllPossibleStatVariations());
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class ElementalPurity extends BaseGameChangerTrait {
     @Override
     public List<ExactStatData> getExactStats() {
 
-        List<ExactStatData> list = AllElementalDamage.MAP.getList()
+        List<ExactStatData> list = new AllElementalDamage(Elements.Nature).generateAllSingleVariations()
             .stream()
             .map(x -> new ExactStatData(ELE_INCREASE, StatModTypes.Flat, x))
             .collect(Collectors.toList());

@@ -35,7 +35,7 @@ public class ClothPants extends BasePants {
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(clothArmorStats());
+        return new StatModsHolder(clothArmorSecondary());
     }
 
     @Override

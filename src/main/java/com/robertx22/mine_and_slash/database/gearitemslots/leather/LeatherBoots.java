@@ -35,7 +35,7 @@ public class LeatherBoots extends BaseBoots {
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(leatherArmorStats());
+        return new StatModsHolder(leatherArmorSecondary());
     }
 
     @Override

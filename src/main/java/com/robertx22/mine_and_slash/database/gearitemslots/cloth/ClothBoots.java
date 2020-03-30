@@ -36,7 +36,7 @@ public class ClothBoots extends BaseBoots {
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(clothArmorStats());
+        return new StatModsHolder(clothArmorSecondary());
     }
 
     @Override

@@ -36,7 +36,7 @@ public class ClothChest extends BaseChest {
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(clothArmorStats());
+        return new StatModsHolder(clothArmorSecondary());
     }
 
     @Override

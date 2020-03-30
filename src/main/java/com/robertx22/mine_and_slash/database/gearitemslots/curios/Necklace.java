@@ -7,10 +7,8 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.BonusExpFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemNecklace;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -46,16 +44,16 @@ public class Necklace extends BaseCurio {
 
     @Override
     public List<PosStats> getPossiblePrimaryStats() {
-        return Arrays.asList(new PosStats(new HealthRegenFlat()), new PosStats(new BonusExpFlat()),
+        return Arrays.asList(
+            new PosStats(new HealthRegenFlat()),
+            new PosStats(new BonusExpFlat()),
             new PosStats(new MagicShieldRegenFlat())
         );
     }
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
-
-        return new StatModsHolder(new ElementalResistFlat(Elements.Physical).allSingleElementVariations());
-
+        return new StatModsHolder(this.allResists());
     }
 
     @Override

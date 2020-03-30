@@ -23,7 +23,7 @@ public class PlateBoots extends BaseBoots {
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(plateArmorStats());
+        return new StatModsHolder(plateArmorSecondary());
     }
 
     @Override

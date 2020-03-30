@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.SpellDamage
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
@@ -33,6 +34,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import top.theillusivec4.curios.api.CuriosAPI;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -183,18 +185,32 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public abstract String resourceID();
 
-    public static List<StatMod> leatherArmorStats() {
-        return Arrays.asList(new ArmorFlat(), new CoreStatFlat(Dexterity.INSTANCE), new CoreStatFlat(Stamina.INSTANCE));
+    public static List<StatMod> leatherArmorSecondary() {
+        List<StatMod> list = new ArrayList<>();
+        list.add(new ArmorFlat());
+        list.add(new CoreStatFlat(Stamina.INSTANCE));
+        list.add(new CoreStatFlat(Dexterity.INSTANCE));
+        list.addAll(allResists());
+        return list;
     }
 
-    public static List<StatMod> plateArmorStats() {
-        return Arrays.asList(new ArmorFlat(), new CoreStatFlat(Vitality.INSTANCE), new CoreStatFlat(Strength.INSTANCE));
+    public static List<StatMod> plateArmorSecondary() {
+        List<StatMod> list = new ArrayList<>();
+        list.add(new ArmorFlat());
+        list.add(new CoreStatFlat(Vitality.INSTANCE));
+        list.add(new CoreStatFlat(Strength.INSTANCE));
+        list.addAll(allResists());
+        return list;
     }
 
-    public static List<StatMod> clothArmorStats() {
-        return Arrays.asList(new ArmorFlat().size(StatMod.Size.LOW), new ManaFlat().size(StatMod.Size.HALF_MORE), new CoreStatFlat(Intelligence.INSTANCE),
-            new CoreStatFlat(Wisdom.INSTANCE)
-        );
+    public static List<StatMod> clothArmorSecondary() {
+        List<StatMod> list = new ArrayList<>();
+        list.add(new ArmorFlat().size(StatMod.Size.LOW));
+        list.add(new ManaFlat().size(StatMod.Size.HALF_MORE));
+        list.add(new CoreStatFlat(Intelligence.INSTANCE));
+        list.add(new CoreStatFlat(Wisdom.INSTANCE));
+        list.addAll(allResists());
+        return list;
     }
 
     @Override
@@ -240,6 +256,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public int Weight() {
         return 1000;
+    }
+
+    public static List<StatMod> allResists() {
+        return new ElementalResistFlat(Elements.Physical).allSingleElementVariations();
     }
 
     public boolean isMageWeapon() {

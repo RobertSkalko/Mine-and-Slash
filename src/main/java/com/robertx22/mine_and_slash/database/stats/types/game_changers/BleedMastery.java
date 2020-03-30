@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.effects.game_changers.BleedMa
 import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
 import com.robertx22.mine_and_slash.potion_effects.all.BleedPotion;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
@@ -48,7 +49,7 @@ public class BleedMastery extends BaseGameChangerTrait implements IStatEffects {
 
     @Override
     public List<ExactStatData> getExactStats() {
-        return AllElementalDamage.MAP.getList()
+        return new AllElementalDamage(Elements.Nature).generateAllSingleVariations()
             .stream()
             .map(x -> new ExactStatData(-LOSE_PERC, StatModTypes.Flat, x))
             .collect(Collectors.toList());

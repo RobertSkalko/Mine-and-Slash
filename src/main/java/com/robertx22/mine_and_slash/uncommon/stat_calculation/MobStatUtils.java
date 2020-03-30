@@ -27,8 +27,6 @@ import java.util.stream.Collectors;
 public class MobStatUtils {
 
     static int spelldmg = 12;
-    static int elePene = 3;
-    static float resMulti = 1.5F;
 
     public static void increaseMobStatsPerTier(UnitData mobdata, Unit unit) {
 
@@ -99,7 +97,7 @@ public class MobStatUtils {
 
         unit.getCreateStat(Armor.GUID)
             .addFlat(Armor.getInstance()
-                .AverageStat() * resMulti * rar.StatMultiplier(), level);
+                .AverageStat() * rar.StatMultiplier(), level);
         unit.getCreateStat(CriticalHit.GUID)
             .addFlat(5 * rar.DamageMultiplier());
         unit.getCreateStat(CriticalDamage.GUID)
@@ -107,7 +105,7 @@ public class MobStatUtils {
 
         ElementalResist.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)
-                .addFlat(resMulti * rar.StatMultiplier(), level));
+                .addFlat(5 * rar.StatMultiplier(), level));
 
         ElementalSpellDamage.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)
@@ -115,7 +113,7 @@ public class MobStatUtils {
 
         ElementalPene.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)
-                .addFlat(elePene * rar.DamageMultiplier(), level));
+                .addFlat(4 * rar.DamageMultiplier(), level));
 
     }
 

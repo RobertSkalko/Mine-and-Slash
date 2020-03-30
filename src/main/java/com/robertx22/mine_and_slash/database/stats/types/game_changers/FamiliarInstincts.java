@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class FamiliarInstincts extends BaseGameChangerTrait {
     @Override
     public List<ExactStatData> getExactStats() {
 
-        List<ExactStatData> list = ElementalResist.MAP.getList()
+        List<ExactStatData> list = new ElementalResist(Elements.Nature).generateAllSingleVariations()
             .stream()
             .map(x -> new ExactStatData(INC, StatModTypes.Multi, x))
             .collect(Collectors.toList());

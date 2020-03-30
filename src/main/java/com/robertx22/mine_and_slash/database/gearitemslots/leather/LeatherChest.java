@@ -35,7 +35,7 @@ public class LeatherChest extends BaseChest {
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(leatherArmorStats());
+        return new StatModsHolder(leatherArmorSecondary());
     }
 
     @Override

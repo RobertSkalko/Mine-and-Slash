@@ -23,6 +23,11 @@ public class StatModsHolder implements ISerializable<StatModsHolder> {
             .collect(Collectors.toList());
     }
 
+    public StatModsHolder(List<StatMod> mods, List<StatMod> mods2) {
+        mods.forEach(x -> this.mods.add(x.GUID()));
+        mods2.forEach(x -> this.mods.add(x.GUID()));
+    }
+
     public StatModsHolder(StatMod mod) {
         this.mods = Arrays.asList(mod.GUID());
     }
@@ -31,6 +36,13 @@ public class StatModsHolder implements ISerializable<StatModsHolder> {
         for (StatMod mod : mods) {
             this.mods.add(mod.GUID());
         }
+    }
+
+    public StatModsHolder(List<StatMod> list, StatMod... mods) {
+        for (StatMod mod : mods) {
+            this.mods.add(mod.GUID());
+        }
+        list.forEach(x -> this.mods.add(x.GUID()));
     }
 
     private StatModsHolder() {

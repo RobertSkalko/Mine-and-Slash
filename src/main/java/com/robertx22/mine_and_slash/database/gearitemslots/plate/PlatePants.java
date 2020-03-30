@@ -23,7 +23,7 @@ public class PlatePants extends BasePants {
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(plateArmorStats());
+        return new StatModsHolder(plateArmorSecondary());
     }
 
     @Override
