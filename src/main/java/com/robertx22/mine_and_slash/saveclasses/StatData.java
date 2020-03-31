@@ -192,6 +192,21 @@ public class StatData {
 
     }
 
+    public void transferAllPreCalcTo(StatData other) {
+        addFullyTo(other);
+
+        this.Clear();
+        this.val = 0;
+        this.v2 = 0;
+    }
+
+    public void addFullyTo(StatData other) {
+        other.Flat += Flat;
+        other.Flat2 += Flat2;
+        other.Percent += Percent;
+        other.Multi += Multi;
+    }
+
     public void addExact(StatModTypes type, float value) {
         if (type == StatModTypes.Flat) {
             this.addFlat(value);

@@ -7,6 +7,7 @@ public class Tiers implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
+        new TierZero().addToSerializables();
         new TierOne().addToSerializables();
         new TierTwo().addToSerializables();
         new TierThree().addToSerializables();

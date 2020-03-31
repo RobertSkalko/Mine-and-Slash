@@ -33,7 +33,7 @@ public class ElementalPeneEffect extends BaseAnyEffect {
         if (effect instanceof IElementalPenetrable) {
             IElementalPenetrable ele = (IElementalPenetrable) effect;
             return ele.GetElement()
-                .equals(stat.getElement()) || stat.getElement()
+                .equals(stat.getElement()) && !stat.getElement()
                 .equals(Elements.Elemental);
         }
 

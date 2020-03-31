@@ -8,11 +8,6 @@ public class GearRequestedFor {
     public GearItemSlot forSlot;
     public GearItemData gearData;
 
-    public GearRequestedFor(GearItemSlot slot, GearItemData data) {
-        this.forSlot = slot;
-        this.gearData = data;
-    }
-
     public GearRequestedFor(GearItemData data) {
         this.forSlot = data.GetBaseGearType();
         this.gearData = data;

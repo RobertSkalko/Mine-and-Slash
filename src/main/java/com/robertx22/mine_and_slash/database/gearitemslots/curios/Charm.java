@@ -4,17 +4,16 @@ import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
+import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Stamina;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemCharm;
 import net.minecraft.item.Item;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Charm extends BaseCurio {
     public static GearItemSlot INSTANCE = new Charm();
@@ -45,15 +44,15 @@ public class Charm extends BaseCurio {
 
     @Override
     public List<PosStats> getPossiblePrimaryStats() {
-        return Arrays.asList(
-            new PosStats(new HealthFlat()),
-            new PosStats(new MagicShieldFlat())
-        );
+        return new CoreStatFlat(Stamina.INSTANCE).generateAllPossibleStatVariations()
+            .stream()
+            .map(x -> new PosStats(x.size(StatMod.Size.DOUBLE)))
+            .collect(Collectors.toList());
     }
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(allResists(), new CoreStatFlat(Stamina.INSTANCE).generateAllPossibleStatVariations());
+        return new StatModsHolder(allResists());
     }
 
     @Override

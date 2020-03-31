@@ -27,7 +27,8 @@ public class AllEleDmgEffectIfElement extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.element.equals(stat.getElement()) || stat.getElement().equals(Elements.Elemental);
+        return effect.element.equals(stat.getElement()) && !stat.getElement()
+            .equals(Elements.Elemental);
     }
 
 }
