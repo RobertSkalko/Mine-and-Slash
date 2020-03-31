@@ -26,6 +26,7 @@
 * hell lord shouldnt be able to spawn in wooden dungeons anymore
 * fix mobs dropping loot based on player level instead of mob level
 * made mobs have more thematic rarity names, this also allows them to be configured with the lang file
+* fire shouldnt be able to spread or destroy blocks in dungeon dimension anymore
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

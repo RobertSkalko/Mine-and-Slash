@@ -89,7 +89,9 @@ public abstract class BaseDungeonDimension extends Dimension implements IWP, IRa
 
     @Override
     public ModDimension newModDimension() {
-        return ModDimension.withFactory(classFactory());
+        ModDimension mod = ModDimension.withFactory(classFactory());
+
+        return mod;
     }
 
     @Override

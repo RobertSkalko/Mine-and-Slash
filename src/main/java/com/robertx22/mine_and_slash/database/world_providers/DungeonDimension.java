@@ -27,7 +27,14 @@ public class DungeonDimension extends BaseDungeonDimension {
 
     @Override
     public BiFunction<World, DimensionType, ? extends Dimension> classFactory() {
-        return DungeonDimension::new;
+        return (world1, type) -> {
+            DungeonDimension dim = new DungeonDimension(world1, type);
+
+            world1.worldInfo = new MyWorldInfo(world1.worldInfo);
+
+            return dim;
+
+        };
     }
 
     @Override
