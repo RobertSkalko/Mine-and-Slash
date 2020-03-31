@@ -2,7 +2,7 @@
 #              语言文件 - 简体中文(zh-CN)                          # 
 #          简体中文语言文件译者：'MCBBS-天空树'                    # 
 #              翻译反馈请联系QQ：1182193284                        # 
-#   本语言文件的最后一次更新由 '天空树' 在 '2020年03月22日' 进行   # 
+#   本语言文件的最后一次更新由 '天空树' 在 '2020年03月24日' 进行   # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # ##  
 
 {
@@ -95,6 +95,17 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "法术重置药(单点)",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "天赋重置药(单点)",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "法术重置药(全部)",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "属性重置药(全部)",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "天赋重置药(全部)",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.arcanists": "奥术师的",
@@ -169,7 +180,6 @@
 	"mmorpg.affix.of_trident_flurry": "之三叉戟乱舞",
 	"mmorpg.affix.of_vampirism": "之吸血",
 	"mmorpg.affix.of_vitality": "之活力",
-	"mmorpg.affix.of_wand_flurry": "之魔杖乱舞",
 	"mmorpg.affix.of_water_dissonance": "之冰霜失调",
 	"mmorpg.affix.of_water_storms": "之暴雪",
 	"mmorpg.affix.tenacious": "坚韧",
@@ -192,17 +202,6 @@
 	"mmorpg.affix.wise": "智慧",
 	
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "法术重置药(单点)",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "天赋重置药(单点)",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "法术重置药(全部)",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "属性重置药(全部)",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "天赋重置药(全部)",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 	
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
@@ -243,18 +242,18 @@
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§d黄金级通货盒(大)",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6仙阶级通货盒(大)",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§d黄金级装备盒(大)",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6仙阶级装备盒(大)",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§d黄金级通货盒(中)",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6仙阶级通货盒(中)",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§d黄金级装备盒(中)",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6仙阶级装备盒(中)",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§d黄金级通货盒(小)",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6仙阶级通货盒(小)",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§d黄金级装备盒(小)",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6仙阶级装备盒(小)",
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§d四阶通货盒(大)",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6五阶级通货盒(大)",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§d四阶装备盒(大)",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6五阶级装备盒(大)",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§d四阶通货盒(中)",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6五阶级通货盒(中)",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§d四阶装备盒(中)",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6五阶级装备盒(中)",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§d四阶通货盒(小)",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6五阶级通货盒(小)",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§d四阶装备盒(小)",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6五阶级装备盒(小)",
 
 "_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
@@ -482,7 +481,6 @@
 	"mmorpg.word.from": "From",
 	"mmorpg.word.frostball": "冰球术",
 	"mmorpg.word.fuel": "燃料",
-	"mmorpg.word.gear_modify": "装备强化",
 	"mmorpg.word.gears": "装备",
 	"mmorpg.word.geyser": "喷泉",
 	"mmorpg.word.good": "好评",
@@ -708,7 +706,6 @@
 	"mmorpg.stat.ele_staff_damage": "元素法杖伤害",
 	"mmorpg.stat.ele_sword_damage": "元素剑伤害",
 	"mmorpg.stat.ele_trident_damage": "元素三叉戟伤害",
-	"mmorpg.stat.ele_wand_damage": "元素魔杖伤害",
 	"mmorpg.stat.elemental": "元素之力",
 	"mmorpg.stat.elemental_affinity": "元素亲和",
 	"mmorpg.stat.elemental_penetration": "元素穿透",
@@ -831,7 +828,6 @@
 	"mmorpg.stat.trident_damage": "三叉戟伤害",
 	"mmorpg.stat.true_hit_trait": "真实伤害",
 	"mmorpg.stat.vitality": "体力",
-	"mmorpg.stat.wand_damage": "魔杖伤害",
 	"mmorpg.stat.water_affinity": "水系亲和",
 	"mmorpg.stat.water_focus": "水系专注",
 	"mmorpg.stat.water_penetration": "水系穿透",
@@ -872,7 +868,7 @@
 	"mmorpg.advancement.desc.orboftransmutation": "完全重新创造一个物品, 让它有机会获得更高的品阶. 最普遍的通货之一.",
 	"mmorpg.advancement.desc.repairstation": "装备修理台可用于修复你的装备. 将矿石(普通、下品等)放入燃料槽中, 然后放入物品进行修复. 如果放入能效珠将降低修复时燃料的消耗",
 	"mmorpg.advancement.desc.salvagestation": "将物品变成矿石, 有时也会变成通货.",
-	"mmorpg.advancement.desc.stoneofhope": "完全重新创造物品, 给与你一个更高的物品. 如果你有一个仙阶级的装备拥有不好的属性这将非常有用.",
+	"mmorpg.advancement.desc.stoneofhope": "完全重新创造物品, 给与你一个更高的物品. 如果你有一个五阶级的装备拥有不好的属性这将非常有用.",
 	"mmorpg.advancement.desc.welcomemineandslash": "这个模组是关于击杀怪物来获得好属性的装备并杀死更高级的怪物!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
@@ -925,7 +921,7 @@
 	"item.mmorpg.uniques.helmet.helmetwisdom0": "§e智慧头盔",
 	"item.mmorpg.uniques.necklace.necklace_magic_shield0": "§e精神坚韧项链",
 	"item.mmorpg.uniques.necklace.necklace_strength0": "§e隐藏力量项链",
-	"item.mmorpg.uniques.necklace.necklace_wisdom0": "§eAmulet of the Wisdom Seeker",
+	"item.mmorpg.uniques.necklace.necklace_wisdom0": "§e聪明探索者项链",
 	"item.mmorpg.uniques.necklace.necklaceenergy0": "§e内在精神项链",
 	"item.mmorpg.uniques.necklace.necklacefire0": "§e火人项链",
 	"item.mmorpg.uniques.necklace.necklacegambler0": "§e魔法师的幸运项链",
@@ -1307,7 +1303,7 @@
 	"item.mmorpg.currency.add_set.desc": "为装备添加一个套装属性",
 	"item.mmorpg.currency.add_suffix.desc": "添加一个后缀",
 	"item.mmorpg.currency.chaos_orb.desc": "永久添加一个混沌属性",
-	"item.mmorpg.currency.cheap_gear_lvl.desc": "装备等级提升5级",
+	"item.mmorpg.currency.cheap_gear_lvl.desc": "装备等级提升2级",
 	"item.mmorpg.currency.clear_runes.desc": "清除装备上的符文和符文之语.",
 	"item.mmorpg.currency.create_new_unique.desc": "转化为随机类型的天阶装备",
 	"item.mmorpg.currency.exp_map.desc": "将冒险地图上的战利品加成转化为经验加成, 乘以2.",
