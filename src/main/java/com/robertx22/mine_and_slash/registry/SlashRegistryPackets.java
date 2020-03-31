@@ -41,16 +41,13 @@ public class SlashRegistryPackets {
                     throw new RuntimeException("Registry list sent from server is empty!");
                 }
 
-                System.out.println(
-                    "Starting to register " + type.name() + " from server packet for Mine and Slash.");
-
                 list.forEach(x -> x.registerToSlashRegistry());
 
                 if (reg
                     .isEmpty()) {
                     throw new RuntimeException("Mine and Slash Registry of type " + reg.getType() + " is EMPTY after datapack loading!");
                 } else {
-                    System.out.println("Loading registry on client succeeded with: " + reg.getSize() + " entries.");
+                    System.out.println(type.name() + " registry load on client succeeded with: " + reg.getSize() + " entries.");
                 }
             });
 

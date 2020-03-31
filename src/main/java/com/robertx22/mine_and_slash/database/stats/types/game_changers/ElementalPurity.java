@@ -18,8 +18,8 @@ public class ElementalPurity extends BaseGameChangerTrait {
         return SingletonHolder.INSTANCE;
     }
 
-    static int ELE_INCREASE = 25;
-    static int PHYS_DECREASE = 50;
+    static int ELE_INCREASE = 15;
+    static int PHYS_DECREASE = 25;
 
     @Override
     public String locDescForLangFile() {

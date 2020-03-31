@@ -78,11 +78,8 @@ public class ModItems {
     }
 
     static <T extends Item> RegistryObject<T> item(Supplier<T> c, String id) {
-
         RegistryObject<T> wrap = REG.register(id, c);
-
         return wrap;
-
     }
 
     static RegistryObject<CurrencyItem> of(Supplier<CurrencyItem> c) {

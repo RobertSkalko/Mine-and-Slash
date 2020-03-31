@@ -41,7 +41,7 @@ public class RecklessBlows extends BaseGameChangerTrait {
 
         List<ExactStatData> list = new ElementalPene(Elements.Nature).generateAllSingleVariations()
             .stream()
-            .map(x -> new ExactStatData(50, StatModTypes.Multi, x))
+            .map(x -> new ExactStatData(25, StatModTypes.Multi, x))
             .collect(Collectors.toList());
 
         list.add(new ExactStatData(-50, StatModTypes.Multi, Armor.getInstance()));

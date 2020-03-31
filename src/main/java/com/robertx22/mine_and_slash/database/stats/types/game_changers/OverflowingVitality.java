@@ -1,17 +1,22 @@
 package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
+import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OverflowingVitality extends BaseGameChangerTrait implements IAffectsStats {
 
-    static int INCREASE = 2;
-    static int ELE_DECREASE = 25;
+    static int INCREASE = 1;
+    static int ELE_DECREASE = 10;
 
     private OverflowingVitality() {
     }
@@ -22,8 +27,7 @@ public class OverflowingVitality extends BaseGameChangerTrait implements IAffect
 
     @Override
     public String locDescForLangFile() {
-        return "Increases your physical damage by " + INCREASE + " Percent of your Health, but decrease all " +
-            "elemental attack damage by " + ELE_DECREASE + " percent.";
+        return "Increases your physical damage by " + INCREASE + " Percent of your Health.";
     }
 
     @Override
@@ -42,17 +46,22 @@ public class OverflowingVitality extends BaseGameChangerTrait implements IAffect
     }
 
     @Override
+    public List<ExactStatData> getExactStats() {
+
+        List<ExactStatData> list = new AllElementalDamage(Elements.Nature).generateAllSingleVariations()
+            .stream()
+            .map(x -> new ExactStatData(-ELE_DECREASE, StatModTypes.Multi, x))
+            .collect(Collectors.toList());
+
+        return list;
+    }
+
+    @Override
     public void affectStats(EntityCap.UnitData data, StatData statData) {
 
         float num = data.getUnit()
             .getCreateStat(Health.getInstance())
             .getAverageValue() * INCREASE / 100;
-
-        for (Stat stat : ElementalAttackDamage.MAP.getList()) {
-            data.getUnit()
-                .getCreateStat(stat)
-                .addMulti(-ELE_DECREASE);
-        }
 
         data.getUnit()
             .getCreateStat(PhysicalDamage.getInstance())

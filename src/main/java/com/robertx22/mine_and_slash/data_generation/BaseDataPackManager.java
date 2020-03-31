@@ -46,8 +46,6 @@ public abstract class BaseDataPackManager<T extends ISlashRegistryEntry> extends
 
         reg.unregisterAllEntriesFromDatapacks();
 
-        System.out.println("Starting to register " + registryType.id + " registry on the server from datapacks");
-
         mapToLoad.forEach((loc, json) -> {
             try {
                 T object = serializer.apply(json);
@@ -62,7 +60,7 @@ public abstract class BaseDataPackManager<T extends ISlashRegistryEntry> extends
             .isEmpty()) {
             throw new RuntimeException("Mine and Slash Registry of type " + registryType.id + " is EMPTY after datapack loading!");
         } else {
-            System.out.println("Register succeeded with: " + reg.getSize() + " entries.");
+            System.out.println(registryType.name() + " Registry succeeded loading: " + reg.getSize() + " datapack entries.");
         }
 
     }

@@ -6,10 +6,12 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Wisdom;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
@@ -55,7 +57,13 @@ public class NecklaceWisdom implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ManaFlat().size(StatMod.Size.HALF_MORE), new MagicShieldRegenFlat().size(StatMod.Size.HALF_MORE));
+        return Arrays.asList(
+            new ManaFlat().size(StatMod.Size.HALF_MORE),
+            new MagicShieldRegenFlat().size(StatMod.Size.HALF_MORE),
+            new ElementalResistFlat(Elements.Thunder),
+            new ElementalResistFlat(Elements.Fire)
+
+        );
     }
 
     @Override
