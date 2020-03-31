@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.rarities;
 
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 
 public interface MobRarity extends Rarity {
@@ -17,5 +18,10 @@ public interface MobRarity extends Rarity {
     public float oneAffixChance();
 
     public float bothAffixesChance();
+
+    @Override
+    public default String locNameLangFileGUID() {
+        return Ref.MODID + ".mob_rarity." + formattedGUID();
+    }
 
 }

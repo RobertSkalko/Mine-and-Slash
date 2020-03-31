@@ -44,7 +44,7 @@ public class RegistryPacket {
             .collect(Collectors.toList());
 
         if (list.isEmpty()) {
-            throw new RuntimeException("Registry is empty on the server when trying to send registry packet!");
+            throw new RuntimeException(type.name() + " Registry is empty on the server when trying to send registry packet!");
         }
 
         this.data = new ListStringData(list);

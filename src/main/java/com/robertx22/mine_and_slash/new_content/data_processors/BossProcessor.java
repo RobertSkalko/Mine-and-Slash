@@ -21,8 +21,14 @@ public class BossProcessor extends DataProcessor {
 
         EntityType<? extends MobEntity> type = SpawnedMob.random(data.getRoom()).type;
 
-        MobSpawnUtils.summonBoss(type, world, pos, SlashRegistry.Bosses()
-            .random());
+        if (data.getRoom().group.canSpawnFireMobs) {
+            MobSpawnUtils.summonBoss(type, world, pos, SlashRegistry.Bosses()
+                .random());
+        } else {
+            MobSpawnUtils.summonBoss(type, world, pos, SlashRegistry.Bosses()
+                .getFilterWrapped(x -> !x.isFire)
+                .random());
+        }
 
     }
 }

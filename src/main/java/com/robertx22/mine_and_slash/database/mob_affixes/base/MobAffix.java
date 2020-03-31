@@ -31,6 +31,11 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
         return this;
     }
 
+    @Override
+    public boolean isFromDatapack() {
+        return true;
+    }
+
     public boolean isPrefix() {
         return type == BaseAffix.Type.prefix;
     }

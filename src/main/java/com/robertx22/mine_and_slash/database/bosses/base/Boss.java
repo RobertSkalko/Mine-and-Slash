@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Boss implements ISlashRegistryEntry<Boss>, IApplyableStats {
+    public boolean isFire = false;
 
     public List<Synergy> synergies = new ArrayList<>();
     public List<TickAction> tickActions = new ArrayList<>();

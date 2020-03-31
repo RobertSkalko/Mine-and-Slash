@@ -11,6 +11,7 @@ import net.minecraft.util.text.ITextComponent;
 public class HellLordBoss extends BaseSummonerBoss {
 
     private HellLordBoss() {
+        this.isFire = true;
     }
 
     public static HellLordBoss getInstance() {

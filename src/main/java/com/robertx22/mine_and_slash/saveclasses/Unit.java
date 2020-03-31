@@ -463,6 +463,7 @@ public class Unit {
 
         } else {
             MobStatUtils.AddMobcStats(data, data.getLevel());
+            MobStatUtils.addAffixStats(data);
             MobStatUtils.worldMultiplierStats(entity.world, this);
             MobStatUtils.increaseMobStatsPerLevel(data);
 

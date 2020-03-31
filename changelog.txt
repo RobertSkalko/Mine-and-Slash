@@ -23,6 +23,9 @@
 * most gear can now get elemental resists as secondary stats
 * added mob affixes, they're datapacks
 * renamed mob rarities
+* hell lord shouldnt be able to spawn in wooden dungeons anymore
+* fix mobs dropping loot based on player level instead of mob level
+* made mobs have more thematic rarity names, this also allows them to be configured with the lang file
 
 3.4.2
 * creative players can now destroy dungeon blocks and place them.

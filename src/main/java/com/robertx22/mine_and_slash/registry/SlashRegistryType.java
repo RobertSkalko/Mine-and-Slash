@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.sets.Set;
+import com.robertx22.mine_and_slash.database.tiers.base.Tier;
 import com.robertx22.mine_and_slash.db_lists.initializers.MobAffixes;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
@@ -12,9 +13,15 @@ import com.robertx22.mine_and_slash.registry.empty_entries.EmptyUnique;
 import javax.annotation.Nullable;
 
 public enum SlashRegistryType {
+
     NONE("none"),
     STAT("stat"),
-    TIER("tier"),
+    TIER("tier") {
+        @Override
+        public ISerializable getSerializer() {
+            return Tier.SERIALIZER;
+        }
+    },
     MOB_AFFIX("mob_affix") {
         @Override
         public ISerializable getSerializer() {

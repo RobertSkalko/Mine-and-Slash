@@ -128,10 +128,14 @@ public class LootInfo {
             }
 
         } else {
-            if (playerData != null) {
-                level = playerData.getLevel();
+            if (mobData != null) {
+                level = mobData.getLevel();
             } else {
-                level = LevelUtils.determineLevel(world, pos, killer);
+                if (playerData != null) {
+                    level = playerData.getLevel();
+                } else {
+                    level = LevelUtils.determineLevel(world, pos, killer);
+                }
             }
         }
 

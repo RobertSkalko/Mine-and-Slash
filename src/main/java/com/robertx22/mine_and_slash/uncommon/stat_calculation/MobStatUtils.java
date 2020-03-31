@@ -42,6 +42,22 @@ public class MobStatUtils {
 
     }
 
+    public static void addAffixStats(UnitData data) {
+
+        if (data.getUnit()
+            .getPrefix() != null) {
+            data.getUnit()
+                .getPrefix()
+                .applyStats(data);
+        }
+        if (data.getUnit()
+            .getSuffix() != null) {
+            data.getUnit()
+                .getSuffix()
+                .applyStats(data);
+        }
+    }
+
     public static void increaseMobStatsPerLevel(UnitData mobdata) {
 
         float lvlMulti = 1 + (ModConfig.INSTANCE.Server.MOB_STRENGTH_PER_LEVEL_MULTI.get()
