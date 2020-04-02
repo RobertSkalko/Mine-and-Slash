@@ -34,7 +34,7 @@ public enum Words implements IAutoLocName {
     ThunderDash("Thunder Dash"), TripleSlash("Triple Slash"),
     Thunderstorm("Thunderstorm"), Stealth("Stealth"),
     ArrowBarrage("Arrow Barrage"), TripleShot("Triple Shot"), ArrowStorm("Arrow Storm"),
-    RecoilShot("Recoil Shot"),
+    RecoilShot("Recoil Shot"), TidalWave("Tidal Wave"),
     LightningTotem("Lightning Totem"),
     Volcano("Volcano"),
     Blizzard("Blizzard"),

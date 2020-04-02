@@ -55,6 +55,7 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> WHIRPOOL;
     public static final EntityType<? extends Entity> BLIZZARD;
     public static final EntityType<? extends Entity> GEYSER;
+    public static final EntityType<? extends Entity> TIDAL_WAVE;
 
     public static final EntityType<RangerArrowEntity> RANGER_ARROW;
     public static final EntityType<? extends Entity> ARROW_STORM;
@@ -73,6 +74,7 @@ public class EntityRegister {
         FROSTBOLT = projectile(FrostballEntity::new, FrostballEntity::new, "frostball");
         WHIRPOOL = projectile(WhirlpoolEntity::new, WhirlpoolEntity::new, "whirlpool");
         GEYSER = projectile(GeyserEntity::new, GeyserEntity::new, "geyser");
+        TIDAL_WAVE = projectile(TidalWaveEntity::new, TidalWaveEntity::new, "tidal_wave");
 
         POISON_BALL = projectile(PoisonBallEntity::new, PoisonBallEntity::new, "poison_ball");
 

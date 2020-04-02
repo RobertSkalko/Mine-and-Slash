@@ -10,7 +10,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.network.play.server.SSpawnGlobalEntityPacket;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+
+import java.util.function.Function;
 
 public class SpellUtils {
 
@@ -40,6 +43,31 @@ public class SpellUtils {
         ((Entity) projectile).setPosition(pos.x, caster.getPosY() + caster.getEyeHeight() - 0.1F, pos.z);
 
         projectile.shoot(caster, caster.rotationPitch, caster.rotationYaw, 0.0F, speed, 1F);
+
+    }
+
+    public static void castTripleProjectileInCone(float apart, BaseSpell spell, Function<World, AbstractArrowEntity> projectile, LivingEntity caster, float speed) {
+        World world = caster.world;
+
+        for (int i = 0; i < 3; i++) {
+
+            float f = 0;
+
+            if (i == 0) {
+                f = apart;
+            }
+            if (i == 2) {
+                f = -apart;
+            }
+            f *= 10;
+
+            AbstractArrowEntity en = (AbstractArrowEntity) SpellUtils.getSpellEntity(projectile.apply(world), spell, caster);
+            SpellUtils.setupProjectileForCasting(en, caster, speed, caster.rotationPitch,
+                caster.rotationYaw + f
+            );
+            caster.world.addEntity(en);
+
+        }
 
     }
 

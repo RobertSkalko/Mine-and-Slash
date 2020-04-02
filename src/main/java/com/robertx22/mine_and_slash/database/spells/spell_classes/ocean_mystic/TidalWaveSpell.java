@@ -1,11 +1,9 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ranger;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 
-import com.robertx22.mine_and_slash.database.spells.SpellUtils;
-import com.robertx22.mine_and_slash.database.spells.entities.proj.RangerArrowEntity;
+import com.robertx22.mine_and_slash.database.spells.ProjectileBuilder;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.TidalWaveEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
@@ -25,39 +23,23 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripleShotSpell extends BaseProjectileSpell {
+public class TidalWaveSpell extends BaseProjectileSpell {
 
-    private TripleShotSpell() {
-        this.castRequirements.add(BaseSpell.REQUIRE_SHOOTABLE);
+    private TidalWaveSpell() {
     }
 
-    public static TripleShotSpell getInstance() {
+    public static TidalWaveSpell getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public SpellSchools getSchool() {
-        return SpellSchools.RANGER;
+        return SpellSchools.OCEAN_MYSTIC;
     }
 
     @Override
     public int getCooldownInSeconds() {
-        return 10;
-    }
-
-    @Override
-    public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
-
-        if (player.world.isRemote) {
-            return true;
-        }
-
-        if (Synergies.TRIPLE_SHOT_HUNTER.has(player) && Synergies.TRIPLE_SHOT_HUNTER.canActivate(player)) {
-            Synergies.TRIPLE_SHOT_HUNTER.tryActivate(new CasterContext(player));
-            return false;
-        }
-
-        return true;
+        return 0;
     }
 
     @Override
@@ -67,22 +49,22 @@ public class TripleShotSpell extends BaseProjectileSpell {
 
     @Override
     public float getShootSpeed() {
-        return 1.5F;
+        return 0.9F;
     }
 
     @Override
     public AbstractArrowEntity newEntity(World world) {
-        return new RangerArrowEntity(world);
+        return new TidalWaveEntity(world);
     }
 
     @Override
     public SoundEvent getShootSound() {
-        return SoundEvents.ENTITY_ARROW_SHOOT;
+        return SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE;
     }
 
     @Override
     public String GUID() {
-        return "triple_shot";
+        return "tidal_wave";
     }
 
     @Override
@@ -92,7 +74,7 @@ public class TripleShotSpell extends BaseProjectileSpell {
 
     @Override
     public int useTimeTicks() {
-        return 10;
+        return 50;
     }
 
     @Override
@@ -102,13 +84,17 @@ public class TripleShotSpell extends BaseProjectileSpell {
 
     @Override
     public Elements getElement() {
-        return Elements.Elemental;
+        return Elements.Water;
     }
 
     @Override
     public boolean cast(LivingEntity caster, int ticksInUse) {
 
-        SpellUtils.castTripleProjectileInCone(1.5F, this, (world) -> newEntity(world), caster, getShootSpeed());
+        ProjectileBuilder builder = new ProjectileBuilder(this, (world) -> newEntity(world), caster);
+        builder.projectilesAmount = 5;
+        builder.shootSpeed = getShootSpeed();
+        builder.apart = 75;
+        builder.cast();
 
         if (getShootSound() != null) {
             SoundUtils.playSound(caster, getShootSound(), 1.0F, 1.0F);
@@ -118,11 +104,23 @@ public class TripleShotSpell extends BaseProjectileSpell {
     }
 
     @Override
+    public void onCastingTick(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int tick) {
+        if (tick % 10 == 0) {
+            this.cast(player, 0);
+        }
+    }
+
+    @Override
+    public boolean goesOnCooldownIfCastCanceled() {
+        return true;
+    }
+
+    @Override
     public List<ITextComponent> GetDescription(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Shoots multiple arrows in an arc: "));
+        list.add(new StringTextComponent("Throw waves in a cone, damaging enemies: "));
 
         list.addAll(getCalculation().GetTooltipString(info));
 
@@ -132,11 +130,10 @@ public class TripleShotSpell extends BaseProjectileSpell {
 
     @Override
     public Words getName() {
-        return Words.TripleShot;
+        return Words.TidalWave;
     }
 
     private static class SingletonHolder {
-        private static final TripleShotSpell INSTANCE = new TripleShotSpell();
+        private static final TidalWaveSpell INSTANCE = new TidalWaveSpell();
     }
 }
-

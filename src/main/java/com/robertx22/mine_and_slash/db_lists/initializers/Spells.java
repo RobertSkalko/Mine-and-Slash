@@ -38,6 +38,7 @@ public class Spells implements ISlashRegistryInit {
                     add(WhirlpoolSpell.getInstance());
                     add(HeartOfIceSpell.getInstance());
                     add(GeyserSpell.getInstance());
+                    add(TidalWaveSpell.getInstance());
 
                     add(InstantHealSpell.getInstance());
                     add(RighteousFurySpell.getInstance());

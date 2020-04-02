@@ -93,6 +93,11 @@ public class ArrowBarrageSpell extends BaseProjectileSpell {
     }
 
     @Override
+    public boolean goesOnCooldownIfCastCanceled() {
+        return true;
+    }
+
+    @Override
     public List<ITextComponent> GetDescription(TooltipInfo info) {
 
         List<ITextComponent> list = new ArrayList<>();
@@ -104,11 +109,6 @@ public class ArrowBarrageSpell extends BaseProjectileSpell {
 
         return list;
 
-    }
-
-    @Override
-    public boolean goesOnCooldownIfCastCanceled() {
-        return true;
     }
 
     @Override
