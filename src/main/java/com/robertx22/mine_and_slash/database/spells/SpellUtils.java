@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.network.play.server.SSpawnGlobalEntityPacket;
@@ -104,6 +105,22 @@ public class SpellUtils {
         se.initSpellEntity();
 
         return spellEntity;
+
+    }
+
+    public static <T extends TameableEntity> T spawnSummon(T spellEntity,
+
+                                                           BaseSpell spell,
+
+                                                           LivingEntity caster) {
+
+        T en = SpellUtils.getSpellEntity(spellEntity, spell, caster);
+        if (caster instanceof PlayerEntity) {
+            en.setTamedBy((PlayerEntity) caster);
+        }
+        caster.world.addEntity(en);
+
+        return en;
 
     }
 

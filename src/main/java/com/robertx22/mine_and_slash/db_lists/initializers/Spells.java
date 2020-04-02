@@ -15,10 +15,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.ranger.*;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.rogue.BlinkStrikeSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.rogue.StealthSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.rogue.TripleSlashSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.LightningTotemSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.*;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
@@ -51,11 +48,13 @@ public class Spells implements ISlashRegistryInit {
                     add(ThornBushSpell.getInstance());
                     add(PoisonedWeaponsSpell.getInstance());
                     add(PoisonBallSpell.getInstance());
+                    add(new SummonSpidersSpell());
 
                     add(ThunderstormSpell.getInstance());
                     add(ThunderspearSpell.getInstance());
                     add(ThunderDashSpell.getInstance());
                     add(LightningTotemSpell.getInstance());
+                    add(new SpiritWolfSpell());
 
                     add(BlazingInfernoSpell.getInstance());
                     add(FireballSpell.getInstance());

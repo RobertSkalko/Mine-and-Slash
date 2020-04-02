@@ -8,6 +8,8 @@ import com.robertx22.mine_and_slash.database.spells.entities.proj.*;
 import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.FireballEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.FrostballEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.PoisonBallEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.summons.SpiderPetEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.summons.SpiritWolfPetEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mobs.entity.LeapingZombie;
@@ -67,6 +69,8 @@ public class EntityRegister {
     public static final EntityType<TraderEntity> TRADER;
 
     public static final EntityType<LeapingZombie> LEAPING_ZOMBIE;
+    public static final EntityType<SpiderPetEntity> SPIDER_PET;
+    public static final EntityType<SpiritWolfPetEntity> SPIRIT_WOLF_PET;
 
     static {
 
@@ -105,6 +109,20 @@ public class EntityRegister {
             .build(Ref.MODID + ":leaping_zombie");
         LEAPING_ZOMBIE.setRegistryName(new ResourceLocation(Ref.MODID, "leaping_zombie"));
         ENTITY_TYPES.add(LEAPING_ZOMBIE);
+
+        SPIDER_PET = EntityType.Builder.<SpiderPetEntity>create(SpiderPetEntity::new, EntityClassification.MONSTER).setCustomClientFactory(
+            SpiderPetEntity::new)
+            .size(1.4F, 0.9F)
+            .build(Ref.MODID + ":spider_pet");
+        SPIDER_PET.setRegistryName(new ResourceLocation(Ref.MODID, "spider_pet"));
+        ENTITY_TYPES.add(SPIDER_PET);
+
+        SPIRIT_WOLF_PET = EntityType.Builder.<SpiritWolfPetEntity>create(SpiritWolfPetEntity::new, EntityClassification.MONSTER).setCustomClientFactory(
+            SpiritWolfPetEntity::new)
+            .size(0.6F, 0.85F)
+            .build(Ref.MODID + ":spirit_wolf_pet");
+        SPIRIT_WOLF_PET.setRegistryName(new ResourceLocation(Ref.MODID, "spirit_wolf_pet"));
+        ENTITY_TYPES.add(SPIRIT_WOLF_PET);
 
     }
 

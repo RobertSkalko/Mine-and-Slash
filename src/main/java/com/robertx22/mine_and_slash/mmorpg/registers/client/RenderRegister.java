@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.MySpriteRenderer;
 import com.robertx22.mine_and_slash.database.spells.entities.special.RangerArrowRenderer;
+import com.robertx22.mine_and_slash.database.spells.entities.summons.SpiderPetRenderer;
+import com.robertx22.mine_and_slash.database.spells.entities.summons.WolfPetRenderer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mobs.renderer.ModZombieRenderer;
@@ -30,6 +32,8 @@ public class RenderRegister {
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.TRADER, TraderRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.LEAPING_ZOMBIE, ModZombieRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.SPIDER_PET, SpiderPetRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.SPIRIT_WOLF_PET, WolfPetRenderer::new);
 
     }
 

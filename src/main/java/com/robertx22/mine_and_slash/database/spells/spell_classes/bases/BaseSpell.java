@@ -83,7 +83,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         Aoe_Damage_Nova,
         LASTING_AOE,
         Dash,
-        Self_Buff,
+        Self_Buff, Summon,
         Aoe_Debuff // TODO TURN THESE INTO SINGLES AND ASK FOR LIST
     }
 

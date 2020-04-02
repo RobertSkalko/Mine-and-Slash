@@ -299,7 +299,7 @@ public enum Words implements IAutoLocName {
 
     Stats("Stats"),
 
-    Suffix("Suffix"),
+    Suffix("Suffix"), SummonSpiders("Summon Spiders"), SpiritWolves("Spirit Wolves"),
 
     Tier("Tier"),
 

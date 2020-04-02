@@ -39,7 +39,7 @@ public class TidalWaveSpell extends BaseProjectileSpell {
 
     @Override
     public int getCooldownInSeconds() {
-        return 0;
+        return 15;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class TidalWaveSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.5F, 0.6F, 5);
+        return SpellCalcData.allAttackAndSpellDamages(0.2F, 0.3F, 4);
     }
 
     @Override
