@@ -5,6 +5,9 @@ import com.robertx22.mine_and_slash.database.spells.entities.cloud.BlizzardEntit
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.ThunderstormEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.VolcanoEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.*;
+import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.FireballEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.FrostballEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.PoisonBallEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mobs.entity.LeapingZombie;
@@ -46,6 +49,8 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> FIREBOLT;
     public static final EntityType<? extends Entity> VOLCANO;
 
+    public static final EntityType<? extends Entity> POISON_BALL;
+
     public static final EntityType<? extends Entity> FROSTBOLT;
     public static final EntityType<? extends Entity> WHIRPOOL;
     public static final EntityType<? extends Entity> BLIZZARD;
@@ -68,6 +73,8 @@ public class EntityRegister {
         FROSTBOLT = projectile(FrostballEntity::new, FrostballEntity::new, "frostball");
         WHIRPOOL = projectile(WhirlpoolEntity::new, WhirlpoolEntity::new, "whirlpool");
         GEYSER = projectile(GeyserEntity::new, GeyserEntity::new, "geyser");
+
+        POISON_BALL = projectile(PoisonBallEntity::new, PoisonBallEntity::new, "poison_ball");
 
         THUNDERSTORM = projectile(ThunderstormEntity::new, ThunderstormEntity::new, "thunderstorm");
         THUNDER_SPEAR = projectile(ThunderspearEntity::new, ThunderspearEntity::new, "thunder_spear", false);

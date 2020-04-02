@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.spells.entities.proj;
+package com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseElementalBoltEntity;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;

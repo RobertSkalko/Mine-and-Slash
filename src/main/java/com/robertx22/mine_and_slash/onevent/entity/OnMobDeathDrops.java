@@ -10,10 +10,10 @@ import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.server_wide.TeamCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TeamUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -23,9 +23,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OnMobDeathDrops {
 
@@ -105,23 +103,7 @@ public class OnMobDeathDrops {
 
         if (exp > 0) {
 
-            TeamCap.ITeamData team = TeamCap.getCapability();
-
-            List<PlayerEntity> list = new ArrayList<>();
-
-            if (team.isPlayerInATeam((ServerPlayerEntity) killer)) {
-                list.addAll(team.getPlayersInTeam((ServerPlayerEntity) killer)
-                    .stream()
-                    .filter(x -> x.getDistance(killer) < 500)
-                    .collect(Collectors.toList()));
-            }
-
-            if (list == null) {
-                list = new ArrayList<>();
-            }
-            if (list.isEmpty()) {
-                list.add(killer);
-            }
+            List<PlayerEntity> list = TeamUtils.getOnlineTeamMembers(killer);
 
             exp /= list.size();
 

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 
-import com.robertx22.mine_and_slash.database.spells.entities.proj.FrostballEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.FrostballEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;

@@ -10,7 +10,7 @@ public class MyWorldInfo extends DerivedWorldInfo {
         super(info);
     }
 
-    MyGameRules myRules = new MyGameRules();
+    MyGameRules myRules = new MyGameRules(super.getGameRulesInstance());
 
     @Override
     public GameRules getGameRulesInstance() {

@@ -82,23 +82,36 @@ public class PlayerStatUtils {
             List<IStatModsContainer.LevelAndStats> levelstats = gear.GetAllStats(gear.level);
 
             for (IStatModsContainer.LevelAndStats datas : levelstats) {
+
+                if (datas == null) {
+                    continue;
+                }
+
                 for (StatModData data : datas.mods) {
 
-                    StatMod mod = data.getStatMod();
+                    try {
+                        if (data == null) {
+                            continue;
+                        }
 
-                    if (mod == null) {
-                        //  System.out.println(data.baseModName + " is null");
-                    } else {
-                        Stat stat = data.getStatMod()
-                            .GetBaseStat();
+                        StatMod mod = data.getStatMod();
 
-                        if (stat != null) {
-                            StatData statdata = unitdata.getUnit()
-                                .getCreateStat(stat);
-                            if (statdata != null) {
-                                statdata.add(data, datas.level);
+                        if (mod == null) {
+                            //  System.out.println(data.baseModName + " is null");
+                        } else {
+                            Stat stat = data.getStatMod()
+                                .GetBaseStat();
+
+                            if (stat != null) {
+                                StatData statdata = unitdata.getUnit()
+                                    .getCreateStat(stat);
+                                if (statdata != null) {
+                                    statdata.add(data, datas.level);
+                                }
                             }
                         }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
 

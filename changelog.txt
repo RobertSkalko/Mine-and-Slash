@@ -1,3 +1,13 @@
+3.5.2
+* bosses now spawn less minions but they're all max rarity
+* blocking fully now stops attack knockbacks. can't figure out how to stop the attack sounds though
+* made vanilla teams usable for exp and friendly fire off.
+
+
+3.5.1
+* should fix gamerules not working in dungeon
+* crash fix
+
 3.5.0
 * added bestiary (you'll see it in your main hub anyway)
 * added experimental way that makes thrown weapons work.
@@ -27,151 +37,3 @@
 * fix mobs dropping loot based on player level instead of mob level
 * made mobs have more thematic rarity names, this also allows them to be configured with the lang file
 * fire shouldnt be able to spread or destroy blocks in dungeon dimension anymore
-
-3.4.2
-* creative players can now destroy dungeon blocks and place them.
-* should fix mending wasting lvls if cant be repaired
-* repair station should accept fuels now with hoppers by side
-* now by default renders loot item names on ground
-* added a recipe to break down ores
-* ore/fuel ratio should have no loss now
-
-3.4.1
-* fix unique compatible items
-* fix mob damage level scaling being wrong.
-* implemented attack cooldown. Unsure if perfect. But at least i know it reduces damage based on the attack speed.
-* made attacks with 90%> attack cooldown get refunded energy and mana costs. So if you attack at 95%, you only use 95% energy.
-But if you attack with 20% attack cooldown, you use more energy. (up to change) Intended to encourage healthy clicking and some timing.
-* tuned up stat scaling (config)
-* hammers now only aoe when atk cooldown is refreshed enough
-* hammers do double damage if attacking only 1 target at refreshed cooldown. They should be good as main weapon now
-* reduced max default player lvl to 60
-* tweaked xp formula
-* reduced boss xp 
-* added nether dungeon theme
-
-3.4.0
-
-* removed mythic rarity, epics are now purple, rares are now blue. Higher rarities are now much better than lower ones
-* removed alchemy station, professions are a failed system. 
-* higher rarities now have more secondary stats
-* made mobs stronger at higher levels. 
-* removed item rarity configs, now they are configurable as datapacks (still unsure if they should be configs or datapacks but for now they can be datapacks..)
-* removed wands
-* fixed item dupe with bags with right clicking on offhand
-* removed infusion stats and the 6 items associated with them. I feel the system is kinda lame. It was basically just a power upgrade
-* reduced currency drops as a result
-* reduced player base stats (clear base stats config to notice)
-* armor is no longer given for free as a base stat. This means mages should rely less on it. No more free 20% armor!
-* reduced hunger default cost a bit (config)
-* made jewerly rarer
-* made wisdom the mage defense stat while int is the offense stat
-* increased ore spawns
-I feel this is a problem caused by addition of skill, spell and talent points, player gets increasingly stronger so game gets easier the higher level you are..
-You can also get stronger affixes, sets etc at high lvls. Gonna start with a 50% strength multiplier to lvl 100 mobs.
-* added more dev commands. 
-If you're in a dungeon and the room looks wrong (like entrance being blocked) or the there's a whole chunk missing,
- Do: /slash dev log dungeon_room when you're inside it.
-And send me the log. The command should tell me what room is faulty.
-* nerfed stone of corruption, now increases gear lvl by 2 and has 20% more break chance
-* overlays shouldnt render in spectator mode anymore
-* nerfed wis and int a bit
-* dungeons are now filled with obsidian if theres no room there. So less problems with mobs escaping into void.
-* reduced spell dmg gotten from stats
-* buffed arrow barrage and arrow storm
-* buffed higher rarity mob dmg a bit
-* reduced default stat scaling
-* elemental resist no longer reduces physical damage (... i found the balance problem)
-* elemental resist no longer reduces ele dmg after normal resists..
-In short, players with elemental resists should lose their immortality this patch.
-* fix shields blocking full amount always
-* items can now be modified even at max instability. But only if the config for breaking modified items is enabled.
-Basically, if you enable breaking, you can modify as much as you like as long as it doesn't break, but 
-if you disable breaking, the instability limit will act as the cap instead of the break chance.
-* should fix too much hunger spending, maybe it'd still be too high
-* unique gear now always has affixes and has a higher lower limit on stats.
-
-
-3.3.6
-* fix crash in map
-
-3.3.5
-* updated to newest forge
-* adjusted capacitor recipes
-* mobs in dungeons can now open wooden doors to haunt player, this doesnt seem to work all the time unfortunately but should add some more danger. 
-* added a trapped chest for dungeons 
-* added more structure block processors to accomodate some builds from the build-a-thon
-* added config for auto compatible items to be salvagable
-* made mobs in maps not take dmg from being stuck in wall, also they get knocked back around until they get unstuck now!
-* made my dungeon gen code a bit neater. Now i can make it so certain dungeon themes can only have certain other dungeon themes!
-Like i can set it so a snowy theme can't spawn together with a nether theme. This wasn't a problem when i only had stone brick and sandstone themes, but now it is.
-
-Build-a-thon results:
-* Added whole new dungeon themes you'll see often: icy spruce mansion, nature, mossy brick and mineshaft.
-* Added some other dungeon themes that will be rare because there aren't enough rooms: 	tent, brick, steampunk.
-* Added some dungeon rooms of existing types and some misc ones.
-
-The leaderboard rankings and rewards will be coming soonish when i discuss things with dreckz. 
-
-
-3.3.4
-* fix map loot being all lvl 1
-* fix painful lesson item giving a bit more than intended
-* made identify tomes more expensive
-3.3.3
-* fix vanilla gui type and polish a bit
-* can see lvl and exp in main hub now
-
-3.3.2
-* fix too high map dmg affix
-3.3.1
-* increased map startup cost.
-* when you sleep you now get a message you're refreshed, meaning map droprate is high for you now.
-* added a teleport back scroll, its craftable
-* changed mob dmg from spell to atk dmg to attack element dmg in maps.
-* fixed salvage outputs being stuck and not put into hoppers
-* repair station is now automatable too
-* fixed control not showing enchants
-* added vanilla like gui option that doesnt show numbers for hp energy etc and neither lvl or exp, but it looks nicer to me.
-* should fix crash on random
-
-3.3.0
-
-This is basically an economy update! I added new resource sinks, increased repair costs, reduced salvaged ores etc..
-I also added a new way to gain ores, salvaging currencies! 
-I'm trying to make it so there's no such thing as a useless item, and currencies before were useless if you didn't need them.
-Map device now needs fuel to start maps (why was dimensional travel free before!?) and now you can find a dungeon merchant in dungeons to spend your extra ores on.
-Oh and lots of items now need to be identified to be used. 
-In short, prepare for scarcity!
-
-The good thing is even if you hate the scarcity, i added some configs to let you control the costs of these resource sinks.
-
-* try fix lightning strikes being heard from everyone on server
-* confine random dungeons to world border as some mods might change it
-* regen should now cost hunger same as vanilla regen did before
-* health and magic shield no longer regen at low hunger.
-* gear and runes now salvage for ore 1 rarity bellow, capped at common at the bottom.
-* altered rarity drops
-* fixed loot crates in maps having too high chance to drop maps.
-* altered repair station fuel per ore rarity to be more in line with the actual craft value of the ores.
-* casting spells now damages weapon
-* reduced loot drops default config (needs server config clear)
-* some currencies are now salvagable. (ones with crafting recipes) This should help balance economy a bit.
-* updated chinese lang
-* removed tinkering station. Added most currencies back as recipes. (i really thought the tinkering station would be more fun.. IT'S NOT. So it's gone)
-* unified naming of reset potions and now they're craftable instead of needing alchemy station
-* map device now needs fuel same as repair station to activate maps.
-* added identify tome
-* items of higher rarities now have chance to be unidentified and need an identify tome to reveal it.
-* vanilla hp now factors into mob xp gained
-* added a trader npc
-* added a dungeon room that has the trader npc
-* added identify tomes and some food to dungeon chests
-
-Please tell me how the new changes feel.
-The goal is for normal play (without using mob farmers or automated ore farming) for resources to be scarce. 
-If i succeeded you're probably asking yourself whether to spend your ores buying gear from the merchant or crafting currencies. 
-You should also feel like completing the whole dungeon and taking everything from chests.
-
-If you feel lazy taking items from dungeon chests, feel the merchant prices are too cheap etc, then i probably failed.
-It's also possible i made it too hard and you won't have ores to repair gear.. Will see!

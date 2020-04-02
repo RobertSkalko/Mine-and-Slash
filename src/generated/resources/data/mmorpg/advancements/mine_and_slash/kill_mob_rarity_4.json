@@ -10,7 +10,7 @@
           "text": ": "
         },
         {
-          "translate": "mmorpg.rarity.legendary"
+          "translate": "mmorpg.mob_rarity.legendary"
         }
       ],
       "translate": "mmorpg.word.kill"

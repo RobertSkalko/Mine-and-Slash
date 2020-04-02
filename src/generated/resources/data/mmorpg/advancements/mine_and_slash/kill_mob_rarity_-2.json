@@ -10,7 +10,7 @@
           "text": ": "
         },
         {
-          "translate": "mmorpg.rarity.boss"
+          "translate": "mmorpg.mob_rarity.boss"
         }
       ],
       "translate": "mmorpg.word.kill"

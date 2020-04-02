@@ -1,6 +1,8 @@
 package com.robertx22.mine_and_slash.database.bosses.base;
 
+import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.MobSpawnUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
@@ -13,15 +15,15 @@ public abstract class BaseSummonerBoss extends com.robertx22.mine_and_slash.data
     @Override
     public void onHealthTreshholdTriggered(LivingEntity en, BossData.HealthTreshhold t) {
 
-        int amount = 2;
+        int amount = 1;
         if (t == BossData.HealthTreshhold.T_75) {
-            amount = 3;
+            amount = 1;
         } else if (t == BossData.HealthTreshhold.T_50) {
-            amount = 4;
+            amount = 2;
         } else if (t == BossData.HealthTreshhold.T_25) {
-            amount = 8;
+            amount = 2;
         } else if (t == BossData.HealthTreshhold.T_10) {
-            amount = 10;
+            amount = 3;
         }
 
         en.addPotionEffect(new EffectInstance(Effects.LEVITATION, 50, 1));
@@ -42,7 +44,7 @@ public abstract class BaseSummonerBoss extends com.robertx22.mine_and_slash.data
 
             MobEntity spawned = (MobEntity) getMinionType(en).create(en.world);
 
-            spawnMinion(p, spawned, en.world);
+            MobSpawnUtils.summon((EntityType<? extends MobEntity>) getMinionType(en), en.world, en.getPosition(), LegendaryMob.getInstance(), true, null);
 
         }
     }

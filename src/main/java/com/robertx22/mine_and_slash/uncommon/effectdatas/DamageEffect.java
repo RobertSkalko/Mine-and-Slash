@@ -13,13 +13,13 @@ import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.server_wide.TeamCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TeamUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -157,12 +157,20 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         removeKnockback = true;
     }
 
-    public boolean areOnSamePlayerTeam() {
+    public boolean areBothPlayers() {
         if (source instanceof ServerPlayerEntity && target instanceof ServerPlayerEntity) {
-            return TeamCap.getCapability()
-                .isOnSameTeam((ServerPlayerEntity) source, (ServerPlayerEntity) target);
+            return true;
         }
         return false;
+    }
+
+    public void cancelDamage() {
+        this.canceled = true;
+        if (event != null) {
+            event.setAmount(0);
+            event.setCanceled(true);
+        }
+        return;
     }
 
     @Override
@@ -172,8 +180,23 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             return;
         }
 
-        if (areOnSamePlayerTeam()) {
-            this.canceled = true;
+        if (areBothPlayers()) {
+            if (TeamUtils.areOnSameTeam((ServerPlayerEntity) source, (ServerPlayerEntity) target)) {
+                if (!source.getTeam()
+                    .getAllowFriendlyFire()) {
+                    cancelDamage();
+                    return;
+                }
+            }
+        }
+
+        if (this.removeKnockback || this.isFullyBlocked) {
+            BlockEffect.applyKnockbackResist(target);
+        }
+
+        if (!this.isDmgAllowed()) {
+            cancelDamage();
+            return;
         }
 
         DmgByElement info = getDmgByElement();
@@ -216,29 +239,18 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
 
         if (this.canceled) {
-            if (event != null) {
-                event.setAmount(0);
-                event.setCanceled(true);
-            }
-
+            cancelDamage();
             return;
         }
 
         MyDamageSource dmgsource = new MyDamageSource(dmgSourceName, this.source, element, (int) number);
-
-        if (this.removeKnockback) {
-            BlockEffect.applyKnockbackResist(target);
-        }
 
         if (this.isPartiallyBlocked) {
             dmgsource.setDamageBypassesArmor();
         }
 
         if (isDodged) {
-            if (event != null) {
-                event.setAmount(0);
-                event.setCanceled(true);
-            }
+            cancelDamage();
             SoundUtils.playSound(target, SoundEvents.ITEM_SHIELD_BLOCK, 1, 1.5F);
 
         } else {

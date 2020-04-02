@@ -30,7 +30,7 @@ public class CommonMob extends BaseCommon implements MobRarity {
 
     @Override
     public String locNameForLangFile() {
-        return "Normal";
+        return "Weak";
     }
 
     @Override

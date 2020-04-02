@@ -4,12 +4,18 @@ import net.minecraft.world.GameRules;
 
 public class MyGameRules extends GameRules {
 
+    public MyGameRules(GameRules rules) {
+        this.rules = rules;
+    }
+
+    GameRules rules;
+
     @Override
     public boolean getBoolean(GameRules.RuleKey<GameRules.BooleanValue> val) {
         if (val == GameRules.DO_FIRE_TICK) {
             return false;
         } else {
-            return super.getBoolean(val);
+            return rules.getBoolean(val);
         }
     }
 }
