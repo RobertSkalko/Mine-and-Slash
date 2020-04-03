@@ -57,7 +57,7 @@ public class ElementalPene extends ElementalStat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "Penetration ignores that much armor";
+        return "Ignores that much resists, it works as subtraction.";
     }
 
     @Override

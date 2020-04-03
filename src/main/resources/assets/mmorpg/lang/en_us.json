@@ -103,6 +103,17 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.arcanists": "Arcanist's",
@@ -159,6 +170,7 @@
 	"mmorpg.affix.of_frailty": "Of Frailty",
 	"mmorpg.affix.of_giants": "Of Giants",
 	"mmorpg.affix.of_godhood": "Of Godhood",
+	"mmorpg.affix.of_growth": "Of Growth",
 	"mmorpg.affix.of_guidance": "Of Guidance",
 	"mmorpg.affix.of_hammer_flurry": "Of Hammer Flurry",
 	"mmorpg.affix.of_hidden_sense": "Of Hidden Sense",
@@ -180,6 +192,7 @@
 	"mmorpg.affix.of_staff_flurry": "Of Staff Flurry",
 	"mmorpg.affix.of_swiftness": "Of Swiftness",
 	"mmorpg.affix.of_sword_flurry": "Of Sword Flurry",
+	"mmorpg.affix.of_the_cactus": "Of the Cactus",
 	"mmorpg.affix.of_the_depths": "Of The Depths",
 	"mmorpg.affix.of_the_fallen": "Of The Fallen",
 	"mmorpg.affix.of_the_hydra": "Of the Hydra",
@@ -216,17 +229,6 @@
 	"mmorpg.affix.wise": "Wise",
 
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
@@ -980,6 +982,7 @@
 	"item.mmorpg.uniques.helmet.helmetthunder0": "§eThunder Atronach Helmet",
 	"item.mmorpg.uniques.helmet.helmetwater0": "§eIce Seer Eyes",
 	"item.mmorpg.uniques.helmet.helmetwisdom0": "§eHelmet of Wisdom",
+	"item.mmorpg.uniques.necklace.necklace_doomsday": "§eDoomsday Pendant",
 	"item.mmorpg.uniques.necklace.necklace_magic_shield0": "§eAmulet of Mental Fortitude",
 	"item.mmorpg.uniques.necklace.necklace_strength0": "§eHidden Strength Amulet",
 	"item.mmorpg.uniques.necklace.necklace_wisdom0": "§eAmulet of the Wisdom Seeker",
@@ -1274,6 +1277,7 @@
 	"item.mmorpg.uniques.helmet.helmetthunder0.desc": "I see sparks all around me.",
 	"item.mmorpg.uniques.helmet.helmetwater0.desc": "What mortals can't see belongs to me.",
 	"item.mmorpg.uniques.helmet.helmetwisdom0.desc": "True wisdom is knowing you know nothing.",
+	"item.mmorpg.uniques.necklace.necklace_doomsday.desc": "I feel my creation was a mistake.",
 	"item.mmorpg.uniques.necklace.necklace_magic_shield0.desc": "Preserve, prevail.",
 	"item.mmorpg.uniques.necklace.necklace_strength0.desc": "Search everywhere to find what you truly need.",
 	"item.mmorpg.uniques.necklace.necklace_wisdom0.desc": "Use your strengths to prop up your weaknesses.",

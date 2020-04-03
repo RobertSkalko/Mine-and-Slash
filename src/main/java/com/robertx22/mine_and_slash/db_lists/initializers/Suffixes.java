@@ -9,6 +9,8 @@ import com.robertx22.mine_and_slash.database.affixes.suffixes.defense.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.mixed.OfTheFallen;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.offense.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.*;
+import com.robertx22.mine_and_slash.database.affixes.suffixes.thon_reward.OfGrowth;
+import com.robertx22.mine_and_slash.database.affixes.suffixes.thon_reward.OfTheCactus;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfGodhood;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfTheHydra;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.unique.OfWeaponFlurry;
@@ -78,6 +80,9 @@ public class Suffixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
                     add(new OfTheFallen());
 
                     add(new OfMortality());
+
+                    add(new OfGrowth());
+                    add(new OfTheCactus());
 
                 }
             }

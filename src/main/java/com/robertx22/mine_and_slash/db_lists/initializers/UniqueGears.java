@@ -67,6 +67,7 @@ public class UniqueGears implements ISlashRegistryInit {
 
         add(new RingHermitsInsanity());
         add(new MagesLuckyAmulet());
+        add(new DoomdsayNecklace());
 
         add(RingMagicShield.INSTANCE);
         add(HelmetWisdom.INSTANCE);

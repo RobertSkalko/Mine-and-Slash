@@ -5,11 +5,15 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Storable
@@ -72,13 +76,37 @@ public class PlayerSpellsData {
             BaseSpell spell = SlashRegistry.Spells()
                 .get(spellBeingCast);
 
-            if (spell != null && spells != null) {
+            if (spell != null && spells != null && SlashRegistry.Spells()
+                .isRegistered(spell)) {
                 spell.onCastingTick(player, spells, castingTicksLeft);
+                addCastingMoveDebuff(player);
+            } else {
+                removeCastingMoveDebuff(player);
             }
         } catch (Exception e) {
 
         }
 
+    }
+
+    public static AttributeModifier CASTING_SPEED_DEBUFF = new AttributeModifier(UUID.fromString("d6d3dc82-9787-4722-9a33-924b94490e2a"), SharedMonsterAttributes.MOVEMENT_SPEED.getName(), -0.25F, AttributeModifier.Operation.MULTIPLY_BASE);
+
+    public void addCastingMoveDebuff(PlayerEntity player) {
+        IAttributeInstance atri = player.getAttributes()
+            .getAttributeInstance(SharedMonsterAttributes.MOVEMENT_SPEED);
+
+        if (!atri.hasModifier(CASTING_SPEED_DEBUFF)) {
+            atri.applyModifier(CASTING_SPEED_DEBUFF);
+        }
+    }
+
+    public void removeCastingMoveDebuff(PlayerEntity player) {
+        IAttributeInstance atri = player.getAttributes()
+            .getAttributeInstance(SharedMonsterAttributes.MOVEMENT_SPEED);
+
+        if (atri.hasModifier(CASTING_SPEED_DEBUFF)) {
+            atri.removeModifier(CASTING_SPEED_DEBUFF);
+        }
     }
 
     public List<String> getSpellsOnCooldown() {

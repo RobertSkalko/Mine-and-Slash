@@ -72,7 +72,7 @@ public class ArrowBarrageSpell extends BaseProjectileSpell {
 
     @Override
     public int useTimeTicks() {
-        return 10;
+        return 20;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class ArrowBarrageSpell extends BaseProjectileSpell {
 
     @Override
     public void onCastingTick(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int tick) {
-        if (tick % 2 == 0) {
+        if (tick % 4 == 0) {
             this.cast(player, 0);
         }
     }

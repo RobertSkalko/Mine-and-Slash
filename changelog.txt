@@ -2,6 +2,7 @@
 * bosses now spawn less minions but they're all max rarity
 * blocking fully now stops attack knockbacks. can't figure out how to stop the attack sounds though
 * made vanilla teams usable for exp and friendly fire off.
+* casting spells now slows you down
 
 
 3.5.1

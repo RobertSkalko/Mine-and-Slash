@@ -56,6 +56,8 @@ public class GiveExactUnique {
         for (int i = 0; i < amount; i++) {
             UniqueGearBlueprint blueprint = new UniqueGearBlueprint(lvl, 0, true);
 
+            blueprint.unidentifiedPart.set(false);
+
             blueprint.unique.set(SlashRegistry.UniqueGears()
                 .get(id));
 

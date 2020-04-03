@@ -45,7 +45,17 @@ public class PrimaryStatTooltip implements IStatTooltipType {
         float v2 = info.secondValue;
 
         if (v1 == v2) {
-            String minusplus = v1 > 0 ? "" : "-";
+
+            String test = v1 + "";
+
+            boolean hasMinus = test.contains("-");
+
+            String minusplus = "";
+
+            if (!hasMinus && v1 < 0) {
+                minusplus = "-";
+            }
+
             return NameText(info).appendText(minusplus + info.stat.printValue(v1));
         } else {
             String minusplus = v1 > 0 ? "" : "-";
