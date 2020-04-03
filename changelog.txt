@@ -4,6 +4,7 @@
 * made vanilla teams usable for exp and friendly fire off.
 * casting spells now slows you down
 * server performance improvements
+* added all the buildathon rewards that people asked for (still many didn't come claim them though)
 
 3.5.1
 * should fix gamerules not working in dungeon
