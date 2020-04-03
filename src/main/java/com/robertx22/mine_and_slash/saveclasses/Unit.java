@@ -52,7 +52,7 @@ import java.util.stream.Collectors;
 public class Unit {
 
     @Store
-    private HashMap<String, StatData> MyStats = null;
+    private StatContainer stats = new StatContainer();
 
     @Store
     public WornSetsContainerData wornSets = new WornSetsContainerData();
@@ -87,11 +87,11 @@ public class Unit {
     @Nonnull
     public HashMap<String, StatData> getStats() {
 
-        if (MyStats == null) {
+        if (stats.stats == null) {
             this.initStats();
         }
 
-        return MyStats;
+        return stats.stats;
     }
 
     @Nonnull
@@ -104,7 +104,7 @@ public class Unit {
     }
 
     public boolean hasStat(String guid) {
-        return MyStats.containsKey(guid);
+        return stats.stats.containsKey(guid);
     }
 
     public StatData peekAtStat(Stat stat) {
@@ -114,11 +114,11 @@ public class Unit {
     @Nonnull
     public StatData peekAtStat(String guid) {
 
-        if (MyStats == null) {
+        if (stats.stats == null) {
             this.initStats();
         }
 
-        return MyStats.getOrDefault(guid, StatData.empty());
+        return stats.stats.getOrDefault(guid, StatData.empty());
 
     }
 
@@ -155,19 +155,19 @@ public class Unit {
     @Nonnull
     public StatData getCreateStat(String guid) {
 
-        if (MyStats == null) {
+        if (stats.stats == null) {
             this.initStats();
         }
 
-        StatData data = MyStats.get(guid);
+        StatData data = stats.stats.get(guid);
 
         if (data == null) {
             Stat stat = SlashRegistry.Stats()
                 .get(guid);
             if (stat != null) {
-                MyStats.put(stat.GUID(), new StatData(stat));
+                stats.stats.put(stat.GUID(), new StatData(stat));
 
-                return MyStats.get(stat.GUID());
+                return stats.stats.get(stat.GUID());
             } else {
                 return new StatData(new UnknownStat());
             }
@@ -181,16 +181,16 @@ public class Unit {
     }
 
     public void initStats() {
-        MyStats = new HashMap<String, StatData>();
+        stats.stats = new HashMap<String, StatData>();
     }
 
     private void removeEmptyStats() {
 
-        for (StatData data : new ArrayList<>(MyStats.values())) {
+        for (StatData data : new ArrayList<>(stats.stats.values())) {
             if (!data.isNotZero() || data.getId()
                 .isEmpty()) {
                 //System.out.println(data.Name);
-                MyStats.remove(data.getId());
+                stats.stats.remove(data.getId());
             }
         }
 
@@ -198,19 +198,19 @@ public class Unit {
 
     public void removeUnregisteredStats() {
 
-        if (MyStats == null) {
-            MyStats = new HashMap<String, StatData>();
+        if (stats.stats == null) {
+            stats.stats = new HashMap<String, StatData>();
         }
 
         removeEmptyStats();
 
-        for (Map.Entry<String, StatData> entry : new ArrayList<>(MyStats.entrySet())) {
+        for (Map.Entry<String, StatData> entry : new ArrayList<>(stats.stats.entrySet())) {
 
             StatData data = entry.getValue();
 
             if (!SlashRegistry.Stats()
                 .isRegistered(data.getId())) {
-                MyStats.remove(entry.getKey());
+                stats.stats.remove(entry.getKey());
             }
         }
 
@@ -353,17 +353,17 @@ public class Unit {
 
     protected void ClearStats() {
 
-        if (MyStats == null) {
+        if (stats.stats == null) {
             this.initStats();
         }
 
-        for (StatData stat : MyStats.values()) {
+        for (StatData stat : stats.stats.values()) {
             stat.Clear();
         }
     }
 
     protected void CalcStats(UnitData data) {
-        MyStats.values()
+        stats.stats.values()
             .forEach((StatData stat) -> stat.CalcVal(data));
     }
 
@@ -392,7 +392,7 @@ public class Unit {
      */
     private DirtyCheck getDirtyCheck() {
 
-        if (MyStats == null || MyStats.isEmpty()) {
+        if (stats.stats == null || stats.stats.isEmpty()) {
             this.initStats();
         }
 
@@ -440,7 +440,7 @@ public class Unit {
 
         float hpadded = getHpAdded(entity, rar, data);
 
-        MyStats.get(Health.GUID)
+        getCreateStat(Health.GUID)
             .addFlat(hpadded);
 
         Boolean isMapWorld = WorldUtils.isMapWorld(entity.world);
@@ -583,10 +583,10 @@ public class Unit {
     private Unit Clone() {
 
         Unit clone = new Unit();
-        if (this.MyStats != null) {
-            clone.MyStats = new HashMap<String, StatData>(this.MyStats);
+        if (this.stats.stats != null) {
+            clone.stats.stats = new HashMap<String, StatData>(stats.stats);
         } else {
-            clone.MyStats = new HashMap<String, StatData>();
+            clone.stats.stats = new HashMap<String, StatData>();
         }
 
         return clone;

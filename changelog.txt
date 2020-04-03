@@ -3,7 +3,7 @@
 * blocking fully now stops attack knockbacks. can't figure out how to stop the attack sounds though
 * made vanilla teams usable for exp and friendly fire off.
 * casting spells now slows you down
-
+* server performance improvements
 
 3.5.1
 * should fix gamerules not working in dungeon

@@ -47,6 +47,23 @@ public class StatData {
     @Store
     private float v2 = 0;
 
+    public String toSerializationString() {
+        return id + ":" + val + ":" + v2;
+    }
+
+    public static StatData fromSerializationString(String str) {
+
+        StatData obj = new StatData();
+
+        String[] parts = str.split(":");
+        obj.id = parts[0];
+        obj.val = Float.parseFloat(parts[1]);
+        obj.v2 = Float.parseFloat(parts[2]);
+
+        return obj;
+
+    }
+
     public void addFlat(float val1) {
         this.Flat += val1;
         this.Flat2 += val1;

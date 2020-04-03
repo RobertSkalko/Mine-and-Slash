@@ -11,7 +11,7 @@ public class MagicShield extends Stat implements IStatEffects {
     public static String GUID = "magic_shield";
 
     private MagicShield() {
-
+        this.minimumValue = 0;
     }
 
     public static MagicShield getInstance() {
