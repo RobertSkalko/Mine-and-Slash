@@ -29,7 +29,6 @@ public class Synergies {
     public static WhirlpoolFrostDmgSynergy WHIRLPOOL_FROST_DMG = new WhirlpoolFrostDmgSynergy();
     public static BlizzardFrostSynergy BLIZZARD_FROST = new BlizzardFrostSynergy();
     public static WhirlpoolShiverSynergy WHIRLPOOL_SHIVER = new WhirlpoolShiverSynergy();
-    public static GeyserAttackSynergy GEYSER_ATTACK = new GeyserAttackSynergy();
     public static HeartOfIceMagicShieldSynergy HEART_OF_ICE_MAGIC_SHIELD = new HeartOfIceMagicShieldSynergy();
     public static BlizzardFrostEssenceSynergy BLIZZARD_FROST_ESSENCE = new BlizzardFrostEssenceSynergy();
 

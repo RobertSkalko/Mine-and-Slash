@@ -32,7 +32,6 @@ public class SpellPerkEffects {
         synergy(Synergies.WHIRLPOOL_FROST_DMG);
         synergy(Synergies.HEART_OF_ICE_FROST);
         synergy(Synergies.WHIRLPOOL_SHIVER);
-        synergy(Synergies.GEYSER_ATTACK);
         synergy(Synergies.HEART_OF_ICE_MAGIC_SHIELD);
         synergy(Synergies.BLIZZARD_FROST_ESSENCE);
 
