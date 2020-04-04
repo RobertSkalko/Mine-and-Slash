@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell.SpellType;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
@@ -48,8 +47,6 @@ public abstract class EntityBaseProjectile extends AbstractArrowEntity implement
     private boolean doGroundProc;
 
     public Entity ignoreEntity;
-
-    public SpellType spellType = SpellType.Self_Heal;
 
     public abstract double radius();
 

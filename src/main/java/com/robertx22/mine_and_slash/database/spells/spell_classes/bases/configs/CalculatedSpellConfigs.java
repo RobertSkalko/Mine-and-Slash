@@ -1,5 +1,6 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import info.loenwind.autosave.annotations.Storable;

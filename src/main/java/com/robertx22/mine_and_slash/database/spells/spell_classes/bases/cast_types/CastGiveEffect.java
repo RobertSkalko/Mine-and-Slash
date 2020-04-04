@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_ty
 
 import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastType;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 
@@ -11,11 +10,11 @@ public class CastGiveEffect extends SpellCastType {
     public boolean cast(SpellCastContext ctx) {
         try {
 
-            Preconditions.checkNotNull(ctx.finishedConfig.potionEffect);
+            Preconditions.checkNotNull(ctx.spell.getImmutableConfigs().potionEffect);
 
-            PotionEffectUtils.applyToSelf(ctx.finishedConfig.potionEffect, ctx.caster);
+            PotionEffectUtils.applyToSelf(ctx.spell.getImmutableConfigs().potionEffect, ctx.caster);
 
-            SoundUtils.playSound(ctx.caster, ctx.finishedConfig.sound, 1, 1);
+            SoundUtils.playSound(ctx.caster, ctx.spell.getImmutableConfigs().sound, 1, 1);
 
             ctx.spell.spawnParticles(ctx);
 

@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_ty
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.RayTraceResult;
@@ -23,7 +22,7 @@ public class CastAtSight extends SpellCastType {
             pos = ctx.caster.getPositionVector();
         }
 
-        Entity en = SpellUtils.getSpellEntity(ctx.spell.summonNewEntity()
+        Entity en = SpellUtils.getSpellEntity(ctx.spell.getImmutableConfigs().newEntitySummoner
             .apply(world), ctx.spell, ctx.caster);
 
         en.setPosition(pos.x, pos.y, pos.z);

@@ -1,6 +1,9 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs;
 
 import com.robertx22.mine_and_slash.database.spells.blocks.base.BaseSpellBlock;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPredicate;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import net.minecraft.entity.Entity;

@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -48,9 +50,13 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return true;
     }
 
+    public final ImmutableSpellConfigs getImmutableConfigs() {
+        return immutableConfigs;
+    }
+
     public final void onCastingTick(SpellCastContext ctx) {
 
-        int timesToCast = (int) ctx.finishedConfig.timesCasted.getValueFor(ctx);
+        int timesToCast = (int) ctx.finishedConfig.timesToCast;
 
         if (timesToCast == 1) {
             if (ctx.isLastCastTick) {
@@ -58,7 +64,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
             }
         } else if (timesToCast > 1) {
 
-            int castTimeTicks = (int) ctx.finishedConfig.castTimeTicks.getValueFor(ctx);
+            int castTimeTicks = (int) ctx.finishedConfig.castTimeTicks;
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
 
@@ -81,7 +87,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public final int getMaxSpellLevelNormal() {
-        return config.maxSpellLevel;
+        return immutableConfigs.maxSpellLevel;
     }
 
     public final int getMaxSpellLevelBuffed() {
@@ -93,7 +99,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public boolean isAllowedAsRightClickFor(GearItemSlot slot) {
-        switch (config.allowedAsRightClickOn) {
+        switch (immutableConfigs.allowedAsRightClickOn) {
             case NONE: {
                 return false;
             }
@@ -119,7 +125,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     public final boolean goesOnCooldownIfCastCanceled() {
         // override for spells that do oncastingtick
-        return config.goesOnCooldownIfCanceled;
+        return immutableConfigs.goesOnCooldownIfCanceled;
     }
 
     public final ResourceLocation getIcon() {
@@ -141,10 +147,8 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     public abstract String GUID();
 
-    public abstract int getManaCost();
-
     public final int getCalculatedManaCost(SpellCastContext ctx) {
-        return ctx.finishedConfig.getCalculatedManaCost(this, ctx.data);
+        return ctx.finishedConfig.manaCost;
     }
 
     public abstract int useTimeTicks();
@@ -166,7 +170,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public final boolean cast(SpellCastContext ctx) {
-        return ctx.finishedConfig.castType.cast(ctx);
+        return immutableConfigs.castType.cast(ctx);
     }
 
     public void spendResources(SpellCastContext ctx) {
@@ -176,7 +180,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     public ResourcesData.Context getManaCostCtx(SpellCastContext ctx) {
         return new ResourcesData.Context(
-            ctx.data, ctx.caster, ResourcesData.Type.MANA, ctx.finishedConfig.getCalculatedManaCost(this, ctx.data), ResourcesData.Use.SPEND);
+            ctx.data, ctx.caster, ResourcesData.Type.MANA, this.getCalculatedManaCost(ctx), ResourcesData.Use.SPEND);
     }
 
     public boolean canCast(SpellCastContext ctx) {
@@ -200,7 +204,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
                 if (data.getResources()
                     .hasEnough(rctx)) {
 
-                    if (this.config.castRequirements.stream()
+                    if (immutableConfigs.castRequirements.stream()
                         .anyMatch(x -> !x.predicate.test(player))) {
                         return false;
                     }
@@ -246,9 +250,9 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
         TooltipUtils.addEmpty(list);
 
-        this.config.castRequirements.forEach(x -> list.add(x.text));
+        this.immutableConfigs.castRequirements.forEach(x -> list.add(x.text));
 
-        if (this.config.allowedAsRightClickOn == AllowedAsRightClickOn.MAGE_WEAPON) {
+        if (this.immutableConfigs.allowedAsRightClickOn == AllowedAsRightClickOn.MAGE_WEAPON) {
             TooltipUtils.addEmpty(list);
             list.add(new SText(TextFormatting.LIGHT_PURPLE + "Can be set as right click for a Mage Weapon"));
         }

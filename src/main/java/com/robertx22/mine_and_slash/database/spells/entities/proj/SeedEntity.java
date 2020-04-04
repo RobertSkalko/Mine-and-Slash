@@ -1,12 +1,9 @@
 package com.robertx22.mine_and_slash.database.spells.entities.proj;
 
-import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.IBlockSpawner;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -86,24 +83,15 @@ public class SeedEntity extends EntityBaseProjectile {
 
                         BaseSpell spell = getSpellData().getSpell();
 
-                        if (spell instanceof IBlockSpawner) {
-                            IBlockSpawner spawner = (IBlockSpawner) spell;
-                            spawner.spawnBlock(caster, world, pos, spell);
+                        caster.world.setBlockState(pos, spell.getImmutableConfigs().spellBlockToSpawn
+                            .getDefaultState());
 
-                            caster.world.setBlockState(pos, ModBlocks.MAGMA_FLOWER.get()
-                                .getDefaultState());
+                        TileEntity tile = world.getTileEntity(pos);
 
-                            TileEntity tile = world.getTileEntity(pos);
-
-                            if (tile instanceof ISpellEntity) {
-                                ISpellEntity se = (ISpellEntity) tile;
-
-                                se.setSpellData(new EntitySpellData(spell, caster, )));
-                            }
-
-                            tile.setSpellData(new EntitySpellData(spell, caster, MagmaFlowerTileEntity.DURATION_SEC * 20));
-                            world.setTileEntity(pos, tile);
-                            tile.initSpellEntity();
+                        if (tile instanceof ISpellEntity) {
+                            ISpellEntity se = (ISpellEntity) tile;
+                            se.setSpellData(new EntitySpellData(spell, caster, getSpellData().configs));
+                            se.initSpellEntity();
                         }
 
                         break;

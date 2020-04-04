@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.CalculatedSpellConfigs;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
@@ -32,25 +33,34 @@ public class EntitySpellData {
     public int ticksExisted = 0;
 
     @Store
-    public Elements ele = Elements.Physical;
+    public CalculatedSpellConfigs configs;
 
     @Store
     private String spellGUID = "";
 
     private BaseSpell spell;
 
+    public Elements getElement() {
+        if (this.getSpell() != null) {
+            return getSpell().getElement();
+        }
+        return Elements.Physical;
+    }
+
     public int getRemainingLifeTicks() {
         return lifeInTicks - ticksExisted;
     }
 
-    public EntitySpellData(BaseSpell spell, LivingEntity caster, int lifeInTicks) {
+    public EntitySpellData(BaseSpell spell, LivingEntity caster, CalculatedSpellConfigs config) {
         if (spell != null) {
-            this.ele = spell.getElement();
             this.spellGUID = spell.GUID();
         }
+
         this.casterID = caster.getUniqueID()
             .toString();
-        this.lifeInTicks = lifeInTicks;
+
+        this.lifeInTicks = config.duration;
+        this.configs = config;
     }
 
     private UUID getCasterUUID() {

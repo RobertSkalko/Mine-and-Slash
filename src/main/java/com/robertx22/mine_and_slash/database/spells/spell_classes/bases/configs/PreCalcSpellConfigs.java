@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
 
@@ -20,7 +20,7 @@ public class PreCalcSpellConfigs {
     public LevelBased summonedEntities = new LevelBased(1, 1);
     public LevelBased duration = new LevelBased(20, 30);
     public LevelBased cooldownTicks = new LevelBased(30, 25);
-    public LevelBased timesToCast = new LevelBased(1, 1);//most spells its casted once at end of cast time, others are casted during the whole cast duration
+    public LevelBased timesToCast = new LevelBased(1, 1); //most spells its casted once at end of cast time, others are casted during the whole cast duration
 
     public PreCalcSpellConfigs scaleWithAttack(LevelBased val) {
         this.spellAttackScalingValue = val;
