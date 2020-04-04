@@ -33,7 +33,7 @@ public class CalculatedSpellConfigs {
         PreCalcSpellConfigs pre = ctx.spell.getPreCalcConfig();
 
         this.manaCost = (int) Mana.getInstance()
-            .calculateScalingStatGrowth(pre.manaCost, ctx.spellLevel);
+            .calculateScalingStatGrowth(pre.manaCost.getValueFor(ctx), ctx.spellLevel);
 
         this.castTimeTicks = (int) pre.castTimeTicks.getValueFor(ctx);
 

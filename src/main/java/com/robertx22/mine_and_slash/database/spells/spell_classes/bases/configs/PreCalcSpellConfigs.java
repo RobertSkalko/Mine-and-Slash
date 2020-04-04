@@ -25,8 +25,7 @@ public class PreCalcSpellConfigs {
     public LevelBased spellBaseValue;
     public LevelBased spellAttackScalingValue;
 
-    public float manaCost;
-
+    public LevelBased manaCost;
     public LevelBased projectileCount;
     public LevelBased castTimeTicks;
     public LevelBased shootSpeed;

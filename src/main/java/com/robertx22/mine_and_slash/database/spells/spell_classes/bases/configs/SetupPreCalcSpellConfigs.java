@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_ba
 
 public abstract class SetupPreCalcSpellConfigs {
 
-    public abstract float manaCost();
+    public abstract LevelBased manaCost();
 
     public abstract LevelBased baseValue();
 

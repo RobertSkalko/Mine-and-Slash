@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 
 public class LevelBased {
 
@@ -13,17 +13,17 @@ public class LevelBased {
         this.maxLevel = maxLevel;
     }
 
-    public float getValueFor(int spellLevel, BaseSpell spell) {
+    public float getValueFor(int spellLevel, IAbility ability) {
 
         if (levelOne == maxLevel) {
             return maxLevel;
         }
 
-        float multi = spellLevel / spell.getMaxSpellLevelBuffed();
+        float multi = spellLevel / ability.getMaxSpellLevelBuffed();
         return levelOne + ((maxLevel - levelOne) * multi);
     }
 
     public float getValueFor(SpellCastContext ctx) {
-        return getValueFor(ctx.data.getSpellLevel(ctx.spell), ctx.spell);
+        return getValueFor(ctx.spellsCap.getLevelOf(ctx.spell), ctx.spell);
     }
 }

@@ -4,7 +4,9 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.database.stats.types.resources.*;
+import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
+import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
+import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -27,19 +29,6 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
         c.base(PhysicalDamage.getInstance(), 3);
         c.base(CriticalHit.getInstance(), 1);
         c.base(CriticalDamage.getInstance(), 0);
-
-        //scaling ones
-
-        c.scale(Energy.getInstance(), 125);
-        c.scale(Mana.getInstance(), 50);
-
-        c.scale(EnergyRegen.getInstance(), 7);
-        c.scale(ManaRegen.getInstance(), 3);
-
-        c.scale(Health.getInstance(), 5);
-        c.scale(HealthRegen.getInstance(), 1);
-        c.scale(MagicShieldRegen.getInstance(), 0.4F);
-        c.scale(PhysicalDamage.getInstance(), 0.25D);
 
         return c;
 

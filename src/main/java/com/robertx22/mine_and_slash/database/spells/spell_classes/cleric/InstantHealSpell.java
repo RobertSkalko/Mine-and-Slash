@@ -6,8 +6,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_typ
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SetupPreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -116,14 +114,6 @@ public class InstantHealSpell extends BaseSpell {
             if (!world.isRemote()) {
 
                 UnitData data = Load.Unit(caster);
-
-                if (Synergies.INSTANT_HEAL_REMOVE_DEBUFF.has(caster)) {
-                    Synergies.INSTANT_HEAL_REMOVE_DEBUFF.tryActivate(new CasterTargetContext(caster, caster));
-                }
-
-                if (Synergies.INSTANT_HEAL_MAGIC_SHIELD.has(caster)) {
-                    Synergies.INSTANT_HEAL_MAGIC_SHIELD.tryActivate(new CasterTargetContext(caster, caster));
-                }
 
                 ParticleUtils.spawnHealParticles(caster, 10);
 

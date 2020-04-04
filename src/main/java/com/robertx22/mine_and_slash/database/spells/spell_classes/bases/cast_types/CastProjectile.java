@@ -17,8 +17,10 @@ public class CastProjectile extends SpellCastType {
         builder.apart = 75;
         builder.cast();
 
-        if (ctx.spell.getImmutableConfigs().sound != null) {
-            ctx.caster.world.playMovingSound(null, ctx.caster, ctx.spell.getImmutableConfigs().sound, SoundCategory.HOSTILE, 1.0F, 1.0F);
+        if (ctx.spell.getImmutableConfigs()
+            .sound() != null) {
+            ctx.caster.world.playMovingSound(null, ctx.caster, ctx.spell.getImmutableConfigs()
+                .sound(), SoundCategory.HOSTILE, 1.0F, 1.0F);
         }
         return true;
     }

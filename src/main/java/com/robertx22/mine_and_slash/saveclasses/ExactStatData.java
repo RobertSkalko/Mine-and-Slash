@@ -49,6 +49,12 @@ public class ExactStatData extends BaseStatContainer {
         this.statGUID = stat.GUID();
     }
 
+    public ExactStatData(float value, Stat stat) {
+        this.value = value;
+        this.type = StatModTypes.Flat;
+        this.statGUID = stat.GUID();
+    }
+
     public void setValue(float val) {
         this.value = val;
     }

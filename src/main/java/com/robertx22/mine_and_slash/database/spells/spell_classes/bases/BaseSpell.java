@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
@@ -15,13 +14,13 @@ import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -37,7 +36,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell>, ITooltipList {
+public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITooltipList, IAbility {
 
     private PreCalcSpellConfigs config;
     private final ImmutableSpellConfigs immutableConfigs;
@@ -133,6 +132,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return new ResourceLocation(Ref.MODID, "textures/gui/spells/" + getSchool().id + "/" + GUID() + ".png");
     }
 
+    @Override
     public final SpellSchools getSchool() {
         return immutableConfigs.school();
     }

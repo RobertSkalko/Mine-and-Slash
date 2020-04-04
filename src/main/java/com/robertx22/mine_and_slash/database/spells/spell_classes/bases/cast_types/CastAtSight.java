@@ -22,7 +22,8 @@ public class CastAtSight extends SpellCastType {
             pos = ctx.caster.getPositionVector();
         }
 
-        Entity en = SpellUtils.getSpellEntity(ctx.spell.getImmutableConfigs().newEntitySummoner
+        Entity en = SpellUtils.getSpellEntity(ctx.spell.getImmutableConfigs()
+            .newEntitySummoner()
             .apply(world), ctx.spell, ctx.caster);
 
         en.setPosition(pos.x, pos.y, pos.z);

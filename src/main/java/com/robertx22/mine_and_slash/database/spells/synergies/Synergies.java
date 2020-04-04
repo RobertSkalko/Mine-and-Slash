@@ -1,8 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.synergies;
 
-import com.robertx22.mine_and_slash.database.spells.synergies.cleric.InstantHealMagicShieldSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.cleric.InstantHealRemoveDebuffSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.cleric.RighteousFuryAoeSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.druid.*;
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.FireballBurnConsumeSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.MagmaFlowerEnhancedSynergy;
@@ -13,9 +10,6 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ranger.ImbueCritAd
 import com.robertx22.mine_and_slash.database.spells.synergies.ranger.RecoilAddHunterSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ranger.RecoilAddWoundsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ranger.TripleShotConsumeHunterSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.rogue.StealthDisappearSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.rogue.TripleSlashStealthSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.rogue.TripleSlashWoundsSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.LightningTotemStaticSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderDashEnergySynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearLightningStrikeSynergy;
@@ -43,10 +37,6 @@ public class Synergies {
     public static RegenerateAoeSynergy REGEN_AOE = new RegenerateAoeSynergy();
     public static PoisonedWeaponsThornsSynergy POISONED_WEAPONS_THORNS = new PoisonedWeaponsThornsSynergy();
 
-    public static RighteousFuryAoeSynergy RIGHTEOUS_FURY_AOE = new RighteousFuryAoeSynergy();
-    public static InstantHealRemoveDebuffSynergy INSTANT_HEAL_REMOVE_DEBUFF = new InstantHealRemoveDebuffSynergy();
-    public static InstantHealMagicShieldSynergy INSTANT_HEAL_MAGIC_SHIELD = new InstantHealMagicShieldSynergy();
-
     public static MagmaFlowerEnhancedSynergy MAGMA_FLOWER_ENHANCED = new MagmaFlowerEnhancedSynergy();
     public static FireballBurnConsumeSynergy FIREBALL_BURN_CONSUME = new FireballBurnConsumeSynergy();
     public static VolcanoBurnSynergy VOLCANO_BURN = new VolcanoBurnSynergy();
@@ -56,9 +46,5 @@ public class Synergies {
     public static ImbueCritAddHunterSynergy IMBUE_CRIT_HUNTER = new ImbueCritAddHunterSynergy();
     public static RecoilAddHunterSynergy RECOIL_ADD_HUNTER = new RecoilAddHunterSynergy();
     public static RecoilAddWoundsSynergy RECOIL_ADD_WOUNDS = new RecoilAddWoundsSynergy();
-
-    public static StealthDisappearSynergy STEALTH_DISAPPEAR = new StealthDisappearSynergy();
-    public static TripleSlashWoundsSynergy TRIPLE_SLASH_WOUNDS = new TripleSlashWoundsSynergy();
-    public static TripleSlashStealthSynergy TRIPLE_SLASH_STEALTH = new TripleSlashStealthSynergy();
 
 }

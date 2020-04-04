@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryContainer;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellPerksData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
@@ -48,6 +49,8 @@ public class PlayerSpellCap {
         public abstract boolean canCastRightClickSpell(BaseSpell spell, PlayerEntity player);
 
         public abstract List<BaseSpell> getAvailableSpells();
+
+        public abstract int getLevelOf(IAbility ability);
 
         public abstract boolean hasSynergy(Synergy synergy);
 
