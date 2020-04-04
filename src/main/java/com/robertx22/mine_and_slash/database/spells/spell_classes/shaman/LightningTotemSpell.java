@@ -54,7 +54,7 @@ public class LightningTotemSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public SoundEvent getShootSound() {
+    public SoundEvent getCastSound() {
         return null;
     }
 

@@ -59,7 +59,7 @@ public class RecoilShotSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public SoundEvent getShootSound() {
+    public SoundEvent getCastSound() {
         return SoundEvents.ENTITY_ARROW_SHOOT;
     }
 
@@ -80,7 +80,7 @@ public class RecoilShotSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(1, 0.75F, 5);
+        return SpellCalcData.scaleWithAttack(1, 0.75F, 5);
     }
 
     @Override

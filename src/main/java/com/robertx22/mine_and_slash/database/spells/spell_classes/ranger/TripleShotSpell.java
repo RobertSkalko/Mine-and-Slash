@@ -76,7 +76,7 @@ public class TripleShotSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public SoundEvent getShootSound() {
+    public SoundEvent getCastSound() {
         return SoundEvents.ENTITY_ARROW_SHOOT;
     }
 
@@ -97,7 +97,7 @@ public class TripleShotSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.5F, 0.6F, 5);
+        return SpellCalcData.scaleWithAttack(0.5F, 0.6F, 5);
     }
 
     @Override
@@ -110,8 +110,8 @@ public class TripleShotSpell extends BaseProjectileSpell {
 
         SpellUtils.castTripleProjectileInCone(1.5F, this, (world) -> newEntity(world), caster, getShootSpeed());
 
-        if (getShootSound() != null) {
-            SoundUtils.playSound(caster, getShootSound(), 1.0F, 1.0F);
+        if (getCastSound() != null) {
+            SoundUtils.playSound(caster, getCastSound(), 1.0F, 1.0F);
         }
 
         return true;

@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.spells.calc;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -17,7 +15,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Storable
@@ -31,43 +28,19 @@ public class SpellCalcData implements ITooltipList {
         return d;
     }
 
-    public static SpellCalcData allSpellDamages(float spell, int base) {
+    public static SpellCalcData base(int base) {
         SpellCalcData data = new SpellCalcData();
-
-        data.scalingValues.add(new MergedScalingStatsCalc(new ElementalSpellDamage(Elements.Nature).generateAllSingleVariations(), spell, new SText(TextFormatting.GOLD + "Spell Damages")));
 
         data.baseValue = base;
 
         return data;
     }
 
-    public static SpellCalcData allAttackAndSpellDamages(float attack, float spell, int base) {
+    public static SpellCalcData scaleWithAttack(float attack, int base) {
         SpellCalcData data = new SpellCalcData();
 
         data.scalingValues.add(new ScalingStatCalc(PhysicalDamage.getInstance(), attack));
         data.scalingValues.add(new MergedScalingStatsCalc(new ElementalAttackDamage(Elements.Nature).generateAllSingleVariations(), attack, new SText(TextFormatting.GOLD + "Weapon Damages")));
-        data.scalingValues.add(new MergedScalingStatsCalc(new ElementalSpellDamage(Elements.Nature).generateAllSingleVariations(), spell, new SText(TextFormatting.GOLD + "Spell Damages")));
-
-        data.baseValue = base;
-
-        return data;
-    }
-
-    public static SpellCalcData one(Stat stat, float multi, int base) {
-        SpellCalcData data = new SpellCalcData();
-
-        data.scalingValues.add(new ScalingStatCalc(stat, multi));
-        data.baseValue = base;
-
-        return data;
-    }
-
-    public static <T extends Stat> SpellCalcData all(Collection<T> stats, float multi, int base) {
-        SpellCalcData data = new SpellCalcData();
-
-        for (Stat s : stats) {
-            data.scalingValues.add(new ScalingStatCalc(s, multi));
-        }
 
         data.baseValue = base;
 

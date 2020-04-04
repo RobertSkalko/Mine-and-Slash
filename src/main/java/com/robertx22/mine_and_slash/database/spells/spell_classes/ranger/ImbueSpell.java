@@ -58,7 +58,7 @@ public class ImbueSpell extends BaseBuffSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allSpellDamages(0.2F, 1);
+        return SpellCalcData.base(0.2F, 1);
     }
 
     @Override

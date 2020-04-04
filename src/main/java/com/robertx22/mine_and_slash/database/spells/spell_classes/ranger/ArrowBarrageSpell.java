@@ -56,7 +56,7 @@ public class ArrowBarrageSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public SoundEvent getShootSound() {
+    public SoundEvent getCastSound() {
         return SoundEvents.ENTITY_ARROW_SHOOT;
     }
 
@@ -77,7 +77,7 @@ public class ArrowBarrageSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.2F, 0.2F, 1);
+        return SpellCalcData.scaleWithAttack(0.2F, 0.2F, 1);
     }
 
     @Override

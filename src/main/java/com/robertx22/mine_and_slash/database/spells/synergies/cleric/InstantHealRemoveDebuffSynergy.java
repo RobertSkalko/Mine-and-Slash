@@ -23,7 +23,7 @@ public class InstantHealRemoveDebuffSynergy extends Synergy<BeforeHealContext> {
         return "instant_heal_remove_debuff_synergy";
     }
 
-    public static SpellCalcData CALC = SpellCalcData.allSpellDamages(0.5F, 5);
+    public static SpellCalcData CALC = SpellCalcData.base(0.5F, 5);
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {

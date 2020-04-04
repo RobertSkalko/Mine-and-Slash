@@ -63,7 +63,7 @@ public class BlinkStrikeSpell extends BaseSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.75F, 1F, 8);
+        return SpellCalcData.scaleWithAttack(0.75F, 1F, 8);
     }
 
     @Override

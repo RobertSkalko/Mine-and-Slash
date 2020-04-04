@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityCon
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
@@ -90,6 +91,8 @@ public class EntityCap {
     public interface UnitData extends ICommonPlayerCap, INeededForClient {
 
         void modifyResource(ResourcesData.Context ctx);
+
+        int getSpellLevel(BaseSpell spell);
 
         void onDeath(LivingEntity en);
 
@@ -626,6 +629,11 @@ public class EntityCap {
         @Override
         public void modifyResource(ResourcesData.Context ctx) {
             this.resources.modify(ctx);
+        }
+
+        @Override
+        public int getSpellLevel(BaseSpell spell) {
+            return 1; // todo todo todo todo todo todo todo todo todo todo todo todo todo todo todo todo todo todo todo todo
         }
 
         @Override

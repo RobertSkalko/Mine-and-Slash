@@ -21,7 +21,7 @@ public class InstantHealMagicShieldSynergy extends Synergy<BeforeHealContext> {
         return "instant_heal_magic_shield_synergy";
     }
 
-    public static SpellCalcData CALC = SpellCalcData.allSpellDamages(0.75F, 5);
+    public static SpellCalcData CALC = SpellCalcData.base(0.75F, 5);
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {

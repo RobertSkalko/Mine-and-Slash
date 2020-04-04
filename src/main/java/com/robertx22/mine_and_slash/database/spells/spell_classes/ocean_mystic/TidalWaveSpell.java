@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 
-import com.robertx22.mine_and_slash.database.spells.ProjectileBuilder;
+import com.robertx22.mine_and_slash.database.spells.ProjectileCastOptions;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.TidalWaveEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
@@ -58,7 +58,7 @@ public class TidalWaveSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public SoundEvent getShootSound() {
+    public SoundEvent getCastSound() {
         return SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE;
     }
 
@@ -79,7 +79,7 @@ public class TidalWaveSpell extends BaseProjectileSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.2F, 0.3F, 4);
+        return SpellCalcData.scaleWithAttack(0.2F, 0.3F, 4);
     }
 
     @Override
@@ -90,14 +90,14 @@ public class TidalWaveSpell extends BaseProjectileSpell {
     @Override
     public boolean cast(LivingEntity caster, int ticksInUse) {
 
-        ProjectileBuilder builder = new ProjectileBuilder(this, (world) -> newEntity(world), caster);
+        ProjectileCastOptions builder = new ProjectileCastOptions(this, (world) -> newEntity(world), caster);
         builder.projectilesAmount = 5;
         builder.shootSpeed = getShootSpeed();
         builder.apart = 75;
         builder.cast();
 
-        if (getShootSound() != null) {
-            SoundUtils.playSound(caster, getShootSound(), 1.0F, 1.0F);
+        if (getCastSound() != null) {
+            SoundUtils.playSound(caster, getCastSound(), 1.0F, 1.0F);
         }
 
         return true;

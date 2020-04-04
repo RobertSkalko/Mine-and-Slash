@@ -64,7 +64,7 @@ public class WoundsEffect extends BasePotionEffect implements IApplyStatPotion {
 
     }
 
-    static SpellCalcData CALC = SpellCalcData.allAttackAndSpellDamages(0.02F, 0.03F, 1);
+    static SpellCalcData CALC = SpellCalcData.scaleWithAttack(0.02F, 0.03F, 1);
 
     public static WoundsEffect getInstance() {
         return SingletonHolder.INSTANCE;

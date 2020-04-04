@@ -67,7 +67,7 @@ public class TripleSlashSpell extends BaseSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.75F, 0.25F, 3);
+        return SpellCalcData.scaleWithAttack(0.75F, 0.25F, 3);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class FrostballSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public SoundEvent getShootSound() {
+    public SoundEvent getCastSound() {
         return SoundEvents.ENTITY_SNOWBALL_THROW;
     }
 

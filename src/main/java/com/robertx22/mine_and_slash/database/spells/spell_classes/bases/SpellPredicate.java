@@ -12,7 +12,9 @@ public class SpellPredicate {
     public SpellPredicate(Predicate<LivingEntity> predicate, ITextComponent text) {
         this.predicate = predicate;
         this.text = text;
+
     }
+
 }
 
 

@@ -61,7 +61,7 @@ public class ThunderspearSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public SoundEvent getShootSound() {
+    public SoundEvent getCastSound() {
         return SoundEvents.ITEM_TRIDENT_THROW;
     }
 

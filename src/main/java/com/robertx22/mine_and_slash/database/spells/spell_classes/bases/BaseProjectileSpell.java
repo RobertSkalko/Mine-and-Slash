@@ -1,17 +1,17 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public abstract class BaseProjectileSpell extends BaseSpell {
 
     @Override
-    public int useTimeTicks() {
-        return 10;
+    public LevelBased useTimeTicks() {
+        return new LevelBased(10, 10);
     }
 
     public BaseProjectileSpell() {
@@ -23,17 +23,14 @@ public abstract class BaseProjectileSpell extends BaseSpell {
         return 5;
     }
 
-    @Override
-    public SpellType getSpellType() {
-        return SpellType.Single_Target_Projectile;
-    }
-
     public abstract AbstractArrowEntity newEntity(World world);
 
-    public abstract SoundEvent getShootSound();
+    public LevelBased getShootSpeed() {
+        return new LevelBased(1, 1.5F);
+    }
 
-    public float getShootSpeed() {
-        return 2F;
+    public LevelBased getProjectileCount() {
+        return new LevelBased(1, 1);
     }
 
     @Override
@@ -45,8 +42,8 @@ public abstract class BaseProjectileSpell extends BaseSpell {
         SpellUtils.setupProjectileForCasting(en, caster, getShootSpeed());
         caster.world.addEntity(en);
 
-        if (getShootSound() != null) {
-            caster.world.playMovingSound(null, en, getShootSound(), SoundCategory.HOSTILE, 1.0F, 1.0F);
+        if (getCastSound() != null) {
+            caster.world.playMovingSound(null, en, getCastSound(), SoundCategory.HOSTILE, 1.0F, 1.0F);
         }
 
         return true;

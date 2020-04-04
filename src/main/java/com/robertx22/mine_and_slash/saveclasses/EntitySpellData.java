@@ -48,7 +48,8 @@ public class EntitySpellData {
             this.ele = spell.getElement();
             this.spellGUID = spell.GUID();
         }
-        this.casterID = caster.getUniqueID().toString();
+        this.casterID = caster.getUniqueID()
+            .toString();
         this.lifeInTicks = lifeInTicks;
     }
 
@@ -61,13 +62,10 @@ public class EntitySpellData {
 
     public BaseSpell getSpell() {
         if (spell == null) {
-            spell = SlashRegistry.Spells().get(spellGUID);
+            spell = SlashRegistry.Spells()
+                .get(spellGUID);
         }
         return spell;
-    }
-
-    public BaseSpell.SpellType getSpellType() {
-        return getSpell().getSpellType();
     }
 
     public LivingEntity getCaster(World world) {

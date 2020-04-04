@@ -9,12 +9,14 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class ArrowStormSpell extends BaseSummonAtSightSpell {
 
@@ -27,6 +29,21 @@ public class ArrowStormSpell extends BaseSummonAtSightSpell {
     }
 
     @Override
+    public SoundEvent getCastSound() {
+        return null;
+    }
+
+    @Override
+    public int getMaxSpellLevelNormal() {
+        return 0;
+    }
+
+    @Override
+    public Function<World, Entity> summonNewEntity() {
+        return null;
+    }
+
+    @Override
     public SpellSchools getSchool() {
         return SpellSchools.RANGER;
     }
@@ -34,11 +51,6 @@ public class ArrowStormSpell extends BaseSummonAtSightSpell {
     @Override
     public int getCooldownInSeconds() {
         return 45;
-    }
-
-    @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.Aoe_Damage_Nova;
     }
 
     @Override
@@ -63,7 +75,7 @@ public class ArrowStormSpell extends BaseSummonAtSightSpell {
 
     @Override
     public SpellCalcData getCalculation() {
-        return SpellCalcData.allAttackAndSpellDamages(0.05F, 0.2F, 2);
+        return SpellCalcData.scaleWithAttack(0.05F, 0.2F, 2);
     }
 
     @Override

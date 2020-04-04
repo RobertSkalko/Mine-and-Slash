@@ -37,7 +37,7 @@ public class DivineTribulationSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public SoundEvent getShootSound() {
+    public SoundEvent getCastSound() {
         return SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER;
     }
 
