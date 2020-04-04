@@ -23,7 +23,7 @@ public class ProjectileCastOptions {
 
     public ProjectileCastOptions(SpellCastContext ctx) {
         this.spell = ctx.spell;
-        this.projectile = ctx.config.newEntitySummoner;
+        this.projectile = ctx.finishedConfig.newEntitySummoner;
         this.caster = ctx.caster;
         this.ctx = ctx;
     }
@@ -50,8 +50,8 @@ public class ProjectileCastOptions {
                 );
                 caster.world.addEntity(en);
 
-                if (ctx.config.sound != null) {
-                    ctx.caster.world.playMovingSound(null, en, ctx.config.sound, SoundCategory.HOSTILE, 1.0F, 1.0F);
+                if (ctx.finishedConfig.sound != null) {
+                    ctx.caster.world.playMovingSound(null, en, ctx.finishedConfig.sound, SoundCategory.HOSTILE, 1.0F, 1.0F);
                 }
 
             }
@@ -61,8 +61,8 @@ public class ProjectileCastOptions {
             );
             caster.world.addEntity(en);
 
-            if (ctx.config.sound != null) {
-                ctx.caster.world.playMovingSound(null, en, ctx.config.sound, SoundCategory.HOSTILE, 1.0F, 1.0F);
+            if (ctx.finishedConfig.sound != null) {
+                ctx.caster.world.playMovingSound(null, en, ctx.finishedConfig.sound, SoundCategory.HOSTILE, 1.0F, 1.0F);
             }
         }
     }

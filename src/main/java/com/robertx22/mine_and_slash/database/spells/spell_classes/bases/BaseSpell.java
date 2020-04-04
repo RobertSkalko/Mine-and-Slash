@@ -36,10 +36,12 @@ import java.util.List;
 
 public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell>, ITooltipList {
 
-    private SpellConfig config;
+    private final PreCalcSpellConfigs config;
+    private final ImmutableSpellConfigs immutableConfigs;
 
-    public BaseSpell(SpellConfig config) {
+    public BaseSpell(ImmutableSpellConfigs immutable, PreCalcSpellConfigs config) {
         this.config = config;
+        this.immutableConfigs = immutable;
     }
 
     public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
@@ -48,7 +50,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     public final void onCastingTick(SpellCastContext ctx) {
 
-        int timesToCast = (int) ctx.config.timesCasted.getValueFor(ctx);
+        int timesToCast = (int) ctx.finishedConfig.timesCasted.getValueFor(ctx);
 
         if (timesToCast == 1) {
             if (ctx.isLastCastTick) {
@@ -56,7 +58,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
             }
         } else if (timesToCast > 1) {
 
-            int castTimeTicks = (int) ctx.config.castTimeTicks.getValueFor(ctx);
+            int castTimeTicks = (int) ctx.finishedConfig.castTimeTicks.getValueFor(ctx);
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
 
@@ -70,8 +72,8 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     }
 
-    public SpellConfig getConfigCopy() {
-        return config; // todo if this is serializable, i can just re-serialize it to make copies
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        return config;
     }
 
     public void spawnParticles(SpellCastContext ctx) {
@@ -142,7 +144,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     public abstract int getManaCost();
 
     public final int getCalculatedManaCost(SpellCastContext ctx) {
-        return ctx.config.getCalculatedManaCost(this, ctx.data);
+        return ctx.finishedConfig.getCalculatedManaCost(this, ctx.data);
     }
 
     public abstract int useTimeTicks();
@@ -155,10 +157,6 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     public abstract Elements getElement();
 
-    public BaseSpell() {
-
-    }
-
     public abstract List<ITextComponent> GetDescription(TooltipInfo info);
 
     public abstract Words getName();
@@ -168,7 +166,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public final boolean cast(SpellCastContext ctx) {
-        return ctx.config.castType.cast(ctx);
+        return ctx.finishedConfig.castType.cast(ctx);
     }
 
     public void spendResources(SpellCastContext ctx) {
@@ -178,7 +176,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     public ResourcesData.Context getManaCostCtx(SpellCastContext ctx) {
         return new ResourcesData.Context(
-            ctx.data, ctx.caster, ResourcesData.Type.MANA, ctx.config.getCalculatedManaCost(this, ctx.data), ResourcesData.Use.SPEND);
+            ctx.data, ctx.caster, ResourcesData.Type.MANA, ctx.finishedConfig.getCalculatedManaCost(this, ctx.data), ResourcesData.Use.SPEND);
     }
 
     public boolean canCast(SpellCastContext ctx) {

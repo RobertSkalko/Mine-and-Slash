@@ -1,14 +1,19 @@
 package com.robertx22.mine_and_slash.database.spells.entities.proj;
 
+import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
+import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.IBlockSpawner;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
+import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -45,11 +50,13 @@ public class SeedEntity extends EntityBaseProjectile {
 
     public boolean canPlace(BlockPos pos) {
 
-        if (!world.getBlockState(pos.down()).isSolid()) {
+        if (!world.getBlockState(pos.down())
+            .isSolid()) {
             return false;// dont spawn block unless there's solid underneath
         }
 
-        if (!world.getBlockState(pos).isAir(world, pos)) {
+        if (!world.getBlockState(pos)
+            .isAir(world, pos)) {
             return false; // only replace air
         }
         return true;
@@ -82,6 +89,21 @@ public class SeedEntity extends EntityBaseProjectile {
                         if (spell instanceof IBlockSpawner) {
                             IBlockSpawner spawner = (IBlockSpawner) spell;
                             spawner.spawnBlock(caster, world, pos, spell);
+
+                            caster.world.setBlockState(pos, ModBlocks.MAGMA_FLOWER.get()
+                                .getDefaultState());
+
+                            TileEntity tile = world.getTileEntity(pos);
+
+                            if (tile instanceof ISpellEntity) {
+                                ISpellEntity se = (ISpellEntity) tile;
+
+                                se.setSpellData(new EntitySpellData(spell, caster, )));
+                            }
+
+                            tile.setSpellData(new EntitySpellData(spell, caster, MagmaFlowerTileEntity.DURATION_SEC * 20));
+                            world.setTileEntity(pos, tile);
+                            tile.initSpellEntity();
                         }
 
                         break;

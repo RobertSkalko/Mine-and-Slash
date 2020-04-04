@@ -10,8 +10,9 @@ public class SpellCastContext {
     public final EntityCap.UnitData data;
     public final int ticksInUse;
     public final BaseSpell spell;
-    public final SpellConfig config;
+    public final CalculatedSpellConfigs finishedConfig;
     public final boolean isLastCastTick;
+    public final int spellLevel;
 
     public SpellCastContext(LivingEntity caster, int ticksInUse, BaseSpell spell) {
         this.caster = caster;
@@ -20,8 +21,10 @@ public class SpellCastContext {
 
         this.data = Load.Unit(caster);
 
-        this.config = spell.getConfigCopy();
+        this.finishedConfig = new CalculatedSpellConfigs(this);
 
-        this.isLastCastTick = config.castTimeTicks.getValueFor(this) == ticksInUse;
+        this.spellLevel = data.getSpellLevel(spell);
+
+        this.isLastCastTick = finishedConfig.castTimeTicks == ticksInUse;
     }
 }

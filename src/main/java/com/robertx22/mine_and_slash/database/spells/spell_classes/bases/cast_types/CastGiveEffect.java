@@ -11,11 +11,11 @@ public class CastGiveEffect extends SpellCastType {
     public boolean cast(SpellCastContext ctx) {
         try {
 
-            Preconditions.checkNotNull(ctx.config.potionEffect);
+            Preconditions.checkNotNull(ctx.finishedConfig.potionEffect);
 
-            PotionEffectUtils.applyToSelf(ctx.config.potionEffect, ctx.caster);
+            PotionEffectUtils.applyToSelf(ctx.finishedConfig.potionEffect, ctx.caster);
 
-            SoundUtils.playSound(ctx.caster, ctx.config.sound, 1, 1);
+            SoundUtils.playSound(ctx.caster, ctx.finishedConfig.sound, 1, 1);
 
             ctx.spell.spawnParticles(ctx);
 

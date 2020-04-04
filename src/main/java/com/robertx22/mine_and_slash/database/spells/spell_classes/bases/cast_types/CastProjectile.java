@@ -13,13 +13,13 @@ public class CastProjectile extends SpellCastType {
         World world = ctx.caster.world;
 
         ProjectileCastOptions builder = new ProjectileCastOptions(ctx);
-        builder.projectilesAmount = (int) ctx.config.projectileCount.getValueFor(ctx);
-        builder.shootSpeed = ctx.config.shootSpeed.getValueFor(ctx);
+        builder.projectilesAmount = (int) ctx.finishedConfig.projectileCount.getValueFor(ctx);
+        builder.shootSpeed = ctx.finishedConfig.shootSpeed.getValueFor(ctx);
         builder.apart = 75;
         builder.cast();
 
-        if (ctx.config.sound != null) {
-            ctx.caster.world.playMovingSound(null, ctx.caster, ctx.config.sound, SoundCategory.HOSTILE, 1.0F, 1.0F);
+        if (ctx.finishedConfig.sound != null) {
+            ctx.caster.world.playMovingSound(null, ctx.caster, ctx.finishedConfig.sound, SoundCategory.HOSTILE, 1.0F, 1.0F);
         }
         return true;
     }

@@ -36,7 +36,7 @@ public class SpellCalcData implements ITooltipList {
         return data;
     }
 
-    public static SpellCalcData scaleWithAttack(float attack, int base) {
+    public static SpellCalcData scaleWithAttack(float attack, float base) {
         SpellCalcData data = new SpellCalcData();
 
         data.scalingValues.add(new ScalingStatCalc(PhysicalDamage.getInstance(), attack));
@@ -72,7 +72,7 @@ public class SpellCalcData implements ITooltipList {
     private boolean empty = false;
 
     @Store
-    public int baseValue = 0;
+    public float baseValue = 0;
 
     public int getCalculatedBaseValue(EntityCap.UnitData data) {
         return (int) baseScaling.scale(baseValue, data.getLevel());

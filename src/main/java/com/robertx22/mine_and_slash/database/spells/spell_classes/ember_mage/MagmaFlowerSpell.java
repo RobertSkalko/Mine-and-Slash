@@ -41,11 +41,6 @@ public class MagmaFlowerSpell extends BaseSeedSpell implements IBlockSpawner {
     }
 
     @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.LASTING_AOE;
-    }
-
-    @Override
     public String GUID() {
         return "magma_flower";
     }
