@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SetupPreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -38,12 +39,12 @@ import java.util.List;
 
 public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry<BaseSpell>, ITooltipList {
 
-    private final PreCalcSpellConfigs config;
+    private PreCalcSpellConfigs config;
     private final ImmutableSpellConfigs immutableConfigs;
 
-    public BaseSpell(ImmutableSpellConfigs immutable, PreCalcSpellConfigs config) {
-        this.config = config;
+    public BaseSpell(ImmutableSpellConfigs immutable, SetupPreCalcSpellConfigs setup) {
         this.immutableConfigs = immutable;
+        this.config = new PreCalcSpellConfigs(setup);
     }
 
     public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
@@ -132,13 +133,17 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return new ResourceLocation(Ref.MODID, "textures/gui/spells/" + getSchool().id + "/" + GUID() + ".png");
     }
 
-    public abstract SpellSchools getSchool();
-
-    public int getCooldownInTicks() {
-        return getCooldownInSeconds() * 20;
+    public final SpellSchools getSchool() {
+        return immutableConfigs.school;
     }
 
-    public abstract int getCooldownInSeconds();
+    public int getCooldownInTicks(SpellCastContext ctx) {
+        return ctx.finishedConfig.cooldownTicks;
+    }
+
+    public final int getCooldownInSeconds(SpellCastContext ctx) {
+        return getCooldownInTicks(ctx) / 20;
+    }
 
     @Override
     public SlashRegistryType getSlashRegistryType() {
@@ -151,17 +156,23 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         return ctx.finishedConfig.manaCost;
     }
 
-    public abstract int useTimeTicks();
-
-    public float getUseDurationInSeconds() {
-        return (float) useTimeTicks() / 20;
+    public final int useTimeTicks(SpellCastContext ctx) {
+        return ctx.finishedConfig.castTimeTicks;
     }
 
-    public abstract SpellCalcData getCalculation();
+    public final float getUseDurationInSeconds(SpellCastContext ctx) {
+        return (float) useTimeTicks(ctx) / 20;
+    }
 
-    public abstract Elements getElement();
+    public final SpellCalcData getCalculation(SpellCastContext ctx) {
+        return ctx.finishedConfig.calc;
+    }
 
-    public abstract List<ITextComponent> GetDescription(TooltipInfo info);
+    public final Elements getElement() {
+        return this.immutableConfigs.element;
+    }
+
+    public abstract List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx);
 
     public abstract Words getName();
 
@@ -170,7 +181,13 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public final boolean cast(SpellCastContext ctx) {
-        return immutableConfigs.castType.cast(ctx);
+        boolean bool = immutableConfigs.castType.cast(ctx);
+        castExtra(ctx);
+        return bool;
+    }
+
+    public void castExtra(SpellCastContext ctx) {
+
     }
 
     public void spendResources(SpellCastContext ctx) {
@@ -236,13 +253,13 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
         TooltipUtils.addEmpty(list);
 
-        list.addAll(GetDescription(info));
+        list.addAll(GetDescription(info, ctx));
 
         TooltipUtils.addEmpty(list);
 
         list.add(new StringTextComponent(TextFormatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
-        list.add(new StringTextComponent(TextFormatting.YELLOW + "Cooldown: " + getCooldownInSeconds() + "s"));
-        list.add(new StringTextComponent(TextFormatting.GREEN + "Cast time: " + getUseDurationInSeconds() + "s"));
+        list.add(new StringTextComponent(TextFormatting.YELLOW + "Cooldown: " + getCooldownInSeconds(ctx) + "s"));
+        list.add(new StringTextComponent(TextFormatting.GREEN + "Cast time: " + getUseDurationInSeconds(ctx) + "s"));
 
         TooltipUtils.addEmpty(list);
 

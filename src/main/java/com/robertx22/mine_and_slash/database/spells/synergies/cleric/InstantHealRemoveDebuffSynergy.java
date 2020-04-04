@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.cleric;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.InstantHealSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class InstantHealRemoveDebuffSynergy extends Synergy<BeforeHealContext> {
+public class InstantHealRemoveDebuffSynergy extends Synergy<CasterTargetContext> {
 
     @Override
     public String GUID() {
@@ -46,7 +46,7 @@ public class InstantHealRemoveDebuffSynergy extends Synergy<BeforeHealContext> {
     }
 
     @Override
-    public void tryActivate(BeforeHealContext ctx) {
+    public void tryActivate(CasterTargetContext ctx) {
 
         ctx.heal.number += CALC.getCalculatedValue(Load.Unit(ctx.caster));
 

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.cleric;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.cleric.InstantHealSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
@@ -14,7 +14,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InstantHealMagicShieldSynergy extends Synergy<BeforeHealContext> {
+public class InstantHealMagicShieldSynergy extends Synergy<CasterTargetContext> {
 
     @Override
     public String GUID() {
@@ -38,11 +38,11 @@ public class InstantHealMagicShieldSynergy extends Synergy<BeforeHealContext> {
 
     @Override
     public BaseSpell spellAffected() {
-        return InstantHealSpell.getInstance();
+        return new InstantHealSpell();
     }
 
     @Override
-    public void tryActivate(BeforeHealContext ctx) {
+    public void tryActivate(CasterTargetContext ctx) {
 
         ResourcesData.Context heal = new ResourcesData.Context(ctx.casterData, ctx.caster,
             ResourcesData.Type.MAGIC_SHIELD,
