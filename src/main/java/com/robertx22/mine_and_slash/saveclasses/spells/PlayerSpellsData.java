@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import info.loenwind.autosave.annotations.Storable;
@@ -23,22 +24,31 @@ public class PlayerSpellsData {
     public int castingTicksLeft = 0;
 
     @Store
+    public int castingTicksDone = 0;
+
+    @Store
     public int lastSpellCastTimeInTicks = 0;
 
     @Store
     public String spellBeingCast = "";
 
-    public void cancelCast() {
+    public void cancelCast(PlayerEntity player) {
+        try {
+            SpellCastContext ctx = new SpellCastContext(player, 0, getSpellBeingCast());
 
-        BaseSpell spell = getSpellBeingCast();
-        if (spell != null && spell.goesOnCooldownIfCastCanceled()) {
-            SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
-            data.setCooldown(spell.getCooldownInTicks());
+            BaseSpell spell = getSpellBeingCast();
+            if (spell != null && spell.goesOnCooldownIfCastCanceled()) {
+                SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
+                data.setCooldown(spell.getCooldownInTicks(ctx));
+            }
+
+            spellBeingCast = "";
+            castingTicksLeft = 0;
+            lastSpellCastTimeInTicks = 0;
+            castingTicksDone = 0;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        spellBeingCast = "";
-        castingTicksLeft = 0;
-        lastSpellCastTimeInTicks = 0;
 
     }
 
@@ -71,18 +81,22 @@ public class PlayerSpellsData {
             spellDatas.values()
                 .forEach(x -> x.tickCooldown(ticks));
 
-            castingTicksLeft--;
-
             BaseSpell spell = SlashRegistry.Spells()
                 .get(spellBeingCast);
 
+            SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
+
             if (spell != null && spells != null && SlashRegistry.Spells()
                 .isRegistered(spell)) {
-                spell.onCastingTick(player, spells, castingTicksLeft);
+                spell.onCastingTick(ctx);
                 addCastingMoveDebuff(player);
             } else {
                 removeCastingMoveDebuff(player);
             }
+
+            castingTicksLeft--;
+            castingTicksDone++;
+
         } catch (Exception e) {
 
         }
@@ -122,17 +136,23 @@ public class PlayerSpellsData {
     public void setToCast(int key, Hotbar hotbar, PlayerEntity player, int ticks) {
         BaseSpell spell = getSpellByKeybind(key, hotbar);
 
+        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+
         this.spellBeingCast = spell.GUID();
 
-        this.castingTicksLeft = spell.useTimeTicks();
-        this.lastSpellCastTimeInTicks = spell.useTimeTicks();
+        this.castingTicksLeft = spell.useTimeTicks(ctx);
+        this.lastSpellCastTimeInTicks = spell.useTimeTicks(ctx);
+        this.castingTicksDone = 0;
 
     }
 
     public void setToCast(BaseSpell spell, PlayerEntity player) {
+        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+
         this.spellBeingCast = spell.GUID();
-        this.castingTicksLeft = spell.useTimeTicks();
-        this.lastSpellCastTimeInTicks = spell.useTimeTicks();
+        this.castingTicksLeft = spell.useTimeTicks(ctx);
+        this.lastSpellCastTimeInTicks = spell.useTimeTicks(ctx);
+        this.castingTicksDone = 0;
     }
 
     public void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
@@ -145,7 +165,10 @@ public class PlayerSpellsData {
                 if (spells.getPerksData()
                     .getAvailableSpells()
                     .contains(spell)) {
-                    spell.cast(player, spell.useTimeTicks());
+
+                    SpellCastContext ctx = new SpellCastContext(player, this.castingTicksDone, spell);
+
+                    spell.cast(ctx);
 
                     player.getHeldItemMainhand()
                         .damageItem(1, player, x -> {
@@ -198,8 +221,9 @@ public class PlayerSpellsData {
         if (data.cooldownIsReady() == false) {
             return false;
         }
+        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
-        return spell.canCast(player);
+        return spell.canCast(ctx);
 
     }
 
@@ -220,16 +244,19 @@ public class PlayerSpellsData {
         if (data.cooldownIsReady() == false) {
             return false;
         }
+        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
-        return spell.canCast(player);
+        return spell.canCast(ctx);
 
     }
 
     private void onSpellCast(BaseSpell spell, PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
         SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
 
+        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+
         if (spell.shouldActivateCooldown(player, spells)) {
-            data.setCooldown(spell.getCooldownInTicks());
+            data.setCooldown(spell.getCooldownInTicks(ctx));
         }
 
         spellDatas.put(spell.GUID(), data);

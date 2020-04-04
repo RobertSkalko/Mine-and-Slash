@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
@@ -40,7 +41,9 @@ public class RightClickSpell {
                             .getSpellData()
                             .setToCast(spell, player);
 
-                        spell.spendResources(player);
+                        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+
+                        spell.spendResources(ctx);
 
                     }
                 }

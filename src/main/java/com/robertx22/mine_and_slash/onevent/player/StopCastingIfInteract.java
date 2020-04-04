@@ -15,8 +15,10 @@ public class StopCastingIfInteract {
         }
         PlayerSpellCap.ISpellsCap data = Load.spells(player);
 
-        if (data.getSpellData().isCasting()) {
-            data.getSpellData().cancelCast();
+        if (data.getSpellData()
+            .isCasting()) {
+            data.getSpellData()
+                .cancelCast(player);
             data.syncToClient(player);
         }
     }

@@ -46,11 +46,6 @@ public class TripleSlashSpell extends BaseSpell {
     }
 
     @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.Single_Target_Projectile;
-    }
-
-    @Override
     public String GUID() {
         return "triple_slash";
     }

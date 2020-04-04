@@ -47,10 +47,6 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
         this.config = new PreCalcSpellConfigs(setup);
     }
 
-    public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
-        return true;
-    }
-
     public final ImmutableSpellConfigs getImmutableConfigs() {
         return immutableConfigs;
     }
@@ -88,11 +84,15 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public final int getMaxSpellLevelNormal() {
-        return immutableConfigs.maxSpellLevel;
+        return immutableConfigs.maxSpellLevel();
     }
 
     public final int getMaxSpellLevelBuffed() {
         return getMaxSpellLevelNormal() + 5;
+    }
+
+    public boolean shouldActivateCooldown(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
+        return true;
     }
 
     public enum AllowedAsRightClickOn {
@@ -100,7 +100,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public boolean isAllowedAsRightClickFor(GearItemSlot slot) {
-        switch (immutableConfigs.allowedAsRightClickOn) {
+        switch (immutableConfigs.allowedAsRightClickOn()) {
             case NONE: {
                 return false;
             }
@@ -126,7 +126,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
     public final boolean goesOnCooldownIfCastCanceled() {
         // override for spells that do oncastingtick
-        return immutableConfigs.goesOnCooldownIfCanceled;
+        return immutableConfigs.goesOnCooldownIfCanceled();
     }
 
     public final ResourceLocation getIcon() {
@@ -134,7 +134,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public final SpellSchools getSchool() {
-        return immutableConfigs.school;
+        return immutableConfigs.school();
     }
 
     public int getCooldownInTicks(SpellCastContext ctx) {
@@ -169,7 +169,7 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public final Elements getElement() {
-        return this.immutableConfigs.element;
+        return this.immutableConfigs.element();
     }
 
     public abstract List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx);
@@ -181,7 +181,8 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
     }
 
     public final boolean cast(SpellCastContext ctx) {
-        boolean bool = immutableConfigs.castType.cast(ctx);
+        boolean bool = immutableConfigs.castType()
+            .cast(ctx);
         castExtra(ctx);
         return bool;
     }
@@ -221,7 +222,8 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
                 if (data.getResources()
                     .hasEnough(rctx)) {
 
-                    if (immutableConfigs.castRequirements.stream()
+                    if (immutableConfigs.castRequirements()
+                        .stream()
                         .anyMatch(x -> !x.predicate.test(player))) {
                         return false;
                     }
@@ -267,9 +269,10 @@ public abstract class BaseSpell implements IWeighted, IGUID, ISlashRegistryEntry
 
         TooltipUtils.addEmpty(list);
 
-        this.immutableConfigs.castRequirements.forEach(x -> list.add(x.text));
+        this.immutableConfigs.castRequirements()
+            .forEach(x -> list.add(x.text));
 
-        if (this.immutableConfigs.allowedAsRightClickOn == AllowedAsRightClickOn.MAGE_WEAPON) {
+        if (this.immutableConfigs.allowedAsRightClickOn() == AllowedAsRightClickOn.MAGE_WEAPON) {
             TooltipUtils.addEmpty(list);
             list.add(new SText(TextFormatting.LIGHT_PURPLE + "Can be set as right click for a Mage Weapon"));
         }
