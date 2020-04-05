@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
@@ -59,6 +60,7 @@ public class SpellCastContext {
 
         this.configForSummonedEntities = new EntityCalcSpellConfigs(data, spellsCap, ability);
 
-        this.isLastCastTick = getConfigFor(spell).castTimeTicks.get(spellsCap, spell) == ticksInUse;
+        this.isLastCastTick = getConfigFor(spell).get(SC.CAST_TIME_TICKS)
+            .get(spellsCap, spell) == ticksInUse;
     }
 }

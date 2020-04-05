@@ -1,16 +1,21 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs;
 
 public enum SC {
+    MANA_COST(0),
+    RADIUS(0),
+    PROJECTILE_COUNT(1),
+    CAST_TIME_TICKS(0),
+    COOLDOWN_TICKS(0),
+    SHOOT_SPEED(0.05F),
+    SUMMONED_ENTITIES(1),
+    DURATION_TICKS(0),
+    TIMES_TO_CAST(1),
+    BASE_VALUE(0),
+    ATTACK_SCALE_VALUE(0);
 
-    MANA_COST,
-    RADIUS,
-    PROJECTILE_COUNT,
-    CAST_TIME_TICKS,
-    COOLDOWN_TICKS,
-    SHOOT_SPEED,
-    SUMMONED_ENTITIES,
-    DURATION_TICKS,
-    TIMES_TO_CAST,
-    BASE_VALUE,
-    ATTACK_SCALE_VALUE,
+    public float min;
+
+    SC(float min) {
+        this.min = min;
+    }
 }

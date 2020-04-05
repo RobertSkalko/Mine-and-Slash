@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_b
 
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import net.minecraft.util.math.MathHelper;
 
 public class LevelBased {
 
@@ -36,7 +37,6 @@ public class LevelBased {
             return ERROR;
         }
 
-        /*
         if (isEmpty()) {
             try {
                 throw new RuntimeException("Trying to use empty value!!!");
@@ -44,8 +44,6 @@ public class LevelBased {
                 e.printStackTrace();
             }
         }
-
-         */
 
         if (levelOne == maxLevel) {
             return maxLevel;
@@ -55,6 +53,9 @@ public class LevelBased {
 
         float val = levelOne + ((maxLevel - levelOne) * multi);
 
+        return MathHelper.clamp(val, min, max);
+
+        /*
         if (val < min || val > max) {
             throw new RuntimeException(
                 "Value isn't in correct range," +
@@ -62,7 +63,9 @@ public class LevelBased {
                     " the spell actually initialized the value.: " + val);
         }
 
-        return val;
+
+         */
+
     }
 
     public void modifyBy(LevelBased other) {

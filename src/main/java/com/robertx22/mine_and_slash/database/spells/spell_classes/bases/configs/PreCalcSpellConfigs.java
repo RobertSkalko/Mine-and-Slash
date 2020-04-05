@@ -45,7 +45,7 @@ public class PreCalcSpellConfigs {
             }
         }
 
-        map.put(sc, new LevelBased(min, max));
+        map.put(sc, new LevelBased(min, max).min(sc.min));
     }
 
     public void setMaxLevel(int lvl) {
