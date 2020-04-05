@@ -42,7 +42,8 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
     @Override
     public String locNameLangFileGUID() {
-        return this.getRegistryName().toString();
+        return this.getRegistryName()
+            .toString();
     }
 
     public abstract String GUID();
@@ -64,7 +65,7 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent(TextFormatting.LIGHT_PURPLE + "" + TextFormatting.BOLD).appendSibling(
-                locName()));
+            locName()));
 
         list.addAll(getEffectTooltip(info));
 
@@ -93,7 +94,7 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
         TooltipUtils.addEmpty(list);
         list.add(new StringTextComponent(
-                TextFormatting.LIGHT_PURPLE + "Max Stacks: " + TextFormatting.DARK_PURPLE + getMaxStacks()));
+            TextFormatting.LIGHT_PURPLE + "Max Stacks: " + TextFormatting.DARK_PURPLE + getMaxStacks()));
 
         return list;
 
@@ -104,7 +105,7 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
 
         TooltipUtils.addEmpty(list);
         list.add(new StringTextComponent(
-                TextFormatting.GOLD + "Duration: " + TextFormatting.YELLOW + getDurationInSeconds() + "s"));
+            TextFormatting.GOLD + "Duration: " + TextFormatting.YELLOW + getDurationInSeconds() + "s"));
 
         return list;
 
@@ -245,7 +246,9 @@ public abstract class BasePotionEffect extends Effect implements IAutoLocName, I
     @OnlyIn(Dist.CLIENT)
     public void renderHUDEffect(EffectInstance effect, AbstractGui gui, int x, int y, float z, float alpha) {
         if (getIconTexture() != null) {
-            Minecraft.getInstance().getTextureManager().bindTexture(getIconTexture());
+            Minecraft.getInstance()
+                .getTextureManager()
+                .bindTexture(getIconTexture());
             AbstractGui.blit(x + 4, y + 4, 0, 0, 16, 16, 16, 16);
         }
     }

@@ -1,9 +1,11 @@
 package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.PotionStat;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -11,19 +13,26 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public interface IApplyStatPotion {
 
-    default void applyStats(EntityCap.UnitData data, EffectInstance instance) {
+    default void applyStats(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap cap, EffectInstance instance) {
         ExtraPotionData extraData = PotionDataSaving.getData(instance);
 
         if (extraData != null) {
-            getStatsAffected(data, extraData).forEach(x -> x.applyStats(data));
+            getStatsAffected(data, cap, extraData).forEach(x -> x.applyStats(data));
         }
 
     }
 
-    List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData);
+    default List<ExactStatData> getStatsAffected(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap cap, ExtraPotionData extraData) {
+        return getPotionStats().stream()
+            .map(x -> x.getExactStat(data, cap, extraData))
+            .collect(Collectors.toList());
+    }
+
+    List<PotionStat> getPotionStats();
 
     default List<ITextComponent> getStatTooltip(TooltipInfo info, BasePotionEffect effect) {
 
