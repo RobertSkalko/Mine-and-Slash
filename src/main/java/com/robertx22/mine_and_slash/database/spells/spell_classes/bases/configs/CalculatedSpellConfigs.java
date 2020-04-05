@@ -15,25 +15,26 @@ public class CalculatedSpellConfigs {
     public final SpellCalcData calc;
 
     @Store
-    public final int manaCost;
+    public final Integer maxSpellLevel;
     @Store
-    public final int castTimeTicks;
+    public final Integer summonedEntities;
     @Store
-    public final int timesToCast;
+    public final Integer manaCost;
     @Store
-    public final int projectileCount;
+    public final Integer castTimeTicks;
     @Store
-    public final int cooldownTicks;
+    public final Integer timesToCast;
     @Store
-    public final float shootSpeed;
+    public final Integer projectileCount;
     @Store
-    public final float duration;
+    public final Integer cooldownTicks;
+
     @Store
-    public final float radius;
+    public final Float shootSpeed;
     @Store
-    public final int summonedEntities;
+    public final Float duration;
     @Store
-    public final int maxSpellLevel;
+    public final Float radius;
 
     public CalculatedSpellConfigs(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spellsCap, IAbility ability) {
         int lvl = spellsCap != null ? spellsCap.getLevelOf(ability) : 1;
@@ -41,29 +42,33 @@ public class CalculatedSpellConfigs {
 
         PreCalcSpellConfigs pre = ability.getPreCalcConfig();
 
-        this.manaCost = (int) Mana.getInstance()
-            .calculateScalingStatGrowth(pre.manaCost.getValueFor(lvl, ability), userLvl);
+        if (ability.getAbilityType() == IAbility.Type.SPELL) {
+            pre.modifyBySynergies(ability.getSpell(), spellsCap);
+        }
 
-        this.castTimeTicks = (int) pre.castTimeTicks.getValueFor(lvl, ability);
+        this.manaCost = (int) Mana.getInstance()
+            .calculateScalingStatGrowth(pre.manaCost.get(lvl, ability), userLvl);
+
+        this.castTimeTicks = (int) pre.castTimeTicks.get(lvl, ability);
 
         this.calc = SpellCalcData.scaleWithAttack(
-            pre.spellAttackScalingValue.getValueFor(lvl, ability),
-            pre.spellBaseValue.getValueFor(lvl, ability)
+            pre.spellAttackScalingValue.get(lvl, ability),
+            pre.spellBaseValue.get(lvl, ability)
         );
 
-        this.timesToCast = (int) pre.timesToCast.getValueFor(lvl, ability);
+        this.timesToCast = (int) pre.timesToCast.get(lvl, ability);
 
-        this.projectileCount = (int) pre.projectileCount.getValueFor(lvl, ability);
+        this.projectileCount = (int) pre.projectileCount.get(lvl, ability);
 
-        this.cooldownTicks = (int) pre.cooldownTicks.getValueFor(lvl, ability);
+        this.cooldownTicks = (int) pre.cooldownTicks.get(lvl, ability);
 
-        this.shootSpeed = (int) pre.shootSpeed.getValueFor(lvl, ability);
+        this.shootSpeed = pre.shootSpeed.get(lvl, ability);
 
-        this.duration = (int) pre.duration.getValueFor(lvl, ability);
+        this.duration = pre.duration.get(lvl, ability);
 
-        this.summonedEntities = (int) pre.summonedEntities.getValueFor(lvl, ability);
+        this.summonedEntities = (int) pre.summonedEntities.get(lvl, ability);
 
-        this.radius = pre.radius.getValueFor(lvl, ability);
+        this.radius = pre.radius.get(lvl, ability);
 
         this.maxSpellLevel = pre.maxSpellLevel;
 

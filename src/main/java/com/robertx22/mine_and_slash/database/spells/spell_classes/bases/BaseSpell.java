@@ -76,8 +76,8 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     }
 
-    public final List<Synergy> getAllocatedSynergies(SpellCastContext ctx) {
-        return ctx.spellsCap.getAbilitiesData()
+    public final List<Synergy> getAllocatedSynergies(PlayerSpellCap.ISpellsCap cap) {
+        return cap.getAbilitiesData()
             .getAllocatedSynergies()
             .stream()
             .filter(x -> x.getRequiredAbility()
@@ -216,7 +216,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
         float cost = 0;
 
-        for (Synergy x : getAllocatedSynergies(ctx)) {
+        for (Synergy x : getAllocatedSynergies(ctx.spellsCap)) {
             cost += ctx.getConfigFor(x).manaCost;
         }
 

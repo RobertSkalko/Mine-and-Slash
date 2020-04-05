@@ -11,7 +11,7 @@ public class CastSelfHeal extends SpellCastType {
 
         SpellHealEffect heal = new SpellHealEffect(
             new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.HEALTH,
-                ctx.finishedConfig.calc.getCalculatedValue(ctx.data), ResourcesData.Use.RESTORE,
+                ctx.getConfigFor(ctx.spell).calc.getCalculatedValue(ctx.data), ResourcesData.Use.RESTORE,
                 ctx.spell
             ));
 

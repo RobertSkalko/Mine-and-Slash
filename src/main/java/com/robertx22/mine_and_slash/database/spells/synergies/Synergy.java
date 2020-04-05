@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.synergies;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.SynergyContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
@@ -49,6 +50,9 @@ public abstract class Synergy<T extends SynergyContext> implements ITooltipList,
     public BaseSpell getSpell() {
         return (BaseSpell) getRequiredAbility();
     }
+
+    // like increase mana cost, reduce cooldown etc
+    public abstract PreCalcSpellConfigs getConfigsAffectingSpell();
 
     @Override
     public final SlashRegistryType getSlashRegistryType() {

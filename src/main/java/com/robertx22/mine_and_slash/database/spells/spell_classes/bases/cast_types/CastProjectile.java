@@ -12,8 +12,8 @@ public class CastProjectile extends SpellCastType {
         World world = ctx.caster.world;
 
         ProjectileCastOptions builder = new ProjectileCastOptions(ctx);
-        builder.projectilesAmount = (int) ctx.finishedConfig.projectileCount;
-        builder.shootSpeed = ctx.finishedConfig.shootSpeed;
+        builder.projectilesAmount = (int) ctx.getConfigFor(ctx.spell).projectileCount;
+        builder.shootSpeed = ctx.getConfigFor(ctx.spell).shootSpeed;
         builder.apart = 75;
         builder.cast();
 

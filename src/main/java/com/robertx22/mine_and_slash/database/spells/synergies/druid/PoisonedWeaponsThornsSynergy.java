@@ -44,6 +44,21 @@ public class PoisonedWeaponsThornsSynergy extends Synergy<CasterTargetContext> {
     }
 
     @Override
+    public PreCalcSpellConfigs getConfigsAffectingSpell() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.manaCost = new LevelBased(1, 4);
+        return c;
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.spellBaseValue = new LevelBased(2, 9);
+        c.radius = new LevelBased(1.5F, 2);
+        return c;
+    }
+
+    @Override
     public void tryActivate(CasterTargetContext ctx) {
 
         if (PotionEffectUtils.has(ctx.target, MinorThornsEffect.INSTANCE) || PotionEffectUtils.has(
@@ -51,28 +66,19 @@ public class PoisonedWeaponsThornsSynergy extends Synergy<CasterTargetContext> {
 
             ParticleEnum.sendToClients(ctx.target,
                 new ParticlePacketData(ctx.target.getPosition(), ParticleEnum.NOVA).radius(
-                    RADIUS)
+                    2)
                     .type(ParticleTypes.CRIT)
                     .amount(30)
             );
 
-            int num = CALC.getCalculatedValue(Load.Unit(ctx.caster));
+            int num = ctx.ctx.getConfigFor(this).calc.getCalculatedValue(Load.Unit(ctx.caster));
 
             SpellDamageEffect dmg = new SpellDamageEffect(
-                ctx.caster, ctx.target, num, ctx.casterData, ctx.targetData, spellAffected());
+                ctx.caster, ctx.target, num, ctx.casterData, ctx.targetData, getSpell());
             dmg.element = Elements.Nature;
             dmg.Activate();
 
         }
-    }
-
-    @Override
-    public PreCalcSpellConfigs getPreCalcConfig() {
-        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.manaCost = new LevelBased(1, 4);
-        c.spellBaseValue = new LevelBased(2, 9);
-        c.radius = new LevelBased(1.5F, 2);
-        return c;
     }
 
     @Override

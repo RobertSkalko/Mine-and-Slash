@@ -570,7 +570,8 @@ public class EntityCap {
             int talents = Load.talents((PlayerEntity) en)
                 .getFreePoints(this);
             int spells = Load.spells((PlayerEntity) en)
-                .getFreePoints(this);
+                .getAbilitiesData()
+                .getFreeAbilityPoints(this);
             int stats = Load.statPoints((PlayerEntity) en)
                 .getAvailablePoints(this);
 
