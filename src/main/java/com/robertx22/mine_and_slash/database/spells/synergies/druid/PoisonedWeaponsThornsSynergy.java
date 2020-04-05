@@ -1,17 +1,18 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.druid;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.PoisonedWeaponsSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.MajorThornsEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.MinorThornsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -42,15 +43,6 @@ public class PoisonedWeaponsThornsSynergy extends Synergy<CasterTargetContext> {
         return list;
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.2F, 3);
-
-    static float RADIUS = 1.5F;
-
-    @Override
-    public BaseSpell spellAffected() {
-        return PoisonedWeaponsSpell.getInstance();
-    }
-
     @Override
     public void tryActivate(CasterTargetContext ctx) {
 
@@ -73,4 +65,24 @@ public class PoisonedWeaponsThornsSynergy extends Synergy<CasterTargetContext> {
 
         }
     }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.manaCost = new LevelBased(1, 4);
+        c.spellBaseValue = new LevelBased(2, 9);
+        c.radius = new LevelBased(1.5F, 2);
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return AbilityPlace.upFrom(getRequiredAbility());
+    }
+
+    @Override
+    public IAbility getRequiredAbility() {
+        return PoisonedWeaponsSpell.getInstance();
+    }
+
 }

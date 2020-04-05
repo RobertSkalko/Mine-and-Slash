@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SetupPreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
@@ -47,11 +47,6 @@ public class RegenerateSpell extends BaseSpell {
                 }
 
                 @Override
-                public int maxSpellLevel() {
-                    return 14;
-                }
-
-                @Override
                 public BasePotionEffect potionEffect() {
                     return RegenerateEffect.INSTANCE;
                 }
@@ -60,35 +55,20 @@ public class RegenerateSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Nature;
                 }
-            },
-            new SetupPreCalcSpellConfigs() {
-
-                @Override
-                public LevelBased radius() {
-                    return new LevelBased(2, 4);
-                }
-
-                @Override
-                public LevelBased manaCost() {
-                    return new LevelBased(25, 50);
-                }
-
-                @Override
-                public LevelBased baseValue() {
-                    return new LevelBased(2, 6);
-                }
-
-                @Override
-                public LevelBased castTimeTicks() {
-                    return new LevelBased(30, 20);
-                }
-
-                @Override
-                public LevelBased cooldownTicks() {
-                    return new LevelBased(45, 25);
-                }
             });
 
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.manaCost = new LevelBased(25, 50);
+        c.radius = new LevelBased(2, 4);
+        c.spellBaseValue = new LevelBased(2, 6);
+        c.castTimeTicks = new LevelBased(30, 20);
+        c.cooldownTicks = new LevelBased(45, 25);
+        c.maxSpellLevel = 14;
+        return c;
     }
 
     public static RegenerateSpell getInstance() {

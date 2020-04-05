@@ -20,7 +20,7 @@ public class AbilityPlace {
 
     }
 
-    public AbilityPlace upFrom(IAbility other) {
+    public static AbilityPlace upFrom(IAbility other) {
         return new AbilityPlace(other.getAbilityPlace().x, other.getAbilityPlace().y + 1);
     }
 

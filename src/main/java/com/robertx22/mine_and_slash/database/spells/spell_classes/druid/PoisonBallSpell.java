@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SetupPreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
@@ -49,46 +49,26 @@ public class PoisonBallSpell extends BaseSpell {
                 }
 
                 @Override
-                public int maxSpellLevel() {
-                    return 16;
-                }
-
-                @Override
                 public Elements element() {
                     return Elements.Nature;
                 }
-            },
-            new SetupPreCalcSpellConfigs() {
-                @Override
-                public LevelBased manaCost() {
-                    return new LevelBased(5, 15);
-                }
-
-                @Override
-                public LevelBased baseValue() {
-                    return new LevelBased(3, 10);
-                }
-
-                @Override
-                public LevelBased shootSpeed() {
-                    return new LevelBased(0.4F, 0.6F);
-                }
-
-                @Override
-                public LevelBased castTimeTicks() {
-                    return new LevelBased(0, 0);
-                }
-
-                @Override
-                public LevelBased cooldownTicks() {
-                    return new LevelBased(15, 10);
-                }
             });
-
     }
 
     public static PoisonBallSpell getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.manaCost = new LevelBased(5, 15);
+        c.spellBaseValue = new LevelBased(3, 10);
+        c.shootSpeed = new LevelBased(0.4F, 0.6F);
+        c.castTimeTicks = new LevelBased(0, 0);
+        c.cooldownTicks = new LevelBased(15, 10);
+        c.maxSpellLevel = 16;
+        return c;
     }
 
     @Override

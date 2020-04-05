@@ -16,6 +16,7 @@ public enum SlashRegistryType {
 
     NONE("none"),
     STAT("stat"),
+    SPELL_SYNERGY("synergy"),
     TIER("tier") {
         @Override
         public ISerializable getSerializer() {

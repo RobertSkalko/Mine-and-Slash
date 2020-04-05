@@ -2,8 +2,6 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SetupPreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -38,12 +36,10 @@ import java.util.List;
 
 public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITooltipList, IAbility {
 
-    private PreCalcSpellConfigs config;
     private final ImmutableSpellConfigs immutableConfigs;
 
-    public BaseSpell(ImmutableSpellConfigs immutable, SetupPreCalcSpellConfigs setup) {
+    public BaseSpell(ImmutableSpellConfigs immutable) {
         this.immutableConfigs = immutable;
-        this.config = new PreCalcSpellConfigs(setup);
     }
 
     public final ImmutableSpellConfigs getImmutableConfigs() {
@@ -74,16 +70,12 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     }
 
-    public PreCalcSpellConfigs getPreCalcConfig() {
-        return config;
-    }
-
     public void spawnParticles(SpellCastContext ctx) {
 
     }
 
     public final int getMaxSpellLevelNormal() {
-        return immutableConfigs.maxSpellLevel();
+        return getPreCalcConfig().maxSpellLevel;
     }
 
     public final int getMaxSpellLevelBuffed() {
@@ -138,7 +130,8 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         return immutableConfigs.goesOnCooldownIfCanceled();
     }
 
-    public final ResourceLocation getIcon() {
+    @Override
+    public final ResourceLocation getIconLoc() {
         return new ResourceLocation(Ref.MODID, "textures/gui/spells/" + getSchool().id + "/" + GUID() + ".png");
     }
 

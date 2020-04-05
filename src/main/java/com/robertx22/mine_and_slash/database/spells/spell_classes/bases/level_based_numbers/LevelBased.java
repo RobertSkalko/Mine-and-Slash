@@ -13,17 +13,17 @@ public class LevelBased {
         this.maxLevel = maxLevel;
     }
 
-    public float getValueFor(int spellLevel, IAbility ability) {
+    public float getValueFor(int abilityLevel, IAbility ability) {
 
         if (levelOne == maxLevel) {
             return maxLevel;
         }
 
-        float multi = spellLevel / ability.getMaxSpellLevelBuffed();
+        float multi = abilityLevel / ability.getMaxSpellLevelBuffed();
         return levelOne + ((maxLevel - levelOne) * multi);
     }
 
     public float getValueFor(SpellCastContext ctx) {
-        return getValueFor(ctx.spellsCap.getLevelOf(ctx.spell), ctx.spell);
+        return getValueFor(ctx.spellsCap.getLevelOf(ctx.ability), ctx.ability);
     }
 }

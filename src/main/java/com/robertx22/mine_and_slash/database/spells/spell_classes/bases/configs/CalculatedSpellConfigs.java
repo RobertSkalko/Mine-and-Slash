@@ -23,11 +23,15 @@ public class CalculatedSpellConfigs {
     @Store
     public final int cooldownTicks;
     @Store
-    public final int shootSpeed;
+    public final float shootSpeed;
     @Store
-    public final int duration;
+    public final float duration;
+    @Store
+    public final float radius;
     @Store
     public final int summonedEntities;
+    @Store
+    public final int maxSpellLevel;
 
     public CalculatedSpellConfigs(SpellCastContext ctx) {
         PreCalcSpellConfigs pre = ctx.spell.getPreCalcConfig();
@@ -53,6 +57,10 @@ public class CalculatedSpellConfigs {
         this.duration = (int) pre.duration.getValueFor(ctx);
 
         this.summonedEntities = (int) pre.summonedEntities.getValueFor(ctx);
+
+        this.radius = pre.radius.getValueFor(ctx);
+
+        this.maxSpellLevel = pre.maxSpellLevel;
 
     }
 

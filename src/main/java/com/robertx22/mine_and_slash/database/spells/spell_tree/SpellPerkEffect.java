@@ -79,7 +79,7 @@ public class SpellPerkEffect extends BasePerkEffect implements ISlashRegistryEnt
     }
 
     private void setupTexture(BaseSpell spell) {
-        this.TEXTURE = spell.getIcon();
+        this.TEXTURE = spell.getIconLoc();
         this.hasTexture = true;
     }
 

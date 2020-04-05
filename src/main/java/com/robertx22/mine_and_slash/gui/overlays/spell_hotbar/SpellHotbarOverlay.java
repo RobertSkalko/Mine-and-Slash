@@ -79,7 +79,7 @@ public class SpellHotbarOverlay extends AbstractGui {
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
                 mc.getTextureManager()
-                    .bindTexture(spell.getIcon());
+                    .bindTexture(spell.getIconLoc());
                 this.blit(xs, ys, 0, 0, 32, 32, 32, 32);
 
                 SpellData spelldata = data.getSpellData()

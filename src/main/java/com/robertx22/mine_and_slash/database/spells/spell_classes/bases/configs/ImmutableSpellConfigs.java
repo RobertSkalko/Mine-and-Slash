@@ -23,8 +23,6 @@ public abstract class ImmutableSpellConfigs {
 
     public abstract SoundEvent sound();
 
-    public abstract int maxSpellLevel();
-
     public abstract Elements element();
 
     public BaseSpellBlock spellBlockToSpawn() {

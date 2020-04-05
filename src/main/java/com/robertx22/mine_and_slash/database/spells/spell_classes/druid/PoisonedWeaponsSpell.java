@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SetupPreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.PoisonedWeaponsEffect;
@@ -26,57 +26,43 @@ public class PoisonedWeaponsSpell extends BaseSpell {
     private PoisonedWeaponsSpell() {
         super(new ImmutableSpellConfigs() {
 
-                  @Override
-                  public BasePotionEffect potionEffect() {
-                      return PoisonedWeaponsEffect.getInstance();
-                  }
+            @Override
+            public BasePotionEffect potionEffect() {
+                return PoisonedWeaponsEffect.getInstance();
+            }
 
-                  @Override
-                  public SpellSchools school() {
-                      return SpellSchools.DRUID;
-                  }
+            @Override
+            public SpellSchools school() {
+                return SpellSchools.DRUID;
+            }
 
-                  @Override
-                  public SpellCastType castType() {
-                      return SpellCastType.GIVE_EFFECT;
-                  }
+            @Override
+            public SpellCastType castType() {
+                return SpellCastType.GIVE_EFFECT;
+            }
 
-                  @Override
-                  public SoundEvent sound() {
-                      return SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED;
-                  }
+            @Override
+            public SoundEvent sound() {
+                return SoundEvents.ENTITY_PLAYER_SPLASH_HIGH_SPEED;
+            }
 
-                  @Override
-                  public int maxSpellLevel() {
-                      return 12;
-                  }
+            @Override
+            public Elements element() {
+                return Elements.Nature;
+            }
+        });
 
-                  @Override
-                  public Elements element() {
-                      return Elements.Nature;
-                  }
-              },
-            new SetupPreCalcSpellConfigs() {
-                @Override
-                public LevelBased manaCost() {
-                    return new LevelBased(20, 40);
-                }
+    }
 
-                @Override
-                public LevelBased baseValue() {
-                    return new LevelBased(3, 10);
-                }
-
-                @Override
-                public LevelBased castTimeTicks() {
-                    return new LevelBased(30, 15);
-                }
-
-                @Override
-                public LevelBased cooldownTicks() {
-                    return new LevelBased(120, 60);
-                }
-            });
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.manaCost = new LevelBased(20, 40);
+        c.spellBaseValue = new LevelBased(2, 9);
+        c.castTimeTicks = new LevelBased(30, 15);
+        c.cooldownTicks = new LevelBased(120, 60);
+        c.maxSpellLevel = 12;
+        return c;
     }
 
     public static PoisonedWeaponsSpell getInstance() {
