@@ -38,7 +38,7 @@ public class RightClickSpell {
 
                     if (spells.canCastRightClickSpell(spell, player)) {
                         spells
-                            .getSpellData()
+                            .getCastingData()
                             .setToCast(spell, player);
 
                         SpellCastContext ctx = new SpellCastContext(player, 0, spell);

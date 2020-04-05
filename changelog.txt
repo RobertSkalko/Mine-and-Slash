@@ -1,10 +1,19 @@
-3.5.2
+3.6.0
+
+SPELL REWORK! (UNFINISHED)
+* spells and synergies now have levels
+* synergies now cost mana
+* removed some spells as i consider them bad (like geyser) and others because their spell school doesn't have enough spells, they'll probably be re-added later
+* added some new spells
+
+Other:
 * bosses now spawn less minions but they're all max rarity
 * blocking fully now stops attack knockbacks. can't figure out how to stop the attack sounds though
 * made vanilla teams usable for exp and friendly fire off.
 * casting spells now slows you down
 * server performance improvements
 * added all the buildathon rewards that people asked for (still many didn't come claim them though)
+
 
 3.5.1
 * should fix gamerules not working in dungeon

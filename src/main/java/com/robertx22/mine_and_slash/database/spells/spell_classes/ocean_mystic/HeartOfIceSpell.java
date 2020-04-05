@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellHeal;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;

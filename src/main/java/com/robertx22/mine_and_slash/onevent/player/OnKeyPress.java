@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.gui.screens.main_hub.MainHubScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.KeybindsRegister;
 import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
-import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.event.InputEvent;
@@ -36,8 +36,8 @@ public class OnKeyPress {
                 } else if (isCorrectKey(KeybindsRegister.swapHotbar, event)) {
 
                     SpellHotbarOverlay.CURRENT_HOTBAR =
-                        SpellHotbarOverlay.CURRENT_HOTBAR == PlayerSpellsData.Hotbar.FIRST ?
-                            PlayerSpellsData.Hotbar.SECOND : PlayerSpellsData.Hotbar.FIRST;
+                        SpellHotbarOverlay.CURRENT_HOTBAR == SpellCastingData.Hotbar.FIRST ?
+                            SpellCastingData.Hotbar.SECOND : SpellCastingData.Hotbar.FIRST;
                 } else {
 
                     for (KeyBinding entry : KeybindsRegister.HOTBAR.keySet()) {

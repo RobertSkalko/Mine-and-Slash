@@ -96,7 +96,7 @@ public class PlayerTalentsCap {
         }
 
         @Override
-        public PlayerTalentsData getPerksData() {
+        public PlayerTalentsData getAbilitiesData() {
             return data;
         }
 

@@ -2,8 +2,12 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.packets.*;
+import com.robertx22.mine_and_slash.packets.allocation.SpendStatPointPacket;
+import com.robertx22.mine_and_slash.packets.allocation.TryAllocateTalentPacket;
+import com.robertx22.mine_and_slash.packets.allocation.TryRemoveTalentPacket;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacket;
 import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
+import com.robertx22.mine_and_slash.packets.spells.ChangeSpellHotbarPacket;
 import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
 import com.robertx22.mine_and_slash.packets.spells.WeaponRightClickSpellPacket;
 import com.robertx22.mine_and_slash.packets.sync_cap.RequestSyncCapToClient;
@@ -56,12 +60,12 @@ public class PacketRegister {
 
         reg(OpenGuiPacket.class, OpenGuiPacket::encode, OpenGuiPacket::decode, OpenGuiPacket::handle);
 
-        reg(TryAllocatePerkPacket.class, TryAllocatePerkPacket::encode, TryAllocatePerkPacket::decode,
-            TryAllocatePerkPacket::handle
+        reg(TryAllocateTalentPacket.class, TryAllocateTalentPacket::encode, TryAllocateTalentPacket::decode,
+            TryAllocateTalentPacket::handle
         );
 
-        reg(TryRemovePerkPacket.class, TryRemovePerkPacket::encode, TryRemovePerkPacket::decode,
-            TryRemovePerkPacket::handle
+        reg(TryRemoveTalentPacket.class, TryRemoveTalentPacket::encode, TryRemoveTalentPacket::decode,
+            TryRemoveTalentPacket::handle
         );
 
         reg(EfficientMobUnitPacket.class, EfficientMobUnitPacket::encode, EfficientMobUnitPacket::decode,

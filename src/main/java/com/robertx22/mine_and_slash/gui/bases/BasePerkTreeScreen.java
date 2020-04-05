@@ -372,7 +372,7 @@ public abstract class BasePerkTreeScreen<T extends BasePerk, D extends BasePerks
         int offsetX = 5;
         int offsetY = 5;
 
-        String str2 = "Reset Points (RMB): " + this.capData.getPerksData().resetPoints;
+        String str2 = "Reset Points (RMB): " + this.capData.getAbilitiesData().resetPoints;
 
         mc.fontRenderer.drawStringWithShadow(str2, offsetX, offsetY, TextFormatting.GREEN.getColor());
 

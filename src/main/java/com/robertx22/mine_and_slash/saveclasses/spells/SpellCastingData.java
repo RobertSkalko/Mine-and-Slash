@@ -18,7 +18,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Storable
-public class PlayerSpellsData {
+public class SpellCastingData {
 
     @Store
     public int castingTicksLeft = 0;
@@ -53,8 +53,8 @@ public class PlayerSpellsData {
     }
 
     public void clear() {
-        getMap(PlayerSpellsData.Hotbar.FIRST).clear();
-        getMap(PlayerSpellsData.Hotbar.SECOND).clear();
+        getMap(SpellCastingData.Hotbar.FIRST).clear();
+        getMap(SpellCastingData.Hotbar.SECOND).clear();
     }
 
     public enum Hotbar {
@@ -162,8 +162,8 @@ public class PlayerSpellsData {
                 BaseSpell spell = SlashRegistry.Spells()
                     .get(spellBeingCast);
 
-                if (spells.getPerksData()
-                    .getAvailableSpells()
+                if (spells.getAbilitiesData()
+                    .getAllocatedSpells()
                     .contains(spell)) {
 
                     SpellCastContext ctx = new SpellCastContext(player, this.castingTicksDone, spell);

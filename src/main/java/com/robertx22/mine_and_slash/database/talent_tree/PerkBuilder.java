@@ -1,29 +1,9 @@
 package com.robertx22.mine_and_slash.database.talent_tree;
 
-import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
-
 public class PerkBuilder {
 
     public static Guid create(String id) {
         return new Guid(id);
-    }
-
-    public static SpellGuid createSpell(String id) {
-        return new SpellGuid(id);
-    }
-
-    public static class SpellGuid {
-
-        private SpellPerk talent;
-
-        public SpellGuid(String guid) {
-            talent = new SpellPerk(guid);
-        }
-
-        public Position pos(int x, int y) {
-            return new Position(talent, x, y);
-        }
-
     }
 
     public static class Guid {
@@ -55,7 +35,8 @@ public class PerkBuilder {
         }
 
         public Connections copy(Perk other) {
-            return this.effect(other.effect).connections();
+            return this.effect(other.effect)
+                .connections();
         }
 
     }

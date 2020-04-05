@@ -71,7 +71,7 @@ public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implement
 
     public PerkConnection.Allocation getStatus(IPerkCap data) {
 
-        if (data.getPerksData()
+        if (data.getAbilitiesData()
             .isAllocated(this)) {
             return PerkConnection.Allocation.ALLOCATED;
         } else {
@@ -84,7 +84,7 @@ public abstract class BasePerk<T extends BasePerk, C extends IPerkCap> implement
 
             boolean hascon = false;
             for (BasePerk con : this.connections) {
-                if (data.getPerksData()
+                if (data.getAbilitiesData()
                     .isAllocated(con)) {
                     hascon = true;
                 }

@@ -79,8 +79,6 @@ public enum SlashRegistryType {
     PERK("talent_perk"),
     PERK_EFFECT("talent_perk_effect"),
     SYNERGY_EFFECT("synergy_effect"),
-    SPELL_PERK("spell_perk"),
-    SPELL_PERK_EFFECT("spell_perk_effect"),
     LOOT_CRATE("loot_crate"),
     QUEST("quest"),
     QUEST_REWARD("quest_reward"),

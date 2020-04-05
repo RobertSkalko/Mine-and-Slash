@@ -27,7 +27,7 @@ public class ResetSpellCooldowns {
 
         try {
             en.getCapability(PlayerSpellCap.Data)
-                .ifPresent(x -> x.getSpellData()
+                .ifPresent(x -> x.getCastingData()
                     .onTimePass(en, x, 50000));
 
         } catch (Exception e) {

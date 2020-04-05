@@ -29,15 +29,15 @@ public class SpellCastBarOverlay extends AbstractGui {
 
         PlayerSpellCap.ISpellsCap data = Load.spells(mc.player);
 
-        if (data.getSpellData()
+        if (data.getCastingData()
             .isCasting()) {
 
             int x = mc.mainWindow.getScaledWidth() / 2 - WIDTH / 2;
             int y = (int) (mc.mainWindow.getScaledHeight() / 1.25F - HEIGHT / 2);
 
             float percent =
-                ((float) data.getSpellData().lastSpellCastTimeInTicks - (float) data.getSpellData().castingTicksLeft) / (float) data
-                    .getSpellData().lastSpellCastTimeInTicks;
+                ((float) data.getCastingData().lastSpellCastTimeInTicks - (float) data.getCastingData().castingTicksLeft) / (float) data
+                    .getCastingData().lastSpellCastTimeInTicks;
 
             render(x, y, BossInfo.Color.PURPLE, BossInfo.Overlay.NOTCHED_20, percent);
         }

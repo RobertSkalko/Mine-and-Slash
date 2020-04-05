@@ -21,9 +21,7 @@ import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
-import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerkEffect;
-import com.robertx22.mine_and_slash.database.spells.spell_tree.SynergyPerkEffect;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;
@@ -110,8 +108,8 @@ public class SlashRegistry {
 
     }
 
-    public static SlashRegistryContainer<SynergyPerkEffect> SynergyEffects() {
-        return getRegistry(SlashRegistryType.SYNERGY_EFFECT);
+    public static SlashRegistryContainer<Synergy> Synergies() {
+        return getRegistry(SlashRegistryType.SPELL_SYNERGY);
     }
 
     public static SlashRegistryContainer<PerkEffect> PerkEffects() {
@@ -120,14 +118,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<Perk> Perks() {
         return getRegistry(SlashRegistryType.PERK);
-    }
-
-    public static SlashRegistryContainer<SpellPerk> SpellPerks() {
-        return getRegistry(SlashRegistryType.SPELL_PERK);
-    }
-
-    public static SlashRegistryContainer<SpellPerkEffect> SpellPerkEffects() {
-        return getRegistry(SlashRegistryType.SPELL_PERK_EFFECT);
     }
 
     public static SlashRegistryContainer<CurrencyItem> CurrencyItems() {
@@ -307,6 +297,7 @@ public class SlashRegistry {
         new Tiers().registerAll();
 
         new Spells().registerAll(); // some stats are based on spells, so spells go first
+        new Synergies().registerAll();
         new Stats().registerAll();// STATS MUST BE INIT before STATMODS  cus statmods ARE DERIVED FROM STATS, or
         // should be at least
         new StatMods().registerAll();
@@ -323,10 +314,8 @@ public class SlashRegistry {
         new MobAffixes().registerAll();
 
         new PerkEffectsInit().registerAll();
-        new SpellPerkEffectsInit().registerAll();
 
         new Perks().registerAll();
-        new SpellPerks().registerAll();
 
         new LootCrates().registerAll();
 
@@ -362,6 +351,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, EmptyStatMod.getInstance()));
         addRegistry(new SlashRegistryContainer<ChaosStat>(SlashRegistryType.CHAOS_STAT, ChaosStat.empty()));
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
+        addRegistry(new SlashRegistryContainer<Synergy>(SlashRegistryType.SPELL_SYNERGY, null));
         addRegistry(new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
         addRegistry(new SlashRegistryContainer<BaseDungeonDimension>(SlashRegistryType.WORLD_PROVIDER, new DungeonDimension(null, null)));
         addRegistry(new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
@@ -374,9 +364,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
         addRegistry(new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
         addRegistry(new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
-        addRegistry(new SlashRegistryContainer<SpellPerk>(SlashRegistryType.SPELL_PERK, null));
-        addRegistry(new SlashRegistryContainer<SpellPerkEffect>(SlashRegistryType.SPELL_PERK_EFFECT, null));
-        addRegistry(new SlashRegistryContainer<SynergyPerkEffect>(SlashRegistryType.SYNERGY_EFFECT, null));
         addRegistry(new SlashRegistryContainer<Boss>(SlashRegistryType.BOSS, NecromancerBoss.getInstance()));
     }
 

@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.packets;
+package com.robertx22.mine_and_slash.packets.allocation;
 
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -39,19 +39,23 @@ public class SpendStatPointPacket {
 
     public static void handle(final SpendStatPointPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
-                ServerPlayerEntity player = ctx.get().getSender();
-                if (player != null) {
-                    Load.statPoints(player).addPoint(player, pkt.stat, Load.Unit(player));
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
+                    ServerPlayerEntity player = ctx.get()
+                        .getSender();
+                    if (player != null) {
+                        Load.statPoints(player)
+                            .addPoint(player, pkt.stat, Load.Unit(player));
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            });
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        ctx.get().setPacketHandled(true);
+        ctx.get()
+            .setPacketHandled(true);
 
     }
 

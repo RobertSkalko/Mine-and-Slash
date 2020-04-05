@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.potion_effects.druid;
 
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
+import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPotion, IOnBasicAttackedPotion,
-        IOnBasicAttackPotion {
+    IOnBasicAttackPotion {
 
     public static final ThornArmorEffect INSTANCE = new ThornArmorEffect();
 
@@ -56,7 +56,7 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
     public ExactStatData getNatureRes(EntityCap.UnitData data, ExtraPotionData extraData) {
         int statAmount = 3 * extraData.getStacks();
         return new ExactStatData(statAmount, StatModTypes.Flat, ElementalResist.MAP.get(Elements.Nature)).scaleToLvl(
-                extraData.casterLvl);
+            extraData.casterLvl);
     }
 
     public ExactStatData getArmor(EntityCap.UnitData data, ExtraPotionData extraData) {

@@ -1,7 +1,7 @@
-package com.robertx22.mine_and_slash.packets;
+package com.robertx22.mine_and_slash.packets.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -14,13 +14,13 @@ public class ChangeSpellHotbarPacket {
 
     public String guid;
     public int number;
-    public PlayerSpellsData.Hotbar hotbar;
+    public SpellCastingData.Hotbar hotbar;
 
     private ChangeSpellHotbarPacket() {
 
     }
 
-    public ChangeSpellHotbarPacket(BaseSpell spell, PlayerSpellsData.Hotbar hotbar, int number) {
+    public ChangeSpellHotbarPacket(BaseSpell spell, SpellCastingData.Hotbar hotbar, int number) {
         this.guid = spell.GUID();
         this.number = number;
         this.hotbar = hotbar;
@@ -32,7 +32,7 @@ public class ChangeSpellHotbarPacket {
 
         newpkt.guid = buf.readString(50);
         newpkt.number = buf.readInt();
-        newpkt.hotbar = PlayerSpellsData.Hotbar.valueOf(buf.readString(30));
+        newpkt.hotbar = SpellCastingData.Hotbar.valueOf(buf.readString(30));
 
         return newpkt;
     }
@@ -55,7 +55,7 @@ public class ChangeSpellHotbarPacket {
 
                     PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                    spells.getSpellData()
+                    spells.getCastingData()
                         .getMap(pkt.hotbar)
                         .put(pkt.number, pkt.guid);
 

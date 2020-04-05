@@ -59,7 +59,7 @@ public class EntitySpellData {
         this.casterID = caster.getUniqueID()
             .toString();
 
-        this.lifeInTicks = config.duration;
+        this.lifeInTicks = (int) config.duration;
         this.configs = config;
     }
 

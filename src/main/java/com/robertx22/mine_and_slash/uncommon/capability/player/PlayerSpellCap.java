@@ -2,19 +2,15 @@ package com.robertx22.mine_and_slash.uncommon.capability.player;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_tree.SpellPerk;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.registry.SlashRegistryContainer;
+import com.robertx22.mine_and_slash.saveclasses.spells.AllocatedAbilitiesData;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
-import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
-import com.robertx22.mine_and_slash.saveclasses.spells.SpellPerksData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
-import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
@@ -41,10 +37,18 @@ public class PlayerSpellCap {
     @CapabilityInject(ISpellsCap.class)
     public static final Capability<ISpellsCap> Data = null;
 
-    public abstract static class ISpellsCap extends IPerkCap<SpellPerk, SpellPerksData> implements ICommonPlayerCap {
-        public abstract BaseSpell getSpellByKeybind(int key, PlayerSpellsData.Hotbar bar);
+    public abstract static class ISpellsCap implements ICommonPlayerCap {
+        public abstract int getAllowedPoints(EntityCap.UnitData data);
 
-        public abstract PlayerSpellsData getSpellData();
+        public abstract void addPoint(IAbility ability);
+
+        public abstract void applyStats(EntityCap.UnitData data, PlayerEntity player);
+
+        public abstract AllocatedAbilitiesData getAbilitiesData();
+
+        public abstract BaseSpell getSpellByKeybind(int key, SpellCastingData.Hotbar bar);
+
+        public abstract SpellCastingData getCastingData();
 
         public abstract boolean canCastRightClickSpell(BaseSpell spell, PlayerEntity player);
 
@@ -54,7 +58,6 @@ public class PlayerSpellCap {
 
         public abstract boolean hasSynergy(Synergy synergy);
 
-        @Override
         public abstract void reset();
 
     }
@@ -85,21 +88,15 @@ public class PlayerSpellCap {
 
     public static class DefaultImpl extends ISpellsCap {
 
-        SpellPerksData perksData = new SpellPerksData();
-        PlayerSpellsData playerSpellsData = new PlayerSpellsData();
+        AllocatedAbilitiesData abilitiesData = new AllocatedAbilitiesData();
+        SpellCastingData spellCastingData = new SpellCastingData();
 
-        @Override
-        public boolean tryRemovePoint(SpellPerk perk, ServerPlayerEntity player) {
+        public void tryRemovePoint(IAbility ability, ServerPlayerEntity player) {
+            this.abilitiesData.removePoint(ability);
+            this.getCastingData()
+                .clear();
+            this.syncToClient(player);
 
-            boolean bool = super.tryRemovePoint(perk, player);
-
-            if (bool) {
-                this.getSpellData()
-                    .clear();
-                this.syncToClient(player);
-            }
-
-            return bool;
         }
 
         @Override
@@ -107,13 +104,13 @@ public class PlayerSpellCap {
             CompoundNBT nbt = new CompoundNBT();
 
             try {
-                LoadSave.Save(perksData, nbt, SPELL_PERK_DATA);
+                LoadSave.Save(abilitiesData, nbt, SPELL_PERK_DATA);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             try {
-                LoadSave.Save(playerSpellsData, nbt, PLAYER_SPELL_DATA);
+                LoadSave.Save(spellCastingData, nbt, PLAYER_SPELL_DATA);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -128,17 +125,17 @@ public class PlayerSpellCap {
 
         @Override
         public void loadFromNBT(CompoundNBT nbt) {
-            this.perksData = LoadSave.Load(SpellPerksData.class, new SpellPerksData(), nbt, SPELL_PERK_DATA);
+            this.abilitiesData = LoadSave.Load(AllocatedAbilitiesData.class, new AllocatedAbilitiesData(), nbt, SPELL_PERK_DATA);
 
-            if (perksData == null) {
-                perksData = new SpellPerksData();
+            if (abilitiesData == null) {
+                abilitiesData = new AllocatedAbilitiesData();
             }
 
-            this.playerSpellsData = LoadSave.Load(
-                PlayerSpellsData.class, new PlayerSpellsData(), nbt, PLAYER_SPELL_DATA);
+            this.spellCastingData = LoadSave.Load(
+                SpellCastingData.class, new SpellCastingData(), nbt, PLAYER_SPELL_DATA);
 
-            if (playerSpellsData == null) {
-                playerSpellsData = new PlayerSpellsData();
+            if (spellCastingData == null) {
+                spellCastingData = new SpellCastingData();
             }
         }
 
@@ -154,60 +151,62 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public void allocate(SpellPerk talent) {
-            getPerksData().allocate(talent.GUID());
+        public void addPoint(IAbility ability) {
+            this.getAbilitiesData()
+                .addPoint(ability);
         }
 
         @Override
         public void applyStats(EntityCap.UnitData data, PlayerEntity player) {
-            this.perksData.applyStats(data);
+            this.abilitiesData.applyStats(data);
         }
 
         @Override
-        public SpellPerksData getPerksData() {
-            return perksData;
+        public AllocatedAbilitiesData getAbilitiesData() {
+            return abilitiesData;
         }
 
         @Override
-        public SlashRegistryContainer getContainer() {
-            return SlashRegistry.SpellPerks();
+        public BaseSpell getSpellByKeybind(int key, SpellCastingData.Hotbar hotbar) {
+            return this.spellCastingData.getSpellByKeybind(key, hotbar);
         }
 
         @Override
-        public BaseSpell getSpellByKeybind(int key, PlayerSpellsData.Hotbar hotbar) {
-            return this.playerSpellsData.getSpellByKeybind(key, hotbar);
-        }
-
-        @Override
-        public PlayerSpellsData getSpellData() {
-            return this.playerSpellsData;
+        public SpellCastingData getCastingData() {
+            return this.spellCastingData;
         }
 
         @Override
         public boolean canCastRightClickSpell(BaseSpell spell, PlayerEntity player) {
 
-            return this.getSpellData()
+            return this.getCastingData()
                 .canCast(spell, player);
 
         }
 
         @Override
         public List<BaseSpell> getAvailableSpells() {
-            return this.perksData.getAvailableSpells();
+            return this.abilitiesData.getAllocatedSpells();
+        }
+
+        @Override
+        public int getLevelOf(IAbility ability) {
+            return this.getAbilitiesData()
+                .getLevelOf(ability);
         }
 
         @Override
         public boolean hasSynergy(Synergy synergy) {
-            return getPerksData().hasSynergy(synergy);
+            return getLevelOf(synergy) > 0;
         }
 
         @Override
         public void reset() {
 
-            this.getPerksData()
+            this.getAbilitiesData()
                 .reset();
 
-            this.getSpellData()
+            this.getCastingData()
                 .clear();
 
         }

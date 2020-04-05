@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.packets.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -13,13 +13,13 @@ import java.util.function.Supplier;
 public class CastSpellPacket {
 
     public Integer hotbarNumber;
-    public PlayerSpellsData.Hotbar hotbar;
+    public SpellCastingData.Hotbar hotbar;
 
     public CastSpellPacket() {
 
     }
 
-    public CastSpellPacket(Integer hotbarNumber, PlayerSpellsData.Hotbar bar) {
+    public CastSpellPacket(Integer hotbarNumber, SpellCastingData.Hotbar bar) {
         this.hotbarNumber = hotbarNumber;
         this.hotbar = bar;
 
@@ -30,7 +30,7 @@ public class CastSpellPacket {
         CastSpellPacket newpkt = new CastSpellPacket();
 
         newpkt.hotbarNumber = buf.readInt();
-        newpkt.hotbar = PlayerSpellsData.Hotbar.valueOf(buf.readString(30));
+        newpkt.hotbar = SpellCastingData.Hotbar.valueOf(buf.readString(30));
 
         return newpkt;
 
@@ -54,12 +54,12 @@ public class CastSpellPacket {
 
                     PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                    if (spells.getSpellData()
+                    if (spells.getCastingData()
                         .canCast(pkt.hotbarNumber, pkt.hotbar, player)) {
-                        spells.getSpellData()
+                        spells.getCastingData()
                             .setToCast(pkt.hotbarNumber, pkt.hotbar, player, 0);
 
-                        BaseSpell spell = spells.getSpellData()
+                        BaseSpell spell = spells.getCastingData()
                             .getSpellBeingCast();
                         if (spell != null) {
                             spell.spendResources(player);

@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
 import com.robertx22.mine_and_slash.packets.spells.WeaponRightClickSpellPacket;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -81,12 +81,12 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         x = guiLeft + 55;
         y = guiTop + 90;
 
-        HotbarButton right = new HotbarButton(0, PlayerSpellsData.Hotbar.FIRST, guiLeft + SpellHotbatSetupScreen.x / 2 - HotbarButton.xSize / 2, y);
+        HotbarButton right = new HotbarButton(0, SpellCastingData.Hotbar.FIRST, guiLeft + SpellHotbatSetupScreen.x / 2 - HotbarButton.xSize / 2, y);
         right.isForRightClickWeaponSpell = true;
         this.addButton(right);
 
-        for (PlayerSpellsData.Hotbar bar : Arrays.asList(
-            PlayerSpellsData.Hotbar.FIRST, PlayerSpellsData.Hotbar.SECOND)) {
+        for (SpellCastingData.Hotbar bar : Arrays.asList(
+            SpellCastingData.Hotbar.FIRST, SpellCastingData.Hotbar.SECOND)) {
 
             y += 50;
             x = guiLeft + 55;
@@ -176,11 +176,11 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             Ref.MODID, "textures/gui/hotbar_setup/picked_bar.png");
 
         int number;
-        PlayerSpellsData.Hotbar hotbar;
+        SpellCastingData.Hotbar hotbar;
 
         public boolean isForRightClickWeaponSpell = false;
 
-        public HotbarButton(int number, PlayerSpellsData.Hotbar hotbar, int xPos, int yPos) {
+        public HotbarButton(int number, SpellCastingData.Hotbar hotbar, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
             });
 
@@ -235,7 +235,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                 return gear != null ? gear.getRightClickSpell() : null;
             } else {
                 return Load.spells(Minecraft.getInstance().player)
-                    .getSpellData()
+                    .getCastingData()
                     .getSpellByKeybind(number, hotbar);
             }
         }

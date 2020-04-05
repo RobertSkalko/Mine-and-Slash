@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.potion_effects.druid;
 
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
+import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
@@ -55,7 +55,7 @@ public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplySta
     public ExactStatData getDmg(EntityCap.UnitData data, ExtraPotionData extraData) {
         float statAmount = 2.5F;
         return new ExactStatData(statAmount, StatModTypes.Flat, ElementalAttackDamage.MAP.get(Elements.Nature)).scaleToLvl(
-                extraData.casterLvl);
+            extraData.casterLvl);
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
-import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -18,7 +18,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class SpellHotbarOverlay extends AbstractGui {
 
-    public static PlayerSpellsData.Hotbar CURRENT_HOTBAR = PlayerSpellsData.Hotbar.FIRST;
+    public static SpellCastingData.Hotbar CURRENT_HOTBAR = SpellCastingData.Hotbar.FIRST;
 
     private static final ResourceLocation HOTBAR_TEX = new ResourceLocation(Ref.MODID,
         "textures/gui/spells/hotbar.png"
@@ -82,7 +82,7 @@ public class SpellHotbarOverlay extends AbstractGui {
                     .bindTexture(spell.getIconLoc());
                 this.blit(xs, ys, 0, 0, 32, 32, 32, 32);
 
-                SpellData spelldata = data.getSpellData()
+                SpellData spelldata = data.getCastingData()
                     .getDataBySpell(spell);
 
                 if (spelldata != null) {

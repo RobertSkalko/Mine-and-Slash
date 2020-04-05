@@ -1,16 +1,20 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Storable
-public class SpellPerksData implements IApplyableStats {
+public class AllocatedAbilitiesData implements IApplyableStats {
 
     @Store
     public int resetPoints = 0;
@@ -37,6 +41,33 @@ public class SpellPerksData implements IApplyableStats {
 
             });
 
+    }
+
+    public List<BaseSpell> getAllocatedSpells() {
+        List<BaseSpell> list = new ArrayList<>();
+
+        this.map.values()
+            .forEach(x -> {
+                if (x.isValid() && x.currentLvl > 0 && x.type == IAbility.Type.SPELL) {
+                    list.add((BaseSpell) x.getAbility());
+                }
+            });
+
+        return list;
+    }
+
+    public List<Synergy> getAllocatedSynergies() {
+
+        List<Synergy> list = new ArrayList<>();
+
+        this.map.values()
+            .forEach(x -> {
+                if (x.isValid() && x.currentLvl > 0 && x.type == IAbility.Type.SYNERGY) {
+                    list.add((Synergy) x.getAbility());
+                }
+            });
+
+        return list;
     }
 
     public void addSchoolPoint(SpellSchools school) {

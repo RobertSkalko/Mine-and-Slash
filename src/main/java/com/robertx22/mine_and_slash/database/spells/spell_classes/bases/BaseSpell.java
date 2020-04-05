@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -33,6 +34,7 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITooltipList, IAbility {
 
@@ -72,6 +74,16 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     public void spawnParticles(SpellCastContext ctx) {
 
+    }
+
+    public final List<Synergy> getAllocatedSynergies(SpellCastContext ctx) {
+        return ctx.spellsCap.getAbilitiesData()
+            .getAllocatedSynergies()
+            .stream()
+            .filter(x -> x.getRequiredAbility()
+                .GUID()
+                .equals(this.GUID()))
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -184,10 +196,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     public abstract Words getName();
 
-    public int Weight() {
-        return 1000;
-    }
-
     public final boolean cast(SpellCastContext ctx) {
         boolean bool = immutableConfigs.castType()
             .cast(ctx);
@@ -205,8 +213,17 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     }
 
     public ResourcesData.Context getManaCostCtx(SpellCastContext ctx) {
+
+        float cost = 0;
+
+        for (Synergy x : getAllocatedSynergies(ctx)) {
+            cost += ctx.getConfigFor(x).manaCost;
+        }
+
+        cost += this.getCalculatedManaCost(ctx);
+
         return new ResourcesData.Context(
-            ctx.data, ctx.caster, ResourcesData.Type.MANA, this.getCalculatedManaCost(ctx), ResourcesData.Use.SPEND);
+            ctx.data, ctx.caster, ResourcesData.Type.MANA, cost, ResourcesData.Use.SPEND);
     }
 
     public boolean canCast(SpellCastContext ctx) {

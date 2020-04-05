@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.database.spells.entities.cloud;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseInvisibleEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergies;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
+import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
@@ -57,7 +57,9 @@ public class VolcanoEntity extends BaseInvisibleEntity {
                 if (!this.world.isRemote) {
 
                     List<LivingEntity> entities = EntityFinder.start(
-                            getCaster(), LivingEntity.class, getPositionVector()).radius(radius()).build();
+                        getCaster(), LivingEntity.class, getPositionVector())
+                        .radius(radius())
+                        .build();
 
                     for (LivingEntity target : entities) {
 
@@ -79,7 +81,7 @@ public class VolcanoEntity extends BaseInvisibleEntity {
                         float yRandom = (float) RandomUtils.RandomRange(1, 100) / 80F;
 
                         Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                                posX, posY + +yRandom, posZ, radius());
+                            posX, posY + +yRandom, posZ, radius());
 
                         for (int n = 0; n < 3; n++) {
                             ParticleUtils.spawn(ParticleTypes.LAVA, world, p.x, p.y, p.z, 0, 0.5f, 0);
@@ -90,7 +92,7 @@ public class VolcanoEntity extends BaseInvisibleEntity {
 
                         RGB color = Elements.Fire.getRGBColor();
                         ParticleUtils.spawn(new RedstoneParticleData(color.getR(), color.getG(), color.getB(), 1F),
-                                            world, p.x, p.y, p.z, 0, 0, 0
+                            world, p.x, p.y, p.z, 0, 0, 0
                         );
 
                     }

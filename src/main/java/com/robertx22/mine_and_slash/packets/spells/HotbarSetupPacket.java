@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
-import com.robertx22.mine_and_slash.saveclasses.spells.PlayerSpellsData;
+import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
@@ -15,14 +15,14 @@ import java.util.function.Supplier;
 public class HotbarSetupPacket {
 
     public int number;
-    public PlayerSpellsData.Hotbar hotbar;
+    public SpellCastingData.Hotbar hotbar;
     public String spellID = "";
 
     private HotbarSetupPacket() {
 
     }
 
-    public HotbarSetupPacket(BaseSpell spell, int num, PlayerSpellsData.Hotbar bar) {
+    public HotbarSetupPacket(BaseSpell spell, int num, SpellCastingData.Hotbar bar) {
         this.number = num;
         this.hotbar = bar;
         if (spell != null) {
@@ -35,7 +35,7 @@ public class HotbarSetupPacket {
         HotbarSetupPacket newpkt = new HotbarSetupPacket();
 
         newpkt.number = buf.readInt();
-        newpkt.hotbar = PlayerSpellsData.Hotbar.valueOf(buf.readString(30));
+        newpkt.hotbar = SpellCastingData.Hotbar.valueOf(buf.readString(30));
         newpkt.spellID = buf.readString(30);
 
         return newpkt;
@@ -52,23 +52,27 @@ public class HotbarSetupPacket {
 
     public static void handle(final HotbarSetupPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
 
-                ServerPlayerEntity player = ctx.get().getSender();
+                    ServerPlayerEntity player = ctx.get()
+                        .getSender();
 
-                PlayerSpellsData data = Load.spells(player).getSpellData();
+                    SpellCastingData data = Load.spells(player)
+                        .getCastingData();
 
-                data.setHotbar(pkt.number, pkt.hotbar, pkt.spellID);
+                    data.setHotbar(pkt.number, pkt.hotbar, pkt.spellID);
 
-                MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.SPELLS), player);
+                    MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.SPELLS), player);
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
 
-        ctx.get().setPacketHandled(true);
+        ctx.get()
+            .setPacketHandled(true);
     }
 
 }
