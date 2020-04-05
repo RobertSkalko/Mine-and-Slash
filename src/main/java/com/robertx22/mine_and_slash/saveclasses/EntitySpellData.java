@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.CalculatedSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
@@ -33,7 +33,7 @@ public class EntitySpellData {
     public int ticksExisted = 0;
 
     @Store
-    public CalculatedSpellConfigs configs;
+    public EntityCalcSpellConfigs configs;
 
     @Store
     private String spellGUID = "";
@@ -51,7 +51,7 @@ public class EntitySpellData {
         return lifeInTicks - ticksExisted;
     }
 
-    public EntitySpellData(BaseSpell spell, LivingEntity caster, CalculatedSpellConfigs config) {
+    public EntitySpellData(BaseSpell spell, LivingEntity caster, EntityCalcSpellConfigs config) {
         if (spell != null) {
             this.spellGUID = spell.GUID();
         }

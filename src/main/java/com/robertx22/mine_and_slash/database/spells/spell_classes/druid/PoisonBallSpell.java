@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCas
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -62,12 +62,15 @@ public class PoisonBallSpell extends BaseSpell {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.manaCost = new LevelBased(5, 15);
-        c.spellBaseValue = new LevelBased(3, 10);
-        c.shootSpeed = new LevelBased(0.4F, 0.6F);
-        c.castTimeTicks = new LevelBased(0, 0);
-        c.cooldownTicks = new LevelBased(15, 10);
-        c.maxSpellLevel = 16;
+
+        c.set(SC.MANA_COST, 5, 15);
+        c.set(SC.BASE_VALUE, 3, 10);
+        c.set(SC.SHOOT_SPEED, 0.4F, 0.6F);
+        c.set(SC.CAST_TIME_TICKS, 0, 0);
+        c.set(SC.COOLDOWN_TICKS, 15, 10);
+
+        c.setMaxLevel(16);
+
         return c;
     }
 

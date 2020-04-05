@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_ty
 
 import com.robertx22.mine_and_slash.database.spells.ProjectileCastOptions;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
@@ -12,8 +13,15 @@ public class CastProjectile extends SpellCastType {
         World world = ctx.caster.world;
 
         ProjectileCastOptions builder = new ProjectileCastOptions(ctx);
-        builder.projectilesAmount = (int) ctx.getConfigFor(ctx.spell).projectileCount;
-        builder.shootSpeed = ctx.getConfigFor(ctx.spell).shootSpeed;
+
+        builder.projectilesAmount = (int) ctx.getConfigFor(ctx.spell)
+            .get(SC.PROJECTILE_COUNT)
+            .get(ctx.spellsCap, ctx.spell);
+
+        builder.shootSpeed = ctx.getConfigFor(ctx.spell)
+            .get(SC.SHOOT_SPEED)
+            .get(ctx.spellsCap, ctx.spell);
+
         builder.apart = 75;
         builder.cast();
 

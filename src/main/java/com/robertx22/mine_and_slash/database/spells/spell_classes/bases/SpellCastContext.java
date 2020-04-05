@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.CalculatedSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
@@ -20,12 +21,21 @@ public class SpellCastContext {
     public final IAbility ability;
     public final boolean isLastCastTick;
 
-    private HashMap<String, CalculatedSpellConfigs> cacheMap = new HashMap<>();
+    public EntityCalcSpellConfigs configForSummonedEntities;
 
-    public CalculatedSpellConfigs getConfigFor(IAbility ability) {
+    private HashMap<String, PreCalcSpellConfigs> cacheMap = new HashMap<>();
+
+    public PreCalcSpellConfigs getConfigFor(IAbility ability) {
 
         if (!cacheMap.containsKey(ability.GUID())) {
-            cacheMap.put(ability.GUID(), new CalculatedSpellConfigs(data, spellsCap, ability));
+
+            PreCalcSpellConfigs pre = ability.getPreCalcConfig();
+
+            if (ability.getAbilityType() == IAbility.Type.SPELL) {
+                pre.modifyBySynergies(ability.getSpell(), spellsCap);
+            }
+
+            cacheMap.put(ability.GUID(), pre);
         }
 
         return cacheMap.get(ability.GUID());
@@ -47,6 +57,8 @@ public class SpellCastContext {
             this.spellsCap = new PlayerSpellCap.DefaultImpl();
         }
 
-        this.isLastCastTick = getConfigFor(ability.getSpell()).castTimeTicks == ticksInUse;
+        this.configForSummonedEntities = new EntityCalcSpellConfigs(data, spellsCap, ability);
+
+        this.isLastCastTick = getConfigFor(spell).castTimeTicks.get(spellsCap, spell) == ticksInUse;
     }
 }

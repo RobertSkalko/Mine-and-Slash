@@ -9,7 +9,7 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
 @Storable
-public class CalculatedSpellConfigs {
+public class EntityCalcSpellConfigs {
 
     @Store
     public final SpellCalcData calc;
@@ -36,7 +36,7 @@ public class CalculatedSpellConfigs {
     @Store
     public final Float radius;
 
-    public CalculatedSpellConfigs(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spellsCap, IAbility ability) {
+    public EntityCalcSpellConfigs(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spellsCap, IAbility ability) {
         int lvl = spellsCap != null ? spellsCap.getLevelOf(ability) : 1;
         int userLvl = data.getLevel();
 
