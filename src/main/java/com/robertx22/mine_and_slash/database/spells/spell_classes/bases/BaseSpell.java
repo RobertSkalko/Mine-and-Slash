@@ -48,7 +48,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     public final void onCastingTick(SpellCastContext ctx) {
 
-        int timesToCast = (int) ctx.finishedConfig.timesToCast;
+        int timesToCast = (int) ctx.getConfigFor(this).timesToCast;
 
         if (timesToCast == 1) {
             if (ctx.isLastCastTick) {
@@ -56,7 +56,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             }
         } else if (timesToCast > 1) {
 
-            int castTimeTicks = (int) ctx.finishedConfig.castTimeTicks;
+            int castTimeTicks = (int) ctx.getConfigFor(this).castTimeTicks;
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
 
@@ -72,6 +72,11 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     public void spawnParticles(SpellCastContext ctx) {
 
+    }
+
+    @Override
+    public BaseSpell getSpell() {
+        return this;
     }
 
     public final int getMaxSpellLevelNormal() {
@@ -141,7 +146,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     }
 
     public int getCooldownInTicks(SpellCastContext ctx) {
-        return ctx.finishedConfig.cooldownTicks;
+        return ctx.getConfigFor(this).cooldownTicks;
     }
 
     public final int getCooldownInSeconds(SpellCastContext ctx) {
@@ -156,11 +161,11 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     public abstract String GUID();
 
     public final int getCalculatedManaCost(SpellCastContext ctx) {
-        return ctx.finishedConfig.manaCost;
+        return ctx.getConfigFor(this).manaCost;
     }
 
     public final int useTimeTicks(SpellCastContext ctx) {
-        return ctx.finishedConfig.castTimeTicks;
+        return ctx.getConfigFor(this).castTimeTicks;
     }
 
     public final float getUseDurationInSeconds(SpellCastContext ctx) {
@@ -168,7 +173,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     }
 
     public final SpellCalcData getCalculation(SpellCastContext ctx) {
-        return ctx.finishedConfig.calc;
+        return ctx.getConfigFor(this).calc;
     }
 
     public final Elements getElement() {

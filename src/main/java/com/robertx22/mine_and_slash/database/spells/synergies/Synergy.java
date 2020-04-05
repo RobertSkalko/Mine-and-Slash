@@ -46,6 +46,11 @@ public abstract class Synergy<T extends SynergyContext> implements ITooltipList,
     }
 
     @Override
+    public BaseSpell getSpell() {
+        return (BaseSpell) getRequiredAbility();
+    }
+
+    @Override
     public final SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.SPELL_SYNERGY;
     }

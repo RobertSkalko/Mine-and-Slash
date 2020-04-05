@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -33,35 +35,37 @@ public class CalculatedSpellConfigs {
     @Store
     public final int maxSpellLevel;
 
-    public CalculatedSpellConfigs(SpellCastContext ctx) {
-        PreCalcSpellConfigs pre = ctx.spell.getPreCalcConfig();
+    public CalculatedSpellConfigs(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spellsCap, IAbility ability) {
+        int lvl = spellsCap != null ? spellsCap.getLevelOf(ability) : 1;
+        int userLvl = data.getLevel();
+
+        PreCalcSpellConfigs pre = ability.getPreCalcConfig();
 
         this.manaCost = (int) Mana.getInstance()
-            .calculateScalingStatGrowth(pre.manaCost.getValueFor(ctx), ctx.spellLevel);
+            .calculateScalingStatGrowth(pre.manaCost.getValueFor(lvl, ability), userLvl);
 
-        this.castTimeTicks = (int) pre.castTimeTicks.getValueFor(ctx);
+        this.castTimeTicks = (int) pre.castTimeTicks.getValueFor(lvl, ability);
 
         this.calc = SpellCalcData.scaleWithAttack(
-            pre.spellAttackScalingValue.getValueFor(ctx),
-            pre.spellBaseValue.getValueFor(ctx)
+            pre.spellAttackScalingValue.getValueFor(lvl, ability),
+            pre.spellBaseValue.getValueFor(lvl, ability)
         );
 
-        this.timesToCast = (int) pre.timesToCast.getValueFor(ctx);
+        this.timesToCast = (int) pre.timesToCast.getValueFor(lvl, ability);
 
-        this.projectileCount = (int) pre.projectileCount.getValueFor(ctx);
+        this.projectileCount = (int) pre.projectileCount.getValueFor(lvl, ability);
 
-        this.cooldownTicks = (int) pre.cooldownTicks.getValueFor(ctx);
+        this.cooldownTicks = (int) pre.cooldownTicks.getValueFor(lvl, ability);
 
-        this.shootSpeed = (int) pre.shootSpeed.getValueFor(ctx);
+        this.shootSpeed = (int) pre.shootSpeed.getValueFor(lvl, ability);
 
-        this.duration = (int) pre.duration.getValueFor(ctx);
+        this.duration = (int) pre.duration.getValueFor(lvl, ability);
 
-        this.summonedEntities = (int) pre.summonedEntities.getValueFor(ctx);
+        this.summonedEntities = (int) pre.summonedEntities.getValueFor(lvl, ability);
 
-        this.radius = pre.radius.getValueFor(ctx);
+        this.radius = pre.radius.getValueFor(lvl, ability);
 
         this.maxSpellLevel = pre.maxSpellLevel;
 
     }
-
 }

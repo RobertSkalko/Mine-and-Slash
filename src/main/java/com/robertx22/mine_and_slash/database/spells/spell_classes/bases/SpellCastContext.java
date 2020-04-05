@@ -8,6 +8,8 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
+import java.util.HashMap;
+
 public class SpellCastContext {
 
     public final LivingEntity caster;
@@ -16,9 +18,18 @@ public class SpellCastContext {
     public final int ticksInUse;
     public final BaseSpell spell;
     public final IAbility ability;
-    public final CalculatedSpellConfigs finishedConfig;
     public final boolean isLastCastTick;
-    public final int spellLevel;
+
+    private HashMap<String, CalculatedSpellConfigs> cacheMap = new HashMap<>();
+
+    public CalculatedSpellConfigs getConfigFor(IAbility ability) {
+
+        if (!cacheMap.containsKey(ability.GUID())) {
+            cacheMap.put(ability.GUID(), new CalculatedSpellConfigs(data, spellsCap, ability));
+        }
+
+        return cacheMap.get(ability.GUID());
+    }
 
     public SpellCastContext(LivingEntity caster, int ticksInUse, IAbility ability) {
         this.caster = caster;
@@ -26,12 +37,7 @@ public class SpellCastContext {
 
         this.ability = ability;
 
-        if (ability.getAbilityType()
-            .equals(IAbility.Type.SPELL)) {
-            this.spell = (BaseSpell) ability;
-        } else {
-            this.spell = null;
-        }
+        this.spell = ability.getSpell();
 
         this.data = Load.Unit(caster);
 
@@ -41,10 +47,6 @@ public class SpellCastContext {
             this.spellsCap = new PlayerSpellCap.DefaultImpl();
         }
 
-        this.finishedConfig = new CalculatedSpellConfigs(this);
-
-        this.spellLevel = spellsCap.getLevelOf(spell);
-
-        this.isLastCastTick = finishedConfig.castTimeTicks == ticksInUse;
+        this.isLastCastTick = getConfigFor(ability.getSpell()).castTimeTicks == ticksInUse;
     }
 }
