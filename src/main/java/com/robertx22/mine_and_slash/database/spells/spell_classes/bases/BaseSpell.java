@@ -98,6 +98,16 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         MAGE_WEAPON, MELEE_WEAPON, NONE
     }
 
+    @Override
+    public Type getAbilityType() {
+        return Type.SPELL;
+    }
+
+    @Override
+    public IAbility getRequiredAbility() {
+        return null;
+    }
+
     public boolean isAllowedAsRightClickFor(GearItemSlot slot) {
         switch (immutableConfigs.allowedAsRightClickOn()) {
             case NONE: {

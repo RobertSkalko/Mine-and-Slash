@@ -19,6 +19,7 @@ public class PreCalcSpellConfigs {
         this.projectileCount = setup.projectileCount();
         this.duration = setup.durationTicks();
         this.shootSpeed = setup.shootSpeed();
+        this.radius = setup.radius();
 
     }
 
@@ -26,6 +27,7 @@ public class PreCalcSpellConfigs {
     public LevelBased spellAttackScalingValue;
 
     public LevelBased manaCost;
+    public LevelBased radius;
     public LevelBased projectileCount;
     public LevelBased castTimeTicks;
     public LevelBased shootSpeed;

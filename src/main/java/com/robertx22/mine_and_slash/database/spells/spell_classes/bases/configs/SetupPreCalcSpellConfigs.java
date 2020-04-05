@@ -16,6 +16,10 @@ public abstract class SetupPreCalcSpellConfigs {
         return new LevelBased(1, 1);
     }
 
+    public LevelBased radius() {
+        return new LevelBased(1, 1);
+    }
+
     public LevelBased projectileCount() {
         return new LevelBased(1, 1);
     }

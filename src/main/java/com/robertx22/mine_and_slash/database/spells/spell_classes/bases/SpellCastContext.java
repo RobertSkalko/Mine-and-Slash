@@ -33,7 +33,7 @@ public class SpellCastContext {
 
         this.finishedConfig = new CalculatedSpellConfigs(this);
 
-        this.spellLevel = data.getSpellLevel(spell);
+        this.spellLevel = spellsCap.getLevelOf(spell);
 
         this.isLastCastTick = finishedConfig.castTimeTicks == ticksInUse;
     }
