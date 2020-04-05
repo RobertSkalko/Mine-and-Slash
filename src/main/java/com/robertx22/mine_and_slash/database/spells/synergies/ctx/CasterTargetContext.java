@@ -9,6 +9,7 @@ public class CasterTargetContext extends SynergyContext {
     public EntityCap.UnitData casterData, targetData;
 
     public CasterTargetContext(LivingEntity caster, LivingEntity target) {
+
         this.caster = caster;
         this.target = target;
         this.casterData = Load.Unit(caster);

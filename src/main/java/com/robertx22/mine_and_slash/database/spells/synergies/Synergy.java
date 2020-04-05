@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.synergies;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.SynergyContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -69,7 +70,7 @@ public abstract class Synergy<T extends SynergyContext> implements ITooltipList,
         return getMaxSpellLevelNormal() + 5;
     }
 
-    public abstract void tryActivate(T ctx);
+    public abstract void tryActivate(T ctx, SpellCastContext sc);
 
     public boolean has(PlayerSpellCap.ISpellsCap spells) {
         return spells.hasSynergy(this);

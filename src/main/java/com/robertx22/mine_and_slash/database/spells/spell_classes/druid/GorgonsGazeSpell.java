@@ -1,17 +1,23 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.PetrifyEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -22,6 +28,27 @@ import java.util.List;
 public class GorgonsGazeSpell extends BaseSpell {
 
     private GorgonsGazeSpell() {
+        super(new ImmutableSpellConfigs() {
+            @Override
+            public SpellSchools school() {
+                return SpellSchools.DRUID;
+            }
+
+            @Override
+            public SpellCastType castType() {
+                return null;
+            }
+
+            @Override
+            public SoundEvent sound() {
+                return null;
+            }
+
+            @Override
+            public Elements element() {
+                return Elements.Nature;
+            }
+        });
     }
 
     public static GorgonsGazeSpell getInstance() {
@@ -29,18 +56,23 @@ public class GorgonsGazeSpell extends BaseSpell {
     }
 
     @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.DRUID;
+    public AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(3, 4);
     }
 
     @Override
-    public int getCooldownInSeconds() {
-        return 50;
-    }
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-    @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.Aoe_Debuff;
+        c.set(SC.MANA_COST, 25, 35);
+        c.set(SC.BASE_VALUE, 2, 3);
+        c.set(SC.SHOOT_SPEED, 0.4F, 0.6F);
+        c.set(SC.CAST_TIME_TICKS, 25, 20);
+        c.set(SC.COOLDOWN_TICKS, 60, 45);
+
+        c.setMaxLevel(16);
+
+        return c;
     }
 
     @Override
@@ -49,27 +81,7 @@ public class GorgonsGazeSpell extends BaseSpell {
     }
 
     @Override
-    public int getManaCost() {
-        return 30;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 20;
-    }
-
-    @Override
-    public SpellCalcData getCalculation() {
-        return PetrifyEffect.CALC;
-    }
-
-    @Override
-    public Elements getElement() {
-        return Elements.Nature;
-    }
-
-    @Override
-    public List<ITextComponent> GetDescription(TooltipInfo info) {
+    public List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<ITextComponent> list = new ArrayList<>();
 
@@ -89,7 +101,9 @@ public class GorgonsGazeSpell extends BaseSpell {
     }
 
     @Override
-    public boolean cast(LivingEntity caster, int ticksInUse) {
+    public boolean cast(SpellCastContext ctx) {
+
+        LivingEntity caster = ctx.caster;
 
         World world = caster.world;
 
