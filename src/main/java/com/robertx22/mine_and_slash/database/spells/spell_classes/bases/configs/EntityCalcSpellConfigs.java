@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs;
 
-import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -8,33 +7,32 @@ import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
+import javax.annotation.Nullable;
+import java.util.HashMap;
+
 @Storable
 public class EntityCalcSpellConfigs {
 
+    @Nullable
     @Store
-    public final SpellCalcData calc;
+    public SpellCalcData calc = null;
 
     @Store
-    public final Integer maxSpellLevel;
-    @Store
-    public final Integer summonedEntities;
-    @Store
-    public final Integer manaCost;
-    @Store
-    public final Integer castTimeTicks;
-    @Store
-    public final Integer timesToCast;
-    @Store
-    public final Integer projectileCount;
-    @Store
-    public final Integer cooldownTicks;
+    private HashMap<SC, Float> map = new HashMap<>();
 
-    @Store
-    public final Float shootSpeed;
-    @Store
-    public final Float duration;
-    @Store
-    public final Float radius;
+    public Float get(SC sc) {
+
+        if (!map.containsKey(sc)) {
+
+            try {
+                throw new RuntimeException("Trying to get non existent value!!!");
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return map.get(sc);
+    }
 
     public EntityCalcSpellConfigs(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spellsCap, IAbility ability) {
         int lvl = spellsCap != null ? spellsCap.getLevelOf(ability) : 1;
@@ -46,31 +44,24 @@ public class EntityCalcSpellConfigs {
             pre.modifyBySynergies(ability.getSpell(), spellsCap);
         }
 
-        this.manaCost = (int) Mana.getInstance()
-            .calculateScalingStatGrowth(pre.manaCost.get(lvl, ability), userLvl);
+        if (pre.has(SC.BASE_VALUE)) {
+            if (pre.has(SC.ATTACK_SCALE_VALUE)) {
+                this.calc = SpellCalcData.base(pre.get(SC.BASE_VALUE)
+                    .get(spellsCap, ability));
 
-        this.castTimeTicks = (int) pre.castTimeTicks.get(lvl, ability);
+            } else {
+                this.calc = SpellCalcData.scaleWithAttack(pre.get(SC.ATTACK_SCALE_VALUE)
+                    .get(spellsCap, ability), pre.get(SC.BASE_VALUE)
+                    .get(spellsCap, ability));
+            }
+        }
 
-        this.calc = SpellCalcData.scaleWithAttack(
-            pre.spellAttackScalingValue.get(lvl, ability),
-            pre.spellBaseValue.get(lvl, ability)
-        );
-
-        this.timesToCast = (int) pre.timesToCast.get(lvl, ability);
-
-        this.projectileCount = (int) pre.projectileCount.get(lvl, ability);
-
-        this.cooldownTicks = (int) pre.cooldownTicks.get(lvl, ability);
-
-        this.shootSpeed = pre.shootSpeed.get(lvl, ability);
-
-        this.duration = pre.duration.get(lvl, ability);
-
-        this.summonedEntities = (int) pre.summonedEntities.get(lvl, ability);
-
-        this.radius = pre.radius.get(lvl, ability);
-
-        this.maxSpellLevel = pre.maxSpellLevel;
+        pre.getMap()
+            .entrySet()
+            .forEach(x -> {
+                this.map.put(x.getKey(), x.getValue()
+                    .get(spellsCap, ability));
+            });
 
     }
 }

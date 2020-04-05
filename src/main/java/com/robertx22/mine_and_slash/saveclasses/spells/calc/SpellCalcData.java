@@ -28,7 +28,7 @@ public class SpellCalcData implements ITooltipList {
         return d;
     }
 
-    public static SpellCalcData base(int base) {
+    public static SpellCalcData base(float base) {
         SpellCalcData data = new SpellCalcData();
 
         data.baseValue = base;

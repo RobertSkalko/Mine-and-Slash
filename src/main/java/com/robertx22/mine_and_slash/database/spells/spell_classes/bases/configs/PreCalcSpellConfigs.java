@@ -27,6 +27,14 @@ public class PreCalcSpellConfigs {
         );
     }
 
+    public boolean has(SC sc) {
+        return map.containsKey(sc);
+    }
+
+    public HashMap<SC, LevelBased> getMap() {
+        return map;
+    }
+
     public void set(SC sc, float min, float max) {
 
         if (map.containsKey(sc)) {
@@ -69,28 +77,6 @@ public class PreCalcSpellConfigs {
 
     }
 
-    /*
-    public LevelBased spellBaseValue = LevelBased.empty();
-    public LevelBased spellAttackScalingValue = LevelBased.empty();
-
-    public LevelBased manaCost = LevelBased.empty();
-    public LevelBased radius = LevelBased.empty();
-    public LevelBased projectileCount = LevelBased.empty()
-        .min(1);
-    public LevelBased castTimeTicks = LevelBased.empty();
-    public LevelBased shootSpeed = LevelBased.empty()
-        .min(0.05F);
-    public LevelBased summonedEntities = LevelBased.empty()
-        .min(1);
-    public LevelBased duration = LevelBased.empty()
-        .min(1);
-    public LevelBased cooldownTicks = LevelBased.empty();
-    public LevelBased timesToCast = LevelBased.empty()
-        .min(1); //most spells its casted once at end of cast time, others are casted during the whole cast duration
-
-
-     */
-
     private boolean modifiedBySynergies = false;
 
     public void modifyBySynergies(BaseSpell spell, PlayerSpellCap.ISpellsCap cap) {
@@ -105,23 +91,9 @@ public class PreCalcSpellConfigs {
 
                 sc.map.entrySet()
                     .forEach(e -> {
-
-                        this.map.g
-
+                        this.map.get(e.getKey())
+                            .modifyBy(e.getValue());
                     });
-
-                spellBaseValue.modifyBy(sc.spellBaseValue);
-                spellAttackScalingValue.modifyBy(sc.spellAttackScalingValue);
-
-                manaCost.modifyBy(sc.manaCost);
-                radius.modifyBy(sc.radius);
-                projectileCount.modifyBy(sc.projectileCount);
-                castTimeTicks.modifyBy(sc.castTimeTicks);
-                shootSpeed.modifyBy(sc.shootSpeed);
-                summonedEntities.modifyBy(sc.summonedEntities);
-                duration.modifyBy(sc.duration);
-                cooldownTicks.modifyBy(sc.cooldownTicks);
-                timesToCast.modifyBy(sc.timesToCast);
 
             });
 
