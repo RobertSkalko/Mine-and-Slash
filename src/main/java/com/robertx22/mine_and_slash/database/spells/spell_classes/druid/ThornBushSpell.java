@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
 
 import com.robertx22.mine_and_slash.database.spells.blocks.base.BaseSpellBlock;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.SeedEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
@@ -14,12 +15,15 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class ThornBushSpell extends BaseSpell {
 
@@ -38,6 +42,11 @@ public class ThornBushSpell extends BaseSpell {
             @Override
             public BaseSpellBlock spellBlockToSpawn() {
                 return ModBlocks.THORN_BUSH.get();
+            }
+
+            @Override
+            public Function<World, Entity> newEntitySummoner() {
+                return (world) -> new SeedEntity(world);
             }
 
             @Override

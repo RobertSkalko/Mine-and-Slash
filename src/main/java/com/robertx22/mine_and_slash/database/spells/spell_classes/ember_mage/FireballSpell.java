@@ -56,7 +56,7 @@ public class FireballSpell extends BaseSpell {
 
                 @Override
                 public Elements element() {
-                    return Elements.Nature;
+                    return Elements.Fire;
                 }
             });
     }

@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -60,7 +61,7 @@ public class BlazingInfernoSpell extends BaseSpell {
 
                 @Override
                 public Elements element() {
-                    return Elements.Nature;
+                    return Elements.Fire;
                 }
             });
     }
@@ -75,10 +76,16 @@ public class BlazingInfernoSpell extends BaseSpell {
         c.set(SC.CAST_TIME_TICKS, 60, 40);
         c.set(SC.COOLDOWN_SECONDS, 60, 45);
         c.set(SC.RADIUS, 2, 3);
+        c.set(SC.TIMES_TO_CAST, 4, 4);
 
         c.setMaxLevel(12);
 
         return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(3, 3);
     }
 
     public static BlazingInfernoSpell getInstance() {

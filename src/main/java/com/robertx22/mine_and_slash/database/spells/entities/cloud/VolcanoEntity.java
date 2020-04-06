@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.entities.cloud;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseInvisibleEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
@@ -50,6 +51,8 @@ public class VolcanoEntity extends BaseInvisibleEntity {
     public void onTick() {
         try {
 
+            float radius = getSpellData().configs.get(SC.RADIUS);
+
             if (this.ticksExisted % ticksToHitMobs() == 1) {
 
                 SoundUtils.playSound(this, SoundEvents.BLOCK_LAVA_EXTINGUISH, 1, 1);
@@ -58,7 +61,7 @@ public class VolcanoEntity extends BaseInvisibleEntity {
 
                     List<LivingEntity> entities = EntityFinder.start(
                         getCaster(), LivingEntity.class, getPositionVector())
-                        .radius(radius())
+                        .radius(radius)
                         .build();
 
                     for (LivingEntity target : entities) {
@@ -81,7 +84,7 @@ public class VolcanoEntity extends BaseInvisibleEntity {
                         float yRandom = (float) RandomUtils.RandomRange(1, 100) / 80F;
 
                         Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                            posX, posY + +yRandom, posZ, radius());
+                            posX, posY + +yRandom, posZ, radius);
 
                         for (int n = 0; n < 3; n++) {
                             ParticleUtils.spawn(ParticleTypes.LAVA, world, p.x, p.y, p.z, 0, 0.5f, 0);
@@ -107,10 +110,6 @@ public class VolcanoEntity extends BaseInvisibleEntity {
 
     public int ticksToHitMobs() {
         return 15;
-    }
-
-    public float radius() {
-        return 1.5f;
     }
 
 }

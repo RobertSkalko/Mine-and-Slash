@@ -61,10 +61,6 @@ public class TidalWaveSpell extends BaseSpell {
             });
     }
 
-    public static TidalWaveSpell getInstance() {
-        return SingletonHolder.INSTANCE;
-    }
-
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
@@ -80,6 +76,10 @@ public class TidalWaveSpell extends BaseSpell {
         c.setMaxLevel(16);
 
         return c;
+    }
+
+    public static TidalWaveSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override

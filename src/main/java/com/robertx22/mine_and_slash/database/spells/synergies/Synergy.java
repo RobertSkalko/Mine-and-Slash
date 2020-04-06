@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.synergies;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.SynergyContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -35,6 +36,11 @@ public abstract class Synergy<T extends SynergyContext> implements ITooltipList,
             }
         }
         return false;
+    }
+
+    public SpellCastContext getContext(LivingEntity en) {
+        return new SpellCastContext(en, 0, this);
+
     }
 
     public SpellCalcData getCalc(PlayerSpellCap.ISpellsCap cap) {

@@ -2,7 +2,11 @@ package com.robertx22.mine_and_slash.database.spells;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
@@ -122,6 +126,26 @@ public class SpellUtils {
 
         return en;
 
+    }
+
+    public static void heal(BaseSpell spell, LivingEntity en, float amount) {
+        SpellHealEffect heal = new SpellHealEffect(
+            new ResourcesData.Context(Load.Unit(en), en, ResourcesData.Type.HEALTH,
+                amount, ResourcesData.Use.RESTORE,
+                spell
+            ));
+        heal.Activate();
+    }
+
+    public static void healCaster(SpellCastContext ctx) {
+        SpellHealEffect heal = new SpellHealEffect(
+            new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.HEALTH,
+                ctx.getConfigFor(ctx.ability)
+                    .getCalc(ctx.spellsCap, ctx.ability)
+                    .getCalculatedValue(ctx.data), ResourcesData.Use.RESTORE,
+                ctx.spell
+            ));
+        heal.Activate();
     }
 
 }

@@ -2,44 +2,82 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.VolcanoEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSummonAtSightSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
-public class VolcanoSpell extends BaseSummonAtSightSpell {
-
-    public Elements element = Elements.Fire;
+public class VolcanoSpell extends BaseSpell {
 
     private VolcanoSpell() {
+        super(
+            new ImmutableSpellConfigs() {
+
+                @Override
+                public SpellSchools school() {
+                    return SpellSchools.EMBER_MAGE;
+                }
+
+                @Override
+                public SpellCastType castType() {
+                    return SpellCastType.AT_SIGHT;
+                }
+
+                @Override
+                public SoundEvent sound() {
+                    return ModSounds.FIREBALL.get();
+                }
+
+                @Override
+                public Function<World, Entity> newEntitySummoner() {
+                    return world -> new VolcanoEntity(world);
+                }
+
+                @Override
+                public Elements element() {
+                    return Elements.Fire;
+                }
+            });
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+
+        c.set(SC.MANA_COST, 30, 60);
+        c.set(SC.BASE_VALUE, 2, 8);
+        c.set(SC.CAST_TIME_TICKS, 60, 40);
+        c.set(SC.COOLDOWN_SECONDS, 45, 30);
+        c.set(SC.RADIUS, 2, 3);
+
+        c.setMaxLevel(12);
+
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(5, 6);
     }
 
     public static VolcanoSpell getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.EMBER_MAGE;
-    }
-
-    @Override
-    public int getCooldownInSeconds() {
-        return 30;
-    }
-
-    @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.LASTING_AOE;
     }
 
     @Override
@@ -48,33 +86,13 @@ public class VolcanoSpell extends BaseSummonAtSightSpell {
     }
 
     @Override
-    public int getManaCost() {
-        return 60;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 60;
-    }
-
-    @Override
-    public SpellCalcData getCalculation() {
-        return SpellCalcData.one(dmgStat(), 0.5F, 10);
-    }
-
-    @Override
-    public Elements getElement() {
-        return element;
-    }
-
-    @Override
-    public List<ITextComponent> GetDescription(TooltipInfo info) {
+    public List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Summons an erupting volcano: "));
 
-        list.addAll(getCalculation().GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info));
 
         return list;
 
@@ -83,11 +101,6 @@ public class VolcanoSpell extends BaseSummonAtSightSpell {
     @Override
     public Words getName() {
         return Words.Volcano;
-    }
-
-    @Override
-    public Entity newEntity(World world) {
-        return new VolcanoEntity(world);
     }
 
     private static class SingletonHolder {

@@ -22,10 +22,8 @@ public class Synergies implements ISlashRegistryInit {
     public static FrostballExtraDmgSynergy FROSTBALL_EXTRA_DMG = new FrostballExtraDmgSynergy();
     public static FrostballFrostEssenceGenSynergy FROSTBALL_FROST_ESSENCE_GEN = new FrostballFrostEssenceGenSynergy();
     public static WhirlpoolFrostDmgSynergy WHIRLPOOL_FROST_DMG = new WhirlpoolFrostDmgSynergy();
-    public static BlizzardFrostSynergy BLIZZARD_FROST = new BlizzardFrostSynergy();
     public static WhirlpoolShiverSynergy WHIRLPOOL_SHIVER = new WhirlpoolShiverSynergy();
     public static HeartOfIceMagicShieldSynergy HEART_OF_ICE_MAGIC_SHIELD = new HeartOfIceMagicShieldSynergy();
-    public static BlizzardFrostEssenceSynergy BLIZZARD_FROST_ESSENCE = new BlizzardFrostEssenceSynergy();
 
     public static ThunderSpearLightningStrikeSynergy THUNDER_SPEAR_LIGHTNING = new ThunderSpearLightningStrikeSynergy();
     public static LightningTotemStaticSynergy LIGHTNING_TOTEM_STATIC = new LightningTotemStaticSynergy();
@@ -55,10 +53,8 @@ public class Synergies implements ISlashRegistryInit {
         FROSTBALL_EXTRA_DMG.registerToSlashRegistry();
         FROSTBALL_FROST_ESSENCE_GEN.registerToSlashRegistry();
         WHIRLPOOL_FROST_DMG.registerToSlashRegistry();
-        BLIZZARD_FROST.registerToSlashRegistry();
         WHIRLPOOL_SHIVER.registerToSlashRegistry();
         HEART_OF_ICE_MAGIC_SHIELD.registerToSlashRegistry();
-        BLIZZARD_FROST_ESSENCE.registerToSlashRegistry();
 
         THUNDER_SPEAR_LIGHTNING.registerToSlashRegistry();
         LIGHTNING_TOTEM_STATIC.registerToSlashRegistry();

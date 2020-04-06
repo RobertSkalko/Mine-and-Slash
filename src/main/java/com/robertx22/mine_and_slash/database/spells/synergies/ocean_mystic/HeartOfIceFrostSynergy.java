@@ -1,30 +1,28 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
 
+import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.HeartOfIceSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealContext;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ColdEssenceEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeartOfIceFrostSynergy extends Synergy<BeforeHealContext> {
+public class HeartOfIceFrostSynergy extends Synergy<CasterContext> {
 
     @Override
     public String GUID() {
         return "heart_of_ice_frost_synergy";
     }
-
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 0.1F, 3);
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
@@ -40,19 +38,32 @@ public class HeartOfIceFrostSynergy extends Synergy<BeforeHealContext> {
     }
 
     @Override
-    public BaseSpell spellAffected() {
+    public BaseSpell getRequiredAbility() {
         return HeartOfIceSpell.getInstance();
     }
 
     @Override
-    public void tryActivate(BeforeHealContext ctx) {
+    public void tryActivate(CasterContext ctx) {
+
+        SpellCastContext sc = getContext(ctx.caster);
 
         int stacks = PotionEffectUtils.getStacks(ctx.caster, ColdEssenceEffect.INSTANCE);
 
         if (stacks > 0) {
             PotionEffectUtils.reduceStacks(ctx.caster, ColdEssenceEffect.INSTANCE, 500);
-            ctx.heal.number += CALC.getCalculatedValue(Load.Unit(ctx.caster)) * stacks;
+            float amount = sc.getConfigFor(this)
+                .getCalc(sc.spellsCap, this)
+                .getCalculatedValue(Load.Unit(ctx.caster)) * stacks;
+
+            SpellUtils.heal(sc.spell, ctx.caster, amount);
 
         }
+
     }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return AbilityPlace.upFrom(getRequiredAbility());
+    }
+
 }

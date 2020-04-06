@@ -1,14 +1,18 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpellHeal;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeHealContext;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
@@ -17,7 +21,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -26,18 +30,56 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeartOfIceSpell extends BaseSpellHeal {
+public class HeartOfIceSpell extends BaseSpell {
 
     private HeartOfIceSpell() {
+        super(
+            new ImmutableSpellConfigs() {
+
+                @Override
+                public SpellSchools school() {
+                    return SpellSchools.OCEAN_MYSTIC;
+                }
+
+                @Override
+                public SpellCastType castType() {
+                    return SpellCastType.SELF_HEAL;
+                }
+
+                @Override
+                public SoundEvent sound() {
+                    return ModSounds.FREEZE.get();
+                }
+
+                @Override
+                public Elements element() {
+                    return Elements.Water;
+                }
+            });
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+
+        c.set(SC.MANA_COST, 15, 45);
+        c.set(SC.BASE_VALUE, 5, 20);
+        c.set(SC.SHOOT_SPEED, 0.6F, 0.9F);
+        c.set(SC.CAST_TIME_TICKS, 30, 15);
+        c.set(SC.COOLDOWN_SECONDS, 60, 30);
+
+        c.setMaxLevel(12);
+
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(5, 1);
     }
 
     public static HeartOfIceSpell getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 40;
     }
 
     @Override
@@ -46,35 +88,13 @@ public class HeartOfIceSpell extends BaseSpellHeal {
     }
 
     @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.OCEAN_MYSTIC;
-    }
-
-    @Override
-    public int getCooldownInSeconds() {
-        return 30;
-    }
-
-    @Override
-    public int getManaCost() {
-        return 40;
-    }
-
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Water), 1F, 10);
-
-    @Override
-    public SpellCalcData getCalculation() {
-        return CALC;
-    }
-
-    @Override
-    public List<ITextComponent> GetDescription(TooltipInfo info) {
+    public List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Restores health to caster:"));
 
-        list.addAll(CALC.GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info));
 
         return list;
 
@@ -86,7 +106,7 @@ public class HeartOfIceSpell extends BaseSpellHeal {
     }
 
     @Override
-    public boolean cast(LivingEntity caster, int ticksInUse) {
+    public void castExtra(SpellCastContext ctx) {
         try {
             World world = caster.world;
 
@@ -124,7 +144,6 @@ public class HeartOfIceSpell extends BaseSpellHeal {
             e.printStackTrace();
         }
 
-        return true;
     }
 
     private static class SingletonHolder {

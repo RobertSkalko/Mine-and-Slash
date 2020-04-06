@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class PreCalcSpellConfigs {
 
     public PreCalcSpellConfigs() {
+        set(SC.TIMES_TO_CAST, 1, 1);
     }
 
     private HashMap<SC, LevelBased> map = new HashMap<>();
@@ -37,11 +38,14 @@ public class PreCalcSpellConfigs {
 
     public void set(SC sc, float min, float max) {
 
-        if (map.containsKey(sc)) {
-            try {
-                throw new RuntimeException("Trying to set an already set value!!!");
-            } catch (RuntimeException e) {
-                e.printStackTrace();
+        if (sc.errorIfOverridden) {
+            if (map.containsKey(sc)) {
+
+                try {
+                    throw new RuntimeException("Trying to set an already set value!!!");
+                } catch (RuntimeException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
