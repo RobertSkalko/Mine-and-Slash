@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.F
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEssenceEffect;
+import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ColdEssenceEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.text.ITextComponent;
@@ -31,7 +31,7 @@ public class FrostballFrostEssenceGenSynergy extends Synergy<AfterDamageContext>
 
         list.add(new StringTextComponent(CHANCE + " percent chance for attacks give Frost Essence"));
 
-        list.addAll(FrostEssenceEffect.INSTANCE.GetTooltipString(info));
+        list.addAll(ColdEssenceEffect.INSTANCE.GetTooltipString(info));
 
         return list;
     }
@@ -44,7 +44,7 @@ public class FrostballFrostEssenceGenSynergy extends Synergy<AfterDamageContext>
     @Override
     public void tryActivate(AfterDamageContext ctx) {
         if (RandomUtils.roll(CHANCE)) {
-            PotionEffectUtils.reApplyToSelf(FrostEssenceEffect.INSTANCE, ctx.caster);
+            PotionEffectUtils.reApplyToSelf(ColdEssenceEffect.INSTANCE, ctx.caster);
         }
     }
 }

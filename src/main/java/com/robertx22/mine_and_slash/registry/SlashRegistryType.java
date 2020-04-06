@@ -15,6 +15,7 @@ import javax.annotation.Nullable;
 public enum SlashRegistryType {
 
     NONE("none"),
+    EFFECT("effect"),
     STAT("stat"),
     SPELL_SYNERGY("synergy"),
     TIER("tier") {

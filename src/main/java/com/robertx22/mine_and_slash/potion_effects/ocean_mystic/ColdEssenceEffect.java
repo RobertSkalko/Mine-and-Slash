@@ -1,28 +1,29 @@
 package com.robertx22.mine_and_slash.potion_effects.ocean_mystic;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.PotionStat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPotion {
+public class ColdEssenceEffect extends BasePotionEffect implements IApplyStatPotion {
 
-    public static final FrostEssenceEffect INSTANCE = new FrostEssenceEffect();
+    public static final ColdEssenceEffect INSTANCE = new ColdEssenceEffect();
 
-    private FrostEssenceEffect() {
+    private ColdEssenceEffect() {
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
@@ -40,7 +41,7 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
 
     @Override
     public String locNameForLangFile() {
-        return "Frost Essence";
+        return "Cold Essence";
     }
 
     @Override
@@ -48,27 +49,29 @@ public class FrostEssenceEffect extends BasePotionEffect implements IApplyStatPo
         return 20;
     }
 
-    public ExactStatData getCrit(EntityCap.UnitData data, ExtraPotionData extraData) {
-        float statAmount = 0.5F * extraData.getStacks();
-        return new ExactStatData(statAmount, StatModTypes.Flat, CriticalDamage.getInstance());
-    }
-
-    public ExactStatData getWater(EntityCap.UnitData data, ExtraPotionData extraData) {
-        int statAmount = 1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatModTypes.Flat, new AllElementalDamage(Elements.Water)).scaleToLvl(
-                extraData.casterLvl);
+    @Override
+    public List<PotionStat> getPotionStats() {
+        List<PotionStat> list = new ArrayList<>();
+        list.add(new PotionStat(1F, CriticalDamage.getInstance()));
+        list.add(new PotionStat(0.5F, new AllElementalDamage(Elements.Water)));
+        return list;
     }
 
     @Override
-    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        return p;
+    }
 
-        List<ExactStatData> list = new ArrayList<>();
+    @Nullable
+    @Override
+    public BaseSpell getSpell() {
+        return null;
+    }
 
-        list.add(getWater(data, extraData));
-        list.add(getCrit(data, extraData));
-
-        return list;
-
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.OCEAN_MYSTIC;
     }
 
     @Override

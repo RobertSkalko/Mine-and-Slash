@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.druid.MinorThornsEffect;
+import com.robertx22.mine_and_slash.potion_effects.druid.ThornsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
@@ -33,7 +33,7 @@ public class RegenerateThornsSynergy extends Synergy<CasterContext> {
 
         list.add(new StringTextComponent("Spell cast also applies debuff to enemies nearby"));
 
-        list.addAll(MinorThornsEffect.INSTANCE.GetTooltipString(info));
+        list.addAll(ThornsEffect.INSTANCE.GetTooltipString(info));
 
         return list;
     }
@@ -49,14 +49,14 @@ public class RegenerateThornsSynergy extends Synergy<CasterContext> {
         BlockPos pos = ctx.caster.getPosition();
 
         ParticleEnum.sendToClients(pos, ctx.caster.world,
-                                   new ParticlePacketData(pos, ParticleEnum.THORNS).radius(RegenerateSpell.RADIUS)
-                                           .amount(30)
+            new ParticlePacketData(pos, ParticleEnum.THORNS).radius(RegenerateSpell.RADIUS)
+                .amount(30)
         );
 
         EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPositionVector())
-                .radius(RegenerateSpell.RADIUS)
-                .build()
-                .forEach(x -> PotionEffectUtils.apply(MinorThornsEffect.INSTANCE, ctx.caster, x));
+            .radius(RegenerateSpell.RADIUS)
+            .build()
+            .forEach(x -> PotionEffectUtils.apply(ThornsEffect.INSTANCE, ctx.caster, x));
 
     }
 }

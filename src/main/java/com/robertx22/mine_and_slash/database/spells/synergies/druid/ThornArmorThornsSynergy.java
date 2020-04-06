@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornArm
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.druid.MinorThornsEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.ThornArmorEffect;
+import com.robertx22.mine_and_slash.potion_effects.druid.ThornsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.text.ITextComponent;
@@ -33,7 +33,7 @@ public class ThornArmorThornsSynergy extends Synergy<CasterTargetContext> {
         list.add(new StringTextComponent("Attacking or being attacked has a  "));
         list.add(new StringTextComponent(CHANCE + "% of applying effect."));
 
-        list.addAll(MinorThornsEffect.INSTANCE.GetTooltipString(info));
+        list.addAll(ThornsEffect.INSTANCE.GetTooltipString(info));
 
         return list;
     }
@@ -48,10 +48,10 @@ public class ThornArmorThornsSynergy extends Synergy<CasterTargetContext> {
 
         if (RandomUtils.roll(CHANCE)) {
             if (PotionEffectUtils.has(ctx.caster, ThornArmorEffect.INSTANCE)) {
-                PotionEffectUtils.apply(MinorThornsEffect.INSTANCE, ctx.caster, ctx.target);
+                PotionEffectUtils.apply(ThornsEffect.INSTANCE, ctx.caster, ctx.target);
             }
             if (PotionEffectUtils.has(ctx.target, ThornArmorEffect.INSTANCE)) {
-                PotionEffectUtils.apply(MinorThornsEffect.INSTANCE, ctx.target, ctx.caster);
+                PotionEffectUtils.apply(ThornsEffect.INSTANCE, ctx.target, ctx.caster);
             }
         }
     }

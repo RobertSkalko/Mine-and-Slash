@@ -37,6 +37,7 @@ import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.packets.RegistryPacket;
+import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.registry.empty_entries.*;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import net.minecraft.entity.LivingEntity;
@@ -114,6 +115,10 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<PerkEffect> PerkEffects() {
         return getRegistry(SlashRegistryType.PERK_EFFECT);
+    }
+
+    public static SlashRegistryContainer<BasePotionEffect> PotionEffects() {
+        return getRegistry(SlashRegistryType.EFFECT);
     }
 
     public static SlashRegistryContainer<Perk> Perks() {
@@ -314,14 +319,12 @@ public class SlashRegistry {
         new MobAffixes().registerAll();
 
         new PerkEffectsInit().registerAll();
-
         new Perks().registerAll();
 
         new LootCrates().registerAll();
-
         new Bosses().registerAll();
-
         new ChaosStats().registerAll();
+        new PotionEffects().registerAll();
 
     }
 
@@ -356,6 +359,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<BaseDungeonDimension>(SlashRegistryType.WORLD_PROVIDER, new DungeonDimension(null, null)));
         addRegistry(new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
+        addRegistry(new SlashRegistryContainer<BasePotionEffect>(SlashRegistryType.EFFECT, null));
         addRegistry(new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()
             ).logAdditions()
                 .dontErrorMissingEntriesOnAccess()

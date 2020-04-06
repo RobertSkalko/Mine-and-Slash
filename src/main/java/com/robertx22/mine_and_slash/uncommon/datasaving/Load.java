@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerStatsPoints
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.capability.server_wide.PlayerCapBackupCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -66,10 +67,14 @@ public class Load {
     }
 
     @Nonnull
-    public static PlayerSpellCap.ISpellsCap spells(PlayerEntity provider) {
+    public static PlayerSpellCap.ISpellsCap spells(LivingEntity provider) {
 
-        return provider.getCapability(PlayerSpellCap.Data)
-            .orElse(new PlayerSpellCap.DefaultImpl());
+        if (provider instanceof PlayerEntity) {
+            return provider.getCapability(PlayerSpellCap.Data)
+                .orElse(new PlayerSpellCap.DefaultImpl());
+        } else {
+            return new PlayerSpellCap.DefaultImpl();
+        }
     }
 
     public static PlayerCapBackupCap.IPlayerCapBackupData playersCapBackup(World world) {

@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 
@@ -11,6 +12,7 @@ public class PotionContext {
     public LivingEntity caster;
     public EntityCap.UnitData casterData;
     public EntityCap.UnitData entityData;
+    public PlayerSpellCap.ISpellsCap spellsCap;
 
     public PotionContext(LivingEntity entity, ExtraPotionData data, LivingEntity caster) {
         this.entity = entity;
@@ -19,5 +21,7 @@ public class PotionContext {
 
         this.casterData = Load.Unit(caster);
         this.entityData = Load.Unit(entity);
+
+        this.spellsCap = Load.spells(caster);
     }
 }

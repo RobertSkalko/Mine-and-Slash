@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.MajorThornsEffect;
-import com.robertx22.mine_and_slash.potion_effects.druid.MinorThornsEffect;
+import com.robertx22.mine_and_slash.potion_effects.druid.ThornsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
@@ -61,7 +61,7 @@ public class PoisonedWeaponsThornsSynergy extends Synergy<CasterTargetContext> {
     @Override
     public void tryActivate(CasterTargetContext ctx) {
 
-        if (PotionEffectUtils.has(ctx.target, MinorThornsEffect.INSTANCE) || PotionEffectUtils.has(
+        if (PotionEffectUtils.has(ctx.target, ThornsEffect.INSTANCE) || PotionEffectUtils.has(
             ctx.target, MajorThornsEffect.INSTANCE)) {
 
             ParticleEnum.sendToClients(ctx.target,

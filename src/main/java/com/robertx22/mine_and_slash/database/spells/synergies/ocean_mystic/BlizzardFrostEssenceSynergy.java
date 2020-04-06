@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEssenceEffect;
+import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ColdEssenceEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -47,7 +47,7 @@ public class BlizzardFrostEssenceSynergy extends Synergy<BeforeDamageContext> {
     @Override
     public void tryActivate(BeforeDamageContext ctx) {
 
-        int stacks = PotionEffectUtils.getStacks(ctx.caster, FrostEssenceEffect.INSTANCE);
+        int stacks = PotionEffectUtils.getStacks(ctx.caster, ColdEssenceEffect.INSTANCE);
         ctx.dmg.number += CALC.getCalculatedValue(Load.Unit(ctx.target)) * stacks;
 
     }

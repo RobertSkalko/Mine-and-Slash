@@ -1,20 +1,21 @@
 package com.robertx22.mine_and_slash.potion_effects.shaman;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.PotionStat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,27 +49,29 @@ public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStat
         return 20;
     }
 
-    public ExactStatData getCrit(EntityCap.UnitData data, ExtraPotionData extraData) {
-        float statAmount = 0.5F * extraData.getStacks();
-        return new ExactStatData(statAmount, StatModTypes.Flat, CriticalHit.getInstance());
-    }
-
-    public ExactStatData getThunder(EntityCap.UnitData data, ExtraPotionData extraData) {
-        int statAmount = 1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatModTypes.Flat, new AllElementalDamage(Elements.Thunder)).scaleToLvl(
-                extraData.casterLvl);
+    @Override
+    public List<PotionStat> getPotionStats() {
+        List<PotionStat> list = new ArrayList<>();
+        list.add(new PotionStat(1, new AllElementalDamage(Elements.Thunder)));
+        list.add(new PotionStat(1, CriticalHit.getInstance()));
+        return list;
     }
 
     @Override
-    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        return p;
+    }
 
-        List<ExactStatData> list = new ArrayList<>();
+    @Nullable
+    @Override
+    public BaseSpell getSpell() {
+        return null;
+    }
 
-        list.add(getThunder(data, extraData));
-        list.add(getCrit(data, extraData));
-
-        return list;
-
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.SHAMAN;
     }
 
     @Override

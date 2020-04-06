@@ -1,16 +1,16 @@
 package com.robertx22.mine_and_slash.potion_effects.ocean_mystic;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
-import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.PotionStat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -20,6 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
         this.addAttributesModifier(SharedMonsterAttributes.MOVEMENT_SPEED, "7107DE5E-7CE8-4030-940E-514C1F160890",
-                                   (double) -0.15F, AttributeModifier.Operation.MULTIPLY_TOTAL
+            (double) -0.15F, AttributeModifier.Operation.MULTIPLY_TOTAL
         );
 
         this.tickActions.add(new OnTickAction(20, ctx -> {
@@ -62,21 +63,29 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
         return 5;
     }
 
-    public ExactStatData getStatMod(EntityCap.UnitData data, Elements ele, ExtraPotionData extraData) {
-        int statAmount = -1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatModTypes.Flat, new ElementalResist(ele)).scaleToLvl(extraData.casterLvl);
+    @Override
+    public List<PotionStat> getPotionStats() {
+        List<PotionStat> list = new ArrayList<>();
+        list.add(new PotionStat(-1, new ElementalResist(Elements.Water)));
+        list.add(new PotionStat(-1, new ElementalResist(Elements.Fire)));
+        return list;
     }
 
     @Override
-    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        return p;
+    }
 
-        List<ExactStatData> list = new ArrayList<>();
+    @Nullable
+    @Override
+    public BaseSpell getSpell() {
+        return null;
+    }
 
-        list.add(getStatMod(data, Elements.Water, extraData));
-        list.add(getStatMod(data, Elements.Fire, extraData));
-
-        return list;
-
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.OCEAN_MYSTIC;
     }
 
     @Override

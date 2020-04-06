@@ -1,23 +1,22 @@
 package com.robertx22.mine_and_slash.potion_effects.druid;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
-import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.PotionStat;
-import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -25,19 +24,20 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPotion {
+public class ThornsEffect extends BasePotionEffect implements IApplyStatPotion {
 
-    public static final MinorThornsEffect INSTANCE = new MinorThornsEffect();
+    public static final ThornsEffect INSTANCE = new ThornsEffect();
 
-    private MinorThornsEffect() {
+    private ThornsEffect() {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
         this.tickActions.add(new OnTickAction(20, ctx -> {
-            int num = CALC.getCalculatedValue(ctx.casterData);
+            int num = getCalc(ctx.spellsCap).getCalculatedValue(ctx.casterData);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
                 EffectData.EffectTypes.SPELL, WeaponTypes.None
@@ -54,13 +54,11 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
         }, info -> {
             List<ITextComponent> list = new ArrayList<>();
             list.add(new StringTextComponent("Does damage:"));
-            list.addAll(CALC.GetTooltipString(info));
+            list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
 
             return list;
         }));
     }
-
-    static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Nature), 0.15F, 2);
 
     @Override
     public int getDurationInSeconds() {
@@ -69,7 +67,7 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
 
     @Override
     public String GUID() {
-        return "minor_thorns";
+        return "thorns";
     }
 
     @Override
@@ -82,33 +80,32 @@ public class MinorThornsEffect extends BasePotionEffect implements IApplyStatPot
         return 1;
     }
 
-    public ExactStatData nature(EntityCap.UnitData data, ExtraPotionData extraData) {
-        int statAmount = -2 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatModTypes.Flat, new ElementalResist(Elements.Nature)).scaleToLvl(
-            extraData.casterLvl);
-    }
-
-    public ExactStatData thunder(EntityCap.UnitData data, ExtraPotionData extraData) {
-        int statAmount = -3 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatModTypes.Flat, new ElementalResist(Elements.Thunder)).scaleToLvl(
-            extraData.casterLvl);
-    }
-
-    @Override
-    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
-
-        List<ExactStatData> list = new ArrayList<>();
-
-        list.add(thunder(data, extraData));
-        list.add(nature(data, extraData));
-
-        return list;
-
-    }
-
     @Override
     public List<PotionStat> getPotionStats() {
+        List<PotionStat> list = new ArrayList<>();
+        list.add(new PotionStat(-3, new ElementalResist(Elements.Thunder)));
+        list.add(new PotionStat(-2, new ElementalResist(Elements.Nature)));
+
+        return list;
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        p.set(SC.BASE_VALUE, 1, 3);
+        p.set(SC.ATTACK_SCALE_VALUE, 0, 0);
+        return p;
+    }
+
+    @Nullable
+    @Override
+    public BaseSpell getSpell() {
         return null;
+    }
+
+    @Override
+    public SpellSchools getSchool() {
+        return SpellSchools.DRUID;
     }
 
 }

@@ -4,18 +4,14 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.all.BleedPotion;
 import com.robertx22.mine_and_slash.potion_effects.all.CleansePoisonPotion;
 import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
-import com.robertx22.mine_and_slash.potion_effects.cleric.DivineShieldEffect;
-import com.robertx22.mine_and_slash.potion_effects.cleric.RighteousFuryEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.*;
-import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
+import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ColdEssenceEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;
-import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEssenceEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
 import com.robertx22.mine_and_slash.potion_effects.ranger.HunterInstinctEffect;
 import com.robertx22.mine_and_slash.potion_effects.ranger.ImbueEffect;
 import com.robertx22.mine_and_slash.potion_effects.ranger.WoundsEffect;
-import com.robertx22.mine_and_slash.potion_effects.rogue.StealthEffect;
 import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
 import com.robertx22.mine_and_slash.potion_effects.shaman.ThunderEssenceEffect;
 import net.minecraft.potion.Effect;
@@ -38,23 +34,18 @@ public class PotionRegister {
         reg.register(BleedPotion.INSTANCE);
 
         reg.register(FrostEffect.INSTANCE);
-        reg.register(BlazingInfernoEffect.INSTANCE);
-        reg.register(MinorThornsEffect.INSTANCE);
-        reg.register(RighteousFuryEffect.INSTANCE);
+        reg.register(ThornsEffect.INSTANCE);
         reg.register(PetrifyEffect.INSTANCE);
         reg.register(ShiverEffect.INSTANCE);
-        reg.register(FrostEssenceEffect.INSTANCE);
+        reg.register(ColdEssenceEffect.INSTANCE);
         reg.register(ThornArmorEffect.INSTANCE);
         reg.register(StaticEffect.INSTANCE);
         reg.register(BurnEffect.INSTANCE);
         reg.register(ThunderEssenceEffect.INSTANCE);
-        reg.register(MajorThornsEffect.INSTANCE);
         reg.register(PoisonedWeaponsEffect.getInstance());
-        reg.register(DivineShieldEffect.getInstance());
         reg.register(ImbueEffect.getInstance());
         reg.register(HunterInstinctEffect.getInstance());
         reg.register(WoundsEffect.getInstance());
-        reg.register(StealthEffect.getInstance());
 
     }
 
