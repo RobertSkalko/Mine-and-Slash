@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.stats.effects.class_based;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
-import com.robertx22.mine_and_slash.potion_effects.rogue.StealthEffect;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import net.minecraft.potion.Effects;
@@ -18,7 +17,7 @@ public class RogueStealthEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.source.removePotionEffect(StealthEffect.getInstance());
+        //effect.source.removePotionEffect(StealthEffect.getInstance()); // todo
         effect.source.removePotionEffect(Effects.INVISIBILITY);
         return effect;
     }

@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -21,14 +22,14 @@ public interface IApplyStatPotion {
         ExtraPotionData extraData = PotionDataSaving.getData(instance);
 
         if (extraData != null) {
-            getStatsAffected(data, cap, extraData).forEach(x -> x.applyStats(data));
+            getStatsAffected((BasePotionEffect) instance.getPotion(), data, cap, extraData).forEach(x -> x.applyStats(data));
         }
 
     }
 
-    default List<ExactStatData> getStatsAffected(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap cap, ExtraPotionData extraData) {
+    default List<ExactStatData> getStatsAffected(BasePotionEffect effect, EntityCap.UnitData data, PlayerSpellCap.ISpellsCap cap, ExtraPotionData extraData) {
         return getPotionStats().stream()
-            .map(x -> x.getExactStat(data, cap, extraData))
+            .map(x -> x.getExactStat(data, cap, extraData, effect))
             .collect(Collectors.toList());
     }
 
@@ -43,7 +44,7 @@ public interface IApplyStatPotion {
 
         list.add(new StringTextComponent(TextFormatting.GREEN + "Affects stats: "));
 
-        getStatsAffected(info.unitdata, minStacks).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        getStatsAffected(effect, info.unitdata, Load.spells(info.player), minStacks).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         return list;
 

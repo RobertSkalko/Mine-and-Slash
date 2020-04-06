@@ -29,6 +29,14 @@ public class ProjectileCastOptions {
         this.ctx = ctx;
     }
 
+    private void playSound(Entity en) {
+        if (ctx.spell.getImmutableConfigs()
+            .sound() != null) {
+            ctx.caster.world.playMovingSound(null, en, ctx.spell.getImmutableConfigs()
+                .sound(), SoundCategory.HOSTILE, 1.0F, 1.0F);
+        }
+    }
+
     public void cast() {
         World world = caster.world;
 
@@ -50,6 +58,8 @@ public class ProjectileCastOptions {
                     caster.rotationYaw + addYaw
                 );
                 caster.world.addEntity(en);
+
+                playSound(en);
             }
         } else {
             AbstractArrowEntity en = (AbstractArrowEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), spell, caster);
@@ -57,13 +67,10 @@ public class ProjectileCastOptions {
             );
             caster.world.addEntity(en);
 
+            playSound(en);
+
         }
 
-        if (ctx.spell.getImmutableConfigs()
-            .sound() != null) {
-            ctx.caster.world.playMovingSound(null, en, ctx.spell.getImmutableConfigs()
-                .sound(), SoundCategory.HOSTILE, 1.0F, 1.0F);
-        }
     }
 
 }

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
-import com.robertx22.mine_and_slash.potion_effects.rogue.StealthEffect;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
@@ -22,9 +21,9 @@ public class OnTargetEvent {
                 LivingEntity target = event.getTarget();
                 MobEntity mob = (MobEntity) en;
 
-                if (target.getActivePotionEffect(StealthEffect.getInstance()) != null) {
-                    mob.setAttackTarget(null);
-                }
+                //if (target.getActivePotionEffect(StealthEffect.getInstance()) != null) {
+                //   mob.setAttackTarget(null);
+                //}
 
             }
         } catch (Exception e) {
