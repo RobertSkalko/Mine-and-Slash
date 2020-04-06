@@ -7,9 +7,11 @@ import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nullable;
+
 public interface IAbility extends IGUID {
     public enum Type {
-        SPELL, SYNERGY
+        SPELL, SYNERGY, EFFECT
     }
 
     PreCalcSpellConfigs getPreCalcConfig();
@@ -28,8 +30,10 @@ public interface IAbility extends IGUID {
 
     public AbilityPlace getAbilityPlace();
 
+    @Nullable
     public BaseSpell getSpell();
 
+    @Nullable
     public IAbility getRequiredAbility();
 
     public SpellSchools getSchool();

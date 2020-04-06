@@ -1,9 +1,12 @@
 package com.robertx22.mine_and_slash.potion_effects.bases;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -27,7 +30,50 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BasePotionEffect extends Effect implements IAutoLocName, ITooltipList {
+public abstract class BasePotionEffect extends Effect implements IAutoLocName, ITooltipList, IAbility {
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        return p;
+    }
+
+    @Override
+    public ResourceLocation getIconLoc() {
+        return null;
+    }
+
+    @Override
+    public Type getAbilityType() {
+        return Type.EFFECT;
+    }
+
+    @Override
+    public int getMaxSpellLevelNormal() {
+        return 8;
+    }
+
+    @Override
+    public int getMaxSpellLevelBuffed() {
+        return getMaxSpellLevelNormal() + 5;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return null;
+    }
+
+    public IAbility getAbilityThatDeterminesLevel() {
+        if (getSpell() != null) {
+            return getSpell();
+        }
+        return this;
+    }
+
+    @Override
+    public IAbility getRequiredAbility() {
+        return null;
+    }
 
     protected List<OnTickAction> tickActions = new ArrayList<>();
 

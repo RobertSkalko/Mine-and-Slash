@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.bases.data;
 
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -30,16 +29,7 @@ public class ExtraPotionData {
     private int stacks = 1;
 
     @Store
-    public String abilityID = "";
-
-    @Store
     public int casterLvl = 1;
-
-    public IAbility getAbility() {
-
-        // todo
-
-    }
 
     public int getInitialDurationTicks() {
         return initialDurationTicks;

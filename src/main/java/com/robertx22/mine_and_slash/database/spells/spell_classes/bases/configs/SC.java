@@ -8,6 +8,7 @@ public enum SC {
     COOLDOWN_TICKS(0),
     SHOOT_SPEED(0.05F),
     SUMMONED_ENTITIES(1),
+    CHANCE(0),
     DURATION_TICKS(0),
     TIMES_TO_CAST(1),
     BASE_VALUE(0),
