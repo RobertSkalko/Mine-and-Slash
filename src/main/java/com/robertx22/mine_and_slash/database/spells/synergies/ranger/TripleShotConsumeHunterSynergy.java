@@ -33,7 +33,6 @@ public class TripleShotConsumeHunterSynergy extends Synergy<CasterContext> {
     }
 
     @Override
-
     public BaseSpell spellAffected() {
         return TripleShotSpell.getInstance();
     }

@@ -30,13 +30,13 @@ public class MagmaFlowerHealSynergy extends Synergy<CasterContext> {
 
         list.add(new StringTextComponent("Heals the caster"));
 
-        list.addAll(spellAffected().getCalculation().GetTooltipString(info));
+        list.addAll(spellAffected().getCalculation()
+            .GetTooltipString(info));
 
         return list;
     }
 
     @Override
-
     public BaseSpell spellAffected() {
         return MagmaFlowerSpell.getInstance();
     }
@@ -48,10 +48,11 @@ public class MagmaFlowerHealSynergy extends Synergy<CasterContext> {
         BaseSpell spell = spellAffected();
 
         SpellHealEffect heal = new SpellHealEffect(
-                new ResourcesData.Context(data, ctx.caster, ResourcesData.Type.HEALTH,
-                                          spell.getCalculation().getCalculatedValue(data), ResourcesData.Use.RESTORE,
-                                          spell
-                ));
+            new ResourcesData.Context(data, ctx.caster, ResourcesData.Type.HEALTH,
+                spell.getCalculation()
+                    .getCalculatedValue(data), ResourcesData.Use.RESTORE,
+                spell
+            ));
 
         heal.Activate();
     }

@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.spells.synergies;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.SynergyContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
@@ -22,7 +21,7 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
-public abstract class Synergy<T extends SynergyContext> implements ITooltipList, IAbility, ISlashRegistryEntry<Synergy> {
+public abstract class Synergy implements ITooltipList, IAbility, ISlashRegistryEntry<Synergy> {
 
     public boolean has(LivingEntity en) {
 
@@ -80,7 +79,7 @@ public abstract class Synergy<T extends SynergyContext> implements ITooltipList,
         return getMaxSpellLevelNormal() + 5;
     }
 
-    public abstract void tryActivate(T ctx);
+    //public abstract void tryActivate(T ctx);  make it so each one has different
 
     public boolean has(PlayerSpellCap.ISpellsCap spells) {
         return spells.hasSynergy(this);
