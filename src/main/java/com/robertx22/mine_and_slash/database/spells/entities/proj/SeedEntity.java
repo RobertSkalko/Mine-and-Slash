@@ -83,7 +83,7 @@ public class SeedEntity extends EntityBaseProjectile {
 
                         BaseSpell spell = getSpellData().getSpell();
 
-                        caster.world.setBlockState(pos, spell.getImmutableConfigs().spellBlockToSpawn
+                        caster.world.setBlockState(pos, spell.getImmutableConfigs().spellBlockToSpawn()
                             .getDefaultState());
 
                         TileEntity tile = world.getTileEntity(pos);

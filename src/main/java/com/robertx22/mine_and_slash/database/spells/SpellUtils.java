@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -10,7 +11,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.network.play.server.SSpawnGlobalEntityPacket;
@@ -51,7 +51,7 @@ public class SpellUtils {
 
     }
 
-    public static void castTripleProjectileInCone(float apart, BaseSpell spell, Function<World, AbstractArrowEntity> projectile, LivingEntity caster, float speed) {
+    public static void castTripleProjectileInCone(EntityCalcSpellConfigs config, float apart, BaseSpell spell, Function<World, AbstractArrowEntity> projectile, LivingEntity caster, float speed) {
         World world = caster.world;
 
         for (int i = 0; i < 3; i++) {
@@ -66,7 +66,7 @@ public class SpellUtils {
             }
             f *= 10;
 
-            AbstractArrowEntity en = (AbstractArrowEntity) SpellUtils.getSpellEntity(projectile.apply(world), spell, caster);
+            AbstractArrowEntity en = (AbstractArrowEntity) SpellUtils.getSpellEntity(config, projectile.apply(world), spell, caster);
             SpellUtils.setupProjectileForCasting(en, caster, speed, caster.rotationPitch,
                 caster.rotationYaw + f
             );
@@ -86,11 +86,7 @@ public class SpellUtils {
 
     }
 
-    public static <T extends Entity> T getEntity(T spellEntity, LivingEntity caster) {
-        return getSpellEntity(spellEntity, null, caster);
-    }
-
-    public static <T extends Entity> T getSpellEntity(T spellEntity,
+    public static <T extends Entity> T getSpellEntity(EntityCalcSpellConfigs config, T spellEntity,
 
                                                       BaseSpell spell,
 
@@ -102,7 +98,7 @@ public class SpellUtils {
 
         int lifeInTicks = se.getDefaultLifeInTicks();
 
-        EntitySpellData syncData = new EntitySpellData(spell, caster, lifeInTicks);
+        EntitySpellData syncData = new EntitySpellData(spell, caster, config);
 
         se.setSpellData(syncData);
 
@@ -112,6 +108,7 @@ public class SpellUtils {
 
     }
 
+    /*
     public static <T extends TameableEntity> T spawnSummon(T spellEntity,
 
                                                            BaseSpell spell,
@@ -128,6 +125,8 @@ public class SpellUtils {
 
     }
 
+
+     */
     public static void heal(BaseSpell spell, LivingEntity en, float amount) {
         SpellHealEffect heal = new SpellHealEffect(
             new ResourcesData.Context(Load.Unit(en), en, ResourcesData.Type.HEALTH,

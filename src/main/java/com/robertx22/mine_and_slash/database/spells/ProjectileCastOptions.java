@@ -23,7 +23,8 @@ public class ProjectileCastOptions {
 
     public ProjectileCastOptions(SpellCastContext ctx) {
         this.spell = ctx.spell;
-        this.projectile = ctx.finishedConfig.newEntitySummoner;
+        this.projectile = ctx.spell.getImmutableConfigs()
+            .newEntitySummoner();
         this.caster = ctx.caster;
         this.ctx = ctx;
     }
@@ -44,26 +45,24 @@ public class ProjectileCastOptions {
                 } else if (i > projectilesAmount / 2) {
                     addYaw += apart / projectilesAmount;
                 }
-                AbstractArrowEntity en = (AbstractArrowEntity) SpellUtils.getSpellEntity(projectile.apply(world), spell, caster);
+                AbstractArrowEntity en = (AbstractArrowEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), spell, caster);
                 SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.rotationPitch,
                     caster.rotationYaw + addYaw
                 );
                 caster.world.addEntity(en);
-
-                if (ctx.finishedConfig.sound != null) {
-                    ctx.caster.world.playMovingSound(null, en, ctx.finishedConfig.sound, SoundCategory.HOSTILE, 1.0F, 1.0F);
-                }
-
             }
         } else {
-            AbstractArrowEntity en = (AbstractArrowEntity) SpellUtils.getSpellEntity(projectile.apply(world), spell, caster);
+            AbstractArrowEntity en = (AbstractArrowEntity) SpellUtils.getSpellEntity(ctx.configForSummonedEntities, projectile.apply(world), spell, caster);
             SpellUtils.setupProjectileForCasting(en, caster, shootSpeed, caster.rotationPitch, caster.rotationYaw
             );
             caster.world.addEntity(en);
 
-            if (ctx.finishedConfig.sound != null) {
-                ctx.caster.world.playMovingSound(null, en, ctx.finishedConfig.sound, SoundCategory.HOSTILE, 1.0F, 1.0F);
-            }
+        }
+
+        if (ctx.spell.getImmutableConfigs()
+            .sound() != null) {
+            ctx.caster.world.playMovingSound(null, en, ctx.spell.getImmutableConfigs()
+                .sound(), SoundCategory.HOSTILE, 1.0F, 1.0F);
         }
     }
 

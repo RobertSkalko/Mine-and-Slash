@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.EntityCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.Utilities;
@@ -59,7 +60,8 @@ public class EntitySpellData {
         this.casterID = caster.getUniqueID()
             .toString();
 
-        this.lifeInTicks = (int) config.duration;
+        this.lifeInTicks = config.get(SC.DURATION_TICKS)
+            .intValue();
         this.configs = config;
     }
 

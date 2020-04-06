@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.entities.cloud;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseCloudEntity;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -40,13 +38,6 @@ public class BlizzardEntity extends BaseCloudEntity {
 
         DamageEffect dmg = dealSpellDamageTo(entity, new Options().knockbacks(false)
             .activatesEffect(false));
-
-        if (Synergies.BLIZZARD_FROST.has(getCaster())) {
-            Synergies.BLIZZARD_FROST.tryActivate(new BeforeDamageContext(getCaster(), entity, dmg));
-        }
-        if (Synergies.BLIZZARD_FROST_ESSENCE.has(getCaster())) {
-            Synergies.BLIZZARD_FROST_ESSENCE.tryActivate(new BeforeDamageContext(getCaster(), entity, dmg));
-        }
 
         dmg.Activate();
 

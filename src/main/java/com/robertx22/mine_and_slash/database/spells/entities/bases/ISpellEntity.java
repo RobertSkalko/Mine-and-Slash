@@ -31,7 +31,8 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
     }
 
     default Elements getElement() {
-        return getSpellData().ele;
+        return getSpellData().getSpell()
+            .getElement();
     }
 
     default int getLifeInTicks() {
@@ -81,12 +82,12 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
 
         EntityCap.UnitData casterData = Load.Unit(caster);
 
-        int num = spell.getCalculation().getCalculatedValue(casterData);
+        int num = getSpellData().configs.calc.getCalculatedValue(casterData);
 
         SpellHealEffect heal = new SpellHealEffect(
-                new ResourcesData.Context(caster, target, ResourcesData.Type.HEALTH, num, ResourcesData.Use.RESTORE,
-                                          spell
-                ));
+            new ResourcesData.Context(caster, target, ResourcesData.Type.HEALTH, num, ResourcesData.Use.RESTORE,
+                spell
+            ));
 
         if (opt.activateEffect) {
             heal.Activate();
@@ -106,10 +107,11 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
 
         EntityCap.UnitData casterData = Load.Unit(caster);
 
-        int num = spell.getCalculation().getCalculatedValue(casterData);
+        int num = data.configs.calc
+            .getCalculatedValue(casterData);
 
         SpellDamageEffect dmg = new SpellDamageEffect(caster, target, num, casterData, Load.Unit(target),
-                                                      data.getSpell()
+            data.getSpell()
         );
 
         if (opt.knockback == false) {
