@@ -1,19 +1,18 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 
-import com.robertx22.mine_and_slash.database.spells.ProjectileCastOptions;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.TidalWaveEntity;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
@@ -22,10 +21,44 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
-public class TidalWaveSpell extends BaseProjectileSpell {
+public class TidalWaveSpell extends BaseSpell {
 
     private TidalWaveSpell() {
+        super(
+            new ImmutableSpellConfigs() {
+
+                @Override
+                public boolean goesOnCooldownIfCanceled() {
+                    return true;
+                }
+
+                @Override
+                public SpellSchools school() {
+                    return SpellSchools.OCEAN_MYSTIC;
+                }
+
+                @Override
+                public SpellCastType castType() {
+                    return SpellCastType.PROJECTILE;
+                }
+
+                @Override
+                public SoundEvent sound() {
+                    return SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE;
+                }
+
+                @Override
+                public Function<World, Entity> newEntitySummoner() {
+                    return world -> new TidalWaveEntity(world);
+                }
+
+                @Override
+                public Elements element() {
+                    return Elements.Water;
+                }
+            });
     }
 
     public static TidalWaveSpell getInstance() {
@@ -33,33 +66,25 @@ public class TidalWaveSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.OCEAN_MYSTIC;
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+
+        c.set(SC.MANA_COST, 10, 15);
+        c.set(SC.BASE_VALUE, 3, 5);
+        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.3F);
+        c.set(SC.SHOOT_SPEED, 0.6F, 0.9F);
+        c.set(SC.PROJECTILE_COUNT, 3, 5);
+        c.set(SC.CAST_TIME_TICKS, 50, 40);
+        c.set(SC.COOLDOWN_SECONDS, 20, 10);
+
+        c.setMaxLevel(16);
+
+        return c;
     }
 
     @Override
-    public int getCooldownInSeconds() {
-        return 15;
-    }
-
-    @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.Single_Target_Projectile;
-    }
-
-    @Override
-    public float getShootSpeed() {
-        return 0.9F;
-    }
-
-    @Override
-    public AbstractArrowEntity newEntity(World world) {
-        return new TidalWaveEntity(world);
-    }
-
-    @Override
-    public SoundEvent getCastSound() {
-        return SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE;
+    public AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(2, 1);
     }
 
     @Override
@@ -68,61 +93,13 @@ public class TidalWaveSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public int getManaCost() {
-        return 15;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 50;
-    }
-
-    @Override
-    public SpellCalcData getCalculation() {
-        return SpellCalcData.scaleWithAttack(0.2F, 0.3F, 4);
-    }
-
-    @Override
-    public Elements getElement() {
-        return Elements.Water;
-    }
-
-    @Override
-    public boolean cast(LivingEntity caster, int ticksInUse) {
-
-        ProjectileCastOptions builder = new ProjectileCastOptions(this, (world) -> newEntity(world), caster);
-        builder.projectilesAmount = 5;
-        builder.shootSpeed = getShootSpeed();
-        builder.apart = 75;
-        builder.cast();
-
-        if (getCastSound() != null) {
-            SoundUtils.playSound(caster, getCastSound(), 1.0F, 1.0F);
-        }
-
-        return true;
-    }
-
-    @Override
-    public void onCastingTick(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int tick) {
-        if (tick % 10 == 0) {
-            this.cast(player, 0);
-        }
-    }
-
-    @Override
-    public boolean goesOnCooldownIfCastCanceled() {
-        return true;
-    }
-
-    @Override
-    public List<ITextComponent> GetDescription(TooltipInfo info) {
+    public List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Throw waves in a cone, damaging enemies: "));
 
-        list.addAll(getCalculation().GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info));
 
         return list;
 

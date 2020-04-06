@@ -12,5 +12,7 @@ public class CasterContext extends SynergyContext {
     public CasterContext(LivingEntity caster) {
         this.caster = caster;
         this.casterData = Load.Unit(caster);
+
+        this.spellsCap = Load.spells(caster);
     }
 }

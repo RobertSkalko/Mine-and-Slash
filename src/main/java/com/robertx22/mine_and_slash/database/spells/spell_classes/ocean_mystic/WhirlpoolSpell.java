@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 
 import com.robertx22.mine_and_slash.database.spells.entities.proj.WhirlpoolEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -36,11 +35,6 @@ public class WhirlpoolSpell extends BaseProjectileSpell {
     @Override
     public int getCooldownInSeconds() {
         return 20;
-    }
-
-    @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.LASTING_AOE;
     }
 
     @Override

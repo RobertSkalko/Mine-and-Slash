@@ -18,6 +18,8 @@ public class AfterDamageContext extends SynergyContext {
         this.dmg = dmg;
         this.casterData = Load.Unit(caster);
         this.targetData = Load.Unit(target);
+
+        this.spellsCap = Load.spells(caster);
     }
 }
 

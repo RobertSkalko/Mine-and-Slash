@@ -1,6 +1,8 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.RegenerateSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
@@ -9,6 +11,7 @@ import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.RegenerateEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -39,27 +42,52 @@ public class RegenerateAoeSynergy extends Synergy<CasterContext> {
     }
 
     @Override
-    public BaseSpell spellAffected() {
+    public BaseSpell getRequiredAbility() {
         return RegenerateSpell.getInstance();
     }
 
     @Override
     public void tryActivate(CasterContext ctx) {
 
+        float radius = this.getPreCalcConfig()
+            .get(SC.RADIUS)
+            .get(ctx.spellsCap, this);
+
         BlockPos pos = ctx.caster.getPosition();
 
         ParticleEnum.sendToClients(pos, ctx.caster.world,
-                                   new ParticlePacketData(pos, ParticleEnum.NOVA).radius(RegenerateSpell.RADIUS)
-                                           .motion(new Vec3d(0, 0, 0))
-                                           .type(ParticleTypes.HAPPY_VILLAGER)
-                                           .amount(50)
+            new ParticlePacketData(pos, ParticleEnum.NOVA).radius(radius)
+                .motion(new Vec3d(0, 0, 0))
+                .type(ParticleTypes.HAPPY_VILLAGER)
+                .amount(50)
         );
 
         EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPositionVector())
-                .radius(RegenerateSpell.RADIUS)
-                .searchFor(EntityFinder.SearchFor.ALLIES)
-                .build()
-                .forEach(x -> PotionEffectUtils.apply(RegenerateEffect.INSTANCE, ctx.caster, x));
+            .radius(radius)
+            .searchFor(EntityFinder.SearchFor.ALLIES)
+            .build()
+            .forEach(x -> PotionEffectUtils.apply(RegenerateEffect.INSTANCE, ctx.caster, x));
 
     }
+
+    @Override
+    public PreCalcSpellConfigs getConfigsAffectingSpell() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.MANA_COST, 1, 4);
+        return c;
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.BASE_VALUE, 2, 9);
+        c.set(SC.RADIUS, 3, 4);
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return AbilityPlace.upFrom(RegenerateSpell.getInstance());
+    }
+
 }

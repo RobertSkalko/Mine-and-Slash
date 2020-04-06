@@ -14,5 +14,7 @@ public class CasterTargetContext extends SynergyContext {
         this.target = target;
         this.casterData = Load.Unit(caster);
         this.targetData = Load.Unit(target);
+
+        this.spellsCap = Load.spells(caster);
     }
 }

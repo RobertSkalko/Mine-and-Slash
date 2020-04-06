@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.synergies;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.SynergyContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -9,6 +8,7 @@ import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
+import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
@@ -35,6 +35,10 @@ public abstract class Synergy<T extends SynergyContext> implements ITooltipList,
             }
         }
         return false;
+    }
+
+    public SpellCalcData getCalc(PlayerSpellCap.ISpellsCap cap) {
+        return getPreCalcConfig().getCalc(cap, this);
     }
 
     @Override
@@ -70,7 +74,7 @@ public abstract class Synergy<T extends SynergyContext> implements ITooltipList,
         return getMaxSpellLevelNormal() + 5;
     }
 
-    public abstract void tryActivate(T ctx, SpellCastContext sc);
+    public abstract void tryActivate(T ctx);
 
     public boolean has(PlayerSpellCap.ISpellsCap spells) {
         return spells.hasSynergy(this);

@@ -17,5 +17,7 @@ public class BeforeHealContext extends SynergyContext {
         this.heal = heal;
         this.casterData = Load.Unit(caster);
         this.targetData = Load.Unit(target);
+
+        this.spellsCap = Load.spells(caster);
     }
 }

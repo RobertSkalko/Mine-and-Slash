@@ -1,14 +1,13 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.PoisonedWeaponsSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.druid.MajorThornsEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.ThornsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
@@ -38,7 +37,7 @@ public class PoisonedWeaponsThornsSynergy extends Synergy<CasterTargetContext> {
 
         list.add(new StringTextComponent("Basic attacks deals extra damage to targets affected by Thorns."));
 
-        list.addAll(CALC.GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
 
         return list;
     }
@@ -46,23 +45,21 @@ public class PoisonedWeaponsThornsSynergy extends Synergy<CasterTargetContext> {
     @Override
     public PreCalcSpellConfigs getConfigsAffectingSpell() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.manaCost = new LevelBased(1, 4);
+        c.set(SC.MANA_COST, 1, 4);
         return c;
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.spellBaseValue = new LevelBased(2, 9);
-        c.radius = new LevelBased(1.5F, 2);
+        c.set(SC.BASE_VALUE, 2, 9);
         return c;
     }
 
     @Override
     public void tryActivate(CasterTargetContext ctx) {
 
-        if (PotionEffectUtils.has(ctx.target, ThornsEffect.INSTANCE) || PotionEffectUtils.has(
-            ctx.target, MajorThornsEffect.INSTANCE)) {
+        if (PotionEffectUtils.has(ctx.target, ThornsEffect.INSTANCE)) {
 
             ParticleEnum.sendToClients(ctx.target,
                 new ParticlePacketData(ctx.target.getPosition(), ParticleEnum.NOVA).radius(
@@ -71,7 +68,8 @@ public class PoisonedWeaponsThornsSynergy extends Synergy<CasterTargetContext> {
                     .amount(30)
             );
 
-            int num = ctx.ctx.getConfigFor(this).calc.getCalculatedValue(Load.Unit(ctx.caster));
+            int num = getPreCalcConfig().getCalc(ctx.spellsCap, this)
+                .getCalculatedValue(Load.Unit(ctx.caster));
 
             SpellDamageEffect dmg = new SpellDamageEffect(
                 ctx.caster, ctx.target, num, ctx.casterData, ctx.targetData, getSpell());

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.ctx;
 
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import net.minecraft.entity.LivingEntity;
 
@@ -14,5 +15,6 @@ public class BeforeDamageContext extends SynergyContext {
         this.target = target;
         this.dmg = dmg;
 
+        this.spellsCap = Load.spells(caster);
     }
 }

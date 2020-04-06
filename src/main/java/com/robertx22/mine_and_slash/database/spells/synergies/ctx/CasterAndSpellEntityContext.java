@@ -9,5 +9,6 @@ public class CasterAndSpellEntityContext<T> extends CasterContext {
     public CasterAndSpellEntityContext(LivingEntity caster, T spellEntity) {
         super(caster);
         this.spellEntity = spellEntity;
+
     }
 }
