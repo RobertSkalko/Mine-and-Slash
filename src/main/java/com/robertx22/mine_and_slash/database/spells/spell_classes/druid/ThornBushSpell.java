@@ -73,6 +73,7 @@ public class ThornBushSpell extends BaseSpell {
         c.set(SC.BASE_VALUE, 2, 9);
         c.set(SC.CAST_TIME_TICKS, 0, 0);
         c.set(SC.COOLDOWN_SECONDS, 50, 30);
+        c.set(SC.TICK_RATE, 30, 30);
         c.setMaxLevel(12);
         return c;
     }

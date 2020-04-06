@@ -2,6 +2,8 @@ package com.robertx22.mine_and_slash.database.spells.synergies.ember_mage;
 
 import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.MagmaFlowerSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterAndSpellEntityContext;
@@ -25,22 +27,33 @@ public class MagmaFlowerEnhancedSynergy extends Synergy<CasterAndSpellEntityCont
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Doubles the tickrate and the radius."));
+        list.add(new StringTextComponent("Increases tickrate and radius"));
 
         return list;
     }
 
     @Override
+    public PreCalcSpellConfigs getConfigsAffectingSpell() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.MANA_COST, 3, 6);
+        c.set(SC.TICK_RATE, -1, 15);
+        c.set(SC.RADIUS, 0.5F, 2F);
+        return c;
+    }
 
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        return c;
+    }
+
+    @Override
     public BaseSpell spellAffected() {
         return MagmaFlowerSpell.getInstance();
     }
 
     @Override
     public void tryActivate(CasterAndSpellEntityContext<MagmaFlowerTileEntity> ctx) {
-
-        ctx.spellEntity.RADIUS *= 2;
-        ctx.spellEntity.TICK_RATE /= 2;
 
     }
 }

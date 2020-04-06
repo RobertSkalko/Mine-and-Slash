@@ -1,12 +1,13 @@
 package com.robertx22.mine_and_slash.database.spells.blocks.magma_flower;
 
 import com.robertx22.mine_and_slash.database.spells.blocks.base.BaseSpellTileEntity;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterAndSpellEntityContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
 import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
+import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
@@ -21,27 +22,18 @@ import java.util.List;
 
 public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
 
-    public float RADIUS = 1.5F;
-    public float TICK_RATE = 30;
-
     public MagmaFlowerTileEntity() {
         super(ModTileEntities.MAGMA_FLOWER.get());
     }
 
     @Override
-    public void initSpellEntity() {
-
-        LivingEntity caster = data.getCaster(world);
-
-        if (Synergies.MAGMA_FLOWER_ENHANCED.has(caster)) {
-            Synergies.MAGMA_FLOWER_ENHANCED.tryActivate(
-                new CasterAndSpellEntityContext<MagmaFlowerTileEntity>(caster, this));
-        }
-
-    }
-
-    @Override
     public void onTick() {
+
+        EntitySpellData sdata = getSpellData();
+        int TICK_RATE = sdata.configs.get(SC.TICK_RATE)
+            .intValue();
+        int RADIUS = sdata.configs.get(SC.RADIUS)
+            .intValue();
 
         if (this.data.ticksExisted > durationInTicks() == false) {
 
