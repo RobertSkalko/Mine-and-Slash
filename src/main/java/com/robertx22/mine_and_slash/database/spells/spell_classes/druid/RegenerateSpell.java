@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCas
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
 import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
@@ -62,12 +62,12 @@ public class RegenerateSpell extends BaseSpell {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.manaCost = new LevelBased(25, 50);
-        c.radius = new LevelBased(2, 4);
-        c.spellBaseValue = new LevelBased(2, 6);
-        c.castTimeTicks = new LevelBased(30, 20);
-        c.cooldownTicks = new LevelBased(45, 25);
-        c.maxSpellLevel = 14;
+        c.set(SC.MANA_COST, 25, 50);
+        c.set(SC.RADIUS, 2, 4);
+        c.set(SC.BASE_VALUE, 2, 6);
+        c.set(SC.CAST_TIME_TICKS, 30, 20);
+        c.set(SC.COOLDOWN_SECONDS, 45, 25);
+        c.setMaxLevel(14);
         return c;
     }
 

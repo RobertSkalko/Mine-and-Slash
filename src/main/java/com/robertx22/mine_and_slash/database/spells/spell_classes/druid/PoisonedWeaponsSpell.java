@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCas
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.PoisonedWeaponsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -57,11 +57,11 @@ public class PoisonedWeaponsSpell extends BaseSpell {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.manaCost = new LevelBased(20, 40);
-        c.spellBaseValue = new LevelBased(2, 9);
-        c.castTimeTicks = new LevelBased(30, 15);
-        c.cooldownTicks = new LevelBased(120, 60);
-        c.maxSpellLevel = 12;
+        c.set(SC.MANA_COST, 20, 40);
+        c.set(SC.BASE_VALUE, 2, 9);
+        c.set(SC.CAST_TIME_TICKS, 30, 15);
+        c.set(SC.COOLDOWN_SECONDS, 120, 60);
+        c.setMaxLevel(12);
         return c;
     }
 

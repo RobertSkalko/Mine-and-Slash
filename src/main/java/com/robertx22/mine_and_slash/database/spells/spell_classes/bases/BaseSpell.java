@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -50,7 +51,9 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     public final void onCastingTick(SpellCastContext ctx) {
 
-        int timesToCast = (int) ctx.getConfigFor(this).timesToCast;
+        int timesToCast = (int) ctx.getConfigFor(this)
+            .get(SC.TIMES_TO_CAST)
+            .get(ctx.spellsCap, this);
 
         if (timesToCast == 1) {
             if (ctx.isLastCastTick) {
@@ -58,7 +61,10 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             }
         } else if (timesToCast > 1) {
 
-            int castTimeTicks = (int) ctx.getConfigFor(this).castTimeTicks;
+            int castTimeTicks = (int) ctx.getConfigFor(this)
+                .get(SC.CAST_TIME_TICKS)
+                .get(ctx.spellsCap, this);
+            ;
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
 
@@ -158,7 +164,9 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     }
 
     public int getCooldownInTicks(SpellCastContext ctx) {
-        return ctx.getConfigFor(this).cooldownTicks;
+        return (int) (ctx.getConfigFor(this)
+            .get(SC.COOLDOWN_SECONDS)
+            .get(ctx.spellsCap, this) / 20F);
     }
 
     public final int getCooldownInSeconds(SpellCastContext ctx) {
@@ -173,11 +181,15 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     public abstract String GUID();
 
     public final int getCalculatedManaCost(SpellCastContext ctx) {
-        return ctx.getConfigFor(this).manaCost;
+        return (int) ctx.getConfigFor(this)
+            .get(SC.MANA_COST)
+            .get(ctx.spellsCap, this);
     }
 
     public final int useTimeTicks(SpellCastContext ctx) {
-        return ctx.getConfigFor(this).castTimeTicks;
+        return (int) ctx.getConfigFor(this)
+            .get(SC.CAST_TIME_TICKS)
+            .get(ctx.spellsCap, this);
     }
 
     public final float getUseDurationInSeconds(SpellCastContext ctx) {
@@ -185,7 +197,8 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     }
 
     public final SpellCalcData getCalculation(SpellCastContext ctx) {
-        return ctx.getConfigFor(this).calc;
+        return ctx.getConfigFor(this)
+            .getCalc(ctx.spellsCap, this);
     }
 
     public final Elements getElement() {
@@ -217,7 +230,9 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         float cost = 0;
 
         for (Synergy x : getAllocatedSynergies(ctx.spellsCap)) {
-            cost += ctx.getConfigFor(x).manaCost;
+            cost += ctx.getConfigFor(x)
+                .get(SC.MANA_COST)
+                .get(ctx.spellsCap, x);
         }
 
         cost += this.getCalculatedManaCost(ctx);
