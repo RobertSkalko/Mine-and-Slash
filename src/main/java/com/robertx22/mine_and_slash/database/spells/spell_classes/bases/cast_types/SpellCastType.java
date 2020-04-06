@@ -8,6 +8,7 @@ public abstract class SpellCastType {
     public static CastGiveEffect GIVE_EFFECT = new CastGiveEffect();
     public static CastSelfHeal SELF_HEAL = new CastSelfHeal();
     public static CastProjectile PROJECTILE = new CastProjectile();
+    public static CastSpecial SPECIAL = new CastSpecial();
 
     public abstract boolean cast(SpellCastContext ctx);
 

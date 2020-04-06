@@ -28,6 +28,12 @@ public class PoisonBallSpell extends BaseSpell {
     private PoisonBallSpell() {
         super(
             new ImmutableSpellConfigs() {
+
+                @Override
+                public BaseSpell.AllowedAsRightClickOn allowedAsRightClickOn() {
+                    return AllowedAsRightClickOn.MAGE_WEAPON;
+                }
+
                 @Override
                 public SpellSchools school() {
                     return SpellSchools.DRUID;
@@ -55,10 +61,6 @@ public class PoisonBallSpell extends BaseSpell {
             });
     }
 
-    public static PoisonBallSpell getInstance() {
-        return SingletonHolder.INSTANCE;
-    }
-
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
@@ -73,6 +75,10 @@ public class PoisonBallSpell extends BaseSpell {
         c.setMaxLevel(16);
 
         return c;
+    }
+
+    public static PoisonBallSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override

@@ -2,25 +2,79 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
 import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.FireballEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
-public class FireballSpell extends BaseProjectileSpell {
+public class FireballSpell extends BaseSpell {
 
     private FireballSpell() {
-        this.allowedAsRightClickOn = AllowedAsRightClickOn.MAGE_WEAPON;
+        super(
+            new ImmutableSpellConfigs() {
+
+                @Override
+                public BaseSpell.AllowedAsRightClickOn allowedAsRightClickOn() {
+                    return AllowedAsRightClickOn.MAGE_WEAPON;
+                }
+
+                @Override
+                public SpellSchools school() {
+                    return SpellSchools.EMBER_MAGE;
+                }
+
+                @Override
+                public SpellCastType castType() {
+                    return SpellCastType.PROJECTILE;
+                }
+
+                @Override
+                public SoundEvent sound() {
+                    return ModSounds.FIREBALL.get();
+                }
+
+                @Override
+                public Function<World, Entity> newEntitySummoner() {
+                    return world -> new FireballEntity(world);
+                }
+
+                @Override
+                public Elements element() {
+                    return Elements.Nature;
+                }
+            });
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+
+        c.set(SC.MANA_COST, 5, 15);
+        c.set(SC.BASE_VALUE, 3, 10);
+        c.set(SC.SHOOT_SPEED, 0.4F, 0.6F);
+        c.set(SC.PROJECTILE_COUNT, 1, 1);
+        c.set(SC.CAST_TIME_TICKS, 0, 0);
+        c.set(SC.COOLDOWN_SECONDS, 15, 10);
+
+        c.setMaxLevel(16);
+
+        return c;
     }
 
     public static FireballSpell getInstance() {
@@ -28,43 +82,8 @@ public class FireballSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public AbstractArrowEntity newEntity(World world) {
-        return new FireballEntity(world);
-    }
-
-    @Override
-    public SoundEvent getCastSound() {
-        return ModSounds.FIREBALL.get();
-    }
-
-    @Override
-    public Elements getElement() {
-        return Elements.Fire;
-    }
-
-    @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.EMBER_MAGE;
-    }
-
-    @Override
-    public float getShootSpeed() {
-        return 0.5F;
-    }
-
-    @Override
-    public int getCooldownInSeconds() {
-        return 0;
-    }
-
-    @Override
-    public int getCooldownInTicks() {
-        return 10;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 0;
+    public AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(0, 0);
     }
 
     @Override
@@ -73,18 +92,13 @@ public class FireballSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public SpellCalcData getCalculation() {
-        return SpellCalcData.one(dmgStat(), 1F, 10);
-    }
-
-    @Override
-    public List<ITextComponent> GetDescription(TooltipInfo info) {
+    public List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(SpellTooltips.singleTargetProjectile());
 
-        list.addAll(getCalculation().GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info));
 
         return list;
 

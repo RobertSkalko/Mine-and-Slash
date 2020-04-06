@@ -36,7 +36,7 @@ public class GorgonsGazeSpell extends BaseSpell {
 
             @Override
             public SpellCastType castType() {
-                return null;
+                return SpellCastType.SPECIAL;
             }
 
             @Override
@@ -101,7 +101,7 @@ public class GorgonsGazeSpell extends BaseSpell {
     }
 
     @Override
-    public boolean cast(SpellCastContext ctx) {
+    public void castExtra(SpellCastContext ctx) {
 
         LivingEntity caster = ctx.caster;
 
@@ -116,7 +116,6 @@ public class GorgonsGazeSpell extends BaseSpell {
             .build()
             .forEach(x -> PotionEffectUtils.apply(PetrifyEffect.INSTANCE, caster, x));
 
-        return true;
     }
 
     private static class SingletonHolder {

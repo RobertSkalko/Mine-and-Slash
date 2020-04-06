@@ -1,13 +1,16 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
+import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.FireballEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.ember_mage.BlazingInfernoEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -17,35 +20,69 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class BlazingInfernoSpell extends BaseSpell {
 
     private BlazingInfernoSpell() {
+        super(
+            new ImmutableSpellConfigs() {
+
+                @Override
+                public SpellSchools school() {
+                    return SpellSchools.EMBER_MAGE;
+                }
+
+                @Override
+                public SpellCastType castType() {
+                    return SpellCastType.SPECIAL;
+                }
+
+                @Override
+                public SoundEvent sound() {
+                    return ModSounds.FIREBALL.get();
+                }
+
+                @Override
+                public Function<World, Entity> newEntitySummoner() {
+                    return world -> new FireballEntity(world);
+                }
+
+                @Override
+                public Elements element() {
+                    return Elements.Nature;
+                }
+            });
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+
+        c.set(SC.MANA_COST, 30, 45);
+        c.set(SC.BASE_VALUE, 2, 4);
+        c.set(SC.PROJECTILE_COUNT, 1, 1);
+        c.set(SC.CAST_TIME_TICKS, 60, 40);
+        c.set(SC.COOLDOWN_SECONDS, 60, 45);
+        c.set(SC.RADIUS, 2, 3);
+
+        c.setMaxLevel(12);
+
+        return c;
     }
 
     public static BlazingInfernoSpell getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.EMBER_MAGE;
-    }
-
-    @Override
-    public int getCooldownInSeconds() {
-        return 30;
-    }
-
-    @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.LASTING_AOE;
     }
 
     @Override
@@ -54,53 +91,35 @@ public class BlazingInfernoSpell extends BaseSpell {
     }
 
     @Override
-    public int getManaCost() {
-        return 40;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 20;
-    }
-
-    @Override
-    public SpellCalcData getCalculation() {
-        return BlazingInfernoEffect.CALC;
-    }
-
-    @Override
-    public Elements getElement() {
-        return Elements.Fire;
-    }
-
-    @Override
-    public List<ITextComponent> GetDescription(TooltipInfo info) {
+    public List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(SpellTooltips.buff());
+        list.add(new SText("Do damage to enemies around you."));
 
-        list.addAll(BlazingInfernoEffect.INSTANCE.GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info));
 
         return list;
 
     }
 
-    public static float RADIUS = 3.5F;
+    public void damageMobsAroundYou(SpellCastContext ctx, LivingEntity caster) {
 
-    public static void damageMobsAroundYou(LivingEntity entity, LivingEntity caster) {
+        if (!caster.world.isRemote) {
 
-        if (!entity.world.isRemote) {
+            float radius = ctx.getConfigFor(this)
+                .get(SC.RADIUS)
+                .get(ctx.spellsCap, this);
 
-            ParticlePacketData pdata = new ParticlePacketData(entity.getPosition()
+            ParticlePacketData pdata = new ParticlePacketData(caster.getPosition()
                 .up(1), ParticleEnum.BLAZING_INFERNO);
-            pdata.radius = RADIUS;
-            ParticleEnum.BLAZING_INFERNO.sendToClients(entity, pdata);
+            pdata.radius = radius;
+            ParticleEnum.BLAZING_INFERNO.sendToClients(caster, pdata);
 
-            int num = CALC.getCalculatedValue(Load.Unit(caster));
+            int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster));
 
-            List<LivingEntity> entities = EntityFinder.start(entity, LivingEntity.class, entity.getPositionVector())
-                .radius(RADIUS)
+            List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
+                .radius(radius)
                 .build();
 
             for (LivingEntity en : entities) {
@@ -119,13 +138,12 @@ public class BlazingInfernoSpell extends BaseSpell {
     }
 
     @Override
-    public boolean cast(LivingEntity caster, int ticksInUse) {
+    public void castExtra(SpellCastContext ctx) {
 
-        PotionEffectUtils.applyToSelf(BlazingInfernoEffect.INSTANCE, caster);
+        damageMobsAroundYou(ctx, ctx.caster);
 
-        SoundUtils.playSound(caster, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, 1, 1);
+        SoundUtils.playSound(ctx.caster, SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, 1, 1);
 
-        return true;
     }
 
     private static class SingletonHolder {
