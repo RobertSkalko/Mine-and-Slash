@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 public class ReducedCooldownStat extends Stat implements IStatEffects {
 
     private ReducedCooldownStat() {
-        this.maximumValue = 100; // todo just for testing
+        this.maximumValue = 75;
     }
 
     public static ReducedCooldownStat getInstance() {

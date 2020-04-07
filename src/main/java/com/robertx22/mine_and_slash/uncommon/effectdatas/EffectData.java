@@ -140,8 +140,11 @@ public abstract class EffectData {
             logOnStartData();
 
             TryApplyEffects(this.GetSource(), EffectSides.Source);
-            TryApplyEffects(this.GetTarget(), EffectSides.Target);
 
+            //  if (GetSource().GUID.equals(GetTarget().GUID) == false) { // todo unsure
+            // this makes stats not apply twice if  caster is both target and source.. hmm
+            TryApplyEffects(this.GetTarget(), EffectSides.Target);
+            // }
             logOnEndData();
 
         }
@@ -194,8 +197,8 @@ public abstract class EffectData {
 
         for (EffectUnitStat item : Effects) {
             if (item.stat.isNotZero()) {
-                if (AffectsThisUnit(item.effect, this, item.source)) {
-
+                if (item.effect.Side()
+                    .equals(side)) {
                     item.effect.TryModifyEffect(this, item.source, item.stat, item.stat.GetStat());
 
                 }
@@ -206,14 +209,14 @@ public abstract class EffectData {
         return this;
     }
 
-    public boolean AffectsThisUnit(IStatEffect effect, EffectData data, Unit source) {
+    /*
+    public boolean AffectsThisUnit(IStatEffect effect, EffectSides side, EffectData data, Unit source) {
 
         boolean affects = false;
 
         if (effect.Side()
             .equals(EffectSides.Target)) {
             affects = source.equals(data.targetUnit);
-
         } else {
             affects = source.equals(data.sourceUnit);
         }
@@ -225,6 +228,8 @@ public abstract class EffectData {
         return affects;
     }
 
+
+     */
     private List<EffectUnitStat> AddEffects(List<EffectUnitStat> effects, Unit unit, EffectSides side) {
         if (unit != null) {
             unit.getStats()

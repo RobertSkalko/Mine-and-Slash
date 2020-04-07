@@ -57,6 +57,7 @@ public class VolcanoSpell extends BaseSpell {
         c.set(SC.CAST_TIME_TICKS, 60, 40);
         c.set(SC.COOLDOWN_SECONDS, 45, 30);
         c.set(SC.RADIUS, 2, 3);
+        c.set(SC.DURATION_TICKS, 60, 80);
         c.set(SC.TICK_RATE, 15, 10);
 
         c.setMaxLevel(12);
@@ -66,7 +67,7 @@ public class VolcanoSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(5, 6);
+        return new AbilityPlace(5, 4);
     }
 
     public static VolcanoSpell getInstance() {

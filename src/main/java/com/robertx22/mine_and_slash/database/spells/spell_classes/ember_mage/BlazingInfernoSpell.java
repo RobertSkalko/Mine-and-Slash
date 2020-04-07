@@ -76,7 +76,7 @@ public class BlazingInfernoSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(3, 3);
+        return new AbilityPlace(7, 3);
     }
 
     public static BlazingInfernoSpell getInstance() {

@@ -97,7 +97,7 @@ public class ExactStatData extends BaseStatContainer {
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
 
         if (value == 0) {
-            return new ArrayList<>();
+            // return new ArrayList<>();
         }
 
         Stat stat = getStat();

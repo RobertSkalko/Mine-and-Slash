@@ -70,7 +70,7 @@ public class WhirlpoolSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(1, 2);
+        return new AbilityPlace(2, 3);
     }
 
     public static WhirlpoolSpell getInstance() {

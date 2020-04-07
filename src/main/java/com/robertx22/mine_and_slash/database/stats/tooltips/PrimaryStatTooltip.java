@@ -22,8 +22,8 @@ public class PrimaryStatTooltip implements IStatTooltipType {
         ITextComponent str = new StringTextComponent("");
 
         if (info.type.equals(StatModTypes.Flat) && stat.IsPercent()) {
-            str.appendSibling(Words.Flat.locName())
-                .appendText(" ");
+            //str.appendSibling(Words.Flat.locName())
+            //   .appendText(" ");
         }
 
         str.appendSibling(stat.locName());

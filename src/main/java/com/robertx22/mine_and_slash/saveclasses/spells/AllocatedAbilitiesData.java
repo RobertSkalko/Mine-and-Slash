@@ -117,6 +117,16 @@ public class AllocatedAbilitiesData implements IApplyableStats {
         return getTotalAllowedAbilityPoints(data) - getAllocatedAbilityPoints();
     }
 
+    public boolean canAddPointsOrHasPoints(IAbility ability) {
+
+        if (canAddPoints(ability)) {
+            return true;
+        }
+
+        return getLevelOf(ability) > 0;
+
+    }
+
     public boolean canAddPoints(IAbility ability) {
 
         if (ability.getRequiredAbility() != null) {

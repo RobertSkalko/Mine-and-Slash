@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.types.BottomMiddle
 import com.robertx22.mine_and_slash.gui.screens.bestiary.BestiaryScreen;
 import com.robertx22.mine_and_slash.gui.screens.map_info_gui.MapInfoScreen;
 import com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup.SpellHotbatSetupScreen;
+import com.robertx22.mine_and_slash.gui.screens.spell_schools.SpellSchoolScreen;
 import com.robertx22.mine_and_slash.gui.screens.stat_allocation_screen.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.screens.stats_overview.StatOverviewScreen;
 import com.robertx22.mine_and_slash.gui.screens.talent_tree_gui.TalentPerkTreeScreen;
@@ -54,6 +55,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         screens.add(new StatAllocationScreen());
         screens.add(new TalentPerkTreeScreen());
         screens.add(new BestiaryScreen());
+        screens.add(new SpellSchoolScreen());
 
         int x = guiLeft + 10;
         int y = guiTop + 45;

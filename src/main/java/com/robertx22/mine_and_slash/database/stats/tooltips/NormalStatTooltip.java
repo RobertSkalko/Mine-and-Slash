@@ -49,6 +49,10 @@ public class NormalStatTooltip implements IStatTooltipType {
             str.appendText("" + info.stat.getElement().format + "(" + info.stat.getElement().icon + ") " + TextFormatting.GRAY + "");
         }
 
+        if (info.type.equals(StatModTypes.Flat)) {
+            // str.appendText("To "); hmmmm
+        }
+
         if (info.type.equals(StatModTypes.Percent) && stat.IsPercent()) {
             if (info.firstValue > 0) {
                 str.appendSibling(Words.Increased.locName());

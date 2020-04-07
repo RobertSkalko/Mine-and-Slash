@@ -73,7 +73,7 @@ public class TidalWaveSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(2, 1);
+        return new AbilityPlace(4, 1);
     }
 
     @Override

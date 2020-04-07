@@ -67,7 +67,7 @@ public class HeartOfIceSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(5, 1);
+        return new AbilityPlace(6, 0);
     }
 
     public static HeartOfIceSpell getInstance() {
