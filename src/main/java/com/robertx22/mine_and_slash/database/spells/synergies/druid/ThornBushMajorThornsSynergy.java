@@ -66,6 +66,7 @@ public class ThornBushMajorThornsSynergy extends OnDamageDoneSynergy {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.BASE_VALUE, 2, 8);
+        c.setMaxLevel(8);
         return c;
     }
 

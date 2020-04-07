@@ -49,15 +49,15 @@ public class RegenerateAoeSynergy extends OnSpellCastSynergy {
     @Override
     public PreCalcSpellConfigs getConfigsAffectingSpell() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.MANA_COST, 1, 4);
+        c.set(SC.MANA_COST, 2, 3);
         return c;
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.BASE_VALUE, 2, 9);
-        c.set(SC.RADIUS, 3, 4);
+        c.set(SC.RADIUS, 1.5F, 3.5F);
+        c.setMaxLevel(3);
         return c;
     }
 

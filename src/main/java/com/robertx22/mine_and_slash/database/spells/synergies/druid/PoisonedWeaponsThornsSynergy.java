@@ -52,6 +52,7 @@ public class PoisonedWeaponsThornsSynergy extends OnDamageDoneSynergy {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.BASE_VALUE, 2, 9);
+        c.setMaxLevel(8);
         return c;
     }
 

@@ -1,22 +1,23 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.shaman;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThunderDashEnergySynergy extends Synergy<AfterDamageContext> {
+public class ThunderDashEnergySynergy extends OnDamageDoneSynergy {
 
     @Override
     public String GUID() {
@@ -31,28 +32,46 @@ public class ThunderDashEnergySynergy extends Synergy<AfterDamageContext> {
 
         list.add(new StringTextComponent("Restores energy for each mob hit."));
 
-        list.addAll(CALC.GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
 
         return list;
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Thunder), 0.05F, 1);
+    @Override
+    public PreCalcSpellConfigs getConfigsAffectingSpell() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        return c;
+    }
 
     @Override
-    public BaseSpell spellAffected() {
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.BASE_VALUE, 1, 6);
+        c.setMaxLevel(6);
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return AbilityPlace.upFrom(ThunderDashSpell.getInstance());
+    }
+
+    @Nullable
+    @Override
+    public IAbility getRequiredAbility() {
         return ThunderDashSpell.getInstance();
     }
 
     @Override
-    public void tryActivate(AfterDamageContext ctx) {
+    public void tryActivate(SpellDamageEffect ctx) {
 
-        float energyrestored = CALC.getCalculatedValue(ctx.casterData);
+        float energyrestored = getCalc(Load.spells(ctx.source)).getCalculatedValue(ctx.sourceData);
 
-        ResourcesData.Context ene = new ResourcesData.Context(ctx.casterData, ctx.caster, ResourcesData.Type.ENERGY,
+        ResourcesData.Context ene = new ResourcesData.Context(ctx.sourceData, ctx.source, ResourcesData.Type.ENERGY,
             energyrestored, ResourcesData.Use.RESTORE
         );
 
-        Load.Unit(ctx.caster)
+        ctx.sourceData
             .getResources()
             .modify(ene);
     }

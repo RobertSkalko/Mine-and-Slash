@@ -66,6 +66,7 @@ public class ThornArmorThornsSynergy extends OnDamageDoneSynergy {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.CHANCE, 10, 30);
+        c.setMaxLevel(6);
         return c;
     }
 

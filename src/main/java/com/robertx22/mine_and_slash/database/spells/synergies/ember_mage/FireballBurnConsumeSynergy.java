@@ -96,6 +96,7 @@ public class FireballBurnConsumeSynergy extends OnDamageDoneSynergy {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.BASE_VALUE, 2, 8);
         c.set(SC.RADIUS, 1.5F, 3);
+        c.setMaxLevel(6);
         return c;
     }
 

@@ -44,6 +44,7 @@ public class MagmaFlowerEnhancedSynergy extends Synergy {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.setMaxLevel(6);
         return c;
     }
 
