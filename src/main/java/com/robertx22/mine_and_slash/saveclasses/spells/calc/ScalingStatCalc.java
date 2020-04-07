@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -22,6 +23,11 @@ public class ScalingStatCalc extends BaseStatCalc {
     public Stat getStat() {
         return SlashRegistry.Stats()
             .get(statID);
+    }
+
+    @Factory
+    private ScalingStatCalc() {
+
     }
 
     public ScalingStatCalc(Stat stat, float multi) {

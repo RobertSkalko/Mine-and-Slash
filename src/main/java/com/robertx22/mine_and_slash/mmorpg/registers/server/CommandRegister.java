@@ -28,6 +28,7 @@ public class CommandRegister {
         RestoreLevel.register(dispatcher);
         GiveExp.register(dispatcher);
         GiveAwakenRuneword.register(dispatcher);
+        GiveAbilityLevels.register(dispatcher);
         GiveExactUnique.register(dispatcher);
         GiveGear.register(dispatcher);
         GiveMap.register(dispatcher);

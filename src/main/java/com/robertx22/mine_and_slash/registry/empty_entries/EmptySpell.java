@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCas
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -48,7 +49,9 @@ public class EmptySpell extends BaseSpell {
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
-        return null;
+        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        p.set(SC.CAST_TIME_TICKS, 0, 0);
+        return p;
     }
 
     @Override
@@ -63,7 +66,7 @@ public class EmptySpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return null;
+        return Words.Empty;
     }
 
 }

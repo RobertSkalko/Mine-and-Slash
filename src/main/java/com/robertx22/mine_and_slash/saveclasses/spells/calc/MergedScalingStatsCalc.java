@@ -4,12 +4,15 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import info.loenwind.autosave.annotations.Factory;
+import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Storable
 public class MergedScalingStatsCalc extends BaseStatCalc {
 
     @Store
@@ -18,8 +21,12 @@ public class MergedScalingStatsCalc extends BaseStatCalc {
     @Store
     public float multi;
 
-    @Store
     ITextComponent name;
+
+    @Factory
+    private MergedScalingStatsCalc() {
+
+    }
 
     public MergedScalingStatsCalc(List<Stat> stats, float multi, ITextComponent name) {
         super();

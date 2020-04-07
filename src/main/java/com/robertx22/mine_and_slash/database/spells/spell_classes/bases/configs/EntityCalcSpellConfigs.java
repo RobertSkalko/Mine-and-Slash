@@ -52,13 +52,14 @@ public class EntityCalcSpellConfigs {
 
         if (pre.has(SC.BASE_VALUE)) {
             if (pre.has(SC.ATTACK_SCALE_VALUE)) {
-                this.calc = SpellCalcData.base(pre.get(SC.BASE_VALUE)
-                    .get(spellsCap, ability));
-
-            } else {
                 this.calc = SpellCalcData.scaleWithAttack(pre.get(SC.ATTACK_SCALE_VALUE)
                     .get(spellsCap, ability), pre.get(SC.BASE_VALUE)
                     .get(spellsCap, ability));
+
+            } else {
+                this.calc = SpellCalcData.base(pre.get(SC.BASE_VALUE)
+                    .get(spellsCap, ability));
+
             }
         }
 

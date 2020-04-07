@@ -49,7 +49,7 @@ public class LevelBased {
             return maxLevel;
         }
 
-        float multi = abilityLevel / ability.getMaxSpellLevelBuffed();
+        float multi = abilityLevel / (float) ability.getMaxSpellLevelBuffed();
 
         float val = levelOne + ((maxLevel - levelOne) * multi);
 

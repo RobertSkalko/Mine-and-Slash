@@ -41,7 +41,7 @@ public class SpellCalcData implements ITooltipList {
         SpellCalcData data = new SpellCalcData();
 
         data.scalingValues.add(new ScalingStatCalc(PhysicalDamage.getInstance(), attack));
-        data.scalingValues.add(new MergedScalingStatsCalc(new ElementalAttackDamage(Elements.Nature).generateAllSingleVariations(), attack, new SText(TextFormatting.GOLD + "Weapon Damages")));
+        data.mergedScalingValues.add(new MergedScalingStatsCalc(new ElementalAttackDamage(Elements.Nature).generateAllSingleVariations(), attack, new SText(TextFormatting.GOLD + "Weapon Damages")));
 
         data.baseValue = base;
 
@@ -59,14 +59,25 @@ public class SpellCalcData implements ITooltipList {
     }
 
     public double getScalingMultiAverage() {
-        return scalingValues.stream()
+        return getAllScalingValues().stream()
             .mapToDouble(x -> x.getMulti())
             .sum() / scalingValues.size();
 
     }
 
+    public List<BaseStatCalc> getAllScalingValues() {
+        List<BaseStatCalc> list = new ArrayList<>();
+        list.addAll(scalingValues);
+        list.addAll(mergedScalingValues);
+
+        return list;
+    }
+
     @Store
-    public List<BaseStatCalc> scalingValues = new ArrayList<>();
+    public List<ScalingStatCalc> scalingValues = new ArrayList<>();
+
+    @Store
+    public List<MergedScalingStatsCalc> mergedScalingValues = new ArrayList<>();
 
     @Store
     public StatScaling baseScaling = StatScaling.NORMAL;
@@ -81,7 +92,7 @@ public class SpellCalcData implements ITooltipList {
     }
 
     public int getCalculatedScalingValue(EntityCap.UnitData data) {
-        return scalingValues.stream()
+        return getAllScalingValues().stream()
             .mapToInt(x -> x.getCalculatedValue(data))
             .sum();
     }
@@ -99,7 +110,7 @@ public class SpellCalcData implements ITooltipList {
         List<ITextComponent> list = new ArrayList<>();
 
         if (!empty) {
-            scalingValues.forEach(x -> list.addAll(x.GetTooltipString(info)));
+            getAllScalingValues().forEach(x -> list.addAll(x.GetTooltipString(info)));
 
             if (baseValue > 0) {
                 list.add(new StringTextComponent(

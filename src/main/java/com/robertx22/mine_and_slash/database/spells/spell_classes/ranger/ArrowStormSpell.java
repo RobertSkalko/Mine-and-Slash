@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.ranger;
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.ArrowStormEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPredicates;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
@@ -45,7 +46,8 @@ public class ArrowStormSpell extends BaseSpell {
                     return Elements.Elemental;
                 }
 
-            }.summonsEntity(world -> new ArrowStormEntity(world)));
+            }.summonsEntity(world -> new ArrowStormEntity(world))
+                .addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE));
     }
 
     @Override

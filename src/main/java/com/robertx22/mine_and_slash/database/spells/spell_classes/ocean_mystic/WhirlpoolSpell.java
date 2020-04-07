@@ -60,6 +60,7 @@ public class WhirlpoolSpell extends BaseSpell {
         c.set(SC.PROJECTILE_COUNT, 1, 1);
         c.set(SC.CAST_TIME_TICKS, 30, 20);
         c.set(SC.COOLDOWN_SECONDS, 120, 60);
+        c.set(SC.TICK_RATE, 30, 20);
 
         c.setMaxLevel(12);
 

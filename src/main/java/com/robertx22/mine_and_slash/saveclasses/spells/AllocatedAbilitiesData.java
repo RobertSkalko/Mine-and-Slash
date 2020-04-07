@@ -43,12 +43,18 @@ public class AllocatedAbilitiesData implements IApplyableStats {
 
     }
 
+    public void setLevel(IAbility ability, int lvl) {
+        AbilityData data = new AbilityData(ability);
+        data.setLevel(lvl);
+        map.put(ability.GUID(), data);
+    }
+
     public List<BaseSpell> getAllocatedSpells() {
         List<BaseSpell> list = new ArrayList<>();
 
         this.map.values()
             .forEach(x -> {
-                if (x.isValid() && x.currentLvl > 0 && x.type == IAbility.Type.SPELL) {
+                if (x.isValid() && x.getCurrentLevel() > 0 && x.type == IAbility.Type.SPELL) {
                     list.add((BaseSpell) x.getAbility());
                 }
             });
@@ -62,7 +68,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
 
         this.map.values()
             .forEach(x -> {
-                if (x.isValid() && x.currentLvl > 0 && x.type == IAbility.Type.SYNERGY) {
+                if (x.isValid() && x.getCurrentLevel() > 0 && x.type == IAbility.Type.SYNERGY) {
                     list.add((Synergy) x.getAbility());
                 }
             });
@@ -86,7 +92,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
 
         for (AbilityData x : map.values()) {
             if (x.isValid()) {
-                points += x.currentLvl;
+                points += x.getCurrentLevel();
             }
         }
 
@@ -127,11 +133,13 @@ public class AllocatedAbilitiesData implements IApplyableStats {
     }
 
     public int getLevelOf(IAbility ability) {
-        return map.getOrDefault(ability.GUID(), EMPTY_ABILITY).currentLvl;
+        return map.getOrDefault(ability.GUID(), EMPTY_ABILITY)
+            .getCurrentLevel();
     }
 
     public int getLevelOf(String id) {
-        return map.getOrDefault(id, EMPTY_ABILITY).currentLvl;
+        return map.getOrDefault(id, EMPTY_ABILITY)
+            .getCurrentLevel();
     }
 
     public boolean isAllocated(IAbility ability) {
@@ -148,7 +156,8 @@ public class AllocatedAbilitiesData implements IApplyableStats {
             map.put(ability.GUID(), new AbilityData(ability));
         }
 
-        map.get(ability.GUID()).currentLvl++;
+        map.get(ability.GUID())
+            .addLevels(1);
 
     }
 
@@ -156,7 +165,8 @@ public class AllocatedAbilitiesData implements IApplyableStats {
         if (!map.containsKey(ability.GUID())) {
             map.put(ability.GUID(), new AbilityData(ability));
         }
-        map.get(ability.GUID()).currentLvl--;
+        map.get(ability.GUID())
+            .addLevels(-1);
     }
 
     public void reset() {
@@ -167,4 +177,14 @@ public class AllocatedAbilitiesData implements IApplyableStats {
 
     private static AbilityData EMPTY_ABILITY = new AbilityData();
 
+    public void clean() {
+        new HashMap<String, AbilityData>(map).entrySet()
+            .forEach(x -> {
+                if (!x.getValue()
+                    .isValid()) {
+                    map.remove(x);
+                }
+            });
+
+    }
 }

@@ -18,6 +18,7 @@ public class PreCalcSpellConfigs {
         set(SC.COOLDOWN_TICKS, 0, 0);
         set(SC.COOLDOWN_SECONDS, 0, 0);
         set(SC.DURATION_TICKS, 60, 60);
+
     }
 
     private HashMap<SC, LevelBased> map = new HashMap<>();
@@ -25,10 +26,16 @@ public class PreCalcSpellConfigs {
     public int maxSpellLevel = 12;
 
     public SpellCalcData getCalc(PlayerSpellCap.ISpellsCap cap, IAbility ability) {
-        return SpellCalcData.scaleWithAttack(
-            get(SC.ATTACK_SCALE_VALUE).get(cap, ability),
-            get(SC.BASE_VALUE).get(cap, ability)
-        );
+        if (has(SC.ATTACK_SCALE_VALUE)) {
+            return SpellCalcData.scaleWithAttack(
+                get(SC.ATTACK_SCALE_VALUE).get(cap, ability),
+                get(SC.BASE_VALUE).get(cap, ability)
+            );
+        } else {
+            return SpellCalcData.base(
+                get(SC.BASE_VALUE).get(cap, ability)
+            );
+        }
     }
 
     public boolean has(SC sc) {
@@ -64,20 +71,22 @@ public class PreCalcSpellConfigs {
         if (!map.containsKey(sc)) {
 
             try {
-                throw new RuntimeException("Trying to get non existent value!!!");
+                throw new RuntimeException("Trying to get non existent value: " + sc.name());
             } catch (RuntimeException e) {
                 e.printStackTrace();
             }
+            return LevelBased.empty();
         }
 
         LevelBased thing = map.get(sc);
 
         if (thing.isEmpty()) {
             try {
-                throw new RuntimeException("Getting empty value!!!");
+                throw new RuntimeException("Getting empty value: " + sc.name());
             } catch (RuntimeException e) {
                 e.printStackTrace();
             }
+            return LevelBased.empty();
         }
 
         return thing;

@@ -69,6 +69,10 @@ public class OnLogin {
                 SlashRegistry.restoreFromBackupifEmpty();
                 data.onLogin(player);
 
+                Load.spells(player)
+                    .getAbilitiesData()
+                    .clean();
+
                 data.syncToClient(player);
 
                 CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, data);

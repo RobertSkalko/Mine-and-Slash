@@ -22,10 +22,12 @@ public abstract class BaseStatCalc implements ITooltipList {
             eleStr = el.format + el.icon;
         }
 
-        list.add(new StringTextComponent(
-            TextFormatting.RED + "Scales with " + (int) (multi * 100F) + "% " + eleStr + " ").appendSibling(
-            statname)
-            .appendText(" (" + value + ")"));
+        if (statname != null) {
+            list.add(new StringTextComponent(
+                TextFormatting.RED + "Scales with " + (int) (multi * 100F) + "% " + eleStr + " ").appendSibling(
+                statname)
+                .appendText(" (" + value + ")"));
+        }
 
         return list;
     }

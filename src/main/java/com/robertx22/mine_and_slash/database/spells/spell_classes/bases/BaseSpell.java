@@ -207,7 +207,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             .get(SC.COOLDOWN_SECONDS)
             .get(ctx.spellsCap, this);
 
-        return (int) ((seconds / 20F) + ticks);
+        return (int) ((seconds * 20F) + ticks);
     }
 
     public final int getCooldownInSeconds(SpellCastContext ctx) {

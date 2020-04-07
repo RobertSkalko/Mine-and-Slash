@@ -79,37 +79,32 @@ public class SpellCastingData {
 
         try {
 
-            if (castingTicksLeft > 0) {
-                spellDatas.values()
-                    .forEach(x -> x.tickCooldown(ticks));
-
-                BaseSpell spell = SlashRegistry.Spells()
-                    .get(spellBeingCast);
-
-                SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
-
-                if (spell != null && spells != null && SlashRegistry.Spells()
-                    .isRegistered(spell)) {
-                    spell.onCastingTick(ctx);
-                    addCastingMoveDebuff(player);
-                } else {
-                    removeCastingMoveDebuff(player);
-                }
-
-                castingTicksLeft--;
-                castingTicksDone++;
-            } else {
-
-                this.spellBeingCast = "";
-
-            }
-
             BaseSpell spell = SlashRegistry.Spells()
                 .get(spellBeingCast);
+
+            SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
+
+            if (spell != null && spells != null && SlashRegistry.Spells()
+                .isRegistered(spell)) {
+                spell.onCastingTick(ctx);
+                addCastingMoveDebuff(player);
+            } else {
+                removeCastingMoveDebuff(player);
+            }
+
+            castingTicksLeft--;
+            castingTicksDone++;
 
             if (spell == null || !SlashRegistry.Spells()
                 .isRegistered(spell)) {
                 removeCastingMoveDebuff(player);
+            }
+
+            spellDatas.values()
+                .forEach(x -> x.tickCooldown(ticks));
+
+            if (castingTicksLeft < 0) {
+                this.spellBeingCast = "";
             }
 
         } catch (Exception e) {
@@ -190,9 +185,9 @@ public class SpellCastingData {
                             player.sendBreakAnimation(player.getActiveHand());
                         });
 
-                    spellBeingCast = "";
-
                     onSpellCast(spell, player, spells);
+
+                    spellBeingCast = "";
 
                 }
             }
