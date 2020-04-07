@@ -6,7 +6,10 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.Bla
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.FireballSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.MagmaFlowerSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.VolcanoSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.*;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.HeartOfIceSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.TidalWaveSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.WhirlpoolSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ranger.*;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.LightningTotemSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
@@ -51,7 +54,7 @@ public class Spells implements ISlashRegistryInit {
 
                     add(ArrowBarrageSpell.getInstance());
                     add(RecoilShotSpell.getInstance());
-                    add(TripleShotSpell.getInstance());
+                    add(WideShotSpell.getInstance());
                     add(ImbueSpell.getInstance());
                     add(ArrowStormSpell.getInstance());
 

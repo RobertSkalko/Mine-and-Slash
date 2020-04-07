@@ -60,10 +60,9 @@ public class ArrowBarrageSpell extends BaseSpell {
         c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.3F);
         c.set(SC.PROJECTILE_COUNT, 1, 1);
         c.set(SC.SHOOT_SPEED, 1, 1.5F);
-        c.set(SC.CAST_TIME_TICKS, 30, 20);
+        c.set(SC.CAST_TIME_TICKS, 40, 30);
         c.set(SC.COOLDOWN_SECONDS, 30, 20);
-        c.set(SC.RADIUS, 2, 3);
-        c.set(SC.TIMES_TO_CAST, 6, 4);
+        c.set(SC.TIMES_TO_CAST, 4, 6);
 
         c.setMaxLevel(16);
 

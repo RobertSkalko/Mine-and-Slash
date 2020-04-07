@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.entities.cloud;
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseCloudEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.RangerArrowEntity;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -48,15 +49,17 @@ public class ArrowStormEntity extends BaseCloudEntity {
 
     }
 
-    public static int TICKS_PER_ARROW_SUMMON = 15;
     public static int ARROWS_PER_SUMMON = 12;
 
     @Override
     public void onTick() {
 
+        int tickrate = getSpellData().configs.get(SC.TICK_RATE)
+            .intValue();
+
         super.onTick();
 
-        if (this.ticksExisted % TICKS_PER_ARROW_SUMMON == 0) {
+        if (this.ticksExisted % tickrate == 0) {
             LivingEntity caster = getCaster();
 
             if (!this.world.isRemote) {
@@ -66,7 +69,7 @@ public class ArrowStormEntity extends BaseCloudEntity {
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
                         posX, posY + height + yRandom, posZ, radius());
 
-                    RangerArrowEntity en = SpellUtils.getSpellEntity(new RangerArrowEntity(world), getSpellData().getSpell(), caster);
+                    RangerArrowEntity en = SpellUtils.getSpellEntity(getSpellData().configs, new RangerArrowEntity(world), getSpellData().getSpell(), caster);
                     SpellUtils.setupProjectileForCasting(en, caster, 1.5F);
                     en.setMotion(new Vec3d(0, -1, 0));
                     en.setLocationAndAngles(p.x, p.y, p.z, 0, 0);

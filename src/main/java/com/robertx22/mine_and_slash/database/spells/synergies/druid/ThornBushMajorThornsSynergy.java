@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.druid;
 
-import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornBushSpell;
@@ -47,7 +46,7 @@ public class ThornBushMajorThornsSynergy extends OnDamageDoneSynergy {
 
             int dmg = getCalc(Load.spells(ctx.source)).getCalculatedBaseValue(ctx.sourceData);
 
-            SpellUtils.getSynergyDamage(ctx, dmg)
+            getSynergyDamage(ctx, dmg)
                 .Activate();
 
         }

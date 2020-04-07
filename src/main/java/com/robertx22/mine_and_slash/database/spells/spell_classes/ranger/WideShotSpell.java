@@ -1,8 +1,9 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ranger;
 
-import com.robertx22.mine_and_slash.database.spells.entities.cloud.ArrowStormEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.RangerArrowEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPredicates;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
@@ -13,15 +14,16 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrowStormSpell extends BaseSpell {
+public class WideShotSpell extends BaseSpell {
 
-    private ArrowStormSpell() {
+    private WideShotSpell() {
         super(
             new ImmutableSpellConfigs() {
 
@@ -32,33 +34,34 @@ public class ArrowStormSpell extends BaseSpell {
 
                 @Override
                 public SpellCastType castType() {
-                    return SpellCastType.AT_SIGHT;
+                    return SpellCastType.PROJECTILE;
                 }
 
                 @Override
                 public SoundEvent sound() {
-                    return null;
+                    return SoundEvents.ENTITY_ARROW_SHOOT;
                 }
 
                 @Override
                 public Elements element() {
                     return Elements.Elemental;
                 }
-
-            }.summonsEntity(world -> new ArrowStormEntity(world)));
+            }.cooldownIfCanceled(true)
+                .summonsEntity(w -> new RangerArrowEntity(w))
+                .addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE));
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 30, 60);
-        c.set(SC.BASE_VALUE, 2, 8);
-        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.3F);
-        c.set(SC.CAST_TIME_TICKS, 40, 20);
-        c.set(SC.COOLDOWN_SECONDS, 120, 60);
-        c.set(SC.TICK_RATE, 15, 5);
-        c.set(SC.RADIUS, 2, 4);
+        c.set(SC.MANA_COST, 5, 12);
+        c.set(SC.BASE_VALUE, 4, 12);
+        c.set(SC.ATTACK_SCALE_VALUE, 0.2F, 0.75F);
+        c.set(SC.SHOOT_SPEED, 1F, 1.5F);
+        c.set(SC.PROJECTILE_COUNT, 3, 3);
+        c.set(SC.CAST_TIME_TICKS, 50, 40);
+        c.set(SC.COOLDOWN_SECONDS, 10, 5);
 
         c.setMaxLevel(16);
 
@@ -67,16 +70,16 @@ public class ArrowStormSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(5, 6);
+        return new AbilityPlace(3, 1);
     }
 
-    public static ArrowStormSpell getInstance() {
+    public static WideShotSpell getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public String GUID() {
-        return "arrow_storm";
+        return "triple_shot";
     }
 
     @Override
@@ -84,7 +87,7 @@ public class ArrowStormSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Summons an arrow storm, dealing damage with each arrow: "));
+        list.add(new StringTextComponent("Shoots multiple arrows in an arc: "));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info));
 
@@ -94,10 +97,11 @@ public class ArrowStormSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.ArrowStorm;
+        return Words.TripleShot;
     }
 
     private static class SingletonHolder {
-        private static final ArrowStormSpell INSTANCE = new ArrowStormSpell();
+        private static final WideShotSpell INSTANCE = new WideShotSpell();
     }
 }
+
