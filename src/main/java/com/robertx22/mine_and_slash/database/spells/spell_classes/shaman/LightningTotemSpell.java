@@ -1,61 +1,79 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.entities.proj.LightningTotemEntity;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LightningTotemSpell extends BaseProjectileSpell {
-
-    public Elements element = Elements.Thunder;
+public class LightningTotemSpell extends BaseSpell {
 
     private LightningTotemSpell() {
+        super(
+            new ImmutableSpellConfigs() {
+
+                @Override
+                public SpellSchools school() {
+                    return SpellSchools.SHAMAN;
+                }
+
+                @Override
+                public SpellCastType castType() {
+                    return SpellCastType.PROJECTILE;
+                }
+
+                @Override
+                public SoundEvent sound() {
+                    return SoundEvents.ENTITY_ARROW_SHOOT;
+                }
+
+                @Override
+                public Elements element() {
+                    return Elements.Thunder;
+                }
+            }.cooldownIfCanceled(true)
+                .summonsEntity(w -> new LightningTotemEntity(w))
+        );
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+
+        c.set(SC.MANA_COST, 15, 25);
+        c.set(SC.BASE_VALUE, 2, 8);
+        c.set(SC.SHOOT_SPEED, 1F, 1.2F);
+        c.set(SC.PROJECTILE_COUNT, 1, 3);
+        c.set(SC.CAST_TIME_TICKS, 20, 10);
+        c.set(SC.COOLDOWN_SECONDS, 15, 10);
+        c.set(SC.TICK_RATE, 30, 15);
+
+        c.setMaxLevel(16);
+
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(3, 1);
     }
 
     public static LightningTotemSpell getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.SHAMAN;
-    }
-
-    @Override
-    public int getCooldownInSeconds() {
-        return 10;
-    }
-
-    @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.LASTING_AOE;
-    }
-
-    @Override
-    public float getShootSpeed() {
-        return 1F;
-    }
-
-    @Override
-    public AbstractArrowEntity newEntity(World world) {
-        return new LightningTotemEntity(world);
-    }
-
-    @Override
-    public SoundEvent getCastSound() {
-        return null;
     }
 
     @Override
@@ -64,33 +82,13 @@ public class LightningTotemSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public int getManaCost() {
-        return 20;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 10;
-    }
-
-    @Override
-    public SpellCalcData getCalculation() {
-        return SpellCalcData.one(dmgStat(), 0.1F, 2);
-    }
-
-    @Override
-    public Elements getElement() {
-        return element;
-    }
-
-    @Override
-    public List<ITextComponent> GetDescription(TooltipInfo info) {
+    public List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Summons a totem that damages enemies: "));
 
-        list.addAll(getCalculation().GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info));
 
         return list;
 

@@ -1,8 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
@@ -13,7 +12,6 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.SoundEvents;
@@ -63,7 +61,8 @@ public class LightningTotemEntity extends EntityBaseProjectile {
     @Override
     public void onTick() {
 
-        int tickRate = 20;
+        int tickRate = getSpellData().configs.get(SC.TICK_RATE)
+            .intValue();
 
         if (this.ticksExisted % tickRate == 0) {
             if (!world.isRemote) {
@@ -77,10 +76,6 @@ public class LightningTotemEntity extends EntityBaseProjectile {
                     SpellDamageEffect dmg = dealSpellDamageTo(x, new Options().activatesEffect(false));
 
                     dmg.Activate();
-
-                    if (Synergies.LIGHTNING_TOTEM_STATIC.has((PlayerEntity) getCaster())) {
-                        Synergies.LIGHTNING_TOTEM_STATIC.tryActivate(new AfterDamageContext(getCaster(), x, dmg));
-                    }
 
                     SoundUtils.playSound(this, SoundEvents.BLOCK_REDSTONE_TORCH_BURNOUT, 1, 1);
 

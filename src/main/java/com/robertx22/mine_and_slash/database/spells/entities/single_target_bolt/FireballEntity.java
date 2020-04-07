@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseElementalBoltEntity;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
@@ -40,10 +38,6 @@ public class FireballEntity extends BaseElementalBoltEntity {
     @Override
     public void onHit(LivingEntity entity) {
         dealSpellDamageTo(entity);
-
-        if (Synergies.FIREBALL_BURN_CONSUME.has(getCaster())) {
-            Synergies.FIREBALL_BURN_CONSUME.tryActivate(new CasterTargetContext(getCaster(), entity));
-        }
 
         SoundUtils.playSound(this, SoundEvents.ENTITY_GENERIC_HURT, 0.8F, 1F);
     }

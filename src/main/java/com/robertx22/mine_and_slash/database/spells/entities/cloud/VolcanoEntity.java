@@ -3,8 +3,6 @@ package com.robertx22.mine_and_slash.database.spells.entities.cloud;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.BaseInvisibleEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.RGB;
@@ -52,8 +50,9 @@ public class VolcanoEntity extends BaseInvisibleEntity {
         try {
 
             float radius = getSpellData().configs.get(SC.RADIUS);
+            float tickrate = getSpellData().configs.get(SC.TICK_RATE);
 
-            if (this.ticksExisted % ticksToHitMobs() == 1) {
+            if (this.ticksExisted % tickrate == 1) {
 
                 SoundUtils.playSound(this, SoundEvents.BLOCK_LAVA_EXTINGUISH, 1, 1);
 
@@ -65,10 +64,6 @@ public class VolcanoEntity extends BaseInvisibleEntity {
                         .build();
 
                     for (LivingEntity target : entities) {
-
-                        if (Synergies.VOLCANO_BURN.has(getCaster())) {
-                            Synergies.VOLCANO_BURN.tryActivate(new CasterTargetContext(getCaster(), target));
-                        }
 
                         this.dealSpellDamageTo(target, new ISpellEntity.Options().knockbacks(true));
 
@@ -106,10 +101,6 @@ public class VolcanoEntity extends BaseInvisibleEntity {
             e.printStackTrace();
         }
 
-    }
-
-    public int ticksToHitMobs() {
-        return 15;
     }
 
 }

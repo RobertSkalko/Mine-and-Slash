@@ -30,7 +30,6 @@ public class Spells implements ISlashRegistryInit {
                 {
 
                     add(FrostballSpell.getInstance());
-                    add(BlizzardSpell.getInstance());
                     add(WhirlpoolSpell.getInstance());
                     add(HeartOfIceSpell.getInstance());
                     add(TidalWaveSpell.getInstance());

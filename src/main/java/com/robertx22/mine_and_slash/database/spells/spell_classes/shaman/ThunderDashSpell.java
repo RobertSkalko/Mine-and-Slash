@@ -1,11 +1,14 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
@@ -18,6 +21,8 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.SEntityVelocityPacket;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
@@ -29,28 +34,54 @@ import java.util.List;
 
 public class ThunderDashSpell extends BaseSpell {
 
-    public Elements element = Elements.Thunder;
-
     private ThunderDashSpell() {
+        super(
+            new ImmutableSpellConfigs() {
+
+                @Override
+                public SpellSchools school() {
+                    return SpellSchools.SHAMAN;
+                }
+
+                @Override
+                public SpellCastType castType() {
+                    return SpellCastType.SPECIAL;
+                }
+
+                @Override
+                public SoundEvent sound() {
+                    return SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER;
+                }
+
+                @Override
+                public Elements element() {
+                    return Elements.Thunder;
+                }
+            }
+        );
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+
+        c.set(SC.MANA_COST, 10, 20);
+        c.set(SC.BASE_VALUE, 3, 9);
+        c.set(SC.CAST_TIME_TICKS, 0, 0);
+        c.set(SC.COOLDOWN_SECONDS, 30, 25);
+
+        c.setMaxLevel(16);
+
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(5, 2);
     }
 
     public static ThunderDashSpell getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.SHAMAN;
-    }
-
-    @Override
-    public int getCooldownInSeconds() {
-        return 30;
-    }
-
-    @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.Dash;
     }
 
     @Override
@@ -59,34 +90,14 @@ public class ThunderDashSpell extends BaseSpell {
     }
 
     @Override
-    public int getManaCost() {
-        return 30;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 0;
-    }
-
-    @Override
-    public SpellCalcData getCalculation() {
-        return SpellCalcData.one(dmgStat(), 0.5F, 5);
-    }
-
-    @Override
-    public Elements getElement() {
-        return element;
-    }
-
-    @Override
-    public List<ITextComponent> GetDescription(TooltipInfo info) {
+    public List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Dash in your current direction,"));
         list.add(new StringTextComponent("damages all enemies in the path."));
 
-        list.addAll(getCalculation().GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info));
 
         return list;
 
@@ -111,12 +122,13 @@ public class ThunderDashSpell extends BaseSpell {
     }
 
     @Override
-    public boolean cast(LivingEntity caster, int ticksInUse) {
-        World world = caster.world;
+    public void castExtra(SpellCastContext ctx) {
+        LivingEntity caster = ctx.caster;
+        World world = ctx.caster.world;
 
-        dashForward(caster);
+        dashForward(ctx.caster);
 
-        int num = getCalculation().getCalculatedValue(Load.Unit(caster));
+        int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster));
 
         List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
             .radius(2)
@@ -124,22 +136,14 @@ public class ThunderDashSpell extends BaseSpell {
             .finder(EntityFinder.Finder.IN_FRONT)
             .build();
 
-        Boolean eneSynergy = Synergies.THUNDER_DASH_ENERGY.has(caster);
-
         entities.forEach(x -> {
             DamageEffect dmg = new DamageEffect(null, caster, x, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
             dmg.element = Elements.Thunder;
             dmg.Activate();
-
-            if (eneSynergy) {
-                Synergies.THUNDER_DASH_ENERGY.tryActivate(new AfterDamageContext(caster, x, dmg));
-            }
-
         });
 
         SoundUtils.playSound(caster, ModSounds.DASH.get(), 1, 1);
 
-        return true;
     }
 
     private static class SingletonHolder {
