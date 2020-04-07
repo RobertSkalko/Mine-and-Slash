@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornBushSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.ThornsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -40,14 +39,14 @@ public class ThornBushMajorThornsSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public void tryActivate(CasterTargetContext ctx) {
+    public void tryActivate(SpellDamageEffect ctx) {
         if (PotionEffectUtils.has(ctx.target, ThornsEffect.INSTANCE)) {
 
             PotionEffectUtils.reduceStacks(ctx.target, ThornsEffect.INSTANCE);
 
-            int dmg = getCalc(ctx.spellsCap).getCalculatedBaseValue(ctx.casterData);
+            int dmg = getCalc(Load.spells(ctx.source)).getCalculatedBaseValue(ctx.sourceData);
 
-            SpellDamageEffect effect = new SpellDamageEffect(ctx.caster, ctx.target, dmg, ctx.casterData, ctx.targetData,
+            SpellDamageEffect effect = new SpellDamageEffect(ctx.source, ctx.target, dmg, ctx.sourceData, ctx.targetData,
                 this.getSpell()
             );
 

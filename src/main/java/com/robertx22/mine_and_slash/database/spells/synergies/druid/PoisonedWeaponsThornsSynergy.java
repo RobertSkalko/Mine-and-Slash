@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.PoisonedWeaponsSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
@@ -57,7 +56,7 @@ public class PoisonedWeaponsThornsSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public void tryActivate(CasterTargetContext ctx) {
+    public void tryActivate(SpellDamageEffect ctx) {
 
         if (PotionEffectUtils.has(ctx.target, ThornsEffect.INSTANCE)) {
 
@@ -68,11 +67,11 @@ public class PoisonedWeaponsThornsSynergy extends OnDamageDoneSynergy {
                     .amount(30)
             );
 
-            int num = getPreCalcConfig().getCalc(ctx.spellsCap, this)
-                .getCalculatedValue(Load.Unit(ctx.caster));
+            int num = getPreCalcConfig().getCalc(Load.spells(ctx.source), this)
+                .getCalculatedValue(ctx.sourceData);
 
             SpellDamageEffect dmg = new SpellDamageEffect(
-                ctx.caster, ctx.target, num, ctx.casterData, ctx.targetData, getSpell());
+                ctx.source, ctx.target, num, ctx.sourceData, ctx.targetData, getSpell());
             dmg.element = Elements.Nature;
             dmg.Activate();
 

@@ -4,13 +4,14 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornArmorSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.ThornArmorEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.ThornsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -41,15 +42,15 @@ public class ThornArmorThornsSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public void tryActivate(CasterTargetContext ctx) {
+    public void tryActivate(SpellDamageEffect ctx) {
 
-        float chance = getContext(ctx.caster).getConfigFor(this)
+        float chance = getContext(ctx.source).getConfigFor(this)
             .get(SC.CHANCE)
-            .get(ctx.spellsCap, this);
+            .get(Load.spells(ctx.source), this);
 
         if (RandomUtils.roll(chance)) {
-            if (PotionEffectUtils.has(ctx.caster, ThornArmorEffect.INSTANCE)) {
-                PotionEffectUtils.apply(ThornsEffect.INSTANCE, ctx.caster, ctx.target);
+            if (PotionEffectUtils.has(ctx.source, ThornArmorEffect.INSTANCE)) {
+                PotionEffectUtils.apply(ThornsEffect.INSTANCE, ctx.source, ctx.target);
             }
         }
     }

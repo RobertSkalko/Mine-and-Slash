@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.effectdatas;
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamageSource;
+import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.BlockEffect;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -173,6 +174,22 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return;
     }
 
+    private void activateSpellSynergies() {
+
+        if (this instanceof SpellDamageEffect) {
+            SpellDamageEffect e = (SpellDamageEffect) this;
+
+            e.spell.getAllocatedSynergies(Load.spells(e.source))
+                .forEach(x -> {
+                    if (x instanceof OnDamageDoneSynergy) {
+                        OnDamageDoneSynergy s = (OnDamageDoneSynergy) x;
+                        s.tryActivate(e);
+                    }
+                });
+        }
+
+    }
+
     @Override
     protected void activate() {
 
@@ -256,6 +273,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         } else {
 
             MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.OnDmgDoneEvent(this.source, this));
+
+            activateSpellSynergies();
 
             this.sourceData.onAttackEntity(source, target);
 

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
+import com.robertx22.mine_and_slash.database.spells.synergies.OnSpellCastSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -45,6 +46,21 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         this.immutableConfigs = immutable;
     }
 
+    /*
+    private List<String> synergies = new ArrayList<>();
+
+    public void addSynergy(Synergy syn) {
+
+        if (syn.getSpell() == null || syn.getSpell()
+            .GUID()
+            .equals(GUID()) == false) {
+            throw new RuntimeException("Wrong synergy for spell!: " + this.GUID() + ":" + syn.GUID());
+        }
+        this.synergies.add(syn.GUID());
+    }
+
+     */
+
     public final ImmutableSpellConfigs getImmutableConfigs() {
         return immutableConfigs;
     }
@@ -83,6 +99,25 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     }
 
     public final List<Synergy> getAllocatedSynergies(PlayerSpellCap.ISpellsCap cap) {
+
+        /*
+        List<Synergy> list = new ArrayList<>();
+
+        this.synergies.forEach(x -> {
+
+            Synergy syn = SlashRegistry.Synergies()
+                .get(x);
+            if (syn != null) {
+                if (cap.getLevelOf(syn) > 0) {
+                    list.add(syn);
+                }
+            }
+        });
+
+        return list;
+
+         */
+
         return cap.getAbilitiesData()
             .getAllocatedSynergies()
             .stream()
@@ -212,6 +247,14 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     public final boolean cast(SpellCastContext ctx) {
         boolean bool = immutableConfigs.castType()
             .cast(ctx);
+
+        getAllocatedSynergies(ctx.spellsCap).forEach(x -> {
+            if (x instanceof OnSpellCastSynergy) {
+                OnSpellCastSynergy s = (OnSpellCastSynergy) x;
+                s.tryActivate(ctx);
+            }
+        });
+
         castExtra(ctx);
         return bool;
     }

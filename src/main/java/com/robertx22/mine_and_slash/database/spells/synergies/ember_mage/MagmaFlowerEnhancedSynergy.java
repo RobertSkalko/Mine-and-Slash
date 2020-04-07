@@ -1,20 +1,20 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.ember_mage;
 
-import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.MagmaFlowerSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterAndSpellEntityContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MagmaFlowerEnhancedSynergy extends Synergy<CasterAndSpellEntityContext<MagmaFlowerTileEntity>> {
+public class MagmaFlowerEnhancedSynergy extends Synergy {
 
     @Override
     public String GUID() {
@@ -48,12 +48,14 @@ public class MagmaFlowerEnhancedSynergy extends Synergy<CasterAndSpellEntityCont
     }
 
     @Override
-    public BaseSpell spellAffected() {
+    public AbilityPlace getAbilityPlace() {
+        return AbilityPlace.upFrom(getSpell());
+    }
+
+    @Nullable
+    @Override
+    public IAbility getRequiredAbility() {
         return MagmaFlowerSpell.getInstance();
     }
 
-    @Override
-    public void tryActivate(CasterAndSpellEntityContext<MagmaFlowerTileEntity> ctx) {
-
-    }
 }

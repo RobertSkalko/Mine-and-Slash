@@ -1,17 +1,16 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.ember_mage;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.FireballSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -23,10 +22,11 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FireballBurnConsumeSynergy extends Synergy<CasterTargetContext> {
+public class FireballBurnConsumeSynergy extends OnDamageDoneSynergy {
 
     @Override
     public String GUID() {
@@ -41,28 +41,22 @@ public class FireballBurnConsumeSynergy extends Synergy<CasterTargetContext> {
 
         list.add(new StringTextComponent("Consumes Burn to Erupt in AOE"));
 
-        list.addAll(CALC.GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
 
         return list;
     }
 
-    public static SpellCalcData CALC = SpellCalcData.one(new ElementalSpellDamage(Elements.Fire), 0.5F, 15);
-
-    static float RADIUS = 2;
-
     @Override
-
-    public BaseSpell spellAffected() {
-        return FireballSpell.getInstance();
-    }
-
-    @Override
-    public void tryActivate(CasterTargetContext ctx) {
+    public void tryActivate(SpellDamageEffect ctx) {
 
         if (PotionEffectUtils.has(ctx.target, BurnEffect.INSTANCE)) {
 
+            float radius = getContext(ctx.source).getConfigFor(this)
+                .get(SC.RADIUS)
+                .get(Load.spells(ctx.source), this);
+
             ParticleEnum.sendToClients(ctx.target,
-                new ParticlePacketData(ctx.target.getPosition(), ParticleEnum.AOE).radius(RADIUS)
+                new ParticlePacketData(ctx.target.getPosition(), ParticleEnum.AOE).radius(radius)
                     .type(ParticleTypes.EXPLOSION)
                     .amount(1)
             );
@@ -71,19 +65,16 @@ public class FireballBurnConsumeSynergy extends Synergy<CasterTargetContext> {
 
             PotionEffectUtils.reduceStacks(ctx.target, BurnEffect.INSTANCE);
 
-            int num = CALC.getCalculatedValue(Load.Unit(ctx.caster));
-
-            EntityCap.UnitData casterData = Load.Unit(ctx.caster);
-            EntityCap.UnitData targetData = Load.Unit(ctx.target);
+            int num = getCalc(Load.spells(ctx.source)).getCalculatedValue(ctx.sourceData);
 
             List<LivingEntity> entities = EntityFinder.start(
-                ctx.caster, LivingEntity.class, ctx.target.getPositionVector())
-                .radius(RADIUS)
+                ctx.source, LivingEntity.class, ctx.target.getPositionVector())
+                .radius(radius)
                 .build();
 
             entities.forEach(e -> {
-                SpellDamageEffect dmg = new SpellDamageEffect(ctx.caster, e, num, casterData, targetData,
-                    spellAffected()
+                SpellDamageEffect dmg = new SpellDamageEffect(ctx.source, e, num, ctx.sourceData, ctx.targetData,
+                    getSpell()
                 );
                 dmg.element = Elements.Fire;
                 dmg.Activate();
@@ -91,5 +82,31 @@ public class FireballBurnConsumeSynergy extends Synergy<CasterTargetContext> {
             });
 
         }
+    }
+
+    @Override
+    public PreCalcSpellConfigs getConfigsAffectingSpell() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.MANA_COST, 1, 2);
+        return c;
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.BASE_VALUE, 2, 8);
+        c.set(SC.RADIUS, 1.5F, 3);
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return AbilityPlace.upFrom(FireballSpell.getInstance());
+    }
+
+    @Nullable
+    @Override
+    public IAbility getRequiredAbility() {
+        return FireballSpell.getInstance();
     }
 }

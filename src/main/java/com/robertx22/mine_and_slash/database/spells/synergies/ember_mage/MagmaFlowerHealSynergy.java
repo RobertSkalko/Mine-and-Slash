@@ -1,21 +1,23 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.ember_mage;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.SpellUtils;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.MagmaFlowerSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
-import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
+import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MagmaFlowerHealSynergy extends Synergy<CasterContext> {
+public class MagmaFlowerHealSynergy extends OnDamageDoneSynergy {
 
     @Override
     public String GUID() {
@@ -30,30 +32,43 @@ public class MagmaFlowerHealSynergy extends Synergy<CasterContext> {
 
         list.add(new StringTextComponent("Heals the caster"));
 
-        list.addAll(spellAffected().getCalculation()
+        list.addAll(getCalc(Load.spells(info.player))
             .GetTooltipString(info));
 
         return list;
     }
 
     @Override
-    public BaseSpell spellAffected() {
+    public PreCalcSpellConfigs getConfigsAffectingSpell() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.MANA_COST, 1, 3);
+        return c;
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.BASE_VALUE, 1, 6);
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return AbilityPlace.upFrom(new MagmaFlowerEnhancedSynergy());
+    }
+
+    @Nullable
+    @Override
+    public IAbility getRequiredAbility() {
         return MagmaFlowerSpell.getInstance();
     }
 
     @Override
-    public void tryActivate(CasterContext ctx) {
-        EntityCap.UnitData data = Load.Unit(ctx.caster);
+    public void tryActivate(SpellDamageEffect effect) {
 
-        BaseSpell spell = spellAffected();
+        float amount = getCalc(Load.spells(effect.source)).getCalculatedValue(effect.sourceData);
 
-        SpellHealEffect heal = new SpellHealEffect(
-            new ResourcesData.Context(data, ctx.caster, ResourcesData.Type.HEALTH,
-                spell.getCalculation()
-                    .getCalculatedValue(data), ResourcesData.Use.RESTORE,
-                spell
-            ));
+        SpellUtils.heal(getSpell(), effect.source, amount);
 
-        heal.Activate();
     }
 }
