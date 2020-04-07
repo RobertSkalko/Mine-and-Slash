@@ -74,6 +74,7 @@ public class PoisonedWeaponsThornsSynergy extends OnDamageDoneSynergy {
             SpellDamageEffect dmg = new SpellDamageEffect(
                 ctx.source, ctx.target, num, ctx.sourceData, ctx.targetData, getSpell());
             dmg.element = Elements.Nature;
+            dmg.doNotActivateSynergies();
             dmg.Activate();
 
         }

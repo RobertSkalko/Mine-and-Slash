@@ -77,6 +77,7 @@ public class FireballBurnConsumeSynergy extends OnDamageDoneSynergy {
                     getSpell()
                 );
                 dmg.element = Elements.Fire;
+                dmg.doNotActivateSynergies();
                 dmg.Activate();
 
             });

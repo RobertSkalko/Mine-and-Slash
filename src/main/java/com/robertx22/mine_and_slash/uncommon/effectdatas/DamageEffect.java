@@ -64,6 +64,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.event = event;
     }
 
+    protected boolean activateSynergies = true;
+
     LivingHurtEvent event;
 
     private HashMap<Elements, Integer> bonusElementDamageMap = new HashMap();
@@ -176,18 +178,19 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     private void activateSpellSynergies() {
 
-        if (this instanceof SpellDamageEffect) {
-            SpellDamageEffect e = (SpellDamageEffect) this;
+        if (this.activateSynergies) {
+            if (this instanceof SpellDamageEffect) {
+                SpellDamageEffect e = (SpellDamageEffect) this;
 
-            e.spell.getAllocatedSynergies(Load.spells(e.source))
-                .forEach(x -> {
-                    if (x instanceof OnDamageDoneSynergy) {
-                        OnDamageDoneSynergy s = (OnDamageDoneSynergy) x;
-                        s.tryActivate(e);
-                    }
-                });
+                e.spell.getAllocatedSynergies(Load.spells(e.source))
+                    .forEach(x -> {
+                        if (x instanceof OnDamageDoneSynergy) {
+                            OnDamageDoneSynergy s = (OnDamageDoneSynergy) x;
+                            s.tryActivate(e);
+                        }
+                    });
+            }
         }
-
     }
 
     @Override

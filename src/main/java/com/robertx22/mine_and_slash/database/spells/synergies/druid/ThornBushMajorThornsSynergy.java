@@ -49,7 +49,7 @@ public class ThornBushMajorThornsSynergy extends OnDamageDoneSynergy {
             SpellDamageEffect effect = new SpellDamageEffect(ctx.source, ctx.target, dmg, ctx.sourceData, ctx.targetData,
                 this.getSpell()
             );
-
+            effect.doNotActivateSynergies();
             effect.Activate();
 
         }

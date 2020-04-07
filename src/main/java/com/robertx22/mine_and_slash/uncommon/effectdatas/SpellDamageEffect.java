@@ -22,4 +22,9 @@ public class SpellDamageEffect extends DamageEffect implements IHasSpellEffect {
     public BaseSpell getSpell() {
         return spell;
     }
+
+    public DamageEffect doNotActivateSynergies() {
+        this.activateSynergies = false;
+        return this;
+    }
 }

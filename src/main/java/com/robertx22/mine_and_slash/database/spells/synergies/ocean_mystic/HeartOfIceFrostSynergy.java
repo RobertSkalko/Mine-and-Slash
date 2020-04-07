@@ -3,9 +3,10 @@ package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.HeartOfIceSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.OnSpellCastSynergy;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ColdEssenceEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -17,7 +18,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeartOfIceFrostSynergy extends Synergy<CasterContext> {
+public class HeartOfIceFrostSynergy extends OnSpellCastSynergy {
 
     @Override
     public String GUID() {
@@ -32,9 +33,24 @@ public class HeartOfIceFrostSynergy extends Synergy<CasterContext> {
 
         list.add(new StringTextComponent("Consumes Frost Essence stacks to increase heal"));
 
-        list.addAll(CALC.GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
 
         return list;
+    }
+
+    @Override
+    public PreCalcSpellConfigs getConfigsAffectingSpell() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.MANA_COST, 2, 5);
+        return c;
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.BASE_VALUE, 1, 6);
+        c.setMaxLevel(8);
+        return c;
     }
 
     @Override
@@ -43,19 +59,17 @@ public class HeartOfIceFrostSynergy extends Synergy<CasterContext> {
     }
 
     @Override
-    public void tryActivate(CasterContext ctx) {
-
-        SpellCastContext sc = getContext(ctx.caster);
+    public void tryActivate(SpellCastContext ctx) {
 
         int stacks = PotionEffectUtils.getStacks(ctx.caster, ColdEssenceEffect.INSTANCE);
 
         if (stacks > 0) {
             PotionEffectUtils.reduceStacks(ctx.caster, ColdEssenceEffect.INSTANCE, 500);
-            float amount = sc.getConfigFor(this)
-                .getCalc(sc.spellsCap, this)
+            float amount = ctx.getConfigFor(this)
+                .getCalc(ctx.spellsCap, this)
                 .getCalculatedValue(Load.Unit(ctx.caster)) * stacks;
 
-            SpellUtils.heal(sc.spell, ctx.caster, amount);
+            SpellUtils.heal(ctx.spell, ctx.caster, amount);
 
         }
 
