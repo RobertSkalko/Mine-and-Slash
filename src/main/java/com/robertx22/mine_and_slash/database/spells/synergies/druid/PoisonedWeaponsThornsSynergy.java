@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.druid;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.PoisonedWeaponsSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
@@ -22,7 +22,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PoisonedWeaponsThornsSynergy extends Synergy<CasterTargetContext> {
+public class PoisonedWeaponsThornsSynergy extends OnDamageDoneSynergy {
 
     @Override
     public String GUID() {

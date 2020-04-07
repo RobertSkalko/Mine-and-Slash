@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.RegenerateSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
+import com.robertx22.mine_and_slash.database.spells.synergies.OnSpellCastSynergy;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
@@ -23,7 +23,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegenerateAoeSynergy extends Synergy<CasterContext> {
+public class RegenerateAoeSynergy extends OnSpellCastSynergy {
 
     @Override
     public String GUID() {
@@ -47,30 +47,6 @@ public class RegenerateAoeSynergy extends Synergy<CasterContext> {
     }
 
     @Override
-    public void tryActivate(CasterContext ctx) {
-
-        float radius = this.getPreCalcConfig()
-            .get(SC.RADIUS)
-            .get(ctx.spellsCap, this);
-
-        BlockPos pos = ctx.caster.getPosition();
-
-        ParticleEnum.sendToClients(pos, ctx.caster.world,
-            new ParticlePacketData(pos, ParticleEnum.NOVA).radius(radius)
-                .motion(new Vec3d(0, 0, 0))
-                .type(ParticleTypes.HAPPY_VILLAGER)
-                .amount(50)
-        );
-
-        EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPositionVector())
-            .radius(radius)
-            .searchFor(EntityFinder.SearchFor.ALLIES)
-            .build()
-            .forEach(x -> PotionEffectUtils.apply(RegenerateEffect.INSTANCE, ctx.caster, x));
-
-    }
-
-    @Override
     public PreCalcSpellConfigs getConfigsAffectingSpell() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.MANA_COST, 1, 4);
@@ -90,4 +66,25 @@ public class RegenerateAoeSynergy extends Synergy<CasterContext> {
         return AbilityPlace.upFrom(RegenerateSpell.getInstance());
     }
 
+    @Override
+    public void tryActivate(SpellCastContext ctx) {
+        float radius = this.getPreCalcConfig()
+            .get(SC.RADIUS)
+            .get(ctx.spellsCap, this);
+
+        BlockPos pos = ctx.caster.getPosition();
+
+        ParticleEnum.sendToClients(pos, ctx.caster.world,
+            new ParticlePacketData(pos, ParticleEnum.NOVA).radius(radius)
+                .motion(new Vec3d(0, 0, 0))
+                .type(ParticleTypes.HAPPY_VILLAGER)
+                .amount(50)
+        );
+
+        EntityFinder.start(ctx.caster, LivingEntity.class, ctx.caster.getPositionVector())
+            .radius(radius)
+            .searchFor(EntityFinder.SearchFor.ALLIES)
+            .build()
+            .forEach(x -> PotionEffectUtils.apply(RegenerateEffect.INSTANCE, ctx.caster, x));
+    }
 }
