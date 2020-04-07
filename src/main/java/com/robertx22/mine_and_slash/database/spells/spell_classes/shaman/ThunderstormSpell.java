@@ -2,44 +2,75 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.entities.cloud.ThunderstormEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSummonAtSightSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.Entity;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThunderstormSpell extends BaseSummonAtSightSpell {
-
-    public Elements element = Elements.Thunder;
+public class ThunderstormSpell extends BaseSpell {
 
     private ThunderstormSpell() {
+        super(
+            new ImmutableSpellConfigs() {
+
+                @Override
+                public SpellSchools school() {
+                    return SpellSchools.SHAMAN;
+                }
+
+                @Override
+                public SpellCastType castType() {
+                    return SpellCastType.AT_SIGHT;
+                }
+
+                @Override
+                public SoundEvent sound() {
+                    return null;
+                }
+
+                @Override
+                public Elements element() {
+                    return Elements.Thunder;
+                }
+            }
+                .summonsEntity(world -> new ThunderstormEntity(world)));
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+
+        c.set(SC.MANA_COST, 30, 50);
+        c.set(SC.BASE_VALUE, 2, 7);
+        c.set(SC.RADIUS, 2, 4);
+        c.set(SC.CAST_TIME_TICKS, 40, 25);
+        c.set(SC.COOLDOWN_TICKS, 120, 60);
+        c.set(SC.TICK_RATE, 30, 15);
+
+        c.setMaxLevel(16);
+
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(5, 6);
     }
 
     public static ThunderstormSpell getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.SHAMAN;
-    }
-
-    @Override
-    public int getCooldownInSeconds() {
-        return 20;
-    }
-
-    @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.LASTING_AOE;
     }
 
     @Override
@@ -48,33 +79,13 @@ public class ThunderstormSpell extends BaseSummonAtSightSpell {
     }
 
     @Override
-    public int getManaCost() {
-        return 60;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 40;
-    }
-
-    @Override
-    public SpellCalcData getCalculation() {
-        return SpellCalcData.one(dmgStat(), 0.5F, 5);
-    }
-
-    @Override
-    public Elements getElement() {
-        return element;
-    }
-
-    @Override
-    public List<ITextComponent> GetDescription(TooltipInfo info) {
+    public List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Summons a cloud of lightning, damaging all enemies inside"));
 
-        list.addAll(getCalculation().GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info));
 
         return list;
 
@@ -83,11 +94,6 @@ public class ThunderstormSpell extends BaseSummonAtSightSpell {
     @Override
     public Words getName() {
         return Words.Thunderstorm;
-    }
-
-    @Override
-    public Entity newEntity(World world) {
-        return new ThunderstormEntity(world);
     }
 
     private static class SingletonHolder {

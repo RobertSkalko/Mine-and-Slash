@@ -62,7 +62,7 @@ public class LightningTotemSpell extends BaseSpell {
         c.set(SC.COOLDOWN_SECONDS, 15, 10);
         c.set(SC.TICK_RATE, 30, 15);
 
-        c.setMaxLevel(16);
+        c.setMaxLevel(8);
 
         return c;
     }

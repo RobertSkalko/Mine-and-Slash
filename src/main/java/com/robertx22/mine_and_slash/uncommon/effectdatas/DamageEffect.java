@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.effectdatas;
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamageSource;
+import com.robertx22.mine_and_slash.database.spells.synergies.OnBasicAttackSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.BlockEffect;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -14,6 +15,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -176,7 +178,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return;
     }
 
-    private void activateSpellSynergies() {
+    private void activateSynergies() {
 
         if (this.activateSynergies) {
             if (this instanceof SpellDamageEffect) {
@@ -189,8 +191,27 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                             s.tryActivate(e);
                         }
                     });
+            } else {
+                if (this.getEffectType()
+                    .equals(EffectTypes.BASIC_ATTACK)) {
+
+                    PlayerSpellCap.ISpellsCap cap = Load.spells(source);
+
+                    cap.getAbilitiesData()
+                        .getAllocatedSynergies()
+                        .forEach(x -> {
+                            if (x instanceof OnBasicAttackSynergy) {
+                                OnBasicAttackSynergy s = (OnBasicAttackSynergy) x;
+                                s.tryActivate(this);
+                            }
+                        });
+
+                }
+
             }
+
         }
+
     }
 
     @Override
@@ -277,7 +298,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.OnDmgDoneEvent(this.source, this));
 
-            activateSpellSynergies();
+            activateSynergies();
 
             this.sourceData.onAttackEntity(source, target);
 

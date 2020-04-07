@@ -82,11 +82,6 @@ public class ArrowStormEntity extends BaseCloudEntity {
 
     }
 
-    @Override
-    public int ticksToHitMobs() {
-        return 10000;
-    }
-
     public float radius() {
         return 2.5F;
     }

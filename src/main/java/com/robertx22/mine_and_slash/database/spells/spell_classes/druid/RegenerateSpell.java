@@ -55,7 +55,6 @@ public class RegenerateSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.MANA_COST, 25, 50);
         c.set(SC.RADIUS, 2, 4);
-        c.set(SC.BASE_VALUE, 2, 6);
         c.set(SC.CAST_TIME_TICKS, 30, 20);
         c.set(SC.COOLDOWN_SECONDS, 45, 25);
         c.setMaxLevel(14);

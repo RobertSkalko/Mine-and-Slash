@@ -1,9 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.entities.trident;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.AfterDamageContext;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
@@ -136,17 +133,7 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
 
                 DamageEffect dmg = dealSpellDamageTo((LivingEntity) entity, new Options().activatesEffect(false));
 
-                if (Synergies.THUNDER_SPEAR_LIGHTNING.has(getCaster())) {
-                    Synergies.THUNDER_SPEAR_LIGHTNING.tryActivate(
-                        new BeforeDamageContext(getCaster(), (LivingEntity) entity, dmg));
-                }
-
                 dmg.Activate();
-
-                if (Synergies.THUNDER_SPEAR_ESSENCE.has(getCaster())) {
-                    Synergies.THUNDER_SPEAR_ESSENCE.tryActivate(
-                        new AfterDamageContext(getCaster(), (LivingEntity) entity, dmg));
-                }
 
             } else {
                 this.playSound(SoundEvents.ITEM_TRIDENT_HIT, 8F, 1.0F);

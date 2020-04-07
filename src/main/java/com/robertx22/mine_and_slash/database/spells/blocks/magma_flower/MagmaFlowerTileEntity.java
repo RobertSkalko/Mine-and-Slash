@@ -2,8 +2,6 @@ package com.robertx22.mine_and_slash.database.spells.blocks.magma_flower;
 
 import com.robertx22.mine_and_slash.database.spells.blocks.base.BaseSpellTileEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
@@ -57,10 +55,6 @@ public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
                     SpellDamageEffect dmg = getSetupSpellDamage(x);
                     dmg.Activate();
                     SoundUtils.playSound(x, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 1);
-
-                    if (Synergies.MAGMA_FLOWER_HEAL.has(caster)) {
-                        Synergies.MAGMA_FLOWER_HEAL.tryActivate(new CasterContext(caster));
-                    }
 
                 });
 

@@ -2,8 +2,6 @@ package com.robertx22.mine_and_slash.database.bosses.impl;
 
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.base.BossData;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.cleric.RighteousFuryEffect;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.IParticleData;
@@ -36,12 +34,12 @@ public class BerserkerBoss extends Boss {
         if (t == BossData.HealthTreshhold.T_75) {
             en.addPotionEffect(new EffectInstance(Effects.SPEED, 300, 1));
         } else if (t == BossData.HealthTreshhold.T_50) {
-            PotionEffectUtils.applyToSelf(RighteousFuryEffect.INSTANCE, en);
+            en.addPotionEffect(new EffectInstance(Effects.SPEED, 500, 1));
         } else if (t == BossData.HealthTreshhold.T_25) {
-            PotionEffectUtils.applyToSelf(RighteousFuryEffect.INSTANCE, en);
+
             en.addPotionEffect(new EffectInstance(Effects.SPEED, 3000, 1));
         } else if (t == BossData.HealthTreshhold.T_10) {
-            PotionEffectUtils.applyToSelf(RighteousFuryEffect.INSTANCE, en);
+
             en.addPotionEffect(new EffectInstance(Effects.SPEED, 3000, 2));
 
         }

@@ -1,11 +1,10 @@
 package com.robertx22.mine_and_slash.database.spells.entities.proj;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.BeforeDamageContext;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
+import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
@@ -66,10 +65,14 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
     @Override
     public void onTick() {
 
-        int tickRate = 20;
+        EntitySpellData sdata = getSpellData();
+        int TICK_RATE = sdata.configs.get(SC.TICK_RATE)
+            .intValue();
+        int RADIUS = sdata.configs.get(SC.RADIUS)
+            .intValue();
 
         if (this.inGround || this.ticksExisted > 30) {
-            if (this.ticksExisted % tickRate == 0) {
+            if (this.ticksExisted % TICK_RATE == 0) {
                 if (!world.isRemote) {
                     LivingEntity caster = getCaster();
 
@@ -78,7 +81,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                     }
 
                     List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, getPositionVector())
-                        .radius(radius())
+                        .radius(RADIUS)
                         .build();
 
                     entities.forEach(x -> {
@@ -86,17 +89,9 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
                         DamageEffect dmg = dealSpellDamageTo(x, new Options().knockbacks(false)
                             .activatesEffect(false));
 
-                        if (Synergies.WHIRLPOOL_FROST_DMG.has(caster)) {
-                            Synergies.WHIRLPOOL_FROST_DMG.tryActivate(new BeforeDamageContext(caster, x, dmg));
-                        }
-
                         dmg.Activate();
 
-                        x.addPotionEffect(new EffectInstance(Effects.SLOWNESS, tickRate, 10));
-
-                        if (Synergies.WHIRLPOOL_SHIVER.has(caster)) {
-                            Synergies.WHIRLPOOL_SHIVER.tryActivate(new CasterTargetContext(caster, x));
-                        }
+                        x.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 5, 5));
 
                         SoundUtils.playSound(this, SoundEvents.ENTITY_DROWNED_HURT_WATER, 1, 1);
 
@@ -117,7 +112,7 @@ public class WhirlpoolEntity extends EntityBaseProjectile {
 
                 float yUp = 0.05F;
 
-                for (float rad = 1; rad < radius(); rad++) {
+                for (float rad = 1; rad < RADIUS; rad++) {
 
                     yUp += 0.1F;
 

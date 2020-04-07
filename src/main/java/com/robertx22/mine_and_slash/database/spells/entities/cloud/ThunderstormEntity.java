@@ -45,14 +45,4 @@ public class ThunderstormEntity extends BaseCloudEntity {
 
     }
 
-    @Override
-    public int ticksToHitMobs() {
-        return 30;
-    }
-
-    @Override
-    public float radius() {
-        return 2.5f;
-    }
-
 }

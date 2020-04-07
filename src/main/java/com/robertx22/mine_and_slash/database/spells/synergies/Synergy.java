@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
@@ -15,7 +16,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SynergyDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -25,18 +25,10 @@ import java.util.List;
 
 public abstract class Synergy implements ITooltipList, IAbility, ISlashRegistryEntry<Synergy> {
 
-    public boolean has(LivingEntity en) {
-
-        if (en instanceof PlayerEntity) {
-            return Load.spells((PlayerEntity) en)
-                .hasSynergy(this);
-        } else {
-            if (Load.isBoss(en)) {
-                return Load.boss(en)
-                    .hasSynergy(this);
-            }
-        }
-        return false;
+    public float get(LivingEntity en, SC sc) {
+        return getContext(en).getConfigFor(this)
+            .get(sc)
+            .get(Load.spells(en), this);
     }
 
     public SynergyDamageEffect getSynergyDamage(SpellDamageEffect ctx, int num) {

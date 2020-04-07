@@ -1,30 +1,26 @@
 package com.robertx22.mine_and_slash.potion_effects.druid;
 
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornArmorSpell;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
-import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.potion_effects.bases.data.PotionStat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
-import net.minecraft.entity.LivingEntity;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPotion, IOnBasicAttackedPotion,
-    IOnBasicAttackPotion {
+public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPotion {
 
     public static final ThornArmorEffect INSTANCE = new ThornArmorEffect();
 
@@ -53,27 +49,29 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
         return 15;
     }
 
-    public ExactStatData getNatureRes(EntityCap.UnitData data, ExtraPotionData extraData) {
-        int statAmount = 3 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatModTypes.Flat, ElementalResist.MAP.get(Elements.Nature)).scaleToLvl(
-            extraData.casterLvl);
-    }
-
-    public ExactStatData getArmor(EntityCap.UnitData data, ExtraPotionData extraData) {
-        int statAmount = 1 * extraData.getStacks();
-        return new ExactStatData(statAmount, StatModTypes.Flat, Armor.getInstance()).scaleToLvl(extraData.casterLvl);
+    @Override
+    public List<PotionStat> getPotionStats() {
+        List<PotionStat> list = new ArrayList<>();
+        list.add(new PotionStat(3, new ElementalResist(Elements.Nature)));
+        list.add(new PotionStat(2, Armor.getInstance()));
+        return list;
     }
 
     @Override
-    public List<ExactStatData> getStatsAffected(EntityCap.UnitData data, ExtraPotionData extraData) {
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        return p;
+    }
 
-        List<ExactStatData> list = new ArrayList<>();
+    @Nullable
+    @Override
+    public BaseSpell getSpell() {
+        return ThornArmorSpell.getInstance();
+    }
 
-        list.add(getNatureRes(data, extraData));
-        list.add(getArmor(data, extraData));
-
-        return list;
-
+    @Override
+    public SpellSchools getSchool() {
+        return getSpell().getSchool();
     }
 
     @Override
@@ -84,18 +82,5 @@ public class ThornArmorEffect extends BasePotionEffect implements IApplyStatPoti
 
     }
 
-    @Override
-    public void onBasicAttacked(LivingEntity source, LivingEntity target) {
-        if (Synergies.THORN_ARMOR_THORNS.has(target)) {
-            Synergies.THORN_ARMOR_THORNS.tryActivate(new CasterTargetContext(source, target));
-        }
-    }
-
-    @Override
-    public void OnBasicAttack(LivingEntity source, LivingEntity target) {
-        if (Synergies.THORN_ARMOR_THORNS.has(source)) {
-            Synergies.THORN_ARMOR_THORNS.tryActivate(new CasterTargetContext(source, target));
-        }
-    }
 }
 

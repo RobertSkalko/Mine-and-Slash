@@ -3,18 +3,14 @@ package com.robertx22.mine_and_slash.potion_effects.druid;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.PoisonedWeaponsSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterTargetContext;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.PotionStat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -23,7 +19,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplyStatPotion, IOnBasicAttackPotion {
+public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplyStatPotion {
 
     private PoisonedWeaponsEffect() {
         super(EffectType.BENEFICIAL, 4393423);
@@ -84,13 +80,6 @@ public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplySta
 
         return list;
 
-    }
-
-    @Override
-    public void OnBasicAttack(LivingEntity source, LivingEntity target) {
-        if (Synergies.POISONED_WEAPONS_THORNS.has(source)) {
-            Synergies.POISONED_WEAPONS_THORNS.tryActivate(new CasterTargetContext(source, target));
-        }
     }
 
     private static class SingletonHolder {

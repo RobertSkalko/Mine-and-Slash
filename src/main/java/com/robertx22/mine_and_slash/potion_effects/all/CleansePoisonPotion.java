@@ -1,15 +1,19 @@
 package com.robertx22.mine_and_slash.potion_effects.all;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.potion.EffectType;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,5 +57,21 @@ public class CleansePoisonPotion extends BasePotionEffect {
     @Override
     public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         return new ArrayList<>();
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        return new PreCalcSpellConfigs();
+    }
+
+    @Nullable
+    @Override
+    public BaseSpell getSpell() {
+        return null;
+    }
+
+    @Override
+    public SpellSchools getSchool() {
+        return null;
     }
 }

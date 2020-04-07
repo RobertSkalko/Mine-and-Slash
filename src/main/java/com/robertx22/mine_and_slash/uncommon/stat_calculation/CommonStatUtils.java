@@ -11,7 +11,9 @@ import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatConversion;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatTransfer;
@@ -37,11 +39,13 @@ public class CommonStatUtils {
 
     public static void addPotionStats(LivingEntity entity, UnitData data) {
 
+        PlayerSpellCap.ISpellsCap cap = Load.spells(entity);
+
         for (EffectInstance instance : entity.getActivePotionEffects()) {
             if (instance.getPotion() instanceof IApplyStatPotion) {
                 IApplyStatPotion stat = (IApplyStatPotion) instance.getPotion();
                 try {
-                    stat.applyStats(data, instance);
+                    stat.applyStats(data, cap, instance);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

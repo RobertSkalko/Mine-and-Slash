@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.packets.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -62,7 +63,10 @@ public class CastSpellPacket {
                         BaseSpell spell = spells.getCastingData()
                             .getSpellBeingCast();
                         if (spell != null) {
-                            spell.spendResources(player);
+
+                            SpellCastContext c = new SpellCastContext(player, 0, spell);
+
+                            spell.spendResources(c);
                         }
 
                         spells.syncToClient(player);

@@ -49,14 +49,4 @@ public class BlizzardEntity extends BaseCloudEntity {
 
     }
 
-    @Override
-    public int ticksToHitMobs() {
-        return 20;
-    }
-
-    @Override
-    public float radius() {
-        return 2.5F;
-    }
-
 }

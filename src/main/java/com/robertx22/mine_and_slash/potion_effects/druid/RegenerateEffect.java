@@ -1,12 +1,15 @@
 package com.robertx22.mine_and_slash.potion_effects.druid;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.RegenerateSpell;
-import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
@@ -14,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +34,8 @@ public class RegenerateEffect extends BasePotionEffect {
                 ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, ctx.entity, 3);
             } else {
 
-                int num = CALC.getCalculatedValue(ctx.casterData);
+                int num = getCalc(ctx.spellsCap)
+                    .getCalculatedValue(ctx.casterData);
 
                 ResourcesData.Context hp = new ResourcesData.Context(ctx.caster, ctx.entity, ctx.casterData,
                     ctx.entityData, ResourcesData.Type.HEALTH, num,
@@ -44,7 +49,7 @@ public class RegenerateEffect extends BasePotionEffect {
         }, info -> {
             List<ITextComponent> list = new ArrayList<>();
             list.add(new StringTextComponent("Heals user."));
-            list.addAll(CALC.GetTooltipString(info));
+            list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
             return list;
         }));
 
@@ -54,8 +59,6 @@ public class RegenerateEffect extends BasePotionEffect {
     public String GUID() {
         return "self_regen";
     }
-
-    public static SpellCalcData CALC = SpellCalcData.one(HealthRegen.getInstance(), 0.75F, 5);
 
     @Override
     public int getDurationInSeconds() {
@@ -67,4 +70,21 @@ public class RegenerateEffect extends BasePotionEffect {
         return "Regenerate";
     }
 
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        p.set(SC.BASE_VALUE, 2, 6);
+        return p;
+    }
+
+    @Nullable
+    @Override
+    public BaseSpell getSpell() {
+        return RegenerateSpell.getInstance();
+    }
+
+    @Override
+    public SpellSchools getSchool() {
+        return getSpell().getSchool();
+    }
 }

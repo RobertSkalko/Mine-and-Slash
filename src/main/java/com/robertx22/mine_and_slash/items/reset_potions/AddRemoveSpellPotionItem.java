@@ -34,7 +34,7 @@ public class AddRemoveSpellPotionItem extends BaseInstantPotion implements IShap
 
         if (player instanceof PlayerEntity) {
             Load.spells((PlayerEntity) player)
-                .addResetPoints(1);
+                .getAbilitiesData().resetPoints += 1;
         }
     }
 

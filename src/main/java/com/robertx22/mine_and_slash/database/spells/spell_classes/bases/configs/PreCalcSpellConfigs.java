@@ -15,6 +15,8 @@ public class PreCalcSpellConfigs {
 
     public PreCalcSpellConfigs() {
         set(SC.TIMES_TO_CAST, 1, 1);
+        set(SC.COOLDOWN_TICKS, 0, 0);
+        set(SC.COOLDOWN_SECONDS, 0, 0);
     }
 
     private HashMap<SC, LevelBased> map = new HashMap<>();

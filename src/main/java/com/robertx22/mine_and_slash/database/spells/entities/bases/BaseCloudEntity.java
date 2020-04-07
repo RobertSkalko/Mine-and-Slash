@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
+import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
@@ -32,10 +34,6 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
 
     public abstract void summonFallParticle(Vec3d p);
 
-    public abstract int ticksToHitMobs();
-
-    public abstract float radius();
-
     public boolean spawnCloudParticles() {
         return true;
     }
@@ -43,14 +41,19 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
     @Override
     public void onTick() {
         try {
+            EntitySpellData sdata = getSpellData();
+            int TICK_RATE = sdata.configs.get(SC.TICK_RATE)
+                .intValue();
+            int RADIUS = sdata.configs.get(SC.RADIUS)
+                .intValue();
 
-            if (this.ticksExisted % ticksToHitMobs() == 1) {
+            if (this.ticksExisted % TICK_RATE == 1) {
 
                 if (!this.world.isRemote) {
 
                     List<LivingEntity> entities = EntityFinder.start(
                         getCaster(), LivingEntity.class, getPositionVector())
-                        .radius(radius())
+                        .radius(RADIUS)
                         .build();
 
                     entities.forEach(x -> onHit(x));
@@ -68,7 +71,7 @@ public abstract class BaseCloudEntity extends BaseInvisibleEntity {
                     float height = 4;
 
                     Vec3d p = GeometryUtils.getRandomHorizontalPosInRadiusCircle(
-                        posX, posY + height + yRandom, posZ, radius());
+                        posX, posY + height + yRandom, posZ, RADIUS);
 
                     if (spawnCloudParticles()) {
                         for (int a = 1; a < 2; a++) {

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.druid;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.PoisonedWeaponsSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.OnBasicAttackSynergy;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
@@ -12,7 +12,9 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SynergyDamageEffect;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -20,7 +22,7 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PoisonedWeaponsThornsSynergy extends OnDamageDoneSynergy {
+public class PoisonedWeaponsThornsSynergy extends OnBasicAttackSynergy {
 
     @Override
     public String GUID() {
@@ -56,23 +58,30 @@ public class PoisonedWeaponsThornsSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public void tryActivate(SpellDamageEffect ctx) {
+    public void tryActivate(DamageEffect ctx) {
 
-        if (PotionEffectUtils.has(ctx.target, ThornsEffect.INSTANCE)) {
+        if (ctx.getEffectType()
+            .equals(EffectData.EffectTypes.BASIC_ATTACK)) {
 
-            ParticleEnum.sendToClients(ctx.target,
-                new ParticlePacketData(ctx.target.getPosition(), ParticleEnum.NOVA).radius(
-                    2)
-                    .type(ParticleTypes.CRIT)
-                    .amount(30)
-            );
+            if (PotionEffectUtils.has(ctx.target, ThornsEffect.INSTANCE)) {
 
-            int num = getPreCalcConfig().getCalc(Load.spells(ctx.source), this)
-                .getCalculatedValue(ctx.sourceData);
+                ParticleEnum.sendToClients(ctx.target,
+                    new ParticlePacketData(ctx.target.getPosition(), ParticleEnum.NOVA).radius(
+                        2)
+                        .type(ParticleTypes.CRIT)
+                        .amount(30)
+                );
 
-            getSynergyDamage(ctx, num)
-                .Activate();
+                int num = getPreCalcConfig().getCalc(Load.spells(ctx.source), this)
+                    .getCalculatedValue(ctx.sourceData);
 
+                SynergyDamageEffect dmg = new SynergyDamageEffect(this,
+                    ctx.source, ctx.target, num, ctx.sourceData, ctx.targetData, getSpell());
+                dmg.element = getSpell()
+                    .getElement();
+                dmg.Activate();
+
+            }
         }
     }
 
