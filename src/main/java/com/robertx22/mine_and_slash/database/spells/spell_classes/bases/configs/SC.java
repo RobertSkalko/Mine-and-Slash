@@ -10,7 +10,7 @@ public enum SC {
     SHOOT_SPEED(0.05F, true),
     SUMMONED_ENTITIES(1, true),
     CHANCE(0, true),
-    DURATION_TICKS(0, true),
+    DURATION_TICKS(0, false),
     TICK_RATE(0, true),
     TIMES_TO_CAST(1, false),
     BASE_VALUE(0, true),

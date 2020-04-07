@@ -80,7 +80,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             int castTimeTicks = (int) ctx.getConfigFor(this)
                 .get(SC.CAST_TIME_TICKS)
                 .get(ctx.spellsCap, this);
-            ;
+
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
 

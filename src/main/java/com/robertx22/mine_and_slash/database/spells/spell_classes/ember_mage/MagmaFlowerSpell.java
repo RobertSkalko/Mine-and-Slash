@@ -46,7 +46,7 @@ public class MagmaFlowerSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Fire;
                 }
-            }.spawnBlock(ModBlocks.MAGMA_FLOWER.get())
+            }.spawnBlock(ModBlocks.MAGMA_FLOWER)
                 .summonsEntity((world) -> new SeedEntity(world)));
     }
 

@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.RegistryObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import static com.robertx22.mine_and_slash.database.spells.spell_classes.bases.B
 
 public abstract class ImmutableSpellConfigs {
 
-    private BaseSpellBlock block;
+    private RegistryObject<? extends BaseSpellBlock> block;
     private BasePotionEffect effect;
     private boolean goesOnCooldownIfCanceled;
     private Function<World, Entity> newEntitySummoner;
@@ -34,10 +35,10 @@ public abstract class ImmutableSpellConfigs {
     public abstract Elements element();
 
     public final BaseSpellBlock spellBlockToSpawn() {
-        return block;
+        return block.get();
     }
 
-    public ImmutableSpellConfigs spawnBlock(BaseSpellBlock block) {
+    public <T extends BaseSpellBlock> ImmutableSpellConfigs spawnBlock(RegistryObject<T> block) {
         this.block = block;
         return this;
     }

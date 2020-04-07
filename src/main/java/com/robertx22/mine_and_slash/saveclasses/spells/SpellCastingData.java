@@ -78,24 +78,39 @@ public class SpellCastingData {
     public void onTimePass(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int ticks) {
 
         try {
-            spellDatas.values()
-                .forEach(x -> x.tickCooldown(ticks));
+
+            if (castingTicksLeft > 0) {
+                spellDatas.values()
+                    .forEach(x -> x.tickCooldown(ticks));
+
+                BaseSpell spell = SlashRegistry.Spells()
+                    .get(spellBeingCast);
+
+                SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
+
+                if (spell != null && spells != null && SlashRegistry.Spells()
+                    .isRegistered(spell)) {
+                    spell.onCastingTick(ctx);
+                    addCastingMoveDebuff(player);
+                } else {
+                    removeCastingMoveDebuff(player);
+                }
+
+                castingTicksLeft--;
+                castingTicksDone++;
+            } else {
+
+                this.spellBeingCast = "";
+
+            }
 
             BaseSpell spell = SlashRegistry.Spells()
                 .get(spellBeingCast);
 
-            SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
-
-            if (spell != null && spells != null && SlashRegistry.Spells()
+            if (spell == null || !SlashRegistry.Spells()
                 .isRegistered(spell)) {
-                spell.onCastingTick(ctx);
-                addCastingMoveDebuff(player);
-            } else {
                 removeCastingMoveDebuff(player);
             }
-
-            castingTicksLeft--;
-            castingTicksDone++;
 
         } catch (Exception e) {
 

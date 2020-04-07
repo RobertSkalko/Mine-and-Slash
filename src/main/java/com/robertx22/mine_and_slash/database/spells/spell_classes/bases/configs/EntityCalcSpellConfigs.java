@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -20,12 +21,17 @@ public class EntityCalcSpellConfigs {
     @Store
     private HashMap<SC, Float> map = new HashMap<>();
 
+    @Factory
+    private EntityCalcSpellConfigs() {
+
+    }
+
     public Float get(SC sc) {
 
         if (!map.containsKey(sc)) {
 
             try {
-                throw new RuntimeException("Trying to get non existent value!!!");
+                throw new RuntimeException("Trying to get non existent value: " + sc.name());
             } catch (RuntimeException e) {
                 e.printStackTrace();
             }

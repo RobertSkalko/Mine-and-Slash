@@ -60,6 +60,7 @@ public class TidalWaveSpell extends BaseSpell {
         c.set(SC.PROJECTILE_COUNT, 3, 5);
         c.set(SC.CAST_TIME_TICKS, 50, 40);
         c.set(SC.COOLDOWN_SECONDS, 20, 10);
+        c.set(SC.TIMES_TO_CAST, 3, 6);
 
         c.setMaxLevel(16);
 
