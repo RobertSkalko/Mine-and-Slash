@@ -34,6 +34,7 @@ public class SpellCastContext {
 
             if (ability.getAbilityType() == IAbility.Type.SPELL) {
                 pre.modifyBySynergies(ability.getSpell(), spellsCap);
+                pre.modifyByUserStats(this);
             }
 
             cacheMap.put(ability.GUID(), pre);

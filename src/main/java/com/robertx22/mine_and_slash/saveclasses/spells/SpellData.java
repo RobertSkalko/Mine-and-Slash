@@ -9,6 +9,8 @@ public class SpellData {
 
     @Store
     private int cooldownInTicks = 0;
+    @Store
+    private int total = 0;
 
     public boolean cooldownIsReady() {
         return cooldownInTicks <= 0;
@@ -18,8 +20,13 @@ public class SpellData {
         return cooldownInTicks;
     }
 
+    public int getTotalCooldown() {
+        return total;
+    }
+
     public void setCooldown(int ticks) {
         this.cooldownInTicks = ticks;
+        this.total = ticks;
     }
 
     public void tickCooldown(int ticks) {

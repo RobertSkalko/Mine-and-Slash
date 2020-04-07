@@ -2,10 +2,12 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs
 
 import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellStatsCalcEffect;
 
 import java.util.HashMap;
 
@@ -18,7 +20,6 @@ public class PreCalcSpellConfigs {
         set(SC.COOLDOWN_TICKS, 0, 0);
         set(SC.COOLDOWN_SECONDS, 0, 0);
         set(SC.DURATION_TICKS, 60, 60);
-
     }
 
     private HashMap<SC, LevelBased> map = new HashMap<>();
@@ -48,18 +49,11 @@ public class PreCalcSpellConfigs {
 
     public void set(SC sc, float min, float max) {
 
-        if (sc.errorIfOverridden) {
-            if (map.containsKey(sc)) {
-
-                try {
-                    throw new RuntimeException("Trying to set an already set value!!!");
-                } catch (RuntimeException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
         map.put(sc, new LevelBased(min, max).min(sc.min));
+    }
+
+    public void multiplyValueBy(SC sc, float multi) {
+        get(sc).multiplyBy(multi);
     }
 
     public void setMaxLevel(int lvl) {
@@ -94,6 +88,10 @@ public class PreCalcSpellConfigs {
     }
 
     private boolean modifiedBySynergies = false;
+
+    public void modifyByUserStats(SpellCastContext ctx) {
+        new SpellStatsCalcEffect(this, ctx.caster, ctx.caster).Activate();
+    }
 
     public void modifyBySynergies(BaseSpell spell, PlayerSpellCap.ISpellsCap cap) {
 

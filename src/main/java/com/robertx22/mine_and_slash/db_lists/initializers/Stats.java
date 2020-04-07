@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.ManaToEnergyConversion;
+import com.robertx22.mine_and_slash.database.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.EarthAtronach;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.FireAtronach;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.FrostAtronach;
@@ -51,6 +52,8 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
+
+                    add(ReducedCooldownStat.getInstance());
 
                     add(ArmorPenetration.getInstance());
 

@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.gui.overlays.spell_hotbar;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
@@ -89,9 +88,7 @@ public class SpellHotbarOverlay extends AbstractGui {
                 if (spelldata != null) {
                     if (spelldata.cooldownIsReady() == false) {
 
-                        SpellCastContext ctx = new SpellCastContext(mc.player, 0, spell); // todo seems inefficient
-
-                        float percent = (float) spelldata.getRemainingCooldown() / (float) spell.getCooldownInTicks(ctx);
+                        float percent = (float) spelldata.getRemainingCooldown() / (float) spelldata.getTotalCooldown();
 
                         percent = MathHelper.clamp(percent + 0.1F, 0.03F, 1F); // this is a hacky way to make spell cooldowns more predictable
 

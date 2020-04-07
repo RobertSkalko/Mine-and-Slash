@@ -280,6 +280,10 @@ public class StatData {
         return 1 + getAverageValue() / 100;
     }
 
+    public float getReverseMultiplier() {
+        return 1 - getAverageValue() / 100;
+    }
+
     public boolean isNotEmpty() {
         return Flat != 0 || val != 0 || Percent != 0 || Multi != 0;
     }

@@ -21,6 +21,11 @@ public class LevelBased {
         return new LevelBased(ERROR, ERROR);
     }
 
+    public void multiplyBy(float multi) {
+        this.levelOne *= multi;
+        this.maxLevel *= multi;
+    }
+
     static float ERROR = Integer.MIN_VALUE;
 
     public boolean isEmpty() {
