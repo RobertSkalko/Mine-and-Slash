@@ -14,25 +14,17 @@ import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class FireballSpell extends BaseSpell {
 
     private FireballSpell() {
         super(
             new ImmutableSpellConfigs() {
-
-                @Override
-                public BaseSpell.AllowedAsRightClickOn allowedAsRightClickOn() {
-                    return AllowedAsRightClickOn.MAGE_WEAPON;
-                }
 
                 @Override
                 public SpellSchools school() {
@@ -50,15 +42,11 @@ public class FireballSpell extends BaseSpell {
                 }
 
                 @Override
-                public Function<World, Entity> newEntitySummoner() {
-                    return world -> new FireballEntity(world);
-                }
-
-                @Override
                 public Elements element() {
                     return Elements.Fire;
                 }
-            });
+            }.summonsEntity(world -> new FireballEntity(world))
+                .rightClickFor(AllowedAsRightClickOn.MAGE_WEAPON));
     }
 
     @Override

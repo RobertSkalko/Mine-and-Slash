@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -71,11 +70,8 @@ public class PoisonedWeaponsThornsSynergy extends OnDamageDoneSynergy {
             int num = getPreCalcConfig().getCalc(Load.spells(ctx.source), this)
                 .getCalculatedValue(ctx.sourceData);
 
-            SpellDamageEffect dmg = new SpellDamageEffect(
-                ctx.source, ctx.target, num, ctx.sourceData, ctx.targetData, getSpell());
-            dmg.element = Elements.Nature;
-            dmg.doNotActivateSynergies();
-            dmg.Activate();
+            getSynergyDamage(ctx, num)
+                .Activate();
 
         }
     }

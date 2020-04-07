@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
 
-import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
@@ -73,7 +72,7 @@ public class FrostballExtraDmgSynergy extends OnDamageDoneSynergy {
 
             int num = getCalc(Load.spells(ctx.source)).getCalculatedValue(ctx.sourceData);
 
-            SpellUtils.getSynergyDamage(ctx, num)
+            getSynergyDamage(ctx, num)
                 .Activate();
 
         }

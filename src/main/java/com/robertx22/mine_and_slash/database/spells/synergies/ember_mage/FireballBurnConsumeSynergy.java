@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
@@ -73,12 +72,8 @@ public class FireballBurnConsumeSynergy extends OnDamageDoneSynergy {
                 .build();
 
             entities.forEach(e -> {
-                SpellDamageEffect dmg = new SpellDamageEffect(ctx.source, e, num, ctx.sourceData, ctx.targetData,
-                    getSpell()
-                );
-                dmg.element = Elements.Fire;
-                dmg.doNotActivateSynergies();
-                dmg.Activate();
+
+                getSynergyDamage(ctx, e, num).Activate();
 
             });
 

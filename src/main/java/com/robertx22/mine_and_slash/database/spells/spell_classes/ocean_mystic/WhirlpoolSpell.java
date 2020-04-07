@@ -12,16 +12,13 @@ import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class WhirlpoolSpell extends BaseSpell {
 
@@ -47,15 +44,10 @@ public class WhirlpoolSpell extends BaseSpell {
                 }
 
                 @Override
-                public Function<World, Entity> newEntitySummoner() {
-                    return world -> new WhirlpoolEntity(world);
-                }
-
-                @Override
                 public Elements element() {
                     return Elements.Water;
                 }
-            });
+            }.summonsEntity(w -> new WhirlpoolEntity(w)));
     }
 
     @Override
@@ -63,11 +55,11 @@ public class WhirlpoolSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
         c.set(SC.MANA_COST, 15, 30);
-        c.set(SC.BASE_VALUE, 1, 3);
+        c.set(SC.BASE_VALUE, 2, 3);
         c.set(SC.SHOOT_SPEED, 0.6F, 0.9F);
         c.set(SC.PROJECTILE_COUNT, 1, 1);
         c.set(SC.CAST_TIME_TICKS, 30, 20);
-        c.set(SC.COOLDOWN_SECONDS, 45, 30);
+        c.set(SC.COOLDOWN_SECONDS, 120, 60);
 
         c.setMaxLevel(12);
 

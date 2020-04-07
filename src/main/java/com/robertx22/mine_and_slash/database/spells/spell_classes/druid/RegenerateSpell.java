@@ -6,9 +6,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_typ
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.synergies.ctx.CasterContext;
-import com.robertx22.mine_and_slash.db_lists.initializers.Synergies;
-import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.RegenerateEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
@@ -16,7 +13,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -47,15 +43,10 @@ public class RegenerateSpell extends BaseSpell {
                 }
 
                 @Override
-                public BasePotionEffect potionEffect() {
-                    return RegenerateEffect.INSTANCE;
-                }
-
-                @Override
                 public Elements element() {
                     return Elements.Nature;
                 }
-            });
+            }.addsEffect(RegenerateEffect.INSTANCE));
 
     }
 
@@ -88,24 +79,6 @@ public class RegenerateSpell extends BaseSpell {
         list.addAll(RegenerateEffect.INSTANCE.GetTooltipString(info));
 
         return list;
-
-    }
-
-    @Override
-    public void castExtra(SpellCastContext ctx) {
-
-        LivingEntity caster = ctx.caster;
-
-        boolean bool = super.cast(ctx);
-
-        if (bool) {
-            if (Synergies.REGEN_AOE.has(caster)) {
-                Synergies.REGEN_AOE.tryActivate(new CasterContext(caster));
-            }
-            if (Synergies.REGEN_THORNS.has(caster)) {
-                Synergies.REGEN_THORNS.tryActivate(new CasterContext(caster));
-            }
-        }
 
     }
 

@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -148,14 +147,4 @@ public class SpellUtils {
         heal.Activate();
     }
 
-    public static SpellDamageEffect getSynergyDamage(SpellDamageEffect ctx, int num) {
-
-        SpellDamageEffect dmg = new SpellDamageEffect(
-            ctx.source, ctx.target, num, ctx.sourceData, ctx.targetData, ctx.getSpell());
-        dmg.element = ctx.getSpell()
-            .getElement();
-        dmg.doNotActivateSynergies();
-        return dmg;
-
-    }
 }

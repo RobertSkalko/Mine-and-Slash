@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
-import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.FireballEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
@@ -22,16 +21,13 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class BlazingInfernoSpell extends BaseSpell {
 
@@ -55,14 +51,10 @@ public class BlazingInfernoSpell extends BaseSpell {
                 }
 
                 @Override
-                public Function<World, Entity> newEntitySummoner() {
-                    return world -> new FireballEntity(world);
-                }
-
-                @Override
                 public Elements element() {
                     return Elements.Fire;
                 }
+
             });
     }
 
@@ -72,7 +64,6 @@ public class BlazingInfernoSpell extends BaseSpell {
 
         c.set(SC.MANA_COST, 30, 45);
         c.set(SC.BASE_VALUE, 2, 4);
-        c.set(SC.PROJECTILE_COUNT, 1, 1);
         c.set(SC.CAST_TIME_TICKS, 60, 40);
         c.set(SC.COOLDOWN_SECONDS, 60, 45);
         c.set(SC.RADIUS, 2, 3);

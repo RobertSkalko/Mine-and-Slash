@@ -12,27 +12,19 @@ import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class TidalWaveSpell extends BaseSpell {
 
     private TidalWaveSpell() {
         super(
             new ImmutableSpellConfigs() {
-
-                @Override
-                public boolean goesOnCooldownIfCanceled() {
-                    return true;
-                }
 
                 @Override
                 public SpellSchools school() {
@@ -50,15 +42,11 @@ public class TidalWaveSpell extends BaseSpell {
                 }
 
                 @Override
-                public Function<World, Entity> newEntitySummoner() {
-                    return world -> new TidalWaveEntity(world);
-                }
-
-                @Override
                 public Elements element() {
                     return Elements.Water;
                 }
-            });
+            }.cooldownIfCanceled(true)
+                .summonsEntity(w -> new TidalWaveEntity(w)));
     }
 
     @Override

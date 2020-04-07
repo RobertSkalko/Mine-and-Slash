@@ -1,63 +1,82 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ranger;
 
 import com.robertx22.mine_and_slash.database.spells.entities.proj.RangerArrowEntity;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseProjectileSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPredicates;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrowBarrageSpell extends BaseProjectileSpell {
+public class ArrowBarrageSpell extends BaseSpell {
 
     private ArrowBarrageSpell() {
-        this.castRequirements.add(BaseSpell.REQUIRE_SHOOTABLE);
+        super(
+            new ImmutableSpellConfigs() {
+
+                @Override
+                public SpellSchools school() {
+                    return SpellSchools.RANGER;
+                }
+
+                @Override
+                public SpellCastType castType() {
+                    return SpellCastType.PROJECTILE;
+                }
+
+                @Override
+                public SoundEvent sound() {
+                    return SoundEvents.ENTITY_ARROW_SHOOT;
+                }
+
+                @Override
+                public Elements element() {
+                    return Elements.Elemental;
+                }
+            }.addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE)
+                .cooldownIfCanceled(true)
+                .summonsEntity(world -> new RangerArrowEntity(world)));
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+
+        c.set(SC.MANA_COST, 15, 25);
+        c.set(SC.BASE_VALUE, 2, 4);
+        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.3F);
+        c.set(SC.PROJECTILE_COUNT, 1, 1);
+        c.set(SC.SHOOT_SPEED, 1, 1.5F);
+        c.set(SC.CAST_TIME_TICKS, 30, 20);
+        c.set(SC.COOLDOWN_SECONDS, 30, 20);
+        c.set(SC.RADIUS, 2, 3);
+        c.set(SC.TIMES_TO_CAST, 6, 4);
+
+        c.setMaxLevel(16);
+
+        return c;
+    }
+
+    @Override
+    public AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(0, 0);
     }
 
     public static ArrowBarrageSpell getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.RANGER;
-    }
-
-    @Override
-    public int getCooldownInSeconds() {
-        return 20;
-    }
-
-    @Override
-    public BaseSpell.SpellType getSpellType() {
-        return SpellType.Single_Target_Projectile;
-    }
-
-    @Override
-    public float getShootSpeed() {
-        return 1.5F;
-    }
-
-    @Override
-    public AbstractArrowEntity newEntity(World world) {
-        return new RangerArrowEntity(world);
-    }
-
-    @Override
-    public SoundEvent getCastSound() {
-        return SoundEvents.ENTITY_ARROW_SHOOT;
     }
 
     @Override
@@ -66,46 +85,14 @@ public class ArrowBarrageSpell extends BaseProjectileSpell {
     }
 
     @Override
-    public int getManaCost() {
-        return 20;
-    }
-
-    @Override
-    public int useTimeTicks() {
-        return 20;
-    }
-
-    @Override
-    public SpellCalcData getCalculation() {
-        return SpellCalcData.scaleWithAttack(0.2F, 0.2F, 1);
-    }
-
-    @Override
-    public Elements getElement() {
-        return Elements.Elemental;
-    }
-
-    @Override
-    public void onCastingTick(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int tick) {
-        if (tick % 4 == 0) {
-            this.cast(player, 0);
-        }
-    }
-
-    @Override
-    public boolean goesOnCooldownIfCastCanceled() {
-        return true;
-    }
-
-    @Override
-    public List<ITextComponent> GetDescription(TooltipInfo info) {
+    public List<ITextComponent> GetDescription(TooltipInfo info, SpellCastContext ctx) {
 
         List<ITextComponent> list = new ArrayList<>();
 
         list.add(new StringTextComponent("Shoots out many arrows while casting: "));
         list.add(new StringTextComponent("Requires Bow/Crossbow to use: "));
 
-        list.addAll(getCalculation().GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info));
 
         return list;
 

@@ -11,6 +11,8 @@ import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SynergyDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,6 +37,24 @@ public abstract class Synergy implements ITooltipList, IAbility, ISlashRegistryE
             }
         }
         return false;
+    }
+
+    public SynergyDamageEffect getSynergyDamage(SpellDamageEffect ctx, int num) {
+        SynergyDamageEffect dmg = new SynergyDamageEffect(this,
+            ctx.source, ctx.target, num, ctx.sourceData, ctx.targetData, ctx.getSpell());
+        dmg.element = ctx.getSpell()
+            .getElement();
+        return dmg;
+
+    }
+
+    public SynergyDamageEffect getSynergyDamage(SpellDamageEffect ctx, LivingEntity target, int num) {
+        SynergyDamageEffect dmg = new SynergyDamageEffect(this,
+            ctx.source, target, num, ctx.sourceData, Load.Unit(target), ctx.getSpell());
+        dmg.element = ctx.getSpell()
+            .getElement();
+        return dmg;
+
     }
 
     public SpellCastContext getContext(LivingEntity en) {

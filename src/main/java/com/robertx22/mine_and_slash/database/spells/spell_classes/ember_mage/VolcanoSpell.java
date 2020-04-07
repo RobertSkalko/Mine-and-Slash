@@ -13,15 +13,12 @@ import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class VolcanoSpell extends BaseSpell {
 
@@ -45,15 +42,10 @@ public class VolcanoSpell extends BaseSpell {
                 }
 
                 @Override
-                public Function<World, Entity> newEntitySummoner() {
-                    return world -> new VolcanoEntity(world);
-                }
-
-                @Override
                 public Elements element() {
                     return Elements.Fire;
                 }
-            });
+            }.summonsEntity(world -> new VolcanoEntity(world)));
     }
 
     @Override

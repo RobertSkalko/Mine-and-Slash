@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
-import com.robertx22.mine_and_slash.database.spells.blocks.base.BaseSpellBlock;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.SeedEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
@@ -16,14 +15,11 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class MagmaFlowerSpell extends BaseSpell {
 
@@ -32,18 +28,8 @@ public class MagmaFlowerSpell extends BaseSpell {
             new ImmutableSpellConfigs() {
 
                 @Override
-                public BaseSpellBlock spellBlockToSpawn() {
-                    return ModBlocks.MAGMA_FLOWER.get();
-                }
-
-                @Override
                 public SpellSchools school() {
                     return SpellSchools.EMBER_MAGE;
-                }
-
-                @Override
-                public Function<World, Entity> newEntitySummoner() {
-                    return (world) -> new SeedEntity(world);
                 }
 
                 @Override
@@ -60,7 +46,8 @@ public class MagmaFlowerSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Fire;
                 }
-            });
+            }.spawnBlock(ModBlocks.MAGMA_FLOWER.get())
+                .summonsEntity((world) -> new SeedEntity(world)));
     }
 
     @Override

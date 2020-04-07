@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs;
 
 import com.robertx22.mine_and_slash.database.spells.blocks.base.BaseSpellBlock;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPredicate;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
@@ -15,7 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import static com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell.AllowedAsRightClickOn;
+
 public abstract class ImmutableSpellConfigs {
+
+    private BaseSpellBlock block;
+    private BasePotionEffect effect;
+    private boolean goesOnCooldownIfCanceled;
+    private Function<World, Entity> newEntitySummoner;
+    private List<SpellPredicate> castRequirements = new ArrayList<>();
+    private AllowedAsRightClickOn allowedAsRightClickOn = AllowedAsRightClickOn.NONE;
 
     public abstract SpellSchools school();
 
@@ -25,28 +33,57 @@ public abstract class ImmutableSpellConfigs {
 
     public abstract Elements element();
 
-    public BaseSpellBlock spellBlockToSpawn() {
-        return null;
+    public final BaseSpellBlock spellBlockToSpawn() {
+        return block;
     }
 
-    public BasePotionEffect potionEffect() {
-        return null;
+    public ImmutableSpellConfigs spawnBlock(BaseSpellBlock block) {
+        this.block = block;
+        return this;
     }
 
-    public boolean goesOnCooldownIfCanceled() {
-        return false;
+    public final BasePotionEffect potionEffect() {
+        return effect;
     }
 
-    public Function<World, Entity> newEntitySummoner() {
-        return null;
+    public ImmutableSpellConfigs addsEffect(BasePotionEffect effect) {
+        this.effect = effect;
+        return this;
     }
 
-    public List<SpellPredicate> castRequirements() {
-        return new ArrayList<>();
+    public final boolean goesOnCooldownIfCanceled() {
+        return goesOnCooldownIfCanceled;
     }
 
-    public BaseSpell.AllowedAsRightClickOn allowedAsRightClickOn() {
-        return BaseSpell.AllowedAsRightClickOn.NONE;
+    public ImmutableSpellConfigs cooldownIfCanceled(boolean bool) {
+        this.goesOnCooldownIfCanceled = bool;
+        return this;
     }
 
+    public final Function<World, Entity> newEntitySummoner() {
+        return this.newEntitySummoner;
+    }
+
+    public ImmutableSpellConfigs summonsEntity(Function<World, Entity> sum) {
+        this.newEntitySummoner = sum;
+        return this;
+    }
+
+    public final List<SpellPredicate> castRequirements() {
+        return castRequirements;
+    }
+
+    public ImmutableSpellConfigs addCastRequirement(SpellPredicate castRequirements) {
+        this.castRequirements.add(castRequirements);
+        return this;
+    }
+
+    public final AllowedAsRightClickOn allowedAsRightClickOn() {
+        return this.allowedAsRightClickOn;
+    }
+
+    public ImmutableSpellConfigs rightClickFor(AllowedAsRightClickOn allowedAsRightClickOn) {
+        this.allowedAsRightClickOn = allowedAsRightClickOn;
+        return this;
+    }
 }

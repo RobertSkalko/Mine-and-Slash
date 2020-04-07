@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_typ
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.ThornArmorEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
@@ -36,11 +35,6 @@ public class ThornArmorSpell extends BaseSpell {
             }
 
             @Override
-            public BasePotionEffect potionEffect() {
-                return ThornArmorEffect.INSTANCE;
-            }
-
-            @Override
             public SoundEvent sound() {
                 return SoundEvents.ENTITY_GENERIC_DRINK;
             }
@@ -49,7 +43,7 @@ public class ThornArmorSpell extends BaseSpell {
             public Elements element() {
                 return Elements.Nature;
             }
-        });
+        }.addsEffect(ThornArmorEffect.INSTANCE));
     }
 
     public static ThornArmorSpell getInstance() {

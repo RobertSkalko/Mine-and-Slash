@@ -5,6 +5,7 @@ SPELL REWORK! (UNFINISHED)
 * synergies now cost mana
 * removed some spells as i consider them bad (like geyser) and others because their spell school doesn't have enough spells, they'll probably be re-added later
 * added some new spells
+* spell damage stats are now percents and increase spell damage by percent, instead of adding to the damage.
 
 Other:
 * bosses now spawn less minions but they're all max rarity
