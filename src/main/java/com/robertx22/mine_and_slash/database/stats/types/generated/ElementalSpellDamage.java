@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.generated;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
@@ -22,6 +23,11 @@ public class ElementalSpellDamage extends ElementalStat {
     public ElementalSpellDamage(Elements element) {
         super(element);
 
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SLOW_SCALING;
     }
 
     @Override
@@ -51,13 +57,13 @@ public class ElementalSpellDamage extends ElementalStat {
 
     @Override
     public boolean IsPercent() {
-        return false;
+        return true;
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Spell " + this.getElement()
-            .dmgName + " Damage";
+        return "To " + this.getElement()
+            .dmgName + " Skill Damage";
 
     }
 

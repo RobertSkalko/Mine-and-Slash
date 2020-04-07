@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemRing;
 import net.minecraft.item.Item;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,14 +47,13 @@ public class Ring extends BaseCurio {
 
     @Override
     public List<PosStats> getPossiblePrimaryStats() {
-        return eleDmgs();
+        return Arrays.asList(new PosStats(new EnergyRegenFlat(), new ManaRegenFlat()));
     }
 
     @Override
     public StatModsHolder getPossibleSecondaryStats() {
         return new StatModsHolder(
-            new EnergyRegenFlat().size(StatMod.Size.LOW),
-            new ManaRegenFlat().size(StatMod.Size.LOW),
+            GearItemSlot.allResists(),
             new ManaFlat().size(StatMod.Size.LOW),
             new EnergyFlat().size(StatMod.Size.LOW)
         );

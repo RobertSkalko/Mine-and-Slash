@@ -23,13 +23,10 @@ public class ElementalInfusionEffect extends BaseDamageEffect {
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
         ElementalInfusion basebonus = (ElementalInfusion) stat;
 
-        float percent = data.getAverageValue();
-        float derivedvalue = (float) getSource(effect).getCreateStat(basebonus.StatThatGiveDamage())
-            .getAverageValue();
+        float spellDmgMulti = (float) getSource(effect).getCreateStat(basebonus.StatThatGiveDamage())
+            .getMultiplier();
 
-        int dmg = (int) (percent * derivedvalue / 100);
-
-        effect.addBonusEleDmg(stat.getElement(), dmg);
+        effect.number *= data.getMultiplier() * spellDmgMulti;
 
         return effect;
     }
@@ -37,7 +34,8 @@ public class ElementalInfusionEffect extends BaseDamageEffect {
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
         return effect.getEffectType()
-            .equals(EffectTypes.BASIC_ATTACK) && stat instanceof ElementalInfusion;
+            .equals(EffectTypes.BASIC_ATTACK) && stat.getElement()
+            .equals(effect.GetElement());
     }
 
 }

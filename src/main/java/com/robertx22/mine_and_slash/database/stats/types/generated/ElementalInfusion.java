@@ -45,7 +45,7 @@ public class ElementalInfusion extends SingleElementalStat implements IStatEffec
 
     @Override
     public String locDescForLangFile() {
-        return "Adds a percent of your spell DMG as DMG to your every weapon hit";
+        return "A percent of your bonus to spell damage is added to your elemental attacks too.";
     }
 
     @Override
