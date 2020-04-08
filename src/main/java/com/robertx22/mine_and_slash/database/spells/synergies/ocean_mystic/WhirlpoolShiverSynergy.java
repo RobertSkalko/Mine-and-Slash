@@ -40,10 +40,8 @@ public class WhirlpoolShiverSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public PreCalcSpellConfigs getConfigsAffectingSpell() {
-        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.MANA_COST, 1, 2);
-        return c;
+    public void alterSpell(PreCalcSpellConfigs c) {
+        c.set(SC.MANA_COST, 2, 3);
     }
 
     @Override

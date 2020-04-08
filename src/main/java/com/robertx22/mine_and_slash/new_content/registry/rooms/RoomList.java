@@ -31,6 +31,7 @@ public class RoomList {
             new BrickRoomAdder().addAllRooms();
             new SewersRoomAdder().addAllRooms();
             new NetherRoomAdder().addAllRooms();
+            new WideNatureRoomAdder().addAllRooms();
 
             rooms.add(new DungeonRoom("simple_prismarine", RoomType.FOUR_WAY, RoomGroup.MISC));
             rooms.add(new DungeonRoom("prismarine", RoomType.ENTRANCE, RoomGroup.MISC));

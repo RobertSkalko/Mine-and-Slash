@@ -33,12 +33,10 @@ public class MagmaFlowerEnhancedSynergy extends Synergy {
     }
 
     @Override
-    public PreCalcSpellConfigs getConfigsAffectingSpell() {
-        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+    public void alterSpell(PreCalcSpellConfigs c) {
         c.set(SC.MANA_COST, 3, 6);
-        c.set(SC.TICK_RATE, -1, 15);
+        c.set(SC.TICK_RATE, -1, -15);
         c.set(SC.RADIUS, 0.5F, 2F);
-        return c;
     }
 
     @Override

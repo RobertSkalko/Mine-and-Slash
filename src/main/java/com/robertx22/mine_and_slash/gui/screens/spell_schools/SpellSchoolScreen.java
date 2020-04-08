@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.packets.allocation.abilities.TryAllocateAbil
 import com.robertx22.mine_and_slash.packets.allocation.abilities.TryRemoveAbilityPointPacket;
 import com.robertx22.mine_and_slash.packets.allocation.schools.TryAddSchoolPointPacket;
 import com.robertx22.mine_and_slash.packets.allocation.schools.TryRemoveSchoolPointPacket;
+import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
@@ -33,12 +34,16 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
     static ResourceLocation BACKGROUND = new ResourceLocation(
         Ref.MODID, "textures/gui/spell_schools/background.png");
+    static ResourceLocation PICK_BACKGROUND = new ResourceLocation(
+        Ref.MODID, "textures/gui/spell_schools/pick_background.png");
     static ResourceLocation PARTS = new ResourceLocation(
         Ref.MODID, "textures/gui/spell_schools/parts.png");
     static ResourceLocation ABILITY = new ResourceLocation(
         Ref.MODID, "textures/gui/spell_schools/ability.png");
     static ResourceLocation SCHOOL_BUTTON = new ResourceLocation(
         Ref.MODID, "textures/gui/spell_schools/school_button.png");
+    static ResourceLocation BACK_BUTTON = new ResourceLocation(
+        Ref.MODID, "textures/gui/spell_schools/back_button.png");
 
     static int X = 246;
     static int Y = 183;
@@ -47,33 +52,75 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
         super(X, Y);
     }
 
-    private SpellSchools school = SpellSchools.EMBER_MAGE;
+    public SpellSchoolScreen(SpellSchools school) {
+        super(X, Y);
+        this.school = school;
+    }
+
+    private SpellSchools school = null;
+
+    public void setSpellSchool(SpellSchools school) {
+        this.school = school;
+        this.init();
+    }
 
     @Override
     public void init() {
+
+        this.buttons.clear();
+
         super.init();
 
-        addButton(new SchoolButton(school, guiLeft + 10, guiTop + 10));
+        if (this.school != null) {
+            addButton(new SchoolButton(school, guiLeft + 14, guiTop + 10));
 
-        List<IAbility> list = new ArrayList<>();
-
-        list.addAll(
-            SlashRegistry.Spells()
+            int i = 0;
+            for (BasePotionEffect e : SlashRegistry.PotionEffects()
                 .getFilterWrapped(x -> x.getSchool()
-                    .equals(school)).list);
-        list.addAll(
-            SlashRegistry.Synergies()
-                .getFilterWrapped(x -> x.getSchool()
-                    .equals(school)).list);
+                    .equals(school)).list) {
 
-        list.forEach(x -> {
+                if (e.getSpell() == null) {
+                    int xpos = guiLeft + 50 + (i * (AbilityButton.xSize + 6));
+                    int ypos = guiTop + 157;
+                    addButton(new AbilityButton(e, xpos, ypos));
+                    i++;
+                }
+            }
 
-            int xpos = guiLeft + 50 + x.getAbilityPlace().x * (AbilityButton.xSize + 6);
-            int ypos = guiTop + 131 - x.getAbilityPlace().y * (AbilityButton.ySize + 3);
+            List<IAbility> list = new ArrayList<>();
 
-            this.addButton(new AbilityButton(x, xpos, ypos));
+            list.addAll(
+                SlashRegistry.Spells()
+                    .getFilterWrapped(x -> x.getSchool()
+                        .equals(school)).list);
+            list.addAll(
+                SlashRegistry.Synergies()
+                    .getFilterWrapped(x -> x.getSchool()
+                        .equals(school)).list);
 
-        });
+            list.forEach(x -> {
+
+                int xpos = guiLeft + 50 + x.getAbilityPlace().x * (AbilityButton.xSize + 6);
+                int ypos = guiTop + 134 - x.getAbilityPlace().y * (AbilityButton.ySize + 3);
+
+                this.addButton(new AbilityButton(x, xpos, ypos));
+
+            });
+
+        } else {
+
+            int xpos = guiLeft + 25;
+            int ypos = guiTop + 15;
+
+            for (SpellSchools value : SpellSchools.values()) {
+
+                addButton(new PickSchoolButton(this, value, xpos, ypos));
+
+                xpos += PickSchoolButton.xSize + PickSchoolButton.xSize / 3;
+
+            }
+
+        }
 
     }
 
@@ -89,9 +136,15 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
     }
 
     protected void drawBackground(float partialTicks, int x, int y) {
-        Minecraft.getInstance()
-            .getTextureManager()
-            .bindTexture(BACKGROUND);
+        if (school == null) {
+            Minecraft.getInstance()
+                .getTextureManager()
+                .bindTexture(PICK_BACKGROUND);
+        } else {
+            Minecraft.getInstance()
+                .getTextureManager()
+                .bindTexture(BACKGROUND);
+        }
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, X, Y, 256, 256);
 
@@ -189,6 +242,62 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
     }
 
+    static class PickSchoolButton extends ImageButton {
+        public static int xSize = 32;
+        public static int ySize = 32;
+
+        SpellSchools school;
+
+        EntityCap.UnitData data;
+
+        SpellSchoolScreen screen;
+
+        public PickSchoolButton(SpellSchoolScreen screen, SpellSchools school, int xPos, int yPos) {
+            super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
+            });
+
+            this.screen = screen;
+            this.school = school;
+            this.data = Load.Unit(Minecraft.getInstance().player);
+
+        }
+
+        public void renderToolTip(int mouseX, int mouseY) {
+
+        }
+
+        @Override
+        public boolean mouseClicked(double x, double y, int click) {
+            if (this.active && this.visible && this.isHovered()) {
+                //this.screen.setSpellSchool(school);
+                Minecraft.getInstance()
+                    .displayGuiScreen(new SpellSchoolScreen(school));
+                return true;
+            }
+            return super.mouseClicked(x, y, click);
+        }
+
+        @Override
+        public void renderButton(int x, int y, float ticks) {
+
+            Minecraft mc = Minecraft.getInstance();
+
+            mc.getTextureManager()
+                .bindTexture(school.getGuiIconLocation());
+
+            int offx = 0;
+            int offy = 0;
+
+            RenderSystem.disableDepthTest();
+
+            blit(this.x, this.y, offx, offy, this.width, this.height, xSize, ySize);
+
+            RenderSystem.enableDepthTest();
+
+        }
+
+    }
+
     static class SchoolButton extends ImageButton {
         public static int xSize = 22;
         public static int ySize = 161;
@@ -261,7 +370,9 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
             blit(this.x, this.y, 0, 0, this.width, this.height); // background
 
-            blit(this.x, this.y, offx, offy, this.width, (int) (this.height * filled)); // the fill bar
+            int fillY = (int) (this.y + ((1 - filled) * (ySize - 22)));
+
+            blit(this.x + 1, fillY, offx, offy, this.width - 1, (int) ((this.height - 22) * filled)); // the fill bar
 
             blit(this.x, this.y, xSize + 1, 0, this.width, this.height); // front layer
 

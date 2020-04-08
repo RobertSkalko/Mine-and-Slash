@@ -39,10 +39,8 @@ public class HeartOfIceFrostSynergy extends OnSpellCastSynergy {
     }
 
     @Override
-    public PreCalcSpellConfigs getConfigsAffectingSpell() {
-        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+    public void alterSpell(PreCalcSpellConfigs c) {
         c.set(SC.MANA_COST, 2, 5);
-        return c;
     }
 
     @Override

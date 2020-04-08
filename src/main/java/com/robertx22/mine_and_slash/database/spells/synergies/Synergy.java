@@ -93,7 +93,13 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> 
     }
 
     // like increase mana cost, reduce cooldown etc
-    public abstract PreCalcSpellConfigs getConfigsAffectingSpell();
+    public abstract void alterSpell(PreCalcSpellConfigs c);
+
+    public final PreCalcSpellConfigs getConfigsAffectingSpell() {
+        PreCalcSpellConfigs c = PreCalcSpellConfigs.getEmptyForSynergies();
+        alterSpell(c);
+        return c;
+    }
 
     @Override
     public final SlashRegistryType getSlashRegistryType() {

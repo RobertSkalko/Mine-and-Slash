@@ -39,10 +39,8 @@ public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public PreCalcSpellConfigs getConfigsAffectingSpell() {
-        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+    public void alterSpell(PreCalcSpellConfigs c) {
         c.set(SC.MANA_COST, 1, 1);
-        return c;
     }
 
     @Override

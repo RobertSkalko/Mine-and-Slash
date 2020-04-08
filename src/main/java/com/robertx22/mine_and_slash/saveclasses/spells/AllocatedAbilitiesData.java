@@ -42,10 +42,14 @@ public class AllocatedAbilitiesData implements IApplyableStats {
             if (entry.getValue()
                 .isValid()) {
 
-                if (entry.getValue()
-                    .getAbility()
-                    .getSchoolPointsNeeded() > points - 1) {
-                    return false;
+                IAbility ability = entry.getValue()
+                    .getAbility();
+
+                if (ability.getSchool()
+                    .equals(school)) {
+                    if (ability.getSchoolPointsNeeded() > points - 1) {
+                        return false;
+                    }
                 }
             }
         }
@@ -59,7 +63,26 @@ public class AllocatedAbilitiesData implements IApplyableStats {
             return false;
         }
 
+        if (getSchoolsWithAllocatedPoints() > 1) {
+            if (getSchoolPoints(school) < 1) {
+                return false; // only allow picking 2 spell schools
+            }
+        }
+
         return getSchoolPoints(school) < SpellSchools.MAXIMUM_POINTS;
+    }
+
+    public int getSchoolsWithAllocatedPoints() {
+        int i = 0;
+
+        for (Map.Entry<String, Integer> x : schoolPoints.entrySet()) {
+            if (x.getValue() > 0) {
+                i++;
+            }
+        }
+
+        return i;
+
     }
 
     @Override

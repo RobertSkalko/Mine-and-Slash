@@ -40,10 +40,8 @@ public class VolcanoBurnSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public PreCalcSpellConfigs getConfigsAffectingSpell() {
-        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+    public void alterSpell(PreCalcSpellConfigs c) {
         c.set(SC.MANA_COST, 1, 2);
-        return c;
     }
 
     @Override

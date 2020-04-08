@@ -18,10 +18,7 @@ public enum SpellSchools {
     EMBER_MAGE("ember_mage", Elements.Fire.format, Words.EmberMage),
     DRUID("druid", Elements.Nature.format, Words.Druid),
     SHAMAN("shaman", Elements.Thunder.format, Words.Shaman),
-
-    RANGER("ranger", TextFormatting.GREEN, Words.Ranger),
-
-    CLERIC("cleric", TextFormatting.WHITE, Words.Cleric);
+    RANGER("ranger", TextFormatting.GREEN, Words.Ranger);
 
     public static int MAXIMUM_POINTS = 50;
 
@@ -59,7 +56,7 @@ public enum SpellSchools {
     }
 
     public ResourceLocation getGuiIconLocation() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/spells/schools/" + id + ".png");
+        return new ResourceLocation(Ref.MODID, "textures/gui/spell_schools/schools/" + id + ".png");
     }
 
 }

@@ -57,7 +57,7 @@ public class GorgonsGazeSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(3, 4);
+        return new AbilityPlace(7, 4);
     }
 
     @Override

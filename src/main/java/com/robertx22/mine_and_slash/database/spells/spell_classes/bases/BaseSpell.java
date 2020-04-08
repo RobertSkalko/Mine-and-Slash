@@ -281,9 +281,12 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         float cost = 0;
 
         for (Synergy x : getAllocatedSynergies(ctx.spellsCap)) {
-            cost += ctx.getConfigFor(x)
-                .get(SC.MANA_COST)
-                .get(ctx.spellsCap, x);
+            if (ctx.getConfigFor(x)
+                .has(SC.MANA_COST)) {
+                cost += ctx.getConfigFor(x)
+                    .get(SC.MANA_COST)
+                    .get(ctx.spellsCap, x);
+            }
         }
 
         cost += this.getCalculatedManaCost(ctx);

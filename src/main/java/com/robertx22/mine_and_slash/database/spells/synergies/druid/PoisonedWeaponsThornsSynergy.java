@@ -43,10 +43,8 @@ public class PoisonedWeaponsThornsSynergy extends OnBasicAttackSynergy {
     }
 
     @Override
-    public PreCalcSpellConfigs getConfigsAffectingSpell() {
-        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+    public void alterSpell(PreCalcSpellConfigs c) {
         c.set(SC.MANA_COST, 1, 4);
-        return c;
     }
 
     @Override

@@ -48,7 +48,10 @@ public class Ring extends BaseCurio {
     @Override
     public List<PosStats> getPossiblePrimaryStats() {
         return Arrays.asList(
-            new PosStats(new EnergyRegenFlat(), new ManaRegenFlat()),
+            new PosStats(
+                new EnergyRegenFlat().size(StatMod.Size.HALF),
+                new ManaRegenFlat().size(StatMod.Size.HALF)
+            ),
             new PosStats(new ManaRegenFlat()),
             new PosStats(new EnergyRegenFlat())
 

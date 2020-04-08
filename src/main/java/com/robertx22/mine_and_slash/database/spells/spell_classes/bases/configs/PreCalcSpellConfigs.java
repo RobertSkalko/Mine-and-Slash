@@ -22,6 +22,14 @@ public class PreCalcSpellConfigs {
         set(SC.DURATION_TICKS, 60, 60);
     }
 
+    private PreCalcSpellConfigs(boolean nothing) {
+
+    }
+
+    public static PreCalcSpellConfigs getEmptyForSynergies() {
+        return new PreCalcSpellConfigs(false);
+    }
+
     private HashMap<SC, LevelBased> map = new HashMap<>();
 
     public int maxSpellLevel = 12;

@@ -38,9 +38,8 @@ public class ThunderDashEnergySynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public PreCalcSpellConfigs getConfigsAffectingSpell() {
-        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        return c;
+    public void alterSpell(PreCalcSpellConfigs c) {
+
     }
 
     @Override

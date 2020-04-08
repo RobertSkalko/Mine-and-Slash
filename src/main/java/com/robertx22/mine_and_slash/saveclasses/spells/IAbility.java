@@ -43,7 +43,7 @@ public interface IAbility extends IGUID, ITooltipList {
     public Type getAbilityType();
 
     public default float getLevelPowerMulti(PlayerSpellCap.ISpellsCap cap) {
-        return cap.getLevelOf(this) / getMaxSpellLevelBuffed();
+        return (float) cap.getLevelOf(this) / (float) getMaxSpellLevelBuffed();
     }
 
     public int getMaxSpellLevelNormal();
@@ -63,6 +63,15 @@ public interface IAbility extends IGUID, ITooltipList {
     public default int getSchoolPointsNeeded() {
 
         AbilityPlace place = getAbilityPlace();
+
+        if (place == null) {
+            if (this.getAbilityType()
+                .equals(Type.EFFECT)) {
+                return 0; //
+            } else {
+                throw new RuntimeException("Only effects are allowed to have null ability place, not: " + this.GUID());
+            }
+        }
 
         if (place.y == 0) {
             return 1;

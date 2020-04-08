@@ -44,7 +44,9 @@ public interface IApplyStatPotion {
 
         list.add(new StringTextComponent(TextFormatting.GREEN + "Affects stats: "));
 
-        getStatsAffected(effect, info.unitdata, Load.spells(info.player), minStacks).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        getStatsAffected(effect, info.unitdata, Load.spells(info.player), minStacks).forEach(x -> {
+            list.addAll(x.GetTooltipString(info));
+        });
 
         return list;
 

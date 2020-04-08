@@ -95,7 +95,7 @@ public class RegenerateSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(3, 2);
+        return new AbilityPlace(2, 2);
     }
 
     private static class SingletonHolder {
