@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.packets.allocation;
+package com.robertx22.mine_and_slash.packets.allocation.talents;
 
 import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.database.talent_tree.Perk;

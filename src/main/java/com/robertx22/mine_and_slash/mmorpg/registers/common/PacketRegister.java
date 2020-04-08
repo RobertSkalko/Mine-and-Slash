@@ -2,9 +2,13 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.packets.*;
-import com.robertx22.mine_and_slash.packets.allocation.SpendStatPointPacket;
-import com.robertx22.mine_and_slash.packets.allocation.TryAllocateTalentPacket;
-import com.robertx22.mine_and_slash.packets.allocation.TryRemoveTalentPacket;
+import com.robertx22.mine_and_slash.packets.allocation.abilities.TryAllocateAbilityPointPacket;
+import com.robertx22.mine_and_slash.packets.allocation.abilities.TryRemoveAbilityPointPacket;
+import com.robertx22.mine_and_slash.packets.allocation.schools.TryAddSchoolPointPacket;
+import com.robertx22.mine_and_slash.packets.allocation.schools.TryRemoveSchoolPointPacket;
+import com.robertx22.mine_and_slash.packets.allocation.stats.SpendStatPointPacket;
+import com.robertx22.mine_and_slash.packets.allocation.talents.TryAllocateTalentPacket;
+import com.robertx22.mine_and_slash.packets.allocation.talents.TryRemoveTalentPacket;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacket;
 import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
 import com.robertx22.mine_and_slash.packets.spells.ChangeSpellHotbarPacket;
@@ -104,6 +108,14 @@ public class PacketRegister {
         reg(BuyTraderItemPacket.class, BuyTraderItemPacket::encode, BuyTraderItemPacket::decode, BuyTraderItemPacket::handle);
 
         reg(RarityPacket.class, RarityPacket::encode, RarityPacket::decode, RarityPacket::handle);
+
+        reg(TryAllocateAbilityPointPacket.class, TryAllocateAbilityPointPacket::encode, TryAllocateAbilityPointPacket::decode, TryAllocateAbilityPointPacket::handle);
+
+        reg(TryRemoveAbilityPointPacket.class, TryRemoveAbilityPointPacket::encode, TryRemoveAbilityPointPacket::decode, TryRemoveAbilityPointPacket::handle);
+
+        reg(TryRemoveSchoolPointPacket.class, TryRemoveSchoolPointPacket::encode, TryRemoveSchoolPointPacket::decode, TryRemoveSchoolPointPacket::handle);
+
+        reg(TryAddSchoolPointPacket.class, TryAddSchoolPointPacket::encode, TryAddSchoolPointPacket::decode, TryAddSchoolPointPacket::handle);
 
     }
 

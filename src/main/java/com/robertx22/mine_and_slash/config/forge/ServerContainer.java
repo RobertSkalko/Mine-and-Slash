@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.config.forge;
 
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+
 import static net.minecraftforge.common.ForgeConfigSpec.*;
 
 public class ServerContainer {
@@ -81,11 +83,11 @@ public class ServerContainer {
 
         SPELL_POINTS_AT_MAX_LEVEL = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("SPELL_POINTS_AT_MAX_LEVEL", 25, 0, 1000);
+            .defineInRange("SPELL_POINTS_AT_MAX_LEVEL", (SpellSchools.MAXIMUM_POINTS * 2) + 50, 0, 1000);
 
         STARTING_SPELL_POINTS = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("STARTING_SPELL_POINTS", 5, 0, Integer.MAX_VALUE);
+            .defineInRange("STARTING_SPELL_POINTS", 3, 0, Integer.MAX_VALUE);
 
         PLAYER_HEART_TO_HEALTH_CONVERSION = builder.comment(".")
             .translation("mmorpg.word.")

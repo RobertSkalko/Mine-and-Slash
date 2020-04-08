@@ -12,6 +12,7 @@ import info.loenwind.autosave.annotations.Store;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Storable
 public class AllocatedAbilitiesData implements IApplyableStats {
@@ -25,21 +26,61 @@ public class AllocatedAbilitiesData implements IApplyableStats {
     @Store
     public HashMap<String, Integer> schoolPoints = new HashMap<>();
 
+    public int getSchoolPoints(SpellSchools school) {
+        return schoolPoints.getOrDefault(school.name(), 0);
+    }
+
+    public boolean canRemoveSchoolPoint(SpellSchools school) {
+
+        int points = getSchoolPoints(school);
+
+        if (points < 1) {
+            return false;
+        }
+
+        for (Map.Entry<String, AbilityData> entry : map.entrySet()) {
+            if (entry.getValue()
+                .isValid()) {
+
+                if (entry.getValue()
+                    .getAbility()
+                    .getSchoolPointsNeeded() > points - 1) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public boolean canAddPointsToSchool(SpellSchools school, EntityCap.UnitData data) {
+
+        if (getFreeAbilityPoints(data) < 1) {
+            return false;
+        }
+
+        return getSchoolPoints(school) < SpellSchools.MAXIMUM_POINTS;
+    }
+
     @Override
     public void applyStats(EntityCap.UnitData data, int level) {
 
-        schoolPoints.entrySet()
-            .forEach(x -> {
+        try {
+            schoolPoints.entrySet()
+                .forEach(x -> {
 
-                SpellSchools school = SpellSchools.valueOf(x.getKey());
-                int points = x.getValue();
+                    SpellSchools school = SpellSchools.valueOf(x.getKey());
+                    int points = x.getValue();
 
-                school.getStatsFor(points)
-                    .forEach(s -> {
-                        s.applyStats(data);
-                    });
+                    school.getStatsFor(points)
+                        .forEach(s -> {
+                            s.applyStats(data);
+                        });
 
-            });
+                });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -77,13 +118,13 @@ public class AllocatedAbilitiesData implements IApplyableStats {
     }
 
     public void addSchoolPoint(SpellSchools school) {
-        int points = schoolPoints.getOrDefault(school.id, 0) + 1;
-        schoolPoints.put(school.id, points);
+        int points = schoolPoints.getOrDefault(school.name(), 0) + 1;
+        schoolPoints.put(school.name(), points);
     }
 
     public void removeSchoolPoint(SpellSchools school) {
-        int points = schoolPoints.getOrDefault(school.id, 0) - 1;
-        schoolPoints.put(school.id, points);
+        int points = schoolPoints.getOrDefault(school.name(), 0) - 1;
+        schoolPoints.put(school.name(), points);
     }
 
     public int getAllocatedAbilityPoints() {
@@ -117,9 +158,9 @@ public class AllocatedAbilitiesData implements IApplyableStats {
         return getTotalAllowedAbilityPoints(data) - getAllocatedAbilityPoints();
     }
 
-    public boolean canAddPointsOrHasPoints(IAbility ability) {
+    public boolean canAddPointsOrHasPoints(IAbility ability, EntityCap.UnitData data) {
 
-        if (canAddPoints(ability)) {
+        if (canAddPoints(ability, data)) {
             return true;
         }
 
@@ -127,7 +168,11 @@ public class AllocatedAbilitiesData implements IApplyableStats {
 
     }
 
-    public boolean canAddPoints(IAbility ability) {
+    public boolean canAddPoints(IAbility ability, EntityCap.UnitData data) {
+
+        if (getFreeAbilityPoints(data) < 1) {
+            return false;
+        }
 
         if (ability.getRequiredAbility() != null) {
             if (getLevelOf(ability.getRequiredAbility()) < 1) {
@@ -135,7 +180,8 @@ public class AllocatedAbilitiesData implements IApplyableStats {
             }
         }
 
-        int current = schoolPoints.getOrDefault(ability.getSchool().id, 0);
+        int current = schoolPoints.getOrDefault(ability.getSchool()
+            .name(), 0);
         int needed = ability.getSchoolPointsNeeded();
 
         return current >= needed;
@@ -192,7 +238,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
             .forEach(x -> {
                 if (!x.getValue()
                     .isValid()) {
-                    map.remove(x);
+                    map.remove(x.getKey());
                 }
             });
 

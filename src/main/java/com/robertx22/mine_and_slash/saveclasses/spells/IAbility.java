@@ -65,7 +65,7 @@ public interface IAbility extends IGUID, ITooltipList {
         AbilityPlace place = getAbilityPlace();
 
         if (place.y == 0) {
-            return 0;
+            return 1;
         }
 
         return SpellSchools.MAXIMUM_POINTS / AbilityPlace.MAX_Y * place.y;

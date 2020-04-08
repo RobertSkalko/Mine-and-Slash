@@ -16,38 +16,4 @@ Other:
 * casting spells now slows you down
 * server performance improvements
 * added all the buildathon rewards that people asked for (still many didn't come claim them though)
-
-
-3.5.1
-* should fix gamerules not working in dungeon
-* crash fix
-
-3.5.0
-* added bestiary (you'll see it in your main hub anyway)
-* added experimental way that makes thrown weapons work.
- (mod devs literally just have to set player as the true damage source and have the itemstack saved somewhere in either the class fields, nbt or datamanager.)
-* better item names on ground, now also works for all items with stats
-* reduced log spam
-* item names only render when close now, woops.
-* uniques no longer have affixes but their unique stats are now increased
-* removed conditional chaos stats (on low crit..etc , boring)
-* chaos stats are now more elaborate, you can't get armor on weapons etc. Also added a few more of them.
-* tweaked unique gears to be more generally useful
-* added new affixes, you won't like them.
-* modify station now has particles and sound effects
-* modify station now goes boom when item goes poof
-* reworked most gamechanger talents to more accurately show what stats they affect
-* removed elemental affinity stat
-* armor no longer reduces elemental damage (bug)
-* elemental resists are now percents
-* penetration can now move resists into minus
-* minus resists mean it not only doesn't decrease damage, it increases damage (this is a penetration buff)
-* phys and ele attack damages now have number ranges (would you believe me if i told you this took about 10 hours to accomplish without bugtesting afterwards?)
-* trimmed down tiers from 20 to 5. The difficulty spike should be felt now.
-* most gear can now get elemental resists as secondary stats
-* added mob affixes, they're datapacks
-* renamed mob rarities
-* hell lord shouldnt be able to spawn in wooden dungeons anymore
-* fix mobs dropping loot based on player level instead of mob level
-* made mobs have more thematic rarity names, this also allows them to be configured with the lang file
-* fire shouldnt be able to spread or destroy blocks in dungeon dimension anymore
+* fixed unique cangetset field not doing anything

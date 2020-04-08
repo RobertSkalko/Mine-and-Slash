@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.packets.allocation;
+package com.robertx22.mine_and_slash.packets.allocation.stats;
 
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;

@@ -165,15 +165,6 @@ public abstract class EffectData {
         }
     }
 
-    /*
-    public void logBeforeEffect(IStatEffect effect) {
-        if (MMORPG.statEffectDebuggingEnabled()) {
-            System.out.println(TextFormatting.YELLOW + "Before : " + TextFormatting.BLUE + effect.getClass()
-                    .toString() + TextFormatting.WHITE + ": " + this.number);
-        }
-        }
-     */
-
     public void logAfterEffect(IStatEffect effect) {
         if (MMORPG.statEffectDebuggingEnabled()) {
             System.out.println(TextFormatting.GREEN + "After : " + TextFormatting.BLUE + effect.getClass()

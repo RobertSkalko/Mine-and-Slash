@@ -38,20 +38,20 @@ public enum SpellSchools {
     public List<ExactStatData> getStatsFor(int schoolLevel) { // TODO make it differ per school;
         List<ExactStatData> list = new ArrayList<>();
 
-        int level = ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get() * (schoolLevel / MAXIMUM_POINTS);
+        int level = (int) (ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get() * ((float) schoolLevel / (float) MAXIMUM_POINTS));
 
         // these will need a lot of fine tuning.
 
-        list.add(new ExactStatData(2, Health.getInstance()));
+        list.add(new ExactStatData(100, Health.getInstance()));
         list.add(new ExactStatData(40, Mana.getInstance()));
         list.add(new ExactStatData(60, Energy.getInstance()));
 
         list.add(new ExactStatData(1.5F, ManaRegen.getInstance()));
         list.add(new ExactStatData(3, EnergyRegen.getInstance()));
-        list.add(new ExactStatData(0.5F, HealthRegen.getInstance()));
-        list.add(new ExactStatData(0.25F, MagicShieldRegen.getInstance()));
+        list.add(new ExactStatData(2, HealthRegen.getInstance()));
+        list.add(new ExactStatData(2, MagicShieldRegen.getInstance()));
 
-        list.add(new ExactStatData(0.12F, PhysicalDamage.getInstance()));
+        list.add(new ExactStatData(1, PhysicalDamage.getInstance()));
 
         list.forEach(x -> x.scaleToLvl(level)); // scale to this level, not player level
 

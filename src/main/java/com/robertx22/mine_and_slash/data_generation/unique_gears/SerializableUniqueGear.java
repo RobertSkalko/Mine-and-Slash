@@ -43,6 +43,11 @@ public class SerializableUniqueGear implements IUnique {
     }
 
     @Override
+    public boolean canGetSet() {
+        return this.canGetSet;
+    }
+
+    @Override
     public ResourceLocation getResourceLocForItem() {
         return itemID;
     }

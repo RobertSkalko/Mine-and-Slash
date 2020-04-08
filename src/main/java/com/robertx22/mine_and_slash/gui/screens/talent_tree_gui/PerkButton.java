@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.talent_tree.BasePerk;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkConnection;
 import com.robertx22.mine_and_slash.database.talent_tree.PerkScreenContext;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.packets.allocation.TryAllocateTalentPacket;
-import com.robertx22.mine_and_slash.packets.allocation.TryRemoveTalentPacket;
+import com.robertx22.mine_and_slash.packets.allocation.talents.TryAllocateTalentPacket;
+import com.robertx22.mine_and_slash.packets.allocation.talents.TryRemoveTalentPacket;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import net.minecraft.client.Minecraft;
@@ -114,7 +114,6 @@ public class PerkButton extends ImageButton {
                 MMORPG.sendToServer(new TryRemoveTalentPacket(this.perk));
             } else {
                 MMORPG.sendToServer(new TryAllocateTalentPacket(this.perk));
-
             }
         }
     }
