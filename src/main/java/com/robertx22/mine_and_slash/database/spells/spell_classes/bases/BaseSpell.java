@@ -367,6 +367,9 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             TooltipUtils.addEmpty(list);
             list.add(new SText(TextFormatting.LIGHT_PURPLE + "Can be set as right click for a Mage Weapon"));
         }
+        TooltipUtils.addEmpty(list);
+
+        TooltipUtils.abilityLevel(list, ctx.spellsCap.getLevelOf(this), getMaxSpellLevelNormal());
 
         return list;
 

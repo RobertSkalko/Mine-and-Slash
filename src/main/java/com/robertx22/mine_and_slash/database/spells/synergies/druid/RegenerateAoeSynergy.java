@@ -31,7 +31,7 @@ public class RegenerateAoeSynergy extends OnSpellCastSynergy {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
         addSpellName(list);

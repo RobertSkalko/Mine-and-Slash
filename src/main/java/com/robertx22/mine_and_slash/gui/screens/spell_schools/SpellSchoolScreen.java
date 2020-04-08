@@ -19,6 +19,7 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
@@ -220,7 +221,12 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
                         list.addAll(x.GetTooltipString(info));
                     });
 
+                TooltipUtils.abilityLevel(list, spells.getAbilitiesData()
+                        .getSchoolPoints(school)
+                    , SpellSchools.MAXIMUM_POINTS);
+
                 GuiUtils.renderTooltip(list, mouseX, mouseY);
+
             }
         }
 

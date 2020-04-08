@@ -26,7 +26,7 @@ public class FrostballExtraDmgSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
         addSpellName(list);
@@ -77,4 +77,5 @@ public class FrostballExtraDmgSynergy extends OnDamageDoneSynergy {
 
         }
     }
+
 }

@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
@@ -15,20 +15,39 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SynergyDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Synergy implements ITooltipList, IAbility, ISlashRegistryEntry<Synergy> {
+public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> {
 
     public float get(LivingEntity en, SC sc) {
         return getContext(en).getConfigFor(this)
             .get(sc)
             .get(Load.spells(en), this);
+    }
+
+    public abstract List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info);
+
+    @Override
+    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.addAll(getSynergyTooltipInternal(info));
+
+        list.add(new SText(""));
+
+        TooltipUtils.abilityLevel(list, Load.spells(info.player)
+            .getLevelOf(this), getMaxSpellLevelNormal());
+
+        return list;
     }
 
     public SynergyDamageEffect getSynergyDamage(SpellDamageEffect ctx, int num) {

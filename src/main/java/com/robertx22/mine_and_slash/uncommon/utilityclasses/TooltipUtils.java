@@ -191,4 +191,10 @@ public class TooltipUtils {
 
     }
 
+    public static void abilityLevel(List<ITextComponent> list, int current, int max) {
+        list.add(
+            new SText(TextFormatting.YELLOW + "")
+                .appendSibling(Words.Level.locName())
+                .appendText(": " + current + "/" + max));
+    }
 }
