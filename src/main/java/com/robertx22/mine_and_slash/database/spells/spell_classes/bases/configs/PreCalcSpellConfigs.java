@@ -4,12 +4,21 @@ import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellStatsCalcEffect;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 // this class should be easy to serialize as a config
 // synergies add to these values.
@@ -68,6 +77,13 @@ public class PreCalcSpellConfigs {
         this.maxSpellLevel = lvl;
     }
 
+    public LevelBased getOrEmpty(SC sc) {
+        if (has(sc)) {
+            return get(sc);
+        }
+        return LevelBased.empty();
+    }
+
     public LevelBased get(SC sc) {
 
         if (!map.containsKey(sc)) {
@@ -98,7 +114,7 @@ public class PreCalcSpellConfigs {
     private boolean modifiedBySynergies = false;
 
     public void modifyByUserStats(SpellCastContext ctx) {
-        new SpellStatsCalcEffect(this, ctx.caster, ctx.caster).Activate();
+        new SpellStatsCalcEffect(ctx, this, ctx.caster, ctx.caster).Activate();
     }
 
     public void modifyBySynergies(BaseSpell spell, PlayerSpellCap.ISpellsCap cap) {
@@ -123,4 +139,30 @@ public class PreCalcSpellConfigs {
 
     }
 
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {
+
+        List<ITextComponent> list = new ArrayList<>();
+
+        list.add(new SText(""));
+
+        if (!Screen.hasShiftDown()) {
+            list.add(new SText(TextFormatting.BLUE + "").appendSibling(Words.Press_Shift_For_More_Info.locName()));
+        } else {
+            list.add(new SText(TextFormatting.LIGHT_PURPLE + "" + TextFormatting.BOLD).appendText("Ability Stats:"));
+
+            map.entrySet()
+                .forEach(x -> {
+                    if (x.getKey()
+                        .shouldAddToTooltip()) {
+                        String val = NumberUtils.trimFloat(x.getValue()
+                            .get(ctx.spellsCap, ctx.ability));
+                        list.add(new SText(TextFormatting.GRAY + "").appendSibling(x.getKey().word.locName())
+                            .appendText(": " + TextFormatting.GREEN + val));
+
+                    }
+                });
+        }
+        return list;
+
+    }
 }

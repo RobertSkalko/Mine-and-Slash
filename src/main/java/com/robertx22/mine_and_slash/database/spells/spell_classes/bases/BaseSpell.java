@@ -374,6 +374,9 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
         TooltipUtils.abilityLevel(list, ctx.spellsCap.getLevelOf(this), getMaxSpellLevelNormal());
 
+        list.addAll(ctx.getConfigFor(this)
+            .GetTooltipString(info, ctx));
+
         return list;
 
     }

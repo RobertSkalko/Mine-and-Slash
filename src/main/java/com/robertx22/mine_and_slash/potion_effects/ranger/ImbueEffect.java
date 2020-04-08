@@ -73,8 +73,7 @@ public class ImbueEffect extends BasePotionEffect {
     public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new SText(TextFormatting.GREEN + "This buff provides extra damage to other Ranger spells."));
-        list.add(new SText(TextFormatting.BLUE + "The effect scales to scaling damage of those other spells."));
+        list.add(new SText(TextFormatting.GREEN + "Adds damage to Ranger spells."));
 
         list.addAll(getCalc(Load.spells(info.player))
             .GetTooltipString(info));

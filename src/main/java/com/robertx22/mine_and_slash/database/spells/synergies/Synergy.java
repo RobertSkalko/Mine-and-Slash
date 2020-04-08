@@ -40,12 +40,17 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> 
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
+        SpellCastContext ctx = new SpellCastContext(info.player, 0, this);
+
         list.addAll(getSynergyTooltipInternal(info));
 
         list.add(new SText(""));
 
         TooltipUtils.abilityLevel(list, Load.spells(info.player)
             .getLevelOf(this), getMaxSpellLevelNormal());
+
+        list.addAll(ctx.getConfigFor(this)
+            .GetTooltipString(info, ctx));
 
         return list;
     }

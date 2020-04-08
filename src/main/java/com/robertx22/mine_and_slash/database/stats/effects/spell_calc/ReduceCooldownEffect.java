@@ -11,7 +11,14 @@ public class ReduceCooldownEffect extends BaseSpellCalcEffect {
     @Override
     public SpellStatsCalcEffect activate(SpellStatsCalcEffect effect, StatData data, Stat stat) {
 
-        float multi = data.getReverseMultiplier();
+        float cdrEfficiency = 1;
+
+        if (effect.configs.has(SC.CDR_EFFICIENCY)) {
+            cdrEfficiency = effect.configs.get(SC.CDR_EFFICIENCY)
+                .get(effect.spells, effect.ctx.spell);
+        }
+
+        float multi = 1 - (data.getAverageValue() * cdrEfficiency / 100);
 
         effect.configs.multiplyValueBy(SC.COOLDOWN_SECONDS, multi);
         effect.configs.multiplyValueBy(SC.COOLDOWN_TICKS, multi);

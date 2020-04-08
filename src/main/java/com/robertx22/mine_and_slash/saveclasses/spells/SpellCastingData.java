@@ -189,6 +189,13 @@ public class SpellCastingData {
 
                     spellBeingCast = "";
 
+                } else {
+                    firstHotbar.entrySet()
+                        .removeIf(x -> x.getValue()
+                            .equals(spell.GUID()));
+                    secondHotbar.entrySet()
+                        .removeIf(x -> x.getValue()
+                            .equals(spell.GUID()));
                 }
             }
         }
@@ -231,6 +238,7 @@ public class SpellCastingData {
         if (data.cooldownIsReady() == false) {
             return false;
         }
+
         SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
         return spell.canCast(ctx);

@@ -179,6 +179,10 @@ public class PlayerSpellCap {
         @Override
         public boolean canCastRightClickSpell(BaseSpell spell, PlayerEntity player) {
 
+            if (getAbilitiesData().getLevelOf(spell) < 1) {
+                return false;
+            }
+
             return this.getCastingData()
                 .canCast(spell, player);
 

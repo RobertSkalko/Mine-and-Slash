@@ -168,12 +168,15 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
         EntityCap.UnitData data;
 
+        PlayerSpellCap.ISpellsCap spells;
+
         public AbilityButton(IAbility ability, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
             });
 
             this.ability = ability;
             this.data = Load.Unit(Minecraft.getInstance().player);
+            this.spells = Load.spells(Minecraft.getInstance().player);
 
         }
 
@@ -214,7 +217,8 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
                 offx = 19;
             }
 
-            if (!Load.spells(mc.player)
+            if (spells.getAbilitiesData()
+                .getFreeAbilityPoints(data) > 0 && spells.getLevelOf(ability) < 1 && !spells
                 .getAbilitiesData()
                 .canAddPointsOrHasPoints(ability, data)) {
                 offy = 19;

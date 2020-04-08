@@ -267,24 +267,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -303,6 +285,24 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -455,6 +455,7 @@
 	"mmorpg.word.alwaysmythicaffixes": "Always has Mythic Affixes",
 	"mmorpg.word.alwaysset": "Always has Set",
 	"mmorpg.word.amazing": "Amazing",
+	"mmorpg.word.amount": "Amount",
 	"mmorpg.word.animal": "Animal",
 	"mmorpg.word.arcanist": "Arcanist",
 	"mmorpg.word.armor": "Armor",
@@ -484,11 +485,16 @@
 	"mmorpg.word.canonlyuseonce": "Can only use once",
 	"mmorpg.word.canupgradeinfusion": "Can Upgrade Infusion",
 	"mmorpg.word.cartographercrate": "Cartographer's Crate",
+	"mmorpg.word.casttimeticks": "Cast Time Ticks",
+	"mmorpg.word.chance": "Chance",
 	"mmorpg.word.chaos_stats": "Chaos Stats",
 	"mmorpg.word.cleric": "Cleric",
 	"mmorpg.word.commonercrate": "Commoner's Dream Crate",
 	"mmorpg.word.compendium": "Compendium",
 	"mmorpg.word.cooldown": "Cooldown",
+	"mmorpg.word.cooldownreductionefficiency": "Cooldown Reduction Efficiency",
+	"mmorpg.word.cooldownseconds": "Cooldown Seconds",
+	"mmorpg.word.cooldownticks": "Cooldown Ticks",
 	"mmorpg.word.core_stat": "Core Stat",
 	"mmorpg.word.craftingdeletesitemsinside": "Crafting deletes items inside, empty beforehand!",
 	"mmorpg.word.crate": "Crate",
@@ -505,6 +511,7 @@
 	"mmorpg.word.doesnthaveset": "Doesn't have set",
 	"mmorpg.word.donotbuildinmaps": "Do not build in maps!",
 	"mmorpg.word.druid": "Druid",
+	"mmorpg.word.durationticks": "Duration in Ticks",
 	"mmorpg.word.elemental_attack_damage": "Elemental Attack Damage",
 	"mmorpg.word.embermage": "Ember Mage",
 	"mmorpg.word.empty": "Empty",
@@ -609,7 +616,9 @@
 	"mmorpg.word.pressshiftforrequirements": "Press Shift for Requirements",
 	"mmorpg.word.primary_stats": "Primary Stats",
 	"mmorpg.word.progress": "Progress",
+	"mmorpg.word.projectilecount": "Projectile Count",
 	"mmorpg.word.put_map": "Put Map",
+	"mmorpg.word.radius": "Radius",
 	"mmorpg.word.ranger": "Ranger",
 	"mmorpg.word.rarity": "Rarity",
 	"mmorpg.word.recoilshot": "Recoil Shot",
@@ -637,6 +646,7 @@
 	"mmorpg.word.seconds": "Seconds",
 	"mmorpg.word.set": "Set",
 	"mmorpg.word.shaman": "Shaman",
+	"mmorpg.word.shootspeed": "Shoot Speed",
 	"mmorpg.word.socket": "Socket",
 	"mmorpg.word.sockets": "Sockets",
 	"mmorpg.word.spell": "Spell",
@@ -651,6 +661,7 @@
 	"mmorpg.word.stealth": "Stealth",
 	"mmorpg.word.stormcloudspelldesc": "Summons a storm cloud that deals damage over time.",
 	"mmorpg.word.suffix": "Suffix",
+	"mmorpg.word.summonedentities": "Summoned Entities",
 	"mmorpg.word.summonspiders": "Summon Spiders",
 	"mmorpg.word.talents": "Talents",
 	"mmorpg.word.thornarmor": "Thorn Armor",
@@ -658,9 +669,11 @@
 	"mmorpg.word.thunderdash": "Thunder Dash",
 	"mmorpg.word.thunderspear": "Thunder Spear",
 	"mmorpg.word.thunderstorm": "Thunderstorm",
+	"mmorpg.word.tickrate": "Tick Rate",
 	"mmorpg.word.tidalwave": "Tidal Wave",
 	"mmorpg.word.tier": "Tier",
 	"mmorpg.word.tierlessthanmax": "Tier less than maximum",
+	"mmorpg.word.timestocast": "Times to Cast",
 	"mmorpg.word.to": "To",
 	"mmorpg.word.took": "Took",
 	"mmorpg.word.tripleshot": "Triple Shot",
@@ -1034,29 +1047,6 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.bleed": "Bleed",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Cold Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thorns": "Minor Thorns",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -1181,6 +1171,29 @@
 	"item.mmorpg.torch.torch4": "§6Torch",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.bleed": "Bleed",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Cold Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thorns": "Minor Thorns",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.wounds": "Wounds",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",

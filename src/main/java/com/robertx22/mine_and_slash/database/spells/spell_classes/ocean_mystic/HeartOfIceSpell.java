@@ -56,7 +56,6 @@ public class HeartOfIceSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.MANA_COST, 15, 45);
         c.set(SC.BASE_VALUE, 5, 20);
-        c.set(SC.SHOOT_SPEED, 0.6F, 0.9F);
         c.set(SC.CAST_TIME_TICKS, 30, 15);
         c.set(SC.COOLDOWN_SECONDS, 60, 30);
 

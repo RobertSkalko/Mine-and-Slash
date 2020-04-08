@@ -6,6 +6,20 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
+    CooldownSeconds("Cooldown Seconds"),
+    CooldownTicks("Cooldown Ticks"),
+    CastTimeTicks("Cast Time Ticks"),
+    Radius("Radius"),
+    ProjectileCount("Projectile Count"),
+    ShootSpeed("Shoot Speed"),
+    SummonedEntities("Summoned Entities"),
+    Chance("Chance"),
+    CooldownReductionEfficiency("Cooldown Reduction Efficiency"),
+    DurationTicks("Duration in Ticks"),
+    TickRate("Tick Rate"),
+    TimesToCast("Times to Cast"),
+    Amount("Amount"),
+
     RightClickToTeleport("Use to teleport back from Adventure Map."),
     RightClickToIdentifyFirst("Use to identify first item in inventory."),
     ItemIsUnidentified("This item is currently sealed."),
