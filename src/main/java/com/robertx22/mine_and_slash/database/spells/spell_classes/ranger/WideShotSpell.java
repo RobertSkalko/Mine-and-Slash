@@ -97,7 +97,7 @@ public class WideShotSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.TripleShot;
+        return Words.WideShot;
     }
 
     private static class SingletonHolder {

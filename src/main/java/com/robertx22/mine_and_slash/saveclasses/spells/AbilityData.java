@@ -12,6 +12,9 @@ public class AbilityData {
     private int currentLvl = 0;
 
     @Store
+    private int bonusLvls = 0;
+
+    @Store
     public String id = "";
 
     @Store
@@ -20,6 +23,14 @@ public class AbilityData {
     public AbilityData(String id, IAbility.Type type) {
         this.id = id;
         this.type = type;
+    }
+
+    public void setBonusLvl(int lvl) {
+        this.bonusLvls = lvl;
+    }
+
+    public int getBonusLvls() {
+        return bonusLvls;
     }
 
     public void setLevel(int i) {
@@ -33,7 +44,11 @@ public class AbilityData {
     public int getCurrentLevel() {
         currentLvl = MathHelper.clamp(currentLvl, 0, getAbility().getMaxSpellLevelNormal());
 
-        return currentLvl;
+        if (currentLvl < 1) {
+            return currentLvl; // don't add bonus levels if ability isn't even allocated once.
+        }
+
+        return MathHelper.clamp(currentLvl + bonusLvls, 0, getAbility().getMaxSpellLevelBuffed());
 
     }
 

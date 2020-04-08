@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_ty
 
 import com.robertx22.mine_and_slash.database.spells.SpellUtils;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 
 public class CastSelfHeal extends SpellCastType {
 
@@ -10,6 +11,11 @@ public class CastSelfHeal extends SpellCastType {
 
         SpellUtils.healCaster(ctx);
 
+        if (ctx.spell.getImmutableConfigs()
+            .sound() != null) {
+            SoundUtils.playSound(ctx.caster, ctx.spell.getImmutableConfigs()
+                .sound(), 1, 1);
+        }
         return true;
     }
 }

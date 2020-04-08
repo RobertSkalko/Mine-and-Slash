@@ -14,9 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -99,7 +97,7 @@ public class HeartOfIceSpell extends BaseSpell {
     @Override
     public void castExtra(SpellCastContext ctx) {
         try {
-            SoundUtils.playSound(ctx.caster, SoundEvents.MUSIC_UNDER_WATER, 1, 1);
+            //SoundUtils.playSound(ctx.caster, ModSounds.FREEZE.get(), 1, 1);
             ParticleUtils.spawnParticles(ParticleRegister.BUBBLE, ctx.caster, 25);
         } catch (Exception e) {
             e.printStackTrace();

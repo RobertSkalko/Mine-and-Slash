@@ -137,9 +137,10 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
 
         list.add(new SText(""));
 
-        TooltipUtils.abilityLevel(list, Load.spells(info.player)
-            .getLevelOf(this), getMaxSpellLevelNormal());
-
+        if (this.getSpell() == null) {
+            TooltipUtils.abilityLevel(list, Load.spells(info.player)
+                .getLevelOf(this), getMaxSpellLevelNormal());
+        }
         // list = TooltipUtils.removeDoubleBlankLines(list, 0);
 
         return list;

@@ -30,6 +30,30 @@ public class AllocatedAbilitiesData implements IApplyableStats {
         return schoolPoints.getOrDefault(school.name(), 0);
     }
 
+    public HashMap<String, AbilityData> getAbilityMap() {
+        return map;
+    }
+
+    public void clearBonusLevels() {
+        map.entrySet()
+            .forEach(x -> x.getValue()
+                .setBonusLvl(0));
+    }
+
+    public void addBonusAbilityLevelsTo(SpellSchools school, int lvls) {
+        map.entrySet()
+            .forEach(e -> {
+                if (e.getValue()
+                    .getAbility()
+                    .getSchool()
+                    .equals(school)) {
+                    e.getValue()
+                        .setBonusLvl(e.getValue()
+                            .getBonusLvls() + lvls);
+                }
+            });
+    }
+
     public boolean canRemoveSchoolPoint(SpellSchools school) {
 
         int points = getSchoolPoints(school);

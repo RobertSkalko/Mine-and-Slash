@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
+import com.robertx22.mine_and_slash.database.stats.types.spell_calc.PlusLevelToAllAbilitiesInSchoolStat;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
@@ -22,6 +23,7 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -500,6 +502,14 @@ public class Unit {
 
         if (entity instanceof PlayerEntity) {
             PlayerStatUtils.applyRequirementsUnmetPenalty(entity, data, gears);
+
+            PlayerSpellCap.ISpellsCap spells = Load.spells(entity);
+
+            spells.getAbilitiesData()
+                .clearBonusLevels();
+
+            PlusLevelToAllAbilitiesInSchoolStat.calcBonusAbilityLevelStats(spells, this);
+
         }
 
         DirtyCheck newcheck = getDirtyCheck();

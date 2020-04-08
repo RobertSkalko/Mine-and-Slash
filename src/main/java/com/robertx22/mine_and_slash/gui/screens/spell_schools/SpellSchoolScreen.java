@@ -129,6 +129,13 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
         drawBackground(ticks, x, y);
 
+        this.buttons.forEach(b -> {
+            if (b instanceof AbilityButton) {
+                AbilityButton ab = (AbilityButton) b;
+                ab.renderUnder();
+            }
+        });
+
         super.render(x, y, ticks);
 
         this.buttons.forEach(b -> b.renderToolTip(x, y));
@@ -199,6 +206,21 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
                 }
             }
             return super.mouseClicked(x, y, click);
+        }
+
+        public void renderUnder() {
+            // renders connectors to synergies and spells. Really simple hacky system that just works for now.
+
+            if (ability.getAbilityType()
+                .equals(IAbility.Type.SYNERGY)) {
+
+                Minecraft mc = Minecraft.getInstance();
+
+                mc.getTextureManager()
+                    .bindTexture(ABILITY);
+
+                blit(this.x + this.xSize / 2 - 3, this.y + this.ySize / 2, 136, 0, 6, 21);
+            }
         }
 
         @Override

@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.ManaToEnergyConversion;
+import com.robertx22.mine_and_slash.database.stats.types.spell_calc.PlusLevelToAllAbilitiesInSchoolStat;
 import com.robertx22.mine_and_slash.database.stats.types.spell_calc.ReducedCooldownStat;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.EarthAtronach;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.FireAtronach;
@@ -35,6 +36,7 @@ import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -74,6 +76,7 @@ public class Stats implements ISlashRegistryInit {
 
                     add(new LuckStat());
 
+                    add(new PlusLevelToAllAbilitiesInSchoolStat(SpellSchools.OCEAN_MYSTIC));
                     add(new ElementalConversion(Elements.Physical, Elements.Physical));
                     add(new ElementalTransfer(Elements.Physical, Elements.Physical));
                     add(new LootTypeBonus(LootType.NormalItem));

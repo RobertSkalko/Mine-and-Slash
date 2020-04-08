@@ -103,17 +103,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.arcanists": "Arcanist's",
@@ -229,6 +218,17 @@
 	"mmorpg.affix.wise": "Wise",
 
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
 
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
@@ -829,6 +829,11 @@
 	"mmorpg.stat.physical_damage": "Physical Damage",
 	"mmorpg.stat.physical_dispersion": "Physical Dispersion",
 	"mmorpg.stat.physical_thorns_reflect": "Physical Thorns",
+	"mmorpg.stat.plus_druid_skill_lvls": "To Druid Skill Levels",
+	"mmorpg.stat.plus_ember_mage_skill_lvls": "To Ember Mage Skill Levels",
+	"mmorpg.stat.plus_ocean_mystic_skill_lvls": "To Ocean Mystic Skill Levels",
+	"mmorpg.stat.plus_ranger_skill_lvls": "To Ranger Skill Levels",
+	"mmorpg.stat.plus_shaman_skill_lvls": "To Shaman Skill Levels",
 	"mmorpg.stat.quick_learner": "Quick Learner",
 	"mmorpg.stat.reckless_blows_trait": "Reckless Blows",
 	"mmorpg.stat.refreshing_breeze_trait": "Refreshing Breeze",
@@ -1421,6 +1426,11 @@
 	"mmorpg.stat_desc.overflowing_vitality_trait": "Increases your physical damage by 1 Percent of your Health.",
 	"mmorpg.stat_desc.physical_damage": "How much DMG your basic attacks do",
 	"mmorpg.stat_desc.physical_dispersion": "If you are doing elemental dmg, transfers physical damage to elemental damage of highest amount.",
+	"mmorpg.stat_desc.plus_druid_skill_lvls": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
+	"mmorpg.stat_desc.plus_ember_mage_skill_lvls": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
+	"mmorpg.stat_desc.plus_ocean_mystic_skill_lvls": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
+	"mmorpg.stat_desc.plus_ranger_skill_lvls": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
+	"mmorpg.stat_desc.plus_shaman_skill_lvls": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
 	"mmorpg.stat_desc.reckless_blows_trait": "Expose your weakness to give everything you have.",
 	"mmorpg.stat_desc.refreshing_breeze_trait": "Dodging restores 50 percent of your energy regen. But if you don't dodge, you lose half of that from energy.",
 	"mmorpg.stat_desc.rogue_stealth": "Stealth is removed on first damage done.",
