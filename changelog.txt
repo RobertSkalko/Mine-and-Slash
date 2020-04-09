@@ -20,3 +20,4 @@ Other:
 * server performance improvements
 * added all the buildathon rewards that people asked for (still many didn't come claim them though)
 * fixed unique cangetset field not doing anything
+* mobs now have a small chance to increase their own rarity and level by killing other mobs. (experimental feature but i think it will be good)

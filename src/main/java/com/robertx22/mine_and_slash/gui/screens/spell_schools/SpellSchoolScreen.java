@@ -159,28 +159,6 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
         if (school != null) {
 
-            ResourceLocation tex = new ResourceLocation(
-                Ref.MODID, "textures/gui/spell_schools/cyan_concrete_powder.png"); // TODO
-
-            Minecraft.getInstance()
-                .getTextureManager()
-                .bindTexture(tex);
-
-            int s = 16;
-
-            for (int xt = 0; xt < 232; xt += s) {
-                for (int yt = 0; yt < 171; yt += s) {
-
-                    int bx = guiLeft + 7 + xt;
-                    int by = guiTop + yt + 7;
-
-                    int cutX = xt + s > 232 ? xt + s - 232 : 0;
-                    int cutY = yt + s > 171 ? yt + s - 171 : 0;
-
-                    blit(bx, by, this.getBlitOffset(), 0.0F, 0.0F, s - cutX, s - cutY, s, s);
-                }
-            }
-
             Minecraft.getInstance()
                 .getTextureManager()
                 .bindTexture(FOREGROUND);

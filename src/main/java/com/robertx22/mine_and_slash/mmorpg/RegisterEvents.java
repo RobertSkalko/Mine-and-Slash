@@ -55,6 +55,7 @@ public class RegisterEvents {
 
     private static void registerEntityEvents() {
 
+        register(OnEntityDeathLevelEntity.class);
         register(CollectGearEvent.class);
         register(OnHurtEvent.class);
         register(OnEquipChange.class);
