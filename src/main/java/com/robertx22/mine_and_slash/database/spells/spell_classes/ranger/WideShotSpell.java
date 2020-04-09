@@ -62,6 +62,7 @@ public class WideShotSpell extends BaseSpell {
         c.set(SC.PROJECTILE_COUNT, 3, 6);
         c.set(SC.CAST_TIME_TICKS, 20, 10);
         c.set(SC.COOLDOWN_SECONDS, 10, 5);
+        c.set(SC.DURATION_TICKS, 100, 160);
 
         c.setMaxLevel(16);
 

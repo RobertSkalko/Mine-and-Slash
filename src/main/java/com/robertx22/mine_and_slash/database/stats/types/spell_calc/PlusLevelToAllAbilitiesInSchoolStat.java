@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.spell_calc;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
@@ -46,6 +47,11 @@ public class PlusLevelToAllAbilitiesInSchoolStat extends Stat implements IGenera
     @Override
     public String locNameForLangFile() {
         return "To " + school.locName.locNameForLangFile() + " Skill Levels";
+    }
+
+    @Override
+    public String locDescLangFileGUID() {
+        return Ref.MODID + ".stat_desc." + "plus_all_skill_levels";
     }
 
     @Override

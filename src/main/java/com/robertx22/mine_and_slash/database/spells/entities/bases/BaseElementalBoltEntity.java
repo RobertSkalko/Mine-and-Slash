@@ -35,7 +35,6 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
 
     public BaseElementalBoltEntity(EntityType<? extends Entity> type, World worldIn) {
         super(type, worldIn);
-
     }
 
     @Override

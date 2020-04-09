@@ -28,7 +28,6 @@ public class PreCalcSpellConfigs {
         set(SC.TIMES_TO_CAST, 1, 1);
         set(SC.COOLDOWN_TICKS, 0, 0);
         set(SC.COOLDOWN_SECONDS, 0, 0);
-        set(SC.DURATION_TICKS, 60, 60);
     }
 
     private PreCalcSpellConfigs(boolean nothing) {

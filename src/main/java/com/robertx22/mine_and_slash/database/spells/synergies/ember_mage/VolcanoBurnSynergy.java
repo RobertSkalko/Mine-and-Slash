@@ -32,9 +32,7 @@ public class VolcanoBurnSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Chance to apply debuff"));
-
-        list.addAll(BurnEffect.INSTANCE.GetTooltipString(info));
+        list.add(new StringTextComponent("Chance to apply: " + BurnEffect.INSTANCE.locNameForLangFile()));
 
         return list;
     }

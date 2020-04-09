@@ -32,9 +32,7 @@ public class WhirlpoolShiverSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Applies Shiver"));
-
-        list.addAll(ShiverEffect.INSTANCE.GetTooltipString(info));
+        list.add(new StringTextComponent("Chance to apply: " + ShiverEffect.INSTANCE.locNameForLangFile()));
 
         return list;
     }

@@ -143,6 +143,8 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
         }
         // list = TooltipUtils.removeDoubleBlankLines(list, 0);
 
+        TooltipUtils.removeDoubleBlankLines(list);
+
         return list;
     }
 

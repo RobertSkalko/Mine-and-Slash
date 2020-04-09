@@ -61,7 +61,9 @@ public class SpellCastContext {
 
         this.configForSummonedEntities = new EntityCalcSpellConfigs(data, spellsCap, ability);
 
-        this.isLastCastTick = getConfigFor(spell).get(SC.CAST_TIME_TICKS)
-            .get(spellsCap, spell) == ticksInUse;
+        int castTicks = (int) getConfigFor(spell).get(SC.CAST_TIME_TICKS)
+            .get(spellsCap, spell);
+
+        this.isLastCastTick = castTicks == ticksInUse;
     }
 }

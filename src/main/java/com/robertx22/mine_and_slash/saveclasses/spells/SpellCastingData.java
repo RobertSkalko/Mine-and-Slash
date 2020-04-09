@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import info.loenwind.autosave.annotations.Storable;
@@ -84,20 +85,26 @@ public class SpellCastingData {
 
             SpellCastContext ctx = new SpellCastContext(player, castingTicksDone, spell);
 
-            if (spell != null && spells != null && SlashRegistry.Spells()
-                .isRegistered(spell)) {
-                spell.onCastingTick(ctx);
-                addCastingMoveDebuff(player);
-            } else {
-                removeCastingMoveDebuff(player);
+            if (!player.world.isRemote) {
+                if (spell != null && spells != null && SlashRegistry.Spells()
+                    .isRegistered(spell)) {
+
+                    spell.onCastingTick(ctx);
+                    addCastingMoveDebuff(player);
+                } else {
+                    removeCastingMoveDebuff(player);
+                }
             }
 
             castingTicksLeft--;
             castingTicksDone++;
 
-            if (spell == null || !SlashRegistry.Spells()
-                .isRegistered(spell)) {
-                removeCastingMoveDebuff(player);
+            if (!player.world.isRemote) {
+
+                if (spell == null || !SlashRegistry.Spells()
+                    .isRegistered(spell)) {
+                    removeCastingMoveDebuff(player);
+                }
             }
 
             spellDatas.values()
@@ -178,7 +185,13 @@ public class SpellCastingData {
 
                     SpellCastContext ctx = new SpellCastContext(player, this.castingTicksDone, spell);
 
-                    spell.cast(ctx);
+                    int timesToCast = (int) ctx.getConfigFor(spell)
+                        .get(SC.TIMES_TO_CAST)
+                        .get(ctx.spellsCap, spell);
+
+                    if (timesToCast == 1) {
+                        spell.cast(ctx);
+                    }
 
                     player.getHeldItemMainhand()
                         .damageItem(1, player, x -> {

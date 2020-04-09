@@ -49,6 +49,7 @@ public class EntityRegister {
     public static final EntityType<? extends Entity> LIGHTNING_TOTEM;
 
     public static final EntityType<? extends Entity> FIREBOLT;
+    public static final EntityType<? extends Entity> SEEKER_FLAME;
     public static final EntityType<? extends Entity> VOLCANO;
 
     public static final EntityType<? extends Entity> POISON_BALL;
@@ -85,6 +86,7 @@ public class EntityRegister {
         LIGHTNING_TOTEM = projectile(LightningTotemEntity::new, LightningTotemEntity::new, "lightning_totem");
 
         FIREBOLT = projectile(FireballEntity::new, FireballEntity::new, "fireball");
+        SEEKER_FLAME = projectile(SeekerFlameEntity::new, SeekerFlameEntity::new, "seeker_flame");
         VOLCANO = projectile(VolcanoEntity::new, VolcanoEntity::new, "volcano");
 
         RANGER_ARROW = projectile(RangerArrowEntity::new, RangerArrowEntity::new, "ranger_arrow");

@@ -131,6 +131,10 @@ public class TooltipUtils {
         return requirement(new StringTextComponent("Lvl Req"), player.getLevel(), lvl);
     }
 
+    public static List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list) {
+        return removeDoubleBlankLines(list, 5000);
+    }
+
     public static List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list, int minLinesCutAllBlanks) {
 
         List<ITextComponent> newt = new ArrayList();

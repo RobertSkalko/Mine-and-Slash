@@ -1,6 +1,6 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
-import com.robertx22.mine_and_slash.database.spells.entities.proj.LightningTotemEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.SeekerFlameEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
@@ -20,15 +20,15 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LightningTotemSpell extends BaseSpell {
+public class ThrowFlamesSpell extends BaseSpell {
 
-    private LightningTotemSpell() {
+    private ThrowFlamesSpell() {
         super(
             new ImmutableSpellConfigs() {
 
                 @Override
                 public SpellSchools school() {
-                    return SpellSchools.SHAMAN;
+                    return SpellSchools.EMBER_MAGE;
                 }
 
                 @Override
@@ -38,48 +38,49 @@ public class LightningTotemSpell extends BaseSpell {
 
                 @Override
                 public SoundEvent sound() {
-                    return SoundEvents.ENTITY_ARROW_SHOOT;
+                    return SoundEvents.BLOCK_FIRE_EXTINGUISH;
                 }
 
                 @Override
                 public Elements element() {
-                    return Elements.Thunder;
+                    return Elements.Fire;
                 }
             }.cooldownIfCanceled(true)
-                .summonsEntity(w -> new LightningTotemEntity(w))
-        );
+                .summonsEntity(w -> new SeekerFlameEntity(w)));
+    }
+
+    public static ThrowFlamesSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 15, 25);
-        c.set(SC.BASE_VALUE, 2, 8);
-        c.set(SC.SHOOT_SPEED, 1F, 1.2F);
-        c.set(SC.PROJECTILE_COUNT, 1, 3);
-        c.set(SC.CAST_TIME_TICKS, 20, 10);
-        c.set(SC.COOLDOWN_SECONDS, 15, 10);
-        c.set(SC.TICK_RATE, 30, 15);
-        c.set(SC.DURATION_TICKS, 100, 160);
+        c.set(SC.MANA_COST, 10, 15);
+        c.set(SC.BASE_VALUE, 3, 5);
+        c.set(SC.ATTACK_SCALE_VALUE, 0.2F, 0.5F);
+        c.set(SC.SHOOT_SPEED, 0.3F, 0.5F);
+        c.set(SC.PROJECTILE_COUNT, 3, 3);
+        c.set(SC.CAST_TIME_TICKS, 60, 50);
+        c.set(SC.COOLDOWN_SECONDS, 15, 5);
+        c.set(SC.TIMES_TO_CAST, 1, 1);
+        c.set(SC.DURATION_TICKS, 100, 120);
+        c.set(SC.TIMES_TO_CAST, 3, 3);
 
-        c.setMaxLevel(8);
+        c.setMaxLevel(16);
 
         return c;
     }
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(3, 1);
-    }
-
-    public static LightningTotemSpell getInstance() {
-        return SingletonHolder.INSTANCE;
+        return new AbilityPlace(3, 2);
     }
 
     @Override
     public String GUID() {
-        return "lightning_totem";
+        return "throw_flames";
     }
 
     @Override
@@ -87,7 +88,7 @@ public class LightningTotemSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Summons a totem that damages enemies: "));
+        list.add(new StringTextComponent("Throw out slow flames: "));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info));
 
@@ -97,10 +98,11 @@ public class LightningTotemSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.LightningTotem;
+        return Words.ThrowFlames;
     }
 
     private static class SingletonHolder {
-        private static final LightningTotemSpell INSTANCE = new LightningTotemSpell();
+        private static final ThrowFlamesSpell INSTANCE = new ThrowFlamesSpell();
     }
 }
+

@@ -63,6 +63,7 @@ public class ArrowBarrageSpell extends BaseSpell {
         c.set(SC.CAST_TIME_TICKS, 40, 30);
         c.set(SC.COOLDOWN_SECONDS, 30, 20);
         c.set(SC.TIMES_TO_CAST, 4, 6);
+        c.set(SC.DURATION_TICKS, 100, 160);
 
         c.setMaxLevel(16);
 

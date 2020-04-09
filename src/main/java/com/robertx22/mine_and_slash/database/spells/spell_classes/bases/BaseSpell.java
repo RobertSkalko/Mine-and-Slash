@@ -47,21 +47,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         this.immutableConfigs = immutable;
     }
 
-    /*
-    private List<String> synergies = new ArrayList<>();
-
-    public void addSynergy(Synergy syn) {
-
-        if (syn.getSpell() == null || syn.getSpell()
-            .GUID()
-            .equals(GUID()) == false) {
-            throw new RuntimeException("Wrong synergy for spell!: " + this.GUID() + ":" + syn.GUID());
-        }
-        this.synergies.add(syn.GUID());
-    }
-
-     */
-
     public final ImmutableSpellConfigs getImmutableConfigs() {
         return immutableConfigs;
     }
@@ -72,11 +57,11 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             .get(SC.TIMES_TO_CAST)
             .get(ctx.spellsCap, this);
 
-        if (timesToCast == 1) {
-            if (ctx.isLastCastTick) {
-                this.cast(ctx);
-            }
-        } else if (timesToCast > 1) {
+        if (ctx.isLastCastTick) {
+            // return; // it's casted elsewhere
+        }
+
+        if (timesToCast > 1) {
 
             int castTimeTicks = (int) ctx.getConfigFor(this)
                 .get(SC.CAST_TIME_TICKS)
@@ -100,25 +85,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     }
 
     public final List<Synergy> getAllocatedSynergies(PlayerSpellCap.ISpellsCap cap) {
-
-        /*
-        List<Synergy> list = new ArrayList<>();
-
-        this.synergies.forEach(x -> {
-
-            Synergy syn = SlashRegistry.Synergies()
-                .get(x);
-            if (syn != null) {
-                if (cap.getLevelOf(syn) > 0) {
-                    list.add(syn);
-                }
-            }
-        });
-
-        return list;
-
-         */
-
         return cap.getAbilitiesData()
             .getAllocatedSynergies()
             .stream()
@@ -376,6 +342,8 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
         list.addAll(ctx.getConfigFor(this)
             .GetTooltipString(info, ctx));
+
+        TooltipUtils.removeDoubleBlankLines(list);
 
         return list;
 

@@ -35,9 +35,7 @@ public class RegenerateThornsSynergy extends OnSpellCastSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Spell cast also applies debuff to enemies nearby"));
-
-        list.addAll(ThornsEffect.INSTANCE.GetTooltipString(info));
+        list.add(new StringTextComponent("Also applies debuff in aoe: " + ThornsEffect.INSTANCE.locNameForLangFile()));
 
         return list;
     }

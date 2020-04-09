@@ -55,6 +55,8 @@ public class PoisonedWeaponsSpell extends BaseSpell {
         c.set(SC.BASE_VALUE, 2, 9);
         c.set(SC.CAST_TIME_TICKS, 30, 15);
         c.set(SC.COOLDOWN_SECONDS, 120, 60);
+        c.set(SC.DURATION_TICKS, 60 * 30, 60 * 45);
+
         c.setMaxLevel(12);
         return c;
     }

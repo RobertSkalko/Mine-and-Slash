@@ -52,6 +52,8 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> 
         list.addAll(ctx.getConfigFor(this)
             .GetTooltipString(info, ctx));
 
+        TooltipUtils.removeDoubleBlankLines(list);
+
         return list;
     }
 
