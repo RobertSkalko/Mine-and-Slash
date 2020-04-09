@@ -10,6 +10,7 @@ SPELL REWORK! (UNFINISHED)
 * added cooldown reduction, mana cost reduction and cast rate stats
 * added +1 to spell school levels stat
 * removed elemental conversion and transfer stats, mostly useless after spell damage became a percent
+* huge easy aoe spells now have much larger cooldown
 
 Other:
 * bosses now spawn less minions but they're all max rarity

@@ -31,9 +31,7 @@ public class LightningTotemStaticSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Applies debuff"));
-
-        list.addAll(StaticEffect.INSTANCE.GetTooltipString(info));
+        list.add(new StringTextComponent("Chance to appply debuff: " + StaticEffect.INSTANCE.locNameForLangFile()));
 
         return list;
     }

@@ -56,6 +56,10 @@ public class AllocatedAbilitiesData implements IApplyableStats {
 
     public boolean canRemoveSchoolPoint(SpellSchools school) {
 
+        if (resetPoints < 1) {
+            return false;
+        }
+
         int points = getSchoolPoints(school);
 
         if (points < 1) {
@@ -170,6 +174,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
     }
 
     public void removeSchoolPoint(SpellSchools school) {
+        resetPoints--;
         int points = schoolPoints.getOrDefault(school.name(), 0) - 1;
         schoolPoints.put(school.name(), points);
     }
@@ -265,6 +270,8 @@ public class AllocatedAbilitiesData implements IApplyableStats {
     }
 
     public void removePoint(IAbility ability) {
+        resetPoints--;
+
         if (!map.containsKey(ability.GUID())) {
             map.put(ability.GUID(), new AbilityData(ability));
         }

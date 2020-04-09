@@ -32,10 +32,8 @@ public class ImbueCritAddHunterSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Chance to give Hunter Instinct"));
-
-        list.addAll(HunterInstinctEffect.getInstance()
-            .GetTooltipString(info));
+        list.add(new StringTextComponent("Chance to give: " + HunterInstinctEffect.getInstance()
+            .locNameForLangFile()));
 
         return list;
     }

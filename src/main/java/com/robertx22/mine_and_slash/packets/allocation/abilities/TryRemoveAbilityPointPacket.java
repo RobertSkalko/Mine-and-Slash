@@ -56,8 +56,10 @@ public class TryRemoveAbilityPointPacket {
                         EntityCap.UnitData data = Load.Unit(player);
 
                         if (spells.getLevelOf(ability) > 0) {
-                            spells.getAbilitiesData()
-                                .removePoint(ability);
+                            if (spells.getAbilitiesData().resetPoints > 0) {
+                                spells.getAbilitiesData()
+                                    .removePoint(ability);
+                            }
                         }
 
                         MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.SPELLS), player);

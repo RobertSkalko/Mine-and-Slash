@@ -30,10 +30,8 @@ public class RecoilAddWoundsSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Applies Wounds to enemy"));
-
-        list.addAll(WoundsEffect.getInstance()
-            .GetTooltipString(info));
+        list.add(new StringTextComponent("Enemies are inflicted with: " + WoundsEffect.getInstance()
+            .locNameForLangFile()));
 
         return list;
     }

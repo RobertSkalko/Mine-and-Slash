@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic;
 
-import com.robertx22.mine_and_slash.database.spells.entities.proj.WhirlpoolEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.cloud.BlizzardEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
@@ -20,9 +20,9 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WhirlpoolSpell extends BaseSpell {
+public class BlizzardSpell extends BaseSpell {
 
-    private WhirlpoolSpell() {
+    private BlizzardSpell() {
         super(
             new ImmutableSpellConfigs() {
 
@@ -33,7 +33,7 @@ public class WhirlpoolSpell extends BaseSpell {
 
                 @Override
                 public SpellCastType castType() {
-                    return SpellCastType.PROJECTILE;
+                    return SpellCastType.AT_SIGHT;
                 }
 
                 @Override
@@ -45,21 +45,24 @@ public class WhirlpoolSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Water;
                 }
-            }.summonsEntity(w -> new WhirlpoolEntity(w)));
+            }.summonsEntity(w -> new BlizzardEntity(w)));
+    }
+
+    public static BlizzardSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 15, 30);
-        c.set(SC.BASE_VALUE, 2, 3);
-        c.set(SC.SHOOT_SPEED, 0.6F, 0.9F);
-        c.set(SC.PROJECTILE_COUNT, 1, 1);
-        c.set(SC.CAST_TIME_TICKS, 30, 20);
-        c.set(SC.COOLDOWN_SECONDS, 120, 60);
-        c.set(SC.TICK_RATE, 30, 20);
-        c.set(SC.RADIUS, 2.5F, 4);
+        c.set(SC.MANA_COST, 35, 60);
+        c.set(SC.BASE_VALUE, 2, 4);
+        c.set(SC.CAST_TIME_TICKS, 50, 30);
+        c.set(SC.COOLDOWN_SECONDS, 60 * 5, 60 * 4);
+        c.set(SC.TICK_RATE, 30, 15);
+        c.set(SC.RADIUS, 3, 4);
+        c.set(SC.DURATION_TICKS, 100, 160);
 
         c.setMaxLevel(12);
 
@@ -68,16 +71,12 @@ public class WhirlpoolSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(2, 3);
-    }
-
-    public static WhirlpoolSpell getInstance() {
-        return SingletonHolder.INSTANCE;
+        return new AbilityPlace(1, 6);
     }
 
     @Override
     public String GUID() {
-        return "whirlpool";
+        return "blizzard";
     }
 
     @Override
@@ -85,7 +84,7 @@ public class WhirlpoolSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Summons a whirpool that slows and damages enemies: "));
+        list.add(new StringTextComponent("Summon a blizzard that damages enemies inside: "));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info));
 
@@ -95,10 +94,11 @@ public class WhirlpoolSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.Whirpool;
+        return Words.Blizzard;
     }
 
     private static class SingletonHolder {
-        private static final WhirlpoolSpell INSTANCE = new WhirlpoolSpell();
+        private static final BlizzardSpell INSTANCE = new BlizzardSpell();
     }
 }
+

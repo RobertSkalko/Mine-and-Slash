@@ -32,9 +32,7 @@ public class FrostballFrostEssenceGenSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Chance for attacks give Frost Essence"));
-
-        list.addAll(ColdEssenceEffect.INSTANCE.GetTooltipString(info));
+        list.add(new StringTextComponent("Chance for attacks give: " + ColdEssenceEffect.INSTANCE.locNameForLangFile()));
 
         return list;
     }

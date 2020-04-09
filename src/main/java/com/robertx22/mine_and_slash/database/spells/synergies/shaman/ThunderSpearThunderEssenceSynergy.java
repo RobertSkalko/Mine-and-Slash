@@ -32,9 +32,7 @@ public class ThunderSpearThunderEssenceSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Chance for attacks give Thunder Essence"));
-
-        list.addAll(ThunderEssenceEffect.INSTANCE.GetTooltipString(info));
+        list.add(new StringTextComponent("Chance for attacks give: " + ThunderEssenceEffect.INSTANCE.locNameForLangFile()));
 
         return list;
     }

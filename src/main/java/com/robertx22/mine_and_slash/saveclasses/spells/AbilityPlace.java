@@ -8,7 +8,7 @@ public class AbilityPlace {
     public int y;
 
     public static int MAX_X = 8;
-    public static int MAX_Y = 8;
+    public static int MAX_Y = 6;
 
     public AbilityPlace(int x, int y) {
 

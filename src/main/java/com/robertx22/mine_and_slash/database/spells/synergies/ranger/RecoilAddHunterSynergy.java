@@ -30,10 +30,8 @@ public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Gives Hunter Instinct stacks if it hits a target"));
-
-        list.addAll(HunterInstinctEffect.getInstance()
-            .GetTooltipString(info));
+        list.add(new StringTextComponent("Chance to give: " + HunterInstinctEffect.getInstance()
+            .locNameForLangFile()));
 
         return list;
     }

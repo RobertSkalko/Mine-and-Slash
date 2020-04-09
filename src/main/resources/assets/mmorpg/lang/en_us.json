@@ -103,6 +103,17 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.arcanists": "Arcanist's",
@@ -220,17 +231,6 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "Mage's Robes",
@@ -267,6 +267,24 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -285,24 +303,6 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -737,7 +737,7 @@
 	"mmorpg.stat.bonus_unique_item_drops": "Bonus Unique Item Drops",
 	"mmorpg.stat.bonus_unique_rune_drops": "Bonus Unique Rune Drops",
 	"mmorpg.stat.bow_damage": "Bow Damage",
-	"mmorpg.stat.cdr": "Spell Cooldown Reduction",
+	"mmorpg.stat.cdr": "Cooldown Reduction",
 	"mmorpg.stat.chariot": "Chariot",
 	"mmorpg.stat.clueless": "Clueless",
 	"mmorpg.stat.clumsy": "Clumsy",
@@ -770,6 +770,7 @@
 	"mmorpg.stat.energy_regen": "Energy Regen",
 	"mmorpg.stat.energy_to_mana_conversion": "Boost Energy Reg to Mana",
 	"mmorpg.stat.familiar_instincts_trait": "Familiar Instincts",
+	"mmorpg.stat.faster_cast_rate": "Faster Cast Rate",
 	"mmorpg.stat.fire_atronach": "Fire Atronach",
 	"mmorpg.stat.fire_focus": "Fire Focus",
 	"mmorpg.stat.fire_penetration": "Fire Penetration",
@@ -804,6 +805,7 @@
 	"mmorpg.stat.magical_life_trait": "Magical Life",
 	"mmorpg.stat.mana": "Mana",
 	"mmorpg.stat.mana_battery_trait": "Mana Battery",
+	"mmorpg.stat.mana_cost_red": "Mana Cost Reduction",
 	"mmorpg.stat.mana_on_hit": "Mana on Hit",
 	"mmorpg.stat.mana_regen": "Mana Regen",
 	"mmorpg.stat.mana_to_energy_conversion": "Boost Mana Reg to Energy",
@@ -1378,6 +1380,7 @@
 	"mmorpg.stat_desc.energy_regen": "Regen happens every few seconds but is also used for other stats or spells",
 	"mmorpg.stat_desc.energy_to_mana_conversion": "Adds to 1 based on the others' amount",
 	"mmorpg.stat_desc.familiar_instincts_trait": "Get in touch with your primal self.",
+	"mmorpg.stat_desc.faster_cast_rate": "Reduces amount of time needed to cast spells.",
 	"mmorpg.stat_desc.fleeting_wind": "On Dodge Buff Speed",
 	"mmorpg.stat_desc.harmony_trait": "Half of your hp restoration effects go to your magic shield instead. This for example means your heal spells only heal half of the value to health and other half to magic shield. ",
 	"mmorpg.stat_desc.health": "Allows you to take more damage from mobs",
@@ -1394,6 +1397,7 @@
 	"mmorpg.stat_desc.magical_life_trait": "Transforms your magic shield into health.",
 	"mmorpg.stat_desc.mana": "Mana is used to cast spells",
 	"mmorpg.stat_desc.mana_battery_trait": "While mana is above 50 percent absorb 25 percent of damage by spending double that in mana.",
+	"mmorpg.stat_desc.mana_cost_red": "Reduces Mana Cost of all spells.",
 	"mmorpg.stat_desc.mana_on_hit": "Gives mana on basic attack",
 	"mmorpg.stat_desc.mana_regen": "Regen happens every few seconds but is also used for other stats or spells",
 	"mmorpg.stat_desc.mana_to_energy_conversion": "Adds to 1 based on the others' amount",

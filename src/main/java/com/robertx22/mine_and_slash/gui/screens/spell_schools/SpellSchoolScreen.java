@@ -46,7 +46,7 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
         Ref.MODID, "textures/gui/spell_schools/back_button.png");
 
     static int X = 246;
-    static int Y = 183;
+    static int Y = 186;
 
     public SpellSchoolScreen() {
         super(X, Y);
