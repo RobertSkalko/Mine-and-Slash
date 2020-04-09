@@ -15,7 +15,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SynergyDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
@@ -46,13 +45,7 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> 
 
         list.add(new SText(""));
 
-        TooltipUtils.abilityLevel(list, Load.spells(info.player)
-            .getLevelOf(this), getMaxSpellLevelNormal());
-
-        list.addAll(ctx.getConfigFor(this)
-            .GetTooltipString(info, ctx));
-
-        TooltipUtils.removeDoubleBlankLines(list);
+        finishTooltip(list, ctx, info);
 
         return list;
     }

@@ -58,12 +58,12 @@ public class ThrowFlamesSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
         c.set(SC.MANA_COST, 10, 15);
-        c.set(SC.BASE_VALUE, 3, 5);
+        c.set(SC.BASE_VALUE, 1, 3);
         c.set(SC.ATTACK_SCALE_VALUE, 0.2F, 0.5F);
         c.set(SC.SHOOT_SPEED, 0.3F, 0.5F);
         c.set(SC.PROJECTILE_COUNT, 3, 3);
         c.set(SC.CAST_TIME_TICKS, 60, 50);
-        c.set(SC.COOLDOWN_SECONDS, 15, 5);
+        c.set(SC.COOLDOWN_SECONDS, 20, 10);
         c.set(SC.TIMES_TO_CAST, 1, 1);
         c.set(SC.DURATION_TICKS, 100, 120);
         c.set(SC.TIMES_TO_CAST, 3, 3);
@@ -75,7 +75,7 @@ public class ThrowFlamesSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(3, 2);
+        return new AbilityPlace(4, 1);
     }
 
     @Override

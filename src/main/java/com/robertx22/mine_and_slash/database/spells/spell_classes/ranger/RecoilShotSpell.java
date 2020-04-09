@@ -76,7 +76,7 @@ public class RecoilShotSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(6, 2);
+        return new AbilityPlace(5, 2);
     }
 
     public static RecoilShotSpell getInstance() {

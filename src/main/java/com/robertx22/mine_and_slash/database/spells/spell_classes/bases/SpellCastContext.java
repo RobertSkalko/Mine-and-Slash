@@ -20,7 +20,7 @@ public class SpellCastContext {
     public final int ticksInUse;
     public final BaseSpell spell;
     public final IAbility ability;
-    public final boolean isLastCastTick;
+    public boolean isLastCastTick;
 
     public EntityCalcSpellConfigs configForSummonedEntities;
 
@@ -49,8 +49,6 @@ public class SpellCastContext {
 
         this.ability = ability;
 
-        this.spell = ability.getSpell();
-
         this.data = Load.Unit(caster);
 
         if (caster instanceof PlayerEntity) {
@@ -61,9 +59,12 @@ public class SpellCastContext {
 
         this.configForSummonedEntities = new EntityCalcSpellConfigs(data, spellsCap, ability);
 
-        int castTicks = (int) getConfigFor(spell).get(SC.CAST_TIME_TICKS)
-            .get(spellsCap, spell);
+        this.spell = ability.getSpell();
 
-        this.isLastCastTick = castTicks == ticksInUse;
+        if (spell != null) {
+            int castTicks = (int) getConfigFor(spell).get(SC.CAST_TIME_TICKS)
+                .get(spellsCap, spell);
+            this.isLastCastTick = castTicks == ticksInUse;
+        }
     }
 }

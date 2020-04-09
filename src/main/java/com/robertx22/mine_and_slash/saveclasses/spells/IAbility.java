@@ -2,14 +2,21 @@ package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public interface IAbility extends IGUID, ITooltipList {
     public enum Type {
@@ -76,9 +83,43 @@ public interface IAbility extends IGUID, ITooltipList {
         if (place.y == 0) {
             return 1;
         }
+        if (place.y == 1) {
+            return 5;
+        }
+        if (place.y == 2) {
+            return 10;
+        }
+        if (place.y == 3) {
+            return 20;
+        }
+        if (place.y == 4) {
+            return 30;
+        }
+        if (place.y == 5) {
+            return 40;
+        }
+        if (place.y == 6) {
+            return SpellSchools.MAXIMUM_POINTS;
+        }
 
-        return SpellSchools.MAXIMUM_POINTS / AbilityPlace.MAX_Y * place.y;
+        return Integer.MAX_VALUE;
+    }
+
+    public default void finishTooltip(List<ITextComponent> list, SpellCastContext ctx, TooltipInfo info) {
+        TooltipUtils.addEmpty(list);
+
+        TooltipUtils.abilityLevel(list, ctx.spellsCap.getLevelOf(this), getMaxSpellLevelNormal());
+
+        list.add(new SText(TextFormatting.RED + "Needs ").appendSibling(getSchool().locName.locName()
+            .appendText(" of Level: " + getSchoolPointsNeeded())));
+
+        list.addAll(ctx.getConfigFor(this)
+            .GetTooltipString(info, ctx));
+
+        TooltipUtils.removeDoubleBlankLines(list);
 
     }
 
 }
+
+

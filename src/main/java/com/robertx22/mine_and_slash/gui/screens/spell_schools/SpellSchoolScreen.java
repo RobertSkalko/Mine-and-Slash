@@ -34,6 +34,8 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
     static ResourceLocation BACKGROUND = new ResourceLocation(
         Ref.MODID, "textures/gui/spell_schools/background.png");
+    static ResourceLocation FOREGROUND = new ResourceLocation(
+        Ref.MODID, "textures/gui/spell_schools/fore.png");
     static ResourceLocation PICK_BACKGROUND = new ResourceLocation(
         Ref.MODID, "textures/gui/spell_schools/pick_background.png");
     static ResourceLocation PARTS = new ResourceLocation(
@@ -73,6 +75,8 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
         if (this.school != null) {
             addButton(new SchoolButton(school, guiLeft + 14, guiTop + 10));
+
+            addButton(new BackButton(guiLeft + X - BackButton.xSize, guiTop - BackButton.ySize));
 
             int i = 0;
             for (BasePotionEffect e : SlashRegistry.PotionEffects()
@@ -143,17 +147,49 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
     }
 
     protected void drawBackground(float partialTicks, int x, int y) {
-        if (school == null) {
-            Minecraft.getInstance()
-                .getTextureManager()
-                .bindTexture(PICK_BACKGROUND);
-        } else {
-            Minecraft.getInstance()
-                .getTextureManager()
-                .bindTexture(BACKGROUND);
-        }
+
+        RenderSystem.enableBlend();
+
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(PICK_BACKGROUND);
+
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, this.getBlitOffset(), 0.0F, 0.0F, X, Y, 256, 256);
+
+        if (school != null) {
+
+            ResourceLocation tex = new ResourceLocation(
+                Ref.MODID, "textures/gui/spell_schools/cyan_concrete_powder.png"); // TODO
+
+            Minecraft.getInstance()
+                .getTextureManager()
+                .bindTexture(tex);
+
+            int s = 16;
+
+            for (int xt = 0; xt < 232; xt += s) {
+                for (int yt = 0; yt < 171; yt += s) {
+
+                    int bx = guiLeft + 7 + xt;
+                    int by = guiTop + yt + 7;
+
+                    int cutX = xt + s > 232 ? xt + s - 232 : 0;
+                    int cutY = yt + s > 171 ? yt + s - 171 : 0;
+
+                    blit(bx, by, this.getBlitOffset(), 0.0F, 0.0F, s - cutX, s - cutY, s, s);
+                }
+            }
+
+            Minecraft.getInstance()
+                .getTextureManager()
+                .bindTexture(FOREGROUND);
+            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+            blit(guiLeft + 7, guiTop + 7, this.getBlitOffset(), 0.0F, 0.0F, X, Y, 256, 256);
+
+        }
+
+        RenderSystem.disableBlend();
 
     }
 
@@ -320,6 +356,25 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
             RenderSystem.enableDepthTest();
 
+        }
+
+    }
+
+    static class BackButton extends ImageButton {
+        public static int xSize = 26;
+        public static int ySize = 16;
+
+        public BackButton(int xPos, int yPos) {
+            super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, BACK_BUTTON, (button) -> {
+                Minecraft.getInstance()
+                    .displayGuiScreen(new SpellSchoolScreen(null));
+
+            });
+        }
+
+        @Override
+        public void renderButton(int x, int y, float ticks) {
+            super.renderButton(x, y, ticks);
         }
 
     }

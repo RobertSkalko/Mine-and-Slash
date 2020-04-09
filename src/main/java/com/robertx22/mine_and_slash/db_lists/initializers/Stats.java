@@ -57,8 +57,6 @@ public class Stats implements ISlashRegistryInit {
             {
                 {
 
-                    add(ReducedCooldownStat.getInstance());
-
                     add(ArmorPenetration.getInstance());
 
                     // GAME CHANGERS

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.bases;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
@@ -11,7 +12,6 @@ import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -135,15 +135,7 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
         list.addAll(getMaxStacksTooltip());
         list.addAll(getDurationTooltip());
 
-        list.add(new SText(""));
-
-        if (this.getSpell() == null) {
-            TooltipUtils.abilityLevel(list, Load.spells(info.player)
-                .getLevelOf(this), getMaxSpellLevelNormal());
-        }
-        // list = TooltipUtils.removeDoubleBlankLines(list, 0);
-
-        TooltipUtils.removeDoubleBlankLines(list);
+        finishTooltip(list, new SpellCastContext(info.player, 0, this), info);
 
         return list;
     }

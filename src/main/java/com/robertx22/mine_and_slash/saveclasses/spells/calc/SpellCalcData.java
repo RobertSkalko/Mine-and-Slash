@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.spells.calc;
 
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -40,8 +41,9 @@ public class SpellCalcData implements ITooltipList {
     public static SpellCalcData scaleWithAttack(float attack, float base) {
         SpellCalcData data = new SpellCalcData();
 
-        data.scalingValues.add(new ScalingStatCalc(PhysicalDamage.getInstance(), attack));
-        data.mergedScalingValues.add(new MergedScalingStatsCalc(new ElementalAttackDamage(Elements.Nature).generateAllSingleVariations(), attack, new SText(TextFormatting.GOLD + "Weapon Damages")));
+        List<Stat> list = new ElementalAttackDamage(Elements.Nature).generateAllSingleVariations();
+        list.add(PhysicalDamage.getInstance());
+        data.mergedScalingValues.add(new MergedScalingStatsCalc(list, attack, new SText(TextFormatting.GOLD + "Attack Damage")));
 
         data.baseValue = base;
 
@@ -114,7 +116,7 @@ public class SpellCalcData implements ITooltipList {
 
             if (baseValue > 0) {
                 list.add(new StringTextComponent(
-                    TextFormatting.RED + "Base value: " + getCalculatedBaseValue(info.unitdata)));
+                    TextFormatting.RED + "Base Value: " + getCalculatedBaseValue(info.unitdata)));
             }
         }
 

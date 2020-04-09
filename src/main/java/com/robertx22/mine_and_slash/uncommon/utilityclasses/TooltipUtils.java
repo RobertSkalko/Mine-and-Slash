@@ -156,13 +156,16 @@ public class TooltipUtils {
 
                 } else {
                     newt.add(list.get(i));
-
                 }
 
                 lastIsEmpty = true;
 
             }
         }
+
+        list.clear();
+
+        list.addAll(newt);
 
         return newt;
     }

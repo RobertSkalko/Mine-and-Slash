@@ -267,24 +267,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -303,6 +285,24 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -644,7 +644,6 @@
 	"mmorpg.word.scaling_value": "Scaling Value",
 	"mmorpg.word.secondary_stats": "Secondary Stats",
 	"mmorpg.word.seconds": "Seconds",
-	"mmorpg.word.seekerflames": "Seeker Flames",
 	"mmorpg.word.set": "Set",
 	"mmorpg.word.shaman": "Shaman",
 	"mmorpg.word.shootspeed": "Shoot Speed",
@@ -667,6 +666,7 @@
 	"mmorpg.word.talents": "Talents",
 	"mmorpg.word.thornarmor": "Thorn Armor",
 	"mmorpg.word.thornbush": "Thorn Bush",
+	"mmorpg.word.throwflames": "Throw Flames",
 	"mmorpg.word.thunderdash": "Thunder Dash",
 	"mmorpg.word.thunderspear": "Thunder Spear",
 	"mmorpg.word.thunderstorm": "Thunderstorm",
@@ -1405,11 +1405,7 @@
 	"mmorpg.stat_desc.overflowing_vitality_trait": "Increases your physical damage by 1 Percent of your Health.",
 	"mmorpg.stat_desc.physical_damage": "How much DMG your basic attacks do",
 	"mmorpg.stat_desc.physical_dispersion": "If you are doing elemental dmg, transfers physical damage to elemental damage of highest amount.",
-	"mmorpg.stat_desc.plus_druid_skill_lvls": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
-	"mmorpg.stat_desc.plus_ember_mage_skill_lvls": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
-	"mmorpg.stat_desc.plus_ocean_mystic_skill_lvls": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
-	"mmorpg.stat_desc.plus_ranger_skill_lvls": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
-	"mmorpg.stat_desc.plus_shaman_skill_lvls": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
+	"mmorpg.stat_desc.plus_all_skill_levels": "Increase all allocated spell levels of that school of magic, but can't go over a certain amount.",
 	"mmorpg.stat_desc.reckless_blows_trait": "Expose your weakness to give everything you have.",
 	"mmorpg.stat_desc.refreshing_breeze_trait": "Dodging restores 50 percent of your energy regen. But if you don't dodge, you lose half of that from energy.",
 	"mmorpg.stat_desc.rogue_stealth": "Stealth is removed on first damage done.",
