@@ -15,8 +15,10 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.ManaToEnergyConversion;
+import com.robertx22.mine_and_slash.database.stats.types.spell_calc.FasterCastRate;
 import com.robertx22.mine_and_slash.database.stats.types.spell_calc.PlusLevelToAllAbilitiesInSchoolStat;
 import com.robertx22.mine_and_slash.database.stats.types.spell_calc.ReducedCooldownStat;
+import com.robertx22.mine_and_slash.database.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.EarthAtronach;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.FireAtronach;
 import com.robertx22.mine_and_slash.database.stats.types.traits.atronachs.FrostAtronach;
@@ -89,6 +91,10 @@ public class Stats implements ISlashRegistryInit {
                     add(new BlockReflect(Elements.Physical));
 
                     // generated
+
+                    add(ReducedCooldownStat.getInstance());
+                    add(ReducedManaCost.getInstance());
+                    add(FasterCastRate.getInstance());
 
                     add(RogueStealth.getInstance());
                     add(new PhysicalDispersion());

@@ -1,18 +1,18 @@
 package com.robertx22.mine_and_slash.database.stats.types.spell_calc;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.effects.spell_calc.ReduceCooldownEffect;
+import com.robertx22.mine_and_slash.database.stats.effects.spell_calc.ReduceCastTimeEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-public class ReducedCooldownStat extends Stat implements IStatEffects {
+public class FasterCastRate extends Stat implements IStatEffects {
 
-    private ReducedCooldownStat() {
+    private FasterCastRate() {
         this.maximumValue = 75;
     }
 
-    public static ReducedCooldownStat getInstance() {
+    public static FasterCastRate getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -28,25 +28,26 @@ public class ReducedCooldownStat extends Stat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "Reduces spell cooldown.";
+        return "Reduces amount of time needed to cast spells.";
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Cooldown Reduction";
+        return "Faster Cast Rate";
     }
 
     @Override
     public String GUID() {
-        return "cdr";
+        return "faster_cast_rate";
     }
 
     @Override
     public IStatEffect getEffect() {
-        return new ReduceCooldownEffect();
+        return new ReduceCastTimeEffect();
     }
 
     private static class SingletonHolder {
-        private static final ReducedCooldownStat INSTANCE = new ReducedCooldownStat();
+        private static final FasterCastRate INSTANCE = new FasterCastRate();
     }
 }
+

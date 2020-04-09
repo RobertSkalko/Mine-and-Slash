@@ -1,18 +1,18 @@
 package com.robertx22.mine_and_slash.database.stats.types.spell_calc;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.effects.spell_calc.ReduceCooldownEffect;
+import com.robertx22.mine_and_slash.database.stats.effects.spell_calc.ReduceManaCostEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-public class ReducedCooldownStat extends Stat implements IStatEffects {
+public class ReducedManaCost extends Stat implements IStatEffects {
 
-    private ReducedCooldownStat() {
+    private ReducedManaCost() {
         this.maximumValue = 75;
     }
 
-    public static ReducedCooldownStat getInstance() {
+    public static ReducedManaCost getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -28,25 +28,25 @@ public class ReducedCooldownStat extends Stat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "Reduces spell cooldown.";
+        return "Reduces Mana Cost of all spells.";
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Cooldown Reduction";
+        return "Mana Cost Reduction";
     }
 
     @Override
     public String GUID() {
-        return "cdr";
+        return "mana_cost_red";
     }
 
     @Override
     public IStatEffect getEffect() {
-        return new ReduceCooldownEffect();
+        return new ReduceManaCostEffect();
     }
 
     private static class SingletonHolder {
-        private static final ReducedCooldownStat INSTANCE = new ReducedCooldownStat();
+        private static final ReducedManaCost INSTANCE = new ReducedManaCost();
     }
 }

@@ -7,7 +7,8 @@ SPELL REWORK! (UNFINISHED)
 * added some new spells
 * spell damage stats are now percents and increase spell damage by percent, instead of adding to the damage.
 * infusion reworked
-* added cooldown reduction stat
+* added cooldown reduction, mana cost reduction and cast rate stats
+* added +1 to spell school levels stat
 * removed elemental conversion and transfer stats, mostly useless after spell damage became a percent
 
 Other:

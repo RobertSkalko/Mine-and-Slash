@@ -12,8 +12,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStreng
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleSpellDmgFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.BonusExpFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAllSkillLevelsInSchoolFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.conversions.EnergyToManaConvFlat;
@@ -70,6 +69,10 @@ public class StatMods implements ISlashRegistryInit {
                     add(new CoreStatPercent(Dexterity.INSTANCE));
 
                     add(Mod.LUCK_FLAT());
+
+                    add(new CooldownReductionFlat());
+                    add(new ReducedManaCostFlat());
+                    add(new FasterCastRateFlat());
 
                     add(new CompletePhysDispersionFlat());
                     add(new HealPowerFlat());
