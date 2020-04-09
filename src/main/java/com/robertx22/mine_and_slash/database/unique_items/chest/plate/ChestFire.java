@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.unique_items.chest.plate;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAllSkillLevelsInSchoolFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
@@ -10,6 +11,7 @@ import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
@@ -44,7 +46,8 @@ public class ChestFire implements IUnique {
         return Arrays.asList(
             new ElementalResistFlat(Elements.Fire),
             new ElementalSpellDamageFlat(Elements.Fire),
-            new ElementalResistFlat(Elements.Water).size(StatMod.Size.ONE_LESS)
+            new ElementalResistFlat(Elements.Water).size(StatMod.Size.ONE_LESS),
+            new PlusAllSkillLevelsInSchoolFlat(SpellSchools.EMBER_MAGE)
         );
     }
 

@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -50,7 +50,7 @@ public class PantsWater implements IUnique {
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new ArmorFlat().size(StatMod.Size.TRIPLE),
             new ElementalResistFlat(Elements.Water).size(StatMod.Size.HALF_MORE),
-            new ElementalSpellDamagePercent(Elements.Water)
+            new ElementalSpellDamageFlat(Elements.Water)
         );
 
     }

@@ -4,14 +4,15 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAllSkillLevelsInSchoolFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalTransferFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
@@ -48,8 +49,10 @@ public class PantsNature implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.HALF_MORE), new ElementalResistFlat(Elements.Nature).size(StatMod.Size.HALF_MORE),
-            new ElementalTransferFlat(Elements.Fire, Elements.Nature)
+        return Arrays.asList(
+            new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.HALF_MORE),
+            new ElementalResistFlat(Elements.Nature).size(StatMod.Size.HALF_MORE),
+            new PlusAllSkillLevelsInSchoolFlat(SpellSchools.DRUID)
         );
     }
 

@@ -46,7 +46,7 @@ public class Bow extends BaseWeapon implements ISpecificStatReq {
 
     @Override
     public WeaponSwingCost getSwingCosts() {
-        return new WeaponSwingCost(18F);
+        return new WeaponSwingCost(20);
     }
 
     @Override

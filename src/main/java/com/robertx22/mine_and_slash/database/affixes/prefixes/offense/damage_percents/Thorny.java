@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.affixes.prefixes.offense.damage_percents;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -19,7 +19,7 @@ public class Thorny extends BaseDamagePercentPrefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Nature));
+        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Nature));
     }
 
     @Override

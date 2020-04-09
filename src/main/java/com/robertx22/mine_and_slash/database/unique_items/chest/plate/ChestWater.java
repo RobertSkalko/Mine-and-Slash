@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAllSkillLevelsInSchoolFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalPeneFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Stamina;
@@ -12,6 +13,7 @@ import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
@@ -42,7 +44,11 @@ public class ChestWater implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HALF_MORE), new ArmorFlat().size(StatMod.Size.HALF_MORE), new CoreStatFlat(Stamina.INSTANCE)
+        return Arrays.asList(
+            new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HALF_MORE),
+            new ArmorFlat().size(StatMod.Size.HALF_MORE),
+            new CoreStatFlat(Stamina.INSTANCE),
+            new PlusAllSkillLevelsInSchoolFlat(SpellSchools.OCEAN_MYSTIC)
 
         );
     }

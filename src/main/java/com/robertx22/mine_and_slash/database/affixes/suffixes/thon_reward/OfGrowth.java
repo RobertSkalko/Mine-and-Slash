@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthRegenPercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -28,7 +28,7 @@ public class OfGrowth extends Suffix {
     public List<StatMod> StatMods() {
         return Arrays.asList(
             new HealthRegenPercent(),
-            new ElementalSpellDamagePercent(Elements.Nature)
+            new ElementalSpellDamageFlat(Elements.Nature)
         );
     }
 

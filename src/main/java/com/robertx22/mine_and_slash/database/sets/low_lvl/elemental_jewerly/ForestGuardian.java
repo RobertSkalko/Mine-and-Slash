@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
@@ -25,7 +25,7 @@ public class ForestGuardian extends Set {
             {
                 {
                     put(2, new HealthPercent());
-                    put(3, new ElementalSpellDamagePercent(Elements.Nature));
+                    put(3, new ElementalSpellDamageFlat(Elements.Nature));
 
                 }
             }

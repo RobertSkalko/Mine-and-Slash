@@ -8,6 +8,7 @@ SPELL REWORK! (UNFINISHED)
 * spell damage stats are now percents and increase spell damage by percent, instead of adding to the damage.
 * infusion reworked
 * added cooldown reduction stat
+* removed elemental conversion and transfer stats, mostly useless after spell damage became a percent
 
 Other:
 * bosses now spawn less minions but they're all max rarity

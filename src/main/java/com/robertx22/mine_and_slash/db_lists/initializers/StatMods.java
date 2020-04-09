@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRating
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleSpellDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.BonusExpFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAllSkillLevelsInSchoolFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.conversions.EnergyToManaConvFlat;
@@ -35,6 +36,7 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -49,9 +51,8 @@ public class StatMods implements ISlashRegistryInit {
             {
                 {
 
+                    add(new PlusAllSkillLevelsInSchoolFlat(SpellSchools.OCEAN_MYSTIC));
                     add(new ElementalInfusionPercent(Elements.Nature));
-                    add(new ElementalConversionFlat(Elements.Nature, Elements.Nature));
-                    add(new ElementalTransferFlat(Elements.Nature, Elements.Nature));
                     add(new LootTypeBonusFlat(LootType.NormalItem));
                     add(new WeaponDamageFlat(WeaponTypes.None));
                     add(new ElementalAttackDamageFlat(Elements.Nature));
@@ -65,7 +66,6 @@ public class StatMods implements ISlashRegistryInit {
                     add(new ElementalPenePercent(Elements.Nature));
                     add(new ElementalFocusFlat(Elements.Nature));
                     add(new BlockReflectFlat(Elements.Nature));
-
                     add(new CoreStatFlat(Dexterity.INSTANCE));
                     add(new CoreStatPercent(Dexterity.INSTANCE));
 

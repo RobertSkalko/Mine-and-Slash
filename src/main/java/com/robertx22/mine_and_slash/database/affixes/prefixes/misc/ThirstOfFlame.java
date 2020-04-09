@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.affixes.prefixes.misc;
 
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class ThirstOfFlame extends BaseThirstPrefix {
 
     @Override
     public List<StatMod> StatMods() {
-        return Arrays.asList(new LifestealFlat(), new ElementalSpellDamagePercent(Elements.Fire));
+        return Arrays.asList(new LifestealFlat(), new ElementalSpellDamageFlat(Elements.Fire));
     }
 
     @Override

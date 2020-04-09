@@ -6,7 +6,8 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.MagicShieldPercent;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -47,7 +48,10 @@ public class NecklaceWater implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalSpellDamagePercent(Elements.Water), new ArmorFlat().size(StatMod.Size.HALF_MORE),
+        return Arrays.asList(
+            new HealthPercent(),
+            new MagicShieldPercent(),
+            new ArmorFlat().size(StatMod.Size.HALF_MORE),
             new ElementalResistFlat(Elements.Water).size(StatMod.Size.HALF_MORE)
         );
     }
