@@ -1,8 +1,5 @@
 package com.robertx22.mmorpg.gui;
 
-import com.robertx22.blocks.gear_factory_station.ContainerGearFactory;
-import com.robertx22.blocks.gear_factory_station.GuiGearFactory;
-import com.robertx22.blocks.gear_factory_station.TileGearFactory;
 import com.robertx22.blocks.item_modify_station.ContainerInventoryModify;
 import com.robertx22.blocks.item_modify_station.GuiInventoryModify;
 import com.robertx22.blocks.item_modify_station.TileInventoryModify;
@@ -73,10 +70,6 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerInventoryModify(player.inventory, tile);
 		}
 
-		if (tileEntity instanceof TileGearFactory) {
-			TileGearFactory tile = (TileGearFactory) tileEntity;
-			return new ContainerGearFactory(player.inventory, tile);
-		}
 		if (tileEntity instanceof TileMap) {
 			TileMap tile = (TileMap) tileEntity;
 			return new ContainerMap(player.inventory, tile);
@@ -119,10 +112,6 @@ public class GuiHandler implements IGuiHandler {
 		if (tileEntity instanceof TileInventoryModify) {
 			TileInventoryModify tileInventory = (TileInventoryModify) tileEntity;
 			return new GuiInventoryModify(player.inventory, tileInventory);
-		}
-		if (tileEntity instanceof TileGearFactory) {
-			TileGearFactory tileInventory = (TileGearFactory) tileEntity;
-			return new GuiGearFactory(player.inventory, tileInventory);
 		}
 		if (tileEntity instanceof TileMap) {
 			TileMap tileInventory = (TileMap) tileEntity;
