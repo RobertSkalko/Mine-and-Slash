@@ -36,7 +36,7 @@ public class ThornsEffect extends BasePotionEffect implements IApplyStatPotion {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
-        this.tickActions.add(new OnTickAction(20, ctx -> {
+        this.tickActions.add(new OnTickAction(ctx -> {
             int num = getCalc(ctx.spellsCap).getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
@@ -58,11 +58,6 @@ public class ThornsEffect extends BasePotionEffect implements IApplyStatPotion {
 
             return list;
         }));
-    }
-
-    @Override
-    public int getDurationInSeconds() {
-        return 15;
     }
 
     @Override
@@ -92,7 +87,9 @@ public class ThornsEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        p.set(SC.BASE_VALUE, 1, 3);
+        p.set(SC.BASE_VALUE, 2, 4);
+        p.set(SC.TICK_RATE, 30, 15);
+        p.set(SC.DURATION_TICKS, 60, 120);
         return p;
     }
 

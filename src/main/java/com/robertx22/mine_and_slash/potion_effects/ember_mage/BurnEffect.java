@@ -38,7 +38,7 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
-        this.tickActions.add(new OnTickAction(20, ctx -> {
+        this.tickActions.add(new OnTickAction(ctx -> {
             int num = getCalc(ctx.spellsCap).getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
@@ -64,11 +64,6 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
             return list;
         }));
 
-    }
-
-    @Override
-    public int getDurationInSeconds() {
-        return 15;
     }
 
     @Override
@@ -98,6 +93,8 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
         p.set(SC.BASE_VALUE, 1, 3);
+        p.set(SC.DURATION_TICKS, 6 * 60, 10 * 60);
+        p.set(SC.TICK_RATE, 30, 20);
         return p;
     }
 

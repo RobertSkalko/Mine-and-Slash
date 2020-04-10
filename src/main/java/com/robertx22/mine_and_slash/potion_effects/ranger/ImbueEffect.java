@@ -46,11 +46,6 @@ public class ImbueEffect extends BasePotionEffect {
     }
 
     @Override
-    public int getDurationInSeconds() {
-        return 25;
-    }
-
-    @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
         p.set(SC.BASE_VALUE, 1, 3);

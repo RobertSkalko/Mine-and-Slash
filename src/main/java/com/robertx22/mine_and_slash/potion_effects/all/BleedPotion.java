@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.all;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
@@ -30,7 +31,7 @@ public class BleedPotion extends BasePotionEffect {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
-        this.tickActions.add(new OnTickAction(20, ctx -> {
+        this.tickActions.add(new OnTickAction(ctx -> {
 
             int num = CALC.getCalculatedValue(ctx.casterData);
 
@@ -51,11 +52,6 @@ public class BleedPotion extends BasePotionEffect {
     public static ScalingStatCalc CALC = new ScalingStatCalc(PhysicalDamage.getInstance(), 0.15F);
 
     @Override
-    public int getDurationInSeconds() {
-        return 5;
-    }
-
-    @Override
     public String GUID() {
         return "bleed";
     }
@@ -72,7 +68,10 @@ public class BleedPotion extends BasePotionEffect {
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
-        return new PreCalcSpellConfigs();
+        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        p.set(SC.TICK_RATE, 20, 20);
+        p.set(SC.DURATION_TICKS, 60, 60);
+        return p;
     }
 
     @Nullable

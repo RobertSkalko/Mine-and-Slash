@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.ocean_mystic;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
@@ -29,16 +30,11 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
-        this.tickActions.add(new OnTickAction(20, ctx -> {
+        this.tickActions.add(new OnTickAction(ctx -> {
             ParticleUtils.spawnParticles(ParticleTypes.DOLPHIN, ctx.entity, 5);
             return ctx;
         }, null));
 
-    }
-
-    @Override
-    public int getDurationInSeconds() {
-        return 6;
     }
 
     @Override
@@ -68,6 +64,8 @@ public class ShiverEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        p.set(SC.DURATION_TICKS, 100, 200);
+        p.set(SC.TICK_RATE, 20, 20);
         return p;
     }
 

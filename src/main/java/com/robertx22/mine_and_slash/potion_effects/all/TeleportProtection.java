@@ -2,12 +2,11 @@ package com.robertx22.mine_and_slash.potion_effects.all;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectType;
@@ -25,44 +24,6 @@ public class TeleportProtection extends BasePotionEffect {
     private TeleportProtection() {
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
-
-        this.tickActions.add(new OnTickAction(5, ctx -> {
-            Entity entity = ctx.entity;
-
-            if (entity.world.isRemote == false && entity instanceof ServerPlayerEntity) {
-
-                /*
-                if (entity.ticksExisted > 10) {
-                    int tries = 0;
-
-                    while (entity.isEntityInsideOpaqueBlock() || entity.posY < 2) {
-
-                        tries++;
-
-                        if (entity.posY >= entity.world.getHeight()) {
-                            break;
-                        }
-
-                        if (tries > 5) {
-                            break;
-                        }
-
-                        goUpward((ServerPlayerEntity) entity);
-
-                    }
-
-                }
-
-                 */
-            }
-            return ctx;
-        }, null));
-
-    }
-
-    @Override
-    public int getDurationInSeconds() {
-        return 10;
     }
 
     @Override
@@ -102,7 +63,9 @@ public class TeleportProtection extends BasePotionEffect {
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
-        return new PreCalcSpellConfigs();
+        PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        p.set(SC.DURATION_TICKS, 100, 100);
+        return p;
     }
 
     @Nullable

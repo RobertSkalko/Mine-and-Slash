@@ -40,7 +40,7 @@ public class WoundsEffect extends BasePotionEffect implements IApplyStatPotion {
             (double) -0.15F, AttributeModifier.Operation.MULTIPLY_TOTAL
         );
 
-        this.tickActions.add(new OnTickAction(20, ctx -> {
+        this.tickActions.add(new OnTickAction(ctx -> {
             int num = getCalc(ctx.spellsCap).getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
@@ -71,11 +71,6 @@ public class WoundsEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public int getDurationInSeconds() {
-        return 10;
-    }
-
-    @Override
     public String GUID() {
         return "wounds";
     }
@@ -101,6 +96,8 @@ public class WoundsEffect extends BasePotionEffect implements IApplyStatPotion {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
         p.set(SC.BASE_VALUE, 1, 3);
+        p.set(SC.TICK_RATE, 30, 20);
+        p.set(SC.DURATION_TICKS, 15 * 60, 25 * 60);
         return p;
     }
 

@@ -44,7 +44,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
             (double) -0.95F, AttributeModifier.Operation.MULTIPLY_TOTAL
         );
 
-        this.tickActions.add(new OnTickAction(20, ctx -> {
+        this.tickActions.add(new OnTickAction(ctx -> {
             ParticleEnum.sendToClients(
                 ctx.entity, new ParticlePacketData(ctx.entity.getPosition(), ParticleEnum.PETRIFY).radius(1)
                     .type(ParticleTypes.CLOUD)
@@ -54,11 +54,6 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
             return ctx;
         }, null));
 
-    }
-
-    @Override
-    public int getDurationInSeconds() {
-        return 10;
     }
 
     @Override

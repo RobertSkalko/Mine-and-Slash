@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
@@ -30,15 +31,10 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
-        this.tickActions.add(new OnTickAction(10, ctx -> {
+        this.tickActions.add(new OnTickAction(ctx -> {
             ParticleUtils.spawnParticles(ParticleRegister.THUNDER, ctx.entity, 50);
             return ctx;
         }, null));
-    }
-
-    @Override
-    public int getDurationInSeconds() {
-        return 10;
     }
 
     @Override
@@ -67,7 +63,10 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        p.set(SC.TICK_RATE, 10, 10);
+        p.set(SC.DURATION_TICKS, 100, 300);
         return p;
+
     }
 
     @Nullable

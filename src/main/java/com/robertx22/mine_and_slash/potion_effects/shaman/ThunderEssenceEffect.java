@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -30,11 +31,6 @@ public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStat
     }
 
     @Override
-    public int getDurationInSeconds() {
-        return 20;
-    }
-
-    @Override
     public String GUID() {
         return "thunder_essence";
     }
@@ -60,6 +56,7 @@ public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStat
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        p.set(SC.DURATION_TICKS, 20 * 60, 30 * 60);
         return p;
     }
 

@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.ranger;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -45,11 +46,6 @@ public class HunterInstinctEffect extends BasePotionEffect implements IApplyStat
     }
 
     @Override
-    public int getDurationInSeconds() {
-        return 20;
-    }
-
-    @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
         list.add(new PotionStat(0.75F, CriticalHit.getInstance()));
@@ -60,6 +56,7 @@ public class HunterInstinctEffect extends BasePotionEffect implements IApplyStat
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+        p.set(SC.DURATION_TICKS, 20 * 60, 30 * 60);
         return p;
     }
 

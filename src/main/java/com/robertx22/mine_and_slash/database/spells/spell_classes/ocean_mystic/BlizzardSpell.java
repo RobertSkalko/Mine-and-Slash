@@ -57,7 +57,7 @@ public class BlizzardSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
         c.set(SC.MANA_COST, 35, 60);
-        c.set(SC.BASE_VALUE, 2, 4);
+        c.set(SC.BASE_VALUE, 2, 6);
         c.set(SC.CAST_TIME_TICKS, 50, 30);
         c.set(SC.COOLDOWN_SECONDS, 60 * 5, 60 * 4);
         c.set(SC.TICK_RATE, 30, 15);

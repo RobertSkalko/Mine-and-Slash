@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.bases;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.ExtraPotionData;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
@@ -12,6 +13,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -135,10 +137,10 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
 
         list.add(new SText(""));
 
-        tickActions.forEach(x -> list.addAll(x.getTooltip(info)));
+        tickActions.forEach(x -> list.addAll(x.getTooltip(info, this)));
 
         list.addAll(getMaxStacksTooltip());
-        list.addAll(getDurationTooltip());
+        list.addAll(getDurationTooltip(info));
 
         if (info.showAbilityExtraInfo) {
             finishTooltip(list, new SpellCastContext(info.player, 0, this), info);
@@ -162,21 +164,37 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
 
     }
 
-    private List<ITextComponent> getDurationTooltip() {
+    private List<ITextComponent> getDurationTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
         TooltipUtils.addEmpty(list);
         list.add(new StringTextComponent(
-            TextFormatting.GOLD + "Duration: " + TextFormatting.YELLOW + getDurationInSeconds() + "s"));
+            TextFormatting.GOLD + "Duration: " + TextFormatting.YELLOW + getDurationInTicks(info.player) + "s"));
 
         return list;
 
     }
 
-    public abstract int getDurationInSeconds();
+    public final int getDurationInSeconds(LivingEntity en) {
+        return getDurationInTicks(en) / 20;
+    }
 
-    public final int getDurationInTicks() {
-        return getDurationInSeconds() * 20;
+    public final int getDurationInTicks(LivingEntity en) {
+        IAbility ability = this.getAbilityThatDeterminesLevel();
+
+        return (int) new SpellCastContext(en, 0, ability).getConfigFor(ability)
+            .get(SC.DURATION_TICKS)
+            .get(Load.spells(en), ability);
+
+    }
+
+    public int getTickRate(LivingEntity en) {
+        IAbility ability = this.getAbilityThatDeterminesLevel();
+
+        return (int) new SpellCastContext(en, 0, ability).getConfigFor(ability)
+            .get(SC.TICK_RATE)
+            .get(Load.spells(en), ability);
+
     }
 
     @Override
@@ -186,34 +204,40 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
 
             boolean delete = false;
 
-            for (OnTickAction x : this.tickActions) {
-                if (en.ticksExisted % x.eachXticks == 0) {
+            if (tickActions.size() > 0) {
 
-                    EffectInstance instance = en.getActivePotionEffect(this);
+                int tickrate = getTickRate(en);
 
-                    if (instance == null) {
-                        //Log.error("potion instance is null, Deleting potion");
-                        delete = true;
-                        return;
+                if (en.ticksExisted % tickrate == 0) {
+                    for (OnTickAction x : this.tickActions) {
+
+                        EffectInstance instance = en.getActivePotionEffect(this);
+
+                        if (instance == null) {
+                            //Log.error("potion instance is null, Deleting potion");
+                            delete = true;
+                            return;
+                        }
+
+                        ExtraPotionData data = PotionDataSaving.getData(instance);
+
+                        if (data == null) {
+                            //Log.error("Extra potion data is null. Deleting potion");
+                            delete = true;
+                            return;
+                        }
+
+                        LivingEntity caster = data.getCaster(en.world);
+
+                        if (caster == null) {
+                            //Log.error("Potion can't find caster. Deleting potion");
+                            delete = true;
+                            return;
+                        }
+
+                        x.onTick(new PotionContext(en, data, caster));
+
                     }
-
-                    ExtraPotionData data = PotionDataSaving.getData(instance);
-
-                    if (data == null) {
-                        //Log.error("Extra potion data is null. Deleting potion");
-                        delete = true;
-                        return;
-                    }
-
-                    LivingEntity caster = data.getCaster(en.world);
-
-                    if (caster == null) {
-                        //Log.error("Potion can't find caster. Deleting potion");
-                        delete = true;
-                        return;
-                    }
-
-                    x.onTick(new PotionContext(en, data, caster));
                 }
             }
 

@@ -22,7 +22,7 @@ public class PotionEffectUtils {
             return;
         }
 
-        int duration = effect.getDurationInTicks();
+        int duration = effect.getDurationInTicks(caster);
 
         EntityCap.UnitData casterData = Load.Unit(caster);
 

@@ -46,11 +46,6 @@ public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplySta
     }
 
     @Override
-    public int getDurationInSeconds() {
-        return 30;
-    }
-
-    @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
         list.add(new PotionStat(2.5F, new ElementalAttackDamage(Elements.Nature)));
@@ -60,6 +55,7 @@ public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplySta
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
+
         return p;
     }
 

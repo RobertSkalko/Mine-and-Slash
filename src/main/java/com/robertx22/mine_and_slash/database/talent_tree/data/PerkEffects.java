@@ -147,14 +147,14 @@ public class PerkEffects {
 
             SPELL_DMG_PERCENT_MAP.put(
                 ele, PerkEffectBuilder.build(ele.guidName + "_spell_dmg", new ElementalSpellDamage(ele),
-                    new ExactStatData(elenum, StatModTypes.Percent,
+                    new ExactStatData(elenum, StatModTypes.Flat,
                         new ElementalSpellDamage(ele)
                     )
                 ));
 
             ELE_PENE_PERCENT_MAP.put(
                 ele, PerkEffectBuilder.build(ele.guidName + "_pene", new ElementalPene(ele),
-                    new ExactStatData(elenum, StatModTypes.Percent, new ElementalPene(ele))
+                    new ExactStatData(2, StatModTypes.Flat, new ElementalPene(ele))
                 ));
 
             ATTACK_DAMAGE_PERCENT_MAP.put(

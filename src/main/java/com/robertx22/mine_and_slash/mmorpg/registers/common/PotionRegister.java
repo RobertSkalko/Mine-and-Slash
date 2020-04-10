@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.all.BleedPotion;
-import com.robertx22.mine_and_slash.potion_effects.all.CleansePoisonPotion;
 import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
 import com.robertx22.mine_and_slash.potion_effects.druid.*;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
@@ -28,7 +27,6 @@ public class PotionRegister {
 
         IForgeRegistry<Effect> reg = event.getRegistry();
 
-        reg.register(CleansePoisonPotion.INSTANCE);
         reg.register(RegenerateEffect.INSTANCE);
         reg.register(TeleportProtection.INSTANCE);
         reg.register(BleedPotion.INSTANCE);

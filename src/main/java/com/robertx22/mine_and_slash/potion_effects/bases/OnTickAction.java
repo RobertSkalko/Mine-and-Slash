@@ -10,28 +10,28 @@ import java.util.List;
 import java.util.function.Function;
 
 public class OnTickAction {
-    public int eachXticks;
 
     public Function<PotionContext, PotionContext> action;
     Function<TooltipInfo, List<ITextComponent>> tooltip;
 
-    public OnTickAction(int eachXticks, Function<PotionContext, PotionContext> action,
+    public OnTickAction(Function<PotionContext, PotionContext> action,
                         Function<TooltipInfo, List<ITextComponent>> tooltip) {
-        this.eachXticks = eachXticks;
+
         this.action = action;
         this.tooltip = tooltip;
+
     }
 
     public final void onTick(PotionContext ctx) {
         action.apply(ctx);
     }
 
-    public List<ITextComponent> getTooltip(TooltipInfo info) {
+    public List<ITextComponent> getTooltip(TooltipInfo info, BasePotionEffect effect) {
 
         List<ITextComponent> list = new ArrayList<>();
 
         if (tooltip != null) {
-            list.add(new StringTextComponent(TextFormatting.YELLOW + "Effect occurs every " + eachXticks + " ticks."));
+            list.add(new StringTextComponent(TextFormatting.YELLOW + "Effect occurs every " + effect.getTickRate(info.player) + " ticks."));
             list.addAll(tooltip.apply(info));
         }
 

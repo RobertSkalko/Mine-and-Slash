@@ -70,7 +70,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
 
-            if (ctx.ticksInUse % castEveryXTicks == 0) {
+            if (ctx.ticksInUse > 0 && ctx.ticksInUse % castEveryXTicks == 0) {
                 this.cast(ctx);
             }
 

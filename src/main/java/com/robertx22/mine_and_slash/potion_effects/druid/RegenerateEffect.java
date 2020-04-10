@@ -29,7 +29,7 @@ public class RegenerateEffect extends BasePotionEffect {
         super(EffectType.BENEFICIAL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
-        this.tickActions.add(new OnTickAction(30, ctx -> {
+        this.tickActions.add(new OnTickAction(ctx -> {
             if (ctx.entity.world.isRemote) {
                 ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, ctx.entity, 3);
             } else {
@@ -58,11 +58,6 @@ public class RegenerateEffect extends BasePotionEffect {
     @Override
     public String GUID() {
         return "self_regen";
-    }
-
-    @Override
-    public int getDurationInSeconds() {
-        return 25;
     }
 
     @Override

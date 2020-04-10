@@ -53,7 +53,7 @@ public class HeartOfIceSpell extends BaseSpell {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.MANA_COST, 15, 45);
-        c.set(SC.BASE_VALUE, 5, 20);
+        c.set(SC.BASE_VALUE, 50, 200);
         c.set(SC.CAST_TIME_TICKS, 30, 15);
         c.set(SC.COOLDOWN_SECONDS, 60, 30);
 
