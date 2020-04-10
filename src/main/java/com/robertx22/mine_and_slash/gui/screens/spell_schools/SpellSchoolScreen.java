@@ -25,6 +25,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -50,6 +51,9 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
     static int X = 246;
     static int Y = 186;
 
+    PlayerSpellCap.ISpellsCap spells;
+    EntityCap.UnitData data;
+
     public SpellSchoolScreen() {
         super(X, Y);
     }
@@ -68,6 +72,9 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
     @Override
     public void init() {
+
+        this.spells = Load.spells(Minecraft.getInstance().player);
+        this.data = Load.Unit(Minecraft.getInstance().player);
 
         this.buttons.clear();
 
@@ -141,6 +148,21 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
         });
 
         super.render(x, y, ticks);
+
+        Minecraft mc = Minecraft.getInstance();
+
+        if (school != null) {
+            String str = "Skill Points: " + spells.getAbilitiesData()
+                .getFreeAbilityPoints(data);
+            int xp = (int) (guiLeft + 5);
+            int yp = guiTop + Y + 5;
+            mc.fontRenderer.drawStringWithShadow(str, xp, yp, TextFormatting.GREEN.getColor());
+
+            str = "Reset Points: " + spells.getAbilitiesData().resetPoints;
+            xp = (int) (guiLeft + X - mc.fontRenderer.getStringWidth(str));
+            yp = guiTop + Y + 5;
+            mc.fontRenderer.drawStringWithShadow(str, xp, yp, TextFormatting.LIGHT_PURPLE.getColor());
+        }
 
         this.buttons.forEach(b -> b.renderToolTip(x, y));
 
@@ -277,7 +299,14 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
                     (int) ((this.x + 5) * as),
                     (int) ((this.y + 5) * as));
                 RenderSystem.scalef(as, as, as);
+
+                String str = spells.getLevelOf(ability) + "/" + ability.getMaxSpellLevelNormal();
+                int xp = (int) (this.x + xSize / 2);
+                int yp = this.y + xSize - 2;
+                GuiUtils.renderScaledText(xp, yp, 0.75F, str, TextFormatting.YELLOW);
+
             }
+
         }
 
     }
