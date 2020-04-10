@@ -98,7 +98,7 @@ public class NatureBalmSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(2, 2);
+        return new AbilityPlace(2, 1);
     }
 
     private static class SingletonHolder {

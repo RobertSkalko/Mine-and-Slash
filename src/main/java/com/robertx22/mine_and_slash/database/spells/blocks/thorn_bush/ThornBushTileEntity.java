@@ -68,12 +68,5 @@ public class ThornBushTileEntity extends BaseSpellTileEntity {
 
     }
 
-    public static int DURATION_SEC = 10;
-
-    @Override
-    public int durationInSeconds() {
-        return DURATION_SEC;
-    }
-
 }
 

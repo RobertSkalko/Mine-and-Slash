@@ -27,11 +27,6 @@ public class BaseSummonedEntity extends TameableEntity implements ISpellEntity {
     }
 
     @Override
-    public int durationInSeconds() {
-        return 30;
-    }
-
-    @Override
     public void writeSpawnData(PacketBuffer buf) {
         CompoundNBT nbt = new CompoundNBT();
         writeAdditional(nbt);

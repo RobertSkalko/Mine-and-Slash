@@ -141,8 +141,4 @@ public class RangerArrowEntity extends EntityBaseProjectile {
         return new ItemStack(Items.AIR);
     }
 
-    @Override
-    public int durationInSeconds() {
-        return 20;
-    }
 }

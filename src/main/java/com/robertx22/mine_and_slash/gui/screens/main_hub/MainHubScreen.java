@@ -53,9 +53,9 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         screens.add(new SpellHotbatSetupScreen());
         screens.add(new StatOverviewScreen());
         screens.add(new StatAllocationScreen());
+        screens.add(new SpellSchoolScreen());
         screens.add(new TalentPerkTreeScreen());
         screens.add(new BestiaryScreen());
-        screens.add(new SpellSchoolScreen());
 
         int x = guiLeft + 10;
         int y = guiTop + 45;

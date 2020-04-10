@@ -61,7 +61,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             // return; // it's casted elsewhere
         }
 
-        if (timesToCast >= 1) {
+        if (timesToCast > 1) {
 
             int castTimeTicks = (int) ctx.getConfigFor(this)
                 .get(SC.CAST_TIME_TICKS)
@@ -70,11 +70,15 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             // if i didnt do this then cast time reduction would reduce amount of spell hits.
             int castEveryXTicks = castTimeTicks / timesToCast;
 
-            if (ctx.ticksInUse > 0 && ctx.ticksInUse % castEveryXTicks == 0) {
+            if (ctx.isLastCastTick) {
                 this.cast(ctx);
+            } else {
+                if (ctx.ticksInUse > 0 && ctx.ticksInUse % castEveryXTicks == 0) {
+                    this.cast(ctx);
+                }
             }
 
-        } else {
+        } else if (timesToCast < 1) {
             System.out.println("Times to cast spell is: " + timesToCast + " . this seems like a bug.");
         }
 

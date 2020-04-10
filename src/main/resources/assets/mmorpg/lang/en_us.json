@@ -103,6 +103,44 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+	"mmorpg.synergy.fireball_consume_burn_synergy": "Fireball Explosion",
+	"mmorpg.synergy.frostball_extra_dmg_synergy": "Shiver Frostburn",
+	"mmorpg.synergy.frostball_frost_essence_gen_synergy": "Cold Essence creation",
+	"mmorpg.synergy.heart_of_ice_frost_synergy": "Cold Healing Essence",
+	"mmorpg.synergy.heart_of_ice_magic_shield_synergy": "Heart of Magic",
+	"mmorpg.synergy.imbue_crit_add_hunter_synergy": "Imbue Instinct",
+	"mmorpg.synergy.lightning_totem_static_synergy": "Totem Static",
+	"mmorpg.synergy.magma_flower_enhanced_synergy": "Magma Bloom",
+	"mmorpg.synergy.magma_flower_heal_synergy": "Healing Magma Petals",
+	"mmorpg.synergy.poisoned_weapons_thorns_synergy": "Poison thorn seeker",
+	"mmorpg.synergy.recoil_add_hunter_synergy": "Recoil of the hunter",
+	"mmorpg.synergy.recoil_add_wounds_synergy": "Recoil Wounds",
+	"mmorpg.synergy.regenerate_aoe_synergy": "Spread Balm",
+	"mmorpg.synergy.regenerate_thorns_synergy": "Balm of Thorns",
+	"mmorpg.synergy.thorn_armor_thorns_synergy": "Thorny Armor",
+	"mmorpg.synergy.thorn_bush_major_thorns_synergy": "Thorn Damage",
+	"mmorpg.synergy.thunder_dash_energy_synergy": "Energy Dash",
+	"mmorpg.synergy.thunder_spear_lightning_strike_synergy": "Spear Lightning",
+	"mmorpg.synergy.thunder_spear_thunder_essence_synergy": "Spear Thunder Essence",
+	"mmorpg.synergy.volcano_burn_synergy": "Volcano Burn",
+	"mmorpg.synergy.whirlpool_shiver_synergy": "Shiver pool",
+
+"_comment": " [CATEGORY]: SPELLS - NAMES",
+
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.arcanists": "Arcanist's",
@@ -224,44 +262,6 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-	"mmorpg.synergy.fireball_consume_burn_synergy": "Fireball Explosion",
-	"mmorpg.synergy.frostball_extra_dmg_synergy": "Shiver Frostburn",
-	"mmorpg.synergy.frostball_frost_essence_gen_synergy": "Cold Essence creation",
-	"mmorpg.synergy.heart_of_ice_frost_synergy": "Cold Healing Essence",
-	"mmorpg.synergy.heart_of_ice_magic_shield_synergy": "Heart of Magic",
-	"mmorpg.synergy.imbue_crit_add_hunter_synergy": "Imbue Instinct",
-	"mmorpg.synergy.lightning_totem_static_synergy": "Totem Static",
-	"mmorpg.synergy.magma_flower_enhanced_synergy": "Magma Bloom",
-	"mmorpg.synergy.magma_flower_heal_synergy": "Healing Magma Petals",
-	"mmorpg.synergy.poisoned_weapons_thorns_synergy": "Poison thorn seeker",
-	"mmorpg.synergy.recoil_add_hunter_synergy": "Recoil of the hunter",
-	"mmorpg.synergy.recoil_add_wounds_synergy": "Recoil Wounds",
-	"mmorpg.synergy.regenerate_aoe_synergy": "Spread Balm",
-	"mmorpg.synergy.regenerate_thorns_synergy": "Balm of Thorns",
-	"mmorpg.synergy.thorn_armor_thorns_synergy": "Thorny Armor",
-	"mmorpg.synergy.thorn_bush_major_thorns_synergy": "Thorn Damage",
-	"mmorpg.synergy.thunder_dash_energy_synergy": "Energy Dash",
-	"mmorpg.synergy.thunder_spear_lightning_strike_synergy": "Spear Lightning",
-	"mmorpg.synergy.thunder_spear_thunder_essence_synergy": "Spear Thunder Essence",
-	"mmorpg.synergy.volcano_burn_synergy": "Volcano Burn",
-	"mmorpg.synergy.whirlpool_shiver_synergy": "Shiver pool",
-
-"_comment": " [CATEGORY]: SPELLS - NAMES",
-
-
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "Mage's Robes",
@@ -298,24 +298,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -334,6 +316,24 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -549,6 +549,7 @@
 	"mmorpg.word.empty": "Empty",
 	"mmorpg.word.exp": "Exp",
 	"mmorpg.word.fireball": "Fireball",
+	"mmorpg.word.firebomb": "Fire Bombs",
 	"mmorpg.word.flat": "Flat",
 	"mmorpg.word.from": "From",
 	"mmorpg.word.frostball": "Frostball",
@@ -860,6 +861,7 @@
 	"mmorpg.stat.plus_burn_effect_lvl": "To Burn Skill Level",
 	"mmorpg.stat.plus_druid_skill_lvls": "To Druid Skill Levels",
 	"mmorpg.stat.plus_ember_mage_skill_lvls": "To Ember Mage Skill Levels",
+	"mmorpg.stat.plus_fire_bombs_spell_lvl": "To mmorpg.word.firebomb Skill Level",
 	"mmorpg.stat.plus_fireball_consume_burn_synergy_synergy_lvl": "To Fireball Explosion Skill Level",
 	"mmorpg.stat.plus_fireball_spell_lvl": "To Fireball Skill Level",
 	"mmorpg.stat.plus_frost_effect_lvl": "To Frost Skill Level",
@@ -997,6 +999,37 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
+	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
+	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
+	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
+	"mmorpg.gear_type.crossbow": "Crossbow",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.leather_boots": "Leather Boots",
+	"mmorpg.gear_type.leather_chest": "Leather Chest",
+	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
+	"mmorpg.gear_type.leather_pants": "Leather Pants",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.plate_boots": "Plate Boots",
+	"mmorpg.gear_type.plate_chest": "Plate Chest",
+	"mmorpg.gear_type.plate_helmet": "Plate Helm",
+	"mmorpg.gear_type.plate_pants": "Plate Greaves",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+	"mmorpg.gear_type.trident": "Trident",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 	"item.mmorpg.uniques.axe.axefire0": "§eAxe of Blazing Cuts",
@@ -1091,37 +1124,6 @@
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§eSaber of Frost madness",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
-	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
-	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
-	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
-	"mmorpg.gear_type.crossbow": "Crossbow",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.leather_boots": "Leather Boots",
-	"mmorpg.gear_type.leather_chest": "Leather Chest",
-	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
-	"mmorpg.gear_type.leather_pants": "Leather Pants",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.plate_boots": "Plate Boots",
-	"mmorpg.gear_type.plate_chest": "Plate Chest",
-	"mmorpg.gear_type.plate_helmet": "Plate Helm",
-	"mmorpg.gear_type.plate_pants": "Plate Greaves",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-	"mmorpg.gear_type.trident": "Trident",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",

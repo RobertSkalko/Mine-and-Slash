@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -16,10 +17,9 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
     default void initSpellEntity() {
     }
 
-    int durationInSeconds();
-
     default int durationInTicks() {
-        return durationInSeconds() * 20;
+        return getSpellData().configs.get(SC.DURATION_TICKS)
+            .intValue();
     }
 
     EntitySpellData getSpellData();

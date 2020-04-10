@@ -23,11 +23,6 @@ public abstract class BaseElementalBoltEntity extends EntityBaseProjectile {
     public abstract Elements element();
 
     @Override
-    public int durationInSeconds() {
-        return 20;
-    }
-
-    @Override
     public void initSpellEntity() {
         this.setNoGravity(true);
         this.setDeathTime(60);

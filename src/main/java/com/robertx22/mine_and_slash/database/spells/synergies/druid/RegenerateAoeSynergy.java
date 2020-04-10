@@ -61,7 +61,7 @@ public class RegenerateAoeSynergy extends OnSpellCastSynergy {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(NatureBalmSpell.getInstance());
+        return AbilityPlace.upFrom(new RegenerateThornsSynergy());
     }
 
     @Override

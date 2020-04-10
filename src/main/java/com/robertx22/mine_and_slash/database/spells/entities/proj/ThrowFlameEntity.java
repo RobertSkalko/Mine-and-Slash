@@ -18,18 +18,18 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 
-public class SeekerFlameEntity extends BaseElementalBoltEntity {
+public class ThrowFlameEntity extends BaseElementalBoltEntity {
 
-    public SeekerFlameEntity(EntityType<? extends SeekerFlameEntity> type, World world) {
+    public ThrowFlameEntity(EntityType<? extends ThrowFlameEntity> type, World world) {
         super(type, world);
     }
 
-    public SeekerFlameEntity(World worldIn) {
-        super(EntityRegister.SEEKER_FLAME, worldIn);
+    public ThrowFlameEntity(World worldIn) {
+        super(EntityRegister.THROW_FLAMES, worldIn);
     }
 
-    public SeekerFlameEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
-        super(EntityRegister.SEEKER_FLAME, world);
+    public ThrowFlameEntity(FMLPlayMessages.SpawnEntity spawnEntity, World world) {
+        super(EntityRegister.THROW_FLAMES, world);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
 
-import com.robertx22.mine_and_slash.database.spells.entities.proj.ThrowFlameEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.FireBombEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
@@ -20,9 +20,9 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThrowFlamesSpell extends BaseSpell {
+public class FireBombsSpell extends BaseSpell {
 
-    private ThrowFlamesSpell() {
+    private FireBombsSpell() {
         super(
             new ImmutableSpellConfigs() {
 
@@ -46,10 +46,10 @@ public class ThrowFlamesSpell extends BaseSpell {
                     return Elements.Fire;
                 }
             }.cooldownIfCanceled(true)
-                .summonsEntity(w -> new ThrowFlameEntity(w)));
+                .summonsEntity(w -> new FireBombEntity(w)));
     }
 
-    public static ThrowFlamesSpell getInstance() {
+    public static FireBombsSpell getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -58,28 +58,28 @@ public class ThrowFlamesSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
         c.set(SC.MANA_COST, 10, 15);
-        c.set(SC.BASE_VALUE, 2, 4);
-        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.5F);
-        c.set(SC.SHOOT_SPEED, 0.3F, 0.5F);
-        c.set(SC.PROJECTILE_COUNT, 3, 3);
-        c.set(SC.CAST_TIME_TICKS, 60, 50);
-        c.set(SC.COOLDOWN_SECONDS, 20, 10);
+        c.set(SC.BASE_VALUE, 5, 15);
+        c.set(SC.SHOOT_SPEED, 0.7F, 1F);
+        c.set(SC.PROJECTILE_COUNT, 1, 1);
+        c.set(SC.CAST_TIME_TICKS, 40, 30);
+        c.set(SC.COOLDOWN_SECONDS, 30, 20);
         c.set(SC.DURATION_TICKS, 100, 120);
         c.set(SC.TIMES_TO_CAST, 3, 3);
+        c.set(SC.RADIUS, 1.5F, 2.25F);
 
-        c.setMaxLevel(16);
+        c.setMaxLevel(12);
 
         return c;
     }
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(4, 1);
+        return new AbilityPlace(6, 0);
     }
 
     @Override
     public String GUID() {
-        return "throw_flames";
+        return "fire_bombs";
     }
 
     @Override
@@ -87,7 +87,7 @@ public class ThrowFlamesSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Throw out slow flames: "));
+        list.add(new StringTextComponent("Throw out Fire bombs that explode when near mobs: "));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
@@ -97,11 +97,10 @@ public class ThrowFlamesSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.ThrowFlames;
+        return Words.FireBomb;
     }
 
     private static class SingletonHolder {
-        private static final ThrowFlamesSpell INSTANCE = new ThrowFlamesSpell();
+        private static final FireBombsSpell INSTANCE = new FireBombsSpell();
     }
 }
-

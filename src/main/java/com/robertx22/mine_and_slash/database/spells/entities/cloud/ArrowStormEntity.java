@@ -35,11 +35,6 @@ public class ArrowStormEntity extends BaseCloudEntity {
     }
 
     @Override
-    public int durationInSeconds() {
-        return 6;
-    }
-
-    @Override
     public void onHit(LivingEntity entity) {
 
     }

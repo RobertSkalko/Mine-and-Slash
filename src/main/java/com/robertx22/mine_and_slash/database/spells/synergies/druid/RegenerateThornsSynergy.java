@@ -75,7 +75,7 @@ public class RegenerateThornsSynergy extends OnSpellCastSynergy {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(new RegenerateAoeSynergy());
+        return AbilityPlace.upFrom(getRequiredAbility());
     }
 
     @Nullable

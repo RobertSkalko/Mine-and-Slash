@@ -38,11 +38,6 @@ public class DivineTribulationEntity extends EntityBaseProjectile {
     }
 
     @Override
-    public int durationInSeconds() {
-        return 10;
-    }
-
-    @Override
     public void initSpellEntity() {
         this.setNoGravity(true);
         this.setDeathTime(100);

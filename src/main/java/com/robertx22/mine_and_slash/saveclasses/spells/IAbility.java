@@ -139,19 +139,26 @@ public interface IAbility extends IGUID, ITooltipList {
     }
 
     public default void finishTooltip(List<ITextComponent> list, SpellCastContext ctx, TooltipInfo info) {
-        TooltipUtils.addEmpty(list);
+        try {
+            TooltipUtils.addEmpty(list);
 
-        TooltipUtils.abilityLevel(list, ctx.spellsCap.getLevelOf(this), getMaxSpellLevelNormal());
+            TooltipUtils.abilityLevel(list, ctx.spellsCap.getLevelOf(this), getMaxSpellLevelNormal());
 
-        list.add(new SText(TextFormatting.YELLOW + "Effective Ability level: " + getEffectiveAbilityLevel(ctx.spellsCap)));
+            list.add(new SText(TextFormatting.YELLOW + "Effective Ability level: " + getEffectiveAbilityLevel(ctx.spellsCap)));
 
-        list.add(new SText(TextFormatting.RED + "Needs ").appendSibling(getSchool().locName.locName()
-            .appendText(" of Level: " + getSchoolPointsNeeded())));
+            if (ctx.spellsCap.getAbilitiesData()
+                .getSchoolPoints(this.getSchool()) < getSchoolPointsNeeded()) {
+                list.add(new SText(TextFormatting.RED + "Needs ").appendSibling(getSchool().locName.locName()
+                    .appendText(" of Level: " + getSchoolPointsNeeded())));
+            }
 
-        list.addAll(ctx.getConfigFor(this)
-            .GetTooltipString(info, ctx));
+            list.addAll(ctx.getConfigFor(this)
+                .GetTooltipString(info, ctx));
 
-        TooltipUtils.removeDoubleBlankLines(list);
+            TooltipUtils.removeDoubleBlankLines(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -63,11 +63,4 @@ public class MagmaFlowerTileEntity extends BaseSpellTileEntity {
 
     }
 
-    public static int DURATION_SEC = 15;
-
-    @Override
-    public int durationInSeconds() {
-        return DURATION_SEC;
-    }
-
 }

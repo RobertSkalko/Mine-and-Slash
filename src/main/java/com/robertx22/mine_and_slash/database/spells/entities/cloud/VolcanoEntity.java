@@ -37,11 +37,6 @@ public class VolcanoEntity extends BaseInvisibleEntity {
 
     }
 
-    @Override
-    public int durationInSeconds() {
-        return 100;
-    }
-
     public void summonParticle(Vec3d p) {
     }
 
