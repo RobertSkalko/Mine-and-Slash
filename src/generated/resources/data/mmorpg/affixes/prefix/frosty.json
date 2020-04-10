@@ -29,6 +29,6 @@
     ]
   },
   "mods": [
-    "spell_water_damage_percent"
+    "spell_water_damage_flat"
   ]
 }

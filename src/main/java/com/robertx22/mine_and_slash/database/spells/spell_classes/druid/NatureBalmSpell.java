@@ -75,7 +75,7 @@ public class NatureBalmSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
         list.add(new StringTextComponent("Applies buff: "));
-        list.addAll(RegenerateEffect.INSTANCE.GetTooltipString(info));
+        list.addAll(RegenerateEffect.INSTANCE.GetTooltipStringWithNoExtraSpellInfo(info));
 
         return list;
 

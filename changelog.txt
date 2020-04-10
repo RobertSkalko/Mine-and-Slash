@@ -1,27 +1,28 @@
 3.6.0
 
-SPELL REWORK! (UNFINISHED)
+SPELL REWORK!
 * spells and synergies now have levels
 * synergies now cost mana
 * removed some spells as i consider them bad (like geyser) and others because their spell school doesn't have enough spells, they'll probably be re-added later
 * added some new spells
 * spell damage stats are now percents and increase spell damage by percent, instead of adding to the damage.
 * infusion reworked
-* added cooldown reduction, mana cost reduction and cast rate stats
+* added cooldown reduction, mana cost reduction and cast rate stats (they might not be used yet though, but they're there)
 * added +1 to spell school levels stat
 * removed elemental conversion and transfer stats, mostly useless after spell damage became a percent
-* huge easy aoe spells now have much larger cooldown
+* huge easy aoe spells now have much larger cooldown, added other semi aoe spells that are harder to hit and can't hit that many enemies at once.
 
 Other:
 * bosses now spawn less minions but they're all max rarity
 * blocking fully now stops attack knockbacks. can't figure out how to stop the attack sounds though
 * made vanilla teams usable for exp and friendly fire off.
 * casting spells now slows you down
-* server performance improvements
+* server performance improvements (syncing mob stat packets to client should lag server less now as i almost cut down the packet size in half)
 * added all the buildathon rewards that people asked for (still many didn't come claim them though)
-* fixed unique cangetset field not doing anything
+* fixed unique cangetset field not doing anything in datapacks
 * mobs now have a small chance to increase their own rarity and level by killing other mobs. (experimental feature but i think it will be good)
 * decreased default regen hunger cost
 * made weapon costs scale with weapon level. This is experimental until i see if it can be abused or not. If people find some way of using lvl 1 weapons to do a lot of damage 
 then i'll have to switch back to scaling costs to player level.
 * spells levels now dictate their damage and mana costs too. To get maximum player level of spell effectiveness you'll need +1 to skill level gear stats. (5 or 6 of them)
+* added new affixes and runeword.

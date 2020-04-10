@@ -29,6 +29,6 @@
     ]
   },
   "mods": [
-    "spell_nature_damage_percent"
+    "spell_nature_damage_flat"
   ]
 }

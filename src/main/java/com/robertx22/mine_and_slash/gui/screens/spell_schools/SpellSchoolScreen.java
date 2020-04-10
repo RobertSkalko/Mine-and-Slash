@@ -303,7 +303,7 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
                 String str = spells.getLevelOf(ability) + "/" + ability.getMaxSpellLevelNormal();
                 int xp = (int) (this.x + xSize / 2);
                 int yp = this.y + xSize - 2;
-                GuiUtils.renderScaledText(xp, yp, 0.75F, str, TextFormatting.YELLOW);
+                GuiUtils.renderScaledText(xp, yp, 0.75F, str, ability.getSchool().format);
 
             }
 

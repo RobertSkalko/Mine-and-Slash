@@ -140,7 +140,9 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
         list.addAll(getMaxStacksTooltip());
         list.addAll(getDurationTooltip());
 
-        finishTooltip(list, new SpellCastContext(info.player, 0, this), info);
+        if (info.showAbilityExtraInfo) {
+            finishTooltip(list, new SpellCastContext(info.player, 0, this), info);
+        }
 
         return list;
     }

@@ -24,6 +24,7 @@ public class RuneWords implements ISlashRegistryInit {
             {
                 {
 
+                    add(new RuneWordPromise());
                     add(new RuneWordRoyalty());
                     add(new RuneWordAttuned());
                     add(new RuneWordTrueHit());

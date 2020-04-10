@@ -77,7 +77,7 @@ public class ThornArmorSpell extends BaseSpell {
 
         list.add(new StringTextComponent("Applies buff: "));
 
-        list.addAll(ThornArmorEffect.INSTANCE.GetTooltipString(info));
+        list.addAll(ThornArmorEffect.INSTANCE.GetTooltipStringWithNoExtraSpellInfo(info));
 
         return list;
 

@@ -46,7 +46,7 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy>,
 
     @Override
     public String locNameLangFileGUID() {
-        return Ref.MODID + "." + "synergy" + this.GUID();
+        return Ref.MODID + "." + "synergy." + this.GUID();
     }
 
     @Override

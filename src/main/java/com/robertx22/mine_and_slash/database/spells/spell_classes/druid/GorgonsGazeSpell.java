@@ -89,7 +89,7 @@ public class GorgonsGazeSpell extends BaseSpell {
         list.add(new StringTextComponent("Applies debuff: "));
         list.add(new StringTextComponent(""));
 
-        list.addAll(PetrifyEffect.INSTANCE.GetTooltipString(info));
+        list.addAll(PetrifyEffect.INSTANCE.GetTooltipStringWithNoExtraSpellInfo(info));
 
         return list;
 

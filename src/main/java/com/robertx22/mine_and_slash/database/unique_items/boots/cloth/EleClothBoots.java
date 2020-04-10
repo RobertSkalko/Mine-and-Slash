@@ -4,9 +4,10 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.AllElementalDamageMulti;
 import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -41,12 +42,16 @@ public class EleClothBoots implements IElementalUnique, IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new MagicShieldRegenFlat().size(StatMod.Size.HALF_LESS), new ManaRegenFlat().size(StatMod.Size.QUARTER), new EnergyRegenFlat().size(StatMod.Size.QUARTER));
+        return Arrays.asList(
+            new AllElementalDamageMulti(element),
+            new MagicShieldRegenFlat().size(StatMod.Size.QUARTER),
+            new ManaRegenFlat().size(StatMod.Size.QUARTER),
+            new EnergyRegenFlat().size(StatMod.Size.QUARTER));
     }
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element).size(StatMod.Size.QUARTER));
+        return Arrays.asList(new MagicShieldFlat());
     }
 
     @Override

@@ -23,6 +23,6 @@
   },
   "mods": {
     "2": "critical_hit_percent",
-    "3": "spell_thunder_damage_percent"
+    "3": "spell_thunder_damage_flat"
   }
 }

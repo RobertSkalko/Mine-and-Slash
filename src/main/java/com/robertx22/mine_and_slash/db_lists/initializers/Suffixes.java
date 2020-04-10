@@ -6,6 +6,8 @@ import com.robertx22.mine_and_slash.database.affixes.suffixes.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.curses.OfLessCoreStat;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.curses.OfMortality;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.defense.*;
+import com.robertx22.mine_and_slash.database.affixes.suffixes.mixed.OfMalevolentSpirits;
+import com.robertx22.mine_and_slash.database.affixes.suffixes.mixed.OfMaliciousIntent;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.mixed.OfTheFallen;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.offense.*;
 import com.robertx22.mine_and_slash.database.affixes.suffixes.resource.*;
@@ -41,6 +43,10 @@ public class Suffixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
         List<Suffix> allSuffixes = new ArrayList<Suffix>() {
             {
                 {
+
+                    add(new OfMalevolentSpirits());
+                    add(new OfMaliciousIntent());
+
                     add(new OfMagicShield());
 
                     add(new OfTheHydra());

@@ -20,6 +20,6 @@
   },
   "mods": [
     "lifesteal_flat",
-    "spell_nature_damage_percent"
+    "spell_nature_damage_flat"
   ]
 }

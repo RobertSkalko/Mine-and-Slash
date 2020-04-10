@@ -61,7 +61,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             // return; // it's casted elsewhere
         }
 
-        if (timesToCast > 1) {
+        if (timesToCast >= 1) {
 
             int castTimeTicks = (int) ctx.getConfigFor(this)
                 .get(SC.CAST_TIME_TICKS)

@@ -6,10 +6,7 @@ import com.robertx22.mine_and_slash.database.affixes.prefixes.curses.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.EleShieldPrefix;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.misc.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.mixed.Colossal;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.mixed.GenerationalCurse;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.mixed.Sacrificial;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.mixed.UndeadCurse;
+import com.robertx22.mine_and_slash.database.affixes.prefixes.mixed.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.damage_percents.*;
 import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.*;
@@ -34,6 +31,9 @@ public class Prefixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
         List<Prefix> allPrefixes = new ArrayList<Prefix>() {
             {
                 {
+
+                    add(new Doomed());
+                    add(new Forgotten());
 
                     add(new EnduringField());
                     add(new EternalField());

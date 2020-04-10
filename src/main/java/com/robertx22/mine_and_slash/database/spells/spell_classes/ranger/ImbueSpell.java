@@ -84,7 +84,7 @@ public class ImbueSpell extends BaseSpell {
         list.add(SpellTooltips.buff());
 
         list.addAll(ImbueEffect.getInstance()
-            .GetTooltipString(info));
+            .GetTooltipStringWithNoExtraSpellInfo(info));
 
         return list;
 

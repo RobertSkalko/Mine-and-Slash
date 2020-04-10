@@ -152,6 +152,8 @@ public class CreateLangFile {
         list.addAll(SlashRegistry.Affixes()
             .getSerializable());
 
+        list.addAll(SlashRegistry.Synergies()
+            .getList());
         list.addAll(SlashRegistry.Stats()
             .getAll()
             .values());

@@ -29,6 +29,6 @@
     ]
   },
   "mods": [
-    "spell_thunder_damage_percent"
+    "spell_thunder_damage_flat"
   ]
 }
