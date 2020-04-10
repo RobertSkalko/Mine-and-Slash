@@ -89,7 +89,7 @@ public class TidalWaveSpell extends BaseSpell {
 
         list.add(new StringTextComponent("Throw waves in a cone, damaging enemies: "));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

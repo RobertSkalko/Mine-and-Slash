@@ -50,6 +50,11 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> 
         return list;
     }
 
+    public int getCalcVal(LivingEntity en) {
+        return getCalc(Load.spells(en)).getCalculatedValue(Load.Unit(en), Load.spells(en), this);
+
+    }
+
     public SynergyDamageEffect getSynergyDamage(SpellDamageEffect ctx, int num) {
         SynergyDamageEffect dmg = new SynergyDamageEffect(this,
             ctx.source, ctx.target, num, ctx.sourceData, ctx.targetData, ctx.getSpell());

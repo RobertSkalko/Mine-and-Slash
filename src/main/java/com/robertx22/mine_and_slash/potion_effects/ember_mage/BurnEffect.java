@@ -39,7 +39,7 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
         this.tickActions.add(new OnTickAction(20, ctx -> {
-            int num = getCalc(ctx.spellsCap).getCalculatedValue(ctx.casterData);
+            int num = getCalc(ctx.spellsCap).getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
                 EffectData.EffectTypes.SPELL, WeaponTypes.None
@@ -60,7 +60,7 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
         }, info -> {
             List<ITextComponent> list = new ArrayList<>();
             list.add(new StringTextComponent("Does damage:"));
-            list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
+            list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
             return list;
         }));
 

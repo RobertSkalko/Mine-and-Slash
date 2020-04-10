@@ -115,7 +115,7 @@ public class RecoilShotSpell extends BaseSpell {
 
         list.add(new StringTextComponent("Shoots an arrow and dash back: "));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

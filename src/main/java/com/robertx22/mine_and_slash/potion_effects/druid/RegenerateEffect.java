@@ -35,7 +35,7 @@ public class RegenerateEffect extends BasePotionEffect {
             } else {
 
                 int num = getCalc(ctx.spellsCap)
-                    .getCalculatedValue(ctx.casterData);
+                    .getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
 
                 ResourcesData.Context hp = new ResourcesData.Context(ctx.caster, ctx.entity, ctx.casterData,
                     ctx.entityData, ResourcesData.Type.HEALTH, num,
@@ -49,7 +49,7 @@ public class RegenerateEffect extends BasePotionEffect {
         }, info -> {
             List<ITextComponent> list = new ArrayList<>();
             list.add(new StringTextComponent("Heals user."));
-            list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
+            list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
             return list;
         }));
 

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
@@ -41,6 +42,20 @@ public interface IAbility extends IGUID, ITooltipList {
         }
 
         return ability;
+    }
+
+    public default int getEffectiveAbilityLevel(PlayerSpellCap.ISpellsCap spells) {
+
+        int spellLvl = spells.getLevelOf(this);
+
+        if (spellLvl == 0) {
+            return 0;
+        }
+        if (spellLvl == 1) {
+            return 1;
+        }
+
+        return (int) (((float) spellLvl / (float) getMaxSpellLevelBuffed()) * ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get());
     }
 
     PreCalcSpellConfigs getPreCalcConfig();
@@ -109,6 +124,8 @@ public interface IAbility extends IGUID, ITooltipList {
         TooltipUtils.addEmpty(list);
 
         TooltipUtils.abilityLevel(list, ctx.spellsCap.getLevelOf(this), getMaxSpellLevelNormal());
+
+        list.add(new SText(TextFormatting.YELLOW + "Effective Ability level: " + getEffectiveAbilityLevel(ctx.spellsCap)));
 
         list.add(new SText(TextFormatting.RED + "Needs ").appendSibling(getSchool().locName.locName()
             .appendText(" of Level: " + getSchoolPointsNeeded())));

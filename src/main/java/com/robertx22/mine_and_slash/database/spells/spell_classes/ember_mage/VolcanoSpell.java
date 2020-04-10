@@ -86,7 +86,7 @@ public class VolcanoSpell extends BaseSpell {
 
         list.add(new StringTextComponent("Summons an erupting volcano: "));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

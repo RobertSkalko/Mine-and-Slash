@@ -33,7 +33,7 @@ public class HeartOfIceFrostSynergy extends OnSpellCastSynergy {
 
         list.add(new StringTextComponent("Consumes Frost Essence stacks to increase heal"));
 
-        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
     }
@@ -65,7 +65,7 @@ public class HeartOfIceFrostSynergy extends OnSpellCastSynergy {
             PotionEffectUtils.reduceStacks(ctx.caster, ColdEssenceEffect.INSTANCE, 500);
             float amount = ctx.getConfigFor(this)
                 .getCalc(ctx.spellsCap, this)
-                .getCalculatedValue(Load.Unit(ctx.caster)) * stacks;
+                .getCalculatedValue(Load.Unit(ctx.caster), Load.spells(ctx.caster), this) * stacks;
 
             SpellUtils.heal(ctx.spell, ctx.caster, amount);
 

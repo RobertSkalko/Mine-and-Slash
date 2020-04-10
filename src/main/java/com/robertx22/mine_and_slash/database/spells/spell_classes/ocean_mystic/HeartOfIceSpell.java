@@ -83,7 +83,7 @@ public class HeartOfIceSpell extends BaseSpell {
 
         list.add(new StringTextComponent("Restores health to caster:"));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

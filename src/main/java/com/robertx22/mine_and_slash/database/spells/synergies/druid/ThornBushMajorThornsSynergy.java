@@ -33,7 +33,7 @@ public class ThornBushMajorThornsSynergy extends OnDamageDoneSynergy {
 
         list.add(new StringTextComponent("Adds extra damage to enemies affected by thorns."));
 
-        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
     }
@@ -44,7 +44,7 @@ public class ThornBushMajorThornsSynergy extends OnDamageDoneSynergy {
 
             PotionEffectUtils.reduceStacks(ctx.target, ThornsEffect.INSTANCE);
 
-            int dmg = getCalc(Load.spells(ctx.source)).getCalculatedBaseValue(ctx.sourceData);
+            int dmg = getCalc(Load.spells(ctx.source)).getCalculatedValue(ctx.sourceData, Load.spells(ctx.source), this);
 
             getSynergyDamage(ctx, dmg)
                 .Activate();

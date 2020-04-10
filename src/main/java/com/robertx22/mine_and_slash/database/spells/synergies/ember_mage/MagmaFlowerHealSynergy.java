@@ -33,7 +33,7 @@ public class MagmaFlowerHealSynergy extends OnDamageDoneSynergy {
         list.add(new StringTextComponent("Heals the caster"));
 
         list.addAll(getCalc(Load.spells(info.player))
-            .GetTooltipString(info));
+            .GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
     }
@@ -65,7 +65,8 @@ public class MagmaFlowerHealSynergy extends OnDamageDoneSynergy {
     @Override
     public void tryActivate(SpellDamageEffect effect) {
 
-        float amount = getCalc(Load.spells(effect.source)).getCalculatedValue(effect.sourceData);
+        float amount = getCalc(Load.spells(effect.source)).getCalculatedValue(effect.sourceData, Load.spells(effect.source
+        ), this);
 
         SpellUtils.heal(getSpell(), effect.source, amount);
 

@@ -88,7 +88,7 @@ public class FireballSpell extends BaseSpell {
 
         list.add(SpellTooltips.singleTargetProjectile());
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

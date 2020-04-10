@@ -200,7 +200,7 @@ public class TooltipUtils {
 
     public static void abilityLevel(List<ITextComponent> list, int current, int max) {
         list.add(
-            new SText(TextFormatting.YELLOW + "")
+            new SText(TextFormatting.YELLOW + "").appendText("Ability ")
                 .appendSibling(Words.Level.locName())
                 .appendText(": " + current + "/" + max));
     }

@@ -89,7 +89,7 @@ public class LightningTotemSpell extends BaseSpell {
 
         list.add(new StringTextComponent("Summons a totem that damages enemies: "));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

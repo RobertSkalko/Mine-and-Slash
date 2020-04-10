@@ -83,7 +83,7 @@ public class RangerArrowEntity extends EntityBaseProjectile {
 
                 float add = (float) (ImbueSpell.getInstance()
                     .getCalculation(new SpellCastContext(caster, 0, ImbueSpell.getInstance()))
-                    .getCalculatedValue(Load.Unit(caster)));
+                    .getCalculatedValue(Load.Unit(caster), Load.spells(caster), ImbueSpell.getInstance()));
 
                 dmg.number += add;
             }

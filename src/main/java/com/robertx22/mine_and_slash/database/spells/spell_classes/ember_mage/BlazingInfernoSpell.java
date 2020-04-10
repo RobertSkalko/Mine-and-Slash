@@ -95,7 +95,7 @@ public class BlazingInfernoSpell extends BaseSpell {
 
         list.add(new SText("Do damage to enemies around you."));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 
@@ -114,7 +114,7 @@ public class BlazingInfernoSpell extends BaseSpell {
             pdata.radius = radius;
             ParticleEnum.BLAZING_INFERNO.sendToClients(caster, pdata);
 
-            int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster));
+            int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.spellsCap, ctx.ability);
 
             List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
                 .radius(radius)

@@ -33,7 +33,7 @@ public class FrostballExtraDmgSynergy extends OnDamageDoneSynergy {
 
         list.add(new StringTextComponent("Consumes Shiver for extra damage"));
 
-        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
     }
@@ -68,7 +68,7 @@ public class FrostballExtraDmgSynergy extends OnDamageDoneSynergy {
 
             PotionEffectUtils.reduceStacks(ctx.target, ShiverEffect.INSTANCE);
 
-            int num = getCalc(Load.spells(ctx.source)).getCalculatedValue(ctx.sourceData);
+            int num = getCalcVal(ctx.source);
 
             getSynergyDamage(ctx, num)
                 .Activate();

@@ -89,7 +89,7 @@ public class ArrowStormSpell extends BaseSpell {
 
         list.add(new StringTextComponent("Summons an arrow storm, dealing damage with each arrow: "));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

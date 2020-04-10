@@ -100,7 +100,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
         List<ITextComponent> list = new ArrayList<>();
         list.add(new StringTextComponent("Petrifies Enemy."));
         list.add(new StringTextComponent("If Attacked, does extra damage, but stops effect."));
-        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
     }
@@ -108,7 +108,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     @Override
     public void onBasicAttacked(LivingEntity source, LivingEntity target) {
 
-        int num = getCalc(Load.spells(source)).getCalculatedValue(Load.Unit(source));
+        int num = getCalc(Load.spells(source)).getCalculatedValue(Load.Unit(source), Load.spells(source), this);
 
         DamageEffect dmg = new DamageEffect(null, source, target, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
         dmg.element = Elements.Nature;

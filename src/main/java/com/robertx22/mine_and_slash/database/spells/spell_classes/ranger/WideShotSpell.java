@@ -90,7 +90,7 @@ public class WideShotSpell extends BaseSpell {
 
         list.add(new StringTextComponent("Shoots multiple arrows in an arc: "));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

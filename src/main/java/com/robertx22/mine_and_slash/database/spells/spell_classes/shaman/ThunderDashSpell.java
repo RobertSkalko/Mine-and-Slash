@@ -97,7 +97,7 @@ public class ThunderDashSpell extends BaseSpell {
         list.add(new StringTextComponent("Dash in your current direction,"));
         list.add(new StringTextComponent("damages all enemies in the path."));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 
@@ -128,7 +128,7 @@ public class ThunderDashSpell extends BaseSpell {
 
         dashForward(ctx.caster);
 
-        int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster));
+        int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.spellsCap, ctx.ability);
 
         List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
             .radius(2)

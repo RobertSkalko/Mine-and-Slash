@@ -60,17 +60,6 @@ public class LevelBased {
 
         return MathHelper.clamp(val, min, max);
 
-        /*
-        if (val < min || val > max) {
-            throw new RuntimeException(
-                "Value isn't in correct range," +
-                    " make sure synergies aren't modifying it into negative range and that" +
-                    " the spell actually initialized the value.: " + val);
-        }
-
-
-         */
-
     }
 
     public void modifyBy(LevelBased other) {

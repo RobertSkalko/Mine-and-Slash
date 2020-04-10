@@ -90,7 +90,7 @@ public class ThrowFlamesSpell extends BaseSpell {
 
         list.add(new StringTextComponent("Throw out slow flames: "));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

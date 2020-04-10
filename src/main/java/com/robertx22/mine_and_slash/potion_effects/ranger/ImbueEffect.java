@@ -76,7 +76,7 @@ public class ImbueEffect extends BasePotionEffect {
         list.add(new SText(TextFormatting.GREEN + "Adds damage to Ranger spells."));
 
         list.addAll(getCalc(Load.spells(info.player))
-            .GetTooltipString(info));
+            .GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
 

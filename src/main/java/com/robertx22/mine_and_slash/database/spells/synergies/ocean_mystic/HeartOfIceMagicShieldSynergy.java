@@ -32,7 +32,7 @@ public class HeartOfIceMagicShieldSynergy extends OnSpellCastSynergy {
 
         list.add(new StringTextComponent("Heals magic shield too"));
 
-        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
     }
@@ -67,7 +67,7 @@ public class HeartOfIceMagicShieldSynergy extends OnSpellCastSynergy {
             ResourcesData.Type.MAGIC_SHIELD,
             ctx.getConfigFor(this)
                 .getCalc(ctx.spellsCap, this)
-                .getCalculatedValue(ctx.data),
+                .getCalculatedValue(ctx.data, Load.spells(ctx.caster), this),
             ResourcesData.Use.RESTORE, ctx.spell
         );
         ctx.data

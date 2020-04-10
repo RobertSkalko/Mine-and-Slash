@@ -88,7 +88,7 @@ public class WhirlpoolSpell extends BaseSpell {
 
         list.add(new StringTextComponent("Summons a whirpool that slows and damages enemies: "));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

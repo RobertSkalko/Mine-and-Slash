@@ -37,7 +37,7 @@ public class PoisonedWeaponsThornsSynergy extends OnBasicAttackSynergy {
 
         list.add(new StringTextComponent("Basic attacks deals extra damage to targets affected by Thorns."));
 
-        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
     }
@@ -71,7 +71,7 @@ public class PoisonedWeaponsThornsSynergy extends OnBasicAttackSynergy {
                 );
 
                 int num = getPreCalcConfig().getCalc(Load.spells(ctx.source), this)
-                    .getCalculatedValue(ctx.sourceData);
+                    .getCalculatedValue(ctx.sourceData, Load.spells(ctx.source), this);
 
                 SynergyDamageEffect dmg = new SynergyDamageEffect(this,
                     ctx.source, ctx.target, num, ctx.sourceData, ctx.targetData, getSpell());

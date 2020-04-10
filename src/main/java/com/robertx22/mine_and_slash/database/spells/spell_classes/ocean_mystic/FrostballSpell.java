@@ -88,7 +88,7 @@ public class FrostballSpell extends BaseSpell {
 
         list.add(SpellTooltips.singleTargetProjectile());
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

@@ -158,7 +158,7 @@ public class GearTooltipUtils {
                         .appendSibling(Energy.getInstance()
                             .locName()
                             .appendText(": " + (int) costs
-                                .GetEnergyCost(data.getLvlForResourceCosts()))));
+                                .GetEnergyCost(gear.getLevel()))));
                 }
                 if (costs
                     .GetManaCost(data.getLvlForResourceCosts()) > 0) {
@@ -166,7 +166,7 @@ public class GearTooltipUtils {
                         .appendSibling(Mana.getInstance()
                             .locName()
                             .appendText(": " + (int) costs
-                                .GetManaCost(data.getLvlForResourceCosts()))));
+                                .GetManaCost(gear.getLevel()))));
                 }
 
                 tip.addAll(slot.weaponDamageMulti()

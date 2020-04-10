@@ -86,7 +86,7 @@ public class ThornBushSpell extends BaseSpell {
 
         list.add(new SText("Summons a bush that attacks enemies nearby."));
 
-        list.addAll(getCalculation(ctx).GetTooltipString(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 

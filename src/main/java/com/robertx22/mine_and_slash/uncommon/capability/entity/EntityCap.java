@@ -815,10 +815,10 @@ public class EntityCap {
                     GearItemSlot slot = weaponData.GetBaseGearType();
 
                     float energyCost = slot.getSwingCosts()
-                        .GetEnergyCost(getLvlForResourceCosts()) * multi;
+                        .GetEnergyCost(weaponData.getLevel()) * multi;
 
                     float manaCost = slot.getSwingCosts()
-                        .GetManaCost(getLvlForResourceCosts()) * multi;
+                        .GetManaCost(weaponData.getLevel()) * multi;
 
                     float cooldown = getAttackCooldown();
 

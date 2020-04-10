@@ -141,7 +141,7 @@ public class SpellUtils {
             new ResourcesData.Context(ctx.data, ctx.caster, ResourcesData.Type.HEALTH,
                 ctx.getConfigFor(ctx.ability)
                     .getCalc(ctx.spellsCap, ctx.ability)
-                    .getCalculatedValue(ctx.data), ResourcesData.Use.RESTORE,
+                    .getCalculatedValue(ctx.data, ctx.spellsCap, ctx.ability), ResourcesData.Use.RESTORE,
                 ctx.spell
             ));
         heal.Activate();

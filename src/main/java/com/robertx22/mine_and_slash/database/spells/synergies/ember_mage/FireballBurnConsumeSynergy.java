@@ -40,7 +40,7 @@ public class FireballBurnConsumeSynergy extends OnDamageDoneSynergy {
 
         list.add(new StringTextComponent("Consumes Burn to Erupt in AOE"));
 
-        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info));
+        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
     }
@@ -64,7 +64,7 @@ public class FireballBurnConsumeSynergy extends OnDamageDoneSynergy {
 
             PotionEffectUtils.reduceStacks(ctx.target, BurnEffect.INSTANCE);
 
-            int num = getCalc(Load.spells(ctx.source)).getCalculatedValue(ctx.sourceData);
+            int num = getCalc(Load.spells(ctx.source)).getCalculatedValue(ctx.sourceData, Load.spells(ctx.source), this);
 
             List<LivingEntity> entities = EntityFinder.start(
                 ctx.source, LivingEntity.class, ctx.target.getPositionVector())

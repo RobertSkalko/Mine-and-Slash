@@ -1,12 +1,14 @@
 package com.robertx22.mine_and_slash.saveclasses.spells.calc;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Factory;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class SpellCalcData implements ITooltipList {
+public class SpellCalcData {
 
     public static SpellCalcData empty() {
 
@@ -89,25 +91,28 @@ public class SpellCalcData implements ITooltipList {
     @Store
     public float baseValue = 0;
 
-    public int getCalculatedBaseValue(EntityCap.UnitData data) {
-        return (int) baseScaling.scale(baseValue, data.getLevel());
+    public int getCalculatedBaseValue(PlayerSpellCap.ISpellsCap spells, IAbility ability) {
+        return (int) baseScaling.scale(baseValue, ability.getEffectiveAbilityLevel(spells));
     }
 
-    public int getCalculatedScalingValue(EntityCap.UnitData data) {
+    private int getCalculatedScalingValue(EntityCap.UnitData data) {
         return getAllScalingValues().stream()
             .mapToInt(x -> x.getCalculatedValue(data))
             .sum();
     }
 
-    public int getCalculatedValue(EntityCap.UnitData data) {
+    public int getCalculatedValue(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spells, IAbility ability) {
         int val = getCalculatedScalingValue(data);
-        val += getCalculatedBaseValue(data);
+        val += getCalculatedBaseValue(spells, ability);
         return val;
+    }
+
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {
+        return this.GetTooltipString(info, ctx.spellsCap, ctx.ability);
 
     }
 
-    @Override
-    public List<ITextComponent> GetTooltipString(TooltipInfo info) {
+    public List<ITextComponent> GetTooltipString(TooltipInfo info, PlayerSpellCap.ISpellsCap spells, IAbility ability) {
 
         List<ITextComponent> list = new ArrayList<>();
 
@@ -116,7 +121,7 @@ public class SpellCalcData implements ITooltipList {
 
             if (baseValue > 0) {
                 list.add(new StringTextComponent(
-                    TextFormatting.RED + "Base Value: " + getCalculatedBaseValue(info.unitdata)));
+                    TextFormatting.RED + "Base Value: " + getCalculatedBaseValue(spells, ability)));
             }
         }
 
