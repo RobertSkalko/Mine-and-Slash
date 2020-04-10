@@ -32,6 +32,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.SpellDam
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptySpell;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
@@ -50,6 +51,7 @@ public class StatMods implements ISlashRegistryInit {
             {
                 {
 
+                    add(new PlusAbiliyLevelFlat(new EmptySpell()));
                     add(new PlusAllSkillLevelsInSchoolFlat(SpellSchools.OCEAN_MYSTIC));
                     add(new ElementalInfusionPercent(Elements.Nature));
                     add(new LootTypeBonusFlat(LootType.NormalItem));

@@ -80,6 +80,12 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     }
 
+    @Override
+    public ITextComponent getLocName() {
+        return this.getName()
+            .locName();
+    }
+
     public void spawnParticles(SpellCastContext ctx) {
 
     }

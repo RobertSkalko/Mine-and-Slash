@@ -14,6 +14,7 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
+import com.robertx22.mine_and_slash.database.stats.types.spell_calc.PlusAbilityLevelStat;
 import com.robertx22.mine_and_slash.database.stats.types.spell_calc.PlusLevelToAllAbilitiesInSchoolStat;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -509,6 +510,7 @@ public class Unit {
                 .clearBonusLevels();
 
             PlusLevelToAllAbilitiesInSchoolStat.calcBonusAbilityLevelStats(spells, this);
+            PlusAbilityLevelStat.calcBonusAbilityLevelStats(spells, this);
 
         }
 

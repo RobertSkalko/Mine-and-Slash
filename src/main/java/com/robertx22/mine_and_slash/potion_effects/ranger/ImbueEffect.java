@@ -54,7 +54,7 @@ public class ImbueEffect extends BasePotionEffect {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
         p.set(SC.BASE_VALUE, 1, 3);
-        p.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.2F);
+        p.set(SC.ATTACK_SCALE_VALUE, 0.05F, 0.2F);
         return p;
     }
 

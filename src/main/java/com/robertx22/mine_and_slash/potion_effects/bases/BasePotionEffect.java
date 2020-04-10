@@ -43,6 +43,11 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
     }
 
     @Override
+    public ITextComponent getLocName() {
+        return this.locName();
+    }
+
+    @Override
     public ResourceLocation getIconLoc() {
         return getIconTexture();
     }

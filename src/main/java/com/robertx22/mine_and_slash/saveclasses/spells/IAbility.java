@@ -17,11 +17,27 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface IAbility extends IGUID, ITooltipList {
     public enum Type {
         SPELL, SYNERGY, EFFECT
+    }
+
+    public static List<IAbility> getAll() {
+
+        List<IAbility> list = new ArrayList<>();
+
+        list.addAll(SlashRegistry.Synergies()
+            .getList());
+        list.addAll(SlashRegistry.Spells()
+            .getList());
+        list.addAll(SlashRegistry.PotionEffects()
+            .getList());
+
+        return list;
+
     }
 
     public static IAbility fromId(String id) {
@@ -43,6 +59,8 @@ public interface IAbility extends IGUID, ITooltipList {
 
         return ability;
     }
+
+    ITextComponent getLocName();
 
     public default int getEffectiveAbilityLevel(PlayerSpellCap.ISpellsCap spells) {
 

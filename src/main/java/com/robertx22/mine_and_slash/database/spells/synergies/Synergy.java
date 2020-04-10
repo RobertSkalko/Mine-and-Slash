@@ -36,6 +36,11 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> 
     public abstract List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info);
 
     @Override
+    public ITextComponent getLocName() {
+        return new SText(""); // todo
+    }
+
+    @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
