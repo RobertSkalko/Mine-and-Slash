@@ -13,10 +13,11 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: "com.wynprice.cursemaven"
 
-version = "1.9.3"
 
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
+
+version = "1.9.4"
 group = "com.robertx22.mmorpg"
 archivesBaseName = "Mine and Slash-1.12.2"
 
