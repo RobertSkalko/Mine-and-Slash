@@ -71,4 +71,8 @@ public class ImbueCritAddHunterSynergy extends OnDamageDoneSynergy {
         }
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Imbue Instinct";
+    }
 }

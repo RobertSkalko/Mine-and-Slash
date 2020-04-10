@@ -69,4 +69,9 @@ public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
             PotionEffectUtils.reApplyToSelf(HunterInstinctEffect.getInstance(), ctx.source);
         }
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Recoil of the hunter";
+    }
 }

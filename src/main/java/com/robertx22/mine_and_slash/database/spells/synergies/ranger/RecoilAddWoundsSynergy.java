@@ -64,5 +64,10 @@ public class RecoilAddWoundsSynergy extends OnDamageDoneSynergy {
     public void tryActivate(SpellDamageEffect ctx) {
         PotionEffectUtils.apply(WoundsEffect.getInstance(), ctx.source, ctx.target);
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Recoil Wounds";
+    }
 }
 

@@ -93,4 +93,8 @@ public class PoisonedWeaponsThornsSynergy extends OnBasicAttackSynergy {
         return PoisonedWeaponsSpell.getInstance();
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Poison thorn seeker";
+    }
 }

@@ -69,4 +69,9 @@ public class WhirlpoolShiverSynergy extends OnDamageDoneSynergy {
             PotionEffectUtils.apply(ShiverEffect.INSTANCE, ctx.source, ctx.target);
         }
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Shiver pool";
+    }
 }

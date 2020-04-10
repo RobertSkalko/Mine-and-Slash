@@ -73,4 +73,9 @@ public class HeartOfIceMagicShieldSynergy extends OnSpellCastSynergy {
         ctx.data
             .modifyResource(heal);
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Heart of Magic";
+    }
 }

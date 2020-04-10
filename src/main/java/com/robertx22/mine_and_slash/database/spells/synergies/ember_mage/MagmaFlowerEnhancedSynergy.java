@@ -57,4 +57,8 @@ public class MagmaFlowerEnhancedSynergy extends Synergy {
         return MagmaFlowerSpell.getInstance();
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Magma Bloom";
+    }
 }

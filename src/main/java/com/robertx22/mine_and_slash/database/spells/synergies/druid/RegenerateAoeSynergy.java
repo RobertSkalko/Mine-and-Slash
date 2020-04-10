@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.RegenerateSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.NatureBalmSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnSpellCastSynergy;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
@@ -43,7 +43,7 @@ public class RegenerateAoeSynergy extends OnSpellCastSynergy {
 
     @Override
     public BaseSpell getRequiredAbility() {
-        return RegenerateSpell.getInstance();
+        return NatureBalmSpell.getInstance();
     }
 
     @Override
@@ -54,14 +54,14 @@ public class RegenerateAoeSynergy extends OnSpellCastSynergy {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.RADIUS, 1.5F, 3.5F);
+        c.set(SC.RADIUS, 1F, 3.5F);
         c.setMaxLevel(3);
         return c;
     }
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(RegenerateSpell.getInstance());
+        return AbilityPlace.upFrom(NatureBalmSpell.getInstance());
     }
 
     @Override
@@ -84,5 +84,10 @@ public class RegenerateAoeSynergy extends OnSpellCastSynergy {
             .searchFor(EntityFinder.SearchFor.ALLIES)
             .build()
             .forEach(x -> PotionEffectUtils.apply(RegenerateEffect.INSTANCE, ctx.caster, x));
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Spread Balm";
     }
 }

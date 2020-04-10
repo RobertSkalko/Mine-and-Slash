@@ -67,4 +67,9 @@ public class ThunderSpearThunderEssenceSynergy extends OnDamageDoneSynergy {
             PotionEffectUtils.apply(StaticEffect.INSTANCE, ctx.source, ctx.target);
         }
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Spear Thunder Essence";
+    }
 }

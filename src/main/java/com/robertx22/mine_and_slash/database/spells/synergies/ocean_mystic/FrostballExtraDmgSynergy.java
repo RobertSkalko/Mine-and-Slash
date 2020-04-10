@@ -76,4 +76,8 @@ public class FrostballExtraDmgSynergy extends OnDamageDoneSynergy {
         }
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Shiver Frostburn";
+    }
 }

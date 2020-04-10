@@ -104,4 +104,9 @@ public class FireballBurnConsumeSynergy extends OnDamageDoneSynergy {
     public IAbility getRequiredAbility() {
         return FireballSpell.getInstance();
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Fireball Explosion";
+    }
 }

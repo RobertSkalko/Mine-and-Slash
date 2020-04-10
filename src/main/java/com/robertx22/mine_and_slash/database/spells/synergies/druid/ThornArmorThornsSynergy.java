@@ -78,4 +78,9 @@ public class ThornArmorThornsSynergy extends OnDamageDoneSynergy {
     public IAbility getRequiredAbility() {
         return ThornArmorSpell.getInstance();
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Thorny Armor";
+    }
 }

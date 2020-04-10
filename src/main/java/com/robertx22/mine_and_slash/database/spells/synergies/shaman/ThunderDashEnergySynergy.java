@@ -74,4 +74,9 @@ public class ThunderDashEnergySynergy extends OnDamageDoneSynergy {
             .getResources()
             .modify(ene);
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Energy Dash";
+    }
 }

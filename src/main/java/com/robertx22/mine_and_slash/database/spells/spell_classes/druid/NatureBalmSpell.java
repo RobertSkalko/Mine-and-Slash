@@ -22,9 +22,9 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegenerateSpell extends BaseSpell {
+public class NatureBalmSpell extends BaseSpell {
 
-    private RegenerateSpell() {
+    private NatureBalmSpell() {
         super(
             new ImmutableSpellConfigs() {
                 @Override
@@ -61,7 +61,7 @@ public class RegenerateSpell extends BaseSpell {
         return c;
     }
 
-    public static RegenerateSpell getInstance() {
+    public static NatureBalmSpell getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -83,7 +83,7 @@ public class RegenerateSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.Regeneration;
+        return Words.NatureBalm;
     }
 
     @Override
@@ -99,6 +99,6 @@ public class RegenerateSpell extends BaseSpell {
     }
 
     private static class SingletonHolder {
-        private static final RegenerateSpell INSTANCE = new RegenerateSpell();
+        private static final NatureBalmSpell INSTANCE = new NatureBalmSpell();
     }
 }

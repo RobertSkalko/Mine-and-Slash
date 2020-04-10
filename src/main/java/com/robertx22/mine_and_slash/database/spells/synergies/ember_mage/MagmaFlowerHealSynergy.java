@@ -71,4 +71,9 @@ public class MagmaFlowerHealSynergy extends OnDamageDoneSynergy {
         SpellUtils.heal(getSpell(), effect.source, amount);
 
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Healing Magma Petals";
+    }
 }

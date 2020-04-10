@@ -78,4 +78,8 @@ public class HeartOfIceFrostSynergy extends OnSpellCastSynergy {
         return AbilityPlace.upFrom(getRequiredAbility());
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Cold Healing Essence";
+    }
 }

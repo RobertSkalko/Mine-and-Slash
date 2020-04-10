@@ -79,4 +79,8 @@ public class ThunderSpearLightningStrikeSynergy extends OnDamageDoneSynergy {
         }
     }
 
+    @Override
+    public String locNameForLangFile() {
+        return "Spear Lightning";
+    }
 }

@@ -66,4 +66,9 @@ public class LightningTotemStaticSynergy extends OnDamageDoneSynergy {
             PotionEffectUtils.apply(StaticEffect.INSTANCE, ctx.source, ctx.target);
         }
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Totem Static";
+    }
 }

@@ -70,4 +70,9 @@ public class FrostballFrostEssenceGenSynergy extends OnDamageDoneSynergy {
             PotionEffectUtils.reApplyToSelf(ColdEssenceEffect.INSTANCE, ctx.source);
         }
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Cold Essence creation";
+    }
 }

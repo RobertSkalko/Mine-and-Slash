@@ -15,17 +15,16 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SynergyDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> {
+public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy>, IAutoLocName {
 
     public float get(LivingEntity en, SC sc) {
         return getContext(en).getConfigFor(this)
@@ -37,7 +36,17 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> 
 
     @Override
     public ITextComponent getLocName() {
-        return new SText(""); // todo
+        return locName();
+    }
+
+    @Override
+    public AutoLocGroup locNameGroup() {
+        return AutoLocGroup.Spells;
+    }
+
+    @Override
+    public String locNameLangFileGUID() {
+        return Ref.MODID + "." + "synergy" + this.GUID();
     }
 
     @Override
@@ -126,8 +135,6 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> 
         return getMaxSpellLevelNormal() + 5;
     }
 
-    //public abstract void tryActivate(T ctx);  make it so each one has different
-
     public boolean has(PlayerSpellCap.ISpellsCap spells) {
         return spells.hasSynergy(this);
     }
@@ -138,10 +145,9 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy> 
     }
 
     public void addSpellName(List<ITextComponent> tooltip) {
-        tooltip.add(
-            new StringTextComponent(TextFormatting.GREEN + "").appendSibling(((BaseSpell) getRequiredAbility()).getName()
-                .locName())
-                .appendText(" Synergy"));
+
+        tooltip.add(new SText(getSpell().getElement().format + "").appendSibling(getLocName()));
+
     }
 
 }

@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import java.util.Locale;
 
 public enum Words implements IAutoLocName {
-    CooldownSeconds("Cooldown Seconds"),
+    CooldownSeconds("Cooldown Seconds"), NatureBalm("Nature's Balm"),
     CooldownTicks("Cooldown Ticks"),
     CastTimeTicks("Cast Time Ticks"),
     Radius("Radius"),

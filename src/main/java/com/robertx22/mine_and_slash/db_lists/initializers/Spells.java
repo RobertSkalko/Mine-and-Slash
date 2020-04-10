@@ -29,7 +29,7 @@ public class Spells implements ISlashRegistryInit {
                     add(TidalWaveSpell.getInstance());
                     add(BlizzardSpell.getInstance());
 
-                    add(RegenerateSpell.getInstance());
+                    add(NatureBalmSpell.getInstance());
                     add(GorgonsGazeSpell.getInstance());
                     add(ThornArmorSpell.getInstance());
                     add(ThornBushSpell.getInstance());

@@ -103,6 +103,17 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.arcanists": "Arcanist's",
@@ -220,17 +231,6 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "Mage's Robes",
@@ -267,6 +267,24 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -285,24 +303,6 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -582,6 +582,7 @@
 	"mmorpg.word.mustbegear": "Must be a Gear Item",
 	"mmorpg.word.mustbemap": "Must be an Adventure Map",
 	"mmorpg.word.mythiccrate": "Mythic Crate",
+	"mmorpg.word.naturebalm": "Nature's Balm",
 	"mmorpg.word.needsgearwithrunesinserted": "Needs Gear with these runes inserted",
 	"mmorpg.word.nochaosstats": "Doesn't have Chaos Stats",
 	"mmorpg.word.noduplicaterunes": "No duplicate runes of same type",
@@ -827,62 +828,62 @@
 	"mmorpg.stat.plus_burn_effect_lvl": "To Burn Skill Level",
 	"mmorpg.stat.plus_druid_skill_lvls": "To Druid Skill Levels",
 	"mmorpg.stat.plus_ember_mage_skill_lvls": "To Ember Mage Skill Levels",
-	"mmorpg.stat.plus_fireball_consume_burn_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_fireball_consume_burn_synergy_synergy_lvl": "To mmorpg.synergyfireball_consume_burn_synergy Skill Level",
 	"mmorpg.stat.plus_fireball_spell_lvl": "To Fireball Skill Level",
 	"mmorpg.stat.plus_frost_effect_lvl": "To Frost Skill Level",
 	"mmorpg.stat.plus_frost_essence_effect_lvl": "To Cold Essence Skill Level",
-	"mmorpg.stat.plus_frostball_extra_dmg_synergy_synergy_lvl": "To  Skill Level",
-	"mmorpg.stat.plus_frostball_frost_essence_gen_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_frostball_extra_dmg_synergy_synergy_lvl": "To mmorpg.synergyfrostball_extra_dmg_synergy Skill Level",
+	"mmorpg.stat.plus_frostball_frost_essence_gen_synergy_synergy_lvl": "To mmorpg.synergyfrostball_frost_essence_gen_synergy Skill Level",
 	"mmorpg.stat.plus_frostball_spell_lvl": "To Frostball Skill Level",
 	"mmorpg.stat.plus_gorgons_gaze_spell_lvl": "To Gorgon's Gaze Skill Level",
-	"mmorpg.stat.plus_heart_of_ice_frost_synergy_synergy_lvl": "To  Skill Level",
-	"mmorpg.stat.plus_heart_of_ice_magic_shield_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_heart_of_ice_frost_synergy_synergy_lvl": "To mmorpg.synergyheart_of_ice_frost_synergy Skill Level",
+	"mmorpg.stat.plus_heart_of_ice_magic_shield_synergy_synergy_lvl": "To mmorpg.synergyheart_of_ice_magic_shield_synergy Skill Level",
 	"mmorpg.stat.plus_heart_of_ice_spell_lvl": "To Heart of Ice Skill Level",
 	"mmorpg.stat.plus_hunter_instinct_effect_lvl": "To Hunter Instinct Skill Level",
-	"mmorpg.stat.plus_imbue_crit_add_hunter_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_imbue_crit_add_hunter_synergy_synergy_lvl": "To mmorpg.synergyimbue_crit_add_hunter_synergy Skill Level",
 	"mmorpg.stat.plus_imbue_effect_lvl": "To Imbue Skill Level",
 	"mmorpg.stat.plus_imbue_spell_lvl": "To Imbue Skill Level",
 	"mmorpg.stat.plus_lightning_totem_spell_lvl": "To Lightning Totem Skill Level",
-	"mmorpg.stat.plus_lightning_totem_static_synergy_synergy_lvl": "To  Skill Level",
-	"mmorpg.stat.plus_magma_flower_enhanced_synergy_synergy_lvl": "To  Skill Level",
-	"mmorpg.stat.plus_magma_flower_heal_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_lightning_totem_static_synergy_synergy_lvl": "To mmorpg.synergylightning_totem_static_synergy Skill Level",
+	"mmorpg.stat.plus_magma_flower_enhanced_synergy_synergy_lvl": "To mmorpg.synergymagma_flower_enhanced_synergy Skill Level",
+	"mmorpg.stat.plus_magma_flower_heal_synergy_synergy_lvl": "To mmorpg.synergymagma_flower_heal_synergy Skill Level",
 	"mmorpg.stat.plus_magma_flower_spell_lvl": "To Magma Flower Skill Level",
 	"mmorpg.stat.plus_ocean_mystic_skill_lvls": "To Ocean Mystic Skill Levels",
 	"mmorpg.stat.plus_petrify_effect_lvl": "To Petrify Skill Level",
 	"mmorpg.stat.plus_poison_ball_spell_lvl": "To Poison Ball Skill Level",
 	"mmorpg.stat.plus_poisoned_weapons_effect_lvl": "To Poisoned Weapons Skill Level",
 	"mmorpg.stat.plus_poisoned_weapons_spell_lvl": "To Poisoned Weapons Skill Level",
-	"mmorpg.stat.plus_poisoned_weapons_thorns_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_poisoned_weapons_thorns_synergy_synergy_lvl": "To mmorpg.synergypoisoned_weapons_thorns_synergy Skill Level",
 	"mmorpg.stat.plus_ranger_skill_lvls": "To Ranger Skill Levels",
-	"mmorpg.stat.plus_recoil_add_hunter_synergy_synergy_lvl": "To  Skill Level",
-	"mmorpg.stat.plus_recoil_add_wounds_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_recoil_add_hunter_synergy_synergy_lvl": "To mmorpg.synergyrecoil_add_hunter_synergy Skill Level",
+	"mmorpg.stat.plus_recoil_add_wounds_synergy_synergy_lvl": "To mmorpg.synergyrecoil_add_wounds_synergy Skill Level",
 	"mmorpg.stat.plus_recoil_shot_spell_lvl": "To Recoil Shot Skill Level",
-	"mmorpg.stat.plus_regenerate_aoe_synergy_synergy_lvl": "To  Skill Level",
-	"mmorpg.stat.plus_regenerate_spell_lvl": "To Regenerate Skill Level",
-	"mmorpg.stat.plus_regenerate_thorns_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_regenerate_aoe_synergy_synergy_lvl": "To mmorpg.synergyregenerate_aoe_synergy Skill Level",
+	"mmorpg.stat.plus_regenerate_spell_lvl": "To mmorpg.word.naturebalm Skill Level",
+	"mmorpg.stat.plus_regenerate_thorns_synergy_synergy_lvl": "To mmorpg.synergyregenerate_thorns_synergy Skill Level",
 	"mmorpg.stat.plus_self_regen_effect_lvl": "To Regenerate Skill Level",
 	"mmorpg.stat.plus_shaman_skill_lvls": "To Shaman Skill Levels",
 	"mmorpg.stat.plus_shiver_effect_lvl": "To Shiver Skill Level",
 	"mmorpg.stat.plus_static_effect_lvl": "To Static Skill Level",
 	"mmorpg.stat.plus_thorn_armor_effect_lvl": "To Thorn Armor Skill Level",
 	"mmorpg.stat.plus_thorn_armor_spell_lvl": "To Thorn Armor Skill Level",
-	"mmorpg.stat.plus_thorn_armor_thorns_synergy_synergy_lvl": "To  Skill Level",
-	"mmorpg.stat.plus_thorn_bush_major_thorns_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_thorn_armor_thorns_synergy_synergy_lvl": "To mmorpg.synergythorn_armor_thorns_synergy Skill Level",
+	"mmorpg.stat.plus_thorn_bush_major_thorns_synergy_synergy_lvl": "To mmorpg.synergythorn_bush_major_thorns_synergy Skill Level",
 	"mmorpg.stat.plus_thorn_bush_spell_lvl": "To Thorn Bush Skill Level",
 	"mmorpg.stat.plus_thorns_effect_lvl": "To Minor Thorns Skill Level",
 	"mmorpg.stat.plus_throw_flames_spell_lvl": "To Throw Flames Skill Level",
-	"mmorpg.stat.plus_thunder_dash_energy_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_thunder_dash_energy_synergy_synergy_lvl": "To mmorpg.synergythunder_dash_energy_synergy Skill Level",
 	"mmorpg.stat.plus_thunder_dash_spell_lvl": "To Thunder Dash Skill Level",
 	"mmorpg.stat.plus_thunder_essence_effect_lvl": "To Thunder Essence Skill Level",
-	"mmorpg.stat.plus_thunder_spear_lightning_strike_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_thunder_spear_lightning_strike_synergy_synergy_lvl": "To mmorpg.synergythunder_spear_lightning_strike_synergy Skill Level",
 	"mmorpg.stat.plus_thunder_spear_spell_lvl": "To Thunder Spear Skill Level",
-	"mmorpg.stat.plus_thunder_spear_thunder_essence_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_thunder_spear_thunder_essence_synergy_synergy_lvl": "To mmorpg.synergythunder_spear_thunder_essence_synergy Skill Level",
 	"mmorpg.stat.plus_thunder_storm_spell_lvl": "To Thunderstorm Skill Level",
 	"mmorpg.stat.plus_tidal_wave_spell_lvl": "To Tidal Wave Skill Level",
 	"mmorpg.stat.plus_triple_shot_spell_lvl": "To Wide Shot Skill Level",
-	"mmorpg.stat.plus_volcano_burn_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_volcano_burn_synergy_synergy_lvl": "To mmorpg.synergyvolcano_burn_synergy Skill Level",
 	"mmorpg.stat.plus_volcano_spell_lvl": "To Volcano Skill Level",
-	"mmorpg.stat.plus_whirlpool_shiver_synergy_synergy_lvl": "To  Skill Level",
+	"mmorpg.stat.plus_whirlpool_shiver_synergy_synergy_lvl": "To mmorpg.synergywhirlpool_shiver_synergy Skill Level",
 	"mmorpg.stat.plus_whirlpool_spell_lvl": "To Whirpool Skill Level",
 	"mmorpg.stat.plus_wounds_effect_lvl": "To Wounds Skill Level",
 	"mmorpg.stat.quick_learner": "Quick Learner",
@@ -962,6 +963,37 @@
 	"mmorpg.advancement.desc.welcomemineandslash": "This mod is all about killing mobs, looting epic gear to kill more mobs!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
+	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
+	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
+	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
+	"mmorpg.gear_type.crossbow": "Crossbow",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.leather_boots": "Leather Boots",
+	"mmorpg.gear_type.leather_chest": "Leather Chest",
+	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
+	"mmorpg.gear_type.leather_pants": "Leather Pants",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.plate_boots": "Plate Boots",
+	"mmorpg.gear_type.plate_chest": "Plate Chest",
+	"mmorpg.gear_type.plate_helmet": "Plate Helm",
+	"mmorpg.gear_type.plate_pants": "Plate Greaves",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+	"mmorpg.gear_type.trident": "Trident",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
@@ -1058,60 +1090,6 @@
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§eSaber of Frost madness",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
-	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
-	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
-	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
-	"mmorpg.gear_type.crossbow": "Crossbow",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.leather_boots": "Leather Boots",
-	"mmorpg.gear_type.leather_chest": "Leather Chest",
-	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
-	"mmorpg.gear_type.leather_pants": "Leather Pants",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.plate_boots": "Plate Boots",
-	"mmorpg.gear_type.plate_chest": "Plate Chest",
-	"mmorpg.gear_type.plate_helmet": "Plate Helm",
-	"mmorpg.gear_type.plate_pants": "Plate Greaves",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-	"mmorpg.gear_type.trident": "Trident",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.bleed": "Bleed",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Cold Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thorns": "Minor Thorns",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -1238,6 +1216,29 @@
 	"item.mmorpg.torch.torch4": "§6Torch",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.bleed": "Bleed",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.cleanse_poison": "Cleanse Poison",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Cold Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thorns": "Minor Thorns",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.wounds": "Wounds",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",

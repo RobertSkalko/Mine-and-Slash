@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.potion_effects.druid;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.RegenerateSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.NatureBalmSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
@@ -40,7 +40,7 @@ public class RegenerateEffect extends BasePotionEffect {
                 ResourcesData.Context hp = new ResourcesData.Context(ctx.caster, ctx.entity, ctx.casterData,
                     ctx.entityData, ResourcesData.Type.HEALTH, num,
                     ResourcesData.Use.RESTORE,
-                    RegenerateSpell.getInstance()
+                    NatureBalmSpell.getInstance()
                 );
 
                 ctx.entityData.modifyResource(hp);
@@ -80,7 +80,7 @@ public class RegenerateEffect extends BasePotionEffect {
     @Nullable
     @Override
     public BaseSpell getSpell() {
-        return RegenerateSpell.getInstance();
+        return NatureBalmSpell.getInstance();
     }
 
     @Override

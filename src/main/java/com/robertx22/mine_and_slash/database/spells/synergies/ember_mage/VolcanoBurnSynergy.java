@@ -72,4 +72,9 @@ public class VolcanoBurnSynergy extends OnDamageDoneSynergy {
             PotionEffectUtils.apply(BurnEffect.INSTANCE, effect.source, effect.target);
         }
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Volcano Burn";
+    }
 }

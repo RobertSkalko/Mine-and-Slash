@@ -75,4 +75,9 @@ public class ThornBushMajorThornsSynergy extends OnDamageDoneSynergy {
     public IAbility getRequiredAbility() {
         return ThornBushSpell.getInstance();
     }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Thorn Damage";
+    }
 }
