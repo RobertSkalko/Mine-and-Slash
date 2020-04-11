@@ -52,7 +52,7 @@ public class FrostballFrostEssenceGenSynergy extends OnDamageDoneSynergy {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(new FrostballExtraDmgSynergy());
+        return AbilityPlace.upFrom(getSpell());
     }
 
     @Nullable

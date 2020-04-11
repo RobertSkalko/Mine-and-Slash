@@ -26,3 +26,4 @@ Other:
 then i'll have to switch back to scaling costs to player level.
 * spells levels now dictate their damage and mana costs too. To get maximum player level of spell effectiveness you'll need +1 to skill level gear stats. (5 or 6 of them)
 * added new affixes and runeword.
+* increase default stat points per lvl

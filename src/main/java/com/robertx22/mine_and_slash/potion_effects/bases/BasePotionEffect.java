@@ -169,7 +169,7 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
 
         TooltipUtils.addEmpty(list);
         list.add(new StringTextComponent(
-            TextFormatting.GOLD + "Duration: " + TextFormatting.YELLOW + getDurationInTicks(info.player) + "s"));
+            TextFormatting.GOLD + "Duration: " + TextFormatting.YELLOW + getDurationInSeconds(info.player) + "s"));
 
         return list;
 

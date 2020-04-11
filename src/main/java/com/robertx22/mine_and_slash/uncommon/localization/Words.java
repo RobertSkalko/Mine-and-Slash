@@ -114,7 +114,7 @@ public enum Words implements IAutoLocName {
     hasSuffix("Has Suffix"),
     hasPrefix("Has Prefix"),
     isNotUnique("Is Not Unique"),
-    isLowerThanMythic("Is Not Mythical"),
+    isLowerThanLegendary("Is Not Legendary"),
     IsCommon("Is Common Rarity"),
     LvlLessThanMax("Lvl Less than max lvl"),
     NoChaosStats("Doesn't have Chaos Stats"),

@@ -5,13 +5,16 @@ import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -152,9 +155,27 @@ public interface IAbility extends IGUID, ITooltipList {
                     .appendText(" of Level: " + getSchoolPointsNeeded())));
             }
 
-            list.addAll(ctx.getConfigFor(this)
-                .GetTooltipString(info, ctx));
+            list.add(new SText(""));
 
+            if (!Screen.hasShiftDown()) {
+                list.add(new SText(TextFormatting.BLUE + "").appendSibling(Words.Press_Shift_For_More_Info.locName()));
+            } else {
+                list.add(new SText(TextFormatting.LIGHT_PURPLE + "" + TextFormatting.BOLD).appendText("Ability Stats:"));
+
+                list.addAll(ctx.getConfigFor(this)
+                    .GetTooltipString(info, ctx));
+
+                if (this instanceof Synergy) {
+                    Synergy s = (Synergy) this;
+
+                    list.add(new SText(""));
+                    list.add(new SText(TextFormatting.LIGHT_PURPLE + "" + TextFormatting.BOLD + "Affects Spell: "));
+
+                    list.addAll(s.getConfigsAffectingSpell()
+                        .GetTooltipString(info, ctx));
+                }
+
+            }
             TooltipUtils.removeDoubleBlankLines(list);
         } catch (Exception e) {
             e.printStackTrace();

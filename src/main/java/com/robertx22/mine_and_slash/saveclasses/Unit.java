@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityCon
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
+import com.robertx22.mine_and_slash.database.stats.IAfterStatCalc;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.database.stats.types.game_changers.BloodMage;
@@ -14,8 +15,6 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
-import com.robertx22.mine_and_slash.database.stats.types.spell_calc.PlusAbilityLevelStat;
-import com.robertx22.mine_and_slash.database.stats.types.spell_calc.PlusLevelToAllAbilitiesInSchoolStat;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
@@ -509,8 +508,23 @@ public class Unit {
             spells.getAbilitiesData()
                 .clearBonusLevels();
 
-            PlusLevelToAllAbilitiesInSchoolStat.calcBonusAbilityLevelStats(spells, this);
-            PlusAbilityLevelStat.calcBonusAbilityLevelStats(spells, this);
+            try {
+                this.stats.stats.entrySet()
+                    .forEach(x -> {
+                        Stat stat = x.getValue()
+                            .GetStat();
+
+                        if (stat instanceof IAfterStatCalc) {
+                            IAfterStatCalc after = (IAfterStatCalc) stat;
+
+                            ((IAfterStatCalc) stat).doAfterStatCalc(x.getValue(), data, spells);
+
+                        }
+
+                    });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
 

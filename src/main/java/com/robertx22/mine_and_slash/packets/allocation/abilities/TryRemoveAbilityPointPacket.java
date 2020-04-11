@@ -59,10 +59,12 @@ public class TryRemoveAbilityPointPacket {
                             if (spells.getAbilitiesData().resetPoints > 0) {
                                 spells.getAbilitiesData()
                                     .removePoint(ability);
+
+                                MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.SPELLS), player);
+
                             }
                         }
 
-                        MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.SPELLS), player);
                     }
 
                 } catch (Exception e) {

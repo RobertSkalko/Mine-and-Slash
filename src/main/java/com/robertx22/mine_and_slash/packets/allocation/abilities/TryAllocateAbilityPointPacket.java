@@ -58,9 +58,11 @@ public class TryAllocateAbilityPointPacket {
                         if (spells.getAbilitiesData()
                             .canAddPoints(ability, data)) {
                             spells.addPoint(ability);
+
+                            MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.SPELLS), player);
+
                         }
 
-                        MMORPG.sendToClient(new SyncCapabilityToClient(player, PlayerCaps.SPELLS), player);
                     }
 
                 } catch (Exception e) {

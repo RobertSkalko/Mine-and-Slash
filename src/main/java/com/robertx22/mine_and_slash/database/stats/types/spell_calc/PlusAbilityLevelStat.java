@@ -1,12 +1,13 @@
 package com.robertx22.mine_and_slash.database.stats.types.spell_calc;
 
+import com.robertx22.mine_and_slash.database.stats.IAfterStatCalc;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.registry.empty_entries.EmptySpell;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityData;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class PlusAbilityLevelStat extends Stat implements IGenerated<PlusAbilityLevelStat> {
+public class PlusAbilityLevelStat extends Stat implements IAfterStatCalc, IGenerated<PlusAbilityLevelStat> {
 
     private IAbility ability;
 
@@ -74,28 +75,20 @@ public class PlusAbilityLevelStat extends Stat implements IGenerated<PlusAbility
         return list;
     }
 
-    public static void calcBonusAbilityLevelStats(PlayerSpellCap.ISpellsCap spells, Unit unit) {
+    @Override
+    public void doAfterStatCalc(StatData data, EntityCap.UnitData unit, PlayerSpellCap.ISpellsCap spells) {
+        int lvls = (int) data
+            .getAverageValue();
 
-        // i really don't like how this looks...
-        new PlusAbilityLevelStat(new EmptySpell()).generateAllPossibleStatVariations()
-            .forEach(x -> {
-                if (unit.hasStat(x)) {
-                    int lvls = (int) unit.peekAtStat(x)
-                        .getAverageValue();
-                    if (lvls > 0) {
-                        if (spells.getAbilitiesData()
-                            .getAbilityMap()
-                            .containsKey(x.ability.GUID())) {
-                            AbilityData data = spells.getAbilitiesData()
-                                .getAbilityMap()
-                                .get(x.ability.GUID());
-                            data.setBonusLvl((int) (data.getBonusLvls() + unit.peekAtStat(x)
-                                .getAverageValue()));
-                        }
-                    }
+        if (spells.getAbilitiesData()
+            .getAbilityMap()
+            .containsKey(ability.GUID())) {
+            AbilityData abilityData = spells.getAbilitiesData()
+                .getAbilityMap()
+                .get(ability.GUID());
+            abilityData.setBonusLvl((int) (abilityData.getBonusLvls() + lvls));
+        }
 
-                }
-            });
     }
 }
 

@@ -75,15 +75,15 @@ public class ServerContainer {
 
         STAT_POINTS_PER_LEVEL = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("STAT_POINTS_PER_LEVEL", 1D, 0, 100);
+            .defineInRange("STAT_POINTS_PER_LEVEL", 1.5D, 0, 100);
 
         TALENT_POINTS_AT_MAX_LEVEL = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("TALENT_POINTS_AT_MAX_LEVEL", 120, 0, 100);
+            .defineInRange("TALENT_POINTS_AT_MAX_LEVEL", 120, 0, 10000);
 
         SPELL_POINTS_AT_MAX_LEVEL = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("SPELL_POINTS_AT_MAX_LEVEL", (SpellSchools.MAXIMUM_POINTS * 2) + 50, 0, 1000);
+            .defineInRange("SPELL_POINTS_AT_MAX_LEVEL", (SpellSchools.MAXIMUM_POINTS * 2) + 75, 0, 1000);
 
         STARTING_SPELL_POINTS = builder.comment(".")
             .translation("mmorpg.word.")

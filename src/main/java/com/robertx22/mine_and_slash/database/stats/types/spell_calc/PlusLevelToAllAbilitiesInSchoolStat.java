@@ -1,9 +1,11 @@
 package com.robertx22.mine_and_slash.database.stats.types.spell_calc;
 
+import com.robertx22.mine_and_slash.database.stats.IAfterStatCalc;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
@@ -12,7 +14,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlusLevelToAllAbilitiesInSchoolStat extends Stat implements IGenerated<PlusLevelToAllAbilitiesInSchoolStat> {
+public class PlusLevelToAllAbilitiesInSchoolStat extends Stat implements IAfterStatCalc, IGenerated<PlusLevelToAllAbilitiesInSchoolStat> {
 
     private SpellSchools school;
 
@@ -70,20 +72,14 @@ public class PlusLevelToAllAbilitiesInSchoolStat extends Stat implements IGenera
         return list;
     }
 
-    public static void calcBonusAbilityLevelStats(PlayerSpellCap.ISpellsCap spells, Unit unit) {
+    @Override
+    public void doAfterStatCalc(StatData data, EntityCap.UnitData unit, PlayerSpellCap.ISpellsCap spells) {
+        int lvls = (int) data
+            .getAverageValue();
+        if (lvls > 0) {
+            spells.getAbilitiesData()
+                .addBonusAbilityLevelsTo(getSchool(), lvls);
+        }
 
-        // i really don't like how this looks...
-        new PlusLevelToAllAbilitiesInSchoolStat(SpellSchools.OCEAN_MYSTIC).generateAllPossibleStatVariations()
-            .forEach(x -> {
-                if (unit.hasStat(x)) {
-                    int lvls = (int) unit.peekAtStat(x)
-                        .getAverageValue();
-                    if (lvls > 0) {
-                        spells.getAbilitiesData()
-                            .addBonusAbilityLevelsTo(x.getSchool(), lvls);
-                    }
-
-                }
-            });
     }
 }

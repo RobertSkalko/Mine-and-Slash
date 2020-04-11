@@ -67,7 +67,7 @@ public class ThornsEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public String locNameForLangFile() {
-        return "Minor Thorns";
+        return "Thorns";
     }
 
     @Override

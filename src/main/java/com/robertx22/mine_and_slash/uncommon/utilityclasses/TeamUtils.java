@@ -6,7 +6,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class TeamUtils {
@@ -18,18 +17,15 @@ public class TeamUtils {
 
         if (player.getTeam() != null) {
             try {
-                player.getTeam()
-                    .getMembershipCollection()
+                player.getServer()
+                    .getPlayerList()
+                    .getPlayers()
                     .forEach(x -> {
-                            PlayerEntity member = player.getServer()
-                                .getPlayerList()
-                                .getPlayerByUUID(UUID.fromString(x));
-
-                            if (member != null) {
-                                players.add(member);
-                            }
+                        if (player.getTeam()
+                            .isSameTeam(x.getTeam())) {
+                            players.add(x);
                         }
-                    );
+                    });
             } catch (Exception e) {
                 e.printStackTrace();
             }

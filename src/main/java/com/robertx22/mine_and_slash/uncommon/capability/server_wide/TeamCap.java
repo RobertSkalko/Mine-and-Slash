@@ -19,7 +19,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -218,7 +218,8 @@ public class TeamCap {
         @Override
         public List<PlayerEntity> getPlayersInTeam(ServerPlayerEntity player) {
 
-            List<PlayerEntity> list = Arrays.asList(player);
+            List<PlayerEntity> list = new ArrayList<>();
+            list.add(player);
 
             try {
                 teams.teamIDxTeamDataMap.get(teams.getTeamId(player))

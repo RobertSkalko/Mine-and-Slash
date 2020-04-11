@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.potion_effects.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.NatureBalmSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
@@ -34,8 +34,11 @@ public class RegenerateEffect extends BasePotionEffect {
                 ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, ctx.entity, 3);
             } else {
 
-                int num = getCalc(ctx.spellsCap)
-                    .getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
+                SpellCastContext sc = new SpellCastContext(ctx.caster, 0, getAbilityThatDeterminesLevel());
+
+                int num = sc.getConfigFor(getAbilityThatDeterminesLevel())
+                    .getCalc(ctx.spellsCap, getAbilityThatDeterminesLevel())
+                    .getCalculatedValue(ctx.casterData, ctx.spellsCap, getAbilityThatDeterminesLevel());
 
                 ResourcesData.Context hp = new ResourcesData.Context(ctx.caster, ctx.entity, ctx.casterData,
                     ctx.entityData, ResourcesData.Type.HEALTH, num,
@@ -68,7 +71,6 @@ public class RegenerateEffect extends BasePotionEffect {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        p.set(SC.BASE_VALUE, 2, 6);
         return p;
     }
 
@@ -80,6 +82,10 @@ public class RegenerateEffect extends BasePotionEffect {
 
     @Override
     public SpellSchools getSchool() {
-        return getSpell().getSchool();
+        if (getSpell() != null) {
+            return getSpell().getSchool();
+        } else {
+            return null;
+        }
     }
 }

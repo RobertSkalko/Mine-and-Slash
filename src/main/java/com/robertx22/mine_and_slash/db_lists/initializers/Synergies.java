@@ -72,5 +72,7 @@ public class Synergies implements ISlashRegistryInit {
         RECOIL_ADD_HUNTER.registerToSlashRegistry();
         RECOIL_ADD_WOUNDS.registerToSlashRegistry();
 
+        new TidalWaveFrostSynergy().registerToSlashRegistry();
+
     }
 }

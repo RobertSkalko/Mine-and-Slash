@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellStatsCalcEffect;
-import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
@@ -66,6 +65,10 @@ public class PreCalcSpellConfigs {
     public void set(SC sc, float min, float max) {
 
         map.put(sc, new LevelBased(min, max).min(sc.min));
+    }
+
+    public void setDurationInSeconds(int s1, int s2) {
+        set(SC.DURATION_TICKS, s1 * 20, s2 * 20);
     }
 
     public void multiplyValueBy(SC sc, float multi) {
@@ -142,13 +145,7 @@ public class PreCalcSpellConfigs {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new SText(""));
-
-        if (!Screen.hasShiftDown()) {
-            list.add(new SText(TextFormatting.BLUE + "").appendSibling(Words.Press_Shift_For_More_Info.locName()));
-        } else {
-            list.add(new SText(TextFormatting.LIGHT_PURPLE + "" + TextFormatting.BOLD).appendText("Ability Stats:"));
-
+        if (Screen.hasShiftDown()) {
             map.entrySet()
                 .forEach(x -> {
                     if (x.getKey()
