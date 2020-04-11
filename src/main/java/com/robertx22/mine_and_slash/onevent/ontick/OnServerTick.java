@@ -85,7 +85,7 @@ public class OnServerTick {
                                 boolean restored = false;
 
                                 boolean canHeal = player.getFoodStats()
-                                    .getFoodLevel() >= 10;
+                                    .getFoodLevel() >= 18;
 
                                 if (canHeal) {
                                     if (player.getHealth() < player.getMaxHealth()) {

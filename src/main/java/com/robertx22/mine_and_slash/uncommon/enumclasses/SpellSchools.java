@@ -40,9 +40,9 @@ public enum SpellSchools {
 
         // these will need a lot of fine tuning.
 
-        list.add(new ExactStatData(100, Health.getInstance()));
-        list.add(new ExactStatData(40, Mana.getInstance()));
-        list.add(new ExactStatData(60, Energy.getInstance()));
+        list.add(new ExactStatData(25, Health.getInstance()));
+        list.add(new ExactStatData(30, Mana.getInstance()));
+        list.add(new ExactStatData(30, Energy.getInstance()));
 
         list.add(new ExactStatData(3, ManaRegen.getInstance()));
         list.add(new ExactStatData(3, EnergyRegen.getInstance()));
@@ -64,6 +64,8 @@ public enum SpellSchools {
             .getSchoolPoints(this));
 
     }
+
+    public static int LVL_TO_UNLOCK_2ND_SCHOOL = 10;
 
     public int getEffectiveLevel(int schoolLevel) {
         int level = (int) (ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get() * ((float) schoolLevel / (float) MAXIMUM_POINTS));

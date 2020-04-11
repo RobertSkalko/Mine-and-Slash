@@ -423,6 +423,11 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
                     list.add(new SText(TextFormatting.RED + "Effective stat bonus is capped at player level."));
                 }
 
+                if (data.getLevel() < SpellSchools.LVL_TO_UNLOCK_2ND_SCHOOL) {
+                    list.add(new SText(TextFormatting.GOLD + "You can unlock a 2nd school of magic at lvl " + SpellSchools.LVL_TO_UNLOCK_2ND_SCHOOL));
+
+                }
+
                 TooltipUtils.abilityLevel(list, spells.getAbilitiesData()
                         .getSchoolPoints(school)
                     , SpellSchools.MAXIMUM_POINTS);

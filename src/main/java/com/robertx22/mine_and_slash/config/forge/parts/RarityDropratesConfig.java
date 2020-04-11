@@ -28,7 +28,8 @@ public class RarityDropratesConfig {
             .getLeft();
 
         MOBS = builder.configure(
-            (ForgeConfigSpec.Builder prefix) -> new RarityWeight("MOBS", builder, new RarityWeight.DefaultConfig()))
+            (ForgeConfigSpec.Builder prefix) -> new RarityWeight("MOBS", builder,
+                new RarityWeight.DefaultConfig().higherChanceByMulti(1.4F)))
             .getLeft();
 
         MAPS = builder.configure((ForgeConfigSpec.Builder prefix) -> new RarityWeight("MAPS", builder,

@@ -91,6 +91,14 @@ public class AllocatedAbilitiesData implements IApplyableStats {
             return false;
         }
 
+        if (data.getLevel() < SpellSchools.LVL_TO_UNLOCK_2ND_SCHOOL) {
+            if (getSchoolsWithAllocatedPoints() == 1) {
+                if (getSchoolPoints(school) < 1) {
+                    return false;
+                }
+            }
+        }
+
         if (getSchoolsWithAllocatedPoints() > 1) {
             if (getSchoolPoints(school) < 1) {
                 return false; // only allow picking 2 spell schools

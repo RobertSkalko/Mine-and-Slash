@@ -12,6 +12,15 @@ SPELL REWORK!
 * removed elemental conversion and transfer stats, mostly useless after spell damage became a percent
 * huge easy aoe spells now have much larger cooldown, added other semi aoe spells that are harder to hit and can't hit that many enemies at once.
 
+What should happen with the rework:
+* players should think more about how many points they want to spend and where
+* players should decide between base stats or spell levels
+* players should be able to play 2 schools of magic that use different elements without feeling useless
+* magic should be less op at endgame and more useful at early game.
+* aoe clearing a bunch of mobs should be much harder to do, especially from range, as high aoe spells are under long cooldown
+
+If the system didn't make some of these happen, do say.
+
 Other:
 * bosses now spawn less minions but they're all max rarity
 * blocking fully now stops attack knockbacks. can't figure out how to stop the attack sounds though
