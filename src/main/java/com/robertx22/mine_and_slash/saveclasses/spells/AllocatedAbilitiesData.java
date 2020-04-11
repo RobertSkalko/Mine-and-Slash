@@ -123,7 +123,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
                     SpellSchools school = SpellSchools.valueOf(x.getKey());
                     int points = x.getValue();
 
-                    school.getStatsFor(points)
+                    school.getStatsFor(points, data)
                         .forEach(s -> {
                             s.applyStats(data);
                         });

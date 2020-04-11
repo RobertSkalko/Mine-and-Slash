@@ -96,6 +96,10 @@ public class SpellCastingData {
                 }
             }
 
+            if (!ctx.castedThisTick) {
+                tryCast(player, spells);
+            }
+
             castingTicksLeft--;
             castingTicksDone++;
 
@@ -172,7 +176,7 @@ public class SpellCastingData {
         this.castingTicksDone = 0;
     }
 
-    public void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
+    private void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
 
         if (!spellBeingCast.isEmpty()) {
             if (castingTicksLeft <= 0) {

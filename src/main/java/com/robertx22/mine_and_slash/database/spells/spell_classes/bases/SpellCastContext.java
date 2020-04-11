@@ -21,6 +21,7 @@ public class SpellCastContext {
     public final BaseSpell spell;
     public final IAbility ability;
     public boolean isLastCastTick;
+    public boolean castedThisTick = false;
 
     public EntityCalcSpellConfigs configForSummonedEntities;
 

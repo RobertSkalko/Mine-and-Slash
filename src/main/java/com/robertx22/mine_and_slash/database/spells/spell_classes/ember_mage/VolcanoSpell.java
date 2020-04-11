@@ -53,10 +53,10 @@ public class VolcanoSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
         c.set(SC.MANA_COST, 30, 60);
-        c.set(SC.BASE_VALUE, 2, 8);
+        c.set(SC.BASE_VALUE, 4, 12);
         c.set(SC.CAST_TIME_TICKS, 60, 40);
-        c.set(SC.COOLDOWN_SECONDS, 45, 30);
-        c.set(SC.RADIUS, 2, 3);
+        c.set(SC.COOLDOWN_SECONDS, 120, 60);
+        c.set(SC.RADIUS, 2.5F, 3.5F);
         c.set(SC.DURATION_TICKS, 60, 80);
         c.set(SC.TICK_RATE, 15, 10);
 

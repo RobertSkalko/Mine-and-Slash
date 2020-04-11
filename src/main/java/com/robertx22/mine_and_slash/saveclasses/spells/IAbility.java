@@ -110,7 +110,7 @@ public interface IAbility extends IGUID, ITooltipList {
         if (place == null) {
             if (this.getAbilityType()
                 .equals(Type.EFFECT)) {
-                return 1; //
+                return 10; //
             } else {
                 throw new RuntimeException("Only effects are allowed to have null ability place, not: " + this.GUID());
             }

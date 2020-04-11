@@ -21,6 +21,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.util.ResourceLocation;
@@ -413,10 +414,14 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
                 List<ITextComponent> list = new ArrayList<>();
 
                 school.getStatsFor(spells.getAbilitiesData()
-                    .getSchoolPoints(school))
+                    .getSchoolPoints(school), data)
                     .forEach(x -> {
                         list.addAll(x.GetTooltipString(info));
                     });
+
+                if (school.getEffectiveLevel(spells) > data.getLevel()) {
+                    list.add(new SText(TextFormatting.RED + "Effective stat bonus is capped at player level."));
+                }
 
                 TooltipUtils.abilityLevel(list, spells.getAbilitiesData()
                         .getSchoolPoints(school)

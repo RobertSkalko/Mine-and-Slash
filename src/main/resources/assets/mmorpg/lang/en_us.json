@@ -106,6 +106,7 @@
 "_comment": " [CATEGORY]: SPELLS - NAMES",
 
 	"mmorpg.synergy.fireball_consume_burn_synergy": "Fireball Explosion",
+	"mmorpg.synergy.freezing_waves": "Freezing Waves",
 	"mmorpg.synergy.frostball_extra_dmg_synergy": "Shiver Frostburn",
 	"mmorpg.synergy.frostball_frost_essence_gen_synergy": "Cold Essence creation",
 	"mmorpg.synergy.heart_of_ice_frost_synergy": "Cold Healing Essence",
@@ -132,7 +133,7 @@
 
 "_comment": " [CATEGORY]: ALCHEMY - NAMES",
 
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Single Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Minor Spell Reset",
 	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
 	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
 	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
@@ -576,7 +577,7 @@
 	"mmorpg.word.instabilitylimitreached": "Instability Limit Reached",
 	"mmorpg.word.instantheal": "Instant Heal",
 	"mmorpg.word.iscommon": "Is Common Rarity",
-	"mmorpg.word.islowerthanmythic": "Is Not Mythical",
+	"mmorpg.word.islowerthanlegendary": "Is Not Legendary",
 	"mmorpg.word.isnotunique": "Is Not Unique",
 	"mmorpg.word.isunique": "Is Unique",
 	"mmorpg.word.item": "Item",
@@ -864,6 +865,7 @@
 	"mmorpg.stat.plus_fire_bombs_spell_lvl": "To Fire Bombs Skill Level",
 	"mmorpg.stat.plus_fireball_consume_burn_synergy_synergy_lvl": "To Fireball Explosion Skill Level",
 	"mmorpg.stat.plus_fireball_spell_lvl": "To Fireball Skill Level",
+	"mmorpg.stat.plus_freezing_waves_synergy_lvl": "To Freezing Waves Skill Level",
 	"mmorpg.stat.plus_frost_effect_lvl": "To Frost Skill Level",
 	"mmorpg.stat.plus_frost_essence_effect_lvl": "To Cold Essence Skill Level",
 	"mmorpg.stat.plus_frostball_extra_dmg_synergy_synergy_lvl": "To Shiver Frostburn Skill Level",
@@ -904,7 +906,7 @@
 	"mmorpg.stat.plus_thorn_armor_thorns_synergy_synergy_lvl": "To Thorny Armor Skill Level",
 	"mmorpg.stat.plus_thorn_bush_major_thorns_synergy_synergy_lvl": "To Thorn Damage Skill Level",
 	"mmorpg.stat.plus_thorn_bush_spell_lvl": "To Thorn Bush Skill Level",
-	"mmorpg.stat.plus_thorns_effect_lvl": "To Minor Thorns Skill Level",
+	"mmorpg.stat.plus_thorns_effect_lvl": "To Thorns Skill Level",
 	"mmorpg.stat.plus_throw_flames_spell_lvl": "To Throw Flames Skill Level",
 	"mmorpg.stat.plus_thunder_dash_energy_synergy_synergy_lvl": "To Energy Dash Skill Level",
 	"mmorpg.stat.plus_thunder_dash_spell_lvl": "To Thunder Dash Skill Level",
@@ -1141,7 +1143,7 @@
 	"effect.mmorpg.static": "Static",
 	"effect.mmorpg.teleport_protection": "Teleport Guard",
 	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thorns": "Minor Thorns",
+	"effect.mmorpg.thorns": "Thorns",
 	"effect.mmorpg.thunder_essence": "Thunder Essence",
 	"effect.mmorpg.wounds": "Wounds",
 

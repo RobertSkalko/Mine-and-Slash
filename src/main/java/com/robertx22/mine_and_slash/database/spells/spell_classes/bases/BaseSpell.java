@@ -57,10 +57,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
             .get(SC.TIMES_TO_CAST)
             .get(ctx.spellsCap, this);
 
-        if (ctx.isLastCastTick) {
-            // return; // it's casted elsewhere
-        }
-
         if (timesToCast > 1) {
 
             int castTimeTicks = (int) ctx.getConfigFor(this)
@@ -238,6 +234,8 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
                 s.tryActivate(ctx);
             }
         });
+
+        ctx.castedThisTick = true;
 
         castExtra(ctx);
         return bool;

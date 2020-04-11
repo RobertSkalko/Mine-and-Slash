@@ -27,3 +27,5 @@ then i'll have to switch back to scaling costs to player level.
 * spells levels now dictate their damage and mana costs too. To get maximum player level of spell effectiveness you'll need +1 to skill level gear stats. (5 or 6 of them)
 * added new affixes and runeword.
 * increase default stat points per lvl
+* as talents pic is no longer 3 mb, starting talents shouldnt freeze game anymore
+* potion of spell reset now gives 10 spell reset points instead of 1, but its a bit more expensive

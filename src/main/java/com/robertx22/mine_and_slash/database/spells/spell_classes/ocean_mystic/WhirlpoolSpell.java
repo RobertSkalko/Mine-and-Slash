@@ -53,7 +53,7 @@ public class WhirlpoolSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
         c.set(SC.MANA_COST, 15, 30);
-        c.set(SC.BASE_VALUE, 2, 3);
+        c.set(SC.BASE_VALUE, 4, 10);
         c.set(SC.SHOOT_SPEED, 0.6F, 0.9F);
         c.set(SC.PROJECTILE_COUNT, 1, 1);
         c.set(SC.CAST_TIME_TICKS, 30, 20);

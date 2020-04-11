@@ -24,7 +24,7 @@ public class AddRemoveSpellPotionItem extends BaseInstantPotion implements IShap
     @Override
     public ITextComponent tooltip() {
         ITextComponent comp = new StringTextComponent(
-            "Gives you 1 remove spell point. Use by right clicking on spell screen.");
+            "Gives you 10 remove spell points. Use by right clicking on spell screen.");
         return comp;
 
     }
@@ -34,7 +34,7 @@ public class AddRemoveSpellPotionItem extends BaseInstantPotion implements IShap
 
         if (player instanceof PlayerEntity) {
             Load.spells((PlayerEntity) player)
-                .getAbilitiesData().resetPoints += 1;
+                .getAbilitiesData().resetPoints += 10;
         }
     }
 
@@ -45,17 +45,18 @@ public class AddRemoveSpellPotionItem extends BaseInstantPotion implements IShap
 
     @Override
     public String locNameForLangFile() {
-        return "Potion of Single Spell Reset";
+        return "Potion of Minor Spell Reset";
     }
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModItems.ADD_RESET_SPELLS.get())
             .key('t', ModItems.ORB_OF_TRANSMUTATION.get())
-            .key('v', Items.GOLD_NUGGET)
+            .key('v', Items.IRON_INGOT)
             .key('b', Items.GLASS_BOTTLE)
             .key('c', Items.COAL)
-            .patternLine("cvc")
+            .key('g', Items.GOLD_INGOT)
+            .patternLine("cgc")
             .patternLine("vtv")
             .patternLine("cbc")
             .addCriterion("player_level", new PlayerLevelTrigger.Instance(5));
