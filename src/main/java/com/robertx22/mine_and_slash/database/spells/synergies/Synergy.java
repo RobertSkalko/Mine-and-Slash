@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SynergyDamageEffect;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
@@ -122,6 +123,10 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy>,
     @Override
     public final Type getAbilityType() {
         return Type.SYNERGY;
+    }
+
+    public Elements getElement() {
+        return getSpell().getElement();
     }
 
     @Override

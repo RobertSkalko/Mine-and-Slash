@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -42,6 +43,8 @@ public interface IAbility extends IGUID, ITooltipList {
         return list;
 
     }
+
+    public Elements getElement();
 
     public static IAbility fromId(String id) {
         IAbility ability = null;
@@ -148,6 +151,8 @@ public interface IAbility extends IGUID, ITooltipList {
             TooltipUtils.abilityLevel(list, ctx.spellsCap.getLevelOf(this), getMaxSpellLevelNormal());
 
             list.add(new SText(TextFormatting.YELLOW + "Effective Ability level: " + getEffectiveAbilityLevel(ctx.spellsCap)));
+
+            list.add(new SText(getElement().format + "Element: " + getElement().name()));
 
             if (ctx.spellsCap.getAbilitiesData()
                 .getSchoolPoints(this.getMastery()) < getSchoolPointsNeeded()) {

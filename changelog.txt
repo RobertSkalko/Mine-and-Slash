@@ -1,6 +1,7 @@
 3.6.0
 
 SPELL REWORK!
+* spell tree has been remade into masteries.
 * spells and synergies now have levels
 * synergies now cost mana
 * removed some spells as i consider them bad (like geyser) and others because their spell school doesn't have enough spells, they'll probably be re-added later
@@ -11,7 +12,7 @@ SPELL REWORK!
 * added +1 to spell school levels stat
 * removed elemental conversion and transfer stats, mostly useless after spell damage became a percent
 * huge easy aoe spells now have much larger cooldown, added other semi aoe spells that are harder to hit and can't hit that many enemies at once.
-* renamed spell schools to masteries. 
+* added a new rune that adds levels to specific spells, you'll need that for after level 45
 
 What should happen with the rework:
 * players should think more about how many points they want to spend and where
@@ -20,7 +21,7 @@ What should happen with the rework:
 * magic should be less op at endgame and more useful at early game.
 * aoe clearing a bunch of mobs should be much harder to do, especially from range, as high aoe spells are under long cooldown
 
-If the system didn't make some of these happen, do say.
+If the system didn't make some of these happen, please tell me about it.
 
 Other:
 * bosses now spawn less minions but they're all max rarity
@@ -39,3 +40,4 @@ then i'll have to switch back to scaling costs to player level.
 * increase default stat points per lvl
 * as talents pic is no longer 3 mb, starting talents shouldnt freeze game anymore
 * potion of spell reset now gives 10 spell reset points instead of 1, but its a bit more expensive
+* added a lot more dungeon rooms by @Eclipse

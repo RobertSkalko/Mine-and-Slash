@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -63,6 +64,14 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
     @Override
     public Type getAbilityType() {
         return Type.EFFECT;
+    }
+
+    public Elements getElement() {
+        if (getSpell() != null) {
+            return getSpell().getElement();
+        }
+
+        return Elements.Physical; // todo
     }
 
     @Override

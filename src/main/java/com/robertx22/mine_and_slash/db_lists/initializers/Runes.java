@@ -19,6 +19,7 @@ public class Runes implements ISlashRegistryInit {
         List<BaseRune> All = new ArrayList<BaseRune>() {
             {
                 {
+                    add(new Yon(0));
                     add(new Cen(0));
                     add(new Mos(0));
                     add(new Ita(0));
