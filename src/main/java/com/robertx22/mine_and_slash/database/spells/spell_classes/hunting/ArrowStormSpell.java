@@ -1,8 +1,9 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.hunting;
 
-import com.robertx22.mine_and_slash.database.spells.entities.proj.FireBombEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.cloud.ArrowStormEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPredicates;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
@@ -13,73 +14,72 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FireBombsSpell extends BaseSpell {
+public class ArrowStormSpell extends BaseSpell {
 
-    private FireBombsSpell() {
+    private ArrowStormSpell() {
         super(
             new ImmutableSpellConfigs() {
 
                 @Override
                 public Masteries school() {
-                    return Masteries.FIRE;
+                    return Masteries.HUNTING;
                 }
 
                 @Override
                 public SpellCastType castType() {
-                    return SpellCastType.PROJECTILE;
+                    return SpellCastType.AT_SIGHT;
                 }
 
                 @Override
                 public SoundEvent sound() {
-                    return SoundEvents.BLOCK_FIRE_EXTINGUISH;
+                    return null;
                 }
 
                 @Override
                 public Elements element() {
-                    return Elements.Fire;
+                    return Elements.Elemental;
                 }
-            }.cooldownIfCanceled(true)
-                .summonsEntity(w -> new FireBombEntity(w)));
-    }
 
-    public static FireBombsSpell getInstance() {
-        return SingletonHolder.INSTANCE;
+            }.summonsEntity(world -> new ArrowStormEntity(world))
+                .addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE));
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 10, 15);
-        c.set(SC.BASE_VALUE, 5, 15);
-        c.set(SC.SHOOT_SPEED, 0.7F, 1F);
-        c.set(SC.PROJECTILE_COUNT, 1, 1);
-        c.set(SC.CAST_TIME_TICKS, 40, 30);
-        c.set(SC.COOLDOWN_SECONDS, 30, 20);
-        c.set(SC.DURATION_TICKS, 100, 120);
-        c.set(SC.TIMES_TO_CAST, 3, 3);
-        c.set(SC.RADIUS, 1.5F, 2.25F);
+        c.set(SC.MANA_COST, 30, 60);
+        c.set(SC.BASE_VALUE, 2, 8);
+        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.3F);
+        c.set(SC.CAST_TIME_TICKS, 40, 20);
+        c.set(SC.COOLDOWN_SECONDS, 120, 60);
+        c.set(SC.TICK_RATE, 15, 5);
+        c.set(SC.RADIUS, 2, 4);
+        c.set(SC.DURATION_TICKS, 100, 160);
 
-        c.setMaxLevel(12);
+        c.setMaxLevel(16);
 
         return c;
     }
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(6, 0);
+        return new AbilityPlace(5, 6);
+    }
+
+    public static ArrowStormSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
     public String GUID() {
-        return "fire_bombs";
+        return "arrow_storm";
     }
 
     @Override
@@ -87,7 +87,7 @@ public class FireBombsSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Throw out Fire bombs that explode when near mobs: "));
+        list.add(new StringTextComponent("Summons an arrow storm, dealing damage with each arrow: "));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
@@ -97,10 +97,10 @@ public class FireBombsSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.FireBomb;
+        return Words.ArrowStorm;
     }
 
     private static class SingletonHolder {
-        private static final FireBombsSpell INSTANCE = new FireBombsSpell();
+        private static final ArrowStormSpell INSTANCE = new ArrowStormSpell();
     }
 }

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.unique_items.staffs;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.PoisonBallSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.nature.PoisonBallSpell;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAbiliyLevelFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;

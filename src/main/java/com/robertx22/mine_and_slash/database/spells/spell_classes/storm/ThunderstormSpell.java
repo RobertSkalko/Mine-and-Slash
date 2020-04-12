@@ -1,9 +1,8 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ranger;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.storm;
 
-import com.robertx22.mine_and_slash.database.spells.entities.cloud.ArrowStormEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.cloud.ThunderstormEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPredicates;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
@@ -20,15 +19,15 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrowStormSpell extends BaseSpell {
+public class ThunderstormSpell extends BaseSpell {
 
-    private ArrowStormSpell() {
+    private ThunderstormSpell() {
         super(
             new ImmutableSpellConfigs() {
 
                 @Override
                 public Masteries school() {
-                    return Masteries.HUNTING;
+                    return Masteries.STORM;
                 }
 
                 @Override
@@ -43,27 +42,25 @@ public class ArrowStormSpell extends BaseSpell {
 
                 @Override
                 public Elements element() {
-                    return Elements.Elemental;
+                    return Elements.Thunder;
                 }
-
-            }.summonsEntity(world -> new ArrowStormEntity(world))
-                .addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE));
+            }
+                .summonsEntity(world -> new ThunderstormEntity(world)));
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 30, 60);
-        c.set(SC.BASE_VALUE, 2, 8);
-        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.3F);
-        c.set(SC.CAST_TIME_TICKS, 40, 20);
-        c.set(SC.COOLDOWN_SECONDS, 120, 60);
-        c.set(SC.TICK_RATE, 15, 5);
-        c.set(SC.RADIUS, 2, 4);
-        c.set(SC.DURATION_TICKS, 100, 160);
+        c.set(SC.MANA_COST, 30, 50);
+        c.set(SC.BASE_VALUE, 4, 15);
+        c.set(SC.RADIUS, 2.5F, 4);
+        c.set(SC.CAST_TIME_TICKS, 40, 25);
+        c.set(SC.COOLDOWN_SECONDS, 60 * 5, 60 * 4);
+        c.set(SC.TICK_RATE, 30, 15);
+        c.set(SC.DURATION_TICKS, 80, 160);
 
-        c.setMaxLevel(16);
+        c.setMaxLevel(12);
 
         return c;
     }
@@ -73,13 +70,13 @@ public class ArrowStormSpell extends BaseSpell {
         return new AbilityPlace(5, 6);
     }
 
-    public static ArrowStormSpell getInstance() {
+    public static ThunderstormSpell getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public String GUID() {
-        return "arrow_storm";
+        return "thunder_storm";
     }
 
     @Override
@@ -87,7 +84,7 @@ public class ArrowStormSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Summons an arrow storm, dealing damage with each arrow: "));
+        list.add(new StringTextComponent("Summons a cloud of lightning, damaging all enemies inside"));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
@@ -97,10 +94,10 @@ public class ArrowStormSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.ArrowStorm;
+        return Words.Thunderstorm;
     }
 
     private static class SingletonHolder {
-        private static final ArrowStormSpell INSTANCE = new ArrowStormSpell();
+        private static final ThunderstormSpell INSTANCE = new ThunderstormSpell();
     }
 }

@@ -1,13 +1,13 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ranger;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.hunting;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.RangerArrowEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPredicates;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.potion_effects.ranger.ImbueEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -16,15 +16,17 @@ import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImbueSpell extends BaseSpell {
+public class MultiShotSpell extends BaseSpell {
 
-    private ImbueSpell() {
+    private MultiShotSpell() {
         super(
             new ImmutableSpellConfigs() {
+
                 @Override
                 public Masteries school() {
                     return Masteries.HUNTING;
@@ -32,48 +34,53 @@ public class ImbueSpell extends BaseSpell {
 
                 @Override
                 public SpellCastType castType() {
-                    return SpellCastType.GIVE_EFFECT;
+                    return SpellCastType.PROJECTILE;
                 }
 
                 @Override
                 public SoundEvent sound() {
-                    return SoundEvents.ENTITY_WANDERING_TRADER_DRINK_POTION;
+                    return SoundEvents.ENTITY_ARROW_SHOOT;
                 }
 
                 @Override
                 public Elements element() {
                     return Elements.Elemental;
                 }
-            }.addsEffect(ImbueEffect.getInstance()));
-
+            }.cooldownIfCanceled(true)
+                .summonsEntity(w -> new RangerArrowEntity(w))
+                .addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE));
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.MANA_COST, 10, 25);
-        c.set(SC.BASE_VALUE, 2, 12);
-        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.2F);
-        c.set(SC.CAST_TIME_TICKS, 25, 10);
-        c.set(SC.COOLDOWN_SECONDS, 45, 25);
-        c.set(SC.DURATION_TICKS, 20 * 30, 20 * 45);
 
-        c.setMaxLevel(14);
+        c.set(SC.MANA_COST, 5, 12);
+        c.set(SC.BASE_VALUE, 4, 12);
+        c.set(SC.ATTACK_SCALE_VALUE, 0.2F, 0.75F);
+        c.set(SC.SHOOT_SPEED, 1F, 1.5F);
+        c.set(SC.PROJECTILE_COUNT, 3, 6);
+        c.set(SC.CAST_TIME_TICKS, 20, 10);
+        c.set(SC.COOLDOWN_SECONDS, 10, 5);
+        c.set(SC.DURATION_TICKS, 100, 160);
+
+        c.setMaxLevel(16);
+
         return c;
     }
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(7, 2);
+        return new AbilityPlace(3, 1);
     }
 
-    public static ImbueSpell getInstance() {
+    public static MultiShotSpell getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public String GUID() {
-        return "imbue";
+        return "multi_shot";
     }
 
     @Override
@@ -81,10 +88,9 @@ public class ImbueSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(SpellTooltips.buff());
+        list.add(new StringTextComponent("Shoots multiple arrows in an arc: "));
 
-        list.addAll(ImbueEffect.getInstance()
-            .GetTooltipStringWithNoExtraSpellInfo(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 
@@ -92,10 +98,11 @@ public class ImbueSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.Imbue;
+        return Words.WideShot;
     }
 
     private static class SingletonHolder {
-        private static final ImbueSpell INSTANCE = new ImbueSpell();
+        private static final MultiShotSpell INSTANCE = new MultiShotSpell();
     }
 }
+

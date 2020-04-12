@@ -1,9 +1,8 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ranger;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.fire;
 
-import com.robertx22.mine_and_slash.database.spells.entities.proj.RangerArrowEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.ThrowFlameEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPredicates;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
@@ -21,15 +20,15 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrowBarrageSpell extends BaseSpell {
+public class ThrowFlamesSpell extends BaseSpell {
 
-    private ArrowBarrageSpell() {
+    private ThrowFlamesSpell() {
         super(
             new ImmutableSpellConfigs() {
 
                 @Override
                 public Masteries school() {
-                    return Masteries.HUNTING;
+                    return Masteries.FIRE;
                 }
 
                 @Override
@@ -39,31 +38,34 @@ public class ArrowBarrageSpell extends BaseSpell {
 
                 @Override
                 public SoundEvent sound() {
-                    return SoundEvents.ENTITY_ARROW_SHOOT;
+                    return SoundEvents.BLOCK_FIRE_EXTINGUISH;
                 }
 
                 @Override
                 public Elements element() {
-                    return Elements.Elemental;
+                    return Elements.Fire;
                 }
-            }.addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE)
-                .cooldownIfCanceled(true)
-                .summonsEntity(world -> new RangerArrowEntity(world)));
+            }.cooldownIfCanceled(true)
+                .summonsEntity(w -> new ThrowFlameEntity(w)));
+    }
+
+    public static ThrowFlamesSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 15, 25);
-        c.set(SC.BASE_VALUE, 2, 6);
-        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.3F);
-        c.set(SC.PROJECTILE_COUNT, 1, 1);
-        c.set(SC.SHOOT_SPEED, 1, 1.5F);
-        c.set(SC.CAST_TIME_TICKS, 40, 30);
-        c.set(SC.COOLDOWN_SECONDS, 30, 20);
-        c.set(SC.TIMES_TO_CAST, 4, 6);
-        c.set(SC.DURATION_TICKS, 100, 160);
+        c.set(SC.MANA_COST, 10, 15);
+        c.set(SC.BASE_VALUE, 2, 8);
+        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.5F);
+        c.set(SC.SHOOT_SPEED, 0.3F, 0.5F);
+        c.set(SC.PROJECTILE_COUNT, 3, 3);
+        c.set(SC.CAST_TIME_TICKS, 60, 50);
+        c.set(SC.COOLDOWN_SECONDS, 20, 10);
+        c.set(SC.DURATION_TICKS, 100, 120);
+        c.set(SC.TIMES_TO_CAST, 3, 3);
 
         c.setMaxLevel(16);
 
@@ -72,16 +74,12 @@ public class ArrowBarrageSpell extends BaseSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(0, 0);
-    }
-
-    public static ArrowBarrageSpell getInstance() {
-        return SingletonHolder.INSTANCE;
+        return new AbilityPlace(4, 1);
     }
 
     @Override
     public String GUID() {
-        return "arrow_barrage";
+        return "throw_flames";
     }
 
     @Override
@@ -89,8 +87,7 @@ public class ArrowBarrageSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Shoots out many arrows while casting: "));
-        list.add(new StringTextComponent("Requires Bow/Crossbow to use: "));
+        list.add(new StringTextComponent("Throw out slow flames: "));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
@@ -100,10 +97,11 @@ public class ArrowBarrageSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.ArrowBarrage;
+        return Words.ThrowFlames;
     }
 
     private static class SingletonHolder {
-        private static final ArrowBarrageSpell INSTANCE = new ArrowBarrageSpell();
+        private static final ThrowFlamesSpell INSTANCE = new ThrowFlamesSpell();
     }
 }
+

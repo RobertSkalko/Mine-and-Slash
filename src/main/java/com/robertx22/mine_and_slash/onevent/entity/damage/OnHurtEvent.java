@@ -22,11 +22,9 @@ public class OnHurtEvent {
         LivingHurtUtils.modifyDamage(event);
 
         if (DamageEventData.isValidEntityDamage(event)) {
-
             LivingHurtUtils.onAttack(event);
             LivingHurtUtils.damageCurioItems(event.getEntityLiving());
             LivingHurtUtils.onBossHurt(event.getEntityLiving());
-
         }
     }
 

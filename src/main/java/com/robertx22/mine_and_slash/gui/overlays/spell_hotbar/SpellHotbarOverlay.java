@@ -90,7 +90,7 @@ public class SpellHotbarOverlay extends AbstractGui {
 
                         float percent = (float) spelldata.getRemainingCooldown() / (float) spelldata.getTotalCooldown();
 
-                        percent = MathHelper.clamp(percent + 0.1F, 0.03F, 1F); // this is a hacky way to make spell cooldowns more predictable
+                        percent = MathHelper.clamp(percent, 0, 1F);
 
                         mc.getTextureManager()
                             .bindTexture(COOLDOWN_TEX);

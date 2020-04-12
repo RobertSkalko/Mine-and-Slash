@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.unique_items.necklaces;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.BlazingInfernoSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.fire.BlazingInfernoSpell;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAbiliyLevelFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyFlat;

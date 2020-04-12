@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.HeartOfIceSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean.HeartOfIceSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnSpellCastSynergy;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;

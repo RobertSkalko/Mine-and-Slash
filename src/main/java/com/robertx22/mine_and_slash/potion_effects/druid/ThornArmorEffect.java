@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.potion_effects.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.ThornArmorSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.nature.ThornArmorSpell;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.mmorpg.Ref;

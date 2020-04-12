@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.fire;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;

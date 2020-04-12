@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.ranger;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ranger.RecoilShotSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.hunting.RecoilShotSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ranger.HunterInstinctEffect;

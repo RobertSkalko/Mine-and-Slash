@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.shaman;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.storm.ThunderDashSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;

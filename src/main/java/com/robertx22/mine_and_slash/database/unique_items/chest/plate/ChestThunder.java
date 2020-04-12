@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.unique_items.chest.plate;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.storm.ThunderstormSpell;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAbiliyLevelFlat;

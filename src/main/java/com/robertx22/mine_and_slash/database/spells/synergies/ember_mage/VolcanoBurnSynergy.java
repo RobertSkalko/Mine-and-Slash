@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.ember_mage;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.VolcanoSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.fire.VolcanoSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;

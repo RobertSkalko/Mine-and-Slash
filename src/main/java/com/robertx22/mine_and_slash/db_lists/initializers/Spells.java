@@ -1,14 +1,14 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.*;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.*;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.*;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ranger.*;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.LightningTotemSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderDashSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.fire.*;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.hunting.*;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.nature.*;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean.*;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.storm.LightningTotemSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.storm.ThunderDashSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.storm.ThunderspearSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.storm.ThunderstormSpell;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;

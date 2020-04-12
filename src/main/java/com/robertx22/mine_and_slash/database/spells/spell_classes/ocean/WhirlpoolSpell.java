@@ -1,12 +1,12 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.ocean;
 
+import com.robertx22.mine_and_slash.database.spells.entities.proj.WhirlpoolEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.potion_effects.druid.ThornArmorEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -20,56 +20,65 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThornArmorSpell extends BaseSpell {
+public class WhirlpoolSpell extends BaseSpell {
 
-    private ThornArmorSpell() {
-        super(new ImmutableSpellConfigs() {
-            @Override
-            public Masteries school() {
-                return Masteries.NATURE;
-            }
+    private WhirlpoolSpell() {
+        super(
+            new ImmutableSpellConfigs() {
 
-            @Override
-            public SpellCastType castType() {
-                return SpellCastType.GIVE_EFFECT;
-            }
+                @Override
+                public Masteries school() {
+                    return Masteries.OCEAN;
+                }
 
-            @Override
-            public SoundEvent sound() {
-                return SoundEvents.ENTITY_GENERIC_DRINK;
-            }
+                @Override
+                public SpellCastType castType() {
+                    return SpellCastType.PROJECTILE;
+                }
 
-            @Override
-            public Elements element() {
-                return Elements.Nature;
-            }
-        }.addsEffect(ThornArmorEffect.INSTANCE));
-    }
+                @Override
+                public SoundEvent sound() {
+                    return SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE;
+                }
 
-    public static ThornArmorSpell getInstance() {
-        return SingletonHolder.INSTANCE;
+                @Override
+                public Elements element() {
+                    return Elements.Water;
+                }
+            }.summonsEntity(w -> new WhirlpoolEntity(w)));
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.MANA_COST, 25, 40);
+
+        c.set(SC.MANA_COST, 15, 30);
+        c.set(SC.BASE_VALUE, 4, 10);
+        c.set(SC.SHOOT_SPEED, 0.6F, 0.9F);
+        c.set(SC.PROJECTILE_COUNT, 1, 1);
         c.set(SC.CAST_TIME_TICKS, 30, 20);
-        c.set(SC.COOLDOWN_SECONDS, 120, 60);
-        c.set(SC.DURATION_TICKS, 60 * 20, 60 * 60);
+        c.set(SC.COOLDOWN_SECONDS, 100, 60);
+        c.set(SC.TICK_RATE, 30, 20);
+        c.set(SC.RADIUS, 3, 4);
+        c.set(SC.DURATION_TICKS, 80, 100);
 
         c.setMaxLevel(12);
+
         return c;
     }
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(5, 5);
+        return new AbilityPlace(2, 3);
+    }
+
+    public static WhirlpoolSpell getInstance() {
+        return SingletonHolder.INSTANCE;
     }
 
     @Override
     public String GUID() {
-        return "thorn_armor";
+        return "whirlpool";
     }
 
     @Override
@@ -77,9 +86,9 @@ public class ThornArmorSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Applies buff: "));
+        list.add(new StringTextComponent("Summons a whirpool that slows and damages enemies: "));
 
-        list.addAll(ThornArmorEffect.INSTANCE.GetTooltipStringWithNoExtraSpellInfo(info));
+        list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
         return list;
 
@@ -87,10 +96,10 @@ public class ThornArmorSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.ThornArmor;
+        return Words.Whirpool;
     }
 
     private static class SingletonHolder {
-        private static final ThornArmorSpell INSTANCE = new ThornArmorSpell();
+        private static final WhirlpoolSpell INSTANCE = new WhirlpoolSpell();
     }
 }

@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.druid;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.nature;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;

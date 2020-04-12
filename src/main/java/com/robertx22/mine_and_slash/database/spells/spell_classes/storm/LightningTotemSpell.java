@@ -1,9 +1,8 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.ranger;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.storm;
 
-import com.robertx22.mine_and_slash.database.spells.entities.proj.RangerArrowEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.proj.LightningTotemEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPredicates;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
@@ -21,15 +20,15 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MultiShotSpell extends BaseSpell {
+public class LightningTotemSpell extends BaseSpell {
 
-    private MultiShotSpell() {
+    private LightningTotemSpell() {
         super(
             new ImmutableSpellConfigs() {
 
                 @Override
                 public Masteries school() {
-                    return Masteries.HUNTING;
+                    return Masteries.STORM;
                 }
 
                 @Override
@@ -44,27 +43,27 @@ public class MultiShotSpell extends BaseSpell {
 
                 @Override
                 public Elements element() {
-                    return Elements.Elemental;
+                    return Elements.Thunder;
                 }
             }.cooldownIfCanceled(true)
-                .summonsEntity(w -> new RangerArrowEntity(w))
-                .addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE));
+                .summonsEntity(w -> new LightningTotemEntity(w))
+        );
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 5, 12);
-        c.set(SC.BASE_VALUE, 4, 12);
-        c.set(SC.ATTACK_SCALE_VALUE, 0.2F, 0.75F);
-        c.set(SC.SHOOT_SPEED, 1F, 1.5F);
-        c.set(SC.PROJECTILE_COUNT, 3, 6);
+        c.set(SC.MANA_COST, 15, 25);
+        c.set(SC.BASE_VALUE, 2, 8);
+        c.set(SC.SHOOT_SPEED, 1F, 1.2F);
+        c.set(SC.PROJECTILE_COUNT, 1, 3);
         c.set(SC.CAST_TIME_TICKS, 20, 10);
-        c.set(SC.COOLDOWN_SECONDS, 10, 5);
+        c.set(SC.COOLDOWN_SECONDS, 30, 20);
+        c.set(SC.TICK_RATE, 30, 15);
         c.set(SC.DURATION_TICKS, 100, 160);
 
-        c.setMaxLevel(16);
+        c.setMaxLevel(8);
 
         return c;
     }
@@ -74,13 +73,13 @@ public class MultiShotSpell extends BaseSpell {
         return new AbilityPlace(3, 1);
     }
 
-    public static MultiShotSpell getInstance() {
+    public static LightningTotemSpell getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public String GUID() {
-        return "multi_shot";
+        return "lightning_totem";
     }
 
     @Override
@@ -88,7 +87,7 @@ public class MultiShotSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Shoots multiple arrows in an arc: "));
+        list.add(new StringTextComponent("Summons a totem that damages enemies: "));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 
@@ -98,11 +97,10 @@ public class MultiShotSpell extends BaseSpell {
 
     @Override
     public Words getName() {
-        return Words.WideShot;
+        return Words.LightningTotem;
     }
 
     private static class SingletonHolder {
-        private static final MultiShotSpell INSTANCE = new MultiShotSpell();
+        private static final LightningTotemSpell INSTANCE = new LightningTotemSpell();
     }
 }
-

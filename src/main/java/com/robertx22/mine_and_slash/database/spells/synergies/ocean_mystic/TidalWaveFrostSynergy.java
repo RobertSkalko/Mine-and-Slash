@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.TidalWaveSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean.TidalWaveSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.FrostEffect;

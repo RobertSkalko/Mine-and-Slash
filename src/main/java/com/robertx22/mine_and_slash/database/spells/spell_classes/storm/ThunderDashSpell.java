@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.spells.spell_classes.shaman;
+package com.robertx22.mine_and_slash.database.spells.spell_classes.storm;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;

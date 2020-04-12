@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.entities.proj;
 import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBaseProjectile;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ranger.ImbueSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.hunting.ImbueSpell;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.potion_effects.ranger.ImbueEffect;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
