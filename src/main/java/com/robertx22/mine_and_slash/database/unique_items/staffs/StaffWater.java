@@ -2,7 +2,9 @@ package com.robertx22.mine_and_slash.database.unique_items.staffs;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.FrostballSpell;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAbiliyLevelFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
@@ -41,7 +43,11 @@ public class StaffWater implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalDamageFlat().size(StatMod.Size.HALF_MORE), new CriticalHitFlat(), new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HALF_MORE)
+        return Arrays.asList(
+            new CriticalDamageFlat().size(StatMod.Size.HALF_MORE),
+            new CriticalHitFlat(),
+            new ElementalPeneFlat(Elements.Water).size(StatMod.Size.HALF_MORE),
+            new PlusAbiliyLevelFlat(FrostballSpell.getInstance())
         );
     }
 

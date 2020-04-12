@@ -20,6 +20,7 @@ public class PlusLevelToAllAbilitiesInSchoolStat extends Stat implements IAfterS
 
     public PlusLevelToAllAbilitiesInSchoolStat(SpellSchools school) {
         this.school = school;
+        this.isInt = true;
     }
 
     public SpellSchools getSchool() {

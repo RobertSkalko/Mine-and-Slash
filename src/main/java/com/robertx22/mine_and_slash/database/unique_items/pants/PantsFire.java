@@ -2,8 +2,10 @@ package com.robertx22.mine_and_slash.database.unique_items.pants;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.MagmaFlowerSpell;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAbiliyLevelFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.ArmorMulti;
@@ -50,7 +52,8 @@ public class PantsFire implements IUnique {
         return Arrays.asList(
             new ArmorFlat().size(StatMod.Size.HALF_MORE),
             new ArmorMulti().size(StatMod.Size.DOUBLE),
-            new ElementalResistFlat(Elements.Fire)
+            new ElementalResistFlat(Elements.Fire),
+            new PlusAbiliyLevelFlat(MagmaFlowerSpell.getInstance())
         );
     }
 

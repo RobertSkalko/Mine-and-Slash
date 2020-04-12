@@ -142,6 +142,10 @@ public class StatModData extends BaseStatContainer {
             val = stat.calculateScalingStatGrowth(val, level);
         }
 
+        if (stat.isInt) {
+            return (int) val;
+        }
+
         return val;
     }
 
@@ -153,7 +157,6 @@ public class StatModData extends BaseStatContainer {
     private float getFirstActualValueWithoutMin() {
         StatMod mod = getStatMod();
         return (mod.getMax() * percent / 100);
-
     }
 
     private float getSecondActualValue() {

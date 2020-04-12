@@ -8,9 +8,9 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
-public class ElementalSpellToAttackDMGFlat extends ElementalStatMod {
+public class ElementalInfusionFlat extends ElementalStatMod {
 
-    public ElementalSpellToAttackDMGFlat(Elements element) {
+    public ElementalInfusionFlat(Elements element) {
         super(element);
     }
 
@@ -41,7 +41,7 @@ public class ElementalSpellToAttackDMGFlat extends ElementalStatMod {
 
     @Override
     public StatMod newGeneratedInstance(Elements element) {
-        return new ElementalSpellToAttackDMGFlat(element);
+        return new ElementalInfusionFlat(element);
     }
 
 }

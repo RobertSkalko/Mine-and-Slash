@@ -4,8 +4,8 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalInfusionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -43,7 +43,7 @@ public class BootsWater implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(new WeaponDamageFlat(WeaponTypes.Sword),
-            new ElementalSpellToAttackDMGFlat(Elements.Water).size(StatMod.Size.HALF_MORE),
+            new ElementalInfusionFlat(Elements.Water).size(StatMod.Size.HALF_MORE),
             new ElementalResistFlat(Elements.Water)
         );
 

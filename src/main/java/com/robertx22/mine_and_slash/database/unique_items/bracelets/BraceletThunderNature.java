@@ -57,8 +57,8 @@ public class BraceletThunderNature implements IUnique {
     @Override
     public List<StatMod> primaryStats() {
         return Arrays.asList(
-            new ElementalSpellDamageFlat(Elements.Nature).size(StatMod.Size.HALF),
-            new ElementalSpellDamageFlat(Elements.Thunder).size(StatMod.Size.HALF)
+            new ElementalSpellDamageFlat(Elements.Nature),
+            new ElementalSpellDamageFlat(Elements.Thunder)
         );
     }
 

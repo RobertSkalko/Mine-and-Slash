@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CompletePhysDispersionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalInfusionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.ElementalInfusionPercent;
 import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
@@ -36,7 +36,7 @@ public class EleSpellDmgStaff implements IElementalUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalSpellToAttackDMGFlat(element).size(StatMod.Size.HALF_MORE),
+            new ElementalInfusionFlat(element).size(StatMod.Size.HALF_MORE),
             new ElementalInfusionPercent(element).size(StatMod.Size.HALF_MORE),
             new CompletePhysDispersionFlat()
         );
@@ -49,7 +49,7 @@ public class EleSpellDmgStaff implements IElementalUnique {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalAttackDamageFlat(element).size(StatMod.Size.LOW));
+        return Arrays.asList(new ElementalAttackDamageFlat(element));
     }
 
     @Override

@@ -3,12 +3,14 @@ package com.robertx22.mine_and_slash.database.unique_items.bracelets;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAbiliyLevelFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthRegenPercent;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
+import com.robertx22.mine_and_slash.potion_effects.druid.ThornsEffect;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -41,7 +43,12 @@ public class BraceletNature implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new ElementalResistFlat(Elements.Nature).size(StatMod.Size.HALF_MORE), new HealthFlat(), new HealthRegenPercent());
+        return Arrays.asList(
+            new ElementalResistFlat(Elements.Nature).size(StatMod.Size.HALF_MORE),
+            new HealthFlat(),
+            new HealthRegenPercent(),
+            new PlusAbiliyLevelFlat(ThornsEffect.INSTANCE)
+        );
     }
 
     @Override
@@ -51,7 +58,8 @@ public class BraceletNature implements IUnique {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new ElementalSpellDamageFlat(Elements.Nature));
+        return Arrays.asList(
+            new ElementalSpellDamageFlat(Elements.Nature));
     }
 
     @Override

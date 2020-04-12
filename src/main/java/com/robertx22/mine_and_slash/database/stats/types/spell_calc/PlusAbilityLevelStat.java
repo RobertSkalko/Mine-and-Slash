@@ -23,6 +23,7 @@ public class PlusAbilityLevelStat extends Stat implements IAfterStatCalc, IGener
 
     public PlusAbilityLevelStat(IAbility ability) {
         this.ability = ability;
+        this.isInt = true;
     }
 
     public IAbility getAbility() {

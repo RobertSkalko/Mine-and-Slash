@@ -3,9 +3,9 @@ package com.robertx22.mine_and_slash.database.unique_items.bracelets;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalInfusionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -42,7 +42,7 @@ public class BraceletFire implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalSpellToAttackDMGFlat(Elements.Fire).size(StatMod.Size.HALF_MORE),
+            new ElementalInfusionFlat(Elements.Fire).size(StatMod.Size.HALF_MORE),
             new ElementalResistFlat(Elements.Fire).size(StatMod.Size.HALF_MORE),
             new CriticalDamagePercent().size(StatMod.Size.ONE_LESS));
 

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.unique_items.chest.leather;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherChest;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAllSkillLevelsInSchoolFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
@@ -51,7 +52,7 @@ public class ChestDodge implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new DodgeRatingFlat().size(StatMod.Size.HALF_MORE),
+            new ArmorFlat(),
             new WeaponDamageFlat(WeaponTypes.Bow),
             new ElementalResistFlat(Elements.Nature),
             new PlusAllSkillLevelsInSchoolFlat(SpellSchools.RANGER)
@@ -60,7 +61,7 @@ public class ChestDodge implements IUnique {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HealthFlat());
+        return Arrays.asList(new HealthFlat(), new DodgeRatingFlat().size(StatMod.Size.DOUBLE));
     }
 
     @Override

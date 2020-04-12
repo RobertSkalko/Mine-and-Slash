@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.EnergyRegenFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalInfusionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -49,7 +49,7 @@ public class NecklaceThunder implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalSpellToAttackDMGFlat(Elements.Thunder),
+            new ElementalInfusionFlat(Elements.Thunder),
             new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.DOUBLE),
             new EnergyRegenFlat()
         );

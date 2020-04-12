@@ -1128,6 +1128,28 @@
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.bleed": "Bleed",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Cold Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thorns": "Thorns",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.wounds": "Wounds",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -1252,28 +1274,6 @@
 	"item.mmorpg.torch.torch4": "§6Torch",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.bleed": "Bleed",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Cold Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thorns": "Thorns",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",

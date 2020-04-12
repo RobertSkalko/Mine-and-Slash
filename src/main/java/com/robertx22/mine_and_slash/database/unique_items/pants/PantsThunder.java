@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicStealFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -56,7 +56,7 @@ public class PantsThunder implements IUnique {
 
     @Override
     public List<StatMod> primaryStats() {
-        return Arrays.asList(new HealthFlat(), new MagicStealFlat());
+        return Arrays.asList(new HealthFlat(), new MagicShieldFlat());
     }
 
     @Override

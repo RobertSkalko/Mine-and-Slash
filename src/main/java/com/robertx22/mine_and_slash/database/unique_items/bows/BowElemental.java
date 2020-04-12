@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalInfusionFlat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.database.unique_items.IElementalUnique;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
@@ -30,7 +30,7 @@ public class BowElemental implements IElementalUnique {
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
             new CoreStatFlat(Dexterity.INSTANCE),
-            new ElementalSpellToAttackDMGFlat(element),
+            new ElementalInfusionFlat(element),
             new CriticalHitFlat().size(StatMod.Size.DOUBLE)
         );
     }

@@ -52,6 +52,7 @@ public class PantsNature implements IUnique {
         return Arrays.asList(
             new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.HALF_MORE),
             new ElementalResistFlat(Elements.Nature).size(StatMod.Size.HALF_MORE),
+            new ElementalResistFlat(Elements.Thunder).size(StatMod.Size.HALF_MORE),
             new PlusAllSkillLevelsInSchoolFlat(SpellSchools.DRUID)
         );
     }

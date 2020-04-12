@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.uncommon.enumclasses;
 
+import com.robertx22.mine_and_slash.config.base_player_stat.BasePlayerStatContainer;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
@@ -13,6 +13,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public enum SpellSchools {
@@ -38,21 +39,18 @@ public enum SpellSchools {
     public List<ExactStatData> getStatsFor(int schoolLevel, EntityCap.UnitData data) { // TODO make it differ per school;
         List<ExactStatData> list = new ArrayList<>();
 
-        // these will need a lot of fine tuning.
-
-        list.add(new ExactStatData(25, Health.getInstance()));
-        list.add(new ExactStatData(30, Mana.getInstance()));
-        list.add(new ExactStatData(30, Energy.getInstance()));
-
-        list.add(new ExactStatData(3, ManaRegen.getInstance()));
-        list.add(new ExactStatData(3, EnergyRegen.getInstance()));
-        list.add(new ExactStatData(3, HealthRegen.getInstance()));
-        list.add(new ExactStatData(3, MagicShieldRegen.getInstance()));
-
-        list.add(new ExactStatData(0.75F, PhysicalDamage.getInstance()));
+        BasePlayerStatContainer.INSTANCE.SPELL_MASTERY_STATS.entrySet()
+            .forEach(x -> {
+                    list.add(new ExactStatData(x.getValue()
+                        .floatValue(), SlashRegistry.Stats()
+                        .get(x.getKey())));
+                }
+            );
 
         int level = getEffectiveLevel(schoolLevel);
         int lvl = MathHelper.clamp(level, 0, data.getLevel());
+
+        list.sort(Comparator.comparingDouble(x -> x.getValue()));
 
         list.forEach(x -> x.scaleToLvl(lvl)); // scale to this level, not player level
 

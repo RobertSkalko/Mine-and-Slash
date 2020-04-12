@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Hammer;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalInfusionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.CriticalHitMulti;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -47,7 +47,7 @@ public class HammerThunder implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalSpellToAttackDMGFlat(Elements.Thunder), new CriticalDamageFlat(), new CriticalHitMulti());
+            new ElementalInfusionFlat(Elements.Thunder), new CriticalDamageFlat(), new CriticalHitMulti());
     }
 
     @Override

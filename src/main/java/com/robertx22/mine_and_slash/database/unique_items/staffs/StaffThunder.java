@@ -2,7 +2,9 @@ package com.robertx22.mine_and_slash.database.unique_items.staffs;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderspearSpell;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAbiliyLevelFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaOnHitFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
@@ -46,7 +48,11 @@ public class StaffThunder implements IUnique {
 
     @Override
     public List<StatMod> uniqueStats() {
-        return Arrays.asList(new CriticalDamageFlat(), new ElementalPeneFlat(Elements.Thunder).size(StatMod.Size.HALF_MORE), new ManaOnHitFlat()
+        return Arrays.asList(
+            new CriticalDamageFlat(),
+            new ElementalPeneFlat(Elements.Thunder).size(StatMod.Size.HALF_MORE),
+            new ManaOnHitFlat(),
+            new PlusAbiliyLevelFlat(ThunderspearSpell.getInstance())
         );
     }
 

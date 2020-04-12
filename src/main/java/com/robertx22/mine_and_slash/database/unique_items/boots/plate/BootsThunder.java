@@ -4,8 +4,8 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalInfusionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.WeaponDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
@@ -44,7 +44,7 @@ public class BootsThunder implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new WeaponDamageFlat(WeaponTypes.Hammer), new ElementalSpellToAttackDMGFlat(Elements.Thunder),
+            new WeaponDamageFlat(WeaponTypes.Hammer), new ElementalInfusionFlat(Elements.Thunder),
             new CriticalDamagePercent(), new ElementalResistFlat(Elements.Thunder)
         );
     }

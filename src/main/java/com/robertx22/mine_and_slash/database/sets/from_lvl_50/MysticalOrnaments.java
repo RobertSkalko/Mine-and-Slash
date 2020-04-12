@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalInfusionFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
@@ -27,8 +27,8 @@ public class MysticalOrnaments extends Set {
                 {
                     put(2, new ElementalResistFlat(Elements.Nature));
                     put(3, new ElementalResistFlat(Elements.Thunder));
-                    put(4, new ElementalSpellToAttackDMGFlat(Elements.Nature));
-                    put(5, new ElementalSpellToAttackDMGFlat(Elements.Thunder));
+                    put(4, new ElementalInfusionFlat(Elements.Nature));
+                    put(5, new ElementalInfusionFlat(Elements.Thunder));
                 }
             }
         };

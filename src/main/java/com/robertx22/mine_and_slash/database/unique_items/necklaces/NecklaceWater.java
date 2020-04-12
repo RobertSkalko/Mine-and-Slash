@@ -2,8 +2,10 @@ package com.robertx22.mine_and_slash.database.unique_items.necklaces;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.HeartOfIceSpell;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAbiliyLevelFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.HealthPercent;
@@ -52,7 +54,8 @@ public class NecklaceWater implements IUnique {
             new HealthPercent(),
             new MagicShieldPercent(),
             new ArmorFlat().size(StatMod.Size.HALF_MORE),
-            new ElementalResistFlat(Elements.Water).size(StatMod.Size.HALF_MORE)
+            new ElementalResistFlat(Elements.Water).size(StatMod.Size.HALF_MORE),
+            new PlusAbiliyLevelFlat(HeartOfIceSpell.getInstance())
         );
     }
 

@@ -32,6 +32,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public Stat() {
     }
 
+    public boolean isInt = false;
+
     @Override
     public boolean isRegistryEntryValid() {
 

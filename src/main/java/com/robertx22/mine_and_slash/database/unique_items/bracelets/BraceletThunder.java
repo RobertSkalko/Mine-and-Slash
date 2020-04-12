@@ -3,10 +3,11 @@ package com.robertx22.mine_and_slash.database.unique_items.bracelets;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.corestats.CoreStatFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.multi.defense.CriticalHitMulti;
 import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalDamagePercent;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.CriticalHitPercent;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -42,9 +43,10 @@ public class BraceletThunder implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new CriticalHitMulti().size(StatMod.Size.DOUBLE),
+            new CriticalHitPercent().size(StatMod.Size.DOUBLE),
             new CriticalDamagePercent().size(StatMod.Size.DOUBLE),
-            new ArmorFlat().size(StatMod.Size.DOUBLE));
+            new CoreStatFlat(Strength.INSTANCE)
+        );
     }
 
     @Override

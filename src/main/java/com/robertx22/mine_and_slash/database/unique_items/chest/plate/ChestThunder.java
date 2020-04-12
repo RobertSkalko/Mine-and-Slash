@@ -2,13 +2,14 @@ package com.robertx22.mine_and_slash.database.unique_items.chest.plate;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.ThunderstormSpell;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAbiliyLevelFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.PlusAllSkillLevelsInSchoolFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellToAttackDMGFlat;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -45,11 +46,11 @@ public class ChestThunder implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
-            new ElementalResistFlat(Elements.Thunder),
             new ArmorFlat().size(StatMod.Size.HALF_MORE),
+            new ElementalResistFlat(Elements.Thunder),
             new ElementalSpellDamageFlat(Elements.Thunder),
-            new ElementalSpellToAttackDMGFlat(Elements.Thunder),
-            new PlusAllSkillLevelsInSchoolFlat(SpellSchools.SHAMAN)
+            new PlusAllSkillLevelsInSchoolFlat(SpellSchools.SHAMAN),
+            new PlusAbiliyLevelFlat(ThunderstormSpell.getInstance())
         );
     }
 

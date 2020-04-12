@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFla
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.AllElementalDamageMulti;
-import com.robertx22.mine_and_slash.database.stats.mods.multi.offence.PhysicalDamageMulti;
+import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.PhysicalDamagePercent;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -54,7 +54,7 @@ public class DoomdsayNecklace implements IUnique {
             new EnergyRegenFlat().size(StatMod.Size.ONE_LESS),
 
             new AllElementalDamageMulti(Elements.Elemental).size(StatMod.Size.HALF_MORE),
-            new PhysicalDamageMulti()
+            new PhysicalDamagePercent().size(StatMod.Size.HALF_MORE)
         );
     }
 
