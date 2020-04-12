@@ -26,6 +26,7 @@ public abstract class RoomGroup implements IWeighted {
     public static NetherGroup NETHER = new NetherGroup();
     public static SewersGroup SEWERS = new SewersGroup();
     public static WideNatureRoom WIDE_NATURE = new WideNatureRoom();
+    public static IceTempleGroup ICE_TEMPLE = new IceTempleGroup();
 
     private static List<RoomGroup> all = new ArrayList<>();
 
@@ -47,6 +48,7 @@ public abstract class RoomGroup implements IWeighted {
             all.add(NETHER);
             all.add(SEWERS);
             all.add(WIDE_NATURE);
+            all.add(ICE_TEMPLE);
         }
 
         return all;

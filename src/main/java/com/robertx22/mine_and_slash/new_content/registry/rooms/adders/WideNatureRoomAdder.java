@@ -20,6 +20,17 @@ public class WideNatureRoomAdder extends BaseRoomAdder {
         add("tunnel", RoomType.STRAIGHT_HALLWAY);
         add("webhouse", RoomType.TRIPLE_HALLWAY);
 
+        add("basement_boss", RoomType.CURVED_HALLWAY).setBoss();
+        add("hanging_platforms", RoomType.CURVED_HALLWAY);
+        add("zombie_boss_shrooms", RoomType.ENTRANCE).setBoss();
+        add("camp_site", RoomType.ENTRANCE);
+        add("big_tree", RoomType.FOUR_WAY);
+        add("ambush_cave", RoomType.STRAIGHT_HALLWAY);
+        add("winding_road", RoomType.STRAIGHT_HALLWAY);
+        add("webhouse", RoomType.TRIPLE_HALLWAY);
+        add("log", RoomType.TRIPLE_HALLWAY);
+        add("spider_cave", RoomType.TRIPLE_HALLWAY);
+
     }
 }
 

@@ -21,9 +21,9 @@ import net.minecraft.util.text.StringTextComponent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WideShotSpell extends BaseSpell {
+public class MultiShotSpell extends BaseSpell {
 
-    private WideShotSpell() {
+    private MultiShotSpell() {
         super(
             new ImmutableSpellConfigs() {
 
@@ -74,13 +74,13 @@ public class WideShotSpell extends BaseSpell {
         return new AbilityPlace(3, 1);
     }
 
-    public static WideShotSpell getInstance() {
+    public static MultiShotSpell getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
     @Override
     public String GUID() {
-        return "triple_shot";
+        return "multi_shot";
     }
 
     @Override
@@ -102,7 +102,7 @@ public class WideShotSpell extends BaseSpell {
     }
 
     private static class SingletonHolder {
-        private static final WideShotSpell INSTANCE = new WideShotSpell();
+        private static final MultiShotSpell INSTANCE = new MultiShotSpell();
     }
 }
 

@@ -3,10 +3,10 @@ package com.robertx22.mine_and_slash.new_content.registry.groups;
 import java.util.Arrays;
 import java.util.List;
 
-public class WideNatureRoom extends RoomGroup {
+public class IceTempleGroup extends RoomGroup {
 
-    public WideNatureRoom() {
-        super("wn", 2000);
+    public IceTempleGroup() {
+        super("it", 1000);
         this.canSpawnFireMobs = false;
     }
 

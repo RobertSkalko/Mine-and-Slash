@@ -50,7 +50,7 @@ public class Spells implements ISlashRegistryInit {
 
                     add(ArrowBarrageSpell.getInstance());
                     add(RecoilShotSpell.getInstance());
-                    add(WideShotSpell.getInstance());
+                    add(MultiShotSpell.getInstance());
                     add(ImbueSpell.getInstance());
                     add(ArrowStormSpell.getInstance());
 

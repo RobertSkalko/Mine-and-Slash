@@ -17,14 +17,15 @@ public class OnHurtEvent {
             return;
         }
 
+        LivingHurtUtils.stopMobInWallDamageInMaps(event);
+        LivingHurtUtils.onHurtRecordNonPlayerDmg(event);
+        LivingHurtUtils.modifyDamage(event);
+
         if (DamageEventData.isValidEntityDamage(event)) {
 
             LivingHurtUtils.onAttack(event);
-            LivingHurtUtils.modifyDamage(event);
-            LivingHurtUtils.onHurtRecordNonPlayerDmg(event);
             LivingHurtUtils.damageCurioItems(event.getEntityLiving());
             LivingHurtUtils.onBossHurt(event.getEntityLiving());
-            LivingHurtUtils.stopMobInWallDamageInMaps(event);
 
         }
     }
