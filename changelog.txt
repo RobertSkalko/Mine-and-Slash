@@ -11,6 +11,7 @@ SPELL REWORK!
 * added +1 to spell school levels stat
 * removed elemental conversion and transfer stats, mostly useless after spell damage became a percent
 * huge easy aoe spells now have much larger cooldown, added other semi aoe spells that are harder to hit and can't hit that many enemies at once.
+* renamed spell schools to masteries. 
 
 What should happen with the rework:
 * players should think more about how many points they want to spend and where

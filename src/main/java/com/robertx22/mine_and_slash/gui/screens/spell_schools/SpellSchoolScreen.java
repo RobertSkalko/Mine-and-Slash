@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.gui.screens.spell_schools;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
+import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -17,7 +18,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -32,7 +33,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
+public class SpellSchoolScreen extends BaseScreen implements INamedScreen, IAlertScreen {
 
     static ResourceLocation BACKGROUND = new ResourceLocation(
         Ref.MODID, "textures/gui/spell_schools/background.png");
@@ -59,14 +60,14 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
         super(X, Y);
     }
 
-    public SpellSchoolScreen(SpellSchools school) {
+    public SpellSchoolScreen(Masteries school) {
         super(X, Y);
         this.school = school;
     }
 
-    private SpellSchools school = null;
+    private Masteries school = null;
 
-    public void setSpellSchool(SpellSchools school) {
+    public void setSpellSchool(Masteries school) {
         this.school = school;
         this.init();
     }
@@ -88,7 +89,7 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
             int i = 0;
             for (BasePotionEffect e : SlashRegistry.PotionEffects()
-                .getFilterWrapped(x -> x.getSchool()
+                .getFilterWrapped(x -> x.getMastery()
                     .equals(school)).list) {
 
                 if (e.getSpell() == null) {
@@ -103,11 +104,11 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
             list.addAll(
                 SlashRegistry.Spells()
-                    .getFilterWrapped(x -> x.getSchool()
+                    .getFilterWrapped(x -> x.getMastery()
                         .equals(school)).list);
             list.addAll(
                 SlashRegistry.Synergies()
-                    .getFilterWrapped(x -> x.getSchool()
+                    .getFilterWrapped(x -> x.getMastery()
                         .equals(school)).list);
 
             list.forEach(x -> {
@@ -124,7 +125,7 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
             int xpos = guiLeft + 25;
             int ypos = guiTop + 15;
 
-            for (SpellSchools value : SpellSchools.values()) {
+            for (Masteries value : Masteries.values()) {
 
                 addButton(new PickSchoolButton(this, value, xpos, ypos));
 
@@ -202,6 +203,17 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
     @Override
     public Words screenName() {
         return Words.Spells;
+    }
+
+    @Override
+    public boolean shouldAlert() {
+        try {
+            return spells.getAbilitiesData()
+                .getFreeAbilityPoints(data) > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     static class AbilityButton extends ImageButton {
@@ -304,7 +316,7 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
                 String str = spells.getLevelOf(ability) + "/" + ability.getMaxSpellLevelNormal();
                 int xp = (int) (this.x + xSize / 2);
                 int yp = this.y + xSize - 2;
-                GuiUtils.renderScaledText(xp, yp, 0.75F, str, ability.getSchool().format);
+                GuiUtils.renderScaledText(xp, yp, 0.75F, str, ability.getMastery().format);
 
             }
 
@@ -316,13 +328,13 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
         public static int xSize = 32;
         public static int ySize = 32;
 
-        SpellSchools school;
+        Masteries school;
 
         EntityCap.UnitData data;
 
         SpellSchoolScreen screen;
 
-        public PickSchoolButton(SpellSchoolScreen screen, SpellSchools school, int xPos, int yPos) {
+        public PickSchoolButton(SpellSchoolScreen screen, Masteries school, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
             });
 
@@ -364,6 +376,11 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
 
             RenderSystem.enableDepthTest();
 
+            String str = school.locName.translate();
+            int xp = (int) (this.x + xSize / 2) - mc.fontRenderer.getStringWidth(str) / 2;
+            int yp = this.y + ySize + mc.fontRenderer.FONT_HEIGHT / 2;
+            mc.fontRenderer.drawStringWithShadow(str, xp, yp, school.format.getColor());
+
         }
 
     }
@@ -391,12 +408,12 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
         public static int xSize = 22;
         public static int ySize = 161;
 
-        SpellSchools school;
+        Masteries school;
 
         EntityCap.UnitData data;
         PlayerSpellCap.ISpellsCap spells;
 
-        public SchoolButton(SpellSchools school, int xPos, int yPos) {
+        public SchoolButton(Masteries school, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
             });
 
@@ -423,14 +440,14 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
                     list.add(new SText(TextFormatting.RED + "Effective stat bonus is capped at player level."));
                 }
 
-                if (data.getLevel() < SpellSchools.LVL_TO_UNLOCK_2ND_SCHOOL) {
-                    list.add(new SText(TextFormatting.GOLD + "You can unlock a 2nd school of magic at lvl " + SpellSchools.LVL_TO_UNLOCK_2ND_SCHOOL));
+                if (data.getLevel() < Masteries.LVL_TO_UNLOCK_2ND_SCHOOL) {
+                    list.add(new SText(TextFormatting.GOLD + "You can unlock a 2nd school of magic at lvl " + Masteries.LVL_TO_UNLOCK_2ND_SCHOOL));
 
                 }
 
                 TooltipUtils.abilityLevel(list, spells.getAbilitiesData()
                         .getSchoolPoints(school)
-                    , SpellSchools.MAXIMUM_POINTS);
+                    , Masteries.MAXIMUM_POINTS);
 
                 GuiUtils.renderTooltip(list, mouseX, mouseY);
 
@@ -453,7 +470,7 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen {
         public void renderButton(int x, int y, float ticks) {
 
             float filled = (float) spells.getAbilitiesData()
-                .getSchoolPoints(school) / (float) SpellSchools.MAXIMUM_POINTS;
+                .getSchoolPoints(school) / (float) Masteries.MAXIMUM_POINTS;
 
             Minecraft mc = Minecraft.getInstance();
 

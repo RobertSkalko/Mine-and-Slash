@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.util.SoundEvent;
@@ -26,8 +26,8 @@ public class ThornBushSpell extends BaseSpell {
     private ThornBushSpell() {
         super(new ImmutableSpellConfigs() {
             @Override
-            public SpellSchools school() {
-                return SpellSchools.DRUID;
+            public Masteries school() {
+                return Masteries.NATURE;
             }
 
             @Override

@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.PotionStat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -76,8 +76,8 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.SHAMAN;
+    public Masteries getMastery() {
+        return Masteries.STORM;
     }
 
     @Override

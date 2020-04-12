@@ -8,13 +8,14 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SynergyDamageEffect;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
@@ -48,6 +49,28 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy>,
     public String locNameLangFileGUID() {
         return Ref.MODID + "." + "synergy." + this.GUID();
     }
+
+    @Override
+    public String GUID() {
+        return getSpell().GUID() + "_syn_" + getSynergyPlace().number;
+    }
+
+    public enum Place {
+        FIRST(1), SECOND(2), THIRD(3), FOURTH(4);
+
+        public int number;
+
+        Place(int number) {
+            this.number = number;
+        }
+    }
+
+    @Override
+    public final AbilityPlace getAbilityPlace() {
+        return new AbilityPlace(getSpell().getAbilityPlace().x, getSpell().getAbilityPlace().y + getSynergyPlace().number);
+    }
+
+    public abstract Place getSynergyPlace();
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
@@ -140,8 +163,8 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy>,
     }
 
     @Override
-    public final SpellSchools getSchool() {
-        return getRequiredAbility().getSchool();
+    public final Masteries getMastery() {
+        return getRequiredAbility().getMastery();
     }
 
     public void addSpellName(List<ITextComponent> tooltip) {

@@ -16,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -70,8 +70,8 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     }
 
     @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.DRUID;
+    public Masteries getMastery() {
+        return Masteries.NATURE;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
         List<ITextComponent> list = new ArrayList<>();
         list.add(new StringTextComponent("Petrifies Enemy."));
         list.add(new StringTextComponent("If Attacked, does extra damage, but stops effect."));
-        list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
+        list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
     }
@@ -103,7 +103,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     @Override
     public void onBasicAttacked(LivingEntity source, LivingEntity target) {
 
-        int num = getCalc(Load.spells(source)).getCalculatedValue(Load.Unit(source), Load.spells(source), this);
+        int num = getCalc(source).getCalculatedValue(Load.Unit(source), Load.spells(source), this);
 
         DamageEffect dmg = new DamageEffect(null, source, target, num, EffectData.EffectTypes.SPELL, WeaponTypes.None);
         dmg.element = Elements.Nature;

@@ -10,23 +10,24 @@ import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public enum SpellSchools {
+public enum Masteries {
 
-    OCEAN_MYSTIC("ocean_mystic", Elements.Water.format, Words.OceanMystic),
-    EMBER_MAGE("ember_mage", Elements.Fire.format, Words.EmberMage),
-    DRUID("druid", Elements.Nature.format, Words.Druid),
-    SHAMAN("shaman", Elements.Thunder.format, Words.Shaman),
-    RANGER("ranger", TextFormatting.GREEN, Words.Ranger);
+    OCEAN("ocean", Elements.Water.format, Words.Ocean),
+    FIRE("fire", Elements.Fire.format, Words.Fire),
+    NATURE("nature", Elements.Nature.format, Words.Nature),
+    STORM("storm", Elements.Thunder.format, Words.Storm),
+    HUNTING("hunting", TextFormatting.GREEN, Words.Hunting);
 
     public static int MAXIMUM_POINTS = 50;
 
-    SpellSchools(String id, TextFormatting format, Words locName) {
+    Masteries(String id, TextFormatting format, Words locName) {
         this.id = id;
         this.format = format;
         this.locName = locName;
@@ -35,6 +36,16 @@ public enum SpellSchools {
     public String id;
     public TextFormatting format;
     public Words locName;
+
+    public ITextComponent getFullName() {
+        return locName.locName()
+            .appendText(" ")
+            .appendSibling(Words.Mastery.locName());
+    }
+
+    public String getFullNameTranslated() {
+        return locName.locNameForLangFile() + " " + Words.Mastery.locNameForLangFile();
+    }
 
     public List<ExactStatData> getStatsFor(int schoolLevel, EntityCap.UnitData data) { // TODO make it differ per school;
         List<ExactStatData> list = new ArrayList<>();

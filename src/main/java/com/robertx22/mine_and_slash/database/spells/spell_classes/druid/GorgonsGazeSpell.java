@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.potion_effects.druid.PetrifyEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -30,8 +30,8 @@ public class GorgonsGazeSpell extends BaseSpell {
     private GorgonsGazeSpell() {
         super(new ImmutableSpellConfigs() {
             @Override
-            public SpellSchools school() {
-                return SpellSchools.DRUID;
+            public Masteries school() {
+                return Masteries.NATURE;
             }
 
             @Override

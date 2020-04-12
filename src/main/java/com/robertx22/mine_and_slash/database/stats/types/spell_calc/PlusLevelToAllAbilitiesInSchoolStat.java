@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -16,14 +16,14 @@ import java.util.List;
 
 public class PlusLevelToAllAbilitiesInSchoolStat extends Stat implements IAfterStatCalc, IGenerated<PlusLevelToAllAbilitiesInSchoolStat> {
 
-    private SpellSchools school;
+    private Masteries school;
 
-    public PlusLevelToAllAbilitiesInSchoolStat(SpellSchools school) {
+    public PlusLevelToAllAbilitiesInSchoolStat(Masteries school) {
         this.school = school;
         this.isInt = true;
     }
 
-    public SpellSchools getSchool() {
+    public Masteries getSchool() {
         return school;
     }
 
@@ -49,7 +49,7 @@ public class PlusLevelToAllAbilitiesInSchoolStat extends Stat implements IAfterS
 
     @Override
     public String locNameForLangFile() {
-        return "To " + school.locName.locNameForLangFile() + " Skill Levels";
+        return "To " + school.getFullNameTranslated() + " Skill Levels";
     }
 
     @Override
@@ -66,7 +66,7 @@ public class PlusLevelToAllAbilitiesInSchoolStat extends Stat implements IAfterS
     public List<PlusLevelToAllAbilitiesInSchoolStat> generateAllPossibleStatVariations() {
         List<PlusLevelToAllAbilitiesInSchoolStat> list = new ArrayList<>();
 
-        for (SpellSchools value : SpellSchools.values()) {
+        for (Masteries value : Masteries.values()) {
             list.add(new PlusLevelToAllAbilitiesInSchoolStat(value));
         }
 

@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
@@ -39,9 +38,16 @@ import java.util.List;
 
 public abstract class BasePotionEffect extends Effect implements ISlashRegistryEntry<BasePotionEffect>, IAutoLocName, ITooltipList, IAbility {
 
-    public SpellCalcData getCalc(PlayerSpellCap.ISpellsCap cap) {
-        PreCalcSpellConfigs p = getPreCalcConfig();
-        return p.getCalc(cap, getAbilityThatDeterminesLevel());
+    public PreCalcSpellConfigs getConfig(LivingEntity caster) {
+        return getCtx(caster).getConfigFor(getAbilityThatDeterminesLevel());
+    }
+
+    public SpellCalcData getCalc(LivingEntity caster) {
+        return getConfig(caster).getCalc(Load.spells(caster), getAbilityThatDeterminesLevel());
+    }
+
+    public SpellCastContext getCtx(LivingEntity caster) {
+        return new SpellCastContext(caster, 0, getAbilityThatDeterminesLevel());
     }
 
     @Override

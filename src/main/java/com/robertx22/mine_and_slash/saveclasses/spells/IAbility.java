@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
@@ -101,7 +101,7 @@ public interface IAbility extends IGUID, ITooltipList {
     @Nullable
     public IAbility getRequiredAbility();
 
-    public SpellSchools getSchool();
+    public Masteries getMastery();
 
     public default int getSchoolPointsNeeded() {
 
@@ -135,7 +135,7 @@ public interface IAbility extends IGUID, ITooltipList {
             return 40;
         }
         if (place.y == 6) {
-            return SpellSchools.MAXIMUM_POINTS;
+            return Masteries.MAXIMUM_POINTS;
         }
 
         return Integer.MAX_VALUE;
@@ -150,8 +150,8 @@ public interface IAbility extends IGUID, ITooltipList {
             list.add(new SText(TextFormatting.YELLOW + "Effective Ability level: " + getEffectiveAbilityLevel(ctx.spellsCap)));
 
             if (ctx.spellsCap.getAbilitiesData()
-                .getSchoolPoints(this.getSchool()) < getSchoolPointsNeeded()) {
-                list.add(new SText(TextFormatting.RED + "Needs ").appendSibling(getSchool().locName.locName()
+                .getSchoolPoints(this.getMastery()) < getSchoolPointsNeeded()) {
+                list.add(new SText(TextFormatting.RED + "Needs ").appendSibling(getMastery().getFullName()
                     .appendText(" of Level: " + getSchoolPointsNeeded())));
             }
 

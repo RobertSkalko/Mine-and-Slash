@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.saveclasses.spells.calc.ScalingStatCalc;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
@@ -81,7 +81,7 @@ public class BleedPotion extends BasePotionEffect {
     }
 
     @Override
-    public SpellSchools getSchool() {
+    public Masteries getMastery() {
         return null;
     }
 }

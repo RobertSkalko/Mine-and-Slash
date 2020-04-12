@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
@@ -53,7 +53,7 @@ public class PantsNature implements IUnique {
             new CoreStatFlat(Strength.INSTANCE).size(StatMod.Size.HALF_MORE),
             new ElementalResistFlat(Elements.Nature).size(StatMod.Size.HALF_MORE),
             new ElementalResistFlat(Elements.Thunder).size(StatMod.Size.HALF_MORE),
-            new PlusAllSkillLevelsInSchoolFlat(SpellSchools.DRUID)
+            new PlusAllSkillLevelsInSchoolFlat(Masteries.NATURE)
         );
     }
 

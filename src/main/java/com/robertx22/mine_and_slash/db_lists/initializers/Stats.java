@@ -36,7 +36,7 @@ import com.robertx22.mine_and_slash.registry.empty_entries.EmptySpell;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new LuckStat());
 
                     add(new PlusAbilityLevelStat(new EmptySpell()));
-                    add(new PlusLevelToAllAbilitiesInSchoolStat(SpellSchools.OCEAN_MYSTIC));
+                    add(new PlusLevelToAllAbilitiesInSchoolStat(Masteries.OCEAN));
                     add(new LootTypeBonus(LootType.NormalItem));
                     add(new WeaponDamage(WeaponTypes.None));
                     add(new ElementalAttackDamage(Elements.Physical));

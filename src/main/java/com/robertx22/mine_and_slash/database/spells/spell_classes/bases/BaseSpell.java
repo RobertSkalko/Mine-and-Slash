@@ -22,7 +22,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitDat
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -163,11 +163,11 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     @Override
     public final ResourceLocation getIconLoc() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/spells/" + getSchool().id + "/" + GUID() + ".png");
+        return new ResourceLocation(Ref.MODID, "textures/gui/spells/" + getMastery().id + "/" + GUID() + ".png");
     }
 
     @Override
-    public final SpellSchools getSchool() {
+    public final Masteries getMastery() {
         return immutableConfigs.school();
     }
 
@@ -318,7 +318,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent(TextFormatting.BOLD + "" + getSchool().format).appendSibling(
+        list.add(new StringTextComponent(TextFormatting.BOLD + "" + getMastery().format).appendSibling(
             getName().locName()));
 
         TooltipUtils.addEmpty(list);
@@ -333,7 +333,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
         TooltipUtils.addEmpty(list);
 
-        list.add(new StringTextComponent(getSchool().format + "School: ").appendSibling(getSchool().locName.locName()));
+        list.add(new StringTextComponent(getMastery().format + "").appendSibling(getMastery().getFullName()));
 
         TooltipUtils.addEmpty(list);
 

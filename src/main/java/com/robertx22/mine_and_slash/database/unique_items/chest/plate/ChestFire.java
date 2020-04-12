@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 
 import java.util.Arrays;
@@ -47,7 +47,7 @@ public class ChestFire implements IUnique {
             new ElementalResistFlat(Elements.Fire),
             new ElementalSpellDamageFlat(Elements.Fire),
             new ElementalResistFlat(Elements.Water).size(StatMod.Size.ONE_LESS),
-            new PlusAllSkillLevelsInSchoolFlat(SpellSchools.EMBER_MAGE)
+            new PlusAllSkillLevelsInSchoolFlat(Masteries.FIRE)
         );
     }
 

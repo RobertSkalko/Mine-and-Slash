@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.potion_effects.druid;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.druid.NatureBalmSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -9,7 +8,7 @@ import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
@@ -34,10 +33,7 @@ public class RegenerateEffect extends BasePotionEffect {
                 ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, ctx.entity, 3);
             } else {
 
-                SpellCastContext sc = new SpellCastContext(ctx.caster, 0, getAbilityThatDeterminesLevel());
-
-                int num = sc.getConfigFor(getAbilityThatDeterminesLevel())
-                    .getCalc(ctx.spellsCap, getAbilityThatDeterminesLevel())
+                int num = getCalc(ctx.caster)
                     .getCalculatedValue(ctx.casterData, ctx.spellsCap, getAbilityThatDeterminesLevel());
 
                 ResourcesData.Context hp = new ResourcesData.Context(ctx.caster, ctx.entity, ctx.casterData,
@@ -52,7 +48,7 @@ public class RegenerateEffect extends BasePotionEffect {
         }, info -> {
             List<ITextComponent> list = new ArrayList<>();
             list.add(new StringTextComponent("Heals user."));
-            list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
+            list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), getAbilityThatDeterminesLevel()));
             return list;
         }));
 
@@ -81,9 +77,9 @@ public class RegenerateEffect extends BasePotionEffect {
     }
 
     @Override
-    public SpellSchools getSchool() {
+    public Masteries getMastery() {
         if (getSpell() != null) {
-            return getSpell().getSchool();
+            return getSpell().getMastery();
         } else {
             return null;
         }

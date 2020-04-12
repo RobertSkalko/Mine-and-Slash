@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -21,7 +21,7 @@ public class TryRemoveSchoolPointPacket {
 
     }
 
-    public TryRemoveSchoolPointPacket(SpellSchools school) {
+    public TryRemoveSchoolPointPacket(Masteries school) {
         this.school = school.name();
     }
 
@@ -49,7 +49,7 @@ public class TryRemoveSchoolPointPacket {
 
                     PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                    SpellSchools school = SpellSchools.valueOf(pkt.school);
+                    Masteries school = Masteries.valueOf(pkt.school);
 
                     if (school != null) {
 

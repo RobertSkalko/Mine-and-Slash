@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.config.forge;
 
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 
 import static net.minecraftforge.common.ForgeConfigSpec.*;
 
@@ -83,7 +83,7 @@ public class ServerContainer {
 
         SPELL_POINTS_AT_MAX_LEVEL = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("SPELL_POINTS_AT_MAX_LEVEL", (SpellSchools.MAXIMUM_POINTS * 2) + 75, 0, 1000);
+            .defineInRange("SPELL_POINTS_AT_MAX_LEVEL", (Masteries.MAXIMUM_POINTS * 2) + 80, 0, 1000);
 
         STARTING_SPELL_POINTS = builder.comment(".")
             .translation("mmorpg.word.")

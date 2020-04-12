@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -27,8 +27,8 @@ public class ThrowFlamesSpell extends BaseSpell {
             new ImmutableSpellConfigs() {
 
                 @Override
-                public SpellSchools school() {
-                    return SpellSchools.EMBER_MAGE;
+                public Masteries school() {
+                    return Masteries.FIRE;
                 }
 
                 @Override

@@ -24,6 +24,7 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import net.minecraft.entity.player.PlayerEntity;
@@ -131,7 +132,7 @@ public class OnLogin {
             for (int i = 0; i < 10; i++) {
                 GearBlueprint print = new GearBlueprint(100);
                 print.level.LevelRange = false;
-                print.rarity.setSpecificRarity(5);
+                print.rarity.setSpecificRarity(IRarity.Highest);
                 player.inventory.addItemStackToInventory(GearCreationUtils.CreateStack(print, GearItemEnum.NORMAL));
             }
 

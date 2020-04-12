@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.potion_effects.ranger.ImbueEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -26,8 +26,8 @@ public class ImbueSpell extends BaseSpell {
         super(
             new ImmutableSpellConfigs() {
                 @Override
-                public SpellSchools school() {
-                    return SpellSchools.RANGER;
+                public Masteries school() {
+                    return Masteries.HUNTING;
                 }
 
                 @Override
@@ -56,7 +56,7 @@ public class ImbueSpell extends BaseSpell {
         c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.2F);
         c.set(SC.CAST_TIME_TICKS, 25, 10);
         c.set(SC.COOLDOWN_SECONDS, 45, 25);
-        c.set(SC.DURATION_TICKS, 60 * 30, 60 * 45);
+        c.set(SC.DURATION_TICKS, 20 * 30, 20 * 45);
 
         c.setMaxLevel(14);
         return c;

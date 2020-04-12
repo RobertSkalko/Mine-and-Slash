@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 
@@ -26,7 +26,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
     @Store
     public HashMap<String, Integer> schoolPoints = new HashMap<>();
 
-    public int getSchoolPoints(SpellSchools school) {
+    public int getSchoolPoints(Masteries school) {
         return schoolPoints.getOrDefault(school.name(), 0);
     }
 
@@ -40,12 +40,12 @@ public class AllocatedAbilitiesData implements IApplyableStats {
                 .setBonusLvl(0));
     }
 
-    public void addBonusAbilityLevelsTo(SpellSchools school, int lvls) {
+    public void addBonusAbilityLevelsTo(Masteries school, int lvls) {
         map.entrySet()
             .forEach(e -> {
                 if (e.getValue()
                     .getAbility()
-                    .getSchool()
+                    .getMastery()
                     .equals(school)) {
                     e.getValue()
                         .setBonusLvl(e.getValue()
@@ -54,7 +54,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
             });
     }
 
-    public boolean canRemoveSchoolPoint(SpellSchools school) {
+    public boolean canRemoveSchoolPoint(Masteries school) {
 
         if (resetPoints < 1) {
             return false;
@@ -73,7 +73,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
                 IAbility ability = entry.getValue()
                     .getAbility();
 
-                if (ability.getSchool()
+                if (ability.getMastery()
                     .equals(school)) {
                     if (ability.getSchoolPointsNeeded() > points - 1) {
                         return false;
@@ -85,13 +85,13 @@ public class AllocatedAbilitiesData implements IApplyableStats {
         return true;
     }
 
-    public boolean canAddPointsToSchool(SpellSchools school, EntityCap.UnitData data) {
+    public boolean canAddPointsToSchool(Masteries school, EntityCap.UnitData data) {
 
         if (getFreeAbilityPoints(data) < 1) {
             return false;
         }
 
-        if (data.getLevel() < SpellSchools.LVL_TO_UNLOCK_2ND_SCHOOL) {
+        if (data.getLevel() < Masteries.LVL_TO_UNLOCK_2ND_SCHOOL) {
             if (getSchoolsWithAllocatedPoints() == 1) {
                 if (getSchoolPoints(school) < 1) {
                     return false;
@@ -105,7 +105,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
             }
         }
 
-        return getSchoolPoints(school) < SpellSchools.MAXIMUM_POINTS;
+        return getSchoolPoints(school) < Masteries.MAXIMUM_POINTS;
     }
 
     public int getSchoolsWithAllocatedPoints() {
@@ -128,7 +128,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
             schoolPoints.entrySet()
                 .forEach(x -> {
 
-                    SpellSchools school = SpellSchools.valueOf(x.getKey());
+                    Masteries school = Masteries.valueOf(x.getKey());
                     int points = x.getValue();
 
                     school.getStatsFor(points, data)
@@ -176,12 +176,12 @@ public class AllocatedAbilitiesData implements IApplyableStats {
         return list;
     }
 
-    public void addSchoolPoint(SpellSchools school) {
+    public void addSchoolPoint(Masteries school) {
         int points = schoolPoints.getOrDefault(school.name(), 0) + 1;
         schoolPoints.put(school.name(), points);
     }
 
-    public void removeSchoolPoint(SpellSchools school) {
+    public void removeSchoolPoint(Masteries school) {
         resetPoints--;
         int points = schoolPoints.getOrDefault(school.name(), 0) - 1;
         schoolPoints.put(school.name(), points);
@@ -240,7 +240,7 @@ public class AllocatedAbilitiesData implements IApplyableStats {
             }
         }
 
-        int current = schoolPoints.getOrDefault(ability.getSchool()
+        int current = schoolPoints.getOrDefault(ability.getMastery()
             .name(), 0);
         int needed = ability.getSchoolPointsNeeded();
 

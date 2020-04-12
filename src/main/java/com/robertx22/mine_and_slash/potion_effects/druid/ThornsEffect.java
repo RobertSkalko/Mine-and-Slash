@@ -16,7 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.SpellSchools;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -37,7 +37,7 @@ public class ThornsEffect extends BasePotionEffect implements IApplyStatPotion {
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
         this.tickActions.add(new OnTickAction(ctx -> {
-            int num = getCalc(ctx.spellsCap).getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
+            int num = getCalc(ctx.caster).getCalculatedValue(ctx.casterData, ctx.spellsCap, this);
 
             DamageEffect dmg = new DamageEffect(null, ctx.caster, ctx.entity, num, ctx.casterData, ctx.entityData,
                 EffectData.EffectTypes.SPELL, WeaponTypes.None
@@ -54,7 +54,7 @@ public class ThornsEffect extends BasePotionEffect implements IApplyStatPotion {
         }, info -> {
             List<ITextComponent> list = new ArrayList<>();
             list.add(new StringTextComponent("Does damage:"));
-            list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
+            list.addAll(getCalc(info.player).GetTooltipString(info, Load.spells(info.player), this));
 
             return list;
         }));
@@ -100,8 +100,8 @@ public class ThornsEffect extends BasePotionEffect implements IApplyStatPotion {
     }
 
     @Override
-    public SpellSchools getSchool() {
-        return SpellSchools.DRUID;
+    public Masteries getMastery() {
+        return Masteries.NATURE;
     }
 
 }
