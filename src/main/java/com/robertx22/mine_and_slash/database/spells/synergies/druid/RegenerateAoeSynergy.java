@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.RegenerateEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -26,11 +25,6 @@ import java.util.List;
 public class RegenerateAoeSynergy extends OnSpellCastSynergy {
 
     @Override
-    public String GUID() {
-        return "regenerate_aoe_synergy";
-    }
-
-    @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
@@ -39,6 +33,11 @@ public class RegenerateAoeSynergy extends OnSpellCastSynergy {
         list.add(new StringTextComponent("Buff is applied in AOE around the caster"));
 
         return list;
+    }
+
+    @Override
+    public Place getSynergyPlace() {
+        return Place.SECOND;
     }
 
     @Override
@@ -57,11 +56,6 @@ public class RegenerateAoeSynergy extends OnSpellCastSynergy {
         c.set(SC.RADIUS, 1F, 3.5F);
         c.setMaxLevel(3);
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(new RegenerateThornsSynergy());
     }
 
     @Override

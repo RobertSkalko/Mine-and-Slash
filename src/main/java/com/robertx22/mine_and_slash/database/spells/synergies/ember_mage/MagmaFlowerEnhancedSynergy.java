@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.MagmaFlowerSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -15,11 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MagmaFlowerEnhancedSynergy extends Synergy {
-
-    @Override
-    public String GUID() {
-        return "magma_flower_enhanced_synergy";
-    }
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -47,8 +41,8 @@ public class MagmaFlowerEnhancedSynergy extends Synergy {
     }
 
     @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(getSpell());
+    public Place getSynergyPlace() {
+        return Place.FIRST;
     }
 
     @Nullable

@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynerg
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -19,11 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LightningTotemStaticSynergy extends OnDamageDoneSynergy {
-
-    @Override
-    public String GUID() {
-        return "lightning_totem_static_synergy";
-    }
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -50,8 +44,8 @@ public class LightningTotemStaticSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(getSpell());
+    public Place getSynergyPlace() {
+        return Place.FIRST;
     }
 
     @Nullable

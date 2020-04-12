@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynerg
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ranger.HunterInstinctEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import net.minecraft.util.text.ITextComponent;
@@ -18,11 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
-
-    @Override
-    public String GUID() {
-        return "recoil_add_hunter_synergy";
-    }
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -37,6 +31,11 @@ public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
+    public Place getSynergyPlace() {
+        return Place.FIRST;
+    }
+
+    @Override
     public void alterSpell(PreCalcSpellConfigs c) {
         c.set(SC.MANA_COST, 1, 1);
     }
@@ -47,11 +46,6 @@ public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
         c.set(SC.AMOUNT, 1, 3);
         c.setMaxLevel(8);
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(getSpell());
     }
 
     @Nullable

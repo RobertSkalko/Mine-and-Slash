@@ -51,7 +51,7 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy>,
     }
 
     @Override
-    public String GUID() {
+    public final String GUID() {
         return getSpell().GUID() + "_syn_" + getSynergyPlace().number;
     }
 

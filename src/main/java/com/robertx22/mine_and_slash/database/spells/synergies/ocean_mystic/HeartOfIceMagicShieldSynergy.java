@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean_mystic.H
 import com.robertx22.mine_and_slash.database.spells.synergies.OnSpellCastSynergy;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.util.text.ITextComponent;
@@ -18,11 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeartOfIceMagicShieldSynergy extends OnSpellCastSynergy {
-
-    @Override
-    public String GUID() {
-        return "heart_of_ice_magic_shield_synergy";
-    }
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -38,6 +32,11 @@ public class HeartOfIceMagicShieldSynergy extends OnSpellCastSynergy {
     }
 
     @Override
+    public Place getSynergyPlace() {
+        return Place.SECOND;
+    }
+
+    @Override
     public void alterSpell(PreCalcSpellConfigs c) {
         c.set(SC.MANA_COST, 2, 6);
     }
@@ -48,11 +47,6 @@ public class HeartOfIceMagicShieldSynergy extends OnSpellCastSynergy {
         c.set(SC.BASE_VALUE, 2, 12);
         c.setMaxLevel(8);
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(new HeartOfIceFrostSynergy());
     }
 
     @Nullable

@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.shaman.Thunder
 import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
@@ -18,11 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ThunderDashEnergySynergy extends OnDamageDoneSynergy {
-
-    @Override
-    public String GUID() {
-        return "thunder_dash_energy_synergy";
-    }
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -51,8 +45,8 @@ public class ThunderDashEnergySynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(ThunderDashSpell.getInstance());
+    public Place getSynergyPlace() {
+        return Place.FIRST;
     }
 
     @Nullable

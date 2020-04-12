@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.database.spells.spell_classes.ember_mage.MagmaFlowerSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
@@ -18,11 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MagmaFlowerHealSynergy extends OnDamageDoneSynergy {
-
-    @Override
-    public String GUID() {
-        return "magma_flower_heal_synergy";
-    }
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -39,6 +33,11 @@ public class MagmaFlowerHealSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
+    public Place getSynergyPlace() {
+        return Place.SECOND;
+    }
+
+    @Override
     public void alterSpell(PreCalcSpellConfigs c) {
         c.set(SC.MANA_COST, 1, 3);
     }
@@ -49,11 +48,6 @@ public class MagmaFlowerHealSynergy extends OnDamageDoneSynergy {
         c.set(SC.BASE_VALUE, 1, 6);
         c.setMaxLevel(8);
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(new MagmaFlowerEnhancedSynergy());
     }
 
     @Nullable

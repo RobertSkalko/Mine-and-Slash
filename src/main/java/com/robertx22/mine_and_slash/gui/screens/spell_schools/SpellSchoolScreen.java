@@ -208,8 +208,9 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen, IAler
     @Override
     public boolean shouldAlert() {
         try {
-            return spells.getAbilitiesData()
-                .getFreeAbilityPoints(data) > 0;
+            return Load.spells(Minecraft.getInstance().player)
+                .getAbilitiesData()
+                .getFreeAbilityPoints(Load.Unit(Minecraft.getInstance().player)) > 0;
         } catch (Exception e) {
             e.printStackTrace();
         }

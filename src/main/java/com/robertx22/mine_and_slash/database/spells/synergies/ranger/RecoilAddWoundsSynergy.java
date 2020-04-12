@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynerg
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ranger.WoundsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import net.minecraft.util.text.ITextComponent;
@@ -18,11 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecoilAddWoundsSynergy extends OnDamageDoneSynergy {
-
-    @Override
-    public String GUID() {
-        return "recoil_add_wounds_synergy";
-    }
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -50,8 +44,8 @@ public class RecoilAddWoundsSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(new RecoilAddHunterSynergy());
+    public Place getSynergyPlace() {
+        return Place.SECOND;
     }
 
     @Nullable

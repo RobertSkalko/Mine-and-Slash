@@ -71,7 +71,7 @@ public class NatureBalmSpell extends BaseSpell {
 
     @Override
     public String GUID() {
-        return "regenerate";
+        return "nature_balm";
     }
 
     @Override

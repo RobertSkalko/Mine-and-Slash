@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
@@ -28,11 +27,6 @@ import java.util.List;
 public class FireballBurnConsumeSynergy extends OnDamageDoneSynergy {
 
     @Override
-    public String GUID() {
-        return "fireball_consume_burn_synergy";
-    }
-
-    @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
@@ -43,6 +37,11 @@ public class FireballBurnConsumeSynergy extends OnDamageDoneSynergy {
         list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
         return list;
+    }
+
+    @Override
+    public Place getSynergyPlace() {
+        return Place.FIRST;
     }
 
     @Override
@@ -92,11 +91,6 @@ public class FireballBurnConsumeSynergy extends OnDamageDoneSynergy {
         c.set(SC.RADIUS, 1.5F, 3);
         c.setMaxLevel(6);
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(FireballSpell.getInstance());
     }
 
     @Nullable

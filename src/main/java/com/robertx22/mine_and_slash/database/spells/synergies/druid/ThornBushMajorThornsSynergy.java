@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynerg
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.ThornsEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
@@ -19,11 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ThornBushMajorThornsSynergy extends OnDamageDoneSynergy {
-
-    @Override
-    public String GUID() {
-        return "thorn_bush_major_thorns_synergy";
-    }
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -66,8 +60,8 @@ public class ThornBushMajorThornsSynergy extends OnDamageDoneSynergy {
     }
 
     @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(ThornBushSpell.getInstance());
+    public Place getSynergyPlace() {
+        return Place.FIRST;
     }
 
     @Nullable

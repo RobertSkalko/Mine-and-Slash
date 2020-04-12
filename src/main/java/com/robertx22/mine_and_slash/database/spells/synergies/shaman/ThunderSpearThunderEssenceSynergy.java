@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
 import com.robertx22.mine_and_slash.potion_effects.shaman.ThunderEssenceEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -22,11 +21,6 @@ import java.util.List;
 public class ThunderSpearThunderEssenceSynergy extends OnDamageDoneSynergy {
 
     @Override
-    public String GUID() {
-        return "thunder_spear_thunder_essence_synergy";
-    }
-
-    @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
@@ -35,6 +29,11 @@ public class ThunderSpearThunderEssenceSynergy extends OnDamageDoneSynergy {
         list.add(new StringTextComponent("Chance for attacks give: " + ThunderEssenceEffect.INSTANCE.locNameForLangFile()));
 
         return list;
+    }
+
+    @Override
+    public Place getSynergyPlace() {
+        return Place.FIRST;
     }
 
     @Override
@@ -48,11 +47,6 @@ public class ThunderSpearThunderEssenceSynergy extends OnDamageDoneSynergy {
         c.set(SC.CHANCE, 20, 75);
         c.setMaxLevel(8);
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(getSpell());
     }
 
     @Nullable

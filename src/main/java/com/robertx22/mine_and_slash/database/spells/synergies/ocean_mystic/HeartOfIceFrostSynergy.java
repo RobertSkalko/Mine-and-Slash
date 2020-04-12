@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.database.spells.synergies.OnSpellCastSynergy
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ColdEssenceEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -19,11 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeartOfIceFrostSynergy extends OnSpellCastSynergy {
-
-    @Override
-    public String GUID() {
-        return "heart_of_ice_frost_synergy";
-    }
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -74,8 +68,8 @@ public class HeartOfIceFrostSynergy extends OnSpellCastSynergy {
     }
 
     @Override
-    public AbilityPlace getAbilityPlace() {
-        return AbilityPlace.upFrom(getRequiredAbility());
+    public Place getSynergyPlace() {
+        return Place.FIRST;
     }
 
     @Override
