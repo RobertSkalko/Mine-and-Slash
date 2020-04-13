@@ -40,7 +40,9 @@ public class SpellCastingData {
             BaseSpell spell = getSpellBeingCast();
             if (spell != null && spell.goesOnCooldownIfCastCanceled()) {
                 SpellData data = spellDatas.getOrDefault(spell.GUID(), new SpellData());
-                data.setCooldown(spell.getCooldownInTicks(ctx));
+
+                int cd = spell.getCooldownInTicks(ctx);
+                data.setCooldown(cd);
             }
 
             spellBeingCast = "";
@@ -96,9 +98,7 @@ public class SpellCastingData {
                 }
             }
 
-            if (!ctx.castedThisTick) {
-                tryCast(player, spells);
-            }
+            tryCast(player, spells, ctx);
 
             castingTicksLeft--;
             castingTicksDone++;
@@ -176,7 +176,7 @@ public class SpellCastingData {
         this.castingTicksDone = 0;
     }
 
-    private void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells) {
+    private void tryCast(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, SpellCastContext ctx) {
 
         if (!spellBeingCast.isEmpty()) {
             if (castingTicksLeft <= 0) {
@@ -186,8 +186,6 @@ public class SpellCastingData {
                 if (spells.getAbilitiesData()
                     .getAllocatedSpells()
                     .contains(spell)) {
-
-                    SpellCastContext ctx = new SpellCastContext(player, this.castingTicksDone, spell);
 
                     int timesToCast = (int) ctx.getConfigFor(spell)
                         .get(SC.TIMES_TO_CAST)
@@ -291,7 +289,8 @@ public class SpellCastingData {
         SpellCastContext ctx = new SpellCastContext(player, 0, spell);
 
         if (spell.shouldActivateCooldown(player, spells)) {
-            data.setCooldown(spell.getCooldownInTicks(ctx));
+            int cd = spell.getCooldownInTicks(ctx);
+            data.setCooldown(cd);
         }
 
         spellDatas.put(spell.GUID(), data);

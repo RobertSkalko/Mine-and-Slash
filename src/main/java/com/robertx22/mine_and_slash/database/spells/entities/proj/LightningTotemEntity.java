@@ -68,7 +68,8 @@ public class LightningTotemEntity extends EntityBaseProjectile {
 
                 entities.forEach(x -> {
 
-                    SpellDamageEffect dmg = dealSpellDamageTo(x, new Options().activatesEffect(false));
+                    SpellDamageEffect dmg = dealSpellDamageTo(x, new Options().activatesEffect(false)
+                        .knockbacks(false));
 
                     dmg.Activate();
 
