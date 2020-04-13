@@ -48,7 +48,7 @@ public class PoisonedWeaponsEffect extends BasePotionEffect implements IApplySta
     @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
-        list.add(new PotionStat(2.5F, new ElementalAttackDamage(Elements.Nature)));
+        list.add(new PotionStat(3, new ElementalAttackDamage(Elements.Nature)));
         return list;
     }
 

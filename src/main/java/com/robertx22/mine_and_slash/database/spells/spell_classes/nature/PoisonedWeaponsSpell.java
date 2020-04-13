@@ -52,10 +52,10 @@ public class PoisonedWeaponsSpell extends BaseSpell {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.MANA_COST, 20, 40);
-        c.set(SC.BASE_VALUE, 2, 9);
+        c.set(SC.BASE_VALUE, 3, 10);
         c.set(SC.CAST_TIME_TICKS, 30, 15);
         c.set(SC.COOLDOWN_SECONDS, 120, 60);
-        c.set(SC.DURATION_TICKS, 60 * 30, 60 * 45);
+        c.set(SC.DURATION_TICKS, 45 * 20, 100 * 20);
 
         c.setMaxLevel(12);
         return c;

@@ -17,15 +17,20 @@ public class OnHurtEvent {
             return;
         }
 
-        LivingHurtUtils.stopMobInWallDamageInMaps(event);
-        LivingHurtUtils.onHurtRecordNonPlayerDmg(event);
-        LivingHurtUtils.modifyDamage(event);
-
-        if (DamageEventData.isValidEntityDamage(event)) {
+        try {
+            // order matters here
             LivingHurtUtils.onAttack(event);
+            LivingHurtUtils.modifyDamage(event);
+            LivingHurtUtils.onHurtRecordNonPlayerDmg(event);
+            // order matters here
+
+            LivingHurtUtils.stopMobInWallDamageInMaps(event);
             LivingHurtUtils.damageCurioItems(event.getEntityLiving());
             LivingHurtUtils.onBossHurt(event.getEntityLiving());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     @SubscribeEvent

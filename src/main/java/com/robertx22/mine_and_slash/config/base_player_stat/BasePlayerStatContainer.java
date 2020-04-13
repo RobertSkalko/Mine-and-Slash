@@ -43,11 +43,7 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
         c.spell(HealthRegen.getInstance(), 3);
         c.spell(MagicShieldRegen.getInstance(), 3);
 
-        c.spell(PhysicalDamage.getInstance(), 0.75F);
-        c.spell(ManaRegen.getInstance(), 3);
-        c.spell(ManaRegen.getInstance(), 3);
-        c.spell(ManaRegen.getInstance(), 3);
-        c.spell(ManaRegen.getInstance(), 3);
+        c.spell(PhysicalDamage.getInstance(), 0.5F);
 
         return c;
 

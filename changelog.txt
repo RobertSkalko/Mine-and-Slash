@@ -1,3 +1,10 @@
+3.6.2
+* fix entrance room 
+
+3.6.1
+* should fix mobs sometimes not doing dmg
+* fix effect stats scaling to player level instead of spell level
+
 3.6.0
 
 SPELL REWORK!

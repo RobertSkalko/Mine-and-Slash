@@ -22,7 +22,7 @@ public class WideNatureRoomAdder extends BaseRoomAdder {
 
         add("basement_boss", RoomType.CURVED_HALLWAY).setBoss();
         add("hanging_platforms", RoomType.CURVED_HALLWAY);
-        add("zombie_boss_shrooms", RoomType.ENTRANCE).setBoss();
+        add("zombie_boss_shrooms", RoomType.END).setBoss();
         add("camp_site", RoomType.ENTRANCE);
         add("big_tree", RoomType.FOUR_WAY);
         add("ambush_cave", RoomType.STRAIGHT_HALLWAY);

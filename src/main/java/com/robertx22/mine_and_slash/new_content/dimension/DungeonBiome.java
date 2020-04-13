@@ -21,7 +21,7 @@ public class DungeonBiome extends Biome {
     public DungeonBiome(Builder biomeBuilder) {
         super(biomeBuilder.surfaceBuilder(new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(SurfaceBuilder.DEFAULT, SurfaceBuilder.AIR_CONFIG))
             .precipitation(RainType.NONE)
-            .category(Biome.Category.NONE)
+            .category(Category.NONE)
             .depth(0.0F)
             .scale(0.025F)
             .temperature(0.8F)
