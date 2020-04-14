@@ -1,11 +1,11 @@
-package com.robertx22.mine_and_slash.database.spells.synergies.ember_mage;
+package com.robertx22.mine_and_slash.database.spells.synergies.hunting;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.fire.VolcanoSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.hunting.ImbueSpell;
+import com.robertx22.mine_and_slash.database.spells.synergies.base.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
+import com.robertx22.mine_and_slash.potion_effects.ranger.HunterInstinctEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VolcanoBurnSynergy extends OnDamageDoneSynergy {
+public class ImbueAddHunterSynergy extends OnDamageDoneSynergy {
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -26,9 +26,15 @@ public class VolcanoBurnSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Chance to apply: " + BurnEffect.INSTANCE.locNameForLangFile()));
+        list.add(new StringTextComponent("Attacks have chance to give: " + HunterInstinctEffect.getInstance()
+            .locNameForLangFile()));
 
         return list;
+    }
+
+    @Override
+    public Place getSynergyPlace() {
+        return Place.FIRST;
     }
 
     @Override
@@ -39,36 +45,28 @@ public class VolcanoBurnSynergy extends OnDamageDoneSynergy {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.CHANCE, 5, 50);
-        c.setMaxLevel(6);
+        c.set(SC.CHANCE, 20, 75);
+        c.setMaxLevel(8);
         return c;
-    }
-
-    @Override
-    public Place getSynergyPlace() {
-        return Place.FIRST;
     }
 
     @Nullable
     @Override
     public IAbility getRequiredAbility() {
-        return VolcanoSpell.getInstance();
+        return ImbueSpell.getInstance();
     }
 
     @Override
-    public void tryActivate(SpellDamageEffect effect) {
-
-        float chance = getContext(effect.source).getConfigFor(this)
+    public void tryActivate(SpellDamageEffect ctx) {
+        if (RandomUtils.roll(getContext(ctx.source).getConfigFor(this)
             .get(SC.CHANCE)
-            .get(Load.spells(effect.source), this);
-
-        if (RandomUtils.roll(chance)) {
-            PotionEffectUtils.apply(BurnEffect.INSTANCE, effect.source, effect.target);
+            .get(Load.spells(ctx.source), this))) {
+            PotionEffectUtils.reApplyToSelf(HunterInstinctEffect.getInstance(), ctx.source);
         }
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Volcano Burn";
+        return "Imbue Instinct";
     }
 }

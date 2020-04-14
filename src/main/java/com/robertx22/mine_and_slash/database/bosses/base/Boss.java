@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.bosses.base;
 
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.base.Synergy;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;

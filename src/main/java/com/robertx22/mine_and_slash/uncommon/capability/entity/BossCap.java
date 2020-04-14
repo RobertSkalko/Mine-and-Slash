@@ -3,10 +3,10 @@ package com.robertx22.mine_and_slash.uncommon.capability.entity;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.bosses.base.BossData;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.spells.synergies.base.Synergy;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.MobCaps;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonMobCap;
@@ -136,11 +136,14 @@ public class BossCap {
         @Override
         public void onMobCreation(LivingEntity en) {
             if (!doneGenerating) {
-                if (RandomUtils.roll(ModConfig.INSTANCE.Server.MOB_BOSS_CHANCE_IN_MAPS.get().floatValue())) {
+                if (RandomUtils.roll(ModConfig.INSTANCE.Server.MOB_BOSS_CHANCE_IN_MAPS.get()
+                    .floatValue())) {
                     if (WorldUtils.isMapWorldClass(en.world)) {
                         if (EntityTypeUtils.isMob(en)) {
                             this.data = new BossData();
-                            this.data.boss = SlashRegistry.Bosses().random().GUID();
+                            this.data.boss = SlashRegistry.Bosses()
+                                .random()
+                                .GUID();
                             this.isBoss = true;
                             this.doneGenerating = true;
                         }
@@ -151,7 +154,8 @@ public class BossCap {
 
         @Override
         public void onHealthTreshholdTriggered(LivingEntity en, BossData.HealthTreshhold treshhold) {
-            this.data.getBoss().onHealthTreshholdTriggered(en, treshhold);
+            this.data.getBoss()
+                .onHealthTreshholdTriggered(en, treshhold);
         }
 
         @Override

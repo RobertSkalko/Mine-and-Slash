@@ -1,11 +1,15 @@
-package com.robertx22.mine_and_slash.database.spells.synergies.ember_mage;
+package com.robertx22.mine_and_slash.database.spells.synergies.storm;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.fire.MagmaFlowerSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.Synergy;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.storm.LightningTotemSpell;
+import com.robertx22.mine_and_slash.database.spells.synergies.base.OnDamageDoneSynergy;
+import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
+import com.robertx22.mine_and_slash.potion_effects.shaman.StaticEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
+import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -13,7 +17,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MagmaFlowerEnhancedSynergy extends Synergy {
+public class LightningTotemStaticSynergy extends OnDamageDoneSynergy {
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -21,22 +25,21 @@ public class MagmaFlowerEnhancedSynergy extends Synergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Increases tickrate and radius"));
+        list.add(new StringTextComponent("Chance to appply debuff: " + StaticEffect.INSTANCE.locNameForLangFile()));
 
         return list;
     }
 
     @Override
     public void alterSpell(PreCalcSpellConfigs c) {
-        c.set(SC.MANA_COST, 3, 6);
-        c.set(SC.TICK_RATE, -1, -15);
-        c.set(SC.RADIUS, 0.5F, 2F);
+        c.set(SC.MANA_COST, 1, 2);
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.setMaxLevel(6);
+        c.set(SC.CHANCE, 20, 75);
+        c.setMaxLevel(8);
         return c;
     }
 
@@ -48,11 +51,18 @@ public class MagmaFlowerEnhancedSynergy extends Synergy {
     @Nullable
     @Override
     public IAbility getRequiredAbility() {
-        return MagmaFlowerSpell.getInstance();
+        return LightningTotemSpell.getInstance();
+    }
+
+    @Override
+    public void tryActivate(SpellDamageEffect ctx) {
+        if (RandomUtils.roll(get(ctx.source, SC.CHANCE))) {
+            PotionEffectUtils.apply(StaticEffect.INSTANCE, ctx.source, ctx.target);
+        }
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Magma Bloom";
+        return "Totem Static";
     }
 }

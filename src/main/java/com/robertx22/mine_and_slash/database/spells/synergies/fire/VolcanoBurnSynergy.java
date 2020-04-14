@@ -1,14 +1,16 @@
-package com.robertx22.mine_and_slash.database.spells.synergies.ranger;
+package com.robertx22.mine_and_slash.database.spells.synergies.fire;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.hunting.RecoilShotSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.fire.VolcanoSpell;
+import com.robertx22.mine_and_slash.database.spells.synergies.base.OnDamageDoneSynergy;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.ranger.HunterInstinctEffect;
+import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -16,7 +18,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
+public class VolcanoBurnSynergy extends OnDamageDoneSynergy {
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -24,10 +26,22 @@ public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Chance to give: " + HunterInstinctEffect.getInstance()
-            .locNameForLangFile()));
+        list.add(new StringTextComponent("Chance to apply: " + BurnEffect.INSTANCE.locNameForLangFile()));
 
         return list;
+    }
+
+    @Override
+    public void alterSpell(PreCalcSpellConfigs c) {
+        c.set(SC.MANA_COST, 1, 2);
+    }
+
+    @Override
+    public PreCalcSpellConfigs getPreCalcConfig() {
+        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
+        c.set(SC.CHANCE, 5, 50);
+        c.setMaxLevel(6);
+        return c;
     }
 
     @Override
@@ -35,37 +49,26 @@ public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
         return Place.FIRST;
     }
 
-    @Override
-    public void alterSpell(PreCalcSpellConfigs c) {
-        c.set(SC.MANA_COST, 1, 1);
-    }
-
-    @Override
-    public PreCalcSpellConfigs getPreCalcConfig() {
-        PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.AMOUNT, 1, 3);
-        c.setMaxLevel(8);
-        return c;
-    }
-
     @Nullable
     @Override
     public IAbility getRequiredAbility() {
-        return RecoilShotSpell.getInstance();
+        return VolcanoSpell.getInstance();
     }
 
     @Override
-    public void tryActivate(SpellDamageEffect ctx) {
+    public void tryActivate(SpellDamageEffect effect) {
 
-        float stacks = get(ctx.source, SC.AMOUNT);
+        float chance = getContext(effect.source).getConfigFor(this)
+            .get(SC.CHANCE)
+            .get(Load.spells(effect.source), this);
 
-        for (int i = 0; i < stacks; i++) {
-            PotionEffectUtils.reApplyToSelf(HunterInstinctEffect.getInstance(), ctx.source);
+        if (RandomUtils.roll(chance)) {
+            PotionEffectUtils.apply(BurnEffect.INSTANCE, effect.source, effect.target);
         }
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Recoil of the hunter";
+        return "Volcano Burn";
     }
 }

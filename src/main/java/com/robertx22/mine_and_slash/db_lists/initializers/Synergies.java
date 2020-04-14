@@ -1,18 +1,18 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.database.spells.synergies.druid.*;
-import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.FireballBurnConsumeSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.MagmaFlowerEnhancedSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.MagmaFlowerHealSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ember_mage.VolcanoBurnSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic.*;
-import com.robertx22.mine_and_slash.database.spells.synergies.ranger.ImbueCritAddHunterSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ranger.RecoilAddHunterSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.ranger.RecoilAddWoundsSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.shaman.LightningTotemStaticSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderDashEnergySynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearLightningStrikeSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.shaman.ThunderSpearThunderEssenceSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.fire.FireballBurnConsumeSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.fire.MagmaFlowerEnhancedSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.fire.MagmaFlowerHealSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.fire.VolcanoBurnSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.hunting.ImbueAddHunterSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.hunting.RecoilAddHunterSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.hunting.RecoilAddWoundsSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.nature.*;
+import com.robertx22.mine_and_slash.database.spells.synergies.ocean.*;
+import com.robertx22.mine_and_slash.database.spells.synergies.storm.LightningTotemStaticSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.storm.ThunderDashEnergySynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.storm.ThunderSpearLightningStrikeSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.storm.ThunderSpearThunderEssenceSynergy;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 public class Synergies implements ISlashRegistryInit {
@@ -39,7 +39,7 @@ public class Synergies implements ISlashRegistryInit {
     private static VolcanoBurnSynergy VOLCANO_BURN = new VolcanoBurnSynergy();
     private static MagmaFlowerHealSynergy MAGMA_FLOWER_HEAL = new MagmaFlowerHealSynergy();
 
-    private static ImbueCritAddHunterSynergy IMBUE_CRIT_HUNTER = new ImbueCritAddHunterSynergy();
+    private static ImbueAddHunterSynergy IMBUE_CRIT_HUNTER = new ImbueAddHunterSynergy();
     private static RecoilAddHunterSynergy RECOIL_ADD_HUNTER = new RecoilAddHunterSynergy();
     private static RecoilAddWoundsSynergy RECOIL_ADD_WOUNDS = new RecoilAddWoundsSynergy();
 

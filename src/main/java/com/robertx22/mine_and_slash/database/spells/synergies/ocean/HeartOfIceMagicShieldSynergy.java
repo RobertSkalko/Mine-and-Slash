@@ -1,15 +1,14 @@
-package com.robertx22.mine_and_slash.database.spells.synergies.ocean_mystic;
+package com.robertx22.mine_and_slash.database.spells.synergies.ocean;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean.FrostballSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.OnDamageDoneSynergy;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
-import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ShiverEffect;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.ocean.HeartOfIceSpell;
+import com.robertx22.mine_and_slash.database.spells.synergies.base.OnSpellCastSynergy;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -17,7 +16,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FrostballExtraDmgSynergy extends OnDamageDoneSynergy {
+public class HeartOfIceMagicShieldSynergy extends OnSpellCastSynergy {
 
     @Override
     public List<ITextComponent> getSynergyTooltipInternal(TooltipInfo info) {
@@ -25,7 +24,7 @@ public class FrostballExtraDmgSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Consumes Shiver for extra damage"));
+        list.add(new StringTextComponent("Heals magic shield too"));
 
         list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
@@ -39,13 +38,13 @@ public class FrostballExtraDmgSynergy extends OnDamageDoneSynergy {
 
     @Override
     public void alterSpell(PreCalcSpellConfigs c) {
-        c.set(SC.MANA_COST, 1, 3);
+        c.set(SC.MANA_COST, 2, 6);
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.BASE_VALUE, 2, 8);
+        c.set(SC.BASE_VALUE, 2, 12);
         c.setMaxLevel(8);
         return c;
     }
@@ -53,25 +52,24 @@ public class FrostballExtraDmgSynergy extends OnDamageDoneSynergy {
     @Nullable
     @Override
     public IAbility getRequiredAbility() {
-        return FrostballSpell.getInstance();
+        return HeartOfIceSpell.getInstance();
     }
 
     @Override
-    public void tryActivate(SpellDamageEffect ctx) {
-        if (PotionEffectUtils.has(ctx.target, ShiverEffect.INSTANCE)) {
-
-            PotionEffectUtils.reduceStacks(ctx.target, ShiverEffect.INSTANCE);
-
-            int num = getCalcVal(ctx.source);
-
-            getSynergyDamage(ctx, num)
-                .Activate();
-
-        }
+    public void tryActivate(SpellCastContext ctx) {
+        ResourcesData.Context heal = new ResourcesData.Context(ctx.data, ctx.caster,
+            ResourcesData.Type.MAGIC_SHIELD,
+            ctx.getConfigFor(this)
+                .getCalc(ctx.spellsCap, this)
+                .getCalculatedValue(ctx.data, Load.spells(ctx.caster), this),
+            ResourcesData.Use.RESTORE, ctx.spell
+        );
+        ctx.data
+            .modifyResource(heal);
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Shiver Frostburn";
+        return "Heart of Magic";
     }
 }

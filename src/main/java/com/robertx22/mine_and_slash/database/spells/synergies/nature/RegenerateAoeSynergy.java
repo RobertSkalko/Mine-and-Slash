@@ -1,11 +1,11 @@
-package com.robertx22.mine_and_slash.database.spells.synergies.druid;
+package com.robertx22.mine_and_slash.database.spells.synergies.nature;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.nature.NatureBalmSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.OnSpellCastSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.base.OnSpellCastSynergy;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;

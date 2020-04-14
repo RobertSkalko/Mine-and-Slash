@@ -45,9 +45,10 @@ public class VolcanoEntity extends BaseInvisibleEntity {
         try {
 
             float radius = getSpellData().configs.get(SC.RADIUS);
-            float tickrate = getSpellData().configs.get(SC.TICK_RATE);
+            int tickrate = getSpellData().configs.get(SC.TICK_RATE)
+                .intValue();
 
-            if (this.ticksExisted % tickrate == 1) {
+            if (this.ticksExisted % tickrate == 0) {
 
                 SoundUtils.playSound(this, SoundEvents.BLOCK_LAVA_EXTINGUISH, 1, 1);
 
@@ -91,7 +92,6 @@ public class VolcanoEntity extends BaseInvisibleEntity {
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

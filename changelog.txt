@@ -1,3 +1,7 @@
+3.6.5
+* fixed volcano doing only 1 hit
+* buffed thorn armor and hunter instinct stats
+
 3.6.4
 * should fix possible server crash
 
