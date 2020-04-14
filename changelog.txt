@@ -1,3 +1,6 @@
+3.6.4
+* should fix possible server crash
+
 3.6.3
 * should fix some spells not going on cooldown after casting
 3.6.2

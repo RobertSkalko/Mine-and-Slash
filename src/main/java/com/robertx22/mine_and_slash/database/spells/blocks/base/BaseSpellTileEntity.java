@@ -32,6 +32,7 @@ public abstract class BaseSpellTileEntity extends TileEntity implements ISpellEn
         } catch (Exception e) {
             e.printStackTrace();
             world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+            return;
         }
 
         try {
@@ -40,8 +41,12 @@ public abstract class BaseSpellTileEntity extends TileEntity implements ISpellEn
             e.printStackTrace();
         }
 
-        if (data.getRemainingLifeTicks() < 1 && data.ticksExisted > 5) {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+        try {
+            if (data.getRemainingLifeTicks() < 1 && data.ticksExisted > 5) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
