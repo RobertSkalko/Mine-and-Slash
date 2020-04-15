@@ -19,7 +19,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.capabilities.Capability;
@@ -54,8 +53,6 @@ public class PlayerMapCap {
 
         MapItemData getMap();
 
-        boolean isRefreshedForMap();
-
         BlockPos getMapDevicePos(World world);
 
         DimensionType getOriginalDimension();
@@ -69,10 +66,6 @@ public class PlayerMapCap {
         void init(BlockPos pos, MapItemData map, DimensionType type, PlayerEntity player);
 
         void onQuestFinished();
-
-        float getMapLootMultiplierForTime();
-
-        void onMapDropped();
 
     }
 
@@ -172,26 +165,9 @@ public class PlayerMapCap {
             this.data.questFinished = true;
         }
 
-        @Override // a self balancing map loot drop rate that isn't too much or too little.
-        public float getMapLootMultiplierForTime() {
-            float total = data.mapDropPoints;
-
-            return MathHelper.clamp(total, 0.01F, 2.5F);
-        }
-
-        @Override
-        public void onMapDropped() {
-            this.data.mapDropPoints = 0;
-        }
-
         @Override
         public void onMinute(PlayerEntity player) {
 
-            if (WorldUtils.isMapWorldClass(player.world)) {
-                this.data.mapDropPoints -= 0.05F;
-            } else {
-                this.data.mapDropPoints += 0.007F;
-            }
         }
 
         @Override
@@ -222,11 +198,6 @@ public class PlayerMapCap {
             } else {
                 return MapItemData.empty();
             }
-        }
-
-        @Override
-        public boolean isRefreshedForMap() {
-            return this.data.mapDropPoints > 1.5F;
         }
 
         @Override

@@ -198,7 +198,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         return (int) Mana.getInstance()
             .calculateScalingStatGrowth((int) ctx.getConfigFor(this)
                 .get(SC.MANA_COST)
-                .get(ctx.spellsCap, this), getEffectiveAbilityLevel(ctx.spellsCap));
+                .get(ctx.spellsCap, this), getEffectiveAbilityLevel(ctx.spellsCap, ctx.data));
     }
 
     public final int useTimeTicks(SpellCastContext ctx) {

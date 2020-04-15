@@ -1,3 +1,9 @@
+3.6.6
+* removed experimental map drop rate restrictions
+* effective spell level is now derived from effective mastery level.
+* fix death message
+* fix spell cooldown being synced wrongly when in gui
+
 3.6.5
 * fixed volcano doing only 1 hit
 * buffed thorn armor and hunter instinct stats

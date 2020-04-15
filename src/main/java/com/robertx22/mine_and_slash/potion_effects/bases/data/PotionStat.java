@@ -27,7 +27,7 @@ public class PotionStat {
 
         ExactStatData statData = new ExactStatData(finalVal, type, stat);
         statData.scaleToLvl(effect.getAbilityThatDeterminesLevel()
-            .getEffectiveAbilityLevel(cap));
+            .getEffectiveAbilityLevel(cap, data));
         return statData;
 
     }

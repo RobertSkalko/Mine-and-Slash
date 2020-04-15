@@ -15,7 +15,7 @@ public enum SC {
     CHANCE(0, Words.Chance),
     CDR_EFFICIENCY(0, Words.CooldownReductionEfficiency),
     DURATION_TICKS(0, Words.DurationTicks),
-    TICK_RATE(0, Words.TickRate),
+    TICK_RATE(-100, Words.TickRate),
     TIMES_TO_CAST(1, Words.TimesToCast),
     BASE_VALUE(0, null),
     AMOUNT(0, Words.Amount),

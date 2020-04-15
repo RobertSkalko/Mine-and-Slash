@@ -120,7 +120,9 @@ public class EntityFinder {
 
                 AxisAlignedBB aabb = new AxisAlignedBB(x - hori, y - verti, z - hori, x + hori, y + verti, z + hori);
 
-                //Utilities.spawnParticlesForTesting(aabb, setup.world); // TODO TEST
+                if (setup.addTestParticles) {
+                    Utilities.spawnParticlesForTesting(aabb, setup.world);
+                }
 
                 List<T> entityList = setup.world.getEntitiesWithinAABB(setup.entityType, aabb);
 
@@ -157,6 +159,10 @@ public class EntityFinder {
                     maxX + horizontal, maxY + vertical, maxZ + horizontal
                 );
 
+                if (setup.addTestParticles) {
+                    Utilities.spawnParticlesForTesting(aabb, setup.world);
+                }
+
                 List<T> entityList = entity.world.getEntitiesWithinAABB(setup.entityType, aabb);
                 entityList.removeIf(e -> e == entity);
 
@@ -186,6 +192,7 @@ public class EntityFinder {
         double radius = 1;
         double horizontal = 1;
         double vertical = 1;
+        boolean addTestParticles = false;
 
         List<Predicate<T>> predicates = new ArrayList();
 

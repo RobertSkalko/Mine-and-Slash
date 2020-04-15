@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
@@ -9,6 +8,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.base.Synergy;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
@@ -17,6 +17,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
@@ -68,8 +69,12 @@ public interface IAbility extends IGUID, ITooltipList {
 
     ITextComponent getLocName();
 
-    public default int getEffectiveAbilityLevel(PlayerSpellCap.ISpellsCap spells) {
+    public default int getEffectiveAbilityLevel(PlayerSpellCap.ISpellsCap spells, EntityCap.UnitData data) {
 
+        return MathHelper.clamp(getMastery()
+            .getEffectiveLevel(spells), 0, data.getLevel());
+
+        /*
         int spellLvl = spells.getLevelOf(this);
 
         if (spellLvl == 0) {
@@ -80,6 +85,7 @@ public interface IAbility extends IGUID, ITooltipList {
         }
 
         return (int) (((float) spellLvl / (float) getMaxSpellLevelBuffed()) * ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get());
+  */
     }
 
     PreCalcSpellConfigs getPreCalcConfig();
@@ -150,7 +156,7 @@ public interface IAbility extends IGUID, ITooltipList {
 
             TooltipUtils.abilityLevel(list, ctx.spellsCap.getLevelOf(this), getMaxSpellLevelNormal());
 
-            list.add(new SText(TextFormatting.YELLOW + "Effective Ability level: " + getEffectiveAbilityLevel(ctx.spellsCap)));
+            list.add(new SText(TextFormatting.YELLOW + "Effective Ability level: " + getEffectiveAbilityLevel(ctx.spellsCap, ctx.data)));
 
             list.add(new SText(getElement().format + "Element: " + getElement().name()));
 

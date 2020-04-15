@@ -36,6 +36,11 @@ public class RightClickSpell {
 
                     PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
+                    if (spells.getCastingData()
+                        .isCasting()) {
+                        return;
+                    }
+
                     if (spells.canCastRightClickSpell(spell, player)) {
                         spells
                             .getCastingData()

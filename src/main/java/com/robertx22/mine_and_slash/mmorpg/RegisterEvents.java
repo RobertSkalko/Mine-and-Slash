@@ -41,7 +41,6 @@ public class RegisterEvents {
         register(CapSync.class);
         register(StopCastingIfInteract.class);
         register(RightClickSpell.class);
-        register(SleepEvent.class);
 
         register(OnBossTick.class);
 

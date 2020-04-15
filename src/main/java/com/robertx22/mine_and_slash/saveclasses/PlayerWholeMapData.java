@@ -27,9 +27,6 @@ public class PlayerWholeMapData {
     @Store
     public boolean questFinished = false;
 
-    @Store
-    public float mapDropPoints = 1;
-
     public void setOriginalDimension(DimensionType type) {
         this.originalDimension = DimensionType.getKey(type)
             .toString();

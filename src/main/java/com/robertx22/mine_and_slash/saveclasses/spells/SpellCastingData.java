@@ -75,7 +75,8 @@ public class SpellCastingData {
     private HashMap<String, SpellData> spellDatas = new HashMap<>();
 
     public boolean isCasting() {
-        return castingTicksLeft > 0;
+        return castingTicksLeft > 0 && SlashRegistry.Spells()
+            .isRegistered(spellBeingCast);
     }
 
     public void onTimePass(PlayerEntity player, PlayerSpellCap.ISpellsCap spells, int ticks) {

@@ -91,8 +91,8 @@ public class SpellCalcData {
     @Store
     public float baseValue = 0;
 
-    public int getCalculatedBaseValue(PlayerSpellCap.ISpellsCap spells, IAbility ability) {
-        return (int) baseScaling.scale(baseValue, ability.getEffectiveAbilityLevel(spells));
+    public int getCalculatedBaseValue(PlayerSpellCap.ISpellsCap spells, IAbility ability, EntityCap.UnitData data) {
+        return (int) baseScaling.scale(baseValue, ability.getEffectiveAbilityLevel(spells, data));
     }
 
     private int getCalculatedScalingValue(EntityCap.UnitData data) {
@@ -103,7 +103,7 @@ public class SpellCalcData {
 
     public int getCalculatedValue(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spells, IAbility ability) {
         int val = getCalculatedScalingValue(data);
-        val += getCalculatedBaseValue(spells, ability);
+        val += getCalculatedBaseValue(spells, ability, data);
         return val;
     }
 
@@ -121,7 +121,7 @@ public class SpellCalcData {
 
             if (baseValue > 0) {
                 list.add(new StringTextComponent(
-                    TextFormatting.RED + "Base Value: " + getCalculatedBaseValue(spells, ability)));
+                    TextFormatting.RED + "Base Value: " + getCalculatedBaseValue(spells, ability, info.unitdata)));
             }
         }
 

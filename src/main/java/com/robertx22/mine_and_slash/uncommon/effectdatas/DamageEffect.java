@@ -28,6 +28,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -54,7 +55,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         this.setEffectType(effectType, weptype);
         this.number = dmg;
-        this.event = event;
+        this.event = data.event;
     }
 
     public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg,
@@ -283,8 +284,13 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             cancelDamage();
             return;
         }
+        DamageSource ds = null;
 
-        MyDamageSource dmgsource = new MyDamageSource(dmgSourceName, this.source, element, (int) number);
+        if (event != null) {
+            ds = event.getSource();
+        }
+
+        MyDamageSource dmgsource = new MyDamageSource(ds, dmgSourceName, this.source, element, (int) number);
 
         if (this.isPartiallyBlocked) {
             dmgsource.setDamageBypassesArmor();

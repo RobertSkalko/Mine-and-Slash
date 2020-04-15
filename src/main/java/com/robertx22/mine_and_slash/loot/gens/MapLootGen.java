@@ -3,8 +3,6 @@ package com.robertx22.mine_and_slash.loot.gens;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 
@@ -22,10 +20,7 @@ public class MapLootGen extends BaseLootGen<MapBlueprint> {
         if (info.isMapWorld) {
             chance *= 0.04F;
         } else {
-            if (info.killer != null) {
-                PlayerMapCap.IPlayerMapData map = Load.playerMapData(info.killer);
-                chance *= map.getMapLootMultiplierForTime();
-            }
+
         }
 
         return chance;
@@ -50,12 +45,6 @@ public class MapLootGen extends BaseLootGen<MapBlueprint> {
     @Override
     public ItemStack generateOne() {
         MapBlueprint blueprint = new MapBlueprint(info.level, info.tier);
-
-        if (info.killer != null) {
-            info.killer.getCapability(PlayerMapCap.Data)
-                .ifPresent(x -> x
-                    .onMapDropped());
-        }
 
         return blueprint.createStack();
     }

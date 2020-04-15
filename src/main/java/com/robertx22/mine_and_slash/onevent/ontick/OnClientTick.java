@@ -17,35 +17,38 @@ public class OnClientTick {
     static int TICKS_TO_SHOW = 50;
 
     @SubscribeEvent
-    public static void onTick(TickEvent.ClientTickEvent event) {
+    public static void onTick(TickEvent.PlayerTickEvent event) {
 
         if (event.phase == TickEvent.Phase.END) {
 
             PlayerEntity player = Minecraft.getInstance().player;
 
-            if (player != null) {
+            if (event.player.isEntityEqual(player)) {
 
-                PlayerSpellCap.ISpellsCap spells = Load.spells(player);
+                if (player != null) {
 
-                List<String> onCooldown = spells.getCastingData()
-                    .getSpellsOnCooldown();
+                    PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                spells.getCastingData()
-                    .onTimePass(player, spells, 1); // ticks spells so i dont need to sync packets every tick
+                    List<String> onCooldown = spells.getCastingData()
+                        .getSpellsOnCooldown();
 
-                List<String> onCooldownAfter = spells.getCastingData()
-                    .getSpellsOnCooldown();
+                    spells.getCastingData()
+                        .onTimePass(player, spells, 1); // ticks spells so i dont need to sync packets every tick
 
-                onCooldown.removeAll(onCooldownAfter);
+                    List<String> onCooldownAfter = spells.getCastingData()
+                        .getSpellsOnCooldown();
 
-                COOLDOWN_READY_MAP.entrySet()
-                    .forEach(x -> x.setValue(x.getValue() - 1));
+                    onCooldown.removeAll(onCooldownAfter);
 
-                onCooldown.forEach(x -> {
-                    COOLDOWN_READY_MAP.put(x, TICKS_TO_SHOW);
-                    x.isEmpty();
-                });
+                    COOLDOWN_READY_MAP.entrySet()
+                        .forEach(x -> x.setValue(x.getValue() - 1));
 
+                    onCooldown.forEach(x -> {
+                        COOLDOWN_READY_MAP.put(x, TICKS_TO_SHOW);
+                        x.isEmpty();
+                    });
+
+                }
             }
         }
     }
