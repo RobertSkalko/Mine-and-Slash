@@ -1,7 +1,6 @@
 package com.robertx22.mmorpg;
 
 import com.libraries.rabbit.gui.RabbitGui;
-import com.robertx22.blocks.gear_factory_station.StartupGearFactory;
 import com.robertx22.blocks.item_modify_station.StartupModify;
 import com.robertx22.blocks.map_device.StartupMap;
 import com.robertx22.blocks.repair_station.StartupRepair;
@@ -27,12 +26,12 @@ import com.robertx22.uncommon.capability.PlayerDeathItems;
 import com.robertx22.uncommon.capability.WorldData;
 import com.robertx22.uncommon.oregen.OreGen;
 import com.robertx22.uncommon.testing.TestManager;
+
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -82,7 +81,6 @@ public class Main {
 		StartupRepair.preInitCommon(event);
 		StartupSalvage.preInitCommon(event);
 		StartupModify.preInitCommon(event);
-		StartupGearFactory.preInitCommon(event);
 		StartupMap.preInitCommon(event);
 
 		MinecraftForge.EVENT_BUS.register(new PlayerUnitPackage());

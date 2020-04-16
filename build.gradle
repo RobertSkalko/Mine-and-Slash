@@ -1,18 +1,24 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }			
+        maven { url = "http://files.minecraftforge.net/maven" }		
+        maven { url "https://plugins.gradle.org/m2/" }	
     }
     dependencies {
 		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
 		classpath 'com.google.code.gson:gson:2.8.5'
+        classpath "com.wynprice.cursemaven:CurseMaven:2.1.1"
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: "com.wynprice.cursemaven"
 
-version = "1.9.3"
 
-group = "com.robertx22.mmorpg" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
+version = "1.9.4"
+group = "com.robertx22.mmorpg"
 archivesBaseName = "Mine and Slash-1.12.2"
 
 sourceCompatibility = targetCompatibility = '1.8'
@@ -32,7 +38,7 @@ repositories {
 		name = "jitpack"
 		url "https://jitpack.io" 
 	}
-	 maven { url = "https://maven2.tterrag.com" } // AutoSave
+	 maven { url = "https://maven2.tterrag.com" }
 	 maven { url 'https://maven.blamejared.com' }
 }
 
@@ -48,7 +54,8 @@ configurations {
 
 dependencies {
 
-	compile files("libs/Baubles-1.12-1.5.2.jar") // Rings, REQUIRED
+    deobfCompile "curse.maven:baubles:2518667" // Rings, REQUIRED
+    deobfCompile "curse.maven:patchouli:2731963" // Book, REQUIRED
 	shade 'net.objecthunter:exp4j:0.4.5' // Gui Stuff dependency, REQUIRED
 	compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
 	compile "info.loenwind.autosave:AutoSave:1.12.2-1.0.11" // Auto Nbt Saving, REQUIRED
@@ -64,6 +71,23 @@ processResources {
     }
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+    doLast {
+    
+        def jsonMinifyStart = System.currentTimeMillis()
+        def jsonMinified = 0
+        def jsonBytesSaved = 0
+        
+        fileTree(dir: outputs.files.asPath, include: '**/*.json').each {
+        
+            File file = it
+            jsonMinified++
+            def oldLength = file.length()
+            file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
+            jsonBytesSaved += oldLength - file.length()
+        }
+        
+        println('Minified ' + jsonMinified + ' json files. Saved ' + jsonBytesSaved + ' bytes. Took ' + (System.currentTimeMillis() - jsonMinifyStart) + 'ms.')
     }
 }
 
