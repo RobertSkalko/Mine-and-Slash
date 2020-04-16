@@ -11,6 +11,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class OreGenRegister {
     public static void register() {
@@ -45,7 +46,7 @@ public class OreGenRegister {
         ConfiguredFeature feature = Feature.ORE.withConfiguration(minableConfig)
             .withPlacement(Placement.COUNT_RANGE.configure(countConfig));
 
-        for (Biome biome : Biome.BIOMES) {
+        for (Biome biome : ForgeRegistries.BIOMES) {
             biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, feature);
         }
 

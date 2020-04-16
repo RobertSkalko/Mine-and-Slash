@@ -3,6 +3,7 @@
 * effective spell level is now derived from effective mastery level.
 * fix death message
 * fix spell cooldown being synced wrongly when in gui
+* should fix ores not generating in modded biomes
 
 3.6.5
 * fixed volcano doing only 1 hit
