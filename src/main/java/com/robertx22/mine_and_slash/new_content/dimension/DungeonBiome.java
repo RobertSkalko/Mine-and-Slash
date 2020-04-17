@@ -18,6 +18,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class DungeonBiome extends Biome {
+
     public DungeonBiome(Builder biomeBuilder) {
         super(biomeBuilder.surfaceBuilder(new ConfiguredSurfaceBuilder<SurfaceBuilderConfig>(SurfaceBuilder.DEFAULT, SurfaceBuilder.AIR_CONFIG))
             .precipitation(RainType.NONE)

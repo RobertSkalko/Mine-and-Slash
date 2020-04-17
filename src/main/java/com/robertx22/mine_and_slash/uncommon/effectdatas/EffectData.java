@@ -29,6 +29,8 @@ public abstract class EffectData {
 
     public float number = 0;
 
+    protected boolean activateSynergies = true;
+
     public EffectData(LivingEntity source, LivingEntity target) {
 
         this.source = source;

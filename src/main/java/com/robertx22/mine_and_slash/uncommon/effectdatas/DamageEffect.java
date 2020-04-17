@@ -24,6 +24,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TeamUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.SwordItem;
@@ -66,8 +67,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         this.number = dmg;
         this.event = event;
     }
-
-    protected boolean activateSynergies = true;
 
     LivingHurtEvent event;
 
@@ -228,6 +227,18 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                     .getAllowFriendlyFire()) {
                     cancelDamage();
                     return;
+                }
+            }
+        } else {
+            if (this instanceof SpellDamageEffect) {
+                if (target instanceof TameableEntity) {
+                    if (source instanceof PlayerEntity) {
+                        TameableEntity tame = (TameableEntity) target;
+                        if (tame.isOwner(source)) {
+                            cancelDamage();
+                            return;
+                        }
+                    }
                 }
             }
         }

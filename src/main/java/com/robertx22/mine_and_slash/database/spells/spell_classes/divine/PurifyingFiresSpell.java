@@ -77,7 +77,7 @@ public class PurifyingFiresSpell extends BaseSpell {
             .add(0, ctx.caster.getHeight() / 2, 0))
             .finder(EntityFinder.Finder.RADIUS)
             .radius(2)
-            .height(1)
+            .height(2)
             .build();
 
         SoundUtils.playSound(ctx.caster, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 1);

@@ -66,6 +66,8 @@ public class ResourcesData {
             this.type = type;
             this.amount = amount;
             this.use = use;
+            this.spell = spell;
+
             calculateStats();
         }
 

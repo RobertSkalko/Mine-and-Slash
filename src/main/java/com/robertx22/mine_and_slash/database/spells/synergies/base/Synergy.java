@@ -159,7 +159,7 @@ public abstract class Synergy implements IAbility, ISlashRegistryEntry<Synergy>,
     }
 
     @Override
-    public final int getMaxSpellLevelBuffed() {
+    public int getMaxSpellLevelBuffed() {
         return getMaxSpellLevelNormal() + 5;
     }
 

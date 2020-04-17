@@ -2,6 +2,7 @@
 * added a new mastery: divine!
 * added new fire mastery synergy
 * removed deobf jar, seemed to confuse more non modders than it helped modders
+* pets shouldnt take spell damage from owners anymore
 
 3.6.6
 * removed experimental map drop rate restrictions

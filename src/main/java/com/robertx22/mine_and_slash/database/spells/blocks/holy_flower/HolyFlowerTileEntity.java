@@ -53,7 +53,8 @@ public class HolyFlowerTileEntity extends BaseSpellTileEntity {
 
                 entities.forEach(x -> {
 
-                    this.healTarget(x);
+                    this.healTarget(x)
+                        .Activate();
 
                     SoundUtils.playSound(x, SoundEvents.ITEM_CROP_PLANT, 1, 1);
 

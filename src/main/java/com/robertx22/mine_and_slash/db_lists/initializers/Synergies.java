@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.database.spells.synergies.divine.HolyFlowerCleanseSynergy;
+import com.robertx22.mine_and_slash.database.spells.synergies.divine.PurifyingFiresJudgementSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.fire.*;
 import com.robertx22.mine_and_slash.database.spells.synergies.hunting.ImbueAddHunterSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.hunting.RecoilAddHunterSynergy;
@@ -71,6 +73,8 @@ public class Synergies implements ISlashRegistryInit {
 
         new TidalWaveFrostSynergy().registerToSlashRegistry();
         new ThrowFlamesBurnSynergy().registerToSlashRegistry();
+        new PurifyingFiresJudgementSynergy().registerToSlashRegistry();
+        new HolyFlowerCleanseSynergy().registerToSlashRegistry();
 
     }
 }
