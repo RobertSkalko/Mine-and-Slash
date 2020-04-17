@@ -17,11 +17,13 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -56,13 +58,13 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
 
     @Override
     public int getMaxStacks() {
-        return 10;
+        return 5;
     }
 
     @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
-        list.add(new PotionStat(-2, new ElementalResist(Elements.Elemental)));
+        list.add(new PotionStat(-3, new ElementalResist(Elements.Elemental)));
         list.add(new PotionStat(-10, Armor.getInstance()));
         return list;
     }
@@ -108,6 +110,8 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
         } else {
 
             SpellUtils.summonLightningStrike(target);
+
+            SoundUtils.playSound(target, SoundEvents.ENTITY_LIGHTNING_BOLT_IMPACT, 1, 1);
 
             int num = getCalc(source).getCalculatedValue(Load.Unit(caster), Load.spells(caster), getSpell());
 

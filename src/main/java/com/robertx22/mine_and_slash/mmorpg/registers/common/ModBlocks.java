@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.blocks.map_device.BlockMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.BlockGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.BlockGearSalvage;
 import com.robertx22.mine_and_slash.blocks.scrabble.ScrabbleBlock;
+import com.robertx22.mine_and_slash.database.spells.blocks.holy_flower.HolyFlowerBlock;
 import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerBlock;
 import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushBlock;
 import com.robertx22.mine_and_slash.dimensions.blocks.DungeonPortalBlock;
@@ -35,6 +36,7 @@ public class ModBlocks {
     public static RegistryObject<MapPortalBlock> MAP_PORTAL = REG.register("map_portal_block", MapPortalBlock::new);
 
     public static RegistryObject<MagmaFlowerBlock> MAGMA_FLOWER = REG.register("magma_flower", MagmaFlowerBlock::new);
+    public static RegistryObject<HolyFlowerBlock> HOLY_FLOWER = REG.register("holy_flower", HolyFlowerBlock::new);
     public static RegistryObject<ThornBushBlock> THORN_BUSH = REG.register("thorn_bush", ThornBushBlock::new);
 
     public static RegistryObject<DungeonPortalBlock> DUNGEON_PORTAL = REG.register("dungeon_portal", DungeonPortalBlock::new);

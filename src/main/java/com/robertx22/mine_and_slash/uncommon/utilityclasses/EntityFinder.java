@@ -42,6 +42,11 @@ public class EntityFinder {
                                 if (x.world.isRemote) {
                                     return true;
                                 } else {
+
+                                    if (setup.caster.isEntityEqual(x)) {
+                                        return true;
+                                    }
+
                                     return TeamCap.getCapability()
                                         .isOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
                                 }

@@ -122,14 +122,14 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen, IAler
 
         } else {
 
-            int xpos = guiLeft + 25;
+            int xpos = guiLeft + 17;
             int ypos = guiTop + 15;
 
             for (Masteries value : Masteries.values()) {
 
                 addButton(new PickSchoolButton(this, value, xpos, ypos));
 
-                xpos += PickSchoolButton.xSize + PickSchoolButton.xSize / 3;
+                xpos += PickSchoolButton.xSize + PickSchoolButton.xSize / 8;
 
             }
 

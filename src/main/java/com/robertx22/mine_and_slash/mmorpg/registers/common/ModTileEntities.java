@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.blocks.map_device.TileMapDevice;
 import com.robertx22.mine_and_slash.blocks.repair_station.TileGearRepair;
 import com.robertx22.mine_and_slash.blocks.salvage_station.TileGearSalvage;
 import com.robertx22.mine_and_slash.blocks.scrabble.ScrabbleTile;
+import com.robertx22.mine_and_slash.database.spells.blocks.holy_flower.HolyFlowerTileEntity;
 import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
 import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushTileEntity;
 import com.robertx22.mine_and_slash.dimensions.blocks.TileMapPortal;
@@ -55,6 +56,12 @@ public class ModTileEntities {
         REG.register(ModBlocks.MAGMA_FLOWER.getId()
                 .getPath(),
             () -> TileEntityType.Builder.create(MagmaFlowerTileEntity::new, ModBlocks.MAGMA_FLOWER.get())
+                .build(null));
+
+    public static RegistryObject<TileEntityType<HolyFlowerTileEntity>> HOLY_FLOWER =
+        REG.register(ModBlocks.HOLY_FLOWER.getId()
+                .getPath(),
+            () -> TileEntityType.Builder.create(HolyFlowerTileEntity::new, ModBlocks.HOLY_FLOWER.get())
                 .build(null));
 
     public static RegistryObject<TileEntityType<ThornBushTileEntity>> THORN_BUSH =

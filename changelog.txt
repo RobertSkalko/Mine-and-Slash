@@ -1,4 +1,6 @@
 3.6.7
+* added a new mastery: divine!
+* added new fire mastery synergy
 * removed deobf jar, seemed to confuse more non modders than it helped modders
 
 3.6.6

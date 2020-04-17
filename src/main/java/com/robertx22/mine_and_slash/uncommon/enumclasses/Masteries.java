@@ -23,6 +23,7 @@ public enum Masteries {
     FIRE("fire", Elements.Fire.format, Words.Fire),
     NATURE("nature", Elements.Nature.format, Words.Nature),
     STORM("storm", Elements.Thunder.format, Words.Storm),
+    DIVINE("divine", TextFormatting.WHITE, Words.Divine),
     HUNTING("hunting", TextFormatting.GREEN, Words.Hunting);
 
     public static int MAXIMUM_POINTS = 50;

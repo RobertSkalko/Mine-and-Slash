@@ -26,6 +26,7 @@ public class ClientSetup {
 
         RenderTypeLookup.setRenderLayer(ModBlocks.MAGMA_FLOWER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.THORN_BUSH.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(ModBlocks.HOLY_FLOWER.get(), RenderType.getCutout());
 
         RenderTypeLookup.setRenderLayer(ModBlocks.DUNGEON_PORTAL.get(), RenderType.getTranslucent());
 

@@ -132,6 +132,7 @@
 	"mmorpg.synergy.recoil_shot_syn_2": "Recoil Wounds",
 	"mmorpg.synergy.thorn_armor_syn_1": "Thorny Armor",
 	"mmorpg.synergy.thorn_bush_syn_1": "Thorn Damage",
+	"mmorpg.synergy.throw_flames_syn_1": "Throw Burn",
 	"mmorpg.synergy.thunder_dash_syn_1": "Energy Dash",
 	"mmorpg.synergy.thunder_spear_syn_1": "Spear Thunder Essence",
 	"mmorpg.synergy.thunder_spear_syn_2": "Spear Lightning",
@@ -299,6 +300,24 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -317,24 +336,6 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -544,6 +545,7 @@
 	"mmorpg.word.decreased": "Decreased",
 	"mmorpg.word.defenses": "Defenses",
 	"mmorpg.word.distance": "Distance",
+	"mmorpg.word.divine": "Divine",
 	"mmorpg.word.divineshield": "Divine Shield",
 	"mmorpg.word.divinetribulation": "Divine Tribulation",
 	"mmorpg.word.doesnthaveset": "Doesn't have set",
@@ -572,8 +574,10 @@
 	"mmorpg.word.hasset": "Has Set",
 	"mmorpg.word.hassuffix": "Has Suffix",
 	"mmorpg.word.hasuniquestats": "Has Unique stats",
+	"mmorpg.word.healingaura": "Healing Aura",
 	"mmorpg.word.heartofice": "Heart of Ice",
 	"mmorpg.word.holdtopreventpickup": "Hold in your hand to prevent item pickup.",
+	"mmorpg.word.holyflower": "Holy Flower",
 	"mmorpg.word.hunting": "Hunting",
 	"mmorpg.word.imbue": "Imbue",
 	"mmorpg.word.increased": "Increased",
@@ -868,6 +872,7 @@
 	"mmorpg.stat.plus_blazing_inferno_spell_lvl": "To Blazing Inferno Skill Level",
 	"mmorpg.stat.plus_blizzard_spell_lvl": "To Blizzard Skill Level",
 	"mmorpg.stat.plus_burn_effect_lvl": "To Burn Skill Level",
+	"mmorpg.stat.plus_divine_skill_lvls": "To Divine Mastery Skill Levels",
 	"mmorpg.stat.plus_fire_bombs_spell_lvl": "To Fire Bombs Skill Level",
 	"mmorpg.stat.plus_fire_skill_lvls": "To Fire Mastery Skill Levels",
 	"mmorpg.stat.plus_fireball_spell_lvl": "To Fireball Skill Level",
@@ -878,9 +883,11 @@
 	"mmorpg.stat.plus_frostball_syn_1_synergy_lvl": "To Cold Essence creation Skill Level",
 	"mmorpg.stat.plus_frostball_syn_2_synergy_lvl": "To Shiver Frostburn Skill Level",
 	"mmorpg.stat.plus_gorgons_gaze_spell_lvl": "To Gorgon's Gaze Skill Level",
+	"mmorpg.stat.plus_healing_aura_spell_lvl": "To mmorpg.word.healingaura Skill Level",
 	"mmorpg.stat.plus_heart_of_ice_spell_lvl": "To Heart of Ice Skill Level",
 	"mmorpg.stat.plus_heart_of_ice_syn_1_synergy_lvl": "To Cold Healing Essence Skill Level",
 	"mmorpg.stat.plus_heart_of_ice_syn_2_synergy_lvl": "To Heart of Magic Skill Level",
+	"mmorpg.stat.plus_holy_flower_spell_lvl": "To Holy Flower Skill Level",
 	"mmorpg.stat.plus_hunter_instinct_effect_lvl": "To Hunter Instinct Skill Level",
 	"mmorpg.stat.plus_hunting_skill_lvls": "To Hunting Mastery Skill Levels",
 	"mmorpg.stat.plus_imbue_effect_lvl": "To Imbue Skill Level",
@@ -919,6 +926,7 @@
 	"mmorpg.stat.plus_thorn_bush_syn_1_synergy_lvl": "To Thorn Damage Skill Level",
 	"mmorpg.stat.plus_thorns_effect_lvl": "To Thorns Skill Level",
 	"mmorpg.stat.plus_throw_flames_spell_lvl": "To Throw Flames Skill Level",
+	"mmorpg.stat.plus_throw_flames_syn_1_synergy_lvl": "To Throw Burn Skill Level",
 	"mmorpg.stat.plus_thunder_dash_spell_lvl": "To Thunder Dash Skill Level",
 	"mmorpg.stat.plus_thunder_dash_syn_1_synergy_lvl": "To Energy Dash Skill Level",
 	"mmorpg.stat.plus_thunder_essence_effect_lvl": "To Thunder Essence Skill Level",
@@ -1139,29 +1147,6 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.bleed": "Bleed",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Cold Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.judgement": "Judgement",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thorns": "Thorns",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -1286,6 +1271,29 @@
 	"item.mmorpg.torch.torch4": "§6Torch",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.bleed": "Bleed",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Cold Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.judgement": "Judgement",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thorns": "Thorns",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.wounds": "Wounds",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",
