@@ -103,6 +103,17 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Minor Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
 "_comment": " [CATEGORY]: SPELLS - NAMES",
 
 	"mmorpg.synergy.fireball_syn_1": "Fireball Explosion",
@@ -252,17 +263,6 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Minor Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "Mage's Robes",
@@ -299,24 +299,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -335,6 +317,24 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -690,6 +690,7 @@
 	"mmorpg.word.shootspeed": "Shoot Speed",
 	"mmorpg.word.socket": "Socket",
 	"mmorpg.word.sockets": "Sockets",
+	"mmorpg.word.spearofjudgement": "Spear of Judgement",
 	"mmorpg.word.spell": "Spell",
 	"mmorpg.word.spell_damage": "Spell Damage",
 	"mmorpg.word.spellbar": "Spellbar",
@@ -885,6 +886,7 @@
 	"mmorpg.stat.plus_imbue_effect_lvl": "To Imbue Skill Level",
 	"mmorpg.stat.plus_imbue_spell_lvl": "To Imbue Skill Level",
 	"mmorpg.stat.plus_imbue_syn_1_synergy_lvl": "To Imbue Instinct Skill Level",
+	"mmorpg.stat.plus_judgement_effect_lvl": "To Judgement Skill Level",
 	"mmorpg.stat.plus_lightning_totem_spell_lvl": "To Lightning Totem Skill Level",
 	"mmorpg.stat.plus_lightning_totem_syn_1_synergy_lvl": "To Totem Static Skill Level",
 	"mmorpg.stat.plus_magma_flower_spell_lvl": "To Magma Flower Skill Level",
@@ -901,11 +903,13 @@
 	"mmorpg.stat.plus_poisoned_weapons_effect_lvl": "To Poisoned Weapons Skill Level",
 	"mmorpg.stat.plus_poisoned_weapons_spell_lvl": "To Poisoned Weapons Skill Level",
 	"mmorpg.stat.plus_poisoned_weapons_syn_1_synergy_lvl": "To Poison thorn seeker Skill Level",
+	"mmorpg.stat.plus_purifying_fires_spell_lvl": "To Purifying Fires Skill Level",
 	"mmorpg.stat.plus_recoil_shot_spell_lvl": "To Recoil Shot Skill Level",
 	"mmorpg.stat.plus_recoil_shot_syn_1_synergy_lvl": "To Recoil of the hunter Skill Level",
 	"mmorpg.stat.plus_recoil_shot_syn_2_synergy_lvl": "To Recoil Wounds Skill Level",
 	"mmorpg.stat.plus_self_regen_effect_lvl": "To Regenerate Skill Level",
 	"mmorpg.stat.plus_shiver_effect_lvl": "To Shiver Skill Level",
+	"mmorpg.stat.plus_spear_of_judgement_spell_lvl": "To Spear of Judgement Skill Level",
 	"mmorpg.stat.plus_static_effect_lvl": "To Static Skill Level",
 	"mmorpg.stat.plus_storm_skill_lvls": "To Storm Mastery Skill Levels",
 	"mmorpg.stat.plus_thorn_armor_effect_lvl": "To Thorn Armor Skill Level",
@@ -1143,6 +1147,7 @@
 	"effect.mmorpg.frost_essence": "Cold Essence",
 	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
 	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.judgement": "Judgement",
 	"effect.mmorpg.petrify": "Petrify",
 	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
 	"effect.mmorpg.self_regen": "Regenerate",

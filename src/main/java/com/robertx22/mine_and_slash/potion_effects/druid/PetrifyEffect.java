@@ -22,6 +22,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvents;
@@ -101,7 +102,7 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     }
 
     @Override
-    public void onBasicAttacked(LivingEntity source, LivingEntity target) {
+    public void onBasicAttacked(EffectInstance instance, LivingEntity source, LivingEntity target) {
 
         int num = getCalc(source).getCalculatedValue(Load.Unit(source), Load.spells(source), this);
 

@@ -184,7 +184,6 @@ curseforge {
         changelogType = 'text'
         changelog = file('CHANGELOG.txt')
         addGameVersion("Forge")
-        relations(myCurseRelatons)
-        addArtifact(deobfJar)
+        relations(myCurseRelatons)      
     }
 }

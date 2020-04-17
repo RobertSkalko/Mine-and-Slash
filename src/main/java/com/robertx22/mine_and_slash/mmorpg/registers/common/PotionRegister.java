@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.all.BleedPotion;
 import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
+import com.robertx22.mine_and_slash.potion_effects.divine.JudgementEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.*;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ColdEssenceEffect;
@@ -36,6 +37,7 @@ public class PotionRegister {
         reg.register(PetrifyEffect.INSTANCE);
         reg.register(ShiverEffect.INSTANCE);
         reg.register(ColdEssenceEffect.INSTANCE);
+        reg.register(JudgementEffect.INSTANCE);
         reg.register(ThornArmorEffect.INSTANCE);
         reg.register(StaticEffect.INSTANCE);
         reg.register(BurnEffect.INSTANCE);

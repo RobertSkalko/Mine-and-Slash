@@ -115,6 +115,13 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
         }
     }
 
+    public void onHit(LivingEntity en) {
+
+        Entity shooter = this.getCaster();
+        DamageEffect dmg = dealSpellDamageTo((LivingEntity) en, new Options().activatesEffect(false));
+        dmg.Activate();
+    }
+
     @Override
     protected void onEntityHit(EntityRayTraceResult ray) {
 
@@ -127,16 +134,13 @@ public abstract class BaseTridentEntity extends TridentEntity implements ISpellE
                 if (entity == shooter) {
                     return;
                 }
-
                 this.setMotion(this.getMotion()
                     .mul(-0.01D, -0.1D, -0.01D)); // bounce back
 
-                DamageEffect dmg = dealSpellDamageTo((LivingEntity) entity, new Options().activatesEffect(false));
+                this.onHit((LivingEntity) entity);
 
-                dmg.Activate();
-
-            } else {
                 this.playSound(SoundEvents.ITEM_TRIDENT_HIT, 8F, 1.0F);
+
             }
         }
     }

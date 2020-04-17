@@ -16,6 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particles.ParticleTypes;
@@ -79,8 +80,9 @@ public class PurifyingFiresSpell extends BaseSpell {
             .height(1)
             .build();
 
-        if (list.size() > 0) {
-            LivingEntity en = list.get(0);
+        SoundUtils.playSound(ctx.caster, SoundEvents.BLOCK_FIRE_EXTINGUISH, 1, 1);
+
+        for (LivingEntity en : list) {
 
             int num = ctx.getConfigFor(this)
                 .getCalc(ctx.spellsCap, this)
@@ -97,10 +99,9 @@ public class PurifyingFiresSpell extends BaseSpell {
                 new ParticlePacketData(en.getPositionVector(), ParticleEnum.AOE).radius(1)
                     .motion(new Vec3d(0, 0, 0))
                     .type(ParticleTypes.FLAME)
-                    .amount((int) (30)));
+                    .amount((int) (45)));
 
         }
-
     }
 
     public static PurifyingFiresSpell getInstance() {
@@ -138,7 +139,7 @@ public class PurifyingFiresSpell extends BaseSpell {
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Attack single enemy in melee: "));
+        list.add(new StringTextComponent("Attack enemies in melee: "));
 
         list.addAll(getCalculation(ctx).GetTooltipString(info, ctx));
 

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.bases.MySpriteRende
 import com.robertx22.mine_and_slash.database.spells.entities.special.RangerArrowRenderer;
 import com.robertx22.mine_and_slash.database.spells.entities.summons.SpiderPetRenderer;
 import com.robertx22.mine_and_slash.database.spells.entities.summons.WolfPetRenderer;
+import com.robertx22.mine_and_slash.database.spells.entities.trident.HolyTridentRenderer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.mobs.renderer.ModZombieRenderer;
@@ -26,6 +27,8 @@ public class RenderRegister {
         for (EntityType type : EntityRegister.ENTITY_THAT_USE_ITEM_RENDERS) {
             RenderingRegistry.registerEntityRenderingHandler(type, newRenFac());
         }
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.HOLY_SPEAR, HolyTridentRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.THUNDER_SPEAR, TridentRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.RANGER_ARROW, RangerArrowRenderer::new);

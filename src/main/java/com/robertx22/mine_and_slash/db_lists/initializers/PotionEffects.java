@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.potion_effects.divine.JudgementEffect;
 import com.robertx22.mine_and_slash.potion_effects.druid.*;
 import com.robertx22.mine_and_slash.potion_effects.ember_mage.BurnEffect;
 import com.robertx22.mine_and_slash.potion_effects.ocean_mystic.ColdEssenceEffect;
@@ -13,6 +14,7 @@ import com.robertx22.mine_and_slash.potion_effects.shaman.ThunderEssenceEffect;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 public class PotionEffects implements ISlashRegistryInit {
+
     @Override
     public void registerAll() {
 
@@ -28,6 +30,7 @@ public class PotionEffects implements ISlashRegistryInit {
         ColdEssenceEffect.INSTANCE.registerToSlashRegistry();
         FrostEffect.INSTANCE.registerToSlashRegistry();
         ShiverEffect.INSTANCE.registerToSlashRegistry();
+        JudgementEffect.INSTANCE.registerToSlashRegistry();
 
         HunterInstinctEffect.getInstance()
             .registerToSlashRegistry();

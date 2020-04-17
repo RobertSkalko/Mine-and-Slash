@@ -373,7 +373,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 .filter(x -> x.getPotion() instanceof IOnBasicAttackedPotion)
                 .collect(Collectors.toList());
 
-            onAttackeds.forEach(x -> ((IOnBasicAttackedPotion) x.getPotion()).onBasicAttacked(source, target));
+            onAttackeds.forEach(x -> ((IOnBasicAttackedPotion) x.getPotion()).onBasicAttacked(x, source, target));
 
         }
     }

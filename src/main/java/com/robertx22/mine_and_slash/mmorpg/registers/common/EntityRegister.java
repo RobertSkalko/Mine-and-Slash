@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.
 import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.PoisonBallEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.summons.SpiderPetEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.summons.SpiritWolfPetEntity;
+import com.robertx22.mine_and_slash.database.spells.entities.trident.SpearOfJudgementEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mobs.entity.LeapingZombie;
@@ -46,6 +47,7 @@ public class EntityRegister {
 
     public static final EntityType<? extends Entity> THUNDERSTORM;
     public static final EntityType<? extends TridentEntity> THUNDER_SPEAR;
+    public static final EntityType<? extends TridentEntity> HOLY_SPEAR;
     public static final EntityType<? extends Entity> LIGHTNING_TOTEM;
 
     public static final EntityType<? extends Entity> FIREBOLT;
@@ -74,6 +76,8 @@ public class EntityRegister {
     public static final EntityType<SpiritWolfPetEntity> SPIRIT_WOLF_PET;
 
     static {
+
+        HOLY_SPEAR = projectile(SpearOfJudgementEntity::new, SpearOfJudgementEntity::new, "holy_spear", false);
 
         BLIZZARD = projectile(BlizzardEntity::new, BlizzardEntity::new, "blizzard");
         FROSTBOLT = projectile(FrostballEntity::new, FrostballEntity::new, "frostball");
