@@ -29,7 +29,7 @@ public class StartupMap {
 	itemBlockMap = new ItemBlock(blockMap);
 	itemBlockMap.setRegistryName(blockMap.getRegistryName());
 	ForgeRegistries.ITEMS.register(itemBlockMap);
-	GameRegistry.registerTileEntity(TileMap.class, Ref.MODID + ":map_device_entity");
+	GameRegistry.registerTileEntity(TileMapDevice.class, Ref.MODID + ":map_device_entity");
 
 	NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, GuiHandlerRegistry.getInstance());
 	GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandler(), GuiHandler.getGuiID());
