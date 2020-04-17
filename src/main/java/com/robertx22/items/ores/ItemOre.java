@@ -32,79 +32,79 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class ItemOre extends Item implements IWeighted {
-    public static HashMap<Integer, Item> ItemOres = new HashMap<Integer, Item>();
-    public static HashMap<Integer, ItemBlock> ItemBlocks = new HashMap<Integer, ItemBlock>();
-    public static HashMap<Integer, Block> Blocks = new HashMap<Integer, Block>();
+	public static HashMap<Integer, Item> ItemOres = new HashMap<Integer, Item>();
+	public static HashMap<Integer, ItemBlock> ItemBlocks = new HashMap<Integer, ItemBlock>();
+	public static HashMap<Integer, Block> Blocks = new HashMap<Integer, Block>();
 
-    int rarity;
+	int rarity;
 
-    public List<Integer> RepairValues = Arrays.asList(20, 30, 75, 125, 300, 600);
+	public List<Integer> RepairValues = Arrays.asList(20, 30, 75, 125, 300, 600);
 
-    public int GetFuelValue() {
+	public int GetFuelValue() {
 
-	return RepairValues.get(rarity);
-
-    }
-
-    @Override
-    public int Weight() {
-	return Rarities.Items.get(rarity).Weight();
-    }
-
-    public ItemOre(String name, int rarity) {
-	RegisterItemUtils.RegisterItemName(this, name);
-	setMaxDamage(0);
-	maxStackSize = 64;
-	setCreativeTab(CreativeTabList.CurrencyTab);
-	this.rarity = rarity;
-
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
-	tooltip.add(CLOC.tooltip("ore"));
-
-    }
-
-    public static void Register() {
-	Rarities.Items.forEach((x) -> ItemOres.put(x.Rank(), new ItemOre("ore" + x.Rank(), x.Rank())));
-
-	for (int i = 0; i < ItemOres.size(); i++) {
-	    BlockOre block = new BlockOre("ore_block" + i, Material.ROCK, ItemOres.get(i), 1);
-	    Blocks.put(i, block);
-	    ItemBlock itemblock = (ItemBlock) new ItemBlock(block).setRegistryName("ore_block" + i);
-	    ItemBlocks.put(i, itemblock);
-	}
-
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-	ItemOres.values().forEach((x) -> event.getRegistry().register(x));
-	ItemBlocks.values().forEach((x) -> event.getRegistry().register(x));
-    }
-
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-	Blocks.values().forEach((x) -> event.getRegistry().register(x));
-
-    }
-
-    @SubscribeEvent
-    public static void onModelRegistry(ModelRegistryEvent event) {
-
-	ItemOres.values().forEach((x) -> RegisterUtils.registerRender(x));
-	ItemBlocks.values().forEach((x) -> RegisterUtils.registerRender(x));
-
-	for (Block block : Blocks.values()) {
-	    Item item = Item.getItemFromBlock((Block) block);
-	    ModelResourceLocation modelResourceLocation = new ModelResourceLocation(item.getRegistryName(),
-		    "inventory");
-	    ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
+		return RepairValues.get(rarity);
 
 	}
-    }
+
+	@Override
+	public int Weight() {
+		return Rarities.Items.get(rarity).Weight();
+	}
+
+	public ItemOre(String name, int rarity) {
+		RegisterItemUtils.RegisterItemName(this, name);
+		setMaxDamage(0);
+		maxStackSize = 64;
+		setCreativeTab(CreativeTabList.CurrencyTab);
+		this.rarity = rarity;
+
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+
+		tooltip.add(CLOC.tooltip("ore"));
+
+	}
+
+	public static void Register() {
+		Rarities.Items.forEach((x) -> ItemOres.put(x.Rank(), new ItemOre("ore" + x.Rank(), x.Rank())));
+
+		for (int i = 0; i < ItemOres.size(); i++) {
+			BlockOre block = new BlockOre("ore_block" + i, Material.ROCK, ItemOres.get(i), 1);
+			Blocks.put(i, block);
+			ItemBlock itemblock = (ItemBlock) new ItemBlock(block).setRegistryName("ore_block" + i);
+			ItemBlocks.put(i, itemblock);
+		}
+
+	}
+
+	@SubscribeEvent
+	public static void registerItems(RegistryEvent.Register<Item> event) {
+		ItemOres.values().forEach((x) -> event.getRegistry().register(x));
+		ItemBlocks.values().forEach((x) -> event.getRegistry().register(x));
+	}
+
+	@SubscribeEvent
+	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+		Blocks.values().forEach((x) -> event.getRegistry().register(x));
+
+	}
+
+	@SubscribeEvent
+	public static void onModelRegistry(ModelRegistryEvent event) {
+
+		ItemOres.values().forEach((x) -> RegisterUtils.registerRender(x));
+		ItemBlocks.values().forEach((x) -> RegisterUtils.registerRender(x));
+
+		for (Block block : Blocks.values()) {
+			Item item = Item.getItemFromBlock((Block) block);
+			ModelResourceLocation modelResourceLocation = new ModelResourceLocation(item.getRegistryName(),
+					"inventory");
+			ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
+
+		}
+	}
 
 }
