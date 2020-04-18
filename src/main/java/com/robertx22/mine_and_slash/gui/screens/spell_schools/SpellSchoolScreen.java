@@ -478,7 +478,7 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen, IAler
             mc.getTextureManager()
                 .bindTexture(SCHOOL_BUTTON);
 
-            int offx = 84; // todo each school needs different offset
+            int offx = school.getBarTexXOffset();
             int offy = 0;
 
             RenderSystem.disableDepthTest();

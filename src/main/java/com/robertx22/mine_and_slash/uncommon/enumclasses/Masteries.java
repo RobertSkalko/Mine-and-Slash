@@ -19,24 +19,30 @@ import java.util.List;
 
 public enum Masteries {
 
-    OCEAN("ocean", Elements.Water.format, Words.Ocean),
-    FIRE("fire", Elements.Fire.format, Words.Fire),
-    NATURE("nature", Elements.Nature.format, Words.Nature),
-    STORM("storm", Elements.Thunder.format, Words.Storm),
-    DIVINE("divine", TextFormatting.WHITE, Words.Divine),
-    HUNTING("hunting", TextFormatting.GREEN, Words.Hunting);
+    OCEAN("ocean", Elements.Water.format, Words.Ocean, 1),
+    FIRE("fire", Elements.Fire.format, Words.Fire, 2),
+    STORM("storm", Elements.Thunder.format, Words.Storm, 3),
+    NATURE("nature", Elements.Nature.format, Words.Nature, 4),
+    HUNTING("hunting", TextFormatting.GREEN, Words.Hunting, 5),
+    DIVINE("divine", TextFormatting.WHITE, Words.Divine, 6);
 
     public static int MAXIMUM_POINTS = 50;
 
-    Masteries(String id, TextFormatting format, Words locName) {
+    Masteries(String id, TextFormatting format, Words locName, int place) {
         this.id = id;
         this.format = format;
         this.locName = locName;
+        this.place = place;
     }
 
     public String id;
     public TextFormatting format;
     public Words locName;
+    int place;
+
+    public int getBarTexXOffset() {
+        return 46 + ((place - 1) * 21);
+    }
 
     public ITextComponent getFullName() {
         return locName.locName()
