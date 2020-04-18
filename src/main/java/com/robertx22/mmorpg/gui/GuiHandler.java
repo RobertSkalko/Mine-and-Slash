@@ -5,7 +5,7 @@ import com.robertx22.blocks.item_modify_station.GuiInventoryModify;
 import com.robertx22.blocks.item_modify_station.TileInventoryModify;
 import com.robertx22.blocks.map_device.ContainerMap;
 import com.robertx22.blocks.map_device.GuiMap;
-import com.robertx22.blocks.map_device.TileMap;
+import com.robertx22.blocks.map_device.TileMapDevice;
 import com.robertx22.blocks.repair_station.ContainerInventoryRepair;
 import com.robertx22.blocks.repair_station.GuiInventoryRepair;
 import com.robertx22.blocks.repair_station.TileInventoryRepair;
@@ -70,8 +70,8 @@ public class GuiHandler implements IGuiHandler {
 			return new ContainerInventoryModify(player.inventory, tile);
 		}
 
-		if (tileEntity instanceof TileMap) {
-			TileMap tile = (TileMap) tileEntity;
+		if (tileEntity instanceof TileMapDevice) {
+			TileMapDevice tile = (TileMapDevice) tileEntity;
 			return new ContainerMap(player.inventory, tile);
 		}
 
@@ -113,8 +113,8 @@ public class GuiHandler implements IGuiHandler {
 			TileInventoryModify tileInventory = (TileInventoryModify) tileEntity;
 			return new GuiInventoryModify(player.inventory, tileInventory);
 		}
-		if (tileEntity instanceof TileMap) {
-			TileMap tileInventory = (TileMap) tileEntity;
+		if (tileEntity instanceof TileMapDevice) {
+			TileMapDevice tileInventory = (TileMapDevice) tileEntity;
 			return new GuiMap(player.inventory, tileInventory);
 		}
 

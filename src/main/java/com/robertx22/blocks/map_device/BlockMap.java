@@ -15,7 +15,7 @@ public class BlockMap extends BaseInventoryBlock {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-	return new TileMap();
+	return new TileMapDevice();
     }
 
 }

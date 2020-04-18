@@ -201,7 +201,7 @@ public abstract class BaseTile extends TileEntity implements IOBlock, ISidedInve
 		pos.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DISTANCE_SQ;
     }
 
-    static public boolean isItemValidForFuelSlot(ItemStack itemStack) {
+	static public boolean isItemValidForFuelSlot(ItemStack itemStack) {
 	return true;
     }
 

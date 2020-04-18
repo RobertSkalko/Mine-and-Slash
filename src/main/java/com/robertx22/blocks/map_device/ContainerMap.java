@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ContainerMap extends Container {
 
     // Stores the tile entity instance for later use
-    private TileMap tile;
+    private TileMapDevice tile;
 
     // These store cache values, used by the server to only update the client side
     // tile entity when values have changed
@@ -32,7 +32,7 @@ public class ContainerMap extends Container {
     private final int MAP_SLOT_INDEX = 2;
     private final int START_SLOT_INDEX = 3;
 
-    public ContainerMap(InventoryPlayer invPlayer, TileMap tile) {
+    public ContainerMap(InventoryPlayer invPlayer, TileMapDevice tile) {
 	this.tile = tile;
 
 	final int SLOT_X_SPACING = 18;

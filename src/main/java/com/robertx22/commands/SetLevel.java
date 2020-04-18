@@ -1,5 +1,10 @@
 package com.robertx22.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.robertx22.uncommon.capability.EntityData;
 
 import net.minecraft.command.CommandBase;
@@ -8,6 +13,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
 
 public class SetLevel extends CommandBase {
 
@@ -20,10 +26,24 @@ public class SetLevel extends CommandBase {
 	public String getUsage(ICommandSender sender) {
 		return "/setlevel (player) (lvl)";
 	}
-	
+
 	@Override
 	public int getRequiredPermissionLevel() {
 		return 2;
+	}
+
+	@Override
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args,
+			@Nullable BlockPos targetPos) {
+		return new ArrayList<String>() {
+			{
+				if (args.length < 2) {
+					add("username");
+				} else if (args.length < 3) {
+					add("lvl");
+				}
+			}
+		};
 	}
 
 	@Override

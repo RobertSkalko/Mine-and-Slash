@@ -1,5 +1,10 @@
 package com.robertx22.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.robertx22.generation.RuneGen;
 import com.robertx22.generation.blueprints.RuneBlueprint;
 
@@ -9,6 +14,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
 
 public class GiveRune extends CommandBase {
 
@@ -19,19 +25,37 @@ public class GiveRune extends CommandBase {
 
 	@Override
 	public String getUsage(ICommandSender sender) {
-		return "/giverune (player) (lvl), (rarity 0-5), (amount)";
+		return "/giverune (player) (lvl), (rarity), (amount)";
 	}
-	
+
 	@Override
 	public int getRequiredPermissionLevel() {
 		return 2;
 	}
 
 	@Override
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args,
+			@Nullable BlockPos targetPos) {
+		return new ArrayList<String>() {
+			{
+				if (args.length < 2) {
+					add("username");
+				} else if (args.length < 3) {
+					add("lvl");
+				} else if (args.length < 4) {
+					add("rarity");
+				} else if (args.length < 5) {
+					add("amount");
+				}
+			}
+		};
+	}
+
+	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
 		if (args.length < 4)
-			throw new WrongUsageException("/giverune (player) (lvl) (rarity 0-5) (amount)");
+			throw new WrongUsageException("/giverune (player) (lvl) (rarity) (amount)");
 		int lvl = Integer.valueOf(args[1]);
 		int rarity = Integer.valueOf(args[2]);
 		int amount = Integer.valueOf(args[3]);

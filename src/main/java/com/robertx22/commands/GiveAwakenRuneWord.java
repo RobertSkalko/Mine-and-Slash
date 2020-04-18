@@ -1,5 +1,10 @@
 package com.robertx22.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.robertx22.generation.AwakenRuneWordGen;
 import com.robertx22.generation.blueprints.AwakenRuneWordBlueprint;
 
@@ -9,6 +14,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
 
 public class GiveAwakenRuneWord extends CommandBase {
 
@@ -21,10 +27,26 @@ public class GiveAwakenRuneWord extends CommandBase {
 	public String getUsage(ICommandSender sender) {
 		return "/giveawakenruneword (player) (runeword name or random) (amount)";
 	}
-	
+
 	@Override
 	public int getRequiredPermissionLevel() {
 		return 2;
+	}
+
+	@Override
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args,
+			@Nullable BlockPos targetPos) {
+		return new ArrayList<String>() {
+			{
+				if (args.length < 2) {
+					add("username");
+				} else if (args.length < 3) {
+					add("random");
+				} else if (args.length < 4) {
+					add("amount");
+				}
+			}
+		};
 	}
 
 	@Override
