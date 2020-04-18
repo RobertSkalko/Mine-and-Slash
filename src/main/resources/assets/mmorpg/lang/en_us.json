@@ -103,17 +103,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Minor Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
 "_comment": " [CATEGORY]: SPELLS - NAMES",
 
 	"mmorpg.synergy.fireball_syn_1": "Fireball Explosion",
@@ -129,8 +118,8 @@
 	"mmorpg.synergy.nature_balm_syn_1": "Balm of Thorns",
 	"mmorpg.synergy.nature_balm_syn_2": "Spread Balm",
 	"mmorpg.synergy.poisoned_weapons_syn_1": "Poison thorn seeker",
-	"mmorpg.synergy.purifying_fires_syn_1": "Fire of Judgement",
-	"mmorpg.synergy.purifying_fires_syn_2": "Energizing Hits",
+	"mmorpg.synergy.purifying_fires_syn_1": "Energizing Hits",
+	"mmorpg.synergy.purifying_fires_syn_2": "Fire of Judgement",
 	"mmorpg.synergy.recoil_shot_syn_1": "Recoil of the hunter",
 	"mmorpg.synergy.recoil_shot_syn_2": "Recoil Wounds",
 	"mmorpg.synergy.thorn_armor_syn_1": "Thorny Armor",
@@ -267,6 +256,17 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Minor Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "Mage's Robes",
@@ -303,6 +303,24 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -321,24 +339,6 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -520,6 +520,7 @@
 	"mmorpg.word.blueprint": "Blueprint",
 	"mmorpg.word.bonus_salvage_chance": "Bonus Salvage Chance",
 	"mmorpg.word.bonus_success_rate": "Bonus Success Rate",
+	"mmorpg.word.bravery": "Bravery",
 	"mmorpg.word.breakchance": "Break Chance",
 	"mmorpg.word.broken": "Broken",
 	"mmorpg.word.by": "By",
@@ -727,6 +728,7 @@
 	"mmorpg.word.timestocast": "Times to Cast",
 	"mmorpg.word.to": "To",
 	"mmorpg.word.took": "Took",
+	"mmorpg.word.trickery": "Trickery",
 	"mmorpg.word.tripleslash": "Triple Slash",
 	"mmorpg.word.type": "Type",
 	"mmorpg.word.unidentified": "Unidentified",
@@ -745,6 +747,7 @@
 	"mmorpg.word.weaponoffhand": "Weapon/Offhand",
 	"mmorpg.word.whirpool": "Whirpool",
 	"mmorpg.word.wideshot": "Wide Shot",
+	"mmorpg.word.wizardry": "Wizardry",
 	"mmorpg.word.works_when_equipped": "Works when equipped",
 	"mmorpg.word.world_type": "World Type",
 
@@ -874,6 +877,7 @@
 	"mmorpg.stat.plus_arrow_storm_spell_lvl": "To Arrow Storm Skill Level",
 	"mmorpg.stat.plus_blazing_inferno_spell_lvl": "To Blazing Inferno Skill Level",
 	"mmorpg.stat.plus_blizzard_spell_lvl": "To Blizzard Skill Level",
+	"mmorpg.stat.plus_bravery_spell_lvl": "To Bravery Skill Level",
 	"mmorpg.stat.plus_burn_effect_lvl": "To Burn Skill Level",
 	"mmorpg.stat.plus_divine_skill_lvls": "To Divine Mastery Skill Levels",
 	"mmorpg.stat.plus_fire_bombs_spell_lvl": "To Fire Bombs Skill Level",
@@ -915,8 +919,8 @@
 	"mmorpg.stat.plus_poisoned_weapons_spell_lvl": "To Poisoned Weapons Skill Level",
 	"mmorpg.stat.plus_poisoned_weapons_syn_1_synergy_lvl": "To Poison thorn seeker Skill Level",
 	"mmorpg.stat.plus_purifying_fires_spell_lvl": "To Purifying Fires Skill Level",
-	"mmorpg.stat.plus_purifying_fires_syn_1_synergy_lvl": "To Fire of Judgement Skill Level",
-	"mmorpg.stat.plus_purifying_fires_syn_2_synergy_lvl": "To mmorpg.synergy.purifying_fires_syn_2 Skill Level",
+	"mmorpg.stat.plus_purifying_fires_syn_1_synergy_lvl": "To Energizing Hits Skill Level",
+	"mmorpg.stat.plus_purifying_fires_syn_2_synergy_lvl": "To Fire of Judgement Skill Level",
 	"mmorpg.stat.plus_recoil_shot_spell_lvl": "To Recoil Shot Skill Level",
 	"mmorpg.stat.plus_recoil_shot_syn_1_synergy_lvl": "To Recoil of the hunter Skill Level",
 	"mmorpg.stat.plus_recoil_shot_syn_2_synergy_lvl": "To Recoil Wounds Skill Level",
@@ -942,10 +946,12 @@
 	"mmorpg.stat.plus_thunder_storm_spell_lvl": "To Thunderstorm Skill Level",
 	"mmorpg.stat.plus_tidal_wave_spell_lvl": "To Tidal Wave Skill Level",
 	"mmorpg.stat.plus_tidal_wave_syn_1_synergy_lvl": "To Freezing Waves Skill Level",
+	"mmorpg.stat.plus_trickery_spell_lvl": "To Trickery Skill Level",
 	"mmorpg.stat.plus_volcano_spell_lvl": "To Volcano Skill Level",
 	"mmorpg.stat.plus_volcano_syn_1_synergy_lvl": "To Volcano Burn Skill Level",
 	"mmorpg.stat.plus_whirlpool_spell_lvl": "To Whirpool Skill Level",
 	"mmorpg.stat.plus_whirlpool_syn_1_synergy_lvl": "To Shiver pool Skill Level",
+	"mmorpg.stat.plus_wizardry_spell_lvl": "To Wizardry Skill Level",
 	"mmorpg.stat.plus_wounds_effect_lvl": "To Wounds Skill Level",
 	"mmorpg.stat.quick_learner": "Quick Learner",
 	"mmorpg.stat.reckless_blows_trait": "Reckless Blows",
@@ -1024,37 +1030,6 @@
 	"mmorpg.advancement.desc.welcomemineandslash": "This mod is all about killing mobs, looting epic gear to kill more mobs!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.bow": "Bow",
-	"mmorpg.gear_type.bracelet": "Bracelet",
-	"mmorpg.gear_type.charm": "Charm",
-	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
-	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
-	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
-	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
-	"mmorpg.gear_type.crossbow": "Crossbow",
-	"mmorpg.gear_type.hammer": "Hammer",
-	"mmorpg.gear_type.leather_boots": "Leather Boots",
-	"mmorpg.gear_type.leather_chest": "Leather Chest",
-	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
-	"mmorpg.gear_type.leather_pants": "Leather Pants",
-	"mmorpg.gear_type.necklace": "Necklace",
-	"mmorpg.gear_type.plate_boots": "Plate Boots",
-	"mmorpg.gear_type.plate_chest": "Plate Chest",
-	"mmorpg.gear_type.plate_helmet": "Plate Helm",
-	"mmorpg.gear_type.plate_pants": "Plate Greaves",
-	"mmorpg.gear_type.ring": "Ring",
-	"mmorpg.gear_type.shield": "Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.torch": "Torch",
-	"mmorpg.gear_type.trident": "Trident",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
@@ -1151,6 +1126,37 @@
 	"item.mmorpg.uniques.sword.water_ele_saber0": "§eSaber of Frost madness",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.bow": "Bow",
+	"mmorpg.gear_type.bracelet": "Bracelet",
+	"mmorpg.gear_type.charm": "Charm",
+	"mmorpg.gear_type.cloth_boots": "Cloth Slippers",
+	"mmorpg.gear_type.cloth_chest": "Cloth Vest",
+	"mmorpg.gear_type.cloth_helmet": "Cloth Hat",
+	"mmorpg.gear_type.cloth_pants": "Cloth Pants",
+	"mmorpg.gear_type.crossbow": "Crossbow",
+	"mmorpg.gear_type.hammer": "Hammer",
+	"mmorpg.gear_type.leather_boots": "Leather Boots",
+	"mmorpg.gear_type.leather_chest": "Leather Chest",
+	"mmorpg.gear_type.leather_helmet": "Leather Helmet",
+	"mmorpg.gear_type.leather_pants": "Leather Pants",
+	"mmorpg.gear_type.necklace": "Necklace",
+	"mmorpg.gear_type.plate_boots": "Plate Boots",
+	"mmorpg.gear_type.plate_chest": "Plate Chest",
+	"mmorpg.gear_type.plate_helmet": "Plate Helm",
+	"mmorpg.gear_type.plate_pants": "Plate Greaves",
+	"mmorpg.gear_type.ring": "Ring",
+	"mmorpg.gear_type.shield": "Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.torch": "Torch",
+	"mmorpg.gear_type.trident": "Trident",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -1282,6 +1288,7 @@
 "_comment": " [CATEGORY]: POTIONS - NAMES",
 
 	"effect.mmorpg.bleed": "Bleed",
+	"effect.mmorpg.bravery": "Bravery",
 	"effect.mmorpg.burn": "Burn",
 	"effect.mmorpg.frost": "Frost",
 	"effect.mmorpg.frost_essence": "Cold Essence",
@@ -1297,6 +1304,8 @@
 	"effect.mmorpg.thorn_armor": "Thorn Armor",
 	"effect.mmorpg.thorns": "Thorns",
 	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.trickery": "Trickery",
+	"effect.mmorpg.wizardry": "Wizardry",
 	"effect.mmorpg.wounds": "Wounds",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
@@ -1316,21 +1325,27 @@
 	"mmorpg.chat.cooldown_not_met": "Cooldown not met",
 	"mmorpg.chat.dev_tools_enabled_contact_the_author": "Devs tools enabled, if you see this please contact the author of Mine and Slash [robertx22], he forgot to disable them!",
 	"mmorpg.chat.distance_too_high_to_teleport": "Distance too high to teleport",
+	"mmorpg.chat.divinemastery": "[Healing & Damage]: Invoke both the benevolence and wrath of the gods through you as you bless and recover your allies around you whilst smiting down blasphemers and heretics with the destructive powers of fire and lightning.  Like two sides of the same coin, Mastery of the Divine can either bring Restoration or Destruction.",
+	"mmorpg.chat.firemastery": "[Damage]: Blast away those you cross in an all-consuming infernal fire and summon forth eruptions of volcanic plume that smother your enemies in molten rocks and fireballs.  The Masters of Pyromancery excels in their big damage and relentless DoT's.",
 	"mmorpg.chat.has_died_by_the_hands_of": "has died by the hands of",
+	"mmorpg.chat.huntingmastery": "(Damage & Utility): With eyes like an eagle, send your arrows imbued with magic flying towards your prey, and rain the flurry of a 1000 arrows onto the land to secure the hunt.  Mastering Hunting is done with bows and crossbows and deals big hitting damage and evasive maneuvers.",
 	"mmorpg.chat.infusion_failed": "Infusion Failed",
 	"mmorpg.chat.infusion_failed_horribly": "Infusion Failed Horribly",
 	"mmorpg.chat.infusion_was_incredibly_successful": "Infusion was incredibly Successful",
 	"mmorpg.chat.map_time_penalty_activated": "Map time penalty activated",
 	"mmorpg.chat.mapstarted": "Adventure Map Successfully Sacrificed",
+	"mmorpg.chat.naturemastery": "(DoT Damage, & Healing): Summon the drums of the wild as you wrap yourself in thorny armor for protection and provide healing for yourself and allies whilst covering enemies in poisonous vines.  Mastery of Nature provides a versatile playstyle ready for any situation through defense, DoTs and Healing.",
 	"mmorpg.chat.no_bed_found": "No bed found",
 	"mmorpg.chat.no_targets_found": "No targets found",
 	"mmorpg.chat.nospaceforportal": "No Space for the portals. Please make 13x13 wide room.",
 	"mmorpg.chat.not_attuned_to_any_altars": "Not attuned to any altars",
 	"mmorpg.chat.not_enough_experience": "Not enough experience",
 	"mmorpg.chat.not_enough_time": "Not enough time",
+	"mmorpg.chat.oceanmastery": " [Utility & Healing]: Calling upon the depths of ocean's abyss, you may draw forth the chill of the deep to slow your foes or send the healing waters of the world over yourself and allies.",
 	"mmorpg.chat.player_died_in_a_map_world": "Player died in a map world",
 	"mmorpg.chat.ran_out_of_time": "Ran Out Of Time",
 	"mmorpg.chat.remaining_map_time_is": "Remaining Map Time is",
+	"mmorpg.chat.stormmastery": "[Damage & Utility]: Harness tridents of lightning and blitz your way through crowds in a flash whilst casting destructive electrical storms upon the battlefield.  Fast casting and incredible mobility serves as the Storm Master's unique ally.",
 	"mmorpg.chat.teleport_canceled_due_to_movement": "Teleport canceled due to movement",
 	"mmorpg.chat.teleport_started": "Teleport started",
 	"mmorpg.chat.teleporting_back": "Teleporting back",

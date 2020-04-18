@@ -91,8 +91,8 @@ public class PreCalcSpellConfigs {
         if (!map.containsKey(sc)) {
 
             try {
-                throw new RuntimeException("Trying to get non existent value: " + sc.name());
-            } catch (RuntimeException e) {
+                throw new Exception("Trying to get non existent value: " + sc.name());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return LevelBased.empty();
@@ -102,8 +102,8 @@ public class PreCalcSpellConfigs {
 
         if (thing.isEmpty()) {
             try {
-                throw new RuntimeException("Getting empty value: " + sc.name());
-            } catch (RuntimeException e) {
+                throw new Exception("Getting empty value: " + sc.name());
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return LevelBased.empty();

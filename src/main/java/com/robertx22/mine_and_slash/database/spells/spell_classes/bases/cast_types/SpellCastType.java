@@ -9,6 +9,7 @@ public abstract class SpellCastType {
     public static CastSelfHeal SELF_HEAL = new CastSelfHeal();
     public static CastProjectile PROJECTILE = new CastProjectile();
     public static CastSpecial SPECIAL = new CastSpecial();
+    public static CastAoeEffect AOE_EFFECT = new CastAoeEffect();
 
     public abstract boolean cast(SpellCastContext ctx);
 

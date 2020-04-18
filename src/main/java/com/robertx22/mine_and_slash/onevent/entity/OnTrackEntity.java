@@ -20,11 +20,10 @@ public class OnTrackEntity {
 
         Entity entity = event.getTarget();
 
-        if (entity instanceof LivingEntity) {
+        try {
+            if (entity instanceof LivingEntity) {
 
-            if (entity.isEntityEqual(event.getPlayer()) == false) {
-
-                if (Load.hasUnit(entity)) {
+                if (entity.isEntityEqual(event.getPlayer()) == false) {
 
                     if (entity instanceof PlayerEntity) {
                         MMORPG.sendToClient(
@@ -48,8 +47,9 @@ public class OnTrackEntity {
                     }
 
                 }
-
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

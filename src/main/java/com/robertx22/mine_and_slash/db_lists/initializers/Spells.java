@@ -5,6 +5,9 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.divine.Healing
 import com.robertx22.mine_and_slash.database.spells.spell_classes.divine.HolyFlowerSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.divine.PurifyingFiresSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.divine.SpearOfJudgementSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.divine.buffs.BraverySpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.divine.buffs.TrickerySpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.divine.buffs.WizardrySpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.fire.*;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.hunting.*;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.nature.*;
@@ -26,6 +29,10 @@ public class Spells implements ISlashRegistryInit {
         List<BaseSpell> All = new ArrayList<BaseSpell>() {
             {
                 {
+
+                    add(BraverySpell.getInstance());
+                    add(TrickerySpell.getInstance());
+                    add(WizardrySpell.getInstance());
 
                     add(HolyFlowerSpell.getInstance());
                     add(SpearOfJudgementSpell.getInstance());

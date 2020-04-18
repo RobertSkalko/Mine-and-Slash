@@ -12,6 +12,10 @@ public class OnTargetEvent {
 
         try {
 
+            if (true) {
+                return;
+            }
+
             if (event.getTarget() == null || event.getEntityLiving() == null) {
                 return;
             }

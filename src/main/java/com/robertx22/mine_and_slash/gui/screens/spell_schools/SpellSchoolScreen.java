@@ -237,6 +237,7 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen, IAler
 
         }
 
+        @Override
         public void renderToolTip(int mouseX, int mouseY) {
             if (this.ability != null) {
                 if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
@@ -345,8 +346,18 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen, IAler
 
         }
 
+        @Override
         public void renderToolTip(int mouseX, int mouseY) {
+            if (this.school != null) {
+                if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
 
+                    List<ITextComponent> tooltip = TooltipUtils.cutIfTooLong(school.desc.locName());
+
+                    tooltip.forEach(x -> x.applyTextStyle(school.format));
+
+                    GuiUtils.renderTooltip(tooltip, mouseX, mouseY);
+                }
+            }
         }
 
         @Override
@@ -424,6 +435,7 @@ public class SpellSchoolScreen extends BaseScreen implements INamedScreen, IAler
 
         }
 
+        @Override
         public void renderToolTip(int mouseX, int mouseY) {
 
             if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {

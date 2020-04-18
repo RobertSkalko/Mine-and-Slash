@@ -1,3 +1,8 @@
+3.6.8
+* updated chinese lang
+* added mastery descriptions by dreckz
+* added 3 new divine buff spells
+
 3.6.7
 * added a new mastery: divine!
 * added new fire mastery synergy
