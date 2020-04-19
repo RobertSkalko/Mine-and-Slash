@@ -49,7 +49,7 @@ public class KillRarityMobTrigger extends AbstractCriterionTrigger<KillRarityMob
         public JsonElement serialize() {
             JsonObject jsonobject = new JsonObject();
             jsonobject.add("rarity", new JsonPrimitive(rarity));
-            t return jsonobject;
+            return jsonobject;
         }
     }
 
