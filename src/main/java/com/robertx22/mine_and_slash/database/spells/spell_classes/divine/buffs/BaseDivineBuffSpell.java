@@ -41,6 +41,8 @@ public abstract class BaseDivineBuffSpell extends BaseSpell {
         list.addAll(getImmutableConfigs().potionEffect()
             .GetTooltipStringWithNoExtraSpellInfo(info));
 
+        list.add(new StringTextComponent("Only One Divine Buff is allowed at a time! "));
+
         return list;
 
     }

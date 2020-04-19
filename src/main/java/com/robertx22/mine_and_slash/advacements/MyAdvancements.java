@@ -56,7 +56,7 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement lvl_10 = levelAdv(10, AdvDescs.LevelUp10, parent, consu, ItemHammer.Items.get(0));
         Advancement lvl_25 = levelAdv(20, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items.get(1));
         Advancement lvl_50 = levelAdv(50, AdvDescs.LevelUp, lvl_25, consu, ItemHammer.Items.get(2));
-        Advancement lvl_60 = levelAdv(75, AdvDescs.LevelUp, lvl_50, consu, ItemHammer.Items.get(3));
+        Advancement lvl_60 = levelAdv(60, AdvDescs.LevelUp, lvl_50, consu, ItemHammer.Items.get(3));
 
         Advancement legendaryMob = mobRarityKill(Rarities.Mobs.get(IRarity.Legendary),
             AdvDescs.MobRaritySpawnAt.locName()
@@ -117,10 +117,6 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         );
 
         Advancement sal0 = salvageBag(AutoSalvageBag.Items.get(0), salvage, consu);
-        Advancement sal1 = salvageBag(AutoSalvageBag.Items.get(1), sal0, consu);
-        Advancement sal2 = salvageBag(AutoSalvageBag.Items.get(2), sal1, consu);
-        Advancement sal3 = salvageBag(AutoSalvageBag.Items.get(3), sal2, consu);
-        Advancement sal4 = salvageBag(AutoSalvageBag.Items.get(4), sal3, consu);
 
     }
 

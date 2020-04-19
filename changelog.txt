@@ -2,6 +2,7 @@
 * updated chinese lang
 * added mastery descriptions by dreckz
 * added 3 new divine buff spells
+* removed some advancements
 
 3.6.7
 * added a new mastery: divine!

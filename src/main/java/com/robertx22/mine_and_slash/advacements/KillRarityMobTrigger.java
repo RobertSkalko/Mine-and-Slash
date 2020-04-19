@@ -21,7 +21,8 @@ public class KillRarityMobTrigger extends AbstractCriterionTrigger<KillRarityMob
 
     @Override
     public Instance deserializeInstance(JsonObject json, JsonDeserializationContext context) {
-        int rarity = json.get("rarity").getAsInt();
+        int rarity = json.get("rarity")
+            .getAsInt();
         return new Instance(rarity);
     }
 
@@ -48,7 +49,7 @@ public class KillRarityMobTrigger extends AbstractCriterionTrigger<KillRarityMob
         public JsonElement serialize() {
             JsonObject jsonobject = new JsonObject();
             jsonobject.add("rarity", new JsonPrimitive(rarity));
-            return jsonobject;
+            t return jsonobject;
         }
     }
 

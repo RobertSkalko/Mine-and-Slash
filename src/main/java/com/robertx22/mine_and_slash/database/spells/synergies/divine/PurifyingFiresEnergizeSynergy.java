@@ -23,7 +23,7 @@ public class PurifyingFiresEnergizeSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Hits restore some energy to you.."));
+        list.add(new StringTextComponent("Hits restore some energy to you."));
 
         list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
