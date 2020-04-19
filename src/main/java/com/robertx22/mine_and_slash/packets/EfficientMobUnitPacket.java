@@ -42,30 +42,31 @@ public class EfficientMobUnitPacket {
         tag.writeInt(packet.id);
         tag.writeCompoundTag(packet.nbt);
 
-        //System.out.println("eff uses " + tag.writerIndex());
-
     }
 
     public static void handle(final EfficientMobUnitPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
 
-                Entity entity = MMORPG.proxy.getPlayerEntityFromContext(ctx).world.getEntityByID(pkt.id);
+                    Entity entity = MMORPG.proxy.getPlayerEntityFromContext(ctx).world.getEntityByID(pkt.id);
 
-                if (entity instanceof LivingEntity) {
+                    if (entity instanceof LivingEntity) {
 
-                    LivingEntity en = (LivingEntity) entity;
+                        LivingEntity en = (LivingEntity) entity;
 
-                    Load.Unit(en).setClientNBT(pkt.nbt);
+                        Load.Unit(en)
+                            .setClientNBT(pkt.nbt);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            });
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        ctx.get().setPacketHandled(true);
+        ctx.get()
+            .setPacketHandled(true);
     }
 
 }

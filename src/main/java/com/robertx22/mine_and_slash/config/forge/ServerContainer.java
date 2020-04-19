@@ -1,6 +1,11 @@
 package com.robertx22.mine_and_slash.config.forge;
 
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
+import net.minecraft.entity.EntityType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static net.minecraftforge.common.ForgeConfigSpec.*;
 
@@ -46,8 +51,24 @@ public class ServerContainer {
     public DoubleValue MOB_STRENGTH_PER_LEVEL_MULTI;
     public DoubleValue REGEN_HUNGER_COST;
 
+    public ConfigValue<List<? extends String>> IGNORED_ENTITIES;
+
     ServerContainer(Builder builder) {
         builder.push("GENERAL");
+
+        List<EntityType> list = new ArrayList<>();
+        list.add(EntityType.BAT);
+        list.add(EntityType.TROPICAL_FISH);
+        list.add(EntityType.PUFFERFISH);
+
+        List<String> idlist = list.stream()
+            .map(x -> x.getRegistryName()
+                .toString())
+            .collect(Collectors.toList());
+
+        IGNORED_ENTITIES = builder.comment(".")
+            .translation("mmorpg.word.")
+            .defineList("IGNORED_ENTITIES", idlist, x -> true);
 
         REGEN_HUNGER_COST = builder.comment(".")
             .translation("mmorpg.word.")

@@ -1,3 +1,8 @@
+3.6.9
+* trying out performance optimizations
+* added ignored entities config, this stops stat data packets from being sent to client,
+ should make servers less laggy as most entities are bats and fish, and you don't really care about their stats
+
 3.6.8
 * updated chinese lang
 * added mastery descriptions by dreckz

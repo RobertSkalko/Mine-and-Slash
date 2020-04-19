@@ -18,7 +18,7 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
-import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
+import com.robertx22.mine_and_slash.packets.EfficientMobUnitPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
@@ -35,13 +35,16 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -531,9 +534,36 @@ public class Unit {
         DirtyCheck newcheck = getDirtyCheck();
 
         if (old.isDirty(newcheck)) {
-            MMORPG.sendToTracking(new EntityUnitPacket(entity, data), entity);
+            if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
+                return;
+            }
+            MMORPG.sendToTracking(getUpdatePacketFor(entity, data), entity);
         }
 
+    }
+
+    private static List<EntityType> IGNORED_ENTITIES = null;
+
+    public static List<EntityType> getIgnoredEntities() {
+
+        if (IGNORED_ENTITIES == null) {
+            IGNORED_ENTITIES = ModConfig.INSTANCE.Server.IGNORED_ENTITIES.get()
+                .stream()
+                .filter(x -> ForgeRegistries.ENTITIES.containsKey(new ResourceLocation(x)))
+                .map(x -> ForgeRegistries.ENTITIES.getValue(new ResourceLocation(x)))
+                .collect(Collectors.toList());
+        }
+
+        return IGNORED_ENTITIES;
+
+    }
+
+    public static boolean shouldSendUpdatePackets(LivingEntity en) {
+        return getIgnoredEntities().contains(en.getType()) == false;
+    }
+
+    public static Object getUpdatePacketFor(LivingEntity en, UnitData data) {
+        return new EfficientMobUnitPacket(en, data); // todo maybe players will need extra data later on? maybe
     }
 
     // gear check works on everything but the weapon.

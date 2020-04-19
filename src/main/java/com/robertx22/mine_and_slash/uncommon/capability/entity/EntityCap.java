@@ -18,7 +18,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
-import com.robertx22.mine_and_slash.packets.EntityUnitPacket;
 import com.robertx22.mine_and_slash.packets.NoEnergyPacket;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -653,7 +652,11 @@ public class EntityCap {
         public void trySync(LivingEntity entity) {
             if (this.shouldSync) {
                 this.shouldSync = false;
-                MMORPG.sendToTracking(new EntityUnitPacket(entity), entity);
+
+                if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
+                    return;
+                }
+                MMORPG.sendToTracking(Unit.getUpdatePacketFor(entity, this), entity);
             }
 
         }
