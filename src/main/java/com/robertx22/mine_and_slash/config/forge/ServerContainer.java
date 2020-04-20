@@ -14,7 +14,6 @@ public class ServerContainer {
     public BooleanValue USE_COMPATIBILITY_ITEMS;
     public BooleanValue DISABLE_VANILLA_HP_REGEN;
     public BooleanValue GENERATE_ORES;
-    public BooleanValue GET_STARTER_ITEMS;
     public IntValue DELETE_DUNGEON_DIMENSION_FOLDER_AFTER_X_MAPS_SACRIFICED;
     public BooleanValue ONLY_REPAIR_IN_STATION;
     public BooleanValue LOG_REGISTRY_ENTRIES;
@@ -139,10 +138,6 @@ public class ServerContainer {
 
         ONLY_REPAIR_IN_STATION = builder.comment(".")
             .define("ONLY_REPAIR_IN_STATION", true);
-
-        GET_STARTER_ITEMS = builder.comment(".")
-            .translation("mmorpg.word")
-            .define("GET_STARTER_ITEMS", true);
 
         DISABLE_VANILLA_HP_REGEN = builder.comment(".")
             .translation("mmorpg.word.entities")

@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.capability.entity;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.commands.open_gui.OpenHub;
+import com.robertx22.mine_and_slash.config.forge.CommonConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -883,7 +884,7 @@ public class EntityCap {
                 // check if newbie
                 if (isNewbie()) {
                     setNewbieStatus(false);
-                    if (ModConfig.INSTANCE.Server.GET_STARTER_ITEMS.get()) {
+                    if (CommonConfig.INSTANCE.GET_STARTER_ITEMS.get()) {
                         OnLogin.GiveStarterItems(player);
                     }
                 }

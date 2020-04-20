@@ -4,7 +4,7 @@ issueTrackerURL="https://github.com/RobertSkalko/Mine-and-Slash/issues"
 logoFile="logo.png"
 [[mods]]
 modId="mmorpg"
-version="3.6.9"
+version="3.6.10"
 displayName="Mine and Slash"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/mine-and-slash-reloaded"
 authors="robertx22"

@@ -1,3 +1,6 @@
+3.6.10
+* starter item config is now common config
+
 3.6.9
 * trying out performance optimizations
 * added ignored entities config, this stops stat data packets from being sent to client,

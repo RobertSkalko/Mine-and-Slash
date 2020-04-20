@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.config.base_player_stat.BasePlayerStatSerial
 import com.robertx22.mine_and_slash.config.compatible_items.OldCompatibleItemSerial;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsSerial;
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
+import com.robertx22.mine_and_slash.config.forge.CommonConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.lvl_penalty.LvlPenaltySerial;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistSerial;
@@ -95,6 +96,7 @@ public class ConfigRegister {
         });
 
         ctx.registerConfig(Type.SERVER, ModConfig.spec, "MineAndSlash-Server.toml");
+        ctx.registerConfig(Type.COMMON, CommonConfig.spec, "MineAndSlash-Common.toml");
     }
 
 }
