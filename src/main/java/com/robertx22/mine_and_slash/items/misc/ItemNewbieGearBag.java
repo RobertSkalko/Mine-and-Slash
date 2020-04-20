@@ -1,5 +1,11 @@
 package com.robertx22.mine_and_slash.items.misc;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.BaseItem;
@@ -23,6 +29,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ObjectHolder;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemNewbieGearBag extends BaseItem {
@@ -44,30 +51,27 @@ public class ItemNewbieGearBag extends BaseItem {
         if (!worldIn.isRemote) {
             try {
 
-                GearBlueprint weaponPrint = new GearBlueprint(1);
-                weaponPrint.gearItemSlot.set(Sword.INSTANCE.GUID());
-                weaponPrint.level.LevelRange = false;
+                List<GearItemSlot> list = new ArrayList<>();
 
-                GearItemData wepData = weaponPrint.createData();
-                wepData.isSalvagable = false;
+                list.add(PlatePants.INSTANCE);
+                list.add(PlateChest.INSTANCE);
+                list.add(PlateHelmet.INSTANCE);
+                list.add(PlateBoots.INSTANCE);
 
-                ItemStack weaponStack = GearCreationUtils.CreateStack(wepData);
-                playerIn.dropItem(weaponStack, false, true);
+                list.add(Sword.INSTANCE);
 
-                for (int i = 0; i < ITEMS_AMOUNT; i++) {
+                list.add(Ring.INSTANCE);
+                list.add(Ring.INSTANCE);
 
-                    GearBlueprint blueprint = new GearBlueprint(1);
-                    blueprint.level.LevelRange = false;
-
-                    GearItemData data = blueprint.createData();
+                list.forEach(x -> {
+                    GearItemData data = getBlueprint(x).createData();
                     data.isSalvagable = false;
-                    ItemStack stack = GearCreationUtils.CreateStack(data);
+                    ItemStack weaponStack = GearCreationUtils.CreateStack(data);
+                    playerIn.dropItem(weaponStack, false, true);
+                });
 
-                    playerIn.dropItem(stack, false, true);
-
-                }
-
-                playerIn.getHeldItem(handIn).shrink(1);
+                playerIn.getHeldItem(handIn)
+                    .shrink(1);
 
                 return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
 
@@ -76,6 +80,16 @@ public class ItemNewbieGearBag extends BaseItem {
             }
         }
         return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
+    }
+
+    private static GearBlueprint getBlueprint(GearItemSlot type) {
+        GearBlueprint print = new GearBlueprint(1);
+        print.gearItemSlot.set(type);
+        print.level.LevelRange = false;
+        print.rarity.setSpecificRarity(0);
+
+        return print;
+
     }
 
     @Override

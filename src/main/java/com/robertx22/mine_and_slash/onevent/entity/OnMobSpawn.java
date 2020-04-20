@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.onevent.entity.goals.OpenDungeonDoorsGoal;
 import com.robertx22.mine_and_slash.onevent.ontick.OnBossTick;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
@@ -19,7 +18,6 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.PrioritizedGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -106,26 +104,14 @@ public class OnMobSpawn {
 
     public static void setupMobGoals(MobEntity en) {
 
-        boolean hasOpenDoorGoal = false;
-
         int count = en.goalSelector.goals.size();
 
         for (PrioritizedGoal x : new HashSet<>(en.goalSelector.goals)) {
             Goal g = x.getGoal();
 
-            if (g instanceof OpenDungeonDoorsGoal) {
-                hasOpenDoorGoal = true;
-            }
-
             if (g instanceof RandomWalkingGoal
                 || g instanceof BreakDoorGoal) {
                 en.goalSelector.removeGoal(g);
-            }
-        }
-
-        if (!hasOpenDoorGoal) {
-            if (en.getNavigator() instanceof GroundPathNavigator) {
-                en.goalSelector.addGoal(count + 1, new OpenDungeonDoorsGoal(en));
             }
         }
 

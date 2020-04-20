@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
@@ -46,8 +47,9 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
 
         GearItemData gear = Gear.Load(stack);
 
-        gear.uniqueStats.RerollNumbers(gear);
-
+        for (IRerollable rel : gear.GetAllRerollable()) {
+            rel.RerollNumbers(gear);
+        }
         Gear.Save(stack, gear);
 
         return stack;
@@ -55,7 +57,7 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.HAS_UNIQUE_STATS);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_UNIQUE);
     }
 
     @Override
@@ -85,7 +87,7 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
 
     @Override
     public int instabilityAddAmount() {
-        return 10;
+        return 100;
     }
 
     @Override

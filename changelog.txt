@@ -1,7 +1,11 @@
 3.6.9
 * trying out performance optimizations
 * added ignored entities config, this stops stat data packets from being sent to client,
- should make servers less laggy as most entities are bats and fish, and you don't really care about their stats
+ should make servers less laggy as most entities are bats and fish, and you don't really care about their stats. 
+ You could also add sheep for example, if you have a huge sheep farm that's laggy.
+ * orb of blessing can no longer reroll unique gear's stats
+ * orb of unique blessing can now only reroll them, and the instability hit is now much higher (as unique gears are much less random now, i'm toning down the amount of times you can modify them)
+* made starter items a newbie gear bag instead. the bag now gives same items every time. 
 
 3.6.8
 * updated chinese lang

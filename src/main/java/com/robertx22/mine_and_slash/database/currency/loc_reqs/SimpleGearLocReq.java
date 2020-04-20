@@ -30,9 +30,9 @@ public class SimpleGearLocReq extends BaseLocRequirement {
     public static final SimpleGearLocReq IS_LOWER_THAN_LEGENDARY = new SimpleGearLocReq(
         x -> x.Rarity < IRarity.Legendary, Words.isLowerThanLegendary.locName());
     public static final SimpleGearLocReq IS_NOT_UNIQUE = new SimpleGearLocReq(
-        x -> x.Rarity != IRarity.Unique, Words.isNotUnique.locName());
+        x -> !x.isUnique(), Words.isNotUnique.locName());
     public static final SimpleGearLocReq IS_UNIQUE = new SimpleGearLocReq(
-        x -> x.Rarity == IRarity.Unique, Words.isUnique.locName());
+        x -> x.isUnique(), Words.isUnique.locName());
 
     public static final BaseLocRequirement HAS_PREFIX = new SimpleGearLocReq(
         x -> x.prefix != null, Words.hasPrefix.locName());

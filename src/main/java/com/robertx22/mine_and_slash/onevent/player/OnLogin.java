@@ -1,15 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.player;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.items.misc.ItemNewbieGearBag;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.MapBlueprint;
@@ -91,33 +83,13 @@ public class OnLogin {
 
     }
 
-    private static void giveGear(GearItemSlot type, PlayerEntity player) {
-        GearBlueprint print = new GearBlueprint(1);
-        print.gearItemSlot.set(type);
-        print.level.LevelRange = false;
-        print.rarity.setSpecificRarity(0);
-        player.inventory.addItemStackToInventory(GearCreationUtils.CreateStack(print, GearItemEnum.NORMAL));
-
-    }
-
     public static void GiveStarterItems(PlayerEntity player) {
 
         if (player.world.isRemote) {
             return;
         }
 
-        giveGear(PlatePants.INSTANCE, player);
-        giveGear(PlateChest.INSTANCE, player);
-        giveGear(PlateHelmet.INSTANCE, player);
-        giveGear(PlateBoots.INSTANCE, player);
-
-        giveGear(Sword.INSTANCE, player);
-
-        giveGear(Ring.INSTANCE, player);
-        giveGear(Ring.INSTANCE, player);
-        giveGear(Necklace.INSTANCE, player);
-        giveGear(Bracelet.INSTANCE, player);
-
+        player.inventory.addItemStackToInventory(new ItemStack(ItemNewbieGearBag.ITEM));
         player.inventory.addItemStackToInventory(new ItemStack(ItemOre.ItemOres.get(0)));
 
         if (MMORPG.RUN_DEV_TOOLS) {

@@ -223,11 +223,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         if (areBothPlayers()) {
             if (TeamUtils.areOnSameTeam((ServerPlayerEntity) source, (ServerPlayerEntity) target)) {
-                if (!source.getTeam()
-                    .getAllowFriendlyFire()) {
-                    cancelDamage();
-                    return;
-                }
+                return;
             }
         } else {
             if (this instanceof SpellDamageEffect) {

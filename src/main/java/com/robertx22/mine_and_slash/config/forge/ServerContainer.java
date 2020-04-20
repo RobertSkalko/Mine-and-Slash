@@ -60,6 +60,9 @@ public class ServerContainer {
         list.add(EntityType.BAT);
         list.add(EntityType.TROPICAL_FISH);
         list.add(EntityType.PUFFERFISH);
+        list.add(EntityType.SALMON);
+        list.add(EntityType.COD);
+        list.add(EntityType.SQUID);
 
         List<String> idlist = list.stream()
             .map(x -> x.getRegistryName()
