@@ -62,6 +62,7 @@ public class ServerContainer {
         list.add(EntityType.SALMON);
         list.add(EntityType.COD);
         list.add(EntityType.SQUID);
+        list.add(EntityType.RABBIT);
 
         List<String> idlist = list.stream()
             .map(x -> x.getRegistryName()
