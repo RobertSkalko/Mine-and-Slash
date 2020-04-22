@@ -55,7 +55,7 @@ public class LightningTotemSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
         c.set(SC.MANA_COST, 15, 25);
-        c.set(SC.BASE_VALUE, 2, 8);
+        c.set(SC.BASE_VALUE, 2, 7);
         c.set(SC.SHOOT_SPEED, 1F, 1.2F);
         c.set(SC.PROJECTILE_COUNT, 1, 3);
         c.set(SC.CAST_TIME_TICKS, 20, 10);

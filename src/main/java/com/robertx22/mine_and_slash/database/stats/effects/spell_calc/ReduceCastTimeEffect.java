@@ -13,7 +13,9 @@ public class ReduceCastTimeEffect extends BaseSpellCalcEffect {
 
         float multi = data.getReverseMultiplier();
 
-        effect.configs.multiplyValueBy(SC.CAST_TIME_TICKS, multi);
+        if (effect.configs.has(SC.CAST_TIME_TICKS)) {
+            effect.configs.multiplyValueBy(SC.CAST_TIME_TICKS, multi);
+        }
 
         return effect;
     }

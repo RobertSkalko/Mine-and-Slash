@@ -13,7 +13,9 @@ public class ReduceManaCostEffect extends BaseSpellCalcEffect {
 
         float multi = data.getReverseMultiplier();
 
-        effect.configs.multiplyValueBy(SC.MANA_COST, multi);
+        if (effect.configs.has(SC.MANA_COST)) {
+            effect.configs.multiplyValueBy(SC.MANA_COST, multi);
+        }
 
         return effect;
     }

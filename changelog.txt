@@ -1,3 +1,6 @@
+3.6.11
+* should fix mana cost reduction throwing exception on synergies that dont cost mana.
+
 3.6.10
 * starter item config is now common config
 
