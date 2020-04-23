@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerStatsPoints
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.capability.server_wide.PlayerCapBackupCap;
 import com.robertx22.mine_and_slash.uncommon.capability.server_wide.TeamCap;
+import com.robertx22.mine_and_slash.uncommon.capability.world.AntiMobFarmCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
@@ -46,6 +47,9 @@ public class CapabilityRegister {
 
         CapabilityManager.INSTANCE.register(
             DungeonChunkCap.IDungeonChunkData.class, new DungeonChunkCap.Storage(), DungeonChunkCap.DefaultImpl::new);
+
+        CapabilityManager.INSTANCE.register(
+            AntiMobFarmCap.IAntiMobFarmData.class, new AntiMobFarmCap.Storage(), AntiMobFarmCap.DefaultImpl::new);
 
     }
 

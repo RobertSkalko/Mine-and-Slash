@@ -175,6 +175,12 @@ public class LootInfo {
         }
 
         if (world != null) {
+
+            if (victim != null) {
+                chance *= Load.antiMobFarm(world)
+                    .getDropMultiForMob(victim);
+            }
+
             chance *= SlashRegistry.getDimensionConfig(world).DROP_MULTIPLIER;
 
             if (world.getDimension() instanceof IWP) {

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability.world;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
+import com.robertx22.mine_and_slash.saveclasses.anti_mob_farm.AntiMobFarmData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCap;
@@ -29,6 +29,8 @@ public class AntiMobFarmCap {
         void onValidMobDeathByPlayer(LivingEntity en);
 
         float getDropMultiForMob(LivingEntity en);
+
+        void onMinutePassed();
 
     }
 
@@ -59,7 +61,7 @@ public class AntiMobFarmCap {
 
     public static class DefaultImpl implements IAntiMobFarmData {
 
-        DungeonDimensionData data = new DungeonDimensionData();
+        AntiMobFarmData data = new AntiMobFarmData();
 
         @Override
         public CompoundNBT saveToNBT() {
@@ -77,14 +79,28 @@ public class AntiMobFarmCap {
         @Override
         public void loadFromNBT(CompoundNBT nbt) {
 
-            data = LoadSave.Load(DungeonDimensionData.class, new DungeonDimensionData(), nbt, DATA_LOC);
+            data = LoadSave.Load(AntiMobFarmData.class, new AntiMobFarmData(), nbt, DATA_LOC);
 
             if (data == null) {
-                data = new DungeonDimensionData();
+                data = new AntiMobFarmData();
             }
 
         }
 
+        @Override
+        public void onValidMobDeathByPlayer(LivingEntity en) {
+            this.data.onValidMobDeathByPlayer(en);
+        }
+
+        @Override
+        public float getDropMultiForMob(LivingEntity en) {
+            return this.data.getDropMultiForMob(en);
+        }
+
+        @Override
+        public void onMinutePassed() {
+            this.data.tickDownAllKillCounters();
+        }
     }
 
     public static class Storage extends BaseStorage<IAntiMobFarmData> {

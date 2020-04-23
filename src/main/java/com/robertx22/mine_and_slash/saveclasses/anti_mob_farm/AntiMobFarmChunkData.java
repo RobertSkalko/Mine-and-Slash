@@ -8,14 +8,27 @@ import net.minecraft.util.math.MathHelper;
 public class AntiMobFarmChunkData {
 
     @Store
-    public int kills = 0;
+    private float p = 1;
 
-    public void tickDown() {
-        this.kills = MathHelper.clamp(kills - 1, 0, Integer.MAX_VALUE);
+    public enum Type {
+        NORMAL, MOB_FARM;
     }
 
-    public int getKills() {
-        return kills;
+    public void tickDown(Type type) {
+        if (type.equals(Type.MOB_FARM)) {
+            this.p += 0.01F;
+        } else {
+            this.p += 0.05F;
+        }
+        this.p = MathHelper.clamp(p, 0, Integer.MAX_VALUE);
+    }
+
+    public void onMobDeath() {
+        this.p = MathHelper.clamp(p - 0.02F, 0, 1);
+    }
+
+    public float getDropsMulti() {
+        return MathHelper.clamp(p, 0, 1);
     }
 
 }

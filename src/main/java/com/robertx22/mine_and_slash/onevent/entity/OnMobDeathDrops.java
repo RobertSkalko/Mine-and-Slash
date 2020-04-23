@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.capability.world.AntiMobFarmCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
@@ -62,6 +63,11 @@ public class OnMobDeathDrops {
 
                         float loot_multi = (float) config.LOOT_MULTI;
                         float exp_multi = (float) config.EXP_MULTI;
+
+                        if (loot_multi > 0 || exp_multi > 0) {
+                            player.world.getCapability(AntiMobFarmCap.Data)
+                                .ifPresent(x -> x.onValidMobDeathByPlayer(mobKilled));
+                        }
 
                         if (loot_multi > 0) {
                             MasterLootGen.genAndDrop(mobKilledData, playerData, mobKilled, player);

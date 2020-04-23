@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.anti_mob_farm;
 
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
@@ -18,14 +19,33 @@ public class AntiMobFarmData {
         String key = getKey(en);
 
         AntiMobFarmChunkData data = map.getOrDefault(key, new AntiMobFarmChunkData());
-        data.kills++;
+        data.onMobDeath();
         map.put(key, data);
+    }
+
+    public float getDropMultiForMob(LivingEntity en) {
+
+        if (WorldUtils.isMapWorldClass(en.world)) {
+            return 1;
+        }
+
+        String key = getKey(en);
+
+        if (map.containsKey(key)) {
+            return map.get(key)
+                .getDropsMulti();
+        } else {
+            return 1;
+        }
     }
 
     public void tickDownAllKillCounters() {
 
         map.entrySet()
-            .forEach(x -> x.getValue().kills--);
+            .forEach(x -> {
+                x.getValue()
+                    .tickDown(AntiMobFarmChunkData.Type.NORMAL); // todo, punish mob farms
+            });
 
     }
 

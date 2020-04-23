@@ -1,3 +1,6 @@
+3.6.12
+* implemented an experimental simple way to minimize effectiveness of mob farms (ill implement configs later, first i need to see if it works)
+
 3.6.11
 * should fix mana cost reduction throwing exception on synergies that dont cost mana.
 

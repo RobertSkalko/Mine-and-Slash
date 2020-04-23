@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.onevent.ontick.OnBossTick;
 import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
 import com.robertx22.mine_and_slash.onevent.ontick.OnServerTick;
 import com.robertx22.mine_and_slash.onevent.player.*;
+import com.robertx22.mine_and_slash.onevent.world.WorldTickMinute;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -64,6 +65,7 @@ public class RegisterEvents {
         register(OnTrackEntity.class);
         register(OnMobSpawn.class);
         register(OnTargetEvent.class);
+        register(WorldTickMinute.class);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 

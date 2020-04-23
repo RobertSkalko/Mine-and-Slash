@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerStatsPointsCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.capability.server_wide.PlayerCapBackupCap;
+import com.robertx22.mine_and_slash.uncommon.capability.world.AntiMobFarmCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -106,6 +107,15 @@ public class Load {
             return provider.getCapability(BossCap.Data)
                 .orElse(new BossCap.DefaultImpl());
 
+        }
+        return null;
+    }
+
+    public static AntiMobFarmCap.IAntiMobFarmData antiMobFarm(World provider) {
+
+        if (provider != null) {
+            return provider.getCapability(AntiMobFarmCap.Data)
+                .orElse(new AntiMobFarmCap.DefaultImpl());
         }
         return null;
     }
