@@ -98,6 +98,13 @@ public class OnMobDeathDrops {
 
         exp = (int) (exp * (1 + victim.getMaxHealth() / 20));
 
+        try {
+            exp *= Load.antiMobFarm(victim.world)
+                .getDropMultiForMob(victim);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         if (victim instanceof SlimeEntity) {
             exp /= 10;
         }

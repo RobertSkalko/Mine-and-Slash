@@ -20,15 +20,20 @@ public class AntiMobFarmChunkData {
         } else {
             this.p += 0.05F;
         }
-        this.p = MathHelper.clamp(p, 0, Integer.MAX_VALUE);
+
+        clamp();
     }
 
     public void onMobDeath() {
-        this.p = MathHelper.clamp(p - 0.02F, 0, 1);
+        this.p = p - 0.02F;
+        clamp();
     }
 
     public float getDropsMulti() {
         return MathHelper.clamp(p, 0, 1);
     }
 
+    public void clamp() {
+        this.p = MathHelper.clamp(p, 0, 1);
+    }
 }
