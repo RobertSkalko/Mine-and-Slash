@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.new_content.data_processors;
 import com.robertx22.mine_and_slash.new_content.data_processors.bases.ChunkProcessData;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 
@@ -19,9 +18,9 @@ public class ChanceChestProcessor extends DataProcessor {
             data.chanceChest = true;
             new ChestProcessor().processImplementation(key, pos, world, data);
         } else {
-            world.setBlockState(pos, Blocks.AIR
-                .getDefaultState(), 2);
-
+            world.getWorld()
+                .removeTileEntity(pos); // dont drop chest loot. this is a big problem if u remove this line
+            world.removeBlock(pos, false);   // don't drop loot
         }
     }
 }
