@@ -17,6 +17,10 @@ public class OnPotionChange {
     @SubscribeEvent
     public static void onAdded(PotionEvent.PotionAddedEvent event) {
 
+        if (event.getEntityLiving().world.isRemote) {
+            return;
+        }
+
         try {
             LivingEntity entity = event.getEntityLiving();
 
@@ -30,6 +34,10 @@ public class OnPotionChange {
                     .filter(x -> {
                         if (x.getPotion() instanceof IOneOfATypePotion) {
                             IOneOfATypePotion ot = (IOneOfATypePotion) x.getPotion();
+
+                            if (x.equals(event.getPotionEffect())) {
+                                return false;
+                            }
 
                             if (ot.getOneOfATypeType()
                                 .equals(one.getOneOfATypeType())) {
@@ -62,7 +70,7 @@ public class OnPotionChange {
 
         LivingEntity entity = event.getEntityLiving();
 
-        if (entity != null) {
+        if (entity != null && !entity.world.isRemote) {
             EntityCap.UnitData data = Load.Unit(entity);
             data.setEquipsChanged(true);
             //data.tryRecalculateStats(entity);
