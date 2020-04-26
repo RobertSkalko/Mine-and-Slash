@@ -28,6 +28,7 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
 
     }
 
+    @Override
     @Deprecated
     public List<ItemStack> getDrops(BlockState blockstate, LootContext.Builder context) {
 
@@ -45,6 +46,10 @@ public abstract class BaseInventoryBlock extends NonFullBlock {
                     items.add(stack);
                 }
             }
+
+            //inv.itemStacks = new ItemStack[inv.itemStacks.length];// destroy the stacks
+            //Arrays.fill(inv.itemStacks, ItemStack.EMPTY); tterag says use the container canInteractWith method instead
+            // unsure if i should use both to be extra sure
 
         }
 

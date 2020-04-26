@@ -23,6 +23,8 @@ public class ContainerGearModify extends BaseTileContainer {
 
     public static final int MODIFY_SLOTS_COUNT = 3;
 
+    IInventory tile;
+
     public ContainerGearModify(int i, PlayerInventory playerInventory,
                                PacketBuffer packetBuffer) {
         this(i, playerInventory, new Inventory(TileGearModify.TOTAL_SLOTS_COUNT), packetBuffer
@@ -34,6 +36,8 @@ public class ContainerGearModify extends BaseTileContainer {
                                BlockPos pos) {
 
         super(MODIFY_SLOTS_COUNT, ModContainers.GEAR_MODIFY.get(), i);
+
+        this.tile = inventory;
 
         this.pos = pos;
 
@@ -80,7 +84,7 @@ public class ContainerGearModify extends BaseTileContainer {
 
     @Override
     public boolean canInteractWith(PlayerEntity player) {
-        return true;
+        return tile.isUsableByPlayer(player);
     }
 
 }

@@ -41,6 +41,7 @@ public class ContainerGearRepair extends BaseTileContainer {
     private static final int FIRST_INPUT_SLOT_NUMBER = FIRST_FUEL_SLOT_NUMBER + FUEL_SLOTS_COUNT;
     private static final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
     private static final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
+    IInventory tile;
 
     public ContainerGearRepair(int i, PlayerInventory playerInventory, PacketBuffer buf) {
         this(i, playerInventory, new Inventory(TileGearRepair.TOTAL_SLOTS_COUNT), buf.readBlockPos());
@@ -51,6 +52,7 @@ public class ContainerGearRepair extends BaseTileContainer {
         super(FURNACE_SLOTS_COUNT, ModContainers.GEAR_REPAIR.get(), num);
 
         this.pos = pos;
+        this.tile = inv;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -108,11 +110,8 @@ public class ContainerGearRepair extends BaseTileContainer {
 
     }
 
-    // Checks each tick to make sure the player is still able to access the
-    // inventory and if not closes the gui
     @Override
     public boolean canInteractWith(PlayerEntity player) {
-        return true;
+        return tile.isUsableByPlayer(player);
     }
-
 }

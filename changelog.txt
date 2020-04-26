@@ -2,6 +2,7 @@
 * dungeon chests now have a chance to give vanilla items that are dictated by lootables. (meaning configurable by modpack devs)
 Low lvl maps give stuff like coal, mid lvl give gold, and high lvl maps can give even diamonds!
 * fixed more dungeon signs
+* fix stations dupe bug
 
 3.6.12
 * implemented an experimental simple way to minimize effectiveness of mob farms (ill implement configs later, first i need to see if it works)

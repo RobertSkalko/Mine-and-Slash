@@ -20,6 +20,8 @@ public class ContainerMapDevice extends BaseTileContainer {
     private final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
     private final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
 
+    IInventory tile;
+
     public static final int MAP_DEVICE_SLOTS_COUNT = 4;
 
     public ContainerMapDevice(int i, PlayerInventory playerInventory, PacketBuffer buf) {
@@ -31,6 +33,8 @@ public class ContainerMapDevice extends BaseTileContainer {
         super(MAP_DEVICE_SLOTS_COUNT, ModContainers.MAP_DEVICE.get(), i);
 
         this.pos = pos;
+
+        this.tile = inventory;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -60,7 +64,7 @@ public class ContainerMapDevice extends BaseTileContainer {
 
     @Override
     public boolean canInteractWith(PlayerEntity player) {
-        return true;
+        return tile.isUsableByPlayer(player);
     }
 
     // shift click logic

@@ -37,6 +37,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
     private static final int FIRST_INPUT_SLOT_NUMBER = 0;
     private static final int FIRST_OUTPUT_SLOT_NUMBER = FIRST_INPUT_SLOT_NUMBER + INPUT_SLOTS_COUNT;
     private static final int FIRST_CAPACITOR_SLOT_NUMBER = FIRST_OUTPUT_SLOT_NUMBER + OUTPUT_SLOTS_COUNT;
+    IInventory tile;
 
     public ContainerGearSalvage(int i, PlayerInventory playerInventory,
                                 PacketBuffer buf) {
@@ -48,6 +49,7 @@ public class ContainerGearSalvage extends BaseTileContainer {
         super(SALVAGE_SLOTS_COUNT, ModContainers.GEAR_SALVAGE.get(), num);
 
         this.pos = pos;
+        this.tile = inventory;
 
         final int SLOT_X_SPACING = 18;
         final int SLOT_Y_SPACING = 18;
@@ -97,11 +99,8 @@ public class ContainerGearSalvage extends BaseTileContainer {
 
     }
 
-    // Checks each tick to make sure the player is still able to access the
-    // inventory and if not closes the gui
     @Override
     public boolean canInteractWith(PlayerEntity player) {
-        return true;
+        return tile.isUsableByPlayer(player);
     }
-
 }
