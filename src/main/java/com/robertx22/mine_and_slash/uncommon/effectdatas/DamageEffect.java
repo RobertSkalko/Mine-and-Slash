@@ -343,19 +343,21 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
                 onEventPotions();
 
-                if (source instanceof ServerPlayerEntity && info.highestDmgElement != null) {
+                if (source instanceof ServerPlayerEntity) {
 
-                    ServerPlayerEntity player = (ServerPlayerEntity) source;
+                    info.dmgmap.entrySet()
+                        .forEach(x -> {
+                            if (x.getValue() > 0) {
+                                ServerPlayerEntity player = (ServerPlayerEntity) source;
 
-                    String str = NumberUtils.formatDamageNumber(this, (int) HealthUtils.vanillaHealthToActualHealth(dmg,
-                        target,
-                        targetData
-                    ));
-
-                    DmgNumPacket packet = new DmgNumPacket(target, info.highestDmgElement, str
-
-                    );
-                    MMORPG.sendToClient(packet, player);
+                                String str = NumberUtils.formatDamageNumber(this, (int) HealthUtils.vanillaHealthToActualHealth(x.getValue(),
+                                    target,
+                                    targetData
+                                ));
+                                DmgNumPacket packet = new DmgNumPacket(target, x.getKey(), str);
+                                MMORPG.sendToClient(packet, player);
+                            }
+                        });
 
                 }
             }

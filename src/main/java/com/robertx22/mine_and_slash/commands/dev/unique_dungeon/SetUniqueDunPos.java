@@ -5,6 +5,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.commands.suggestions.PosTypeSuggestions;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.BlockPosArgument;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,6 +42,8 @@ public class SetUniqueDunPos {
 
             DunExportData.MAP.get(player)
                 .set(DunExportData.PosType.valueOf(word), pos);
+
+            player.sendMessage(new SText("Position Saved."));
 
         } catch (CommandSyntaxException e) {
             e.printStackTrace();

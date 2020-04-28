@@ -23,7 +23,7 @@ public class SpellCastBarOverlay extends AbstractGui {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public void onRenderPlayerOverlay(RenderGameOverlayEvent event) {
 
-        if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.EXPERIENCE) {
+        if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
             return;
         }
 

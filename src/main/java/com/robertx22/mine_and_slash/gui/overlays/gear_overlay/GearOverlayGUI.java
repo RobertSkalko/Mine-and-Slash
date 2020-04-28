@@ -48,7 +48,7 @@ public class GearOverlayGUI extends AbstractGui {
 
         try {
 
-            if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.EXPERIENCE) {
+            if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
                 return;
             }
 

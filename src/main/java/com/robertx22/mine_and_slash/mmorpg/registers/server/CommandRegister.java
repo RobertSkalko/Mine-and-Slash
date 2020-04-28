@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.mine_and_slash.commands.dev.LogDungeonRoom;
 import com.robertx22.mine_and_slash.commands.dev.TpOut;
 import com.robertx22.mine_and_slash.commands.dev.TpRandomDungeon;
+import com.robertx22.mine_and_slash.commands.dev.unique_dungeon.ExportUniqueDungeon;
 import com.robertx22.mine_and_slash.commands.dev.unique_dungeon.SetUniqueDunPos;
 import com.robertx22.mine_and_slash.commands.entity.*;
 import com.robertx22.mine_and_slash.commands.giveitems.*;
@@ -43,6 +44,7 @@ public class CommandRegister {
         LogDungeonRoom.register(dispatcher);
         TpRandomDungeon.register(dispatcher);
         SetUniqueDunPos.register(dispatcher);
+        ExportUniqueDungeon.register(dispatcher);
 
         GiveStatMod.register(dispatcher);
         RemoveStatMod.register(dispatcher);

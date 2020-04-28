@@ -19,7 +19,7 @@ public class MapPortalBlock extends EndPortalBlock {
         super(Block.Properties.create(Material.PORTAL, MaterialColor.BLACK)
             .doesNotBlockMovement()
             .lightValue(15)
-            .hardnessAndResistance(2, 2));
+            .hardnessAndResistance(1.5F, 6F));
 
     }
 

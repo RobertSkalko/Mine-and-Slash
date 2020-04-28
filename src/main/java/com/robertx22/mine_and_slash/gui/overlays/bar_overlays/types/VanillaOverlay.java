@@ -41,7 +41,7 @@ public class VanillaOverlay extends IngameGui {
 
         try {
 
-            if (event.isCancelable() || event.getType() != ElementType.EXPERIENCE) {
+            if (event.isCancelable() || event.getType() != ElementType.ALL) {
                 return;
             }
 

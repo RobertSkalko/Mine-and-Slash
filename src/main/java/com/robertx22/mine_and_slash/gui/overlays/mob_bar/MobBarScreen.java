@@ -39,7 +39,7 @@ public class MobBarScreen extends AbstractGui {
     public void onRenderPlayerOverlay(RenderGameOverlayEvent event) {
 
         try {
-            if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.EXPERIENCE) {
+            if (event.isCancelable() || event.getType() != RenderGameOverlayEvent.ElementType.ALL) {
                 return;
             }
 

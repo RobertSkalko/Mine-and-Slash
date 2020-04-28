@@ -46,7 +46,7 @@ public class PlayerBarsOverlayScreen extends AbstractGui {
 
             handleHeartGui(event);
 
-            if (event.isCancelable() || event.getType() != ElementType.EXPERIENCE) {
+            if (event.isCancelable() || event.getType() != ElementType.ALL) {
                 return;
             }
 
