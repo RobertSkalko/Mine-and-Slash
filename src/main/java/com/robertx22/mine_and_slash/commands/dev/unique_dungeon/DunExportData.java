@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DunExportData {
 
@@ -62,14 +63,15 @@ public class DunExportData {
 
     }
 
-    public void export(PlayerEntity player, String dungeonName) {
-        List<ChunkPos> chunks = getAllChunks();
+    public void exportStructureFiles(PlayerEntity player, String dungeonName) {
+        List<ChunkPos> chunks = ChunkPos.getAllInBox(new ChunkPos(firstPos), new ChunkPos(lastPos))
+            .collect(Collectors.toList());
 
         chunks.forEach(x -> {
 
             ChunkPos norm = getNormalizedChunkPos(chunks, x);
 
-            String name = "[" + norm.x + "-" + norm.z + "]";
+            String name = "" + norm.x + "-" + norm.z + "";
 
             save(x, player, name);
 
@@ -82,35 +84,14 @@ public class DunExportData {
         List<ChunkPos> normalized = new ArrayList<>();
 
         int smallestX = list.stream()
-            .min(Comparator.comparingInt(c -> -c.x))
+            .min(Comparator.comparingInt(c -> c.x))
             .get().x;
         int smallestZ = list.stream()
-            .min(Comparator.comparingInt(c -> -c.z))
+            .min(Comparator.comparingInt(c -> c.z))
             .get().z;
 
         return new ChunkPos(pos.x - smallestX, pos.z - smallestZ);
 
-    }
-
-    public List<ChunkPos> getAllChunks() {
-        ChunkPos p1 = new ChunkPos(firstPos);
-        ChunkPos p2 = new ChunkPos(lastPos);
-
-        int x1 = p1.x < p2.x ? p1.x : p2.x;
-        int z1 = p1.z < p2.z ? p1.z : p2.z;
-
-        int x2 = p1.x > p2.x ? p1.x : p2.x;
-        int z2 = p1.z > p2.z ? p1.z : p2.z;
-
-        List<ChunkPos> list = new ArrayList<>();
-
-        for (int x = x1; x < x2; x++) {
-            for (int z = z1; z < z2; z++) {
-                list.add(new ChunkPos(x, z));
-            }
-        }
-
-        return list;
     }
 
     public void set(PosType type, BlockPos pos) {

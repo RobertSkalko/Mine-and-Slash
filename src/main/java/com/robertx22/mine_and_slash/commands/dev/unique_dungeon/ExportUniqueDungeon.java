@@ -8,9 +8,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.CommandRefs;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.ChunkPos;
-
-import java.util.List;
 
 import static net.minecraft.command.Commands.argument;
 import static net.minecraft.command.Commands.literal;
@@ -46,9 +43,7 @@ public class ExportUniqueDungeon {
             Preconditions.checkNotNull(data.firstPos);
             Preconditions.checkNotNull(data.lastPos);
 
-            List<ChunkPos> list = data.getAllChunks();
-
-            int a = 5;
+            data.exportStructureFiles(player, word);
 
         } catch (CommandSyntaxException e) {
             e.printStackTrace();
