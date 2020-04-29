@@ -71,7 +71,7 @@ public class DunExportData {
 
             ChunkPos norm = getNormalizedChunkPos(chunks, x);
 
-            String name = "" + norm.x + "-" + norm.z + "";
+            String name = dungeonName + "/" + norm.x + "-" + norm.z + "";
 
             save(x, player, name);
 

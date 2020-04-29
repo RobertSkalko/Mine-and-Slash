@@ -2,6 +2,7 @@
 * map portals now take less time to break
 * dmg numbers now show all elements 
 * changed hud render to not break if experience isn't rendered.
+* small perf improvement for auto config items
 
 3.6.14
 * fix divine buffs expiring randomly after a few seconds

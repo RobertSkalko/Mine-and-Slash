@@ -10,10 +10,13 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.MathHelper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PowerLevel {
+
+    public static HashMap<Item, Types> CACHED = new HashMap<>();
 
     public PowerLevel(Item item, GearItemSlot slot) {
 
@@ -96,21 +99,33 @@ public class PowerLevel {
 
     public static Types getPowerClassification(Item item) {
 
+        if (CACHED.containsKey(item)) {
+            return CACHED.get(item);
+        }
+
         float val = getFloatValueOf(item);
 
         AutoCompatibleItemConfig config = ModConfig.INSTANCE.autoCompatibleItems;
 
+        Types type = null;
+
         if (val > config.BEST.POWER_REQ.get()) {
-            return Types.BEST;
+            type = Types.BEST;
         }
         if (val > config.NORMAL.POWER_REQ.get()) {
-            return Types.NORMAL;
+            type = Types.NORMAL;
         }
         if (val > config.TRASH.POWER_REQ.get()) {
-            return Types.TRASH;
+            type = Types.TRASH;
         }
 
-        return Types.HORRIBLE;
+        if (type == null) {
+            type = Types.HORRIBLE;
+        }
+
+        CACHED.put(item, type);
+
+        return type;
     }
 
     public boolean isStrongerThan(PowerLevel other) {

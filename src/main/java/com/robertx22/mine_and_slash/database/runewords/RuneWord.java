@@ -98,7 +98,7 @@ public abstract class RuneWord implements IGUID, IWeighted, IAutoLocName, ISeria
             return false;
         }
         if (runes().stream()
-            .filter(rune -> rune instanceof BaseUniqueRune)
+            .filter(rune -> rune.isUnique())
             .count() > 1) {
             System.out.println(GUID() + " needs more than 1 unique rune, runewords should not be able to require " + "more than 1.!");
             return false;

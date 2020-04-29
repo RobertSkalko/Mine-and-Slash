@@ -119,62 +119,83 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return 20;
     }
 
+    private static HashMap<String, HashMap<Item, Boolean>> CACHED = new HashMap<>();
+
+    // has to use ugly stuff like this cus datapacks.
     public static boolean isGearOfThisType(GearItemSlot slot, Item item) {
 
+        String id = slot.GUID();
+
+        if (!CACHED.containsKey(id)) {
+            CACHED.put(id, new HashMap<>());
+        }
+        if (CACHED.get(id)
+            .containsKey(item)) {
+            return CACHED.get(id)
+                .get(item);
+        }
+
+        boolean bool = false;
+
         try {
-            if (slot.getVanillaSlotType() != null) {
-                if (slot.getVanillaSlotType()
-                    .equals(EquipmentSlotType.FEET)) {
+            if (item instanceof ArmorItem) {
+                if (slot.getVanillaSlotType() != null) {
+                    if (slot.getVanillaSlotType()
+                        .equals(EquipmentSlotType.FEET)) {
 
-                    return item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot()
-                        .equals(EquipmentSlotType.FEET);
+                        bool = ((ArmorItem) item).getEquipmentSlot()
+                            .equals(EquipmentSlotType.FEET);
 
-                } else if (slot.getVanillaSlotType()
-                    .equals(EquipmentSlotType.CHEST)) {
+                    } else if (slot.getVanillaSlotType()
+                        .equals(EquipmentSlotType.CHEST)) {
 
-                    return item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot()
-                        .equals(EquipmentSlotType.CHEST);
+                        bool = ((ArmorItem) item).getEquipmentSlot()
+                            .equals(EquipmentSlotType.CHEST);
 
-                } else if (slot.getVanillaSlotType()
-                    .equals(EquipmentSlotType.HEAD)) {
+                    } else if (slot.getVanillaSlotType()
+                        .equals(EquipmentSlotType.HEAD)) {
 
-                    return item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot()
-                        .equals(EquipmentSlotType.HEAD);
+                        bool = ((ArmorItem) item).getEquipmentSlot()
+                            .equals(EquipmentSlotType.HEAD);
 
-                } else if (slot.getVanillaSlotType()
-                    .equals(EquipmentSlotType.LEGS)) {
+                    } else if (slot.getVanillaSlotType()
+                        .equals(EquipmentSlotType.LEGS)) {
 
-                    return item instanceof ArmorItem && ((ArmorItem) item).getEquipmentSlot()
-                        .equals(EquipmentSlotType.LEGS);
+                        bool = ((ArmorItem) item).getEquipmentSlot()
+                            .equals(EquipmentSlotType.LEGS);
+                    }
                 }
-            }
-
-            if (slot.slotType()
+            } else if (slot.GUID()
+                .equals(Sword.INSTANCE.GUID())) {
+                bool = item instanceof SwordItem;
+            } else if (slot.GUID()
+                .equals(Trident.INSTANCE.GUID())) {
+                bool = item instanceof TridentItem;
+            } else if (slot.GUID()
+                .equals(Bow.INSTANCE.GUID())) {
+                bool = item instanceof BowItem;
+            } else if (slot.GUID()
+                .equals(Axe.INSTANCE.GUID())) {
+                bool = item instanceof AxeItem;
+            } else if (slot.GUID()
+                .equals(Shield.INSTANCE.GUID())) {
+                bool = item instanceof ShieldItem;
+            } else if (slot.GUID()
+                .equals(CrossBow.INSTANCE.GUID())) {
+                bool = item instanceof CrossbowItem;
+            } else if (slot.slotType()
                 .equals(GearSlotType.Jewerly)) {
-                return CuriosAPI.getCurioTags(item)
+                bool = CuriosAPI.getCurioTags(item)
                     .stream()
                     .anyMatch(x -> x.toString()
                         .contains(slot.GUID()));
-
-            } else if (slot.GUID()
-                .equals(Sword.INSTANCE.GUID())) {
-                return item instanceof SwordItem;
-            } else if (slot.GUID()
-                .equals(Trident.INSTANCE.GUID())) {
-                return item instanceof TridentItem;
-            } else if (slot.GUID()
-                .equals(Bow.INSTANCE.GUID())) {
-                return item instanceof BowItem;
-            } else if (slot.GUID()
-                .equals(Axe.INSTANCE.GUID())) {
-                return item instanceof AxeItem;
-            } else if (slot.GUID()
-                .equals(Shield.INSTANCE.GUID())) {
-                return item instanceof ShieldItem;
-            } else if (slot.GUID()
-                .equals(CrossBow.INSTANCE.GUID())) {
-                return item instanceof CrossbowItem;
             }
+
+            CACHED.get(slot.GUID())
+                .put(item, bool);
+
+            return bool;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
