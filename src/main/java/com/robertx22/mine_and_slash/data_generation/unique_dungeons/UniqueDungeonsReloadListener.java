@@ -7,21 +7,45 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 public class UniqueDungeonsReloadListener extends ReloadListener<List<ResourceLocation>> {
 
+    public static HashMap<String, List<ResourceLocation>> MAP = new HashMap<>();
+    public static String ID = "unique_dungeon";
+
     @Override
-    protected List<ResourceLocation> prepare(IResourceManager iResourceManager, IProfiler iProfiler) {
-
-        Collection<ResourceLocation> coll = iResourceManager.getAllResourceLocations("structures/unique_dungeon", x -> x.endsWith(".nbt"));
-
+    protected List<ResourceLocation> prepare(IResourceManager resManager, IProfiler iProfiler) {
+        Collection<ResourceLocation> coll = resManager.getAllResourceLocations("structures/" + ID, x -> x.endsWith(".nbt"));
         return new ArrayList<>(coll);
-
     }
 
     @Override
-    protected void apply(List<ResourceLocation> resourceLocations, IResourceManager iResourceManager, IProfiler iProfiler) {
+    protected void apply(List<ResourceLocation> list, IResourceManager iResourceManager, IProfiler iProfiler) {
+
+        MAP.clear();
+
+        list.forEach(x -> {
+
+            String path = x.getPath();
+            String search = ID + "/";
+
+            int start = path.indexOf(search) + search.length();
+            String cut = path.substring(start);
+            int end = cut
+                .indexOf("/") + path.length() - cut.length();
+
+            String dungeonName = path.substring(start, end);
+
+            if (!MAP.containsKey(dungeonName)) {
+                MAP.put(dungeonName, new ArrayList<>());
+            }
+
+            MAP.get(dungeonName)
+                .add(x);
+
+        });
 
     }
 }
