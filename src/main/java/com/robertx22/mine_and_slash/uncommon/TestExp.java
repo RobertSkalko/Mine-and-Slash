@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.onevent;
+package com.robertx22.mine_and_slash.uncommon;
 
 public class TestExp {
     public static int equateXp(double lvl) {
