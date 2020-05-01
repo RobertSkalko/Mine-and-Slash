@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.MapRarity;
-import com.robertx22.mine_and_slash.database.world_providers.IWP;
+import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IBonusLootMulti;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
@@ -38,6 +38,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
@@ -69,6 +70,18 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
     public boolean isExp = false;
     @Store
     public List<MapAffixData> affixes = new ArrayList<MapAffixData>();
+    @Store
+    private String dimID = MapManager.DUNGEON_ID;
+
+    public DimensionType getDimension() {
+
+        String id = dimID == null || dimID.isEmpty() ? MapManager.DUNGEON_ID : dimID;
+
+        DimensionType type = MapManager.getDimensionType(new ResourceLocation(dimID));
+
+        return type;
+
+    }
 
     @Store
     public String mapUUID = UUID.randomUUID()
@@ -90,6 +103,10 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         return empty;
 
+    }
+
+    public boolean isEmpty() {
+        return mapUUID == null || mapUUID.isEmpty() || mapUUID.equals("error");
     }
 
     @Override

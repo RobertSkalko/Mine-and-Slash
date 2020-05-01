@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.world_providers;
+package com.robertx22.mine_and_slash.database.world_providers.base;
 
 import com.robertx22.mine_and_slash.db_lists.bases.IBonusLootMulti;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;

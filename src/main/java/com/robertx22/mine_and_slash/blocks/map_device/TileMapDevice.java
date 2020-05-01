@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.blocks.map_device;
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.blocks.slots.FuelSlot;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.world_providers.IWP;
+import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;

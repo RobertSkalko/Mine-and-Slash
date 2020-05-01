@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.data_generation.unique_dungeons;
 
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.client.resources.ReloadListener;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
@@ -17,7 +18,9 @@ public class UniqueDungeonsReloadListener extends ReloadListener<List<ResourceLo
 
     @Override
     protected List<ResourceLocation> prepare(IResourceManager resManager, IProfiler iProfiler) {
-        Collection<ResourceLocation> coll = resManager.getAllResourceLocations("structures/" + ID, x -> x.endsWith(".nbt"));
+        Collection<ResourceLocation> coll = resManager.getAllResourceLocations(
+            "structures/" + ID,
+            x -> x.contains(Ref.MODID) && x.endsWith(".nbt"));
         return new ArrayList<>(coll);
     }
 

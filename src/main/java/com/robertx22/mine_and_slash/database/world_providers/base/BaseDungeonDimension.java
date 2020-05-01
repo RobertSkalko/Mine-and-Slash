@@ -1,7 +1,8 @@
-package com.robertx22.mine_and_slash.database.world_providers;
+package com.robertx22.mine_and_slash.database.world_providers.base;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonBiomeProvider;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonChunkGenerator;
 import com.robertx22.mine_and_slash.onevent.player.OnDungeonBlockEvents;
@@ -68,6 +69,10 @@ public abstract class BaseDungeonDimension extends Dimension implements IWP, IRa
 
         return new ResourceLocation(Ref.MODID, str);
 
+    }
+
+    public BlockPos getEntrancePos(ChunkPos cpos) {
+        return DungeonUtils.getDungeonStartTeleportPos(cpos);
     }
 
     @Override

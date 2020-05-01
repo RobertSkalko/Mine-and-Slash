@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.world;
 
-import com.robertx22.mine_and_slash.database.world_providers.BaseDungeonDimension;
+import com.robertx22.mine_and_slash.database.world_providers.base.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.commons.io.FileUtils;

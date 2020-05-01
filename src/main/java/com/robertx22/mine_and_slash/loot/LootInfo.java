@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.loot;
 
 import com.robertx22.mine_and_slash.database.stats.types.generated.LootTypeBonus;
-import com.robertx22.mine_and_slash.database.world_providers.IWP;
+import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
 import com.robertx22.mine_and_slash.loot.gens.BaseLootGen;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;

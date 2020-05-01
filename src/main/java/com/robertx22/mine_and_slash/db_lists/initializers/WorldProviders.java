@@ -1,7 +1,8 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.database.world_providers.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.DungeonDimension;
+import com.robertx22.mine_and_slash.database.world_providers.UniqueDungeonDimension;
+import com.robertx22.mine_and_slash.database.world_providers.base.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class WorldProviders implements ISlashRegistryInit {
             {
                 {
                     add(new DungeonDimension(null, null));
+                    add(new UniqueDungeonDimension(null, null));
                 }
 
             }

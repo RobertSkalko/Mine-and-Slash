@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.mojang.datafixers.Dynamic;
 import com.mojang.datafixers.types.DynamicOps;
 import com.robertx22.mine_and_slash.database.world_providers.DungeonDimension;
-import com.robertx22.mine_and_slash.database.world_providers.IWP;
+import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorldReader;

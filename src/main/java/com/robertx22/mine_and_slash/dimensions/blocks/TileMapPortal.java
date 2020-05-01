@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.dimensions.blocks;
 
+import com.robertx22.mine_and_slash.database.world_providers.base.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
-import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.onevent.world.OnShutdownResetMaps;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
@@ -21,6 +21,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -32,7 +33,7 @@ public class TileMapPortal extends TileEntity {
 
     int ticks = 0;
     public String dungeonID = "";
-    public MapItemData map = new MapItemData();
+    public MapItemData map = MapItemData.empty();
     public BlockPos mapDevicePos = new BlockPos(0, 0, 0);
 
     public void onTick() {
@@ -45,9 +46,15 @@ public class TileMapPortal extends TileEntity {
         this.dungeonID = dungeonID;
     }
 
+    public void onKeySacrificed(BlockPos mapDevicePos, String dungeonID) {
+        this.mapDevicePos = mapDevicePos;
+        this.dungeonID = dungeonID;
+        this.map = MapItemData.empty();
+    }
+
     public boolean readyToTeleport() {
 
-        if (ticks > 70) {
+        if (ticks > 60) {
             ticks = 0;
             return true;
         }
@@ -69,15 +76,23 @@ public class TileMapPortal extends TileEntity {
             Load.playerMapData(player)
                 .teleportPlayerBack(player);
         } else {
+
+            DimensionType type = null;
+            if (!map.isEmpty()) {
+                type = map.getDimension();
+            } else {
+                type = MapManager.getUniqueDungeonDimensionType();
+            }
+
             ChunkPos cpos = DungeonDimensionData.getChunkFromId(dungeonID);
 
             if (cpos != null) {
 
                 PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 
-                data.init(mapDevicePos, map, MapManager.getDungeonDimensionType(), player);
+                data.init(mapDevicePos, map, type, player);
 
-                World mapworld = MapManager.getWorld(MapManager.getDungeonDimensionType());
+                World mapworld = MapManager.getWorld(type);
 
                 try {
                     OnShutdownResetMaps.shouldDelete = Load.world(mapworld)
@@ -89,17 +104,18 @@ public class TileMapPortal extends TileEntity {
                 if (mapworld == null) {
                     return;
                 }
+
                 if (WorldUtils.isMapWorld(mapworld)) {
 
-                    BlockPos p = DungeonUtils.getDungeonStartTeleportPos(cpos);
+                    BaseDungeonDimension dim = (BaseDungeonDimension) mapworld.getDimension();
 
-                    PlayerUtils.changeDimension((ServerPlayerEntity) player, MapManager.getDungeonDimensionType(), p);
+                    BlockPos p = dim.getEntrancePos(cpos);
+
+                    PlayerUtils.changeDimension((ServerPlayerEntity) player, type, p);
 
                     MMORPG.devToolsLog("tp to map succeeded");
 
                 }
-            } else {
-
             }
 
         }

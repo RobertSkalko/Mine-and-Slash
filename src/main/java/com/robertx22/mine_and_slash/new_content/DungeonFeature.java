@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.new_content;
 
 import com.mojang.datafixers.Dynamic;
-import com.robertx22.mine_and_slash.database.world_providers.IWP;
+import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
 import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
