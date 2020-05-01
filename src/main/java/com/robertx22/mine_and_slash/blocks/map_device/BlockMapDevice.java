@@ -55,6 +55,8 @@ public class BlockMapDevice extends BaseInventoryBlock {
                 if (stack.getItem() instanceof UniqueDungeonKeyItem) {
                     UniqueDungeonKeyItem key = (UniqueDungeonKeyItem) stack.getItem();
 
+                    map.sacrificeKey(player, UniqueDungeonKeyItem.getDungeon(stack), stack);
+
                     return ActionResultType.SUCCESS;
                 }
 

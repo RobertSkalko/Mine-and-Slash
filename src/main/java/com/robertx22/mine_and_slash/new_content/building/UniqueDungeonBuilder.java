@@ -1,8 +1,16 @@
 package com.robertx22.mine_and_slash.new_content.building;
 
 import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeon;
+import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeonsReloadListener;
+import com.robertx22.mine_and_slash.new_content.BuiltRoom;
+import com.robertx22.mine_and_slash.new_content.RoomRotation;
+import com.robertx22.mine_and_slash.new_content.RoomSides;
+import com.robertx22.mine_and_slash.new_content.enums.RoomSide;
+import com.robertx22.mine_and_slash.new_content.enums.RoomType;
+import com.robertx22.mine_and_slash.new_content.registry.DungeonRoom;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.ChunkPos;
 
 import java.util.Random;
@@ -32,6 +40,23 @@ public class UniqueDungeonBuilder {
         dungeon = new Dungeon(50);
 
         int tries = 0;
+
+        UniqueDungeonsReloadListener.MAP.get(uniqueDungeon.GUID())
+            .forEach(x -> {
+
+                String place = DungeonUtils.getStringFromFileName(x, "[search;");
+
+                String[] xz = place.split("-");
+
+                RoomRotation rot = new RoomRotation(
+                    RoomType.ENTRANCE,
+                    new RoomSides(RoomSide.DOOR, RoomSide.DOOR, RoomSide.DOOR, RoomSide.DOOR),
+                    Rotation.NONE);
+
+                BuiltRoom built = new BuiltRoom(rot, new DungeonRoom(x));
+
+                dungeon.addRoom(Integer.parseInt(xz[0]), Integer.parseInt(xz[1]), built);
+            });
 
         while (!dungeon.isFinished() || tries < 500) {
 

@@ -3,10 +3,12 @@ package com.robertx22.mine_and_slash.database.world_providers;
 import com.robertx22.mine_and_slash.database.world_providers.base.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.base.MyWorldInfo;
 import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
+import com.robertx22.mine_and_slash.new_content.dimension.UniqueDungeonBiomeProvider;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -18,6 +20,11 @@ public class UniqueDungeonDimension extends BaseDungeonDimension {
 
     public UniqueDungeonDimension(World world, DimensionType type) {
         super(world, type);
+    }
+
+    @Override
+    public BiomeProvider getBiomeProvider() {
+        return new UniqueDungeonBiomeProvider();
     }
 
     @Override

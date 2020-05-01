@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.DungeonFeature;
-import com.robertx22.mine_and_slash.new_content.dimension.BiomeRegister;
+import com.robertx22.mine_and_slash.new_content.UniqueDungeonFeature;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -23,17 +23,17 @@ public class WorldGenRegisters {
         new DungeonFeature(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
             .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
 
+    public static final ConfiguredFeature UNIQUE_DUNGEON_WORLD_FEATURE =
+        new UniqueDungeonFeature(NoFeatureConfig::deserialize).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG)
+            .withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG));
+
     private static void register() {
 
         System.out.println("Registering Mine and Slash Map World Gen");
 
         OreGenRegister.register();
 
-        for (Biome biome : ForgeRegistries.BIOMES) { // this works!
-
-            if (biome.equals(BiomeRegister.DUNGEON_BIOME)) {
-                add(biome, DUNGEON_WORLD_FEATURE);
-            }
+        for (Biome biome : ForgeRegistries.BIOMES) {
 
         }
 

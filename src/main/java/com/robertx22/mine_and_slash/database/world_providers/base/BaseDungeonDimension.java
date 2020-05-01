@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.database.world_providers.base;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
-import com.robertx22.mine_and_slash.new_content.dimension.DungeonBiomeProvider;
 import com.robertx22.mine_and_slash.new_content.dimension.DungeonChunkGenerator;
 import com.robertx22.mine_and_slash.onevent.player.OnDungeonBlockEvents;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
@@ -24,6 +23,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
@@ -231,11 +231,13 @@ public abstract class BaseDungeonDimension extends Dimension implements IWP, IRa
         return false;
     }
 
+    public abstract BiomeProvider getBiomeProvider();
+
     @Nonnull
     @Override
     public ChunkGenerator<?> createChunkGenerator() {
 
-        DungeonBiomeProvider biomeProvider = new DungeonBiomeProvider();
+        BiomeProvider biomeProvider = getBiomeProvider();
         ChunkGeneratorType<OverworldGenSettings, DungeonChunkGenerator> generator = new ChunkGeneratorType<>(DungeonChunkGenerator::new, true, OverworldGenSettings::new);
         OverworldGenSettings gensettings = new OverworldGenSettings();
 

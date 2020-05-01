@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.new_content;
 
 import com.mojang.datafixers.Dynamic;
 import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
-import com.robertx22.mine_and_slash.new_content.building.DungeonBuilder;
+import com.robertx22.mine_and_slash.new_content.building.UniqueDungeonBuilder;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -20,9 +20,9 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import java.util.Random;
 import java.util.function.Function;
 
-public class DungeonFeature extends Feature<NoFeatureConfig> {
+public class UniqueDungeonFeature extends Feature<NoFeatureConfig> {
 
-    public DungeonFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
+    public UniqueDungeonFeature(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
         super(function);
     }
 
@@ -37,7 +37,7 @@ public class DungeonFeature extends Feature<NoFeatureConfig> {
 
                 ChunkPos cpos = new ChunkPos(pos);
 
-                DungeonBuilder builder = new DungeonBuilder(world.getSeed(), cpos);
+                UniqueDungeonBuilder builder = new UniqueDungeonBuilder(world.getSeed(), cpos);
                 builder.build();
 
                 if (!builder.dungeon.hasRoomForChunk(cpos)) {

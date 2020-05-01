@@ -7,16 +7,16 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 import java.util.function.Predicate;
 
-public class DungeonBiome extends BaseBlankBiome {
+public class UniqueDungeonBiome extends BaseBlankBiome {
 
-    public DungeonBiome() {
+    public UniqueDungeonBiome() {
         super(new Biome.Builder());
-        this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, WorldGenRegisters.DUNGEON_WORLD_FEATURE);
+        this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, WorldGenRegisters.UNIQUE_DUNGEON_WORLD_FEATURE);
 
     }
 
     @Override
     public Predicate<ConfiguredFeature<?, ?>> getFilter() {
-        return x -> x == WorldGenRegisters.DUNGEON_WORLD_FEATURE;
+        return x -> x == WorldGenRegisters.UNIQUE_DUNGEON_WORLD_FEATURE;
     }
 }

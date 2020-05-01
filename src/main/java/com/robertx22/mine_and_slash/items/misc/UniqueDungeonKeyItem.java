@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 
 public class UniqueDungeonKeyItem extends Item implements IAutoLocName, IAutoModel {
 
@@ -31,9 +32,23 @@ public class UniqueDungeonKeyItem extends Item implements IAutoLocName, IAutoMod
     }
 
     public static UniqueDungeon getDungeon(ItemStack stack) {
-        return SlashRegistry.UniqueDungeons()
-            .get(stack.getTag()
-                .getString("dungeon"));
+
+        if (stack.hasTag() && stack.getTag()
+            .contains("dungeon")) {
+
+            return SlashRegistry.UniqueDungeons()
+                .get(stack.getTag()
+                    .getString("dungeon"));
+
+        } else {
+            CompoundNBT nbt = new CompoundNBT(); // this makes even creative spawned keys usable as random keys
+            nbt.putString("dungeon", SlashRegistry.UniqueDungeons()
+                .random()
+                .GUID());
+            stack.setTag(nbt);
+
+            return getDungeon(stack); // recursion warning
+        }
 
     }
 

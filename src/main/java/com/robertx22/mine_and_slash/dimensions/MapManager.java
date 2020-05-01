@@ -95,7 +95,7 @@ public class MapManager {
                 UNIQUE_DUNGEON_DIMENSION = DimensionType.byName(dunID);
             }
 
-            ResourceLocation unDunID = new ResourceLocation(DUNGEON_ID);
+            ResourceLocation unDunID = new ResourceLocation(UNIQUE_DUNGEON_ID);
             if (DimensionType.byName(unDunID) == null) {
                 ModDimension moddim = SlashRegistry.WorldProviders()
                     .get(new UniqueDungeonDimension(null, null).GUID()).moddim;
