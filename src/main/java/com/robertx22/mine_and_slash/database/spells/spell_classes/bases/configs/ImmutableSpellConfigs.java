@@ -25,6 +25,16 @@ public abstract class ImmutableSpellConfigs {
     private Function<World, Entity> newEntitySummoner;
     private List<SpellPredicate> castRequirements = new ArrayList<>();
     private AllowedAsRightClickOn allowedAsRightClickOn = AllowedAsRightClickOn.NONE;
+    private boolean swingArmOnCast = false;
+
+    public boolean getSwingsArmOnCast() {
+        return swingArmOnCast;
+    }
+
+    public ImmutableSpellConfigs setSwingArmOnCast() {
+        this.swingArmOnCast = true;
+        return this;
+    }
 
     public abstract Masteries school();
 

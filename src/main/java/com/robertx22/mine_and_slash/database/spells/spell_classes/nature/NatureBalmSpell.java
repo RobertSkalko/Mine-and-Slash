@@ -46,7 +46,8 @@ public class NatureBalmSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Nature;
                 }
-            }.addsEffect(RegenerateEffect.INSTANCE));
+            }.addsEffect(RegenerateEffect.INSTANCE)
+                .setSwingArmOnCast());
 
     }
 

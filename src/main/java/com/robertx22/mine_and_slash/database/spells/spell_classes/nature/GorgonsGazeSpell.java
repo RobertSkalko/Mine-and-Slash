@@ -48,7 +48,7 @@ public class GorgonsGazeSpell extends BaseSpell {
             public Elements element() {
                 return Elements.Nature;
             }
-        });
+        }.setSwingArmOnCast());
     }
 
     public static GorgonsGazeSpell getInstance() {

@@ -122,7 +122,7 @@ public class LootInfo {
         if (WorldUtils.isMapWorldClass(world)) {
 
             if (mapData != null) {
-                level = mapData.getLevel(pos);
+                level = mapData.getLevel(pos, world);
             } else {
                 level = 1;
             }
@@ -192,7 +192,7 @@ public class LootInfo {
 
         if (this.mapData != null && mapData.getData()
             .hasData(pos)) {
-            chance *= this.mapData.getLootMultiplier(pos);
+            chance *= this.mapData.getLootMultiplier(pos, world);
         }
 
         if (mobData != null && victim != null) {

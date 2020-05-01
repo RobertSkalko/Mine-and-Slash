@@ -46,7 +46,8 @@ public class HolyFlowerSpell extends BaseSpell {
             }
 
         }.spawnBlock(ModBlocks.HOLY_FLOWER)
-            .summonsEntity((world) -> new SeedEntity(world)));
+            .summonsEntity((world) -> new SeedEntity(world))
+            .setSwingArmOnCast());
     }
 
     public static HolyFlowerSpell getInstance() {

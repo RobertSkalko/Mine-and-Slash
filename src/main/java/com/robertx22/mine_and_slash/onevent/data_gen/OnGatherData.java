@@ -10,6 +10,7 @@ import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
+import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeonDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.MyAdvProvider;
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.SlashRecipeProvider;
@@ -34,6 +35,8 @@ public class OnGatherData {
             gen.addProvider(new UniqueGearDatapackManager().getDataPackCreator(gen));
             gen.addProvider(new CompatibleItemDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new RuneDataPackManager().getDataPackCreator(gen));
+            gen.addProvider(new UniqueDungeonDatapackManager().getDataPackCreator(gen));
+
             gen.addProvider(new SlashRecipeProvider(gen));
 
             gen.addProvider(new GearRarityManager().getProvider(gen));

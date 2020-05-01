@@ -45,7 +45,8 @@ public class VolcanoSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Fire;
                 }
-            }.summonsEntity(world -> new VolcanoEntity(world)));
+            }.summonsEntity(world -> new VolcanoEntity(world))
+                .setSwingArmOnCast());
     }
 
     @Override

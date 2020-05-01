@@ -111,7 +111,7 @@ public class OnMobDeathDrops {
 
         if (WorldUtils.isMapWorldClass(victim.world)) {
             exp *= Load.world(killer.world)
-                .getExpMultiplier(victim.getPosition());
+                .getExpMultiplier(victim.getPosition(), victim.world);
         }
 
         if (exp > 0) {

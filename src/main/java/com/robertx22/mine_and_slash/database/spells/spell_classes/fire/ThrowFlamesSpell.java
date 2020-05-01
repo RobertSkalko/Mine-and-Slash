@@ -46,7 +46,8 @@ public class ThrowFlamesSpell extends BaseSpell {
                     return Elements.Fire;
                 }
             }.cooldownIfCanceled(true)
-                .summonsEntity(w -> new ThrowFlameEntity(w)));
+                .summonsEntity(w -> new ThrowFlameEntity(w))
+                .setSwingArmOnCast());
     }
 
     public static ThrowFlamesSpell getInstance() {

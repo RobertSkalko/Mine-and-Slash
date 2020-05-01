@@ -59,7 +59,7 @@ public class ChestProcessor extends DataProcessor {
                 ChestTileEntity chest = (ChestTileEntity) tile;
 
                 float lvm = (float) Load.world(world.getWorld())
-                    .getLevel(pos) / (float) ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
+                    .getLevel(pos, world) / (float) ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
 
                 ResourceLocation table = ModLootTables.TIER_1_DUNGEON_CHEST;
 

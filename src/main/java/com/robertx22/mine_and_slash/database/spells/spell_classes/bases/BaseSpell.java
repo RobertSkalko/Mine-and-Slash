@@ -30,6 +30,7 @@ import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -236,6 +237,10 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         });
 
         ctx.castedThisTick = true;
+
+        if (getImmutableConfigs().getSwingsArmOnCast()) {
+            ctx.caster.func_226292_a_(Hand.MAIN_HAND, true);
+        }
 
         castExtra(ctx);
         return bool;

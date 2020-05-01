@@ -45,7 +45,8 @@ public class ThornBushSpell extends BaseSpell {
                 return Elements.Nature;
             }
         }.spawnBlock(ModBlocks.THORN_BUSH)
-            .summonsEntity((world) -> new SeedEntity(world)));
+            .summonsEntity((world) -> new SeedEntity(world))
+            .setSwingArmOnCast());
     }
 
     public static ThornBushSpell getInstance() {

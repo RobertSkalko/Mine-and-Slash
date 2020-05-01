@@ -47,6 +47,7 @@ public class LightningTotemSpell extends BaseSpell {
                 }
             }.cooldownIfCanceled(true)
                 .summonsEntity(w -> new LightningTotemEntity(w))
+                .setSwingArmOnCast()
         );
     }
 

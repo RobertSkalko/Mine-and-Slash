@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
+import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeonDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeonsReloadListener;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.db_lists.initializers.CurrencyItems;
@@ -190,6 +191,7 @@ public class MMORPG {
         manager.addReloadListener(new UniqueGearDatapackManager());
         manager.addReloadListener(new CompatibleItemDataPackManager());
         manager.addReloadListener(new UniqueDungeonsReloadListener());
+        manager.addReloadListener(new UniqueDungeonDatapackManager());
 
         manager.addReloadListener(new GearRarityManager());
 

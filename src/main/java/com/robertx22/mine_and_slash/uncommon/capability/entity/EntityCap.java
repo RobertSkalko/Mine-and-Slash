@@ -426,7 +426,7 @@ public class EntityCap {
             this.setMobStats = true;
 
             if (WorldUtils.isMapWorldClass(entity.world)) {
-                this.level = data.getLevel(entity.getPosition());
+                this.level = data.getLevel(entity.getPosition(), entity.world);
 
             } else {
                 setMobLvlNormally(entity, nearestPlayer);

@@ -45,7 +45,8 @@ public class BlizzardSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Water;
                 }
-            }.summonsEntity(w -> new BlizzardEntity(w)));
+            }.summonsEntity(w -> new BlizzardEntity(w))
+                .setSwingArmOnCast());
     }
 
     public static BlizzardSpell getInstance() {

@@ -9,12 +9,16 @@ import net.minecraft.util.math.BlockPos;
 public class UniqueDungeon implements ISerializedRegistryEntry<UniqueDungeon>, ISerializable<UniqueDungeon> {
 
     String guid;
-    int lvl;
-    BlockPos entrancePos;
+    public int lvl;
+    public BlockPos entrancePos;
+    int tier = 0;
 
-    public UniqueDungeon(String guid, int lvl, BlockPos entrancePos) {
+    public static UniqueDungeon EMPTY = new UniqueDungeon("", 1, BlockPos.ZERO, 0);
+
+    public UniqueDungeon(String guid, int lvl, BlockPos entrancePos, int tier) {
         this.guid = guid;
         this.lvl = lvl;
+        this.tier = tier;
         this.entrancePos = entrancePos;
     }
 
@@ -24,6 +28,7 @@ public class UniqueDungeon implements ISerializedRegistryEntry<UniqueDungeon>, I
         JsonObject json = new JsonObject();
         json.addProperty(ID, GUID());
         json.addProperty("level", lvl);
+        json.addProperty("tier", tier);
 
         JsonObject entrance = new JsonObject();
         entrance.addProperty("x", entrancePos.getX());
@@ -39,6 +44,8 @@ public class UniqueDungeon implements ISerializedRegistryEntry<UniqueDungeon>, I
 
         int lvl = json.get("level")
             .getAsInt();
+        int tier = json.get("tier")
+            .getAsInt();
         String guid = getGUIDFromJson(json);
 
         JsonObject entrance = json.getAsJsonObject("entrance_pos");
@@ -49,7 +56,12 @@ public class UniqueDungeon implements ISerializedRegistryEntry<UniqueDungeon>, I
         int z = entrance.get("z")
             .getAsInt();
 
-        return new UniqueDungeon(guid, lvl, new BlockPos(x, y, z));
+        return new UniqueDungeon(guid, lvl, new BlockPos(x, y, z), tier);
+    }
+
+    @Override
+    public int getTier() {
+        return tier;
     }
 
     @Override

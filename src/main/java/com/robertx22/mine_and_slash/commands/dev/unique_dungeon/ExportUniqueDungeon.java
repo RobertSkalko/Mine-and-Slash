@@ -57,7 +57,7 @@ public class ExportUniqueDungeon {
 
             data.exportStructureFiles(player, word);
 
-            UniqueDungeon dun = new UniqueDungeon(word, level, data.entrancePos);
+            UniqueDungeon dun = new UniqueDungeon(word, level, data.entrancePos, 0);
 
             Path target = FMLPaths.GAMEDIR.get()
                 .resolve(dun.GUID() + ".json");

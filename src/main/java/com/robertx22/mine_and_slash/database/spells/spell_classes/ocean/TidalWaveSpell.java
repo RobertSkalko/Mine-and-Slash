@@ -38,7 +38,7 @@ public class TidalWaveSpell extends BaseSpell {
 
                 @Override
                 public SoundEvent sound() {
-                    return SoundEvents.BLOCK_BUBBLE_COLUMN_UPWARDS_INSIDE;
+                    return SoundEvents.BLOCK_BUBBLE_COLUMN_WHIRLPOOL_INSIDE;
                 }
 
                 @Override
@@ -46,7 +46,8 @@ public class TidalWaveSpell extends BaseSpell {
                     return Elements.Water;
                 }
             }.cooldownIfCanceled(true)
-                .summonsEntity(w -> new TidalWaveEntity(w)));
+                .summonsEntity(w -> new TidalWaveEntity(w))
+                .setSwingArmOnCast());
     }
 
     @Override
@@ -58,7 +59,7 @@ public class TidalWaveSpell extends BaseSpell {
         c.set(SC.ATTACK_SCALE_VALUE, 0.05F, 0.3F);
         c.set(SC.SHOOT_SPEED, 0.6F, 0.9F);
         c.set(SC.PROJECTILE_COUNT, 3, 5);
-        c.set(SC.CAST_TIME_TICKS, 60, 50);
+        c.set(SC.CAST_TIME_TICKS, 75, 45);
         c.set(SC.COOLDOWN_SECONDS, 20, 10);
         c.set(SC.TIMES_TO_CAST, 3, 4);
         c.set(SC.DURATION_TICKS, 60, 80);

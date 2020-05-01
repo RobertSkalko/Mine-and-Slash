@@ -47,6 +47,7 @@ public class SpearOfJudgementSpell extends BaseSpell {
                     return Elements.Thunder;
                 }
             }.summonsEntity(x -> new SpearOfJudgementEntity(x))
+                .setSwingArmOnCast()
         );
     }
 

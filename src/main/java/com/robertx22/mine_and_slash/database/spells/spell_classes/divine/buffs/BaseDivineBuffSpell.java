@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class BaseDivineBuffSpell extends BaseSpell {
 
     public BaseDivineBuffSpell(ImmutableSpellConfigs configs) {
-        super(configs);
+        super(configs.setSwingArmOnCast());
     }
 
     @Override

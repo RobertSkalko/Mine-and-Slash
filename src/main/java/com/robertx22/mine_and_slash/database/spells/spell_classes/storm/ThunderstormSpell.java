@@ -45,7 +45,8 @@ public class ThunderstormSpell extends BaseSpell {
                     return Elements.Thunder;
                 }
             }
-                .summonsEntity(world -> new ThunderstormEntity(world)));
+                .summonsEntity(world -> new ThunderstormEntity(world))
+                .setSwingArmOnCast());
     }
 
     @Override

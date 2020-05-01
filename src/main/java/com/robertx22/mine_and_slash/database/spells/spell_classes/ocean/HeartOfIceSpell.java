@@ -46,7 +46,7 @@ public class HeartOfIceSpell extends BaseSpell {
                 public Elements element() {
                     return Elements.Water;
                 }
-            });
+            }.setSwingArmOnCast());
     }
 
     @Override

@@ -1,8 +1,11 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
+import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeon;
+import com.robertx22.mine_and_slash.database.world_providers.UniqueDungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.base.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
+import com.robertx22.mine_and_slash.new_content.building.UniqueDungeonBuilder;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
@@ -12,6 +15,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
@@ -25,6 +29,14 @@ public class WorldUtils {
 
         world.addEntity(entity);
 
+    }
+
+    public static UniqueDungeon getUniqueDungeonAt(BlockPos pos, IWorld world) {
+        return getUniqueDungeonAt(new ChunkPos(pos), world);
+    }
+
+    public static UniqueDungeon getUniqueDungeonAt(ChunkPos pos, IWorld world) {
+        return new UniqueDungeonBuilder(world.getSeed(), pos).uniqueDungeon;
     }
 
     public static boolean isNearSurface(BlockPos pos, World world, int buffer) {
@@ -43,7 +55,7 @@ public class WorldUtils {
         List<MapAffixData> list = new ArrayList<>();
 
         if (data != null) {
-            list.addAll(MapItemData.getAllAffixesThatAffect(data.getMap(entity.getPosition()).affixes, entity));
+            list.addAll(MapItemData.getAllAffixesThatAffect(data.getMap(entity.getPosition(), entity.world).affixes, entity));
         }
 
         list.addAll(MapItemData.getAllAffixesThatAffect(getAllMapAffixes(entity.world), entity));
@@ -171,6 +183,10 @@ public class WorldUtils {
         }
     }
 
+    public static boolean isUniqueDungeon(IWorld world) {
+        return world.getDimension() instanceof UniqueDungeonDimension;
+    }
+
     public static boolean isMapWorldClass(IWorld world) {
 
         if (world == null) {
@@ -193,7 +209,7 @@ public class WorldUtils {
     public static int getTier(World world, WorldMapCap.IWorldMapData data, BlockPos pos) {
 
         if (WorldUtils.isMapWorldClass(world)) {
-            return data.getTier(pos);
+            return data.getTier(pos, world);
         } else {
             return SlashRegistry.getDimensionConfig(world).MAP_TIER;
         }

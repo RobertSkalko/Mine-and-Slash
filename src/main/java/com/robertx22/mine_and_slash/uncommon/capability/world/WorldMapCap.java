@@ -11,10 +11,12 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -32,15 +34,15 @@ public class WorldMapCap {
 
     public interface IWorldMapData extends ICommonCap {
 
-        float getLootMultiplier(BlockPos pos);
+        float getLootMultiplier(BlockPos pos, IWorld world);
 
-        float getExpMultiplier(BlockPos pos);
+        float getExpMultiplier(BlockPos pos, IWorld world);
 
-        int getLevel(BlockPos pos);
+        int getLevel(BlockPos pos, IWorld world);
 
-        int getTier(BlockPos pos);
+        int getTier(BlockPos pos, IWorld world);
 
-        MapItemData getMap(BlockPos pos);
+        MapItemData getMap(BlockPos pos, IWorld world);
 
         void init(MapItemData map, ChunkPos pos);
 
@@ -124,30 +126,50 @@ public class WorldMapCap {
         }
 
         @Override
-        public float getLootMultiplier(BlockPos pos) {
-
-            return this.getMap(pos)
+        public float getLootMultiplier(BlockPos pos, IWorld world) {
+            if (WorldUtils.isUniqueDungeon(world)) {
+                return 1;
+            }
+            return this.getMap(pos, world)
                 .getBonusLootMulti();
 
         }
 
         @Override
-        public float getExpMultiplier(BlockPos pos) {
-            return (1 + getMap(pos).tier * 0.05F) * getMap(pos).getBonusExpMulti();
+        public float getExpMultiplier(BlockPos pos, IWorld world) {
+            if (WorldUtils.isUniqueDungeon(world)) {
+                return 1;
+            }
+            return (1 + getMap(pos, world).tier * 0.05F) * getMap(pos, world).getBonusExpMulti();
         }
 
         @Override
-        public int getLevel(BlockPos pos) {
-            return this.getMap(pos).level;
+        public int getLevel(BlockPos pos, IWorld world) {
+
+            if (WorldUtils.isUniqueDungeon(world)) {
+                return WorldUtils.getUniqueDungeonAt(pos, world)
+                    .lvl;
+            }
+
+            return this.getMap(pos, world).level;
         }
 
         @Override
-        public int getTier(BlockPos pos) {
-            return this.getMap(pos).tier;
+        public int getTier(BlockPos pos, IWorld world) {
+
+            if (WorldUtils.isUniqueDungeon(world)) {
+                return WorldUtils.getUniqueDungeonAt(pos, world)
+                    .getTier();
+            }
+            return this.getMap(pos, world).tier;
         }
 
         @Override
-        public MapItemData getMap(BlockPos pos) {
+        public MapItemData getMap(BlockPos pos, IWorld world) {
+
+            if (WorldUtils.isUniqueDungeon(world)) {
+                return MapItemData.empty();
+            }
 
             if (pos.equals(Statics.EMPTY_POS)) {
                 return MapItemData.empty();

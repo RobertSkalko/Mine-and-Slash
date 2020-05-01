@@ -44,7 +44,8 @@ public class PoisonedWeaponsSpell extends BaseSpell {
             public Elements element() {
                 return Elements.Nature;
             }
-        }.addsEffect(PoisonedWeaponsEffect.getInstance()));
+        }.addsEffect(PoisonedWeaponsEffect.getInstance())
+            .setSwingArmOnCast());
 
     }
 

@@ -331,6 +331,7 @@ public class SlashRegistry {
         new LootCrates().registerAll();
         new Bosses().registerAll();
         new ChaosStats().registerAll();
+        new UniqueDungeons().registerAll();
 
     }
 

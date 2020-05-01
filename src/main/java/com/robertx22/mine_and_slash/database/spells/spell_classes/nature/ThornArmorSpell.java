@@ -43,7 +43,8 @@ public class ThornArmorSpell extends BaseSpell {
             public Elements element() {
                 return Elements.Nature;
             }
-        }.addsEffect(ThornArmorEffect.INSTANCE));
+        }.addsEffect(ThornArmorEffect.INSTANCE)
+            .setSwingArmOnCast());
     }
 
     public static ThornArmorSpell getInstance() {
