@@ -11,6 +11,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.border.WorldBorder;
 
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 @Storable
 public class DungeonDimensionData {
@@ -45,6 +46,10 @@ public class DungeonDimensionData {
     }
 
     public ChunkPos randomFree() {
+        return randomFree(x -> true);
+    }
+
+    public ChunkPos randomFree(Predicate<ChunkPos> filter) {
 
         String id = "";
         ChunkPos pos = null;
@@ -68,12 +73,13 @@ public class DungeonDimensionData {
             int x = RandomUtils.RandomRange(50, max);
             int z = RandomUtils.RandomRange(50, max);
 
-            pos = new ChunkPos(x, z);
+            if (filter.test(new ChunkPos(x, z))) {
+                pos = new ChunkPos(x, z);
 
-            pos = DungeonUtils.getStartChunk(pos);
+                pos = DungeonUtils.getStartChunk(pos);
 
-            id = getId(pos);
-
+                id = getId(pos);
+            }
         }
 
         if (tries > 1000) {

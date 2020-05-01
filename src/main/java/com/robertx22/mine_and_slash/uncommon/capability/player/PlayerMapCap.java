@@ -19,6 +19,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.capabilities.Capability;
@@ -42,6 +43,8 @@ public class PlayerMapCap {
     public interface IPlayerMapData extends ICommonPlayerCap {
 
         void onTickIfDead(ServerPlayerEntity player);
+
+        void initKey(BlockPos pos, DimensionType type, PlayerEntity player, ChunkPos cpos);
 
         void onMinute(PlayerEntity player);
 
@@ -156,6 +159,30 @@ public class PlayerMapCap {
             this.data.questFinished = false;
             this.data.setPlayerId(player);
             this.data.isActive = true;
+
+            MMORPG.syncMapData((ServerPlayerEntity) player);
+        }
+
+        @Override
+        public void initKey(BlockPos pos, DimensionType type, PlayerEntity player, ChunkPos cpos) {
+
+            if (Statics.EMPTY_POS.equals(pos)) {
+                try {
+                    throw new Exception("Empty pos!");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            this.data = new PlayerWholeMapData();
+
+            this.data.mapDevicePos = new BlockPos(pos).up();
+            this.data.setOriginalDimension(player.world.getDimension()
+                .getType());
+            this.data.questFinished = false;
+            this.data.setPlayerId(player);
+            this.data.isActive = true;
+            this.data.cpos = cpos.asBlockPos();
 
             MMORPG.syncMapData((ServerPlayerEntity) player);
         }

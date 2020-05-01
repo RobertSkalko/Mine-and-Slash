@@ -175,7 +175,7 @@ public class MapManager {
     public static DimensionType setupPlayerMapDimension(PlayerEntity player, UnitData unit, MapItemData map,
                                                         BlockPos pos) {
 
-        DimensionType type = getDungeonDimensionType();
+        DimensionType type = map.getDimension();
 
         PlayerMapCap.IPlayerMapData data = Load.playerMapData(player);
 

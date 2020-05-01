@@ -24,7 +24,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataIt
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
@@ -240,15 +239,6 @@ public class MapItemData implements ICommonDataItem<MapRarity>, IBonusLootMulti,
 
         ParticleUtils.spawnEnergyRestoreParticles(player, 10);
 
-        player.sendMessage(Styles.GREENCOMP()
-            .appendSibling(Chats.MapStarted.locName()));
-/*
-        Load.quests(player)
-            .setMapQuest(SlashRegistry.Quests()
-                .get(questGUID), this);
-
-
- */
         return MapManager.setupPlayerMapDimension(player, unit, this, pos);
 
     }

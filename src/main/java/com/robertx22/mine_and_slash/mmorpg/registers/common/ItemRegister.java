@@ -114,6 +114,8 @@ public class ItemRegister {
         list.add(new ItemLevelNearestEntity());
         list.add(new ItemNewbieGearBag());
 
+        list.add(new UniqueDungeonKeyItem().setRegistryName(Ref.MODID, "dungeon_key"));
+
         list.add(SimpleMatItem.CRYSTALLIZED_ESSENCE);
         list.add(SimpleMatItem.INFUSED_IRON);
         list.add(SimpleMatItem.MYTHIC_ESSENCE);

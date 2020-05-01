@@ -14,6 +14,8 @@ import org.jline.utils.Log;
 public class PlayerWholeMapData {
 
     @Store
+    public BlockPos cpos = new BlockPos(0, 0, 0);
+    @Store
     public boolean isActive = false;
     @Store
     public BlockPos mapDevicePos;
