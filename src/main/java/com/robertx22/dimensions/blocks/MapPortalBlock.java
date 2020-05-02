@@ -38,7 +38,7 @@ public class MapPortalBlock extends BlockEndPortal {
 		super(Material.PORTAL);
 		this.setRegistryName(new ResourceLocation(Ref.MODID, "map_portal_block"));
 		this.setTranslationKey(Ref.MODID + ":map_portal_block");
-		this.setHardness(100F);
+		this.setHardness(1.5F);
 
 	}
 

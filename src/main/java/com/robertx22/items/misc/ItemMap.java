@@ -31,137 +31,137 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class ItemMap extends Item {
-    public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
+	public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-	MapItemData data = Map.Load(stack);
+		MapItemData data = Map.Load(stack);
 
-	showTooltip(data, tooltip);
-
-    }
-
-    public static List<String> showTooltip(MapItemData data, List<String> tooltip) {
-
-	if (data != null) {
-
-	    ItemRarity rarity = Rarities.Items.get(data.rarity);
-
-	    tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + +data.level);
-	    tooltip.add("");
-
-	    addAffixTypeToTooltip(data, tooltip, AffectedEntities.Mobs);
-	    addAffixTypeToTooltip(data, tooltip, AffectedEntities.Players);
-	    addAffixTypeToTooltip(data, tooltip, AffectedEntities.All);
-
-	    tooltip.add("");
-
-	    try {
-		tooltip.add(TextFormatting.BLUE + CLOC.word("world_type") + ": " + data.getWorldProvider().locName());
-	    } catch (Exception e) {
-		e.printStackTrace();
-	    }
-
-	    tooltip.add("");
-	    tooltip.add(TextFormatting.GOLD + CLOC.word("tier") + ": " + data.tier);
-
-	    tooltip.add("");
-	    tooltip.add(TextFormatting.GREEN + CLOC.word("minutes") + ": " + data.minutes);
-
-	    tooltip.add("");
-	    tooltip.add(
-		    TextFormatting.YELLOW + CLOC.word("bonus_loot_amount") + ": " + data.getBonusLootAmount() + "%");
-
-	    tooltip.add("");
-	    tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName());
-
-	    tooltip.add("");
-	    tooltip.add(TextFormatting.BLUE + CLOC.tooltip("put_in_mapdevice"));
+		showTooltip(data, tooltip);
 
 	}
 
-	return tooltip;
+	public static List<String> showTooltip(MapItemData data, List<String> tooltip) {
 
-    }
+		if (data != null) {
 
-    private static void addAffixTypeToTooltip(MapItemData data, List<String> tooltip, AffectedEntities affected) {
+			ItemRarity rarity = Rarities.Items.get(data.rarity);
 
-	List<MapAffixData> affixes = data.getAllAffixesThatAffect(affected);
+			tooltip.add(TextFormatting.YELLOW + CLOC.word("level") + ": " + +data.level);
+			tooltip.add("");
 
-	if (affixes.size() == 0) {
-	    return;
-	}
+			addAffixTypeToTooltip(data, tooltip, AffectedEntities.Mobs);
+			addAffixTypeToTooltip(data, tooltip, AffectedEntities.Players);
+			addAffixTypeToTooltip(data, tooltip, AffectedEntities.All);
 
-	String str = "";
+			tooltip.add("");
 
-	if (affected.equals(AffectedEntities.Players)) {
-	    str = CLOC.word("player_affixes");
-	} else if (affected.equals(AffectedEntities.Mobs)) {
-	    str = CLOC.word("mob_affixes");
-	}
+			try {
+				tooltip.add(TextFormatting.BLUE + CLOC.word("world_type") + ": " + data.getWorldProvider().locName());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
-	tooltip.add(TextFormatting.GREEN + str);
+			tooltip.add("");
+			tooltip.add(TextFormatting.GOLD + CLOC.word("tier") + ": " + data.tier);
 
-	for (MapAffixData affix : affixes) {
+			tooltip.add("");
+			tooltip.add(TextFormatting.GREEN + CLOC.word("minutes") + ": " + data.minutes);
 
-	    for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
+			tooltip.add("");
+			tooltip.add(
+					TextFormatting.YELLOW + CLOC.word("bonus_loot_amount") + ": " + data.getBonusLootAmount() + "%");
 
-		for (String statstring : statmod.GetTooltipString(Rarities.Maps.get(data.rarity).StatPercents(),
-			data.level, false)) {
+			tooltip.add("");
+			tooltip.add(rarity.Color() + CLOC.word("rarity") + ": " + rarity.locName());
 
-		    tooltip.add(" * " + TextFormatting.RED + statstring);
+			tooltip.add("");
+			tooltip.add(TextFormatting.BLUE + CLOC.tooltip("put_in_mapdevice"));
+
 		}
 
-	    }
+		return tooltip;
 
 	}
-    }
 
-    public static void createMap(int id, BlockPos pos, World world, MapItemData data) {
-	IWorldData currentdata = Load.World(world);
+	private static void addAffixTypeToTooltip(MapItemData data, List<String> tooltip, AffectedEntities affected) {
 
-	if (currentdata.isMapWorld()) {
+		List<MapAffixData> affixes = data.getAllAffixesThatAffect(affected);
 
-	} else {
+		if (affixes.size() == 0) {
+			return;
+		}
 
-	    if (data != null) {
+		String str = "";
 
-		summonPortal(world, pos, id);
-	    }
+		if (affected.equals(AffectedEntities.Players)) {
+			str = CLOC.word("player_affixes");
+		} else if (affected.equals(AffectedEntities.Mobs)) {
+			str = CLOC.word("mob_affixes");
+		}
+
+		tooltip.add(TextFormatting.GREEN + str);
+
+		for (MapAffixData affix : affixes) {
+
+			for (StatModData statmod : affix.getAffix().Stats(affix.percent)) {
+
+				for (String statstring : statmod.GetTooltipString(Rarities.Maps.get(data.rarity).StatPercents(),
+						data.level, false)) {
+
+					tooltip.add(" * " + TextFormatting.RED + statstring);
+				}
+
+			}
+
+		}
 	}
-    }
 
-    private static void summonPortal(World world, BlockPos pos, int id) {
+	public static void createMap(int id, BlockPos pos, World world, MapItemData data) {
+		IWorldData currentdata = Load.World(world);
 
-	spawnPortalBlock(world, pos, id);
+		if (currentdata.isMapWorld()) {
 
-	spawnFrameBlock(world, pos.south());
-	spawnFrameBlock(world, pos.north());
-	spawnFrameBlock(world, pos.east());
-	spawnFrameBlock(world, pos.west());
+		} else {
 
-	spawnFrameBlock(world, pos.south().east());
-	spawnFrameBlock(world, pos.south().west());
-	spawnFrameBlock(world, pos.north().east());
-	spawnFrameBlock(world, pos.north().west());
+			if (data != null) {
 
-    }
+				summonPortal(world, pos, id);
+			}
+		}
+	}
 
-    private static void spawnPortalBlock(World world, BlockPos pos, int id) {
-	world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
-	TileMapPortal portal = new TileMapPortal(id);
-	world.setTileEntity(pos, portal);
-    }
+	private static void summonPortal(World world, BlockPos pos, int id) {
 
-    private static void spawnFrameBlock(World world, BlockPos pos) {
+		spawnPortalBlock(world, pos, id);
 
-	world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState(), 2);
-    }
+		spawnFrameBlock(world, pos.south());
+		spawnFrameBlock(world, pos.north());
+		spawnFrameBlock(world, pos.east());
+		spawnFrameBlock(world, pos.west());
 
-    public ItemMap() {
+		spawnFrameBlock(world, pos.south().east());
+		spawnFrameBlock(world, pos.south().west());
+		spawnFrameBlock(world, pos.north().east());
+		spawnFrameBlock(world, pos.north().west());
 
-    }
+	}
+
+	private static void spawnPortalBlock(World world, BlockPos pos, int id) {
+		world.setBlockState(pos, MapPortalBlock.BLOCK.getDefaultState(), 2);
+		TileMapPortal portal = new TileMapPortal(id);
+		world.setTileEntity(pos, portal);
+	}
+
+	private static void spawnFrameBlock(World world, BlockPos pos) {
+
+		world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState(), 2);
+	}
+
+	public ItemMap() {
+
+	}
 
 }
