@@ -1,10 +1,13 @@
 package com.robertx22.mine_and_slash.data_generation.unique_dungeons;
 
 import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.Vec3i;
 
 public class UniqueDungeon implements ISerializedRegistryEntry<UniqueDungeon>, ISerializable<UniqueDungeon> {
 
@@ -72,5 +75,17 @@ public class UniqueDungeon implements ISerializedRegistryEntry<UniqueDungeon>, I
     @Override
     public String GUID() {
         return this.guid;
+    }
+
+    public BlockPos getActualEntrancePosition(ChunkPos cpos) {
+
+        ChunkPos start = DungeonUtils.getStartChunk(cpos);
+
+        BlockPos pos = start.asBlockPos();
+        pos = pos.add(entrancePos.getX(), entrancePos.getY(), entrancePos.getZ());
+        pos = pos.subtract(new Vec3i(0, 0, 0));
+        pos = pos.add(0, 50, 0);
+
+        return pos;
     }
 }

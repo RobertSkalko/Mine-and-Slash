@@ -4,27 +4,33 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 
+import java.io.File;
+
 public class DungeonUtils {
+
+    public static int DUNGEON_LENGTH = 30;
+
     public static ChunkPos getStartChunk(ChunkPos pos) {
         int chunkX = pos.x;
         int chunkZ = pos.z;
-        int distToEntranceX = 8 - (chunkX % 30);
-        int distToEntranceZ = 11 - (chunkZ % 30);
+        int distToEntranceX = 8 - (chunkX % DUNGEON_LENGTH);
+        int distToEntranceZ = 11 - (chunkZ % DUNGEON_LENGTH);
         chunkX += distToEntranceX;
         chunkZ += distToEntranceZ;
 
         return new ChunkPos(chunkX, chunkZ);
     }
 
-    public static String getStringFromFileName(ResourceLocation loc, String search) {
+    public static ChunkPos getPosFromFileName(ResourceLocation loc) {
 
         String name = loc.toString();
 
-        int start = name.indexOf(search);
+        String filename = new File(name).getName()
+            .replaceAll(".nbt", "");
 
-        int end = name.indexOf("]", start);
+        String[] xz = filename.split("-");
 
-        return name.substring(start, end);
+        return new ChunkPos(Integer.parseInt(xz[0]), Integer.parseInt(xz[1]));
     }
 
     public static BlockPos getDungeonStartTeleportPos(ChunkPos pos) {

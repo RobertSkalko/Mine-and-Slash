@@ -37,16 +37,14 @@ public class UniqueDungeonBuilder {
     public UniqueDungeon uniqueDungeon;
 
     public void build() {
-        dungeon = new Dungeon(50);
+        dungeon = new Dungeon(25);
 
-        int tries = 0;
+        int mid = dungeon.getMiddle();
 
         UniqueDungeonsReloadListener.MAP.get(uniqueDungeon.GUID())
             .forEach(x -> {
 
-                String place = DungeonUtils.getStringFromFileName(x, "[search;");
-
-                String[] xz = place.split("-");
+                ChunkPos place = DungeonUtils.getPosFromFileName(x);
 
                 RoomRotation rot = new RoomRotation(
                     RoomType.ENTRANCE,
@@ -55,25 +53,8 @@ public class UniqueDungeonBuilder {
 
                 BuiltRoom built = new BuiltRoom(rot, new DungeonRoom(x));
 
-                dungeon.addRoom(Integer.parseInt(xz[0]), Integer.parseInt(xz[1]), built);
+                dungeon.addRoom(place.x + mid, place.z + mid, built);
             });
-
-        while (!dungeon.isFinished() || tries < 500) {
-
-            tries++;
-
-            dungeon.getUnbuiltCopy()
-                .forEach(x -> {
-
-                    try {
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-
-                    }
-
-                });
-        }
 
         dungeon.fillWithBarriers();
 

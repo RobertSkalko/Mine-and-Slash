@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
@@ -71,7 +72,7 @@ public abstract class BaseDungeonDimension extends Dimension implements IWP, IRa
 
     }
 
-    public BlockPos getEntrancePos(ChunkPos cpos) {
+    public BlockPos getEntrancePos(ChunkPos cpos, IWorld world) {
         return DungeonUtils.getDungeonStartTeleportPos(cpos);
     }
 

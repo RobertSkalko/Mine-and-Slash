@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.uncommon.capability.server_wide.TeamCap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;
@@ -47,8 +46,7 @@ public class EntityFinder {
                                         return true;
                                     }
 
-                                    return TeamCap.getCapability()
-                                        .isOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
+                                    return TeamUtils.areOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
                                 }
                             } else {
                                 return isTamed(x);
@@ -76,8 +74,7 @@ public class EntityFinder {
                                     if (x.world.isRemote) {
                                         return false;
                                     } else {
-                                        return !TeamCap.getCapability()
-                                            .isOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
+                                        return !TeamUtils.areOnSameTeam((ServerPlayerEntity) setup.caster, (ServerPlayerEntity) x);
                                     }
                                 } else {
                                     return !isTamed(x);

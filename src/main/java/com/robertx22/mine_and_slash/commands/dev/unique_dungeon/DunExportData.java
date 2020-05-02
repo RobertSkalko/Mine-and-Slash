@@ -71,7 +71,7 @@ public class DunExportData {
 
             ChunkPos norm = getNormalizedChunkPos(chunks, x);
 
-            String name = dungeonName + "/[place;" + norm.x + "-" + norm.z + "]";
+            String name = dungeonName + "/" + norm.x + "-" + norm.z + "";
 
             save(x, player, name);
 
@@ -79,16 +79,24 @@ public class DunExportData {
 
     }
 
+    public int getSmallestX(List<ChunkPos> list) {
+        return list.stream()
+            .min(Comparator.comparingInt(c -> c.x))
+            .get().x;
+    }
+
+    public int getSmallestZ(List<ChunkPos> list) {
+        return list.stream()
+            .min(Comparator.comparingInt(c -> c.z))
+            .get().z;
+    }
+
     public ChunkPos getNormalizedChunkPos(List<ChunkPos> list, ChunkPos pos) {
 
         List<ChunkPos> normalized = new ArrayList<>();
 
-        int smallestX = list.stream()
-            .min(Comparator.comparingInt(c -> c.x))
-            .get().x;
-        int smallestZ = list.stream()
-            .min(Comparator.comparingInt(c -> c.z))
-            .get().z;
+        int smallestX = getSmallestX(list);
+        int smallestZ = getSmallestZ(list);
 
         return new ChunkPos(pos.x - smallestX, pos.z - smallestZ);
 

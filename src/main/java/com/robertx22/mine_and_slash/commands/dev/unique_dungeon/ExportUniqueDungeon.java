@@ -13,10 +13,14 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static net.minecraft.command.Commands.argument;
 import static net.minecraft.command.Commands.literal;
@@ -57,7 +61,12 @@ public class ExportUniqueDungeon {
 
             data.exportStructureFiles(player, word);
 
-            UniqueDungeon dun = new UniqueDungeon(word, level, data.entrancePos, 0);
+            List<ChunkPos> list = ChunkPos.getAllInBox(new ChunkPos(data.firstPos), new ChunkPos(data.lastPos))
+                .collect(Collectors.toList());
+
+            BlockPos normEntrance = new BlockPos(data.entrancePos.getX() - 16 * data.getSmallestX(list), data.entrancePos.getY() - data.getStartY(), data.entrancePos.getZ() - 16 * data.getSmallestZ(list));
+
+            UniqueDungeon dun = new UniqueDungeon(word, level, normEntrance, 0);
 
             Path target = FMLPaths.GAMEDIR.get()
                 .resolve(dun.GUID() + ".json");

@@ -2,11 +2,12 @@ package com.robertx22.mine_and_slash.database.world_providers;
 
 import com.robertx22.mine_and_slash.database.world_providers.base.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.base.MyWorldInfo;
-import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
 import com.robertx22.mine_and_slash.new_content.dimension.UniqueDungeonBiomeProvider;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.dimension.Dimension;
@@ -47,8 +48,11 @@ public class UniqueDungeonDimension extends BaseDungeonDimension {
         };
     }
 
-    public BlockPos getEntrancePos(ChunkPos cpos) {
-        return DungeonUtils.getDungeonStartTeleportPos(cpos); // todo make it be based on unique dungeon on the position.
+    @Override
+    public BlockPos getEntrancePos(ChunkPos cpos, IWorld world) {
+        return WorldUtils.getUniqueDungeonAt(cpos, world)
+            .getActualEntrancePosition(cpos);
+
     }
 
     @Override

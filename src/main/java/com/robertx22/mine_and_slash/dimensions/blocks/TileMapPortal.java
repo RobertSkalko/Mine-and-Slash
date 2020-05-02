@@ -109,7 +109,7 @@ public class TileMapPortal extends TileEntity {
 
                     BaseDungeonDimension dim = (BaseDungeonDimension) mapworld.getDimension();
 
-                    BlockPos p = dim.getEntrancePos(cpos);
+                    BlockPos p = dim.getEntrancePos(cpos, mapworld);
 
                     PlayerUtils.changeDimension((ServerPlayerEntity) player, type, p);
 

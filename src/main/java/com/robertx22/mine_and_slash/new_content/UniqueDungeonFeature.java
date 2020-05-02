@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
 import com.robertx22.mine_and_slash.new_content.building.UniqueDungeonBuilder;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -56,7 +57,12 @@ public class UniqueDungeonFeature extends Feature<NoFeatureConfig> {
                     .getType())
                     .getStructureTemplateManager();
 
-                Template template = templatemanager.getTemplate(room.getStructure());
+                ResourceLocation loc = new ResourceLocation(room.getStructure()
+                    .toString()
+                    .replace("structures/", "")
+                    .replace(".nbt", ""));
+
+                Template template = templatemanager.getTemplate(loc);
                 PlacementSettings settings = new PlacementSettings().setMirror(Mirror.NONE)
                     .setRotation(room.data.rotation)
                     .setIgnoreEntities(false)

@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.items.misc;
 import com.robertx22.mine_and_slash.data_generation.models.IAutoModel;
 import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeon;
+import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import net.minecraft.item.Item;
@@ -12,7 +13,7 @@ import net.minecraft.nbt.CompoundNBT;
 public class UniqueDungeonKeyItem extends Item implements IAutoLocName, IAutoModel {
 
     public UniqueDungeonKeyItem() {
-        super(new Properties());
+        super(new Properties().group(CreativeTabs.MyModTab));
     }
 
     @Override
