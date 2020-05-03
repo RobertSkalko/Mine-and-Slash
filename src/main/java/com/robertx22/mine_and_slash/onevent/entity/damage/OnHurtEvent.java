@@ -18,6 +18,7 @@ public class OnHurtEvent {
         }
 
         try {
+
             // order matters here
             LivingHurtUtils.onAttack(event);
             LivingHurtUtils.modifyDamage(event);
@@ -47,6 +48,7 @@ public class OnHurtEvent {
     @SubscribeEvent
     public static void attack(LivingAttackEvent event) {
         try {
+
             // all entity dmg should bypass armor and be unblockable with normal shields except mine
             // so my block stat actually has meaning
             if (event.getSource()

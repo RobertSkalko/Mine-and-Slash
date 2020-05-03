@@ -30,6 +30,8 @@ public class UniqueDungeonBuilder {
 
     }
 
+    public static int SIZE = 25;
+
     public int maxPuzzleBlockRooms = 3;
 
     public Dungeon dungeon;
@@ -37,23 +39,23 @@ public class UniqueDungeonBuilder {
     public UniqueDungeon uniqueDungeon;
 
     public void build() {
-        dungeon = new Dungeon(25);
+        dungeon = new Dungeon(SIZE, SIZE);
 
-        int mid = dungeon.getMiddle();
+        RoomRotation rot = new RoomRotation(
+            RoomType.ENTRANCE,
+            new RoomSides(RoomSide.DOOR, RoomSide.DOOR, RoomSide.DOOR, RoomSide.DOOR),
+            Rotation.NONE);
+
+        int off = 2;
 
         UniqueDungeonsReloadListener.MAP.get(uniqueDungeon.GUID())
             .forEach(x -> {
 
                 ChunkPos place = DungeonUtils.getPosFromFileName(x);
 
-                RoomRotation rot = new RoomRotation(
-                    RoomType.ENTRANCE,
-                    new RoomSides(RoomSide.DOOR, RoomSide.DOOR, RoomSide.DOOR, RoomSide.DOOR),
-                    Rotation.NONE);
-
                 BuiltRoom built = new BuiltRoom(rot, new DungeonRoom(x));
 
-                dungeon.addRoom(place.x + mid, place.z + mid, built);
+                dungeon.forceSetRoom(place.x + off, place.z + off, built);
             });
 
         dungeon.fillWithBarriers();

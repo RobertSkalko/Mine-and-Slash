@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.data_generation.unique_dungeons;
 
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.new_content.building.DungeonUtils;
+import com.robertx22.mine_and_slash.new_content.building.UniqueDungeonBuilder;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
@@ -15,6 +16,7 @@ public class UniqueDungeon implements ISerializedRegistryEntry<UniqueDungeon>, I
     public int lvl;
     public BlockPos entrancePos;
     int tier = 0;
+    int weight = 1000;
 
     public static UniqueDungeon EMPTY = new UniqueDungeon("", 1, BlockPos.ZERO, 0);
 
@@ -32,6 +34,7 @@ public class UniqueDungeon implements ISerializedRegistryEntry<UniqueDungeon>, I
         json.addProperty(ID, GUID());
         json.addProperty("level", lvl);
         json.addProperty("tier", tier);
+        json.addProperty("weight", weight);
 
         JsonObject entrance = new JsonObject();
         entrance.addProperty("x", entrancePos.getX());
@@ -48,6 +51,8 @@ public class UniqueDungeon implements ISerializedRegistryEntry<UniqueDungeon>, I
         int lvl = json.get("level")
             .getAsInt();
         int tier = json.get("tier")
+            .getAsInt();
+        int weight = json.get("weight")
             .getAsInt();
         String guid = getGUIDFromJson(json);
 
@@ -77,13 +82,20 @@ public class UniqueDungeon implements ISerializedRegistryEntry<UniqueDungeon>, I
         return this.guid;
     }
 
+    @Override
+    public int Weight() {
+        return weight;
+    }
+
     public BlockPos getActualEntrancePosition(ChunkPos cpos) {
 
         ChunkPos start = DungeonUtils.getStartChunk(cpos);
 
+        int off = (UniqueDungeonBuilder.SIZE / 2 - 2) * 16;
+
         BlockPos pos = start.asBlockPos();
         pos = pos.add(entrancePos.getX(), entrancePos.getY(), entrancePos.getZ());
-        pos = pos.subtract(new Vec3i(0, 0, 0));
+        pos = pos.subtract(new Vec3i(off, 0, off));
         pos = pos.add(0, 50, 0);
 
         return pos;

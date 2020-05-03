@@ -16,11 +16,14 @@ import java.util.Objects;
 public class Dungeon {
 
     public Dungeon(int size) {
+        this(size, 20);
+    }
+
+    public Dungeon(int size, int capacity) {
         this.size = size;
-        this.capacity = 20;
+        this.capacity = capacity;
 
         rooms = new BuiltRoom[capacity][capacity];
-
     }
 
     int capacity;
@@ -186,14 +189,6 @@ public class Dungeon {
 
     private void addUnbuilts(int x, int z, BuiltRoom room) {
 
-        /*
-        if (x > capacity * 0.95F || z > capacity * 0.95F) {
-            System.out.println("Pushing too close to capacity, not adding any unbuilt rooms. This means it will look broken.");
-            return;
-        }
-
-         */
-
         List<Direction> dirs = new ArrayList<>();
         dirs.add(Direction.SOUTH);
         dirs.add(Direction.NORTH);
@@ -211,6 +206,10 @@ public class Dungeon {
     }
 
     public void addBarrier(int x, int z, BuiltRoom room) {
+        rooms[x][z] = room;
+    }
+
+    public void forceSetRoom(int x, int z, BuiltRoom room) {
         rooms[x][z] = room;
     }
 

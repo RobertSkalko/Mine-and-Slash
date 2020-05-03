@@ -13,7 +13,7 @@ public class DungeonUtils {
     public static ChunkPos getStartChunk(ChunkPos pos) {
         int chunkX = pos.x;
         int chunkZ = pos.z;
-        int distToEntranceX = 8 - (chunkX % DUNGEON_LENGTH);
+        int distToEntranceX = 11 - (chunkX % DUNGEON_LENGTH);
         int distToEntranceZ = 11 - (chunkZ % DUNGEON_LENGTH);
         chunkX += distToEntranceX;
         chunkZ += distToEntranceZ;
