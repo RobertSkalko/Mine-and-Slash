@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.database.rarities.mobs;
 
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
-import com.robertx22.mine_and_slash.database.rarities.base.BaseBossRarity;
+import com.robertx22.mine_and_slash.database.rarities.base.BaseMinionRarity;
 
-public class MinionMobRarity extends BaseBossRarity implements MobRarity {
+public class MinionMobRarity extends BaseMinionRarity implements MobRarity {
 
     private MinionMobRarity() {
     }

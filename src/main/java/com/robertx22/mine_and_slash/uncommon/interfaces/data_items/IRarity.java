@@ -22,5 +22,6 @@ public interface IRarity<R extends Rarity> {
     int Highest = 4;
 
     int Boss = -2;
+    int Minion = -3;
 
 }

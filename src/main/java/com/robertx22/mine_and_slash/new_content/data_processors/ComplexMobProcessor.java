@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.mobs.*;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.entities.IBossMob;
 import com.robertx22.mine_and_slash.new_content.data_processors.bases.ChunkProcessData;
 import com.robertx22.mine_and_slash.new_content.data_processors.bases.SpawnedMob;
 import com.robertx22.mine_and_slash.new_content.registry.DataProcessor;
@@ -131,6 +132,8 @@ public class ComplexMobProcessor extends DataProcessor {
             Boss boss = null;
 
             if (isBoss) {
+
+                IBossMob
 
                 if (data.getRoom().group.canSpawnFireMobs) {
                     boss = SlashRegistry.Bosses()

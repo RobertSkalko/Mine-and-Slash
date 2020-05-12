@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.world.AntiMobFarmCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -51,13 +50,9 @@ public class OnMobDeathDrops {
                         ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
                         UnitData playerData = Load.Unit(player);
 
-                        BossCap.IBossData boss = Load.boss(mobKilled);
-
                         CriteriaRegisters.DROP_LVL_PENALTY_TRIGGER.trigger(player, playerData, mobKilledData);
 
                         CriteriaRegisters.KILL_RARITY_MOB_TRIGGE.trigger(player, mobKilledData);
-
-                        CriteriaRegisters.KILL_BOSS_TRIGGER.trigger(player, boss);
 
                         ModEntityConfig config = SlashRegistry.getEntityConfig(mobKilled, mobKilledData);
 

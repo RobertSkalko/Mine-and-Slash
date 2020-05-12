@@ -2,9 +2,8 @@ package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.onevent.ontick.OnBossTick;
+import com.robertx22.mine_and_slash.entities.IBossMob;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -69,13 +68,6 @@ public class OnMobSpawn {
                     .removeUnregisteredStats();
             }
 
-            BossCap.IBossData boss = Load.boss(entity);
-            boss.onMobCreation(entity);
-
-            if (boss.isBoss()) {
-                OnBossTick.bossList.add(entity);
-            }
-
             endata.setType(entity);
 
             PlayerEntity nearestPlayer = null;
@@ -84,7 +76,7 @@ public class OnMobSpawn {
             nearestPlayer = PlayerUtils.nearestPlayer((ServerWorld) entity.world, entity);
 
             if (endata.needsToBeGivenStats()) {
-                Unit unit = Mob(entity, endata, boss, mapData, nearestPlayer);
+                Unit unit = Mob(entity, endata, mapData, nearestPlayer);
             } else {
                 if (endata.getUnit() == null) {
                     endata.setUnit(new Unit(), entity);
@@ -96,7 +88,7 @@ public class OnMobSpawn {
 
             }
 
-            if (boss.isBoss()) {
+            if (entity instanceof IBossMob) {
                 endata.setRarity(IRarity.Boss);
             }
         }
@@ -117,7 +109,7 @@ public class OnMobSpawn {
 
     }
 
-    public static Unit Mob(LivingEntity entity, UnitData data, BossCap.IBossData boss,
+    public static Unit Mob(LivingEntity entity, UnitData data,
                            WorldMapCap.IWorldMapData mapData, @Nullable PlayerEntity nearestPlayer) {
 
         Unit mob = new Unit();
@@ -131,7 +123,7 @@ public class OnMobSpawn {
 
         endata.SetMobLevelAtSpawn(mapData, entity, nearestPlayer);
 
-        int rar = mob.randomRarity(entity, endata, boss);
+        int rar = mob.randomRarity(entity, endata);
         endata.setRarity(rar);
 
         MobRarity rarity = Rarities.Mobs.get(rar);
