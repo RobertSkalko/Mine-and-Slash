@@ -56,6 +56,11 @@ public class BaseSummonedEntity extends TameableEntity implements ISpellEntity {
     @Override
     public void tick() {
 
+        if (this.spellData == null) {
+            remove();
+            return;
+        }
+
         super.tick();
 
         if (this.ticksExisted > this.durationInTicks()) {

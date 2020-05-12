@@ -12,8 +12,9 @@ import com.robertx22.mine_and_slash.database.spells.entities.summons.SpiderPetEn
 import com.robertx22.mine_and_slash.database.spells.entities.summons.SpiritWolfPetEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.SpearOfJudgementEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
+import com.robertx22.mine_and_slash.entities.boss_summons.FastBabyZombie;
+import com.robertx22.mine_and_slash.entities.bosses.ThunderZombieBoss;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mobs.entity.LeapingZombie;
 import com.robertx22.mine_and_slash.new_content.trader.TraderEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -71,9 +72,11 @@ public class EntityRegister {
 
     public static final EntityType<TraderEntity> TRADER;
 
-    public static final EntityType<LeapingZombie> LEAPING_ZOMBIE;
     public static final EntityType<SpiderPetEntity> SPIDER_PET;
     public static final EntityType<SpiritWolfPetEntity> SPIRIT_WOLF_PET;
+
+    public static final EntityType<FastBabyZombie> FAST_BABY_ZOMBIE;
+    public static final EntityType<ThunderZombieBoss> THUNDER_ZOMBIE_BOSS;
 
     static {
 
@@ -109,13 +112,6 @@ public class EntityRegister {
         TRADER.setRegistryName(new ResourceLocation(Ref.MODID, "trader"));
         ENTITY_TYPES.add(TRADER);
 
-        LEAPING_ZOMBIE = EntityType.Builder.<LeapingZombie>create(LeapingZombie::new, EntityClassification.MONSTER).setCustomClientFactory(
-            LeapingZombie::new)
-            .size(0.6F, 1.95F)
-            .build(Ref.MODID + ":leaping_zombie");
-        LEAPING_ZOMBIE.setRegistryName(new ResourceLocation(Ref.MODID, "leaping_zombie"));
-        ENTITY_TYPES.add(LEAPING_ZOMBIE);
-
         SPIDER_PET = EntityType.Builder.<SpiderPetEntity>create(SpiderPetEntity::new, EntityClassification.MONSTER).setCustomClientFactory(
             SpiderPetEntity::new)
             .size(1.4F, 0.9F)
@@ -129,6 +125,20 @@ public class EntityRegister {
             .build(Ref.MODID + ":spirit_wolf_pet");
         SPIRIT_WOLF_PET.setRegistryName(new ResourceLocation(Ref.MODID, "spirit_wolf_pet"));
         ENTITY_TYPES.add(SPIRIT_WOLF_PET);
+
+        FAST_BABY_ZOMBIE = EntityType.Builder.<FastBabyZombie>create(FastBabyZombie::new, EntityClassification.MONSTER).setCustomClientFactory(
+            FastBabyZombie::new)
+            .size(0.6F, 1.95F)
+            .build(Ref.MODID + ":fast_baby_zombie");
+        FAST_BABY_ZOMBIE.setRegistryName(new ResourceLocation(Ref.MODID, "fast_baby_zombie"));
+        ENTITY_TYPES.add(FAST_BABY_ZOMBIE);
+
+        THUNDER_ZOMBIE_BOSS = EntityType.Builder.<ThunderZombieBoss>create(ThunderZombieBoss::new, EntityClassification.MONSTER).setCustomClientFactory(
+            ThunderZombieBoss::new)
+            .size(0.8F, 2.5F)
+            .build(Ref.MODID + ":boss_thunder_zombie");
+        THUNDER_ZOMBIE_BOSS.setRegistryName(new ResourceLocation(Ref.MODID, "boss_thunder_zombie"));
+        ENTITY_TYPES.add(THUNDER_ZOMBIE_BOSS);
 
     }
 

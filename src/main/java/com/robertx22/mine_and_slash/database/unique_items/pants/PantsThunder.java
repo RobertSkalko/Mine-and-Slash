@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthFla
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.HealthRegenFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicShieldFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalResistFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
@@ -48,6 +49,7 @@ public class PantsThunder implements IUnique {
     @Override
     public List<StatMod> uniqueStats() {
         return Arrays.asList(
+            new ElementalSpellDamageFlat(Elements.Thunder),
             new DodgeRatingFlat().size(StatMod.Size.HALF_MORE),
             new ElementalResistFlat(Elements.Fire).size(StatMod.Size.HALF_MORE),
             new HealthRegenFlat()

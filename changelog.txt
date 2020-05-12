@@ -4,6 +4,8 @@
 * changed hud render to not break if experience isn't rendered.
 * small perf improvement for auto config items
 * most spells now swing arm
+* fix entity configs not clamping correctly if dimension is set to scale mob lvl to player
+* fix imbue synergy not giving hunter stacks
 
 3.6.14
 * fix divine buffs expiring randomly after a few seconds

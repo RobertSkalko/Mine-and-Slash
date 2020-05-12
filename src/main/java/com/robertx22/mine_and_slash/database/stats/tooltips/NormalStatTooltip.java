@@ -46,7 +46,7 @@ public class NormalStatTooltip implements IStatTooltipType {
         ITextComponent str = new StringTextComponent("");
 
         if (info.stat.getElement() != null && info.stat.getElement() != Elements.Physical) { // todo unsure if good
-            str.appendText("" + info.stat.getElement().format + "(" + info.stat.getElement().icon + ") " + TextFormatting.GRAY + "");
+            //str.appendText("" + info.stat.getElement().format + "(" + info.stat.getElement().icon + ") " + TextFormatting.GRAY + "");
         }
 
         if (info.type.equals(StatModTypes.Flat)) {

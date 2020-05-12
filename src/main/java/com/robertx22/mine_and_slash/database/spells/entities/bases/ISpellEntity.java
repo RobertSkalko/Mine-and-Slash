@@ -18,6 +18,11 @@ public interface ISpellEntity extends IEntityAdditionalSpawnData {
     }
 
     default int durationInTicks() {
+
+        if (getSpellData() == null) {
+            return 0;
+        }
+
         return getSpellData().configs.get(SC.DURATION_TICKS)
             .intValue();
     }

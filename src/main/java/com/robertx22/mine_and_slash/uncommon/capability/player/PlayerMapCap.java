@@ -288,7 +288,6 @@ public class PlayerMapCap {
                     }
                 }
 
-                // pos = pos.north(2);
                 PlayerUtils.changeDimension((ServerPlayerEntity) player, data.getOriginalDimension(), pos);
 
             }

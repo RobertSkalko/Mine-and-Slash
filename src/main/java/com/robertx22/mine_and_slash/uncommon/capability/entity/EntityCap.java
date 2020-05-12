@@ -438,13 +438,8 @@ public class EntityCap {
             int lvl = LevelUtils.determineLevel(entity.world, entity.getPosition(),
                 nearestPlayer
             ) + entityConfig.LEVEL_MODIFIER;
-            if (entityConfig.LEVEL_TO_NEAREST_PLAYER) {
-                int playerLvl = Load.Unit(nearestPlayer)
-                    .getLevel();
-                this.level = MathHelper.clamp(lvl, playerLvl, playerLvl);
-            } else {
-                this.level = MathHelper.clamp(lvl, entityConfig.MIN_LEVEL, entityConfig.MAX_LEVEL);
-            }
+
+            this.level = MathHelper.clamp(lvl, entityConfig.MIN_LEVEL, entityConfig.MAX_LEVEL);
         }
 
         @Override

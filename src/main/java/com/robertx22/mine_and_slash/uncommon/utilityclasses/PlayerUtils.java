@@ -3,8 +3,6 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
-import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,7 +12,6 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
@@ -70,6 +67,7 @@ public class PlayerUtils {
     }
 
     private static final ITeleporter PORTALLESS = new ITeleporter() {
+
         @Override
         public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destWorld, float yaw,
                                   Function<Boolean, Entity> repositionEntity) {
@@ -91,11 +89,6 @@ public class PlayerUtils {
         player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
 
         EntityUtils.setLoc(player, new Vec3d(pos), player.rotationYaw, player.rotationPitch);
-
-        // todo
-        WorldMapCap.IWorldMapData mapdata = Load.world(player.world);
-        mapdata.init(Load.playerMapData((PlayerEntity) player)
-            .getMap(), new ChunkPos(pos));
 
         return player;
 

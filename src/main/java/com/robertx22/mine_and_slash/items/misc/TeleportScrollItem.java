@@ -44,9 +44,9 @@ public class TeleportScrollItem extends Item implements IShapedRecipe {
                 if (tome.getItem() instanceof TeleportScrollItem) {
 
                     if (WorldUtils.isMapWorldClass(world)) {
+                        tome.shrink(1);
                         Load.playerMapData(player)
                             .teleportPlayerBack(player);
-                        tome.shrink(1);
                         return new ActionResult<ItemStack>(ActionResultType.CONSUME, tome);
                     }
 
