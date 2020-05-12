@@ -16,18 +16,11 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
 
 import java.util.Arrays;
 
 public class MobSpawnUtils {
-
-    public static void announceEvent(World world, ITextComponent comp) {
-        world.getPlayers()
-            .forEach(x -> x.sendMessage(comp));
-    }
 
     public static <T extends MobEntity> void summonMinions(EntityType<T> type, int amount, IWorld world, BlockPos p) {
         for (int i = 0; i < amount; i++) {
@@ -126,17 +119,4 @@ public class MobSpawnUtils {
 
     }
 
-    public static BlockPos randomPosNearPlayer(World world) {
-        BlockPos pos = world.getPlayers()
-            .get(0)
-            .getPosition();
-        pos = new BlockPos(pos.getX() + RandomUtils.RandomRange(-50, 50), pos.getY(),
-            pos.getZ() + RandomUtils.RandomRange(-50, 50)
-        );
-        pos = WorldUtils.getSurface(world, pos)
-            .up();
-
-        return pos;
-
-    }
 }

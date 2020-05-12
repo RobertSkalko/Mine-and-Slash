@@ -15,6 +15,7 @@ public class MobRarities extends BaseRaritiesContainer<MobRarity> {
         add(EpicMob.getInstance());
         add(LegendaryMob.getInstance());
         add(BossMobRarity.getInstance());
+        add(MinionMobRarity.getInstance());
 
         this.onInit();
     }
