@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.BossCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
@@ -27,11 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LivingHurtUtils {
-
-    public static void onBossHurt(LivingEntity en) {
-        en.getCapability(BossCap.Data)
-            .ifPresent(x -> x.onHealthChanged(en, x));
-    }
 
     public static void stopMobInWallDamageInMaps(LivingHurtEvent event) {
         try {

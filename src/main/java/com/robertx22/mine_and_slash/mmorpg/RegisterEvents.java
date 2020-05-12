@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.onevent.entity.damage.OnHurtEvent;
 import com.robertx22.mine_and_slash.onevent.item.*;
 import com.robertx22.mine_and_slash.onevent.my_events.CollectGearEvent;
 import com.robertx22.mine_and_slash.onevent.my_events.GiveExpSub;
-import com.robertx22.mine_and_slash.onevent.ontick.OnBossTick;
 import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
 import com.robertx22.mine_and_slash.onevent.ontick.OnServerTick;
 import com.robertx22.mine_and_slash.onevent.player.*;
@@ -42,8 +41,6 @@ public class RegisterEvents {
         register(CapSync.class);
         register(StopCastingIfInteract.class);
         register(RightClickSpell.class);
-
-        register(OnBossTick.class);
 
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnKeyPress.class);

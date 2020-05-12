@@ -6,8 +6,6 @@ import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityCon
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeon;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
-import com.robertx22.mine_and_slash.database.bosses.base.Boss;
-import com.robertx22.mine_and_slash.database.bosses.impl.NecromancerBoss;
 import com.robertx22.mine_and_slash.database.chaos_stats.ChaosStat;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
@@ -194,10 +192,6 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.RUNEWORD);
     }
 
-    public static SlashRegistryContainer<Boss> Bosses() {
-        return getRegistry(SlashRegistryType.BOSS);
-    }
-
     public static SlashRegistryContainer<BaseDungeonDimension> WorldProviders() {
         return getRegistry(SlashRegistryType.WORLD_PROVIDER);
     }
@@ -376,7 +370,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
         addRegistry(new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
         addRegistry(new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
-        addRegistry(new SlashRegistryContainer<Boss>(SlashRegistryType.BOSS, NecromancerBoss.getInstance()));
     }
 
 }

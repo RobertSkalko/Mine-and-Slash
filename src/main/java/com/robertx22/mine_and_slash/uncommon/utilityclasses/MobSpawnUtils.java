@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.database.bosses.base.Boss;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.mobs.EpicMob;
 import com.robertx22.mine_and_slash.database.rarities.mobs.LegendaryMob;
@@ -28,8 +27,8 @@ public class MobSpawnUtils {
         }
     }
 
-    public static <T extends MobEntity> T summonBoss(EntityType<T> type, IWorld world, BlockPos p,
-                                                     com.robertx22.mine_and_slash.database.bosses.base.Boss boss) {
+    public static <T extends MobEntity> T summonBoss(EntityType<T> type, IWorld world, BlockPos p
+    ) {
         Vec3d vec = new Vec3d(p);
         vec = vec.add(0.5F, 0, 0.5F);
 
@@ -65,7 +64,7 @@ public class MobSpawnUtils {
         return minion;
     }
 
-    public static <T extends MobEntity> T summon(EntityType<T> type, IWorld world, BlockPos p, MobRarity rarity, boolean addPotion, Boss boss) {
+    public static <T extends MobEntity> T summon(EntityType<T> type, IWorld world, BlockPos p, MobRarity rarity, boolean addPotion) {
         Vec3d vec = new Vec3d(p);
         vec = vec.add(0.5F, 0, 0.5F);
 

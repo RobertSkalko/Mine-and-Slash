@@ -27,7 +27,7 @@ public class OnHurtEvent {
 
             LivingHurtUtils.stopMobInWallDamageInMaps(event);
             LivingHurtUtils.damageCurioItems(event.getEntityLiving());
-            LivingHurtUtils.onBossHurt(event.getEntityLiving());
+
         } catch (Exception e) {
             e.printStackTrace();
         }

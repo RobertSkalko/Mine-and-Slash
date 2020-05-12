@@ -16,6 +16,7 @@ import com.robertx22.mine_and_slash.entities.boss_summons.FastBabyZombie;
 import com.robertx22.mine_and_slash.entities.bosses.ThunderZombieBoss;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.new_content.trader.TraderEntity;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -36,7 +37,12 @@ import java.util.function.BiFunction;
 public class EntityRegister {
 
     public static List<EntityType<? extends Entity>> ENTITY_TYPES = new LinkedList();
+    public static List<EntityType<? extends Entity>> BOSSES = new LinkedList();
     public static List<EntityType<? extends Entity>> ENTITY_THAT_USE_ITEM_RENDERS = new LinkedList();
+
+    public static EntityType randomBoss() {
+        return RandomUtils.randomFromList(BOSSES);
+    }
 
     @SubscribeEvent
     public static void registerEntityTypes(final RegistryEvent.Register<EntityType<?>> event) {
@@ -133,13 +139,19 @@ public class EntityRegister {
         FAST_BABY_ZOMBIE.setRegistryName(new ResourceLocation(Ref.MODID, "fast_baby_zombie"));
         ENTITY_TYPES.add(FAST_BABY_ZOMBIE);
 
-        THUNDER_ZOMBIE_BOSS = EntityType.Builder.<ThunderZombieBoss>create(ThunderZombieBoss::new, EntityClassification.MONSTER).setCustomClientFactory(
+        THUNDER_ZOMBIE_BOSS = addBoss(EntityType.Builder.<ThunderZombieBoss>create(
+            ThunderZombieBoss::new, EntityClassification.MONSTER).setCustomClientFactory(
             ThunderZombieBoss::new)
             .size(0.8F, 2.5F)
-            .build(Ref.MODID + ":boss_thunder_zombie");
-        THUNDER_ZOMBIE_BOSS.setRegistryName(new ResourceLocation(Ref.MODID, "boss_thunder_zombie"));
-        ENTITY_TYPES.add(THUNDER_ZOMBIE_BOSS);
+            .build(Ref.MODID + ":boss_thunder_zombie"), "boss_thunder_zombie");
 
+    }
+
+    public static EntityType addBoss(EntityType type, String id) {
+        type.setRegistryName(new ResourceLocation(Ref.MODID, id));
+        ENTITY_TYPES.add(type);
+        BOSSES.add(type);
+        return type;
     }
 
     private static <T extends Entity> EntityType<T> projectile(EntityType.IFactory<T> factory,

@@ -60,7 +60,7 @@ public class ItemAwakenRuneWord extends Item implements ICurrencyItemEffect {
         } catch (Exception e) {
             return super.getDisplayName(stack);
         }
-        return super.getName()
+        return super.getDisplayName(stack)
             .appendText(": ")
             .appendSibling(runeword.locName());
 
