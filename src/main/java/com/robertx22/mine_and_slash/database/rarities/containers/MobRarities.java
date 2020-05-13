@@ -5,6 +5,9 @@ import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.rarities.RarityTypeEnum;
 import com.robertx22.mine_and_slash.database.rarities.mobs.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MobRarities extends BaseRaritiesContainer<MobRarity> {
 
     public MobRarities() {
@@ -23,6 +26,10 @@ public class MobRarities extends BaseRaritiesContainer<MobRarity> {
     @Override
     public RarityTypeEnum getType() {
         return null;
+    }
+
+    public List<MobRarity> getElite() {
+        return Arrays.asList(LegendaryMob.getInstance(), EpicMob.getInstance(), RareMob.getInstance());
     }
 
 }

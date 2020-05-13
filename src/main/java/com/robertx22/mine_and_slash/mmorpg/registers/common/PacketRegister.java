@@ -90,8 +90,6 @@ public class PacketRegister {
 
         reg(ParticlePacket.class, ParticlePacket::encode, ParticlePacket::decode, ParticlePacket::handle);
 
-        reg(BossPacket.class, BossPacket::encode, BossPacket::decode, BossPacket::handle);
-
         reg(RegistryPacket.class, RegistryPacket::encode, RegistryPacket::decode, RegistryPacket::handle);
 
         reg(

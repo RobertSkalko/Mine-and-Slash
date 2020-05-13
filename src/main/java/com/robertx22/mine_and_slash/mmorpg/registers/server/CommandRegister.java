@@ -6,7 +6,10 @@ import com.robertx22.mine_and_slash.commands.dev.TpOut;
 import com.robertx22.mine_and_slash.commands.dev.TpRandomDungeon;
 import com.robertx22.mine_and_slash.commands.dev.unique_dungeon.ExportUniqueDungeon;
 import com.robertx22.mine_and_slash.commands.dev.unique_dungeon.SetUniqueDunPos;
-import com.robertx22.mine_and_slash.commands.entity.*;
+import com.robertx22.mine_and_slash.commands.entity.GiveExp;
+import com.robertx22.mine_and_slash.commands.entity.SetEntityLevel;
+import com.robertx22.mine_and_slash.commands.entity.SetEntityRarity;
+import com.robertx22.mine_and_slash.commands.entity.SetLevel;
 import com.robertx22.mine_and_slash.commands.giveitems.*;
 import com.robertx22.mine_and_slash.commands.misc.*;
 import com.robertx22.mine_and_slash.commands.open_gui.OpenHub;
@@ -39,7 +42,7 @@ public class CommandRegister {
         GiveUniqueGear.register(dispatcher);
         SetEntityLevel.register(dispatcher);
         SetEntityRarity.register(dispatcher);
-        SummonBoss.register(dispatcher);
+
         TpOut.register(dispatcher);
         LogDungeonRoom.register(dispatcher);
         TpRandomDungeon.register(dispatcher);

@@ -704,10 +704,7 @@ public class EntityCap {
                 MobRarity rarity = Rarities.Mobs.get(getRarity());
                 ITextComponent rarityprefix = rarity.locName();
 
-                BossCap.IBossData boss = Load.boss(entity);
-
-                ITextComponent name = boss.isBoss() ? boss.getBoss()
-                    .getNameFor(entity) : entity.getDisplayName();
+                ITextComponent name = entity.getDisplayName();
 
                 MobAffix prefix = getUnit().getPrefix();
                 MobAffix suffix = getUnit().getSuffix();

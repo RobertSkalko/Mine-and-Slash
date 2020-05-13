@@ -7,6 +7,7 @@
 * fix entity configs not clamping correctly if dimension is set to scale mob lvl to player
 * fix imbue synergy not giving hunter stacks
 * added minion mob rarity (for boss summons so they dont drop loot)
+* fixed the "Tried to load a block entity for block Block{minecraft:air}" spam
 
 3.6.14
 * fix divine buffs expiring randomly after a few seconds
