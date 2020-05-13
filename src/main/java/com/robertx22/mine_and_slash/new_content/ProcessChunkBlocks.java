@@ -123,6 +123,7 @@ public class ProcessChunkBlocks {
                                                 if (player.world.getBlockState(tilePos)
                                                     .getBlock() == Blocks.STRUCTURE_BLOCK) {
                                                     player.world.setBlockState(tilePos, Blocks.AIR.getDefaultState(), 2); // delete data block
+                                                    player.world.removeTileEntity(tilePos);
                                                 }
 
                                             } else {
