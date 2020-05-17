@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.datasaving;
 
+import com.robertx22.mine_and_slash.entities.IBossMob;
+import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
@@ -9,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerTalentsCap;
 import com.robertx22.mine_and_slash.uncommon.capability.server_wide.PlayerCapBackupCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.AntiMobFarmCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
@@ -61,7 +64,27 @@ public class Load {
             return provider.getCapability(PlayerSpellCap.Data)
                 .orElse(new PlayerSpellCap.DefaultImpl());
         } else {
-            return new PlayerSpellCap.DefaultImpl();
+            if (provider instanceof IBossMob) {
+
+                PlayerSpellCap.ISpellsCap cap = new PlayerSpellCap.DefaultImpl();
+
+                for (int i = 0; i < 10; i++) {
+                    IAbility.getAll()
+                        .forEach(x -> cap.addPoint(x));
+
+                    for (Masteries value : Masteries.values()) {
+                        for (int x = 0; x < 50; x++) {
+                            cap.getAbilitiesData()
+                                .addSchoolPoint(value);
+                        }
+                    }
+
+                }
+                return cap;
+
+            } else {
+                return new PlayerSpellCap.DefaultImpl();
+            }
         }
     }
 

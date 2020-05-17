@@ -10,7 +10,7 @@
 * fixed the "Tried to load a block entity for block Block{minecraft:air}" spam
 * fix skill damage stats not working (this sounds really dumb but i forgot to make them work differently after reworking the spell system, leaving them as dummy stats,
 it doesn't help that i didn't have time to play test my mod)
-
+* strength now increases elemental attack damage instead of all ele dmg, intelligence same but increases all elemental spell damage.
 
 3.6.14
 * fix divine buffs expiring randomly after a few seconds

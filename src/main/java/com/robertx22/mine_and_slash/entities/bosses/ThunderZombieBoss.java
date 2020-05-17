@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.entities.bosses;
 
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.storm.LightningTotemSpell;
 import com.robertx22.mine_and_slash.entities.IBossMob;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import net.minecraft.entity.EntityType;
@@ -8,6 +10,9 @@ import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ThunderZombieBoss extends ZombieEntity implements IBossMob {
 
@@ -40,6 +45,8 @@ public class ThunderZombieBoss extends ZombieEntity implements IBossMob {
     @Override
     public void tick() {
         super.tick();
+
+        this.onBossTick(this);
     }
 
     @Override
@@ -52,4 +59,15 @@ public class ThunderZombieBoss extends ZombieEntity implements IBossMob {
         super.writeAdditional(nbt);
     }
 
+    BossData data = new BossData();
+
+    @Override
+    public BossData getBossData() {
+        return data;
+    }
+
+    @Override
+    public List<BaseSpell> getBossSpells() {
+        return Arrays.asList(LightningTotemSpell.getInstance()); // todo
+    }
 }
