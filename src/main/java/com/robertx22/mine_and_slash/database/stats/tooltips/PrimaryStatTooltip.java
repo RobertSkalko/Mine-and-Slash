@@ -82,10 +82,15 @@ public class PrimaryStatTooltip implements IStatTooltipType {
                 text.appendText("%");
             }
 
+        } else if (type == StatModTypes.Multi) {
+
+            text.appendText("% ")
+                .appendSibling(Words.Multi.locName());
+
         } else if (type == StatModTypes.Percent) {
             text.appendText("%");
 
-            if (type.equals(StatModTypes.Percent) && stat.IsPercent()) {
+            if (type == StatModTypes.Percent && stat.IsPercent()) {
                 if (info.firstValue > 0) {
                     text.appendText(" ")
                         .appendSibling(Words.Increased.locName());
@@ -94,10 +99,6 @@ public class PrimaryStatTooltip implements IStatTooltipType {
                         .appendSibling(Words.Decreased.locName());
                 }
             }
-
-        } else {
-            text.appendText("% ")
-                .appendSibling(Words.Multi.locName());
         }
 
         if (info.useInDepthStats()) {

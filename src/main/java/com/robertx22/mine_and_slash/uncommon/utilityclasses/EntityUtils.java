@@ -12,7 +12,6 @@ import net.minecraft.nbt.INBT;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.Vec3d;
 
@@ -158,8 +157,6 @@ public class EntityUtils {
     }
 
     public static void setLoc(LivingEntity entity, Vec3d p, float yaw, float pitch) {
-        entity.setLocationAndAngles(p.x, p.y, p.z, yaw, pitch);
-        entity.moveToBlockPosAndAngles(new BlockPos(p), yaw, pitch);
         entity.setPositionAndUpdate(p.x, p.y, p.z);
     }
 

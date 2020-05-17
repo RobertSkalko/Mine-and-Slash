@@ -8,6 +8,9 @@
 * fix imbue synergy not giving hunter stacks
 * added minion mob rarity (for boss summons so they dont drop loot)
 * fixed the "Tried to load a block entity for block Block{minecraft:air}" spam
+* fix skill damage stats not working (this sounds really dumb but i forgot to make them work differently after reworking the spell system, leaving them as dummy stats,
+it doesn't help that i didn't have time to play test my mod)
+
 
 3.6.14
 * fix divine buffs expiring randomly after a few seconds

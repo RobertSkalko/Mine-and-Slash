@@ -21,6 +21,8 @@ public class ChanceChestProcessor extends DataProcessor {
             world.getWorld()
                 .removeTileEntity(pos); // dont drop chest loot. this is a big problem if u remove this line
             world.removeBlock(pos, false);   // don't drop loot
+            world.getWorld()
+                .removeTileEntity(pos);
         }
     }
 }

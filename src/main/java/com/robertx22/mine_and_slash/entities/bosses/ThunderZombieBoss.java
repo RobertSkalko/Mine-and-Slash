@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.entities.bosses;
 
+import com.robertx22.mine_and_slash.entities.IBossMob;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -8,7 +9,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 
-public class ThunderZombieBoss extends ZombieEntity {
+public class ThunderZombieBoss extends ZombieEntity implements IBossMob {
 
     public ThunderZombieBoss(EntityType<? extends ZombieEntity> type, World world) {
         super(type, world);

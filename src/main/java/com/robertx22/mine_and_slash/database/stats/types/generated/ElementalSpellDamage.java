@@ -1,15 +1,18 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.effects.offense.EleSpellDmgEffect;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 import java.util.List;
 
-public class ElementalSpellDamage extends ElementalStat {
+public class ElementalSpellDamage extends ElementalStat implements IStatEffects {
 
     public static MapWrapper<Elements, ElementalSpellDamage> MAP = new MapWrapper<>();
 
@@ -72,5 +75,9 @@ public class ElementalSpellDamage extends ElementalStat {
         return "Spell power is used by spells and some other stats";
     }
 
+    @Override
+    public IStatEffect getEffect() {
+        return new EleSpellDmgEffect();
+    }
 }
 

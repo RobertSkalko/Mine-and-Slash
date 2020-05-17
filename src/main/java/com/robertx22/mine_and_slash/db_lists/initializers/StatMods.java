@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.DodgeRatingFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmgFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleSpellDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.misc.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.*;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.*;
@@ -57,6 +56,7 @@ public class StatMods implements ISlashRegistryInit {
                     add(new LootTypeBonusFlat(LootType.NormalItem));
                     add(new WeaponDamageFlat(WeaponTypes.None));
                     add(new ElementalAttackDamageFlat(Elements.Nature));
+                    add(new ElementalAttackDamagePercent(Elements.Nature));
                     add(new AllElementalDamageMulti(Elements.Nature));
                     add(new ElementalInfusionFlat(Elements.Nature));
                     add(new ElementalSpellDamagePercent(Elements.Nature));
@@ -79,7 +79,6 @@ public class StatMods implements ISlashRegistryInit {
                     add(new CompletePhysDispersionFlat());
                     add(new HealPowerFlat());
                     add(new AllEleDmgFlat());
-                    add(new AllEleSpellDmgFlat());
 
                     add(new BlockStrengthPercent());
                     add(new SpellDamageFlat());

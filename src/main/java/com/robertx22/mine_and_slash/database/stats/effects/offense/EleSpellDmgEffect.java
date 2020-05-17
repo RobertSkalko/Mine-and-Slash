@@ -7,11 +7,11 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
-public class AllEleSpellDmgEffect extends BaseDamageEffect {
+public class EleSpellDmgEffect extends BaseDamageEffect {
 
     @Override
     public int GetPriority() {
-        return Priority.Second.priority;
+        return Priority.Third.priority;
     }
 
     @Override
@@ -27,8 +27,20 @@ public class AllEleSpellDmgEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return effect.element.equals(Elements.Physical) == false && effect.getEffectType()
-                .equals(EffectData.EffectTypes.SPELL);
+
+        if (effect.element.equals(Elements.Physical)) {
+            return false;
+        }
+
+        if (effect.getEffectType()
+            .equals(EffectData.EffectTypes.SPELL)) {
+            if (stat.getElement() != null && stat.getElement()
+                .equals(effect.GetElement())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

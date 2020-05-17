@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.ElementalAttackDamageEffect;
-import com.robertx22.mine_and_slash.database.stats.types.SingleElementalStat;
+import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
@@ -11,7 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 import java.util.List;
 
-public class ElementalAttackDamage extends SingleElementalStat implements IStatEffects {
+public class ElementalAttackDamage extends ElementalStat implements IStatEffects {
     public static MapWrapper<Elements, ElementalAttackDamage> MAP = new MapWrapper();
 
     @Override
@@ -19,7 +19,6 @@ public class ElementalAttackDamage extends SingleElementalStat implements IStatE
         List<Stat> list = super.generateAllPossibleStatVariations();
         list.forEach(x -> MAP.put(x.getElement(), (ElementalAttackDamage) x));
         return list;
-
     }
 
     @Override
@@ -29,7 +28,6 @@ public class ElementalAttackDamage extends SingleElementalStat implements IStatE
 
     public ElementalAttackDamage(Elements element) {
         super(element);
-
     }
 
     @Override
@@ -59,7 +57,11 @@ public class ElementalAttackDamage extends SingleElementalStat implements IStatE
 
     @Override
     public String locNameForLangFile() {
-        return getElement().name() + " Damage";
+        if (element.equals(Elements.Elemental)) {
+            return getElement().name() + "Attack Damage";
+        } else {
+            return getElement().name() + " Damage";
+        }
     }
 
     @Override

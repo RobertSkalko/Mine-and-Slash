@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.stats.types.class_based.RogueStealt
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
 import com.robertx22.mine_and_slash.database.stats.types.defense.*;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleDmg;
-import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleSpellDmg;
 import com.robertx22.mine_and_slash.database.stats.types.game_changers.*;
 import com.robertx22.mine_and_slash.database.stats.types.generated.*;
 import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
@@ -97,7 +96,6 @@ public class Stats implements ISlashRegistryInit {
                     add(new PhysicalDispersion());
                     add(new AllAttributes());
                     add(new AllEleDmg());
-                    add(new AllEleSpellDmg());
                     add(SpellDamage.getInstance());
                     // major arcana tarot
                     add(new Judgement());

@@ -6,8 +6,9 @@ import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleDmgFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.elemental.AllEleSpellDmgFlat;
 import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.ManaFlat;
+import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalSpellDamageFlat;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.HashMap;
 
@@ -25,7 +26,7 @@ public class ArmorOfTheElements extends Set {
             {
                 {
                     put(2, new ManaFlat().size(StatMod.Size.HALF_MORE));
-                    put(3, new AllEleSpellDmgFlat());
+                    put(3, new ElementalSpellDamageFlat(Elements.Elemental));
                     put(4, new AllEleDmgFlat());
 
                 }
