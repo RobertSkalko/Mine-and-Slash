@@ -17,7 +17,7 @@ apply plugin: "com.wynprice.cursemaven"
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 
-version = "1.9.5"
+version = "1.9.6"
 group = "com.robertx22.mmorpg"
 archivesBaseName = "Mine and Slash-1.12.2"
 
@@ -38,7 +38,7 @@ repositories {
 		name = "jitpack"
 		url "https://jitpack.io" 
 	}
-	 maven { url = "https://maven2.tterrag.com" }
+	 maven { url = "http://maven.tterrag.com" }
 	 maven { url 'https://maven.blamejared.com' }
 }
 
