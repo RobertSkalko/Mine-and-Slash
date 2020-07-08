@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityCon
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalPene;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalPenetration;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
@@ -125,7 +125,7 @@ public class MobStatUtils {
             .forEach(x -> unit.getCreateStat(x)
                 .addFlat(spelldmg * rar.DamageMultiplier(), level));
 
-        ElementalPene.MAP.getList()
+        ElementalPenetration.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)
                 .addFlat(4 * rar.DamageMultiplier(), level));
 

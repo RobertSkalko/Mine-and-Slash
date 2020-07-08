@@ -70,8 +70,8 @@ public class ComplexMobProcessor extends DataProcessor {
                 } else if (x.equals("mythic")) { // TODO
                     rarity = LegendaryMob.getInstance();
                 } else if (x.equals("boss")) {
-                    rarity = BossMobRarity.getInstance();
-                    isBoss = true;
+                    rarity = LegendaryMob.getInstance();
+                    //TODO isBoss = true;
                 }
 
             }

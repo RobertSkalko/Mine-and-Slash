@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.registry.empty_entries;
 
-import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -41,11 +40,6 @@ public class EmptyGearType extends GearItemSlot {
     @Override
     public String resourceID() {
         return "";
-    }
-
-    @Override
-    public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(new ArrayList<>());
     }
 
     @Override

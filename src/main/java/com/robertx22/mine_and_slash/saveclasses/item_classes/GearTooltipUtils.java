@@ -84,16 +84,12 @@ public class GearTooltipUtils {
         tip.add(new StringTextComponent(""));
 
         if (Screen.hasShiftDown()) {
-            list.add(gear.secondaryStats);
             list.add(gear.prefix);
             list.add(gear.suffix);
         } else {
 
             List<IStatModsContainer.LevelAndStats> lvlstatsmerged = new ArrayList<>();
 
-            if (gear.secondaryStats != null) {
-                lvlstatsmerged.addAll(gear.secondaryStats.GetAllStats(gear.level));
-            }
             if (gear.suffix != null) {
                 lvlstatsmerged.addAll(gear.suffix.GetAllStats(gear.level));
             }
@@ -107,7 +103,6 @@ public class GearTooltipUtils {
         }
 
         list.add(gear.chaosStats);
-        list.add(gear.set);
 
         for (IGearPartTooltip part : list) {
 

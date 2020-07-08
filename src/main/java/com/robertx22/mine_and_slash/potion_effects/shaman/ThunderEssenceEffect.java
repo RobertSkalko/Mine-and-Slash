@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.potion_effects.shaman;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
@@ -48,7 +48,7 @@ public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStat
     @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
-        list.add(new PotionStat(1, new AllElementalDamage(Elements.Thunder)));
+        list.add(new PotionStat(1, new ElementalDamageBonus(Elements.Thunder)));
         list.add(new PotionStat(1, CriticalHit.getInstance()));
         return list;
     }

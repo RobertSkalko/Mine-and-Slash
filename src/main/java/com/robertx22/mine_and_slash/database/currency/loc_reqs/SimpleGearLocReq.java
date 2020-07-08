@@ -11,14 +11,10 @@ import java.util.function.Predicate;
 
 public class SimpleGearLocReq extends BaseLocRequirement {
 
-    public static final SimpleGearLocReq NO_SET = new SimpleGearLocReq(
-        x -> x.set == null, Words.Doesnthaveset.locName());
     public static final SimpleGearLocReq NO_PREFIX = new SimpleGearLocReq(
         x -> x.prefix == null, Words.NoPrefix.locName());
     public static final SimpleGearLocReq NO_SUFFIX = new SimpleGearLocReq(
         x -> x.suffix == null, Words.NoSuffix.locName());
-    public static final SimpleGearLocReq SEC_STAT_NOT_ALREADY_ADDED = new SimpleGearLocReq(
-        x -> x.secondaryStats != null && x.secondaryStats.AddedStat == false, Words.CanOnlyUseOnce.locName());
     public static final SimpleGearLocReq LVLED_LESS_THAN_10_TIMES = new SimpleGearLocReq(
         x -> x.timesLeveledUp < CrystalOfAscensionItem.MAXIMUM_LEVEL_UPS, Words.CanOnlyUse10times.locName());
     public static final SimpleGearLocReq NO_CHAOS_STATS = new SimpleGearLocReq(
@@ -38,7 +34,6 @@ public class SimpleGearLocReq extends BaseLocRequirement {
         x -> x.prefix != null, Words.hasPrefix.locName());
     public static final BaseLocRequirement HAS_SUFFIX = new SimpleGearLocReq(
         x -> x.suffix != null, Words.hasSuffix.locName());
-    public static final BaseLocRequirement HAS_SET = new SimpleGearLocReq(x -> x.set != null, Words.hasSet.locName());
     public static final BaseLocRequirement HAS_PRIMARY_STATS = new SimpleGearLocReq(
         x -> x.primaryStats != null, Words.hasSet.locName());
     public static final BaseLocRequirement HAS_UNIQUE_STATS = new SimpleGearLocReq(

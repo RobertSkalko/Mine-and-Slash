@@ -20,45 +20,12 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedRegistryEntry<StatMod>,
     ISerializable<StatMod>, ITooltipList {
 
     public static EmptyStatMod EMPTY = EmptyStatMod.getInstance();
-
-    public Size size = Size.NORMAL;
-    //protected String afterPrefix = "";
-
-    public enum Size {
-        TRIPLE_LESS("crippled_", -3F),
-        DOUBLE_LESS("double_less_", -2F),
-        ONE_LESS("much_less_", -1F),
-        HALF_LESS("less_", -0.5F),
-        QUARTER("tiny_", 0.25F),
-        HALF("very_low_", 0.5F),
-        LOW("low_", 0.75F),
-        NORMAL("", 1),
-        HALF_MORE("high_", 1.5F),
-        DOUBLE("very_high_", 2),
-        TRIPLE("major_", 3);
-
-        public String prefix;
-        public float multi;
-
-        Size(String prefix, float multi) {
-            this.prefix = prefix;
-            this.multi = multi;
-        }
-    }
-
-    public static List<StatMod> ofSize(List<StatMod> mod, Size size) {
-        return mod.stream()
-            .map(x -> x.size(size))
-            .collect(Collectors.toList());
-    }
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info) {
@@ -72,28 +39,15 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
         return list;
     }
 
-    public StatMod size(Size size) {
-        String newGUID = getGUIDFor(GetBaseStat(), size, getModType()); // cus serializablestatmod takes a guid field
-        return new SerializableStatMod(GetBaseStat().GUID(), Min(), Max(), getModType(), newGUID, size, minSecond(), maxSecond());
-    }
-
-    public String getGUIDFor(Stat stat, Size size, StatModTypes type) {
+    public String getGUIDFor(Stat stat, StatModTypes type) {
         Preconditions.checkNotNull(stat, this);
-        Preconditions.checkNotNull(size, this);
         Preconditions.checkNotNull(type, this);
-        return size.prefix + stat.GUID() + "_" + type.id;
+        return stat.GUID() + "_" + type.id;
     }
 
     @Override
     public String GUID() {
-        return getGUIDFor(GetBaseStat(), size, getModType());
-    }
-
-    public List<StatMod> getAllSizeVariations() {
-        List<StatMod> list = new ArrayList<>();
-        Arrays.stream(Size.values())
-            .forEach(x -> list.add(size(x)));
-        return list;
+        return getGUIDFor(GetBaseStat(), getModType());
     }
 
     @Override
@@ -103,8 +57,7 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
 
     @Override
     public int Weight() {
-        return this.getRarity()
-            .Weight();
+        return 1;
     }
 
     @Override
@@ -138,19 +91,19 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
     }
 
     public final float getMin() {
-        return Min() * size.multi;
+        return Min();
     }
 
     public final float getMax() {
-        return Max() * size.multi;
+        return Max();
     }
 
     public final float getMinSecond() {
-        return minSecond() * size.multi;
+        return minSecond();
     }
 
     public final float getMaxSecond() {
-        return maxSecond() * size.multi;
+        return maxSecond();
     }
 
     public abstract StatModTypes getModType();
@@ -169,7 +122,6 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
         json.addProperty("stat", GetBaseStat().GUID());
         json.addProperty("type", getModType().name());
         json.addProperty("guid", GUID());
-        json.addProperty("size", size.name());
 
         return json;
     }
@@ -191,13 +143,11 @@ public abstract class StatMod implements IWeighted, IRarity, IGUID, ISerializedR
             .getAsString();
         String guid = json.get("guid")
             .getAsString();
-        Size size = Size.valueOf(json.get("size")
-            .getAsString());
 
         StatModTypes type = StatModTypes.valueOf(json.get("type")
             .getAsString());
 
-        return new SerializableStatMod(stat, min, max, type, guid, size, min2, max2);
+        return new SerializableStatMod(stat, min, max, type, guid, min2, max2);
     }
 
 }

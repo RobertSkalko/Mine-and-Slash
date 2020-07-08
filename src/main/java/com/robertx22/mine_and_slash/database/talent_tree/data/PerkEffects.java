@@ -124,14 +124,14 @@ public class PerkEffects {
         for (WeaponTypes wep : WeaponTypes.getAll()) {
             WEP_DMG_MAP.put(
                 wep, PerkEffectBuilder.build(wep.name()
-                        .toLowerCase(Locale.ROOT) + "_dmg_percent", new WeaponDamage(wep),
-                    new ExactStatData(wepDmg, StatModTypes.Flat, new WeaponDamage(wep))
+                        .toLowerCase(Locale.ROOT) + "_dmg_percent", new SpecificWeaponDamage(wep),
+                    new ExactStatData(wepDmg, StatModTypes.Flat, new SpecificWeaponDamage(wep))
                 ));
 
             WEP_ELE_DMG_MAP.put(
                 wep, PerkEffectBuilder.build(wep.name()
-                        .toLowerCase(Locale.ROOT) + "_ele_dmg_percent", EleWepDmg.MAP.get(wep),
-                    new ExactStatData(wepDmg, StatModTypes.Flat, EleWepDmg.MAP.get(wep))
+                        .toLowerCase(Locale.ROOT) + "_ele_dmg_percent", SpecificElementalWeaponDamage.MAP.get(wep),
+                    new ExactStatData(wepDmg, StatModTypes.Flat, SpecificElementalWeaponDamage.MAP.get(wep))
                 ));
 
         }
@@ -153,15 +153,15 @@ public class PerkEffects {
                 ));
 
             ELE_PENE_PERCENT_MAP.put(
-                ele, PerkEffectBuilder.build(ele.guidName + "_pene", new ElementalPene(ele),
-                    new ExactStatData(2, StatModTypes.Flat, new ElementalPene(ele))
+                ele, PerkEffectBuilder.build(ele.guidName + "_pene", new ElementalPenetration(ele),
+                    new ExactStatData(2, StatModTypes.Flat, new ElementalPenetration(ele))
                 ));
 
             ATTACK_DAMAGE_PERCENT_MAP.put(
                 ele, PerkEffectBuilder.build(ele.guidName + "_attack_dmg",
-                    new ElementalAttackDamage(ele),
+                    new WeaponDamage(ele),
                     new ExactStatData(elenum, StatModTypes.Percent,
-                        new ElementalAttackDamage(ele)
+                        new WeaponDamage(ele)
                     )
                 ));
 
@@ -182,8 +182,8 @@ public class PerkEffects {
                 ));
 
             All_ELE_DMG_MAP.put(
-                ele, PerkEffectBuilder.build(ele.guidName + "_all_dmg", new AllElementalDamage(ele),
-                    new ExactStatData(elenum, StatModTypes.Flat, new AllElementalDamage(ele))
+                ele, PerkEffectBuilder.build(ele.guidName + "_all_dmg", new ElementalDamageBonus(ele),
+                    new ExactStatData(elenum, StatModTypes.Flat, new ElementalDamageBonus(ele))
                 ));
 
         }

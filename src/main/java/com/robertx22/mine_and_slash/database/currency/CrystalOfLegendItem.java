@@ -5,8 +5,6 @@ import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
-import com.robertx22.mine_and_slash.database.currency.loc_reqs.GearEnumLocReq;
-import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
@@ -48,7 +46,6 @@ public class CrystalOfLegendItem extends CurrencyItem implements ICurrencyItemEf
 
         GearItemData gear = Gear.Load(stack);
 
-        gear.secondaryStats.AddStat(gear);
         Gear.Save(stack, gear);
 
         return stack;
@@ -56,7 +53,7 @@ public class CrystalOfLegendItem extends CurrencyItem implements ICurrencyItemEf
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, GearEnumLocReq.SECONDARY_STATS, SimpleGearLocReq.SEC_STAT_NOT_ALREADY_ADDED);
+        return Arrays.asList(GearReq.INSTANCE);
     }
 
     @Override

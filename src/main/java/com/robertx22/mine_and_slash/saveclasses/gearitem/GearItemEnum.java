@@ -17,27 +17,12 @@ public enum GearItemEnum implements IWeighted {
         }
 
         @Override
-        public boolean canGetSet() {
-            return true;
-        }
-
-        @Override
-        public boolean canGetSecondaryStats() {
-            return true;
-        }
-
-        @Override
         public boolean canGetAffixes() {
             return true;
         }
 
         @Override
         public boolean canRerollNumbers() {
-            return true;
-        }
-
-        @Override
-        public boolean canGetInfusions() {
             return true;
         }
 
@@ -65,27 +50,12 @@ public enum GearItemEnum implements IWeighted {
         }
 
         @Override
-        public boolean canGetSet() {
-            return true;
-        }
-
-        @Override
         public boolean canGetAffixes() {
             return false;
         }
 
         @Override
-        public boolean canGetInfusions() {
-            return false;
-        }
-
-        @Override
         public boolean canRerollNumbers() {
-            return false;
-        }
-
-        @Override
-        public boolean canGetSecondaryStats() {
             return false;
         }
 
@@ -114,11 +84,6 @@ public enum GearItemEnum implements IWeighted {
         }
 
         @Override
-        public boolean canGetSet() {
-            return false;
-        }
-
-        @Override
         public boolean canGetPrimaryStats() {
             return true;
         }
@@ -139,22 +104,10 @@ public enum GearItemEnum implements IWeighted {
         }
 
         @Override
-        public boolean canGetInfusions() {
-            return true;
-        }
-
-        @Override
-        public boolean canGetSecondaryStats() {
-            return false;
-        }
-
-        @Override
         public Words word() {
             return Words.Unique_Gear;
         }
     };
-
-    public abstract boolean canGetSet();
 
     public abstract boolean canGetPrimaryStats();
 
@@ -163,10 +116,6 @@ public enum GearItemEnum implements IWeighted {
     public abstract boolean canGetChaosStats();
 
     public abstract boolean canGetAffixes();
-
-    public abstract boolean canGetInfusions();
-
-    public abstract boolean canGetSecondaryStats();
 
     public abstract Words word();
 

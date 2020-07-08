@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "mmorpg:sword/sword4",
+      "item": "mmorpg:sword/sword1",
       "nbt": "{Damage:0}"
     },
     "title": {

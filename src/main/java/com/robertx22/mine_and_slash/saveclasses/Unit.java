@@ -59,9 +59,6 @@ public class Unit {
     private StatContainer stats = new StatContainer();
 
     @Store
-    public WornSetsContainerData wornSets = new WornSetsContainerData();
-
-    @Store
     public String GUID = UUID.randomUUID()
         .toString();
 
@@ -476,9 +473,8 @@ public class Unit {
         }
 
         if (gearIsValid) {
-            PlayerStatUtils.countWornSets(entity, gears, this);
             PlayerStatUtils.AddAllGearStats(entity, gears, data, level);
-            PlayerStatUtils.AddAllSetStats(entity, data, this, level);
+
         }
 
         if (isMapWorld) {

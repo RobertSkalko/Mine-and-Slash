@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.plate;
 
-import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BasePants;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
@@ -19,11 +18,6 @@ public class PlatePants extends BasePants {
     @Override
     public StatReq getRequirements() {
         return plateArmorReq;
-    }
-
-    @Override
-    public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(plateArmorSecondary());
     }
 
     @Override

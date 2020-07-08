@@ -1,17 +1,11 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
-import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.WeaponDamageMulti;
 import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalHitFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifeOnHitFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.LifestealFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.resources.MagicStealFlat;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemStaff;
@@ -93,11 +87,6 @@ public class Staff extends BaseWeapon implements ISpecificStatReq {
     @Override
     public int Weight() {
         return 1000;
-    }
-
-    @Override
-    public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(new CriticalDamageFlat(), new CriticalHitFlat(), new LifestealFlat(), new LifeOnHitFlat(), new MagicStealFlat());
     }
 
     @Override

@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 public class GearEnumLocReq extends BaseLocRequirement {
 
     public static final GearEnumLocReq AFFIXES = new GearEnumLocReq(x -> x.canGetAffixes());
-    public static final GearEnumLocReq SETS = new GearEnumLocReq(x -> x.canGetSet());
-    public static final GearEnumLocReq SECONDARY_STATS = new GearEnumLocReq(x -> x.canGetSecondaryStats());
     public static final GearEnumLocReq CAN_PRIMARY_STATS = new GearEnumLocReq(x -> x.canGetPrimaryStats());
     public static final GearEnumLocReq CAN_CHAOS_STATS = new GearEnumLocReq(x -> x.canGetChaosStats());
     public static final GearEnumLocReq REROLL_NUMBERS = new GearEnumLocReq(x -> x.canRerollNumbers());

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.mods.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.mods.BaseWeaponMod;
-import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
+import com.robertx22.mine_and_slash.database.stats.types.generated.SpecificWeaponDamage;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
@@ -35,7 +35,7 @@ public class WeaponDamageFlat extends BaseWeaponMod {
 
     @Override
     public Stat GetBaseStat() {
-        return new WeaponDamage(weaponType);
+        return new SpecificWeaponDamage(weaponType);
     }
 
 }

@@ -24,16 +24,6 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     }
 
     @Override
-    public MinMax secondaryStatAmount() {
-        return new MinMax(0, 0); // uniques dont have secondaries, they have unique stats
-    }
-
-    @Override
-    public MinMax secondaryStatPercents() {
-        return StatPercents();
-    }
-
-    @Override
     public MinMax affixStatPercents() {
         return StatPercents();
     }
@@ -41,11 +31,6 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     @Override
     public MinMax uniqueStatPercents() {
         return new MinMax(100, 200);
-    }
-
-    @Override
-    public MinMax primaryStatPercents() {
-        return StatPercents();
     }
 
     @Override
@@ -64,17 +49,17 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     }
 
     @Override
-    public int SetChance() {
-        return 100;
-    }
-
-    @Override
     public float salvageLotteryWinChance() {
         return 50;
     }
 
     @Override
     public int runeSlots() {
+        return 0;
+    }
+
+    @Override
+    public int maxAffixes() {
         return 0;
     }
 

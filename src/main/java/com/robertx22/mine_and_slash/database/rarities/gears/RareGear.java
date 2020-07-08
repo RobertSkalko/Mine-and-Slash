@@ -23,11 +23,6 @@ public class RareGear extends BaseRare implements GearRarity {
     }
 
     @Override
-    public MinMax secondaryStatPercents() {
-        return StatPercents();
-    }
-
-    @Override
     public MinMax affixStatPercents() {
         return StatPercents();
     }
@@ -38,28 +33,13 @@ public class RareGear extends BaseRare implements GearRarity {
     }
 
     @Override
-    public MinMax primaryStatPercents() {
-        return StatPercents();
-    }
-
-    @Override
     public int AffixChance() {
         return 50;
     }
 
     @Override
-    public MinMax secondaryStatAmount() {
-        return new MinMax(1, 2);
-    }
-
-    @Override
     public MinMax StatPercents() {
         return new MinMax(30, 80);
-    }
-
-    @Override
-    public int SetChance() {
-        return 30;
     }
 
     @Override
@@ -75,6 +55,11 @@ public class RareGear extends BaseRare implements GearRarity {
     @Override
     public int runeSlots() {
         return 3;
+    }
+
+    @Override
+    public int maxAffixes() {
+        return 6;
     }
 
     @Override

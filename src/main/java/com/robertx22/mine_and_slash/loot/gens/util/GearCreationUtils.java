@@ -113,11 +113,6 @@ public class GearCreationUtils {
                     data.uniqueStats = new UniqueStatsData(unique.GUID());
                     data.uniqueStats.RerollFully(data);
 
-                    if (unique.canGetSet()) {
-                        data.set = blueprint.getSet(data)
-                            .getSetData();
-                    }
-
                 } else {
                     data.Rarity = IRarity.Common;
                 }
@@ -137,10 +132,7 @@ public class GearCreationUtils {
             data.primaryStats = new PrimaryStatsData();
             data.primaryStats.RerollFully(data);
         }
-        if (type.canGetSecondaryStats()) {
-            data.secondaryStats = new SecondaryStatsData();
-            data.secondaryStats.RerollFully(data);
-        }
+
         if (type.canGetChaosStats()) {
             if (blueprint.getsChaosStats()) {
                 data.chaosStats = new ChaosStatsData();
@@ -158,10 +150,6 @@ public class GearCreationUtils {
                 data.prefix = new PrefixData();
                 data.prefix.RerollFully(data);
             }
-        }
-        if (type.canGetSet()) {
-            data.set = blueprint.getSet(data)
-                .getSetData();
         }
 
         if (type == GearItemEnum.RUNED) {

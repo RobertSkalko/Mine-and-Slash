@@ -18,19 +18,10 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     public float requirementMulti;
     public float salvageLotteryChance;
     public int unidentifiedChance;
+    public int maxAffixes;
 
     public SerializedGearRarity(SerializedBaseRarity baseRarity) {
         super(baseRarity);
-    }
-
-    @Override
-    public MinMax primaryStatPercents() {
-        return primaryStatPercents;
-    }
-
-    @Override
-    public MinMax secondaryStatPercents() {
-        return secondaryStatPercents;
     }
 
     @Override
@@ -49,18 +40,13 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     }
 
     @Override
-    public int SetChance() {
-        return setChance;
-    }
-
-    @Override
     public int runeSlots() {
         return runeSlots;
     }
 
     @Override
-    public MinMax secondaryStatAmount() {
-        return secondaryStatsAmount;
+    public int maxAffixes() {
+        return maxAffixes;
     }
 
     @Override

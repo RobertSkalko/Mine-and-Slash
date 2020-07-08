@@ -25,15 +25,10 @@ public class Requirements implements ISerializablePart<Requirements>, ITooltipLi
         this.requirements.add(req);
     }
 
-    public Requirements(BaseRequirement req1, BaseRequirement req2) {
-        this.requirements.add(req1);
-        this.requirements.add(req2);
-    }
-
-    public Requirements(BaseRequirement req1, BaseRequirement req2, BaseRequirement req3) {
-        this.requirements.add(req1);
-        this.requirements.add(req2);
-        this.requirements.add(req3);
+    public Requirements(BaseRequirement... req1) {
+        for (BaseRequirement req : req1) {
+            this.requirements.add(req);
+        }
     }
 
     public Requirements(List<BaseRequirement> reqs) {

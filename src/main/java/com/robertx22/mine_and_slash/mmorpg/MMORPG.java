@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPack
 import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
 import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeonDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeonsReloadListener;
@@ -183,7 +182,6 @@ public class MMORPG {
             .getResourceManager();
 
         manager.addReloadListener(new TierDatapackManager());
-        manager.addReloadListener(new SetDataPackManager());
         manager.addReloadListener(new AffixDataPackManager());
         manager.addReloadListener(new RuneDataPackManager());
         manager.addReloadListener(new MobAffixDataPackManager());

@@ -141,8 +141,6 @@ public class CreateLangFile {
     public static HashMap<String, List<IAutoLocName>> getMap() {
         List<IAutoLocName> list = CreateLangFileUtils.getFromRegistries(IAutoLocName.class);
 
-        list.addAll(SlashRegistry.Sets()
-            .getSerializable());
         list.addAll(SlashRegistry.MobAffixes()
             .getSerializable());
         list.addAll(SlashRegistry.RuneWords()

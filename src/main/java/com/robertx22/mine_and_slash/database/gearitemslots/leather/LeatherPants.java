@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.leather;
 
-import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BasePants;
@@ -31,11 +30,6 @@ public class LeatherPants extends BasePants {
     @Override
     public PlayStyle getPlayStyle() {
         return PlayStyle.THIEF;
-    }
-
-    @Override
-    public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(leatherArmorSecondary());
     }
 
     @Override

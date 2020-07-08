@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
 import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.sets.SetDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeonDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
@@ -29,7 +28,6 @@ public class OnGatherData {
 
             gen.addProvider(new MobAffixDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new TierDatapackManager().getDataPackCreator(gen));
-            gen.addProvider(new SetDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new AffixDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new RunewordDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new UniqueGearDatapackManager().getDataPackCreator(gen));

@@ -15,13 +15,12 @@ public class SerializableStatMod extends StatMod {
     StatModTypes type;
     String guid;
 
-    public SerializableStatMod(String stat, float min, float max, StatModTypes type, String guid, Size size, float min2, float max2) {
+    public SerializableStatMod(String stat, float min, float max, StatModTypes type, String guid, float min2, float max2) {
         this.stat = stat;
         this.min = min;
         this.max = max;
         this.type = type;
         this.guid = guid;
-        this.size = size;
         this.min2 = min2;
         this.max2 = max2;
     }

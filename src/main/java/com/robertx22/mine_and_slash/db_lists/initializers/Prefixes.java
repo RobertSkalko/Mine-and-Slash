@@ -1,26 +1,16 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.database.StatModifier;
+import com.robertx22.mine_and_slash.database.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
-import com.robertx22.mine_and_slash.database.affixes.Prefix;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.curses.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.defense.element.EleShieldPrefix;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.misc.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.mixed.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.offense.damage_percents.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.*;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_resource.BraveHeart;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_resource.DeepMind;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.resource.rare_resource.InnerSpirit;
-import com.robertx22.mine_and_slash.database.affixes.prefixes.uniques.Heros;
+import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
+import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Prefixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
@@ -28,102 +18,17 @@ public class Prefixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        List<Prefix> allPrefixes = new ArrayList<Prefix>() {
-            {
-                {
+        AffixBuilder.Of("chilled")
+            .Named("Chilled")
+            .Stats(new StatModifier(1, 6, new WeaponDamage(Elements.Water), StatModTypes.Flat))
+            .Req(SlotRequirement.weapons())
+            .BuildPrefix();
 
-                    add(new Doomed());
-                    add(new Forgotten());
-
-                    add(new EnduringField());
-                    add(new EternalField());
-                    add(new UnendingField());
-
-                    add(new Heros());
-                    add(new Defenders());
-
-                    add(new Looters());
-                    add(new Archaeologists());
-                    add(new TreasureSeeker());
-
-                    add(new Wise());
-                    add(new Tenacious());
-                    add(new MagicSiphon());
-
-                    add(new Gatekeepers());
-
-                    add(new TouchOfMagic());
-                    add(new Arcanists());
-                    add(new Magical());
-
-                    add(new ThirstOfAcid());
-                    add(new ThirstOfFrost());
-                    add(new ThirstOfFlame());
-                    add(new ThirstOfLightning());
-
-                    add(new HardHitting());
-                    add(new LifeStealing());
-                    add(new HeavenlyStrikes());
-
-                    add(new Flaming());
-                    add(new Frosty());
-                    add(new Thorny());
-                    add(new Thundering());
-
-                    add(new Hardened());
-                    add(new Evasive());
-                    add(new HeavenlySkin());
-
-                    add(new BraveHeart());
-                    add(new DeepMind());
-                    add(new InnerSpirit());
-
-                    add(new Energetic());
-                    add(new Tough());
-
-                    add(new Broken());
-                    add(new Old());
-                    add(new Reeking());
-                    add(new Shabby());
-                    add(new Smelly());
-
-                    add(new Colossal());
-                    add(new GenerationalCurse());
-                    add(new Sacrificial());
-                    add(new UndeadCurse());
-
-                }
-            }
-        };
-
-        List<Prefix> all = new ArrayList<>();
-
-        List<IGenerated<Prefix>> allGenerated = new ArrayList<IGenerated<Prefix>>() {
-            {
-                {
-                    add(new Heretics(Elements.Physical));
-                    add(new EleShieldPrefix(Elements.Physical));
-                    add(new ElementImbued(Elements.Physical));
-                    add(new ElementThornsMastery(Elements.Physical));
-
-                }
-            }
-        };
-
-        List<Prefix> list = new ArrayList<Prefix>();
-        list.addAll(allPrefixes);
-
-        for (Prefix s : list) {
-            all.add(s);
-        }
-
-        for (IGenerated<Prefix> gen : allGenerated) {
-            for (Prefix statmod : gen.generateAllPossibleStatVariations()) {
-                all.add(statmod);
-            }
-        }
-
-        all.forEach(x -> x.addToSerializables());
+        AffixBuilder.Of("scorched")
+            .Named("Scorched")
+            .Stats(new StatModifier(1, 6, new WeaponDamage(Elements.Fire), StatModTypes.Flat))
+            .Req(SlotRequirement.weapons())
+            .BuildPrefix();
 
     }
 

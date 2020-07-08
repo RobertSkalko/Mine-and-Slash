@@ -76,13 +76,13 @@ public class Stats implements ISlashRegistryInit {
                     add(new PlusAbilityLevelStat(new EmptySpell()));
                     add(new PlusLevelToAllAbilitiesInSchoolStat(Masteries.OCEAN));
                     add(new LootTypeBonus(LootType.NormalItem));
-                    add(new WeaponDamage(WeaponTypes.None));
-                    add(new ElementalAttackDamage(Elements.Physical));
+                    add(new SpecificWeaponDamage(WeaponTypes.None));
+                    add(new WeaponDamage(Elements.Physical));
                     add(new ElementalInfusion(Elements.Physical));
-                    add(new AllElementalDamage(Elements.Physical));
+                    add(new ElementalDamageBonus(Elements.Physical));
                     add(new ElementalSpellDamage(Elements.Physical));
                     add(new ElementalResist(Elements.Physical));
-                    add(new ElementalPene(Elements.Physical));
+                    add(new ElementalPenetration(Elements.Physical));
                     add(new ElementalFocus(Elements.Physical));
                     add(new BlockReflect(Elements.Physical));
 
@@ -206,7 +206,7 @@ public class Stats implements ISlashRegistryInit {
             }
         }
 
-        EleWepDmg.register();
+        SpecificElementalWeaponDamage.register();
 
         All.forEach(x -> x.registerToSlashRegistry());
 

@@ -28,11 +28,6 @@ public class UncommonGear extends BaseUncommon implements GearRarity {
     }
 
     @Override
-    public MinMax secondaryStatPercents() {
-        return StatPercents();
-    }
-
-    @Override
     public MinMax affixStatPercents() {
         return StatPercents();
     }
@@ -43,23 +38,8 @@ public class UncommonGear extends BaseUncommon implements GearRarity {
     }
 
     @Override
-    public MinMax primaryStatPercents() {
-        return StatPercents();
-    }
-
-    @Override
-    public MinMax secondaryStatAmount() {
-        return new MinMax(1, 1);
-    }
-
-    @Override
     public MinMax StatPercents() {
         return new MinMax(15, 50);
-    }
-
-    @Override
-    public int SetChance() {
-        return 25;
     }
 
     @Override
@@ -74,6 +54,11 @@ public class UncommonGear extends BaseUncommon implements GearRarity {
 
     @Override
     public int runeSlots() {
+        return 2;
+    }
+
+    @Override
+    public int maxAffixes() {
         return 2;
     }
 

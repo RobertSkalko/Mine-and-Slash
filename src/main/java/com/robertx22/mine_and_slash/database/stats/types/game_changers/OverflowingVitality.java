@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.types.game_changers;
 
-import com.robertx22.mine_and_slash.database.stats.types.generated.AllElementalDamage;
+import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalDamageBonus;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
@@ -48,7 +48,7 @@ public class OverflowingVitality extends BaseGameChangerTrait implements IAffect
     @Override
     public List<ExactStatData> getExactStats() {
 
-        List<ExactStatData> list = new AllElementalDamage(Elements.Nature).generateAllSingleVariations()
+        List<ExactStatData> list = new ElementalDamageBonus(Elements.Nature).generateAllSingleVariations()
             .stream()
             .map(x -> new ExactStatData(-ELE_DECREASE, StatModTypes.Multi, x))
             .collect(Collectors.toList());

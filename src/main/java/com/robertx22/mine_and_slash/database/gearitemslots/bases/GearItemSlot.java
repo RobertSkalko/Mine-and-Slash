@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
-import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.WeaponDamageMulti;
 import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
@@ -266,8 +265,6 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     public abstract List<PosStats> getPossiblePrimaryStats();
-
-    public abstract StatModsHolder getPossibleSecondaryStats();
 
     public Item getDefaultItem() {
         return Items.AIR;

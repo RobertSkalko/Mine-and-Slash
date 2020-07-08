@@ -1,81 +1,77 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.effects.offense.WeaponDamageEffect;
+import com.robertx22.mine_and_slash.database.stats.effects.offense.ElementalAttackDamageEffect;
+import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
+import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class WeaponDamage extends Stat implements IStatEffects, IGenerated<WeaponDamage> {
+public class WeaponDamage extends ElementalStat implements IStatEffects {
+    public static MapWrapper<Elements, WeaponDamage> MAP = new MapWrapper();
 
-    private WeaponTypes weaponType;
-
-    public WeaponDamage(WeaponTypes type) {
-        this.weaponType = type;
-
+    @Override
+    public List<Stat> generateAllPossibleStatVariations() {
+        List<Stat> list = super.generateAllPossibleStatVariations();
+        list.forEach(x -> MAP.put(x.getElement(), (WeaponDamage) x));
+        return list;
     }
 
     @Override
-    public String locDescForLangFile() {
-        return "Increases damage done if it was caused by that weapon";
+    public Stat.StatGroup statGroup() {
+        return Stat.StatGroup.EleAttackDamage;
     }
 
-    public WeaponTypes weaponType() {
-        return this.weaponType;
+    public WeaponDamage(Elements element) {
+        super(element);
+    }
+
+    @Override
+    public Stat newGeneratedInstance(Elements element) {
+        return new WeaponDamage(element);
     }
 
     @Override
     public String getIconPath() {
-        return "wep_dmg/" + weaponType.id;
-    }
-
-    @Override
-    public String GUID() {
-        return this.weaponType.id + "_damage";
+        return "ele_atk_dmg/" + element.guidName;
     }
 
     @Override
     public boolean IsPercent() {
-        return true;
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
-    }
-
-    @Override
-    public Elements getElement() {
-        return null;
+        return false;
     }
 
     @Override
     public IStatEffect getEffect() {
-        return new WeaponDamageEffect();
+        return new ElementalAttackDamageEffect();
     }
 
     @Override
     public String locDescLangFileGUID() {
-        return Ref.MODID + ".stat_desc." + "weapon_damage";
+        return Ref.MODID + ".stat_desc." + "ele_atk_dmg";
     }
 
     @Override
     public String locNameForLangFile() {
-        return this.weaponType().name() + " Damage";
+        if (element.equals(Elements.Elemental)) {
+            return getElement().name() + "Attack Damage";
+        } else {
+            return getElement().name() + " Damage";
+        }
     }
 
     @Override
-    public List<WeaponDamage> generateAllPossibleStatVariations() {
-        List<WeaponDamage> list = new ArrayList<>();
-        WeaponTypes.getAll().forEach(x -> list.add(new WeaponDamage(x)));
-        return list;
-
+    public String locDescForLangFile() {
+        return "Adds x element damage on weapon hit";
     }
+
+    @Override
+    public String GUID() {
+        return this.getElement().guidName + "_weapon_damage";
+    }
+
 }

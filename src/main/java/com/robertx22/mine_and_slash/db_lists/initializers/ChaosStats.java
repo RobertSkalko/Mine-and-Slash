@@ -28,11 +28,11 @@ public class ChaosStats implements ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        Requirements majorArcanaReq = new Requirements(SlotRequirement.armorsOnly());
+        Requirements majorArcanaReq = new Requirements(SlotRequirement.armors());
         Requirements anyExceptWeapon = new Requirements(SlotRequirement.allExceptWeapon());
-        Requirements weaponOnly = new Requirements(SlotRequirement.weaponsOnly());
-        Requirements jewerlyOnly = new Requirements(SlotRequirement.jewerlyOnly());
-        Requirements armorOnly = new Requirements(SlotRequirement.armorsOnly());
+        Requirements weaponOnly = new Requirements(SlotRequirement.weapons());
+        Requirements jewerlyOnly = new Requirements(SlotRequirement.jewerly());
+        Requirements armorOnly = new Requirements(SlotRequirement.armors());
 
         List<ChaosStat> all = new ArrayList<>();
 

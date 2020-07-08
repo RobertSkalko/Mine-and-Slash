@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.mods.generated;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.mods.ElementalStatMod;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
+import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
@@ -17,12 +17,12 @@ public class ElementalAttackDamageFlat extends ElementalStatMod {
 
     @Override
     public final Stat GetBaseStat() {
-        return new ElementalAttackDamage(element);
+        return new WeaponDamage(element);
     }
 
     @Override
-    public MapWrapper<Elements, ElementalAttackDamage> getBaseStatMap() {
-        return ElementalAttackDamage.MAP;
+    public MapWrapper<Elements, WeaponDamage> getBaseStatMap() {
+        return WeaponDamage.MAP;
     }
 
     @Override

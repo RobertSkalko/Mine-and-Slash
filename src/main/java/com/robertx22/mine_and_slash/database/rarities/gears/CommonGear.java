@@ -23,16 +23,6 @@ public class CommonGear extends BaseCommon implements GearRarity {
     }
 
     @Override
-    public MinMax primaryStatPercents() {
-        return StatPercents();
-    }
-
-    @Override
-    public MinMax secondaryStatPercents() {
-        return StatPercents();
-    }
-
-    @Override
     public MinMax affixStatPercents() {
         return StatPercents();
     }
@@ -53,11 +43,6 @@ public class CommonGear extends BaseCommon implements GearRarity {
     }
 
     @Override
-    public int SetChance() {
-        return 15;
-    }
-
-    @Override
     public float salvageLotteryWinChance() {
         return 0.5F;
     }
@@ -73,8 +58,8 @@ public class CommonGear extends BaseCommon implements GearRarity {
     }
 
     @Override
-    public MinMax secondaryStatAmount() {
-        return new MinMax(0, 0);
+    public int maxAffixes() {
+        return 0;
     }
 
     @Override

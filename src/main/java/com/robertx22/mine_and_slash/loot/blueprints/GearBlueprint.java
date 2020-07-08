@@ -1,12 +1,10 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
-import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.AffixChancePart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.GearItemSlotPart;
-import com.robertx22.mine_and_slash.loot.blueprints.bases.SetPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.UnidentifiedPart;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
@@ -34,17 +32,11 @@ public class GearBlueprint extends ItemBlueprint {
     }
 
     public GearItemSlotPart gearItemSlot = new GearItemSlotPart(this);
-    private SetPart set;
+
     public float chaosStatChance = 1;
     public UnidentifiedPart unidentifiedPart = new UnidentifiedPart(this);
     public AffixChancePart prefixChancePart = new AffixChancePart(this);
     public AffixChancePart suffixChancePart = new AffixChancePart(this);
-
-    public SetPart getSet(GearItemData gear) {
-        this.set = new SetPart(this, new GearRequestedFor(gear));
-        return set;
-
-    }
 
     @Override
     public BaseRaritiesContainer<? extends Rarity> getRarityContainer() {

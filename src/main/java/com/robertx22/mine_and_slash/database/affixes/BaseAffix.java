@@ -2,12 +2,11 @@ package com.robertx22.mine_and_slash.database.affixes;
 
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_generation.JsonUtils;
-import com.robertx22.mine_and_slash.data_generation.affixes.SerializableAffix;
 import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -19,22 +18,39 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, IRarity,
+public class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, IRarity,
     ISerializedRegistryEntry<BaseAffix>, ISerializable<BaseAffix> {
 
     public enum Type {
         prefix,
-        suffix
+        suffix,
+        implicit
     }
 
+    String guid;
+    List<StatModifier> mods;
+    String langName;
+    int weight = 1000;
+    Requirements requirements;
+    public List<AffixTag> tags = new ArrayList<>();
     public Type type;
 
-    public BaseAffix(Requirements requirements, Type type) {
-        this.requirements = requirements;
-        this.type = type;
+    @Override
+    public boolean isRegistryEntryValid() {
+        if (guid == null || langName == null || mods == null || requirements == null || type == null || weight < 0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public final String datapackFolder() {
+        return type.name() + "/";
     }
 
     @Override
@@ -47,9 +63,9 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
         return SlashRegistryType.AFFIX;
     }
 
-    public abstract String GUID();
-
-    Requirements requirements;
+    public String GUID() {
+        return guid;
+    }
 
     @Override
     public String locNameLangFileGUID() {
@@ -81,11 +97,17 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
 
     @Override
     public int Weight() {
-        return this.getRarity()
-            .Weight();
+        return weight;
     }
 
-    public abstract List<StatMod> StatMods();
+    public List<StatModifier> StatMods() {
+        return mods;
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return this.langName;
+    }
 
     @Override
     public int getRarityRank() {
@@ -94,17 +116,7 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Gears.get(getRarityRank());
-    }
-
-    @Override
-    public boolean isRegistryEntryValid() {
-
-        if (!checkStatModsValidity(StatMods())) {
-            return false;
-        }
-
-        return true;
+        return Rarities.Gears.get(0);
     }
 
     @Override
@@ -114,7 +126,7 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
         json.addProperty("type", type.name());
         json.add("requirements", requirements().toJson());
 
-        JsonUtils.addStatMods(StatMods(), json, "mods");
+        JsonUtils.addStats(StatMods(), json, "stats");
 
         return json;
     }
@@ -126,16 +138,22 @@ public abstract class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasR
             String guid = getGUIDFromJson(json);
             String langName = getLangNameStringFromJson(json);
             int weight = getWeightFromJson(json);
-            int rarity = getRarityFromJson(json);
 
             Type type = Type.valueOf(json.get("type")
                 .getAsString());
 
             Requirements req = Requirements.EMPTY.fromJson(json.getAsJsonObject("requirements"));
 
-            List<StatMod> mods = JsonUtils.getStatMods(json, "mods");
+            List<StatModifier> mods = JsonUtils.getStats(json, "stats");
 
-            return new SerializableAffix(rarity, weight, req, guid, mods, langName, type);
+            BaseAffix affix = new BaseAffix();
+            affix.weight = weight;
+            affix.requirements = req;
+            affix.guid = guid;
+            affix.mods = mods;
+            affix.langName = langName;
+            affix.type = type;
+            return affix;
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }

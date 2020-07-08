@@ -144,11 +144,11 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
             .collect(Collectors.toList()));
     }
 
-    public static SlotRequirement weaponsOnly() {
+    public static SlotRequirement weapons() {
         return new SlotRequirement(weaponSlots());
     }
 
-    public static SlotRequirement armorsOnly() {
+    public static SlotRequirement armors() {
         return new SlotRequirement(armorSlots());
 
     }
@@ -157,7 +157,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
         return new SlotRequirement(armorSlotsNoOffHand());
     }
 
-    public static SlotRequirement jewerlyOnly() {
+    public static SlotRequirement jewerly() {
         return new SlotRequirement(jewerlySlots());
     }
 

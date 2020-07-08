@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.saveclasses.WornSetsContainerData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -24,20 +23,6 @@ public class PlayerStatUtils {
 
     public static void AddPlayerBaseStats(UnitData data, Unit unit) {
         BasePlayerStatContainer.INSTANCE.applyStats(data);
-    }
-
-    public static void countWornSets(Entity entity, List<GearItemData> gears, Unit unit) {
-        unit.wornSets = new WornSetsContainerData();
-
-        for (GearItemData gear : gears) {
-            unit.wornSets.addSet(gear);
-        }
-    }
-
-    public static void AddAllSetStats(Entity entity, UnitData data, Unit unit, int level) {
-
-        unit.wornSets.AddAllSetStats(data);
-
     }
 
     // if at end of stat calculation you still don't meet the gear requirements, apply penalty

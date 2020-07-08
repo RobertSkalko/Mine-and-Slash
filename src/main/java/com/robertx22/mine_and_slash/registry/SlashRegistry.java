@@ -10,15 +10,12 @@ import com.robertx22.mine_and_slash.database.chaos_stats.ChaosStat;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.item_modifications.bases.BaseItemModification;
-import com.robertx22.mine_and_slash.database.item_modifications.gear_items.AddChaosStatMod;
 import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
 import com.robertx22.mine_and_slash.database.runewords.RuneWord;
-import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.base.Synergy;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -140,10 +137,6 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.UNIQUE_DUNGEON);
     }
 
-    public static SlashRegistryContainer<BaseItemModification> ItemModifications() {
-        return getRegistry(SlashRegistryType.ITEM_MODIFICATION);
-    }
-
     public static SlashRegistryContainer<LootCrate> LootCrates() {
         return getRegistry(SlashRegistryType.LOOT_CRATE);
     }
@@ -158,10 +151,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<IUnique> UniqueGears() {
         return getRegistry(SlashRegistryType.UNIQUE_GEAR);
-    }
-
-    public static SlashRegistryContainer<Set> Sets() {
-        return getRegistry(SlashRegistryType.SET);
     }
 
     public static SlashRegistryContainer<BaseAffix> Affixes() {
@@ -315,8 +304,7 @@ public class SlashRegistry {
         new Suffixes().registerAll();
         new UniqueGears().registerAll();
         new WorldProviders().registerAll();
-        new Sets().registerAll();
-        new ItemModifications().registerAll();
+
         new MobAffixes().registerAll();
 
         new PerkEffectsInit().registerAll();
@@ -342,7 +330,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, EmptyUnique.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, EmptyRuneWord.getInstance()).isDatapack());
-        addRegistry(new SlashRegistryContainer<Set>(SlashRegistryType.SET, new EmptySet()).isDatapack());
         addRegistry(new SlashRegistryContainer<MobAffix>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
         addRegistry(new SlashRegistryContainer<UniqueDungeon>(SlashRegistryType.UNIQUE_DUNGEON, null).isDatapack());
         addRegistry(new SlashRegistryContainer<CompatibleItem>(SlashRegistryType.COMPATIBLE_ITEM,
@@ -359,7 +346,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<Synergy>(SlashRegistryType.SPELL_SYNERGY, null));
         addRegistry(new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
         addRegistry(new SlashRegistryContainer<BaseDungeonDimension>(SlashRegistryType.WORLD_PROVIDER, new DungeonDimension(null, null)));
-        addRegistry(new SlashRegistryContainer<BaseItemModification>(SlashRegistryType.ITEM_MODIFICATION, new AddChaosStatMod()));
+
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
         addRegistry(new SlashRegistryContainer<BasePotionEffect>(SlashRegistryType.EFFECT, null));
         addRegistry(new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()

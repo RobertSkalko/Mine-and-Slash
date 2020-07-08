@@ -1,8 +1,5 @@
 package com.robertx22.mine_and_slash.advacements;
 
-import com.robertx22.mine_and_slash.database.currency.ChaosOrbItem;
-import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
-import com.robertx22.mine_and_slash.database.currency.StoneOfHopeItem;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.bags.AutoSalvageBag;
@@ -10,12 +7,10 @@ import com.robertx22.mine_and_slash.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.mine_and_slash.items.bags.loot_bag.ItemLootBag;
 import com.robertx22.mine_and_slash.items.bags.map_bag.ItemMapBag;
 import com.robertx22.mine_and_slash.items.bags.master_bag.ItemMasterBag;
-import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemHammer;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.AdvDescs;
 import com.robertx22.mine_and_slash.uncommon.localization.AdvTitles;
@@ -37,7 +32,7 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
 
     public void accept(Consumer<Advancement> consu) {
         Advancement parent = Advancement.Builder.builder()
-            .withDisplay(ItemSword.Items.get(4), AdvTitles.WelcomeMineandslash.locName(),
+            .withDisplay(ItemSword.Items.get(1), AdvTitles.WelcomeMineandslash.locName(),
                 AdvDescs.WelcomeMineandslash.locName(),
                 new ResourceLocation("textures/gui/advancements/backgrounds/end.png"), FrameType.TASK,
                 false, false, false
@@ -53,22 +48,14 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
             .withCriterion(id("lvl_penalty"), new DropLvlPenaltyTrigger.Instance(5))
             .register(consu, id("lvl_penalty"));
 
-        Advancement lvl_10 = levelAdv(10, AdvDescs.LevelUp10, parent, consu, ItemHammer.Items.get(0));
-        Advancement lvl_25 = levelAdv(20, AdvDescs.LevelUp, lvl_10, consu, ItemHammer.Items.get(1));
-        Advancement lvl_50 = levelAdv(50, AdvDescs.LevelUp, lvl_25, consu, ItemHammer.Items.get(2));
-        Advancement lvl_60 = levelAdv(60, AdvDescs.LevelUp, lvl_50, consu, ItemHammer.Items.get(3));
-
         Advancement legendaryMob = mobRarityKill(Rarities.Mobs.get(IRarity.Legendary),
             AdvDescs.MobRaritySpawnAt.locName()
                 .appendText("10"), parent, consu,
             Items.ZOMBIE_HEAD
         );
 
-        Advancement bossMob = mobRarityKill(
-            Rarities.Mobs.get(IRarity.Boss), AdvDescs.BossSpawnAt.locName(), legendaryMob, consu, Items.DRAGON_HEAD);
-
         Advancement first_adv_map = Advancement.Builder.builder()
-            .withParent(lvl_10)
+            .withParent(parent)
             .withDisplay(ItemMap.Items.get(0), AdvTitles.FirstAdventureMap.locName(),
                 AdvDescs.AdventureMap.locName(), null, FrameType.GOAL, true, true, false
             )
@@ -78,7 +65,7 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement repair = itemAdv(AdvTitles.RepairStation, AdvDescs.RepairStation, "repair", parent, consu,
             ModBlocks.GEAR_REPAIR.get()
         );
-        Advancement modify = itemAdv(AdvTitles.ModifyStation, AdvDescs.ModifyStation, "modify", lvl_10, consu,
+        Advancement modify = itemAdv(AdvTitles.ModifyStation, AdvDescs.ModifyStation, "modify", parent, consu,
             ModBlocks.GEAR_MODIFY.get()
         );
         Advancement salvage = itemAdv(AdvTitles.SalvageStation, AdvDescs.SalvageStation, "salvage", parent, consu,
@@ -96,27 +83,6 @@ public class MyAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement map_device = itemAdv(AdvTitles.MapDevice, AdvDescs.MapDevice, "map_device", first_adv_map, consu,
             ModBlocks.MAP_DEVICE.get()
         );
-
-        Advancement orbOfTrans = byItemName(ModItems.ORB_OF_TRANSMUTATION.get(),
-            new StringTextComponent(new OrbOfTransmutationItem().locNameForLangFile()),
-            "orb_of_transmutation", AdvDescs.OrbOfTransmutation, lvl_10, consu,
-            ModItems.ORB_OF_TRANSMUTATION.get()
-        );
-
-        Advancement chaosOrb = byItemName(ModItems.CHAOS_ORB.get(),
-            new StringTextComponent(new ChaosOrbItem().locNameForLangFile()), "chaos_orb",
-            AdvDescs.ChaosOrb, orbOfTrans, consu, ModItems.CHAOS_ORB.get()
-        );
-        Advancement addaffix = byItemName(ModItems.UNEARTH_PREFIX.get(), AdvTitles.AddAffix.locName(), "add_affix",
-            AdvDescs.AddAffix, orbOfTrans, consu, ModItems.UNEARTH_PREFIX.get()
-        );
-        Advancement stoneofhope = byItemName(ModItems.STONE_OF_HOPE.get(),
-            new StringTextComponent(new StoneOfHopeItem().locNameForLangFile()),
-            "stone_of_hope", AdvDescs.Stoneofhope, orbOfTrans, consu,
-            ModItems.STONE_OF_HOPE.get()
-        );
-
-        Advancement sal0 = salvageBag(AutoSalvageBag.Items.get(0), salvage, consu);
 
     }
 

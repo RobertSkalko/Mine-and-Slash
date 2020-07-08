@@ -1,10 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.offhand;
 
-import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.ArmorFlat;
 import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
 import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.NormalShield;
@@ -23,11 +20,6 @@ public class Shield extends BaseOffHand implements ISpecificStatReq {
     @Override
     public String resourceID() {
         return "shield";
-    }
-
-    @Override
-    public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(new ArmorFlat().size(StatMod.Size.HALF_MORE));
     }
 
     static StatReq req = new StatReq(

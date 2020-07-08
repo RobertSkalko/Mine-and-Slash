@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
-import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
@@ -48,11 +47,6 @@ public class Charm extends BaseCurio {
             .stream()
             .map(x -> new PosStats(x.size(StatMod.Size.DOUBLE)))
             .collect(Collectors.toList());
-    }
-
-    @Override
-    public StatModsHolder getPossibleSecondaryStats() {
-        return new StatModsHolder(allResists());
     }
 
     @Override

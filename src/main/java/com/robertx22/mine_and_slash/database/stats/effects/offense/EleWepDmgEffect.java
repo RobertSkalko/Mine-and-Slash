@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
-import com.robertx22.mine_and_slash.database.stats.types.generated.EleWepDmg;
+import com.robertx22.mine_and_slash.database.stats.types.generated.SpecificElementalWeaponDamage;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 
@@ -22,9 +22,10 @@ public class EleWepDmgEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        EleWepDmg wepStat = (EleWepDmg) stat;
+        SpecificElementalWeaponDamage wepStat = (SpecificElementalWeaponDamage) stat;
 
-        if (wepStat.weaponType().equals(effect.weaponType)) {
+        if (wepStat.weaponType()
+            .equals(effect.weaponType)) {
             if (effect.isElemental()) {
                 effect.number *= data.getMultiplier();
             }
@@ -35,7 +36,7 @@ public class EleWepDmgEffect extends BaseDamageEffect {
 
     @Override
     public boolean canActivate(DamageEffect effect, StatData data, Stat stat) {
-        return stat instanceof EleWepDmg;
+        return stat instanceof SpecificElementalWeaponDamage;
     }
 
 }

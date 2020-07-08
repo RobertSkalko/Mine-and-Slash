@@ -5,9 +5,6 @@ import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.Trait;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class AllTraitMods extends StatMod {
 
     public AllTraitMods(Trait stat) {
@@ -19,12 +16,6 @@ public class AllTraitMods extends StatMod {
     private String GUID;
     private Stat baseStat;
     private int weight;
-
-    @Override
-
-    public List<StatMod> getAllSizeVariations() {
-        return Arrays.asList(this);// traits dont need variations
-    }
 
     @Override
     public float Min() {

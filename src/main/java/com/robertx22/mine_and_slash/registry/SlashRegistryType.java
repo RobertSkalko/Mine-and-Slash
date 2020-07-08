@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
-import com.robertx22.mine_and_slash.database.sets.Set;
 import com.robertx22.mine_and_slash.database.tiers.base.Tier;
 import com.robertx22.mine_and_slash.db_lists.initializers.MobAffixes;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
@@ -60,12 +59,6 @@ public enum SlashRegistryType {
         }
     },
     WORLD_PROVIDER("world_provider"),
-    SET("item_set") {
-        @Override
-        public ISerializable getSerializer() {
-            return Set.EMPTY;
-        }
-    },
     EMPTY("empty"),
     MAP_AFFIX("map_affix"),
     ITEM_MODIFICATION("item_modification"),

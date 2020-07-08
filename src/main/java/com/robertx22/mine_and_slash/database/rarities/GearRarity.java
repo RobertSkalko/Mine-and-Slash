@@ -17,16 +17,12 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
         JsonObject json = this.getRarityJsonObject();
 
         json.addProperty("affix_chance", AffixChance());
-        json.addProperty("set_chance", SetChance());
         json.addProperty("rune_slots", runeSlots());
         json.addProperty("requirements_multi", requirementMulti());
         json.addProperty("unidentified_chance", unidentifiedChance());
         json.addProperty("salvage_lottery_chance", salvageLotteryWinChance());
+        json.addProperty("max_affixes", maxAffixes());
 
-        json.add("secondary_stat_amount", secondaryStatAmount().toJson());
-        json.add("stat_percents", StatPercents().toJson());
-        json.add("primary_stat_percents", primaryStatPercents().toJson());
-        json.add("secondary_stat_percents", secondaryStatPercents().toJson());
         json.add("unique_stat_percents", uniqueStatPercents().toJson());
         json.add("affix_stat_percents", affixStatPercents().toJson());
 
@@ -40,6 +36,8 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
 
         SerializedGearRarity rar = new SerializedGearRarity(baseRarity);
 
+        rar.maxAffixes = json.get("max_affixes")
+            .getAsInt();
         rar.affixChance = json.get("affix_chance")
             .getAsInt();
         rar.salvageLotteryChance = json.get("salvage_lottery_chance")
@@ -78,11 +76,7 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
 
     default MinMax getStatPercentsFor(Part part) {
 
-        if (part == Part.PRIMARY_STATS) {
-            return primaryStatPercents();
-        } else if (part == Part.SECONDARY_STATS) {
-            return secondaryStatPercents();
-        } else if (part == Part.AFFIX) {
+        if (part == Part.AFFIX) {
             return affixStatPercents();
         } else if (part == Part.UNIQUE_STATS) {
             return uniqueStatPercents();
@@ -91,21 +85,19 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
         }
     }
 
-    MinMax primaryStatPercents();
-
-    MinMax secondaryStatPercents();
-
     MinMax affixStatPercents();
 
     MinMax uniqueStatPercents();
 
     int AffixChance();
 
-    int SetChance();
-
     int runeSlots();
 
-    MinMax secondaryStatAmount();
+    int maxAffixes();
+
+    default int maximumOfOneAffixType() {
+        return maxAffixes() / 2;
+    }
 
     float itemTierPower();
 

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.saveclasses.spells.calc;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalAttackDamage;
+import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
@@ -43,7 +43,7 @@ public class SpellCalcData {
     public static SpellCalcData scaleWithAttack(float attack, float base) {
         SpellCalcData data = new SpellCalcData();
 
-        List<Stat> list = new ElementalAttackDamage(Elements.Nature).generateAllSingleVariations();
+        List<Stat> list = new WeaponDamage(Elements.Nature).generateAllSingleVariations();
         list.add(PhysicalDamage.getInstance());
         data.mergedScalingValues.add(new MergedScalingStatsCalc(list, attack, new SText(TextFormatting.GOLD + "Attack Damage")));
 
