@@ -8,28 +8,16 @@ import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
-import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatConversion;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatTransfer;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;
 
-import java.util.List;
-
 public class CommonStatUtils {
-
-    public static void addCustomStats(UnitData data, Unit unit, int level) {
-        for (StatModData stat : data.getCustomStats().stats.values()) {
-            stat.applyStats(data, level);
-        }
-    }
 
     public static void addExactCustomStats(UnitData data) {
         for (ExactStatData stat : data.getCustomExactStats().stats.values()) {
@@ -113,24 +101,6 @@ public class CommonStatUtils {
                 core.transferStats(copy, unit, copy.getCreateStat(core.GUID()));
             }
 
-        }
-
-    }
-
-    public static void AddMapAffixStats(WorldMapCap.IWorldMapData mapdata, Unit unit, int level, LivingEntity entity) {
-
-        for (MapAffixData status : WorldUtils.getAllAffixesThatAffect(mapdata, entity)) {
-            List<StatModData> datas = status.GetAllStats();
-            for (StatModData statModData : datas) {
-                StatData statData = unit.getCreateStat(statModData.getStatMod()
-                    .GetBaseStat());
-                if (statData == null) {
-                } else {
-
-                    statData.add(statModData, level);
-
-                }
-            }
         }
 
     }

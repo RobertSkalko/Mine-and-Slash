@@ -1,23 +1,20 @@
 package com.robertx22.mine_and_slash.gui.screens.main_hub;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.bases.BaseBarsOverlay;
 import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.types.BottomMiddleCornersOverlay;
-import com.robertx22.mine_and_slash.gui.screens.bestiary.BestiaryScreen;
-import com.robertx22.mine_and_slash.gui.screens.map_info_gui.MapInfoScreen;
 import com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup.SpellHotbatSetupScreen;
 import com.robertx22.mine_and_slash.gui.screens.spell_schools.SpellSchoolScreen;
 import com.robertx22.mine_and_slash.gui.screens.stat_allocation_screen.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.screens.stats_overview.StatOverviewScreen;
-import com.robertx22.mine_and_slash.gui.screens.talent_tree_gui.TalentPerkTreeScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -49,13 +46,11 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         super.init();
 
         List<INamedScreen> screens = new ArrayList<>();
-        screens.add(new MapInfoScreen());
+
         screens.add(new SpellHotbatSetupScreen());
         screens.add(new StatOverviewScreen());
         screens.add(new StatAllocationScreen());
         screens.add(new SpellSchoolScreen());
-        screens.add(new TalentPerkTreeScreen());
-        screens.add(new BestiaryScreen());
 
         int x = guiLeft + 10;
         int y = guiTop + 45;

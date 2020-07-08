@@ -82,7 +82,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new UnknownStat());
 
                     // Resources
-                    add(Health.getInstance());
+                    add(BonusMaximumHealth.getInstance());
                     add(HealthRegen.getInstance());
                     add(Lifesteal.getInstance());
                     add(LifeOnHit.getInstance());

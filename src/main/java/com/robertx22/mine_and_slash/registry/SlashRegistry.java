@@ -17,16 +17,16 @@ import com.robertx22.mine_and_slash.database.spells.synergies.base.Synergy;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.tiers.base.Tier;
 import com.robertx22.mine_and_slash.database.tiers.impl.TierOne;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
-import com.robertx22.mine_and_slash.database.world_providers.DungeonDimension;
-import com.robertx22.mine_and_slash.database.world_providers.base.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.packets.RegistryPacket;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
-import com.robertx22.mine_and_slash.registry.empty_entries.*;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyGearType;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptySpell;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyStat;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -143,10 +143,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<MobAffix> MobAffixes() {
         return getRegistry(SlashRegistryType.MOB_AFFIX);
-    }
-
-    public static SlashRegistryContainer<BaseDungeonDimension> WorldProviders() {
-        return getRegistry(SlashRegistryType.WORLD_PROVIDER);
     }
 
     public static ModEntityContainer EntityConfigs() {
@@ -279,7 +275,6 @@ public class SlashRegistry {
 
         // data pack ones
         addRegistry(new SlashRegistryContainer<Tier>(SlashRegistryType.TIER, new TierOne()).isDatapack());
-        addRegistry(new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, EmptyUnique.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<MobAffix>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
         addRegistry(new SlashRegistryContainer<UniqueDungeon>(SlashRegistryType.UNIQUE_DUNGEON, null).isDatapack());
@@ -293,8 +288,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance()));
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
         addRegistry(new SlashRegistryContainer<Synergy>(SlashRegistryType.SPELL_SYNERGY, null));
-        addRegistry(new SlashRegistryContainer<BaseDungeonDimension>(SlashRegistryType.WORLD_PROVIDER, new DungeonDimension(null, null)));
-
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
         addRegistry(new SlashRegistryContainer<BasePotionEffect>(SlashRegistryType.EFFECT, null));
         addRegistry(new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()

@@ -4,9 +4,7 @@ import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_generation.JsonUtils;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
-import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.db_lists.bases.IhasRequirements;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -20,7 +18,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, IRarity,
     ISerializedRegistryEntry<BaseAffix>, ISerializable<BaseAffix> {
@@ -80,19 +77,6 @@ public class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequiremen
     @Override
     public final Requirements requirements() {
         return requirements;
-    }
-
-    public LevelRequirement getLevelRequirement() {
-
-        Optional<BaseRequirement> opt = requirements.requirements.stream()
-            .filter(x -> x instanceof LevelRequirement)
-            .findAny();
-
-        if (opt.isPresent()) {
-            return (LevelRequirement) opt.get();
-        }
-
-        return LevelRequirement.none();
     }
 
     @Override

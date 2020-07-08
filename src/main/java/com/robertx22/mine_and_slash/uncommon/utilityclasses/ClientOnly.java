@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.gui.screens.trader.TraderScreen;
-import com.robertx22.mine_and_slash.new_content.trader.TraderData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
@@ -28,24 +26,6 @@ public class ClientOnly {
             }
         }
         return null;
-
-    }
-
-    public static void openOrUpdateTradeGui(TraderData data, int traderID) {
-        if (Minecraft.getInstance().currentScreen instanceof TraderScreen) {
-            TraderScreen screen = (TraderScreen) Minecraft.getInstance().currentScreen;
-
-            if (screen.traderID != traderID) {
-                System.out.println("Activated another trader while trader gui is open???");
-                return;
-            }
-
-            screen.data = data;
-            screen.init();
-        } else {
-            Minecraft.getInstance()
-                .displayGuiScreen(new TraderScreen(data, traderID));
-        }
 
     }
 

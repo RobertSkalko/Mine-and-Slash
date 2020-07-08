@@ -9,11 +9,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.StatModData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerTalentsCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.List;
@@ -53,13 +49,10 @@ public class PlayerStatUtils {
 
     }
 
-    public static void AddAllGearStats(Entity entity, List<GearItemData> gears, UnitData unitdata, int level) {
+    public static void AddAllGearStats(Entity entity, List<GearItemData> gears, UnitData unitdata) {
 
         for (GearItemData gear : gears) {
 
-            if (gear.level > unitdata.getLevel()) {
-                continue;
-            }
             if (!gear.isIdentified()) {
                 continue;
             }
@@ -102,22 +95,6 @@ public class PlayerStatUtils {
 
             }
         }
-
-    }
-
-    public static void addTalentStats(UnitData data, PlayerEntity player) {
-
-        PlayerTalentsCap.IPlayerTalentsData talents = Load.talents(player);
-
-        talents.applyStats(data, player);
-
-    }
-
-    public static void addSpellTreeStats(UnitData data, PlayerEntity player) {
-
-        PlayerSpellCap.ISpellsCap spells = Load.spells(player);
-
-        spells.applyStats(data, player);
 
     }
 

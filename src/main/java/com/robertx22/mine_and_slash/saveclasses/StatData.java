@@ -97,9 +97,6 @@ public class StatData {
         } else {
             float finalValue = stat.BaseFlat;
 
-            finalValue = stat.getScaling()
-                .scale(stat.BaseFlat, data.getLevel());
-
             finalValue += Flat;
 
             finalValue *= 1 + Percent / 100;
@@ -125,9 +122,6 @@ public class StatData {
             return;
         } else {
             float finalValue = stat.BaseFlat;
-
-            finalValue = stat.getScaling()
-                .scale(stat.BaseFlat, data.getLevel());
 
             finalValue += Flat2;
 
@@ -241,14 +235,6 @@ public class StatData {
             this.Percent += data.Percent;
             this.Multi += data.Multi;
         }
-    }
-
-    public void addFlat(float val, int lvl) {
-        this.Flat += this.GetStat()
-            .calculateScalingStatGrowth(val, lvl);
-        this.Flat2 += this.GetStat()
-            .calculateScalingStatGrowth(val, lvl);
-
     }
 
     public void Clear() {

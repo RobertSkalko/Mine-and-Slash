@@ -6,14 +6,14 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.text.TextFormatting;
 
-public class Health extends Stat {
+public class BonusMaximumHealth extends Stat {
     public static String GUID = "health";
 
-    private Health() {
+    private BonusMaximumHealth() {
         this.minimumValue = 1;
     }
 
-    public static Health getInstance() {
+    public static BonusMaximumHealth getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -72,6 +72,6 @@ public class Health extends Stat {
     }
 
     private static class SingletonHolder {
-        private static final Health INSTANCE = new Health();
+        private static final BonusMaximumHealth INSTANCE = new BonusMaximumHealth();
     }
 }

@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.HealEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.ModifyResourceEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellHealEffect;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.LivingEntity;
@@ -94,7 +93,6 @@ public class ResourcesData {
     public enum Type {
         HEALTH,
         MANA,
-        ENERGY,
         MAGIC_SHIELD,
         BLOOD
     }
@@ -105,17 +103,11 @@ public class ResourcesData {
     }
 
     @Store
-    private float energy = 0;
-    @Store
     private float mana = 0;
     @Store
     private float magicShield = 0;
     @Store
     private float blood = 0;
-
-    public float getEnergy() {
-        return energy;
-    }
 
     public float getMana() {
         return mana;
@@ -145,9 +137,7 @@ public class ResourcesData {
     }
 
     private float get(Context ctx) {
-        if (ctx.type == Type.ENERGY) {
-            return energy;
-        } else if (ctx.type == Type.MANA) {
+        if (ctx.type == Type.MANA) {
             return mana;
         } else if (ctx.type == Type.MAGIC_SHIELD) {
             return magicShield;
@@ -164,11 +154,7 @@ public class ResourcesData {
 
     private void modifyBy(Context ctx) {
 
-        if (ctx.type == Type.ENERGY) {
-            energy = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                .energyData()
-                .getAverageValue());
-        } else if (ctx.type == Type.MANA) {
+        if (ctx.type == Type.MANA) {
             mana = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
                 .manaData()
                 .getAverageValue());
@@ -184,9 +170,7 @@ public class ResourcesData {
             if (ctx.use == Use.RESTORE) {
                 heal(ctx);
             } else {
-                ctx.target.setHealth(
-                    HealthUtils.DamageToMinecraftHealth(getModifiedValue(ctx), ctx.target, ctx.targetData));
-
+                ctx.target.setHealth(getModifiedValue(ctx));
             }
         }
     }

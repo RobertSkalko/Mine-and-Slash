@@ -4,15 +4,13 @@ import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.IAfterStatCalc;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
-import com.robertx22.mine_and_slash.database.stats.types.game_changers.BloodMage;
+import com.robertx22.mine_and_slash.database.stats.types.resources.BonusMaximumHealth;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
-import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -23,7 +21,6 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
@@ -33,14 +30,11 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -235,8 +229,8 @@ public class Unit {
     }
 
     // Stat shortcuts
-    public Health health() {
-        return Health.getInstance();
+    public BonusMaximumHealth health() {
+        return BonusMaximumHealth.getInstance();
     }
 
     public Mana mana() {
@@ -265,22 +259,9 @@ public class Unit {
 
     }
 
-    public boolean isBloodMage() {
-        return hasStat(BloodMage.INSTANCE) && this.getCreateStat(BloodMage.INSTANCE)
-            .isMoreThanZero();
-    }
-
-    public float getMaximumBlood() {
-        if (this.getCreateStat(BloodMage.INSTANCE)
-            .getAverageValue() > 0) {
-            return healthData().getAverageValue() / 2;
-        }
-        return 0;
-    }
-
     public StatData healthData() {
         try {
-            return getCreateStat(Health.GUID);
+            return getCreateStat(BonusMaximumHealth.GUID);
         } catch (Exception e) {
         }
         return StatData.empty();
@@ -315,8 +296,6 @@ public class Unit {
 
     public int randomRarity(LivingEntity entity, UnitData data) {
 
-        int level = data.getLevel();
-
         double y = entity.posY;
 
         List<MobRarity> rarities = Rarities.Mobs.getNormalRarities();
@@ -333,12 +312,6 @@ public class Unit {
         }
 
         DimensionConfig config = SlashRegistry.getDimensionConfig(entity.world);
-
-        if (!WorldUtils.isMapWorldClass(entity.world)) {
-            if (config.LEVEL_FOR_MOBS_TO_BE_LEGENDARY > level) {
-                rarities.removeIf(x -> x.Rank() == IRarity.Legendary);
-            }
-        }
 
         MobRarity finalRarity = RandomUtils.weightedRandom(rarities);
 
@@ -395,27 +368,12 @@ public class Unit {
 
         DirtyCheck check = new DirtyCheck();
 
-        check.hp = (int) getCreateStat(Health.GUID).getAverageValue();
+        check.hp = (int) getCreateStat(BonusMaximumHealth.GUID).getAverageValue();
 
         return check;
     }
 
-    private float getHpAdded(LivingEntity entity, MobRarity rar, UnitData data) {
-
-        float hpadded = Health.getInstance()
-            .calculateScalingStatGrowth(entity.getMaxHealth(), data.getLevel());
-
-        if (entity instanceof PlayerEntity) {
-            hpadded *= ModConfig.INSTANCE.Server.PLAYER_HEART_TO_HEALTH_CONVERSION.get();
-
-        } else {
-            hpadded *= 2F * rar.HealthMultiplier();
-        }
-
-        return hpadded;
-    }
-
-    public void recalculateStats(LivingEntity entity, UnitData data, int level, @Nullable DamageEventData dmgData) {
+    public void recalculateStats(LivingEntity entity, UnitData data, @Nullable DamageEventData dmgData) {
 
         data.setEquipsChanged(false);
 
@@ -429,40 +387,23 @@ public class Unit {
 
         MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.CollectGearStacksEvent(entity, gears, dmgData));
 
-        boolean gearIsValid = this.isGearCombinationValid(gears, entity);
-
         ClearStats();
 
         MobRarity rar = Rarities.Mobs.get(data.getRarity());
 
-        float hpadded = getHpAdded(entity, rar, data);
-
-        getCreateStat(Health.GUID)
-            .addFlat(hpadded);
-
         Boolean isMapWorld = WorldUtils.isMapWorld(entity.world);
 
-        WorldMapCap.IWorldMapData mapData = Load.world(entity.world);
-
         CommonStatUtils.addPotionStats(entity, data);
-        CommonStatUtils.addCustomStats(data, this, level);
+        CommonStatUtils.addCustomStats(data, this);
         CommonStatUtils.addExactCustomStats(data);
 
         if (entity instanceof PlayerEntity) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
-            PlayerStatUtils.addTalentStats(data, (PlayerEntity) entity);
-            PlayerStatUtils.addSpellTreeStats(data, (PlayerEntity) entity);
-
-            Load.statPoints((PlayerEntity) entity)
-                .getData()
-                .getAllStatDatas()
-                .forEach(x -> x.applyStats(data));
 
         } else {
-            MobStatUtils.AddMobcStats(data, data.getLevel());
+            MobStatUtils.AddMobcStats(data);
             MobStatUtils.addAffixStats(data);
             MobStatUtils.worldMultiplierStats(entity.world, this);
-            MobStatUtils.increaseMobStatsPerLevel(data);
 
             if (isMapWorld) {
                 MobStatUtils.increaseMobStatsPerTier(data, this);
@@ -472,14 +413,7 @@ public class Unit {
 
         }
 
-        if (gearIsValid) {
-            PlayerStatUtils.AddAllGearStats(entity, gears, data, level);
-
-        }
-
-        if (isMapWorld) {
-            CommonStatUtils.AddMapAffixStats(mapData, this, level, entity);
-        }
+        PlayerStatUtils.AddAllGearStats(entity, gears, data);
 
         Unit copy = this.Clone();
 
@@ -555,76 +489,6 @@ public class Unit {
 
     public static Object getUpdatePacketFor(LivingEntity en, UnitData data) {
         return new EfficientMobUnitPacket(en, data); // todo maybe players will need extra data later on? maybe
-    }
-
-    // gear check works on everything but the weapon.
-    public boolean isGearCombinationValid(List<GearItemData> gears, Entity en) {
-
-        List<GearItemData> nonWeapons = gears.stream()
-            .filter(x -> x.GetBaseGearType()
-                .slotType() != GearItemSlot.GearSlotType.Weapon)
-            .collect(Collectors.toList());
-
-        int unique_items = (int) nonWeapons.stream()
-            .filter(x -> x.isUnique())
-            .count();
-
-        if (unique_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS.get()) {
-            if (en instanceof ServerPlayerEntity) {
-                en.sendMessage(new StringTextComponent(
-                    "Gear Stats Not Added, reason: you are wearing too many unique items! Maximum Possible " +
-                        "Unique" + " items (excluding weapon) : " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_UNIQUE_ITEMS
-                        .get()));
-            }
-            return false;
-        }
-        int runed_items = (int) nonWeapons.stream()
-            .filter(x -> x.isRuned())
-            .count();
-
-        if (runed_items > ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS.get()) {
-            if (en instanceof ServerPlayerEntity) {
-                en.sendMessage(new StringTextComponent(
-                    "Gear Stats Not Added, reason: you are wearing too many runed items! Maximum Possible Unique "
-                        + "items (excluding weapon) : " + ModConfig.INSTANCE.Server.MAXIMUM_WORN_RUNED_ITEMS
-                        .get()));
-            }
-            return false;
-        }
-
-        // here i can go through all the items and then runewords and check if there is
-        // more than
-
-        return true;
-
-    }
-
-    private int countRunedItems(List<GearItemData> gears) {
-
-        int amount = 0;
-
-        for (GearItemData gear : gears) {
-            if (gear.isRuned()) {
-                amount++;
-            }
-        }
-
-        return amount;
-
-    }
-
-    private int countUniqueItems(List<GearItemData> gears) {
-
-        int amount = 0;
-
-        for (GearItemData gear : gears) {
-            if (gear.isUnique()) {
-                amount++;
-            }
-        }
-
-        return amount;
-
     }
 
     private Unit Clone() {

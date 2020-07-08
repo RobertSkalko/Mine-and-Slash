@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -125,10 +124,6 @@ public class TooltipUtils {
             new StringTextComponent(TextFormatting.GRAY + " ").appendSibling(text)
                 .appendText(": " + req));
 
-    }
-
-    public static ITextComponent lvlReq(int lvl, EntityCap.UnitData player) {
-        return requirement(new StringTextComponent("Lvl Req"), player.getLevel(), lvl);
     }
 
     public static List<ITextComponent> removeDoubleBlankLines(List<ITextComponent> list) {

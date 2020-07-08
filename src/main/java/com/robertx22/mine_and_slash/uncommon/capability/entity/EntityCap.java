@@ -1,60 +1,46 @@
 package com.robertx22.mine_and_slash.uncommon.capability.entity;
 
-import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
-import com.robertx22.mine_and_slash.commands.open_gui.OpenHub;
 import com.robertx22.mine_and_slash.config.forge.CommonConfig;
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
-import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
-import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
-import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.database.tiers.base.Tier;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.onevent.player.OnLogin;
-import com.robertx22.mine_and_slash.packets.NoEnergyPacket;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.*;
+import com.robertx22.mine_and_slash.saveclasses.CustomExactStatsData;
+import com.robertx22.mine_and_slash.saveclasses.EntityDmgStatsData;
+import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
+import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.INeededForClient;
-import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.*;
+import com.robertx22.mine_and_slash.uncommon.datasaving.CustomExactStats;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.datasaving.UnitNbt;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
-import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.event.ClickEvent;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -72,9 +58,7 @@ public class EntityCap {
     @CapabilityInject(UnitData.class)
     public static final Capability<UnitData> Data = null;
 
-    private static final String LEVEL = "level";
     private static final String RARITY = "rarity";
-    private static final String EXP = "exp";
     private static final String UUID = "uuid";
     private static final String MOB_SAVED_ONCE = "mob_saved_once";
     private static final String SET_MOB_STATS = "set_mob_stats";
@@ -103,21 +87,11 @@ public class EntityCap {
 
         GearItemData setupWeaponData(LivingEntity entity);
 
-        int getLastHitTicksExisted();
-
-        void setAttackCooldown(PlayerEntity player);
-
-        float getAttackCooldown();
-
-        boolean isAttackCooldownInSweepRange();
-
         void setEquipsChanged(boolean bool);
 
         void onDamagedBy(LivingEntity entity, float dmg, LivingEntity self);
 
         Entity getHighestDamageEntity(Entity entity);
-
-        int PostGiveExpEvent(LivingEntity killed, PlayerEntity player, int exp);
 
         boolean isNewbie();
 
@@ -125,29 +99,7 @@ public class EntityCap {
 
         boolean needsToBeGivenStats();
 
-        void freelySetLevel(int lvl);
-
-        int getLevel();
-
-        void setLevel(int lvl, LivingEntity entity);
-
         boolean increaseRarity(LivingEntity entity);
-
-        int getExp();
-
-        void setExp(int exp);
-
-        int GiveExp(PlayerEntity player, int i);
-
-        int getExpRequiredForLevelUp();
-
-        boolean CheckIfCanLevelUp();
-
-        boolean LevelUp(PlayerEntity player);
-
-        boolean CheckLevelCap();
-
-        void SetMobLevelAtSpawn(WorldMapCap.IWorldMapData data, LivingEntity entity, PlayerEntity player);
 
         Unit getUnit();
 
@@ -187,17 +139,11 @@ public class EntityCap {
 
         Tier getMapTier();
 
-        CustomStatsData getCustomStats();
-
         CustomExactStatsData getCustomExactStats();
 
         ResourcesData getResources();
 
-        float getCurrentEnergy();
-
         float getCurrentMana();
-
-        int getLvlForResourceCosts();
 
         void attackWithWeapon(DamageEventData data);
 
@@ -240,13 +186,11 @@ public class EntityCap {
 
         // sync these for mobs
         Unit unit = null;
-        int level = 1;
         int rarity = 0;
 
         EntityTypeUtils.EntityType type = EntityTypeUtils.EntityType.PLAYER;
         // sync these for mobs
 
-        int exp = 0;
         boolean setMobStats = false;
         String uuid = "";
         boolean isNewbie = true;
@@ -254,12 +198,8 @@ public class EntityCap {
         int tier = 0;
         boolean shouldSync = false;
 
-        float lastHitCooldownStr = 1;
-        int lastHitTicks = 0;
-
         EntityDmgStatsData dmgStats = new EntityDmgStatsData();
         ResourcesData resources = new ResourcesData();
-        CustomStatsData customStats = new CustomStatsData();
         CustomExactStatsData customExactStats = new CustomExactStatsData();
 
         @Override
@@ -267,7 +207,6 @@ public class EntityCap {
 
             CompoundNBT nbt = new CompoundNBT();
 
-            nbt.putInt(LEVEL, level);
             nbt.putInt(RARITY, rarity);
             nbt.putString(ENTITY_TYPE, this.type.toString());
 
@@ -284,7 +223,6 @@ public class EntityCap {
         @Override
         public void setClientNBT(CompoundNBT nbt) {
 
-            this.level = nbt.getInt(LEVEL);
             this.rarity = nbt.getInt(RARITY);
 
             try {
@@ -305,7 +243,6 @@ public class EntityCap {
         public CompoundNBT saveToNBT() {
             CompoundNBT nbt = getClientNBT();
 
-            nbt.putInt(EXP, exp);
             nbt.putInt(TIER, tier);
             nbt.putString(UUID, uuid);
             nbt.putBoolean(MOB_SAVED_ONCE, true);
@@ -313,13 +250,6 @@ public class EntityCap {
             nbt.putBoolean(NEWBIE_STATUS, this.isNewbie);
             nbt.putBoolean(EQUIPS_CHANGED, equipsChanged);
             nbt.putBoolean(SHOULD_SYNC, shouldSync);
-
-            nbt.putFloat("cdr", lastHitCooldownStr);
-            nbt.putInt("lht", lastHitTicks);
-
-            if (customStats != null) {
-                CustomStats.Save(nbt, customStats);
-            }
 
             if (customExactStats != null) {
                 CustomExactStats.Save(nbt, customExactStats);
@@ -342,16 +272,12 @@ public class EntityCap {
 
             setClientNBT(nbt);
 
-            this.exp = nbt.getInt(EXP);
             this.tier = nbt.getInt(TIER);
             this.uuid = nbt.getString(UUID);
             this.setMobStats = nbt.getBoolean(SET_MOB_STATS);
             this.isNewbie = nbt.getBoolean(NEWBIE_STATUS);
             this.equipsChanged = nbt.getBoolean(EQUIPS_CHANGED);
             this.shouldSync = nbt.getBoolean(SHOULD_SYNC);
-
-            this.lastHitCooldownStr = nbt.getFloat("cdr");
-            this.lastHitTicks = nbt.getInt("lht");
 
             try {
                 this.resources = LoadSave.Load(ResourcesData.class, new ResourcesData(), nbt, RESOURCES_LOC);
@@ -371,75 +297,11 @@ public class EntityCap {
                 e.printStackTrace();
             }
 
-            this.customStats = CustomStats.Load(nbt);
-            if (this.customStats == null) {
-                this.customStats = new CustomStatsData();
-            }
-
             this.customExactStats = CustomExactStats.Load(nbt);
             if (this.customExactStats == null) {
                 this.customExactStats = new CustomExactStatsData();
             }
 
-        }
-
-        @Override
-        public int getExpRequiredForLevelUp() {
-            return levelToExp(this.getLevel() + 1);
-        }
-
-        public static void testEXPLevelingCurve() {
-
-            System.out.println("Old Formula");
-            for (int i = 1; i < 101; i++) {
-                //System.out.println("level: " + i + " exp: " + oldlevelToExp(i));
-
-            }
-
-            System.out.println("New Formula");
-            for (int i = 1; i < 101; i++) {
-                System.out.println("level: " + i + " exp: " + levelToExp(i));
-            }
-
-        }
-
-        public static int equateXp(double lvl) {
-            return (int) Math.floor(lvl + 340 * Math.pow(2, lvl / 9));
-        }
-
-        public static int levelToExp(int level) {
-            if (true) {
-                return level * level * level * 10;
-            }
-
-            double xp = 0;
-
-            for (int i = 1; i < level; i++)
-                xp += equateXp(i);
-
-            return (int) Math.floor(xp / 4);
-        }
-
-        @Override
-        public void SetMobLevelAtSpawn(WorldMapCap.IWorldMapData data, LivingEntity entity,
-                                       PlayerEntity nearestPlayer) {
-            this.setMobStats = true;
-
-            if (WorldUtils.isMapWorldClass(entity.world)) {
-                this.level = data.getLevel(entity.getPosition(), entity.world);
-
-            } else {
-                setMobLvlNormally(entity, nearestPlayer);
-            }
-        }
-
-        private void setMobLvlNormally(LivingEntity entity, PlayerEntity nearestPlayer) {
-            ModEntityConfig entityConfig = SlashRegistry.getEntityConfig(entity, this);
-            int lvl = LevelUtils.determineLevel(entity.world, entity.getPosition(),
-                nearestPlayer
-            ) + entityConfig.LEVEL_MODIFIER;
-
-            this.level = MathHelper.clamp(lvl, entityConfig.MIN_LEVEL, entityConfig.MAX_LEVEL);
         }
 
         @Override
@@ -476,145 +338,6 @@ public class EntityCap {
         }
 
         @Override
-        public int PostGiveExpEvent(LivingEntity killed, PlayerEntity player, int i) {
-
-            i *= ModConfig.INSTANCE.Server.EXPERIENCE_MULTIPLIER.get();
-
-            i *= (double) this.getUnit()
-                .peekAtStat(BonusExp.GUID)
-                .getAverageValue() / 100 + 1;
-
-            MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.GiveExpEvent(killed, player, this, i));
-
-            return i;
-        }
-
-        @Override
-        public int GiveExp(PlayerEntity player, int i) {
-
-            setExp(exp + i);
-
-            if (exp > this.getExpRequiredForLevelUp()) {
-
-                if (this.CheckIfCanLevelUp() && this.CheckLevelCap()) {
-                    this.LevelUp(player);
-                }
-
-                return i;
-            }
-            return i;
-        }
-
-        @Override
-        public boolean CheckIfCanLevelUp() {
-
-            return getExp() >= getExpRequiredForLevelUp();
-
-        }
-
-        public int getRemainingExp() {
-            int num = getExp() - getExpRequiredForLevelUp();
-
-            if (num < 0) {
-                num = 0;
-            }
-            return num;
-        }
-
-        @Override
-        public boolean CheckLevelCap() {
-            return getLevel() + 1 <= ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get();
-        }
-
-        @Override
-        public boolean LevelUp(PlayerEntity player) {
-
-            if (!CheckIfCanLevelUp()) {
-                player.sendMessage(Chats.Not_enough_experience.locName());
-            } else if (!CheckLevelCap()) {
-                player.sendMessage(Chats.Can_not_go_over_maximum_level.locName());
-            }
-
-            if (CheckIfCanLevelUp() && CheckLevelCap()) {
-
-                this.setLevel(level + 1, player);
-                setExp(getRemainingExp());
-                player.sendMessage(
-                    new StringTextComponent(TextFormatting.YELLOW + "" + TextFormatting.BOLD).appendSibling(
-                        Chats.You_have_leveled_up.locName())
-                        .appendText("!"));
-                CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) player, this);
-
-                onLvlPostMsg(player);
-
-                try {
-                    Load.playersCapBackup(MapManager.getWorld(DimensionType.OVERWORLD))
-                        .getBackup()
-                        .backup((ServerPlayerEntity) player, this);
-                } catch (Exception e) {
-                    //  e.printStackTrace();
-                }
-
-                return true;
-            }
-            return false;
-        }
-
-        public void onLvlPostMsg(LivingEntity en) {
-
-            int talents = Load.talents((PlayerEntity) en)
-                .getFreePoints(this);
-            int spells = Load.spells((PlayerEntity) en)
-                .getAbilitiesData()
-                .getFreeAbilityPoints(this);
-            int stats = Load.statPoints((PlayerEntity) en)
-                .getAvailablePoints(this);
-
-            int total = talents + spells + stats;
-
-            if (total > 0) {
-                ITextComponent msg = new StringTextComponent(
-                    TextFormatting.BLUE + "You have " + total + " Unspent Level up points." + TextFormatting.ITALIC + " Click to Open Main Hub [Default key: (H)]");
-                msg.setStyle(msg.getStyle()
-                    .setClickEvent(
-                        new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/" + OpenHub.COMMAND)));
-                en.sendMessage(msg);
-
-            }
-
-        }
-
-        @Override
-        public int getLevel() {
-
-            return level;
-
-        }
-
-        @Override
-        public void setLevel(int lvl, LivingEntity entity) {
-
-            level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get());
-
-            this.equipsChanged = true;
-            this.shouldSync = true;
-
-            if (entity instanceof ServerPlayerEntity) {
-                CriteriaRegisters.PLAYER_LEVEL_TRIGGER.trigger((ServerPlayerEntity) entity, this);
-            }
-        }
-
-        @Override
-        public int getExp() {
-            return exp;
-        }
-
-        @Override
-        public void setExp(int exp) {
-            this.exp = exp;
-        }
-
-        @Override
         public void onAttackEntity(LivingEntity attacker, LivingEntity victim) {
 
         }
@@ -627,11 +350,6 @@ public class EntityCap {
         @Override
         public void onDeath(LivingEntity en) {
 
-            int expLoss = (int) (exp * ModConfig.INSTANCE.Server.XP_LOSS_ON_DEATH.get());
-
-            if (expLoss > 0) {
-                this.exp = MathHelper.clamp(exp - expLoss, 0, Integer.MAX_VALUE);
-            }
         }
 
         @Override
@@ -697,7 +415,7 @@ public class EntityCap {
         public ITextComponent getName(LivingEntity entity) {
 
             if (entity instanceof PlayerEntity) {
-                return new StringTextComponent("[Lv:").appendText(this.getLevel() + "] " + " ")
+                return new StringTextComponent("")
                     .appendSibling(entity.getDisplayName());
 
             } else {
@@ -719,7 +437,7 @@ public class EntityCap {
                 }
 
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
-                    .appendSibling(new StringTextComponent("[Lv:" + this.getLevel() + "] "));
+                    .appendSibling(new StringTextComponent(""));
 
                 ITextComponent part = new StringTextComponent(rarity.textFormatting() + "").appendSibling(
                     rarityprefix.appendText(" ")
@@ -740,14 +458,14 @@ public class EntityCap {
             }
 
             if (needsToRecalcStats()) {
-                unit.recalculateStats(entity, this, level, null);
+                unit.recalculateStats(entity, this, null);
             }
 
         }
 
         @Override
         public void forceRecalculateStats(LivingEntity entity, DamageEventData data) {
-            unit.recalculateStats(entity, this, level, data);
+            unit.recalculateStats(entity, this, data);
         }
 
         @Override
@@ -756,7 +474,7 @@ public class EntityCap {
             if (unit == null) {
                 unit = new Unit();
             }
-            unit.recalculateStats(entity, this, level, null);
+            unit.recalculateStats(entity, this, null);
         }
 
         // This reduces stat calculation by about 4 TIMES!
@@ -776,27 +494,6 @@ public class EntityCap {
         }
 
         @Override
-        public int getLastHitTicksExisted() {
-            return this.lastHitTicks;
-        }
-
-        @Override
-        public void setAttackCooldown(PlayerEntity player) {
-            this.lastHitCooldownStr = player.getCooledAttackStrength(0.5F);
-            this.lastHitTicks = player.ticksExisted;
-        }
-
-        @Override
-        public float getAttackCooldown() {
-            return this.lastHitCooldownStr;
-        }
-
-        @Override
-        public boolean isAttackCooldownInSweepRange() {
-            return getAttackCooldown() > 0.9F;
-        }
-
-        @Override
         public boolean tryUseWeapon(GearItemData weaponData, LivingEntity source) {
             return tryUseWeapon(weaponData, source, 1);
         }
@@ -810,50 +507,7 @@ public class EntityCap {
 
                     GearItemSlot slot = weaponData.GetBaseGearType();
 
-                    float energyCost = slot.getSwingCosts()
-                        .GetEnergyCost(weaponData.getLevel()) * multi;
-
-                    float manaCost = slot.getSwingCosts()
-                        .GetManaCost(weaponData.getLevel()) * multi;
-
-                    float cooldown = getAttackCooldown();
-
-                    energyCost *= cooldown;
-                    manaCost *= cooldown;
-
-                    // if player is using attack cooldown nicely, dont add any penalty
-                    if (!isAttackCooldownInSweepRange()) {
-                        float penalty = 1.2F;
-                        energyCost *= penalty;
-                        manaCost *= penalty;
-                    }
-
-                    ResourcesData.Context ene = new ResourcesData.Context(
-                        this, source, ResourcesData.Type.ENERGY, energyCost, ResourcesData.Use.SPEND);
-                    ResourcesData.Context mana = new ResourcesData.Context(
-                        this, source, ResourcesData.Type.MANA, manaCost, ResourcesData.Use.SPEND);
-
-                    if (getResources().hasEnough(ene) == false) {
-                        if (source instanceof ServerPlayerEntity) {
-                            MMORPG.sendToClient(new NoEnergyPacket(), (ServerPlayerEntity) source);
-                        }
-                        return false;
-
-                    } else {
-
-                        if (getResources().hasEnough(mana) == false) {
-                            if (source instanceof ServerPlayerEntity) {
-                                MMORPG.sendToClient(new NoEnergyPacket(), (ServerPlayerEntity) source);
-                            }
-                            return false;
-                        }
-
-                        getResources().modify(ene);
-                        getResources().modify(mana);
-
-                        return true;
-
-                    }
+                    return true;
 
                 }
             } catch (Exception e) {
@@ -947,11 +601,6 @@ public class EntityCap {
         }
 
         @Override
-        public CustomStatsData getCustomStats() {
-            return this.customStats;
-        }
-
-        @Override
         public CustomExactStatsData getCustomExactStats() {
             return this.customExactStats;
         }
@@ -962,20 +611,8 @@ public class EntityCap {
         }
 
         @Override
-        public float getCurrentEnergy() {
-            return this.resources.getEnergy();
-        }
-
-        @Override
         public float getCurrentMana() {
             return this.resources.getMana();
-        }
-
-        @Override
-        public int getLvlForResourceCosts() {
-
-            return this.getLevel();
-
         }
 
         @Override
@@ -996,35 +633,14 @@ public class EntityCap {
 
         @Override
         public void unarmedAttack(DamageEventData data) {
-            float cost = ModConfig.INSTANCE.Server.UNARMED_ENERGY_COST.get()
-                .floatValue();
 
-            cost = Energy.getInstance()
-                .calculateScalingStatGrowth(cost, getLvlForResourceCosts());
-
-            ResourcesData.Context energy = new ResourcesData.Context(
-                this, data.source, ResourcesData.Type.ENERGY, cost, ResourcesData.Use.SPEND);
-
-            if (this.getResources()
-                .hasEnough(energy)) {
-                this.getResources()
-                    .modify(energy);
-                int num = (int) unit.getCreateStat(PhysicalDamage.GUID)
-                    .getRandomRangeValue();
-                DamageEffect dmg = new DamageEffect(
-                    data, num, EffectData.EffectTypes.NORMAL, WeaponTypes.None);
-
-                dmg.Activate();
-            }
         }
 
         @Override
         public void mobBasicAttack(DamageEventData data) {
             MobRarity rar = Rarities.Mobs.get(data.sourceData.getRarity());
 
-            float vanilla = PhysicalDamage.getInstance()
-                .getScaling()
-                .scale(data.getEventDamage(), data.sourceData.getLevel());
+            float vanilla = data.getEventDamage();
 
             float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
 
@@ -1036,11 +652,6 @@ public class EntityCap {
 
             dmg.Activate();
 
-        }
-
-        @Override
-        public void freelySetLevel(int lvl) {
-            this.level = lvl;
         }
 
         @Override

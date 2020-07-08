@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -15,7 +14,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.StatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -161,16 +159,8 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     public int BaseFlat = 0;
 
-    public final float calculateScalingStatGrowth(float stat, int lvl) {
-        return getScaling().scale(stat, lvl);
-    }
-
-    public StatScaling getScaling() {
-        return StatScaling.NORMAL;
-    }
-
-    public float roundScalingStatGrowth(float stat, int lvl) {
-        return StatUtils.roundNumber(this.calculateScalingStatGrowth(stat, lvl));
+    public boolean IsLocalStat() {
+        return false;
     }
 
     public String printValue(float val) {

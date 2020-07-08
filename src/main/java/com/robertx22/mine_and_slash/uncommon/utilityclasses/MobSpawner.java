@@ -1,14 +1,12 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.new_content.registry.MobPotionEffects;
 import com.robertx22.mine_and_slash.onevent.entity.OnMobSpawn;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -46,9 +44,6 @@ public class MobSpawner {
 
         OnMobSpawn.setupNewMobOnSpawn(en);
 
-        if (addPotion) {
-            en.addPotionEffect(new EffectInstance(MobPotionEffects.getRandom(), Integer.MAX_VALUE, RandomUtils.RandomRange(1, 3)));
-        }
         world.addEntity(en);
 
         return en;

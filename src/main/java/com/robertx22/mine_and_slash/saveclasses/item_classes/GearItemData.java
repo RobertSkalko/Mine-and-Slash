@@ -1,11 +1,9 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.new_content.trader.ISellPrice;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
@@ -36,18 +34,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, ISellPrice {
+public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     @Store
     public StatRequirementsData requirements = null;
 
     public boolean meetsRequirements(EntityCap.UnitData data) {
-        if (data.getLevel() >= this.getLevel()) {
-            if (requirements == null || requirements.meetsRequirements(data, this)) {
-                return true;
-            }
-        }
-        return false;
+        return true;
     }
 
     @Store
@@ -85,10 +78,6 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
         return GearItemEnum.NORMAL;
     }
 
-    public void setLevel(int lvl) {
-        this.level = MathHelper.clamp(lvl, 1, ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get());
-    }
-
     @Override
     public int getRarityRank() {
         return MathHelper.clamp(rarity, -1, IRarity.Highest);
@@ -108,9 +97,6 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
         return stack.getDisplayName();
 
     }
-
-    @Store
-    public int level;
 
     // Stats
     @Store
@@ -153,30 +139,14 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
 
     public void WriteOverDataThatShouldStay(GearItemData newdata) {
 
-        newdata.timesLeveledUp = this.timesLeveledUp;
         newdata.isSalvagable = this.isSalvagable;
+        newdata.is_not_my_mod = this.is_not_my_mod;
 
     }
 
     public GearItemSlot GetBaseGearType() {
         return SlashRegistry.GearTypes()
             .get(gear_type);
-    }
-
-    public int getPowerLevel() {
-
-        int power = 0;
-
-        for (IStatModsContainer container : this.GetAllStatContainers()) {
-            for (IStatModsContainer.LevelAndStats stats : container.GetAllStats(1)) {
-                for (StatModData mod : stats.mods) {
-                    power += mod.getPercent();
-                }
-            }
-        }
-
-        return power;
-
     }
 
     public List<ITextComponent> getMergedStatsTooltip(List<IStatModsContainer.LevelAndStats> lvlstats,
@@ -415,11 +385,6 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
     }
 
     @Override
-    public int getLevel() {
-        return level;
-    }
-
-    @Override
     public String getSpecificType() {
         return this.gear_type;
     }
@@ -434,26 +399,4 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
         this.instability += amount;
     }
 
-    @Override
-    public int getSavedPriceInCommonOres() {
-
-        int price = 0;
-
-        if (this.isUnique()) {
-            price = ISellPrice.rarityOresToCommons(Rarities.Gears.get(IRarity.Highest), 30);
-        } else {
-            price = ISellPrice.rarityOresToCommons(getRarity(), 5);
-        }
-
-        if (this.isIdentified()) {
-            price *= 3;
-        }
-
-        float lvlMulti = 1 + this.level / 100;
-
-        price *= lvlMulti;
-
-        return price;
-
-    }
 }

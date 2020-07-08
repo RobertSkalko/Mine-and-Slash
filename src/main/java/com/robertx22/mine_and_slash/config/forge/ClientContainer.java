@@ -28,7 +28,6 @@ public class ClientContainer {
     public BooleanValue RENDER_ITEM_NAMES_ON_GROUND;
     public BooleanValue RENDER_MOB_HEALTH_GUI;
     public BooleanValue SHOW_LOW_ENERGY_MANA_WARNING;
-    public BooleanValue SHOW_UNMET_GEAR_REQUIREMENTS_GUI;
     public BooleanValue RENDER_SIMPLE_MOB_BAR;
     public ForgeConfigSpec.IntValue REMOVE_EMPTY_TOOLTIP_LINES_IF_MORE_THAN_X_LINES;
 
@@ -60,10 +59,6 @@ public class ClientContainer {
 
         RENDER_ITEM_NAMES_ON_GROUND = builder.comment(".")
             .define("RENDER_ITEM_NAMES_ON_GROUND", true);
-
-        SHOW_UNMET_GEAR_REQUIREMENTS_GUI = builder.comment(".")
-            .translation("mmorpg.config.")
-            .define("SHOW_UNMET_GEAR_REQUIREMENTS_GUI", true);
 
         RENDER_MOB_HEALTH_GUI = builder.comment(".")
             .translation("mmorpg.config.mob_health_bar")

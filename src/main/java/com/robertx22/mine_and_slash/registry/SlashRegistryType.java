@@ -5,9 +5,6 @@ import com.robertx22.mine_and_slash.database.tiers.base.Tier;
 import com.robertx22.mine_and_slash.db_lists.initializers.MobAffixes;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
-import com.robertx22.mine_and_slash.registry.empty_entries.EmptyRune;
-import com.robertx22.mine_and_slash.registry.empty_entries.EmptyRuneWord;
-import com.robertx22.mine_and_slash.registry.empty_entries.EmptyUnique;
 
 import javax.annotation.Nullable;
 
@@ -32,30 +29,13 @@ public enum SlashRegistryType {
     },
     STATMOD("stat_mod"),
     CHAOS_STAT("chaos_stat"),
-    RUNE("rune") {
-        @Override
-        public ISerializable getSerializer() {
-            return EmptyRune.getInstance();
-        }
-    },
-    RUNEWORD("runeword") {
-        @Override
-        public ISerializable getSerializer() {
-            return EmptyRuneWord.getInstance();
-        }
-    },
+
     GEAR_TYPE("gear_type"),
     SPELL("spell"),
     AFFIX("affix") {
         @Override
         public ISerializable getSerializer() {
             return EmptyAffix.getInstance();
-        }
-    },
-    UNIQUE_GEAR("unique_gear") {
-        @Override
-        public ISerializable getSerializer() {
-            return EmptyUnique.getInstance();
         }
     },
     WORLD_PROVIDER("world_provider"),
