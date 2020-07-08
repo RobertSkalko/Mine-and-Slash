@@ -52,7 +52,6 @@ public class RegisterEvents {
 
     private static void registerEntityEvents() {
 
-        register(OnCritBossCancelSpell.class);
         register(OnEntityDeathLevelEntity.class);
         register(CollectGearEvent.class);
         register(OnHurtEvent.class);

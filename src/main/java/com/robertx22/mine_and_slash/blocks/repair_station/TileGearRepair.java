@@ -276,11 +276,13 @@ public class TileGearRepair extends BaseTile {
 
                 fuelNeeded = (int) (itemStacks[inputSlot].getDamage() * ModConfig.INSTANCE.Server.REPAIR_FUEL_NEEDED_MULTI.get());
 
+                fuelNeeded *= fuelMulti;
+
                 if (fuelNeeded > this.fuel) {
                     fuelNeeded = this.fuel;
                 }
 
-                if (fuelNeeded * fuelMulti <= this.fuel) {
+                if (fuelNeeded <= this.fuel) {
                     result = getSmeltingResultForItem(itemStacks[inputSlot]);
 
                 } else {

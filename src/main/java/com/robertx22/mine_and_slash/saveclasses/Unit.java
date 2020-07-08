@@ -16,7 +16,6 @@ import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.entities.IBossMob;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.packets.EfficientMobUnitPacket;
@@ -318,10 +317,6 @@ public class Unit {
     }
 
     public int randomRarity(LivingEntity entity, UnitData data) {
-
-        if (entity instanceof IBossMob) {
-            return IRarity.Boss;
-        }
 
         int level = data.getLevel();
 

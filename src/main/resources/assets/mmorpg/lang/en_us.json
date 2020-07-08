@@ -103,17 +103,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Minor Spell Reset",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-
 "_comment": " [CATEGORY]: SPELLS - NAMES",
 
 	"mmorpg.synergy.fireball_syn_1": "Fireball Explosion",
@@ -267,6 +256,17 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "Potion of Minor Spell Reset",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "Potion of Single Talent Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "Potion of Spells Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "Potion of Stat Reset",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "Potion of Talents Reset",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "Mage's Robes",
@@ -303,24 +303,6 @@
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
-	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
-	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
-
-"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
-
-
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -339,6 +321,24 @@
 	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
+
+	"item.mmorpg.lootbox.big_currency_lootbox_3": "§dEpic Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_currency_lootbox_4": "§6Legendary Big Currency Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_3": "§dEpic Big Gear Treasure Box",
+	"item.mmorpg.lootbox.big_gear_lootbox_4": "§6Legendary Big Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_3": "§dEpic Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_currency_lootbox_4": "§6Legendary Medium Currency Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_3": "§dEpic Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.medium_gear_lootbox_4": "§6Legendary Medium Gear Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_3": "§dEpic Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_currency_lootbox_4": "§6Legendary Small Currency Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_3": "§dEpic Small Gear Treasure Box",
+	"item.mmorpg.lootbox.small_gear_lootbox_4": "§6Legendary Small Gear Treasure Box",
+
+"_comment": " [CATEGORY]: LOOTBOXES - NAMES",
 
 
 "_comment": " [CATEGORY]: RUNE WORDS - NAMES",
@@ -1160,6 +1160,32 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.bleed": "Bleed",
+	"effect.mmorpg.bravery": "Bravery",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Cold Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.judgement": "Judgement",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.teleport_protection": "Teleport Guard",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thorns": "Thorns",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.trickery": "Trickery",
+	"effect.mmorpg.wizardry": "Wizardry",
+	"effect.mmorpg.wounds": "Wounds",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.bracelet.bracelet0": "§7Bracelet",
@@ -1285,32 +1311,6 @@
 	"item.mmorpg.torch.torch4": "§6Torch",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.bleed": "Bleed",
-	"effect.mmorpg.bravery": "Bravery",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Cold Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.judgement": "Judgement",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.teleport_protection": "Teleport Guard",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thorns": "Thorns",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.trickery": "Trickery",
-	"effect.mmorpg.wizardry": "Wizardry",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",

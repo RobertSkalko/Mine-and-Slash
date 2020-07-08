@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import com.robertx22.mine_and_slash.packets.trader.TraderPacket;
 import com.robertx22.mine_and_slash.uncommon.datasaving.TraderSaving;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.EntityType;
@@ -54,12 +53,18 @@ public class TraderEntity extends VillagerEntity implements IEntityAdditionalSpa
 
         int price = ISellPrice.getSavedPriceInCommonOres(stack);
 
+        if (price < 1) {
+            return;
+        }
+
         if (ISellPrice.hasEnoughMoney(player, price)) {
             ISellPrice.spendMoney(player, price);
 
             ISellPrice.removePrice(stack);
 
-            PlayerUtils.giveItem(stack, player);
+            player.entityDropItem(stack, 1F);
+
+            data.stacks.set(item, ItemStack.EMPTY);
 
             SoundUtils.playSound(this, SoundEvents.ENTITY_VILLAGER_TRADE, 1, 1);
 

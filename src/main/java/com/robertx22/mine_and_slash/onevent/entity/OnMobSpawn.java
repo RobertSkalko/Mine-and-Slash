@@ -2,12 +2,10 @@ package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.entities.IBossMob;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
@@ -88,9 +86,6 @@ public class OnMobSpawn {
 
             }
 
-            if (entity instanceof IBossMob) {
-                endata.setRarity(IRarity.Boss);
-            }
         }
     }
 
