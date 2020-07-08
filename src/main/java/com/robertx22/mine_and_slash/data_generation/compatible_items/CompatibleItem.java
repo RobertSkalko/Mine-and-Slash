@@ -225,7 +225,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.can_be_salvaged;
-        gear.isNotFromMyMod = true;
+        gear.is_not_my_mod = true;
 
         Gear.Save(stack, gear);
 
@@ -251,10 +251,10 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.can_be_salvaged;
-        gear.isNotFromMyMod = true;
+        gear.is_not_my_mod = true;
 
-        if (gear.uniqueGUID == null || !SlashRegistry.UniqueGears()
-            .isRegistered(gear.uniqueGUID)) {
+        if (gear.unique_id == null || !SlashRegistry.UniqueGears()
+            .isRegistered(gear.unique_id)) {
             return createNormal(stack, level);
         } else {
             Gear.Save(stack, gear);
@@ -275,7 +275,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.can_be_salvaged;
-        gear.isNotFromMyMod = true;
+        gear.is_not_my_mod = true;
 
         Gear.Save(stack, gear);
 

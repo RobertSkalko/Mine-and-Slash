@@ -1,37 +1,37 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.WeaponDamageMulti;
-import com.robertx22.mine_and_slash.database.gearitemslots.WeaponSwingCost;
+import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
-import com.robertx22.mine_and_slash.database.unique_items.ISpecificStatReq;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemAxe;
-import com.robertx22.mine_and_slash.saveclasses.player_stat_points.LvlPointStat;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import net.minecraft.item.Item;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class Axe extends BaseWeapon implements ISpecificStatReq {
+public class Axe extends BaseWeapon {
     public static GearItemSlot INSTANCE = new Axe();
 
     private Axe() {
 
     }
 
-    static StatReq req = new StatReq(LvlPointStat.STRENGTH, StatReq.Size.SMALL);
+    @Override
+    public List<StatModifier> ImplicitStats() {
+        return null;
+    }
+
+    @Override
+    public List<StatModifier> BaseStats() {
+        return null;
+    }
 
     @Override
     public boolean isMeleeWeapon() {
         return true;
-    }
-
-    @Override
-    public WeaponDamageMulti weaponDamageMulti() {
-        return new WeaponDamageMulti(2);
     }
 
     @Override
@@ -52,11 +52,6 @@ public class Axe extends BaseWeapon implements ISpecificStatReq {
     @Override
     public WeaponTypes weaponType() {
         return WeaponTypes.Axe;
-    }
-
-    @Override
-    public StatReq getRequirements() {
-        return req;
     }
 
     @Override
@@ -84,8 +79,4 @@ public class Axe extends BaseWeapon implements ISpecificStatReq {
         return "Axe";
     }
 
-    @Override
-    public WeaponSwingCost getSwingCosts() {
-        return new WeaponSwingCost(8.5F);
-    }
 }

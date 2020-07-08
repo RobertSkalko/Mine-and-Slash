@@ -86,12 +86,12 @@ public class GearCreationUtils {
         GearItemData data = new GearItemData();
 
         data.level = blueprint.level.get();
-        data.Rarity = rarity.Rank();
+        data.rarity = rarity.Rank();
 
         if (blueprint instanceof UniqueGearBlueprint) {
 
             if (!canMakeUnique(blueprint)) {
-                data.Rarity = Rarities.Gears.random()
+                data.rarity = Rarities.Gears.random()
                     .Rank();
 
             } else {
@@ -104,17 +104,17 @@ public class GearCreationUtils {
 
                     blueprint.gearItemSlot.forceSet(unique.getGearSlot());
 
-                    data.gearTypeName = unique.getGearSlot()
+                    data.gear_type = unique.getGearSlot()
                         .GUID();
 
-                    data.isUnique = true;
+                    data.is_unique = true;
 
-                    data.uniqueGUID = unique.GUID();
+                    data.unique_id = unique.GUID();
                     data.uniqueStats = new UniqueStatsData(unique.GUID());
                     data.uniqueStats.RerollFully(data);
 
                 } else {
-                    data.Rarity = IRarity.Common;
+                    data.rarity = IRarity.Common;
                 }
             }
         } else {
@@ -122,14 +122,14 @@ public class GearCreationUtils {
                 .GUID();
         }
 
-        data.gearTypeName = blueprint.gearItemSlot.get()
+        data.gear_type = blueprint.gearItemSlot.get()
             .GUID();
 
         data.requirements = new StatRequirementsData();
         data.requirements.create(data);
 
         if (type.canGetPrimaryStats()) {
-            data.primaryStats = new PrimaryStatsData();
+            data.primaryStats = new BaseStatsData();
             data.primaryStats.RerollFully(data);
         }
 

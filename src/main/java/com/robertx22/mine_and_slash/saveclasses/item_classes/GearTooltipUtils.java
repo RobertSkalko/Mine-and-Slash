@@ -116,7 +116,7 @@ public class GearTooltipUtils {
         if (Screen.hasShiftDown()) {
             boolean addRarityTooltip = true;
 
-            if (gear.isUnique) {
+            if (gear.is_unique) {
                 IUnique unique = gear.uniqueStats.getUnique();
 
                 addRarityTooltip = false;
@@ -191,7 +191,7 @@ public class GearTooltipUtils {
             }
         }
 
-        if (gear.isUnique) {
+        if (gear.is_unique) {
             IUnique unique = gear.uniqueStats.getUnique();
 
             List<String> lores = TooltipUtils.cutIfTooLong(CLOC.translate(unique.locDesc()));

@@ -6,23 +6,15 @@ import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityCon
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeon;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
-import com.robertx22.mine_and_slash.database.chaos_stats.ChaosStat;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
 import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
-import com.robertx22.mine_and_slash.database.map_affixes.BaseMapAffix;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
-import com.robertx22.mine_and_slash.database.runes.base.BaseRune;
-import com.robertx22.mine_and_slash.database.runewords.RuneWord;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.synergies.base.Synergy;
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.talent_tree.Perk;
-import com.robertx22.mine_and_slash.database.talent_tree.PerkEffect;
-import com.robertx22.mine_and_slash.database.talent_tree.data.StartPerkEffects;
 import com.robertx22.mine_and_slash.database.tiers.base.Tier;
 import com.robertx22.mine_and_slash.database.tiers.impl.TierOne;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
@@ -58,7 +50,7 @@ public class SlashRegistry {
     }
 
     public static void restoreFromBackupifEmpty() {
-        if (UniqueGears().isEmpty() || Runes().isEmpty() || Affixes().isEmpty()) {
+        if (Affixes().isEmpty()) {
             restoreBackup();
         }
     }
@@ -109,32 +101,20 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.SPELL_SYNERGY);
     }
 
-    public static SlashRegistryContainer<PerkEffect> PerkEffects() {
-        return getRegistry(SlashRegistryType.PERK_EFFECT);
-    }
-
     public static SlashRegistryContainer<BasePotionEffect> PotionEffects() {
         return getRegistry(SlashRegistryType.EFFECT);
     }
 
-    public static SlashRegistryContainer<Perk> Perks() {
-        return getRegistry(SlashRegistryType.PERK);
+    public static SlashRegistry UniqueGears() {
+        return null; // TODO
     }
 
     public static SlashRegistryContainer<CurrencyItem> CurrencyItems() {
         return getRegistry(SlashRegistryType.CURRENCY_ITEMS);
     }
 
-    public static SlashRegistryContainer<ChaosStat> ChaosStats() {
-        return getRegistry(SlashRegistryType.CHAOS_STAT);
-    }
-
     private static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
         return getRegistry(SlashRegistryType.DIMENSION_CONFIGS);
-    }
-
-    public static SlashRegistryContainer<UniqueDungeon> UniqueDungeons() {
-        return getRegistry(SlashRegistryType.UNIQUE_DUNGEON);
     }
 
     public static SlashRegistryContainer<LootCrate> LootCrates() {
@@ -143,14 +123,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<CompatibleItem> CompatibleItems() {
         return getRegistry(SlashRegistryType.COMPATIBLE_ITEM);
-    }
-
-    public static SlashRegistryContainer<BaseMapAffix> MapAffixes() {
-        return getRegistry(SlashRegistryType.MAP_AFFIX);
-    }
-
-    public static SlashRegistryContainer<IUnique> UniqueGears() {
-        return getRegistry(SlashRegistryType.UNIQUE_GEAR);
     }
 
     public static SlashRegistryContainer<BaseAffix> Affixes() {
@@ -169,16 +141,8 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.SPELL);
     }
 
-    public static SlashRegistryContainer<BaseRune> Runes() {
-        return getRegistry(SlashRegistryType.RUNE);
-    }
-
     public static SlashRegistryContainer<MobAffix> MobAffixes() {
         return getRegistry(SlashRegistryType.MOB_AFFIX);
-    }
-
-    public static SlashRegistryContainer<RuneWord> RuneWords() {
-        return getRegistry(SlashRegistryType.RUNEWORD);
     }
 
     public static SlashRegistryContainer<BaseDungeonDimension> WorldProviders() {
@@ -191,10 +155,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<Stat> Stats() {
         return getRegistry(SlashRegistryType.STAT);
-    }
-
-    public static SlashRegistryContainer<StatMod> StatMods() {
-        return getRegistry(SlashRegistryType.STATMOD);
     }
 
     public static List<SlashRegistryContainer> getAllRegistries() {
@@ -295,15 +255,11 @@ public class SlashRegistry {
 
         new Stats().registerAll();// STATS MUST BE INIT before STATMODS  cus statmods ARE DERIVED FROM STATS, or
         // should be at least
-        new StatMods().registerAll();
-        new Runes().registerAll();
-        new RuneWords().registerAll();
+
         new GearTypes().registerAll();
-        new MapAffixes().registerAll();
+
         new Prefixes().registerAll();
         new Suffixes().registerAll();
-        new UniqueGears().registerAll();
-        new WorldProviders().registerAll();
 
         new MobAffixes().registerAll();
 
@@ -311,9 +267,6 @@ public class SlashRegistry {
         new Perks().registerAll();
 
         new LootCrates().registerAll();
-
-        new ChaosStats().registerAll();
-        new UniqueDungeons().registerAll();
 
     }
 
@@ -325,11 +278,9 @@ public class SlashRegistry {
         SERVER = new HashMap<>();
 
         // data pack ones
-        addRegistry(new SlashRegistryContainer<BaseRune>(SlashRegistryType.RUNE, EmptyRune.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<Tier>(SlashRegistryType.TIER, new TierOne()).isDatapack());
         addRegistry(new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, EmptyUnique.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
-        addRegistry(new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, EmptyRuneWord.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<MobAffix>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
         addRegistry(new SlashRegistryContainer<UniqueDungeon>(SlashRegistryType.UNIQUE_DUNGEON, null).isDatapack());
         addRegistry(new SlashRegistryContainer<CompatibleItem>(SlashRegistryType.COMPATIBLE_ITEM,
@@ -340,11 +291,8 @@ public class SlashRegistry {
 
         addRegistry(new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType()));
         addRegistry(new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance()));
-        addRegistry(new SlashRegistryContainer<StatMod>(SlashRegistryType.STATMOD, EmptyStatMod.getInstance()));
-        addRegistry(new SlashRegistryContainer<ChaosStat>(SlashRegistryType.CHAOS_STAT, ChaosStat.empty()));
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
         addRegistry(new SlashRegistryContainer<Synergy>(SlashRegistryType.SPELL_SYNERGY, null));
-        addRegistry(new SlashRegistryContainer<BaseMapAffix>(SlashRegistryType.MAP_AFFIX, new EmptyMapAffix()));
         addRegistry(new SlashRegistryContainer<BaseDungeonDimension>(SlashRegistryType.WORLD_PROVIDER, new DungeonDimension(null, null)));
 
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
@@ -354,8 +302,6 @@ public class SlashRegistry {
                 .dontErrorMissingEntriesOnAccess()
         );
         addRegistry(new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS).logAdditions());
-        addRegistry(new SlashRegistryContainer<Perk>(SlashRegistryType.PERK, null));
-        addRegistry(new SlashRegistryContainer<PerkEffect>(SlashRegistryType.PERK_EFFECT, StartPerkEffects.GUARDIAN));
         addRegistry(new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
     }
 

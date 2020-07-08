@@ -26,10 +26,10 @@ public class ItemGenRarityTest {
 
             GearItemData data = GearCreationUtils.CreateData(schema);
 
-            if (RarityandNumber.containsKey(data.Rarity)) {
-                RarityandNumber.put(data.Rarity, RarityandNumber.get(data.Rarity) + 1);
+            if (RarityandNumber.containsKey(data.rarity)) {
+                RarityandNumber.put(data.rarity, RarityandNumber.get(data.rarity) + 1);
             } else {
-                RarityandNumber.put(data.Rarity, 1);
+                RarityandNumber.put(data.rarity, 1);
             }
 
         }

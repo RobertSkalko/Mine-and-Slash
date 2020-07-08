@@ -1,10 +1,8 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.new_content.trader.ISellPrice;
@@ -14,7 +12,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
@@ -35,7 +32,6 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,25 +51,19 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
     }
 
     @Store
-    public boolean isUnique = false;
+    public boolean is_unique = false;
 
     @Store
-    public String uniqueGUID = "";
+    public String unique_id = "";
 
     @Store
-    public int Rarity;
+    public int rarity;
 
     @Store
-    public boolean isNotFromMyMod = false;
+    public boolean is_not_my_mod = false;
 
     @Store
-    public String gearTypeName = "";
-
-    @Store
-    public RunesData runes;
-
-    @Store
-    public String rightClickSpell = "";
+    public String gear_type = "";
 
     @Store
     private boolean ided = true;
@@ -86,27 +76,10 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
         this.ided = bool;
     }
 
-    @Nullable
-    public BaseSpell getRightClickSpell() {
-        if (rightClickSpell.isEmpty()) {
-            return null;
-        } else {
-            return SlashRegistry.Spells()
-                .get(rightClickSpell);
-        }
-    }
-
-    public boolean isRuned() {
-        return runes != null;
-    }
-
     public GearItemEnum getGearEnum() {
 
         if (this.isUnique()) {
             return GearItemEnum.UNIQUE;
-        }
-        if (this.isRuned()) {
-            return GearItemEnum.RUNED;
         }
 
         return GearItemEnum.NORMAL;
@@ -118,16 +91,16 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
 
     @Override
     public int getRarityRank() {
-        return MathHelper.clamp(Rarity, -1, IRarity.Highest);
+        return MathHelper.clamp(rarity, -1, IRarity.Highest);
     }
 
     @Override
     public GearRarity getRarity() {
-        return Rarities.Gears.get(this.Rarity);
+        return Rarities.Gears.get(this.rarity);
     }
 
     public boolean changesItemStack() {
-        return this.isNotFromMyMod == false;
+        return this.is_not_my_mod == false;
     }
 
     public ITextComponent name(ItemStack stack) {
@@ -143,13 +116,11 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
     @Store
     public UniqueStatsData uniqueStats;
     @Store
-    public PrimaryStatsData primaryStats;
+    public BaseStatsData primaryStats;
     @Store
-    public SuffixData suffix;
+    public List<SuffixData> suffixes;
     @Store
-    public PrefixData prefix;
-    @Store
-    public ChaosStatsData chaosStats;
+    public List<PrefixData> prefixes;
 
     // Stats
 
@@ -158,25 +129,22 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
 
     // crafting limits
     @Store
-    public int timesLeveledUp = 0;
-
-    @Store
     public int instability = 0;
 
     //
 
     // used when upgrading item rarity
     public Item getItem() {
-        if (isUnique) {
+        if (is_unique) {
             return SlashRegistry.UniqueGears()
-                .get(uniqueGUID)
+                .get(unique_id)
                 .getUniqueItem();
         } else {
-            if (gearTypeName.isEmpty()) {
+            if (gear_type.isEmpty()) {
                 return Items.AIR;
             } else {
                 return SlashRegistry.GearTypes()
-                    .get(gearTypeName)
+                    .get(gear_type)
                     .getItemForRarity(getRarity().Rank());
             }
         }
@@ -192,7 +160,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
 
     public GearItemSlot GetBaseGearType() {
         return SlashRegistry.GearTypes()
-            .get(gearTypeName);
+            .get(gear_type);
     }
 
     public int getPowerLevel() {
@@ -245,35 +213,42 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
         ITextComponent text = new StringTextComponent(this.getRarity()
             .textFormatting() + "");
 
-        if (this.isRuned()) {
-            text.appendSibling(Words.Runed.locName()
-                .appendText(" ")
-                .appendSibling(name(stack)));
-        } else {
+        if (addNormalAffixedPrefixesAndSuffixes()) {
 
-            if (prefix != null && showAffix()) {
+            if (prefixes.size() > 0) {
+
+                PrefixData prefix = prefixes.get(0);
+
                 text.appendSibling(prefix.BaseAffix()
                     .locName()
                     .appendText(" "));
             }
             text.appendSibling(name(stack));
 
-            if (suffix != null && showAffix()) {
+            if (prefixes.size() > 0) {
+                SuffixData suffix = suffixes.get(0);
+
                 text.appendText(" ")
                     .appendSibling(suffix.BaseAffix()
                         .locName())
                     .appendText(" ");
             }
+        } else {
+            if (!isUnique()) {
+                text.appendText("Test Rare Name")
+                    .appendText(" ");
 
+                text.appendSibling(name(stack));
+            }
         }
 
         return text;
 
     }
 
-    private boolean showAffix() {
+    private boolean addNormalAffixedPrefixesAndSuffixes() {
 
-        return !this.isUnique() && ClientContainer.INSTANCE.SHOW_AFFIXED_NAME.get();
+        return !this.isUnique() && prefixes.size() < 2 && suffixes.size() < 2;
     }
 
     public List<IStatModsContainer> GetAllStatContainers() {
@@ -281,11 +256,15 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
         List<IStatModsContainer> list = new ArrayList<IStatModsContainer>();
 
         IfNotNullAdd(primaryStats, list);
-        IfNotNullAdd(prefix, list);
-        IfNotNullAdd(suffix, list);
-        IfNotNullAdd(chaosStats, list);
+
+        for (PrefixData d : prefixes) {
+            IfNotNullAdd(d, list);
+        }
+        for (SuffixData d : suffixes) {
+            IfNotNullAdd(d, list);
+        }
+
         IfNotNullAdd(uniqueStats, list);
-        IfNotNullAdd(runes, list);
 
         return list;
 
@@ -311,9 +290,13 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
     public List<IRerollable> GetAllRerollable() {
         List<IRerollable> list = new ArrayList<IRerollable>();
         IfNotNullAdd(primaryStats, list);
-        IfNotNullAdd(prefix, list);
-        IfNotNullAdd(suffix, list);
-        IfNotNullAdd(chaosStats, list);
+
+        for (PrefixData d : prefixes) {
+            IfNotNullAdd(d, list);
+        }
+        for (SuffixData d : suffixes) {
+            IfNotNullAdd(d, list);
+        }
         IfNotNullAdd(uniqueStats, list);
         return list;
     }
@@ -334,14 +317,14 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
             int min = 1;
             int max = 2;
 
-            if (Rarity == IRarity.Common) {
+            if (rarity == IRarity.Common) {
                 max = 1;
             }
 
             min = tryIncreaseAmount(salvageBonus, min);
             max = tryIncreaseAmount(salvageBonus, max);
 
-            if (isUnique) {
+            if (is_unique) {
                 try {
                     tier = this.uniqueStats.getUnique()
                         .getTier();
@@ -413,7 +396,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
 
         }
 
-        return this.uniqueGUID;
+        return this.unique_id;
     }
 
     @Override
@@ -438,7 +421,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability, 
 
     @Override
     public String getSpecificType() {
-        return this.gearTypeName;
+        return this.gear_type;
     }
 
     @Override

@@ -1,17 +1,14 @@
 package com.robertx22.mine_and_slash.registry.empty_entries;
 
-import com.robertx22.mine_and_slash.database.affixes.Suffix;
-import com.robertx22.mine_and_slash.database.requirements.LevelRequirement;
-import com.robertx22.mine_and_slash.database.requirements.Requirements;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
+import com.robertx22.mine_and_slash.database.StatModifier;
+import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmptyAffix extends Suffix {
+public class EmptyAffix extends BaseAffix {
 
     private EmptyAffix() {
-        super(new Requirements(LevelRequirement.fromHighLevel()));
     }
 
     public static EmptyAffix getInstance() {
@@ -24,7 +21,7 @@ public class EmptyAffix extends Suffix {
     }
 
     @Override
-    public List<StatMod> StatMods() {
+    public List<StatModifier> StatMods() {
         return new ArrayList<>();
     }
 

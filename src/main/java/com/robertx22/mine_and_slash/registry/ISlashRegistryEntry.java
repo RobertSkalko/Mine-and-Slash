@@ -1,14 +1,11 @@
 package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.database.IGUID;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
-
-import java.util.List;
 
 public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRarity {
 
@@ -59,23 +56,6 @@ public interface ISlashRegistryEntry<C> extends IGUID, IWeighted, ITiered, IRari
 
     default boolean isRegistryEntryValid() {
         // override with an implementation of a validity test
-        return true;
-    }
-
-    default boolean checkStatModsValidity(List<StatMod> mods) {
-        if (mods
-            .stream()
-            .anyMatch(x -> {
-                if (!SlashRegistry.StatMods()
-                    .isRegistered(x.GUID())) {
-                    System.out.println(x.GUID() + " is not a valid StatMod.");
-                    return true;
-                } else {
-                    return false;
-                }
-            })) {
-            return false;
-        }
         return true;
     }
 

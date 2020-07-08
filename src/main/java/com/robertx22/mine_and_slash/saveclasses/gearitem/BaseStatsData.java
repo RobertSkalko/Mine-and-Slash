@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
-import com.robertx22.mine_and_slash.database.stats.StatMod;
 import com.robertx22.mine_and_slash.database.stats.tooltips.StatTooltipType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
@@ -18,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class PrimaryStatsData extends StatGroupData implements IGearPartTooltip, IRerollable {
+public class BaseStatsData extends StatGroupData implements IGearPartTooltip, IRerollable {
 
-    public PrimaryStatsData() {
+    public BaseStatsData() {
 
     }
 
@@ -29,28 +28,20 @@ public class PrimaryStatsData extends StatGroupData implements IGearPartTooltip,
 
         this.Mods = new ArrayList<StatModData>();
 
-        if (gear.isUnique()) {
-            for (StatMod mod : gear.uniqueStats.getUnique()
-                .primaryStats()) {
-                StatModData moddata = StatModData.NewRandom(getMinMax(gear), mod);
-                this.Mods.add(moddata);
-            }
+        PosStats pos = RandomUtils.weightedRandom(gear.GetBaseGearType()
+            .getPossiblePrimaryStats());
 
-        } else {
+        int statsAmount = pos.mods.size();
 
-            PosStats pos = RandomUtils.weightedRandom(gear.GetBaseGearType()
-                .getPossiblePrimaryStats());
+        pos.mods.forEach(mod -> {
+            StatModData moddata = StatModData.NewRandom(getMinMax(gear), mod);
+            this.Mods.add(moddata);
 
-            int statsAmount = pos.mods.size();
+        });
 
-            pos.mods.forEach(mod -> {
-                StatModData moddata = StatModData.NewRandom(getMinMax(gear), mod);
-                this.Mods.add(moddata);
-
-            });
-
-        }
     }
+
+}
 
     @Override
     public void RerollNumbers(GearItemData gear) {

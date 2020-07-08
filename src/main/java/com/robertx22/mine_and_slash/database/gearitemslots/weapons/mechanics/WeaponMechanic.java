@@ -54,14 +54,8 @@ public abstract class WeaponMechanic implements IGUID {
     }
 
     public void attack(DamageEventData data) {
-        if (isPoweredAttack(data)) {
-            data.multiplier = data.weaponData.GetBaseGearType()
-                .weaponDamageMulti().poweredDmgMulti;
-            doSpecialAttack(data);
-        } else {
-            data.multiplier = data.weaponData.GetBaseGearType()
-                .weaponDamageMulti().normalDmgMulti;
-            doNormalAttack(data);
-        }
+
+        data.multiplier = 1;
+
     }
 }

@@ -63,7 +63,7 @@ public class GemOfUniqueHeaven extends CurrencyItem implements ICurrencyItemEffe
         GearItemData newgear = gearPrint.createData();
 
         int tries = 0; // in case there's only 1 unique in a tier
-        while (newgear.gearTypeName.equals(gear.gearTypeName) && tries < 10) {
+        while (newgear.gear_type.equals(gear.gear_type) && tries < 10) {
             newgear = gearPrint.createData();
             newstack = gearPrint.createStack();
             tries++;

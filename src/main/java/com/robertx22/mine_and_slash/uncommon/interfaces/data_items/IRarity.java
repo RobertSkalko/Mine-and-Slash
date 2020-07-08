@@ -19,7 +19,7 @@ public interface IRarity<R extends Rarity> {
     int Epic = 3;
     int Legendary = 4;
 
-    int Highest = 4;
+    int Highest = 2;
 
     int Boss = -2;
     int Minion = -3;

@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class AffixData implements IStatModsContainer, IRerollable {
 
     @Store
-    public List<Integer> percents = new ArrayList<Integer>();
+    public Integer percent = 0;
 
     @Store
     public String baseAffix;
@@ -25,7 +25,7 @@ public abstract class AffixData implements IStatModsContainer, IRerollable {
     @Override
     public List<LevelAndStats> GetAllStats(int level) {
 
-        if (percents.isEmpty() || baseAffix == null || baseAffix.isEmpty() || BaseAffix() == null) {
+        if (percent == 0 || baseAffix == null || baseAffix.isEmpty() || BaseAffix() == null) {
             return new ArrayList<>();
         }
 
@@ -33,11 +33,13 @@ public abstract class AffixData implements IStatModsContainer, IRerollable {
 
         List<StatModData> list = new ArrayList<StatModData>();
 
-        for (int i = 0; i < base.StatMods().size(); i++) {
+        for (int i = 0; i < base.StatMods()
+            .size(); i++) {
 
-            StatMod mod = base.StatMods().get(i);
+            StatMod mod = base.StatMods()
+                .get(i);
 
-            list.add(StatModData.Load(mod, percents.get(i)));
+            list.add(StatModData.Load(mod, percent));
         }
 
         return Arrays.asList(new LevelAndStats(list, level));
