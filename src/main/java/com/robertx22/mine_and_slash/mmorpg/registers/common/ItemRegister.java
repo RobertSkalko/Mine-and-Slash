@@ -75,21 +75,6 @@ public class ItemRegister {
             r.register(uniq.getItemForRegistration());
         }
 
-        SlashRegistry.Runes()
-            .getSerializable()
-            .stream()
-            .forEach(x -> {
-                x.itemMap.getForRegistration()
-                    .values()
-                    .forEach(i -> {
-                        if (i.getRegistryName()
-                            .getNamespace()
-                            .equals(Ref.MODID)) {
-                            r.register(i);
-                        }
-                    });
-            });
-
     }
 
     private static List<Item> list = new ArrayList<>();

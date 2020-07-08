@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.entity.damage;
 
 import com.robertx22.mine_and_slash.a_libraries.curios.MyCurioUtils;
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistContainer;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
@@ -122,11 +120,7 @@ public class LivingHurtUtils {
             if (data.source instanceof PlayerEntity) {
 
                 if (weapondata == null) {
-                    ItemStack weapon = data.weapon;
-                    ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer.getModDmgWhitelist(weapon);
-                    if (mod != null) {
-                        return;
-                    }
+                    return;
                 }
 
                 if (data.sourceData.isWeapon(weapondata)) {
@@ -225,28 +219,9 @@ public class LivingHurtUtils {
 
         if (isEnviromentalDmg(event.getSource())) {
             if (event.getEntity() instanceof PlayerEntity == false) {
-                event.setAmount(
-                    event.getAmount() * ModConfig.INSTANCE.Server.MOB_ENVIRONMENT_DAMAGE_MULTI.get()
-                        .floatValue());
                 return;
             }
         } else {
-
-            // dont decrease dmg if its from whitelist item
-            LivingEntity en = (LivingEntity) event.getSource()
-                .getTrueSource();
-
-            ModDmgWhitelistContainer.ModDmgWhitelist mod = ModDmgWhitelistContainer.getModDmgWhitelist(
-                en.getHeldItemMainhand());
-
-            if (mod != null) {
-                event.setAmount(event.getAmount() * mod.dmgMultiplier);
-                return;
-            }
-
-            event.setAmount(event.getAmount() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI.get()
-                .floatValue());
-
             return;
         }
     }

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
-import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 
 public class BlueprintUtils {
 
@@ -13,9 +13,6 @@ public class BlueprintUtils {
         }
         if (type == GearItemEnum.UNIQUE) {
             return new UniqueGearBlueprint(lvl, tier);
-        }
-        if (type == GearItemEnum.RUNED) {
-            return new RunedGearBlueprint(lvl);
         }
 
         return null;

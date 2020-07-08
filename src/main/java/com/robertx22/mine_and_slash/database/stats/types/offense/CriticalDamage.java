@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.CriticalDamageEffect;
 import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
@@ -38,6 +39,16 @@ public class CriticalDamage extends Stat implements IStatEffects {
     private CriticalDamage() {
         this.BaseFlat = 20;
         this.minimumValue = 0;
+    }
+
+    @Override
+    public String getStatNameRegex(StatModTypes type) {
+
+        if (type == StatModTypes.Flat) {
+            return "[N] [NAME]";
+        }
+
+        return null;
     }
 
     @Override

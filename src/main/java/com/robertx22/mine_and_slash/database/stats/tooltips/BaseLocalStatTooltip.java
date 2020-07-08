@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrimaryStatTooltip implements IStatTooltipType {
+public class BaseLocalStatTooltip implements IStatTooltipType {
 
     public ITextComponent NameText(TooltipStatInfo info) {
 
@@ -82,15 +82,15 @@ public class PrimaryStatTooltip implements IStatTooltipType {
                 text.appendText("%");
             }
 
-        } else if (type == StatModTypes.Multi) {
+        } else if (type == StatModTypes.GLOBAL_INCREASE) {
 
             text.appendText("% ")
                 .appendSibling(Words.Multi.locName());
 
-        } else if (type == StatModTypes.Percent) {
+        } else if (type == StatModTypes.LOCAL_INCREASE) {
             text.appendText("%");
 
-            if (type == StatModTypes.Percent && stat.IsPercent()) {
+            if (type == StatModTypes.LOCAL_INCREASE && stat.IsPercent()) {
                 if (info.firstValue > 0) {
                     text.appendText(" ")
                         .appendSibling(Words.Increased.locName());

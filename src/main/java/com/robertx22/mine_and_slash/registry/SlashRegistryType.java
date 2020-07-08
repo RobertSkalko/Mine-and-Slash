@@ -5,13 +5,13 @@ import com.robertx22.mine_and_slash.database.tiers.base.Tier;
 import com.robertx22.mine_and_slash.db_lists.initializers.MobAffixes;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyUniqueGear;
 
 import javax.annotation.Nullable;
 
 public enum SlashRegistryType {
 
     NONE("none"),
-    UNIQUE_DUNGEON("unique_dungeon"),
     EFFECT("effect"),
     STAT("stat"),
     SPELL_SYNERGY("synergy"),
@@ -29,7 +29,12 @@ public enum SlashRegistryType {
     },
     STATMOD("stat_mod"),
     CHAOS_STAT("chaos_stat"),
-
+    UNIQUE_GEAR("unique_gear") {
+        @Override
+        public ISerializable getSerializer() {
+            return new EmptyUniqueGear();
+        }
+    },
     GEAR_TYPE("gear_type"),
     SPELL("spell"),
     AFFIX("affix") {
@@ -40,8 +45,6 @@ public enum SlashRegistryType {
     },
     WORLD_PROVIDER("world_provider"),
     EMPTY("empty"),
-    MAP_AFFIX("map_affix"),
-    ITEM_MODIFICATION("item_modification"),
     DIMENSION_CONFIGS("dimension_config"),
     MOD_ENTITY_CONFIGS("mod_entiy_config"),
     CURRENCY_ITEMS("currency_item"),
@@ -51,13 +54,8 @@ public enum SlashRegistryType {
             return CompatibleItem.EMPTY;
         }
     },
-    PERK("talent_perk"),
-    PERK_EFFECT("talent_perk_effect"),
     SYNERGY_EFFECT("synergy_effect"),
-    LOOT_CRATE("loot_crate"),
-    QUEST("quest"),
-    QUEST_REWARD("quest_reward"),
-    BOSS("boss");
+    LOOT_CRATE("loot_crate");
 
     public String id;
 

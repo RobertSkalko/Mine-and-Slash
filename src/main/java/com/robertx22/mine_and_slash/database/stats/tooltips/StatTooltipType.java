@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.tooltips;
 public enum StatTooltipType {
 
     NORMAL(new NormalStatTooltip()),
-    PRIMARY_STATS(new PrimaryStatTooltip());
+    BASE_LOCAL_STATS(new BaseLocalStatTooltip());
 
     StatTooltipType(IStatTooltipType impl) {
         this.impl = impl;

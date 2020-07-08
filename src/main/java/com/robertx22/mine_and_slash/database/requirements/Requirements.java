@@ -61,7 +61,7 @@ public class Requirements implements ISerializablePart<Requirements>, ITooltipLi
     }
 
     public static List<ISerializablePart> possible = Arrays.asList(
-        new ExactUniquesRequierement(), new LevelRequirement(), new SlotRequirement(), new UniqueTierRequirement());
+        new SlotRequirement());
 
     @Override
     public Requirements fromJson(JsonObject json) {

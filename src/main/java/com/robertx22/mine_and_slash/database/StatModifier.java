@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.database;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 public class StatModifier implements ISerializable<StatModifier> {
@@ -13,8 +15,8 @@ public class StatModifier implements ISerializable<StatModifier> {
     public float secondMin = 0;
     public float secondMax = 0;
 
-    String stat;
-    String type;
+    public String stat;
+    public String type;
 
     public static StatModifier EMPTY = new StatModifier();
 
@@ -26,6 +28,13 @@ public class StatModifier implements ISerializable<StatModifier> {
         this.firstMin = firstMin;
         this.firstMax = firstMax;
         this.stat = stat.GUID();
+        this.type = type.name();
+    }
+
+    public StatModifier(float firstMin, float firstMax, String stat, StatModTypes type) {
+        this.firstMin = firstMin;
+        this.firstMax = firstMax;
+        this.stat = stat;
         this.type = type.name();
     }
 
@@ -47,12 +56,17 @@ public class StatModifier implements ISerializable<StatModifier> {
         this.type = type.name();
     }
 
+    public Stat GetStat() {
+        return SlashRegistry.Stats()
+            .get(stat);
+    }
+
     public boolean usesNumberRanges() {
         return getModType()
             .equals(StatModTypes.Flat) && secondMax != 0;
     }
 
-    private StatModTypes getModType() {
+    public StatModTypes getModType() {
         return StatModTypes.valueOf(type);
     }
 
@@ -94,4 +108,14 @@ public class StatModifier implements ISerializable<StatModifier> {
         return new StatModifier(firstMin, firstMax, secondMin, secondMax, stat, type);
 
     }
+
+    public ExactStatData ToExactStat(int percent) {
+
+        float v1 = (firstMin + (firstMax - firstMin) * percent / 100);
+        float v2 = (secondMin + (secondMax - secondMin) * percent / 100);
+
+        return new ExactStatData();
+
+    }
+
 }

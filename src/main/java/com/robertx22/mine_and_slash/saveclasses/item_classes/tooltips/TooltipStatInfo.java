@@ -50,8 +50,8 @@ public class TooltipStatInfo implements ITooltipList {
 
     public TooltipStatInfo(ExactStatData data, TooltipInfo info) {
         this.stat = data.getStat();
-        this.firstValue = data.getValue();
-        this.secondValue = data.getValue();
+        this.firstValue = data.getFirstValue();
+        this.secondValue = data.getSecondValue();
         this.type = data.getType();
         this.tooltipInfo = info;
 

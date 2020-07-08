@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.config.compatible_items;
 
-import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 
 public class WeightedType implements IWeighted {

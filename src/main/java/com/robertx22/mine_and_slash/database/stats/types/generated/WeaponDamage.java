@@ -26,6 +26,11 @@ public class WeaponDamage extends ElementalStat implements IStatEffects {
         return Stat.StatGroup.EleAttackDamage;
     }
 
+    @Override
+    public boolean UsesSecondValue() {
+        return true;
+    }
+
     public WeaponDamage(Elements element) {
         super(element);
     }

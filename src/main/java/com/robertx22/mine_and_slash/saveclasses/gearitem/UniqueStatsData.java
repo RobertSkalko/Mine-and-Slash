@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatModsContainer;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Storable
-public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatModsContainer {
+public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsContainer {
 
     public UniqueStatsData() {
 

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.currency.loc_reqs;
 
-import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;

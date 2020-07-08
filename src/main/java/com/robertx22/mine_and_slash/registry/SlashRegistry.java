@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
-import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeon;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
@@ -17,6 +16,7 @@ import com.robertx22.mine_and_slash.database.spells.synergies.base.Synergy;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.tiers.base.Tier;
 import com.robertx22.mine_and_slash.database.tiers.impl.TierOne;
+import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.initializers.*;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -105,8 +105,8 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.EFFECT);
     }
 
-    public static SlashRegistry UniqueGears() {
-        return null; // TODO
+    public static SlashRegistryContainer<IUnique> UniqueGears() {
+        return getRegistry(SlashRegistryType.UNIQUE_GEAR);
     }
 
     public static SlashRegistryContainer<CurrencyItem> CurrencyItems() {
@@ -277,7 +277,7 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<Tier>(SlashRegistryType.TIER, new TierOne()).isDatapack());
         addRegistry(new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<MobAffix>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
-        addRegistry(new SlashRegistryContainer<UniqueDungeon>(SlashRegistryType.UNIQUE_DUNGEON, null).isDatapack());
+        addRegistry(new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, null).isDatapack());
         addRegistry(new SlashRegistryContainer<CompatibleItem>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .isDatapack()

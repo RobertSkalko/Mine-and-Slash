@@ -49,7 +49,7 @@ public class NormalStatTooltip implements IStatTooltipType {
             //str.appendText("" + info.stat.getElement().format + "(" + info.stat.getElement().icon + ") " + TextFormatting.GRAY + "");
         }
 
-        if (info.type.equals(StatModTypes.Percent)) {
+        if (info.type.equals(StatModTypes.LOCAL_INCREASE)) {
             if (stat.IsPercent()) {
                 if (info.firstValue > 0) {
                     str.appendSibling(Words.Increased.locName());

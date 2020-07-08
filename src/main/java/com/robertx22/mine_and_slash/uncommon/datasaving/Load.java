@@ -2,18 +2,12 @@ package com.robertx22.mine_and_slash.uncommon.datasaving;
 
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerMapCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerStatsPointsCap;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerTalentsCap;
-import com.robertx22.mine_and_slash.uncommon.capability.server_wide.PlayerCapBackupCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.AntiMobFarmCap;
-import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
 
 import javax.annotation.Nonnull;
 
@@ -27,33 +21,6 @@ public class Load {
         return false;
     }
 
-    public static PlayerStatsPointsCap.IPlayerStatPointsData statPoints(PlayerEntity provider) {
-
-        if (provider != null) {
-
-            return provider.getCapability(PlayerStatsPointsCap.Data)
-                .orElse(new PlayerStatsPointsCap.DefaultImpl());
-
-        }
-        return null;
-    }
-
-    @Nonnull
-    public static WorldMapCap.IWorldMapData world(World provider) {
-
-        LazyOptional<WorldMapCap.IWorldMapData> mapData = provider.getCapability(WorldMapCap.Data);
-
-        return mapData.orElse(new WorldMapCap.DefaultImpl());
-
-    }
-
-    @Nonnull
-    public static PlayerTalentsCap.IPlayerTalentsData talents(PlayerEntity provider) {
-
-        return provider.getCapability(PlayerTalentsCap.Data)
-            .orElse(new PlayerTalentsCap.DefaultImpl());
-    }
-
     @Nonnull
     public static PlayerSpellCap.ISpellsCap spells(LivingEntity provider) {
 
@@ -64,17 +31,6 @@ public class Load {
             return new PlayerSpellCap.DefaultImpl();
 
         }
-    }
-
-    public static PlayerCapBackupCap.IPlayerCapBackupData playersCapBackup(World world) {
-
-        if (world != null) {
-
-            return world.getCapability(PlayerCapBackupCap.Data)
-                .orElse(new PlayerCapBackupCap.DefaultImpl());
-
-        }
-        return null;
     }
 
     public static UnitData Unit(ICapabilityProvider provider) {
@@ -93,15 +49,6 @@ public class Load {
         if (provider != null) {
             return provider.getCapability(AntiMobFarmCap.Data)
                 .orElse(new AntiMobFarmCap.DefaultImpl());
-        }
-        return null;
-    }
-
-    public static PlayerMapCap.IPlayerMapData playerMapData(PlayerEntity provider) {
-
-        if (provider != null) {
-            return provider.getCapability(PlayerMapCap.Data)
-                .orElse(new PlayerMapCap.DefaultImpl());
         }
         return null;
     }

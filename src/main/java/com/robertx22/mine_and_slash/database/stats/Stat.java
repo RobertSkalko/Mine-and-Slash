@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats;
 
 import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.database.stats.name_regex.StatNameRegex;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
@@ -34,8 +35,15 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     @Override
     public boolean isRegistryEntryValid() {
-
         return true;
+    }
+
+    public StatNameRegex getStatNameRegex() {
+        return StatNameRegex.BASIC;
+    }
+
+    public boolean UsesSecondValue() {
+        return false;
     }
 
     public TextFormatting getIconFormat() {
@@ -144,6 +152,10 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return Ref.MODID + ".stat_desc." + formattedGUID();
     }
 
+    public boolean isLocal() {
+        return this instanceof ILocalStat;
+    }
+
     @Override
     public AutoLocGroup locNameGroup() {
         return AutoLocGroup.Stats;
@@ -158,10 +170,6 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
     public abstract Elements getElement();
 
     public int BaseFlat = 0;
-
-    public boolean IsLocalStat() {
-        return false;
-    }
 
     public String printValue(float val) {
 

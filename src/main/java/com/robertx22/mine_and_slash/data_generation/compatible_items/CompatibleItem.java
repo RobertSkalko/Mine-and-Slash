@@ -5,20 +5,18 @@ import com.robertx22.mine_and_slash.config.compatible_items.WeightedType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.GearItemEnum;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,10 +41,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     public int loot_drop_weight = 1000;
     public boolean can_be_salvaged = false;
 
-    public int level_variance = 0;
-    public int min_level = 1;
-    public int max_level = Integer.MAX_VALUE;
-
     public int if_unique_random_up_to_tier = 10;
     public String unique_id = "";
 
@@ -57,7 +51,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         comp.item_id = item.getRegistryName()
             .toString();
         comp.guid = slot.GUID() + ":" + comp.item_id;
-        comp.level_variance = 3;
         comp.add_to_loot_drops = false;
 
         return comp;
@@ -89,12 +82,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         Misc.addProperty("loot_drop_weight", loot_drop_weight);
         Misc.addProperty("can_be_salvaged", can_be_salvaged);
         json.add("misc", Misc);
-
-        JsonObject level = new JsonObject();
-        level.addProperty("min_level", min_level);
-        level.addProperty("max_level", max_level);
-        level.addProperty("level_variance", level_variance);
-        json.add("level", level);
 
         JsonObject unique = new JsonObject();
         unique.addProperty("if_unique_random_up_to_tier", if_unique_random_up_to_tier);
@@ -138,14 +125,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         obj.can_be_salvaged = misc.get("can_be_salvaged")
             .getAsBoolean();
 
-        JsonObject level = json.getAsJsonObject("level");
-        obj.min_level = level.get("min_level")
-            .getAsInt();
-        obj.max_level = level.get("max_level")
-            .getAsInt();
-        obj.level_variance = level.get("level_variance")
-            .getAsInt();
-
         JsonObject unique = json.getAsJsonObject("unique");
         obj.if_unique_random_up_to_tier = unique.get("if_unique_random_up_to_tier")
             .getAsInt();
@@ -179,19 +158,14 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         return guid;
     }
 
-    public ItemStack create(ItemStack stack, int level) {
-
-        level = this.getLevel(level);
+    public ItemStack create(ItemStack stack) {
 
         switch (getCreationType()) {
             case NORMAL:
-                createNormal(stack, level);
+                createNormal(stack);
                 break;
             case UNIQUE:
-                createUnique(stack, level);
-                break;
-            case RUNED:
-                createRuned(stack, level);
+                createUnique(stack);
                 break;
 
         }
@@ -210,16 +184,10 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         return result.type;
     }
 
-    private int getLevel(int playerlevel) {
-        return MathHelper.clamp(playerlevel, min_level, max_level);
-    }
+    private ItemStack createNormal(ItemStack stack) {
 
-    private ItemStack createNormal(ItemStack stack, int level) {
-
-        GearBlueprint blueprint = new GearBlueprint(level);
+        GearBlueprint blueprint = new GearBlueprint();
         blueprint.gearItemSlot.set(this.item_type);
-        blueprint.level.LevelRange = this.level_variance > 0;
-        blueprint.level.LevelVariance = this.level_variance;
         blueprint.rarity.minRarity = this.min_rarity;
         blueprint.rarity.maxRarity = this.max_rarity;
 
@@ -233,21 +201,19 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
     }
 
-    private ItemStack createUnique(ItemStack stack, int level) {
+    private ItemStack createUnique(ItemStack stack) {
 
         UniqueGearBlueprint blueprint = null;
 
         if (SlashRegistry.UniqueGears()
             .isRegistered(unique_id)) {
-            blueprint = new UniqueGearBlueprint(level, SlashRegistry.UniqueGears()
+            blueprint = new UniqueGearBlueprint(SlashRegistry.UniqueGears()
                 .get(unique_id));
         } else {
-            blueprint = new UniqueGearBlueprint(level, if_unique_random_up_to_tier);
+            blueprint = new UniqueGearBlueprint(if_unique_random_up_to_tier);
         }
 
         blueprint.gearItemSlot.set(this.item_type);
-        blueprint.level.LevelRange = this.level_variance > 0;
-        blueprint.level.LevelVariance = this.level_variance;
 
         GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.can_be_salvaged;
@@ -255,29 +221,10 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         if (gear.unique_id == null || !SlashRegistry.UniqueGears()
             .isRegistered(gear.unique_id)) {
-            return createNormal(stack, level);
+            return createNormal(stack);
         } else {
             Gear.Save(stack, gear);
         }
-
-        return stack;
-
-    }
-
-    private ItemStack createRuned(ItemStack stack, int level) {
-
-        RunedGearBlueprint blueprint = new RunedGearBlueprint(level);
-        blueprint.gearItemSlot.set(this.item_type);
-        blueprint.level.LevelRange = this.level_variance > 0;
-        blueprint.level.LevelVariance = this.level_variance;
-        blueprint.rarity.minRarity = this.min_rarity;
-        blueprint.rarity.maxRarity = this.max_rarity;
-
-        GearItemData gear = blueprint.createData();
-        gear.isSalvagable = this.can_be_salvaged;
-        gear.is_not_my_mod = true;
-
-        Gear.Save(stack, gear);
 
         return stack;
 

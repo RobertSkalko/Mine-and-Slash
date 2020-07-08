@@ -9,8 +9,8 @@ import net.minecraft.util.text.TextFormatting;
 public enum StatModTypes {
 
     Flat("flat"),
-    Percent("percent"),
-    Multi("multi");
+    LOCAL_INCREASE("local_increase"),
+    GLOBAL_INCREASE("global_increase");
 
     StatModTypes(String id) {
         this.id = id;
@@ -33,7 +33,7 @@ public enum StatModTypes {
                 text.appendText("%");
             }
 
-        } else if (type == StatModTypes.Percent) {
+        } else if (type == StatModTypes.LOCAL_INCREASE) {
             text.appendText("%");
 
         } else {
@@ -46,7 +46,7 @@ public enum StatModTypes {
 
         ITextComponent text = new StringTextComponent("");
 
-        if (type == StatModTypes.Multi) {
+        if (type == StatModTypes.GLOBAL_INCREASE) {
             text.appendText(TextFormatting.GRAY + " ")
                 .appendSibling(Words.Multi.locName());
         }
