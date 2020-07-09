@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.spells.AllocatedAbilitiesData;
-import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -12,7 +11,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -42,11 +40,7 @@ public class PlayerSpellCap {
 
         public abstract SpellCastingData getCastingData();
 
-        public abstract boolean canCastRightClickSpell(BaseSpell spell, PlayerEntity player);
-
         public abstract List<BaseSpell> getAvailableSpells();
-
-        public abstract void reset();
 
     }
 
@@ -78,14 +72,6 @@ public class PlayerSpellCap {
 
         AllocatedAbilitiesData abilitiesData = new AllocatedAbilitiesData();
         SpellCastingData spellCastingData = new SpellCastingData();
-
-        public void tryRemovePoint(IAbility ability, ServerPlayerEntity player) {
-            this.abilitiesData.removePoint(ability);
-            this.getCastingData()
-                .clear();
-            this.syncToClient(player);
-
-        }
 
         @Override
         public CompoundNBT saveToNBT() {
@@ -143,31 +129,8 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public boolean canCastRightClickSpell(BaseSpell spell, PlayerEntity player) {
-
-            if (getAbilitiesData().getLevelOf(spell) < 1) {
-                return false;
-            }
-
-            return this.getCastingData()
-                .canCast(spell, player);
-
-        }
-
-        @Override
         public List<BaseSpell> getAvailableSpells() {
             return this.abilitiesData.getAllocatedSpells();
-        }
-
-        @Override
-        public void reset() {
-
-            this.getAbilitiesData()
-                .reset();
-
-            this.getCastingData()
-                .clear();
-
         }
 
     }

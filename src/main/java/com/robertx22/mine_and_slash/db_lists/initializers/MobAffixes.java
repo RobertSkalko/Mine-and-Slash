@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.data_generation.wrappers.StatModsHolder;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CompletePhysDispersionFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.generated.ElementalAttackDamageFlat;
+import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +15,10 @@ public class MobAffixes implements ISlashRegistryInit {
 
     public static MobAffix EMPTY = new MobAffix("empty", "empty", BaseAffix.Type.prefix);
 
-    public static MobAffix COLD = new MobAffix("cold", "Cold", BaseAffix.Type.prefix).setMods(new StatModsHolder(new ElementalAttackDamageFlat(Elements.Water), new CompletePhysDispersionFlat()));
-    public static MobAffix FLAMING = new MobAffix("flaming", "Flaming", BaseAffix.Type.prefix).setMods(new StatModsHolder(new ElementalAttackDamageFlat(Elements.Fire), new CompletePhysDispersionFlat()));
-    public static MobAffix LIGHTNING = new MobAffix("lightning", "Lightning", BaseAffix.Type.prefix).setMods(new StatModsHolder(new ElementalAttackDamageFlat(Elements.Thunder), new CompletePhysDispersionFlat()));
-    public static MobAffix VENOMOUS = new MobAffix("venom", "Venomous", BaseAffix.Type.prefix).setMods(new StatModsHolder(new ElementalAttackDamageFlat(Elements.Nature), new CompletePhysDispersionFlat()));
+    public static MobAffix COLD = new MobAffix("cold", "Cold", BaseAffix.Type.prefix).setMods(new ExactStatData(5, StatModTypes.Flat, new WeaponDamage(Elements.Water)));
+    public static MobAffix FLAMING = new MobAffix("flaming", "Flaming", BaseAffix.Type.prefix).setMods(new ExactStatData(5, StatModTypes.Flat, new WeaponDamage(Elements.Fire)));
+    public static MobAffix LIGHTNING = new MobAffix("lightning", "Lightning", BaseAffix.Type.prefix).setMods(new ExactStatData(5, StatModTypes.Flat, new WeaponDamage(Elements.Thunder)));
+    public static MobAffix VENOMOUS = new MobAffix("venom", "Venomous", BaseAffix.Type.prefix).setMods(new ExactStatData(5, StatModTypes.Flat, new WeaponDamage(Elements.Nature)));
 
     @Override
     public void registerAll() {

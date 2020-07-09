@@ -8,9 +8,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.potion_effects.druid.RegenerateEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.particles.ParticleTypes;
@@ -27,10 +25,6 @@ public class NatureBalmSpell extends BaseSpell {
     private NatureBalmSpell() {
         super(
             new ImmutableSpellConfigs() {
-                @Override
-                public Masteries school() {
-                    return Masteries.NATURE;
-                }
 
                 @Override
                 public SpellCastType castType() {
@@ -96,11 +90,6 @@ public class NatureBalmSpell extends BaseSpell {
         if (ctx.caster.world.isRemote) {
             ParticleUtils.spawnParticles(ParticleTypes.HAPPY_VILLAGER, ctx.caster, 10);
         }
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(2, 1);
     }
 
     private static class SingletonHolder {

@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.database.loot_crates.loot_crate_item.MapLootCrateItem;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.ItemCurrencyBag;
@@ -57,8 +56,6 @@ public class ItemRegister {
     private static void registerSingles(RegistryEvent.Register<Item> event) {
 
         IForgeRegistry<Item> r = event.getRegistry();
-
-        list.add(new MapLootCrateItem());
 
         list.add(new ItemCurrencyBag().setRegistryName(ItemCurrencyBag.ID));
 

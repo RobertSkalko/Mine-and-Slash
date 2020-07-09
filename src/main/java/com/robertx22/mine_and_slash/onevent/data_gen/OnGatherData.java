@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
 import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
-import com.robertx22.mine_and_slash.onevent.data_gen.providers.MyAdvProvider;
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.SlashRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
@@ -18,8 +17,6 @@ public class OnGatherData {
     public void onGatherData(GatherDataEvent event) {
 
         DataGenerator gen = event.getGenerator();
-
-        gen.addProvider(new MyAdvProvider(gen));
 
         if (event.includeServer()) {
 

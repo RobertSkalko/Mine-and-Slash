@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequiremen
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -113,7 +112,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
             .key('#', SimpleMatItem.MYTHIC_ESSENCE)
             .key('t', ModItems.ORB_OF_TRANSMUTATION.get())
             .key('v', Items.DIAMOND)
-            .key('o', ItemOre.ItemOres.get(IRarity.Legendary))
+            .key('o', ModItems.RARE_MAGIC_ESSENCE.get())
             .patternLine("#o#")
             .patternLine("#t#")
             .patternLine("vvv")

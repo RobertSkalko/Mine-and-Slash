@@ -9,9 +9,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -25,11 +23,6 @@ public class ThunderspearSpell extends BaseSpell {
     private ThunderspearSpell() {
         super(
             new ImmutableSpellConfigs() {
-
-                @Override
-                public Masteries school() {
-                    return Masteries.STORM;
-                }
 
                 @Override
                 public SpellCastType castType() {
@@ -64,11 +57,6 @@ public class ThunderspearSpell extends BaseSpell {
         c.setMaxLevel(16);
 
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(0, 0);
     }
 
     public static ThunderspearSpell getInstance() {

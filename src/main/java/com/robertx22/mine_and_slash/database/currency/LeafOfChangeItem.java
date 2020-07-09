@@ -7,12 +7,10 @@ import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequiremen
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -87,7 +85,7 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
             .key('#', SimpleMatItem.GOLDEN_ORB)
             .key('t', ModItems.ORB_OF_BLESSING.get())
             .key('v', Items.GOLD_INGOT)
-            .key('o', ItemOre.ItemOres.get(IRarity.Rare))
+            .key('o', ModItems.RARE_MAGIC_ESSENCE.get())
             .patternLine("#t#")
             .patternLine("tvt")
             .patternLine("oto")

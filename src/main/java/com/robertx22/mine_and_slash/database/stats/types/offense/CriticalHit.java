@@ -1,13 +1,14 @@
 package com.robertx22.mine_and_slash.database.stats.types.offense;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.CriticalHitEffect;
-import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-public class CriticalHit extends Stat implements IStatEffects {
+public class CriticalHit extends Stat implements IStatEffects, ILocalStat {
 
     public static String GUID = "critical_hit";
 
@@ -47,11 +48,6 @@ public class CriticalHit extends Stat implements IStatEffects {
     }
 
     @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
-    }
-
-    @Override
     public Elements getElement() {
         return null;
     }
@@ -64,6 +60,11 @@ public class CriticalHit extends Stat implements IStatEffects {
     @Override
     public String locNameForLangFile() {
         return "Critical Hit Chance";
+    }
+
+    @Override
+    public boolean IsNativeToGearType(GearItemSlot slot) {
+        return slot.slotTypeFamily() == GearItemSlot.SlotFamily.Weapon;
     }
 
     private static class SingletonHolder {

@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
-import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -14,6 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -116,7 +116,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
             IUsableStat usable = (IUsableStat) stat;
 
             String value = NumberUtils.formatNumber(
-                usable.GetUsableValue(data.getLevel(), (int) data.getUnit()
+                usable.GetUsableValue((int) data.getUnit()
                     .getCreateStat(stat)
                     .getAverageValue()) * 100);
 

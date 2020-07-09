@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatsData;
@@ -17,6 +17,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipConte
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -35,6 +36,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Storable
@@ -228,6 +230,8 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     public List<ExactStatData> GetAllStats() {
 
+        // TODO TODO TODO TODO CALCULATE LOCAL STATS HERE
+
         List<ExactStatData> list = new ArrayList<>();
         GetAllStatContainers().stream()
             .map(x -> list.addAll(x.GetAllStats()));
@@ -308,8 +312,9 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
                 int amount = RandomUtils.RandomRange(min, max);
 
-                ItemOre ore = (ItemOre) ItemOre.ItemOres.get(getSalvagedOreRarity(getRarityRank()));
-                stack = new ItemStack(ore);
+                List<IWeighted> list = Arrays.asList((IWeighted) ModItems.MAGIC_ESSENCE.get(), (IWeighted) ModItems.RARE_MAGIC_ESSENCE.get());
+                Item item = (Item) RandomUtils.weightedRandom(list);
+                stack = new ItemStack(item);
                 stack.setCount(amount);
 
             }
@@ -341,18 +346,6 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     }
 
     @Override
-    public String getUniqueGUID() {
-
-        try {
-            return this.uniqueStats.uniqueGUID;
-        } catch (Exception e) {
-
-        }
-
-        return this.unique_id;
-    }
-
-    @Override
     public int getTier() {
 
         if (this.isUnique()) {
@@ -365,11 +358,6 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
         }
 
         return 0;
-    }
-
-    @Override
-    public String getSpecificType() {
-        return this.gear_type;
     }
 
     @Override

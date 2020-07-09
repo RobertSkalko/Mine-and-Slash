@@ -1,10 +1,9 @@
 package com.robertx22.mine_and_slash.onevent.data_gen.providers;
 
-import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
+import net.minecraft.advancements.criterion.EnchantedItemTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
@@ -25,39 +24,39 @@ public class SlashRecipeProvider extends RecipeProvider {
     protected void registerRecipes(Consumer<IFinishedRecipe> c) {
 
         shaped(SimpleMatItem.INFUSED_IRON)
-            .key('#', ItemOre.ItemOres.get(IRarity.Uncommon))
+            .key('#', ModItems.MAGIC_ESSENCE.get())
             .key('i', Items.IRON_INGOT)
             .patternLine(" # ")
             .patternLine("#i#")
             .patternLine(" # ")
-            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10))
+            .addCriterion("player_level", EnchantedItemTrigger.Instance.any())
             .build(c);
 
         shaped(SimpleMatItem.GOLDEN_ORB)
-            .key('#', ItemOre.ItemOres.get(IRarity.Rare))
+            .key('#', ModItems.RARE_MAGIC_ESSENCE.get())
             .key('i', Items.GOLD_INGOT)
             .patternLine(" # ")
             .patternLine("#i#")
             .patternLine(" # ")
-            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10))
+            .addCriterion("player_level", EnchantedItemTrigger.Instance.any())
             .build(c);
 
         shaped(SimpleMatItem.CRYSTALLIZED_ESSENCE)
-            .key('#', ItemOre.ItemOres.get(IRarity.Epic))
+            .key('#', ModItems.RARE_MAGIC_ESSENCE.get())
             .key('i', Items.DIAMOND)
             .patternLine(" # ")
             .patternLine("#i#")
             .patternLine(" # ")
-            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10))
+            .addCriterion("player_level", EnchantedItemTrigger.Instance.any())
             .build(c);
 
         shaped(SimpleMatItem.MYTHIC_ESSENCE)
-            .key('#', ItemOre.ItemOres.get(IRarity.Legendary))
+            .key('#', ModItems.RARE_MAGIC_ESSENCE.get())
             .key('b', Items.BOWL)
             .patternLine("###")
             .patternLine("###")
             .patternLine(" b ")
-            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10))
+            .addCriterion("player_level", EnchantedItemTrigger.Instance.any())
             .build(c);
 
         ForgeRegistries.ITEMS.forEach(x -> {

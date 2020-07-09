@@ -1,19 +1,15 @@
 package com.robertx22.mine_and_slash.onevent.ontick;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.stats.types.resources.EnergyRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
-import com.robertx22.mine_and_slash.new_content.ProcessChunkBlocks;
-import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.event.TickEvent;
@@ -72,15 +68,6 @@ public class OnServerTick {
                                 );
                                 x.getResources()
                                     .modify(mana);
-
-                                float energyrestored = unit.peekAtStat(EnergyRegen.GUID)
-                                    .getAverageValue();
-                                ResourcesData.Context ene = new ResourcesData.Context(x, player, ResourcesData.Type.ENERGY,
-                                    energyrestored,
-                                    ResourcesData.Use.RESTORE
-                                );
-                                x.getResources()
-                                    .modify(ene);
 
                                 boolean restored = false;
 
@@ -148,9 +135,6 @@ public class OnServerTick {
                 if (data.ticksToPassMinute > TicksToPassMinute) {
                     data.ticksToPassMinute = 0;
 
-                    Load.playerMapData(player)
-                        .onMinute(player);
-
                     if (player.getServer()
                         .isSinglePlayer()) {
                         SlashRegistry.restoreFromBackupifEmpty();
@@ -159,11 +143,6 @@ public class OnServerTick {
                 if (data.ticksToProcessChunks > TicksToProcessChunks) {
                     data.ticksToProcessChunks = 0;
 
-                    if (player.getActivePotionEffect(TeleportProtection.INSTANCE) == null) {
-                        player.setInvulnerable(false);
-                    }
-
-                    ProcessChunkBlocks.process(player);
                 }
 
                 if (data.ticksToSpellCooldowns >= TicksToSpellCooldowns) {

@@ -16,18 +16,18 @@ import net.minecraft.item.Item;
 import java.util.Arrays;
 import java.util.List;
 
-public class Staff extends BaseWeapon {
-    public static GearItemSlot INSTANCE = new Staff();
+public class Bow extends BaseWeapon {
+    public static GearItemSlot INSTANCE = new Bow();
 
-    private Staff() {
+    private Bow() {
 
     }
 
     @Override
     public List<StatModifier> BaseStats() {
         return Arrays.asList(
-            new StatModifier(2, 7, new WeaponDamage(Elements.Physical), StatModTypes.Flat),
-            new StatModifier(3, 10, CriticalHit.getInstance(), StatModTypes.Flat)
+            new StatModifier(2, 8, new WeaponDamage(Elements.Physical), StatModTypes.Flat),
+            new StatModifier(5, 18, CriticalHit.getInstance(), StatModTypes.Flat)
 
         );
     }
@@ -38,38 +38,33 @@ public class Staff extends BaseWeapon {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.MageWeapon, SlotTag.Staff);
-    }
-
-    @Override
-    public Item getItem() {
-        return ModItems.STAFF.get();
-    }
-
-    @Override
-    public boolean isMeleeWeapon() {
-        return true;
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.MAGE;
-    }
-
-    @Override
-    public String GUID() {
-        return "staff";
-    }
-
-    @Override
     public WeaponMechanic getWeaponMechanic() {
         return new NormalWeaponMechanic();
     }
 
     @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.THIEF;
+    }
+
+    @Override
+    public List<SlotTag> getTags() {
+        return Arrays.asList(SlotTag.Bow);
+    }
+
+    @Override
+    public Item getItem() {
+        return ModItems.BOW.get();
+    }
+
+    @Override
     public WeaponTypes weaponType() {
-        return WeaponTypes.Staff;
+        return WeaponTypes.Bow;
+    }
+
+    @Override
+    public String GUID() {
+        return "hunter_bow";
     }
 
     @Override
@@ -79,6 +74,7 @@ public class Staff extends BaseWeapon {
 
     @Override
     public String locNameForLangFile() {
-        return "Staff";
+        return "Hunter Bow";
     }
+
 }

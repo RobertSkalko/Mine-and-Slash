@@ -98,10 +98,6 @@ public class VanillaOverlay extends IngameGui {
 
             renderElement(ticks, Type.MANA, x, y + rightY, mc, en, data);
 
-            y -= SPACING_Y;
-
-            renderElement(ticks, Type.ENERGY, x, y + rightY, mc, en, data);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,63 +113,25 @@ public class VanillaOverlay extends IngameGui {
 
             @Override
             public float getCurrent(LivingEntity en, UnitData data) {
-                if (data.getUnit()
-                    .isBloodMage()) {
-                    return data.getResources()
-                        .getBlood();
-                } else {
-                    return data.getResources()
-                        .getMana();
-                }
-            }
-
-            @Override
-            public float getMax(LivingEntity en, UnitData data) {
-                if (data.getUnit()
-                    .isBloodMage()) {
-                    return data.getUnit()
-                        .getMaximumBlood();
-                } else {
-                    return data.getUnit()
-                        .manaData()
-                        .getAverageValue();
-                }
-            }
-
-            @Override
-            public int yPosTexture(UnitData data) {
-                if (data.getUnit()
-                    .isBloodMage()) {
-                    return 30;
-                } else {
-                    return 10;
-                }
-            }
-        },
-        ENERGY {
-            @Override
-            public Side getSide() {
-                return Side.RIGHT;
-
-            }
-
-            @Override
-            public float getCurrent(LivingEntity en, UnitData data) {
                 return data.getResources()
-                    .getEnergy();
+                    .getMana();
+
             }
 
             @Override
             public float getMax(LivingEntity en, UnitData data) {
                 return data.getUnit()
-                    .energyData()
+                    .manaData()
                     .getAverageValue();
+
             }
 
             @Override
             public int yPosTexture(UnitData data) {
-                return 20;
+
+                return 10;
             }
+
         },
         MAGIC_SHIELD {
             @Override

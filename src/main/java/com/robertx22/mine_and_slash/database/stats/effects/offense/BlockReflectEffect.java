@@ -3,8 +3,6 @@ package com.robertx22.mine_and_slash.database.stats.effects.offense;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.BlockEffect;
-import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
-import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
@@ -29,24 +27,8 @@ public class BlockReflectEffect extends BaseDamageEffect {
         return EffectSides.Target;
     }
 
-    public float getEnergyCost(int lvl) {
-        return Energy.getInstance()
-            .getScaling()
-            .scale(1, lvl);
-    }
-
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-
-        float cost = getEnergyCost(effect.targetData.getLevel());
-
-        ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
-            ResourcesData.Type.ENERGY, cost,
-            ResourcesData.Use.SPEND
-        );
-
-        effect.targetData.getResources()
-            .modify(ctx);
 
         float dmg = data.getAverageValue();
 
@@ -67,14 +49,7 @@ public class BlockReflectEffect extends BaseDamageEffect {
         if (effect.getEffectType()
             .equals(EffectTypes.BASIC_ATTACK) && effect.isBlocked()) {
 
-            float cost = getEnergyCost(effect.targetData.getLevel());
-
-            ResourcesData.Context ctx = new ResourcesData.Context(effect.targetData, effect.target,
-                ResourcesData.Type.ENERGY, cost,
-                ResourcesData.Use.SPEND
-            );
-            return effect.targetData.getResources()
-                .hasEnough(ctx);
+            return true;
         }
         return false;
     }

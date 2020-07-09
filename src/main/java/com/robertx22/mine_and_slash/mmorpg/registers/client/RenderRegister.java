@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.spells.entities.summons.WolfPetRend
 import com.robertx22.mine_and_slash.database.spells.entities.trident.HolyTridentRenderer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
-import com.robertx22.mine_and_slash.new_content.trader.TraderRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.TridentRenderer;
 import net.minecraft.entity.Entity;
@@ -31,7 +30,6 @@ public class RenderRegister {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.THUNDER_SPEAR, TridentRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.RANGER_ARROW, RangerArrowRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityRegister.TRADER, TraderRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.SPIDER_PET, SpiderPetRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityRegister.SPIRIT_WOLF_PET, WolfPetRenderer::new);

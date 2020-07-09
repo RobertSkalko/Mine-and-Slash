@@ -16,7 +16,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -68,11 +67,6 @@ public class PetrifyEffect extends BasePotionEffect implements IOnBasicAttackedP
     @Override
     public BaseSpell getSpell() {
         return GorgonsGazeSpell.getInstance();
-    }
-
-    @Override
-    public Masteries getMastery() {
-        return Masteries.NATURE;
     }
 
     @Override

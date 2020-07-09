@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -105,7 +104,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
         return shaped(ModItems.ORB_OF_TRANSMUTATION.get())
             .key('t', Items.REDSTONE)
             .key('v', Items.COAL)
-            .key('o', ItemOre.ItemOres.get(IRarity.Common))
+            .key('o', ModItems.RARE_MAGIC_ESSENCE.get())
             .patternLine("ovo")
             .patternLine("vtv")
             .patternLine("ovo")

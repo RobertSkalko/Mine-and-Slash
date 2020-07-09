@@ -9,9 +9,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.util.SoundEvent;
@@ -26,11 +24,6 @@ public class HeartOfIceSpell extends BaseSpell {
     private HeartOfIceSpell() {
         super(
             new ImmutableSpellConfigs() {
-
-                @Override
-                public Masteries school() {
-                    return Masteries.OCEAN;
-                }
 
                 @Override
                 public SpellCastType castType() {
@@ -60,11 +53,6 @@ public class HeartOfIceSpell extends BaseSpell {
         c.setMaxLevel(12);
 
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(6, 0);
     }
 
     public static HeartOfIceSpell getInstance() {

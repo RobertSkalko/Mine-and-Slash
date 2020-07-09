@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
@@ -94,9 +93,9 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModItems.ORB_OF_BLESSING.get())
             .key('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
-            .key('t', ModItems.CRYSTAL_OF_LEGEND.get())
+            .key('t', ModItems.ORB_OF_TURBULENCE.get())
             .key('v', Items.COAL)
-            .key('o', ItemOre.ItemOres.get(IRarity.Epic))
+            .key('o', ModItems.RARE_MAGIC_ESSENCE.get())
             .patternLine("v#v")
             .patternLine("vtv")
             .patternLine("ovo")

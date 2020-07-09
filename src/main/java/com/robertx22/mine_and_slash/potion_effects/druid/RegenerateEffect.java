@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
@@ -76,12 +75,4 @@ public class RegenerateEffect extends BasePotionEffect {
         return NatureBalmSpell.getInstance();
     }
 
-    @Override
-    public Masteries getMastery() {
-        if (getSpell() != null) {
-            return getSpell().getMastery();
-        } else {
-            return null;
-        }
-    }
 }

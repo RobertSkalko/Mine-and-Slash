@@ -1,12 +1,15 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.plate;
 
+import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
-import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateChestItem;
+import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import net.minecraft.item.Item;
 
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.List;
 
 public class PlateChest extends BaseChest {
     public static GearItemSlot INSTANCE = new PlateChest();
@@ -16,8 +19,25 @@ public class PlateChest extends BaseChest {
     }
 
     @Override
-    public StatReq getRequirements() {
-        return plateArmorReq;
+    public List<StatModifier> BaseStats() {
+        return Arrays.asList(
+            new StatModifier(30, 100, Armor.getInstance(), StatModTypes.Flat)
+        );
+    }
+
+    @Override
+    public List<StatModifier> ImplicitStats() {
+        return Arrays.asList();
+    }
+
+    @Override
+    public List<SlotTag> getTags() {
+        return Arrays.asList(SlotTag.Plate, SlotTag.Chest);
+    }
+
+    @Override
+    public Item getItem() {
+        return ModItems.PLATE_CHEST.get();
     }
 
     @Override
@@ -28,16 +48,6 @@ public class PlateChest extends BaseChest {
     @Override
     public PlayStyle getPlayStyle() {
         return PlayStyle.WARRIOR;
-    }
-
-    @Override
-    public Item getDefaultItem() {
-        return PlateChestItem.Items.get(0);
-    }
-
-    @Override
-    public HashMap<Integer, Item> getItemsForRaritiesMap() {
-        return PlateChestItem.Items;
     }
 
     @Override

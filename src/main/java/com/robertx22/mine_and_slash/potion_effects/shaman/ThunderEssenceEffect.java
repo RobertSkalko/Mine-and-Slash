@@ -11,7 +11,6 @@ import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.PotionStat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -64,11 +63,6 @@ public class ThunderEssenceEffect extends BasePotionEffect implements IApplyStat
     @Override
     public BaseSpell getSpell() {
         return null;
-    }
-
-    @Override
-    public Masteries getMastery() {
-        return Masteries.STORM;
     }
 
     @Override

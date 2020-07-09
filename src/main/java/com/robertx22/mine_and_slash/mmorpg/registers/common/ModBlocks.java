@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.blocks.salvage_station.BlockGearSalvage;
 import com.robertx22.mine_and_slash.database.spells.blocks.holy_flower.HolyFlowerBlock;
 import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerBlock;
 import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushBlock;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -35,12 +34,11 @@ public class ModBlocks {
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         IForgeRegistry<Block> reg = event.getRegistry();
 
-        ItemOre.RegisterBlocks(event);
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> reg = event.getRegistry();
-        ItemOre.RegisterItems(event);
+
     }
 }

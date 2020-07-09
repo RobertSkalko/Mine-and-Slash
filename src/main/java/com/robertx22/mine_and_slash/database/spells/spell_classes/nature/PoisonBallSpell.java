@@ -9,9 +9,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -25,11 +23,6 @@ public class PoisonBallSpell extends BaseSpell {
     private PoisonBallSpell() {
         super(
             new ImmutableSpellConfigs() {
-
-                @Override
-                public Masteries school() {
-                    return Masteries.NATURE;
-                }
 
                 @Override
                 public SpellCastType castType() {
@@ -92,11 +85,6 @@ public class PoisonBallSpell extends BaseSpell {
     @Override
     public Words getName() {
         return Words.PoisonBall;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(0, 0);
     }
 
     private static class SingletonHolder {

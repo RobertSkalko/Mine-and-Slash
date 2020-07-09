@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.calc.SpellCalcData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -79,31 +78,11 @@ public abstract class BasePotionEffect extends Effect implements ISlashRegistryE
         return SlashRegistryType.EFFECT;
     }
 
-    @Override
-    public int getMaxSpellLevelNormal() {
-        return 8;
-    }
-
-    @Override
-    public int getMaxSpellLevelBuffed() {
-        return getMaxSpellLevelNormal() + 5;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return null;
-    }
-
     public IAbility getAbilityThatDeterminesLevel() {
         if (getSpell() != null) {
             return getSpell();
         }
         return this;
-    }
-
-    @Override
-    public IAbility getRequiredAbility() {
-        return null;
     }
 
     protected List<OnTickAction> tickActions = new ArrayList<>();

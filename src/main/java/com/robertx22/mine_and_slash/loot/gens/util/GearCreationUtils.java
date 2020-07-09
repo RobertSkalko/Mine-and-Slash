@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.blueprints.RunedGearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.registry.FilterListWrap;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -14,7 +13,6 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.SuffixData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.saveclasses.rune.RunesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.item.ItemStack;
@@ -59,9 +57,7 @@ public class GearCreationUtils {
 
         GearItemEnum type = GearItemEnum.random();
 
-        if (blueprint instanceof RunedGearBlueprint) {
-            type = GearItemEnum.RUNED;
-        } else if (blueprint instanceof UniqueGearBlueprint) {
+        if (blueprint instanceof UniqueGearBlueprint) {
             type = GearItemEnum.UNIQUE;
         }
 
@@ -89,7 +85,6 @@ public class GearCreationUtils {
         GearRarity rarity = (GearRarity) blueprint.rarity.get();
         GearItemData data = new GearItemData();
 
-        data.level = blueprint.level.get();
         data.rarity = rarity.Rank();
 
         if (blueprint instanceof UniqueGearBlueprint) {
@@ -129,36 +124,31 @@ public class GearCreationUtils {
         data.gear_type = blueprint.gearItemSlot.get()
             .GUID();
 
-        data.requirements = new StatRequirementsData();
-        data.requirements.create(data);
-
         if (type.canGetPrimaryStats()) {
             data.baseStats = new BaseStatsData();
             data.baseStats.RerollFully(data);
         }
 
-        if (type.canGetChaosStats()) {
-            if (blueprint.getsChaosStats()) {
-                data.chaosStats = new ChaosStatsData();
-                data.chaosStats.RerollFully(data);
-            }
-        }
-
         if (type.canGetAffixes()) {
-            if (blueprint.suffixChancePart.get()) {
-                data.suffix = new SuffixData();
-                data.suffix.RerollFully(data);
+            int maxOfEachAffixType = blueprint.gearItemSlot.get()
+                .maximumRareAffixes(rarity);
+
+            for (int i = 0; i < maxOfEachAffixType; i++) {
+
+                if (blueprint.suffixChancePart.get()) {
+                    SuffixData suffix = new SuffixData();
+                    suffix.RerollFully(data);
+                    data.suffixes.add(suffix);
+
+                }
+
+                if (blueprint.prefixChancePart.get()) {
+                    PrefixData prefix = new PrefixData();
+                    prefix.RerollFully(data);
+                    data.prefixes.add(prefix);
+                }
 
             }
-            if (blueprint.prefixChancePart.get()) {
-                data.prefix = new PrefixData();
-                data.prefix.RerollFully(data);
-            }
-        }
-
-        if (type == GearItemEnum.RUNED) {
-            data.runes = new RunesData();
-            data.runes.capacity = rarity.runeSlots();
         }
 
         if (blueprint.unidentifiedPart.get()) {

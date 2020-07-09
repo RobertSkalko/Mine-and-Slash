@@ -9,11 +9,9 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -35,11 +33,6 @@ public class PurifyingFiresSpell extends BaseSpell {
     private PurifyingFiresSpell() {
         super(
             new ImmutableSpellConfigs() {
-
-                @Override
-                public Masteries school() {
-                    return Masteries.DIVINE;
-                }
 
                 @Override
                 public SpellCastType castType() {
@@ -123,11 +116,6 @@ public class PurifyingFiresSpell extends BaseSpell {
         c.setMaxLevel(16);
 
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(0, 0);
     }
 
     @Override

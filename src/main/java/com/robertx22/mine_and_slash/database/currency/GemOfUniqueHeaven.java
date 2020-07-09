@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequiremen
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
@@ -112,7 +111,7 @@ public class GemOfUniqueHeaven extends CurrencyItem implements ICurrencyItemEffe
             .key('#', SimpleMatItem.MYTHIC_ESSENCE)
             .key('t', ModItems.STONE_OF_HOPE.get())
             .key('v', Items.GOLD_INGOT)
-            .key('o', ItemOre.ItemOres.get(IRarity.Rare))
+            .key('o', ModItems.RARE_MAGIC_ESSENCE.get())
             .patternLine("ooo")
             .patternLine("#t#")
             .patternLine("vvv")

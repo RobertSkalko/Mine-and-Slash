@@ -5,13 +5,9 @@ import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.bases.BaseBarsOverlay;
-import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.types.BottomMiddleCornersOverlay;
 import com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup.SpellHotbatSetupScreen;
-import com.robertx22.mine_and_slash.gui.screens.spell_schools.SpellSchoolScreen;
-import com.robertx22.mine_and_slash.gui.screens.stat_allocation_screen.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.screens.stats_overview.StatOverviewScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
@@ -49,8 +45,6 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         screens.add(new SpellHotbatSetupScreen());
         screens.add(new StatOverviewScreen());
-        screens.add(new StatAllocationScreen());
-        screens.add(new SpellSchoolScreen());
 
         int x = guiLeft + 10;
         int y = guiTop + 45;
@@ -75,8 +69,6 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
     }
 
-    BottomMiddleCornersOverlay overlay = new BottomMiddleCornersOverlay(); // todo temporary
-
     @Override
     public void render(int x, int y, float ticks) {
 
@@ -88,8 +80,6 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         int expx = this.guiLeft + sizeX / 2 - BaseBarsOverlay.BAR_WIDTH / 2;
         int expy = this.guiTop + sizeY - BaseBarsOverlay.BAR_HEIGHT - 5;
-
-        overlay.DrawBar(BaseBarsOverlay.BarType.EXP, Load.Unit(mc.player), expx, expy);
 
     }
 

@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.ElementalResistEffect;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
@@ -21,11 +20,6 @@ public class ElementalResist extends ElementalStat implements IStatEffects {
         List<Stat> list = super.generateAllPossibleStatVariations();
         list.forEach(x -> MAP.put(x.getElement(), (ElementalResist) x));
         return list;
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.SLOW_SCALING;
     }
 
     @Override

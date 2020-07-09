@@ -67,17 +67,4 @@ public class TooltipInfo implements Cloneable {
         return !hasAltDown && hasShiftDown && !isSet;
     }
 
-    public TooltipInfo withLevel(int level) {
-
-        TooltipInfo info = null;
-        try {
-            info = (TooltipInfo) this.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-
-        return info;
-
-    }
-
 }

@@ -1,27 +1,14 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothBoots;
-import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothChest;
-import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothHelmet;
-import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothPants;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.Charm;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.HealthNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.ManaRing;
-import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherBoots;
-import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherChest;
-import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherHelmet;
-import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherPants;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
-import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Torch;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Axe;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.*;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
@@ -34,15 +21,6 @@ public class GearTypes implements ISlashRegistryInit {
         List<GearItemSlot> All = new ArrayList<GearItemSlot>() {
             {
                 {
-                    add(LeatherChest.INSTANCE);
-                    add(LeatherHelmet.INSTANCE);
-                    add(LeatherPants.INSTANCE);
-                    add(LeatherBoots.INSTANCE);
-
-                    add(ClothChest.INSTANCE);
-                    add(ClothHelmet.INSTANCE);
-                    add(ClothPants.INSTANCE);
-                    add(ClothBoots.INSTANCE);
 
                     add(PlateBoots.INSTANCE);
                     add(PlatePants.INSTANCE);
@@ -50,20 +28,15 @@ public class GearTypes implements ISlashRegistryInit {
                     add(PlateChest.INSTANCE);
 
                     add(ArmorShield.INSTANCE);
-                    add(Torch.INSTANCE);
 
                     add(ManaRing.INSTANCE);
                     add(HealthNecklace.INSTANCE);
-                    add(Bracelet.INSTANCE);
-                    add(Charm.INSTANCE);
 
                     add(Bow.INSTANCE);
-                    add(Hammer.INSTANCE);
                     add(Staff.INSTANCE);
                     add(Axe.INSTANCE);
-                    add(CrossBow.INSTANCE);
+                    add(Crossbow.INSTANCE);
                     add(Sword.INSTANCE);
-                    add(Trident.INSTANCE);
 
                 }
 

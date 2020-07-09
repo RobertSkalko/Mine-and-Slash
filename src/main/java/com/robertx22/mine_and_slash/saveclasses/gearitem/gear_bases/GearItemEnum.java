@@ -27,11 +27,6 @@ public enum GearItemEnum implements IWeighted {
         }
 
         @Override
-        public boolean canGetChaosStats() {
-            return true;
-        }
-
-        @Override
         public boolean canGetPrimaryStats() {
             return true;
         }
@@ -40,40 +35,6 @@ public enum GearItemEnum implements IWeighted {
         public Words word() {
             return Words.Normal_Gear;
         }
-    },
-
-    RUNED() {
-        @Override
-        public int Weight() {
-            return (int) (ModConfig.INSTANCE.DropRates.RUNED_GEAR_DROPRATE.get()
-                .floatValue() * 100); // cus some config values are < 1 like 0.1F
-        }
-
-        @Override
-        public boolean canGetAffixes() {
-            return false;
-        }
-
-        @Override
-        public boolean canRerollNumbers() {
-            return false;
-        }
-
-        @Override
-        public boolean canGetChaosStats() {
-            return false;
-        }
-
-        @Override
-        public boolean canGetPrimaryStats() {
-            return true;
-        }
-
-        @Override
-        public Words word() {
-            return Words.Runed_Gear;
-        }
-
     },
 
     UNIQUE() {
@@ -94,11 +55,6 @@ public enum GearItemEnum implements IWeighted {
         }
 
         @Override
-        public boolean canGetChaosStats() {
-            return true;
-        }
-
-        @Override
         public boolean canGetAffixes() {
             return false;
         }
@@ -112,8 +68,6 @@ public enum GearItemEnum implements IWeighted {
     public abstract boolean canGetPrimaryStats();
 
     public abstract boolean canRerollNumbers();
-
-    public abstract boolean canGetChaosStats();
 
     public abstract boolean canGetAffixes();
 

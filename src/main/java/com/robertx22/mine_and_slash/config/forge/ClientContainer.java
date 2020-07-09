@@ -70,7 +70,7 @@ public class ClientContainer {
 
         PLAYER_GUI_TYPE = builder.comment(".")
             .translation("mmorpg.config.player_gui_overlay_type")
-            .defineEnum("PLAYER_GUI_TYPE", PlayerGUIs.Bottom_Middle_Corners);
+            .defineEnum("PLAYER_GUI_TYPE", PlayerGUIs.Vanilla);
 
         builder.pop();
     }

@@ -12,28 +12,11 @@ public enum PlayerCaps {
             return Load.Unit(player);
         }
     },
-    MAP_DATA {
-        @Override
-        public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.playerMapData(player);
-        }
-    },
-    TALENTS {
-        @Override
-        public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.talents(player);
-        }
-    },
+
     SPELLS {
         @Override
         public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.spells(player);
-        }
-    },
-    STAT_POINTS {
-        @Override
-        public ICommonPlayerCap getCap(PlayerEntity player) {
-            return Load.statPoints(player);
         }
     };
 

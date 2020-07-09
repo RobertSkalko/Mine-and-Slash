@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.item;
 
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
-import com.robertx22.mine_and_slash.new_content.trader.ISellPrice;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
@@ -12,7 +11,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -33,13 +31,6 @@ public class OnTooltip {
         buildCurrencyEffectTooltip(event);
 
         ItemStack stack = event.getItemStack();
-
-        if (ISellPrice.hasPrice(stack)) {
-            event.getToolTip()
-                .add(new SText(""));
-            event.getToolTip()
-                .add(new SText(""));
-        }
 
     }
 

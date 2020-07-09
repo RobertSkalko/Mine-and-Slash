@@ -2,10 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
 import com.robertx22.mine_and_slash.a_libraries.curios.CurioClientSetup;
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.HealthBarRenderer;
-import com.robertx22.mine_and_slash.config.forge.ClientContainer;
-import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.PlayerBarsOverlayScreen;
 import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.types.VanillaOverlay;
-import com.robertx22.mine_and_slash.gui.overlays.gear_overlay.GearOverlayGUI;
 import com.robertx22.mine_and_slash.gui.overlays.mob_bar.MobBarScreen;
 import com.robertx22.mine_and_slash.gui.overlays.spell_cast_bar.SpellCastBarOverlay;
 import com.robertx22.mine_and_slash.gui.overlays.spell_hotbar.SpellHotbarOverlay;
@@ -28,21 +25,14 @@ public class ClientSetup {
         RenderTypeLookup.setRenderLayer(ModBlocks.THORN_BUSH.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.HOLY_FLOWER.get(), RenderType.getCutout());
 
-        RenderTypeLookup.setRenderLayer(ModBlocks.DUNGEON_PORTAL.get(), RenderType.getTranslucent());
-
         SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);
 
-        MinecraftForge.EVENT_BUS.register(new PlayerBarsOverlayScreen(Minecraft.getInstance()));
         MinecraftForge.EVENT_BUS.register(new VanillaOverlay(Minecraft.getInstance()));
 
         MinecraftForge.EVENT_BUS.register(new MobBarScreen(Minecraft.getInstance()));
         MinecraftForge.EVENT_BUS.register(new SpellCastBarOverlay());
         MinecraftForge.EVENT_BUS.register(new SpellHotbarOverlay());
-
-        if (ClientContainer.INSTANCE.SHOW_UNMET_GEAR_REQUIREMENTS_GUI.get()) {
-            MinecraftForge.EVENT_BUS.register(new GearOverlayGUI(Minecraft.getInstance()));
-        }
 
         MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
         KeybindsRegister.register();

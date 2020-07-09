@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.stats.types.spell_calc;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.spell_calc.ReduceCooldownEffect;
-import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
@@ -25,11 +24,6 @@ public class ReducedCooldownStat extends Stat implements IStatEffects {
     @Override
     public Elements getElement() {
         return null;
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
     }
 
     @Override

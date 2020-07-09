@@ -16,7 +16,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectType;
@@ -102,11 +101,6 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public BaseSpell getSpell() {
         return null;
-    }
-
-    @Override
-    public Masteries getMastery() {
-        return Masteries.FIRE;
     }
 
 }

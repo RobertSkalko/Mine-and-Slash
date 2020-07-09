@@ -20,6 +20,8 @@ import java.util.List;
 @Storable
 public class ExactStatData extends BaseStatContainer implements ISerializable<ExactStatData> {
 
+    public static ExactStatData EMPTY = new ExactStatData();
+
     public ExactStatData() {
 
     }

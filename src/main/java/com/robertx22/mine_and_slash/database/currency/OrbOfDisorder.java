@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -86,7 +85,7 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
             .key('#', SimpleMatItem.INFUSED_IRON)
             .key('t', ModItems.ORB_OF_TRANSMUTATION.get())
             .key('v', Items.GOLD_NUGGET)
-            .key('o', ItemOre.ItemOres.get(IRarity.Common))
+            .key('o', ModItems.MAGIC_ESSENCE.get())
             .patternLine("o#o")
             .patternLine("oto")
             .patternLine("vvv")

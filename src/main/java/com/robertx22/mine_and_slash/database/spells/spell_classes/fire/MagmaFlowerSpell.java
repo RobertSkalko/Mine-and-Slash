@@ -10,9 +10,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.util.SoundEvent;
@@ -26,11 +24,6 @@ public class MagmaFlowerSpell extends BaseSpell {
     private MagmaFlowerSpell() {
         super(
             new ImmutableSpellConfigs() {
-
-                @Override
-                public Masteries school() {
-                    return Masteries.FIRE;
-                }
 
                 @Override
                 public SpellCastType castType() {
@@ -68,11 +61,6 @@ public class MagmaFlowerSpell extends BaseSpell {
         c.setMaxLevel(16);
 
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(2, 2);
     }
 
     public static MagmaFlowerSpell getInstance() {

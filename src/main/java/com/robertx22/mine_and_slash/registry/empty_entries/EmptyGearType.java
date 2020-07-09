@@ -1,30 +1,22 @@
 package com.robertx22.mine_and_slash.registry.empty_entries;
 
+import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.PosStats;
-import com.robertx22.mine_and_slash.database.unique_items.StatReq;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class EmptyGearType extends GearItemSlot {
+
     @Override
-    public SlotFamily slotTypeFamily() {
-        return SlotFamily.Jewelry;
+    public List<StatModifier> ImplicitStats() {
+        return null;
     }
 
     @Override
-    public List<PosStats> getPossiblePrimaryStats() {
-        return new ArrayList<>();
-    }
-
-    @Override
-    public StatReq getRequirements() {
-        return noReq;
+    public List<StatModifier> BaseStats() {
+        return null;
     }
 
     @Override
@@ -38,27 +30,27 @@ public class EmptyGearType extends GearItemSlot {
     }
 
     @Override
-    public String resourceID() {
-        return "";
+    public SlotFamily slotTypeFamily() {
+        return null;
     }
 
     @Override
-    public Item getDefaultItem() {
-        return Items.AIR;
+    public List<SlotTag> getTags() {
+        return null;
     }
 
     @Override
-    public HashMap<Integer, Item> getItemsForRaritiesMap() {
-        return new HashMap<>();
+    public Item getItem() {
+        return null;
     }
 
     @Override
     public String locNameForLangFile() {
-        return "";
+        return null;
     }
 
     @Override
     public String GUID() {
-        return "";
+        return null;
     }
 }

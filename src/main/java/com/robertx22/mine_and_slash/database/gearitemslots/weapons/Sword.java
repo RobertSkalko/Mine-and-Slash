@@ -36,11 +36,6 @@ public class Sword extends BaseWeapon {
     }
 
     @Override
-    public String resourceID() {
-        return "sword";
-    }
-
-    @Override
     public List<SlotTag> getTags() {
         return Arrays.asList(SlotTag.Sword);
     }

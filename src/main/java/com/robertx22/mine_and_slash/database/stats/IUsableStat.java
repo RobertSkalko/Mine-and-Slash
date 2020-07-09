@@ -14,14 +14,14 @@ public interface IUsableStat {
      */
     public float AverageStat();
 
-    public default float GetUsableValue(int Level, int value) {
+    public default float GetUsableValue(int value) {
 
         if (this instanceof Stat) {
             Stat stat = (Stat) this;
 
             float AvgStat = this.AverageStat();
 
-            float number = (float) value / stat.calculateScalingStatGrowth(AvgStat, Level);
+            float number = (float) value / AvgStat;
 
             if (number < 0) {
                 number = 0;

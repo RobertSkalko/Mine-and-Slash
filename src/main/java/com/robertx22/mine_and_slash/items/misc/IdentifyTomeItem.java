@@ -1,15 +1,12 @@
 package com.robertx22.mine_and_slash.items.misc;
 
-import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.client.util.ITooltipFlag;
@@ -104,10 +101,10 @@ public class IdentifyTomeItem extends Item implements IShapedRecipe {
         return shaped(ModItems.IDENTIFY_TOME.get(), 8)
             .key('b', Items.BOOK)
             .key('v', Items.COAL)
-            .key('o', ItemOre.ItemOres.get(IRarity.Rare))
+            .key('o', ModItems.MAGIC_ESSENCE.get())
             .patternLine("oo")
             .patternLine("bv")
-            .addCriterion("player_level", new PlayerLevelTrigger.Instance(1));
+            .addCriterion("player_level", trigger());
     }
 
 }

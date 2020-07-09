@@ -3,9 +3,12 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Axe;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Bow;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Crossbow;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
@@ -36,6 +39,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public abstract List<StatModifier> BaseStats();
 
+    public int maximumRareAffixes(GearRarity rarity) {
+        return rarity.maxAffixes();
+    }
+
     public WeaponTypes weaponType() {
         return WeaponTypes.None;
     }
@@ -49,7 +56,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     public abstract EquipmentSlotType getVanillaSlotType();
 
     public enum SlotTag {
-        Sword, Axe, Bow, Staff,
+        Sword, Axe, Bow, Staff, Crossbow,
         Boots, Helmet, Pants, Chest,
         Cloth, Plate, Leather,
         Shield, Necklace, Ring,
@@ -117,9 +124,6 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
                 .equals(Sword.INSTANCE.GUID())) {
                 bool = item instanceof SwordItem;
             } else if (slot.GUID()
-                .equals(Trident.INSTANCE.GUID())) {
-                bool = item instanceof TridentItem;
-            } else if (slot.GUID()
                 .equals(Bow.INSTANCE.GUID())) {
                 bool = item instanceof BowItem;
             } else if (slot.GUID()
@@ -129,7 +133,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
                 .equals(ArmorShield.INSTANCE.GUID())) {
                 bool = item instanceof ShieldItem;
             } else if (slot.GUID()
-                .equals(CrossBow.INSTANCE.GUID())) {
+                .equals(Crossbow.INSTANCE.GUID())) {
                 bool = item instanceof CrossbowItem;
             } else if (slot.slotTypeFamily()
                 .equals(SlotFamily.Jewelry)) {

@@ -13,7 +13,6 @@ import com.robertx22.mine_and_slash.database.spells.entities.summons.SpiritWolfP
 import com.robertx22.mine_and_slash.database.spells.entities.trident.SpearOfJudgementEntity;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.new_content.trader.TraderEntity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -74,8 +73,6 @@ public class EntityRegister {
 
     public static final EntityType<? extends Entity> SEED;
 
-    public static final EntityType<TraderEntity> TRADER;
-
     public static final EntityType<SpiderPetEntity> SPIDER_PET;
     public static final EntityType<SpiritWolfPetEntity> SPIRIT_WOLF_PET;
 
@@ -105,13 +102,6 @@ public class EntityRegister {
         DIVINE_TRIBULATION = projectile(DivineTribulationEntity::new, DivineTribulationEntity::new, "divine_tribulation");
 
         SEED = projectile(SeedEntity::new, SeedEntity::new, "seed_entity");
-
-        TRADER = EntityType.Builder.<TraderEntity>create(TraderEntity::new, EntityClassification.MISC).setCustomClientFactory(
-            TraderEntity::new)
-            .size(0.5F, 2F)
-            .build(Ref.MODID + ":trader");
-        TRADER.setRegistryName(new ResourceLocation(Ref.MODID, "trader"));
-        ENTITY_TYPES.add(TRADER);
 
         SPIDER_PET = EntityType.Builder.<SpiderPetEntity>create(SpiderPetEntity::new, EntityClassification.MONSTER).setCustomClientFactory(
             SpiderPetEntity::new)

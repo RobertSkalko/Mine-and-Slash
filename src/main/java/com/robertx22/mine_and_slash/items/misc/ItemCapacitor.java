@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.items.misc;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -69,7 +68,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
             return shaped(ITEMS.get(rarity))
                 .key('#', Items.IRON_INGOT)
                 .key('t', ModItems.ORB_OF_TRANSMUTATION.get())
-                .key('c', ItemOre.ItemOres.get(0))
+                .key('c', ModItems.MAGIC_ESSENCE.get())
                 .patternLine("#c#")
                 .patternLine("ctc")
                 .patternLine("#c#")
@@ -79,7 +78,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
             return shaped(ITEMS.get(rarity))
                 .key('#', SimpleMatItem.INFUSED_IRON)
                 .key('t', ITEMS.get(rarity - 1))
-                .key('c', ItemOre.ItemOres.get(rarity))
+                .key('c', ModItems.MAGIC_ESSENCE.get())
                 .patternLine("#c#")
                 .patternLine("ctc")
                 .patternLine("#c#")
@@ -89,7 +88,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
             return shaped(ITEMS.get(rarity))
                 .key('#', SimpleMatItem.GOLDEN_ORB)
                 .key('t', ITEMS.get(rarity - 1))
-                .key('c', ItemOre.ItemOres.get(rarity))
+                .key('c', ModItems.RARE_MAGIC_ESSENCE.get())
                 .patternLine("#c#")
                 .patternLine("ctc")
                 .patternLine("#c#")
@@ -99,7 +98,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
             return shaped(ITEMS.get(rarity))
                 .key('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
                 .key('t', ITEMS.get(rarity - 1))
-                .key('c', ItemOre.ItemOres.get(rarity))
+                .key('c', ModItems.RARE_MAGIC_ESSENCE.get())
                 .patternLine("#c#")
                 .patternLine("ctc")
                 .patternLine("#c#")

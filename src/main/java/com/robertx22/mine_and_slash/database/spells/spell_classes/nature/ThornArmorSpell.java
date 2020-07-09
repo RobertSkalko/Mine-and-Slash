@@ -8,9 +8,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.potion_effects.druid.ThornArmorEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -24,10 +22,6 @@ public class ThornArmorSpell extends BaseSpell {
 
     private ThornArmorSpell() {
         super(new ImmutableSpellConfigs() {
-            @Override
-            public Masteries school() {
-                return Masteries.NATURE;
-            }
 
             @Override
             public SpellCastType castType() {
@@ -61,11 +55,6 @@ public class ThornArmorSpell extends BaseSpell {
 
         c.setMaxLevel(12);
         return c;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(5, 5);
     }
 
     @Override

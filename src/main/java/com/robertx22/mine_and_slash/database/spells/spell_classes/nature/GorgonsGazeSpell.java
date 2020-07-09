@@ -10,9 +10,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.common.ModSounds;
 import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.potion_effects.druid.PetrifyEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
@@ -29,10 +27,6 @@ public class GorgonsGazeSpell extends BaseSpell {
 
     private GorgonsGazeSpell() {
         super(new ImmutableSpellConfigs() {
-            @Override
-            public Masteries school() {
-                return Masteries.NATURE;
-            }
 
             @Override
             public SpellCastType castType() {
@@ -53,11 +47,6 @@ public class GorgonsGazeSpell extends BaseSpell {
 
     public static GorgonsGazeSpell getInstance() {
         return SingletonHolder.INSTANCE;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(7, 4);
     }
 
     @Override

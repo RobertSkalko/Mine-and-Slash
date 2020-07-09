@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
@@ -57,11 +56,6 @@ public class ImbueEffect extends BasePotionEffect {
     @Override
     public BaseSpell getSpell() {
         return ImbueSpell.getInstance();
-    }
-
-    @Override
-    public Masteries getMastery() {
-        return Masteries.HUNTING;
     }
 
     @Override

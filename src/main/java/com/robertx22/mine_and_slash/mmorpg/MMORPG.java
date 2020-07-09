@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
 import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.db_lists.initializers.CurrencyItems;
-import com.robertx22.mine_and_slash.error_checks.DunSameSeedAreSame;
 import com.robertx22.mine_and_slash.error_checks.base.ErrorChecks;
 import com.robertx22.mine_and_slash.mmorpg.proxy.ClientProxy;
 import com.robertx22.mine_and_slash.mmorpg.proxy.IProxy;
@@ -17,14 +16,10 @@ import com.robertx22.mine_and_slash.mmorpg.proxy.ServerProxy;
 import com.robertx22.mine_and_slash.mmorpg.registers.client.ClientSetup;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.CapabilityRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.CriteriaRegisters;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.PacketRegister;
 import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
 import com.robertx22.mine_and_slash.new_content.auto_comp.DeterminePowerLevels;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
-import com.robertx22.mine_and_slash.onevent.world.OnShutdownResetMaps;
-import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
-import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
@@ -123,8 +118,6 @@ public class MMORPG {
 
         RegDeffered.register(bus);
 
-        new DunSameSeedAreSame().check();
-
     }
 
     public static void logError(String s) {
@@ -142,7 +135,6 @@ public class MMORPG {
         PacketRegister.register();
 
         CapabilityRegister.register();
-        CriteriaRegisters.register();
 
     }
 
@@ -209,7 +201,7 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerStopping(FMLServerStoppedEvent event) {
-        OnShutdownResetMaps.deleteFolders(); // TODO delete this after PR accepted
+
     }
 
     @SubscribeEvent
@@ -252,12 +244,6 @@ public class MMORPG {
 
         if (player != null && msg != null) {
             Network.sendTo(msg, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
-        }
-    }
-
-    public static <MSG> void syncMapData(ServerPlayerEntity p) {
-        if (p != null) {
-            sendToClient(new SyncCapabilityToClient(p, PlayerCaps.MAP_DATA), p);
         }
     }
 

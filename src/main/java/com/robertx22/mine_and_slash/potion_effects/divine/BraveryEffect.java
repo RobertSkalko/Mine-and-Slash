@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOneOfATypePotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.data.PotionStat;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import net.minecraft.potion.EffectType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -68,11 +67,6 @@ public class BraveryEffect extends BasePotionEffect implements IApplyStatPotion,
     @Override
     public BaseSpell getSpell() {
         return BraverySpell.getInstance();
-    }
-
-    @Override
-    public Masteries getMastery() {
-        return getSpell().getMastery();
     }
 
     @Override

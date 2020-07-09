@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.loot;
 
-import com.robertx22.mine_and_slash.config.lvl_penalty.LvlPenaltyContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
@@ -11,12 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
 public class LootUtils {
-
-    // prevents lvl 50 players farming lvl 1 mobs
-    public static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {
-        return (float) (LvlPenaltyContainer.INSTANCE.getMultiForLevelDifference(
-                player.getLevel(), mob.getLevel()) * chance);
-    }
 
     public static ItemStack RandomDamagedGear(ItemStack stack, Rarity rar, int level) {
         if (stack.isDamageable()) {
@@ -31,7 +24,7 @@ public class LootUtils {
             }
 
             float dmgMulti = (float) RandomUtils.RandomRange(
-                    rar.SpawnDurabilityHit().min, rar.SpawnDurabilityHit().max) / (float) 100;
+                rar.SpawnDurabilityHit().min, rar.SpawnDurabilityHit().max) / (float) 100;
 
             dmgMulti += lvlDuraPenalty;
 
@@ -48,7 +41,8 @@ public class LootUtils {
 
         float first = chance;
 
-        float after_rarity = first * Rarities.Mobs.get(mob.getRarity()).LootMultiplier();
+        float after_rarity = first * Rarities.Mobs.get(mob.getRarity())
+            .LootMultiplier();
 
         float after_mob_health = after_rarity * (1 + entity.getMaxHealth() / 20);
 

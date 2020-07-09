@@ -54,7 +54,7 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
         json.addProperty("type", type.name());
 
         if (stats != null) {
-            JsonUtils.addStats(stats, json, "mods");
+            JsonUtils.addExactStats(stats, json, "stats");
         }
 
         return json;
@@ -70,7 +70,7 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
                 .getAsString()));
 
         try {
-            affix.stats = JsonUtils.getStats(json, "mods");
+            affix.stats = JsonUtils.getExactStats(json, "stats");
         } catch (Exception e) {
             e.printStackTrace();
         }

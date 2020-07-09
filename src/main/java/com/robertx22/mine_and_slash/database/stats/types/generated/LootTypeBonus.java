@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
@@ -36,11 +35,6 @@ public class LootTypeBonus extends Stat implements IGenerated<Stat> {
     }
 
     @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
-    }
-
-    @Override
     public Elements getElement() {
         return null;
     }
@@ -63,7 +57,8 @@ public class LootTypeBonus extends Stat implements IGenerated<Stat> {
     @Override
     public List<Stat> generateAllPossibleStatVariations() {
         List<Stat> list = new ArrayList<>();
-        Arrays.asList(LootType.values()).forEach(x -> list.add(new LootTypeBonus(x)));
+        Arrays.asList(LootType.values())
+            .forEach(x -> list.add(new LootTypeBonus(x)));
         return list;
 
     }

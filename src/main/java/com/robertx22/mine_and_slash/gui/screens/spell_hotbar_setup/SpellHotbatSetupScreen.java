@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.talent_tree.RenderUtils;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
@@ -10,13 +9,12 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
 import com.robertx22.mine_and_slash.packets.spells.WeaponRightClickSpellPacket;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
@@ -230,9 +228,9 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
         @Nullable
         public BaseSpell getSpell() {
-            if (isForRightClickWeaponSpell) {
-                GearItemData gear = Gear.Load(Minecraft.getInstance().player.getHeldItemMainhand());
-                return gear != null ? gear.getRightClickSpell() : null;
+
+            if (false && isForRightClickWeaponSpell) {
+                return null; // todo
             } else {
                 return Load.spells(Minecraft.getInstance().player)
                     .getCastingData()

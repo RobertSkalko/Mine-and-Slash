@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.potion_effects.all.BleedPotion;
-import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
 import com.robertx22.mine_and_slash.potion_effects.divine.BraveryEffect;
 import com.robertx22.mine_and_slash.potion_effects.divine.JudgementEffect;
 import com.robertx22.mine_and_slash.potion_effects.divine.TrickeryEffect;
@@ -32,8 +30,6 @@ public class PotionRegister {
         IForgeRegistry<Effect> reg = event.getRegistry();
 
         reg.register(RegenerateEffect.INSTANCE);
-        reg.register(TeleportProtection.INSTANCE);
-        reg.register(BleedPotion.INSTANCE);
 
         reg.register(BraveryEffect.INSTANCE);
         reg.register(WizardryEffect.INSTANCE);

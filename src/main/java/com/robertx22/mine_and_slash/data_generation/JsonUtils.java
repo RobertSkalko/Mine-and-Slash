@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializablePart;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,22 @@ public class JsonUtils {
         json.getAsJsonArray(id)
             .forEach(x -> mods.add(StatModifier.EMPTY.fromJson(x.getAsJsonObject())));
         return mods;
+    }
+
+    public static void addExactStats(List<ExactStatData> list, JsonObject json, String id) {
+        JsonArray array = new JsonArray();
+        list.stream()
+            .map(x -> x.toJson())
+            .collect(Collectors.toList())
+            .forEach(x -> array.add(x));
+        json.add(id, array);
+    }
+
+    public static List<ExactStatData> getExactStats(JsonObject json, String id) {
+        List<ExactStatData> list = new ArrayList<>();
+        json.getAsJsonArray(id)
+            .forEach(x -> list.add(ExactStatData.EMPTY.fromJson(x.getAsJsonObject())));
+        return list;
     }
 
     public static JsonArray stringListToJsonArray(List<String> list) {

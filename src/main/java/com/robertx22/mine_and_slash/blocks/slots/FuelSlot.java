@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.blocks.slots;
 
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.Item;
@@ -29,13 +29,8 @@ public class FuelSlot extends Slot {
                 put(Items.EMERALD, 200);
                 put(Items.REDSTONE, 3);
 
-                int ore = 3;
-
-                for (int i = 0; i < 5; i++) {
-                    put(ItemOre.ItemOres.get(i), ore);
-                    ore *= 9;
-
-                }
+                put(ModItems.MAGIC_ESSENCE.get(), 50);
+                put(ModItems.RARE_MAGIC_ESSENCE.get(), 500);
 
             }
         }

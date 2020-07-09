@@ -1,8 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.dimensions.MapManager;
-import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.potion_effects.all.TeleportProtection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,10 +7,8 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.util.ITeleporter;
@@ -53,19 +48,6 @@ public class PlayerUtils {
         player.inventory.markDirty();
     }
 
-    public static void sendPlayersMSGofStructureSpawnTEST(BlockPos pos, String name) {
-
-        if (MMORPG.RUN_DEV_TOOLS) {
-            for (ServerPlayerEntity player : MapManager.getServer()
-                .getPlayerList()
-                .getPlayers()) {
-
-                player.sendMessage(new StringTextComponent(name + " Structure spawned at : " + pos.toString()));
-
-            }
-        }
-    }
-
     private static final ITeleporter PORTALLESS = new ITeleporter() {
 
         @Override
@@ -79,14 +61,9 @@ public class PlayerUtils {
 
         System.out.println("Teleporting player to " + pos.toString() + " with mine and slash. ");
 
-        MapManager.getWorld(destination)
-            .getChunk(pos); // load chunk first
-
         player.setMotion(0, 0, 0);
 
         player = (ServerPlayerEntity) player.changeDimension(destination, PORTALLESS);
-
-        player.addPotionEffect(new EffectInstance(TeleportProtection.INSTANCE, 10 * 20));
 
         EntityUtils.setLoc(player, new Vec3d(pos), player.rotationYaw, player.rotationPitch);
 

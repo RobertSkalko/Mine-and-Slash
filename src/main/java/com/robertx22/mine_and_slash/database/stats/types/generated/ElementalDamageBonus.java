@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.AllEleDmgEffectIfElement;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
@@ -46,11 +45,6 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
     @Override
     public String locDescForLangFile() {
         return "Increases All DMG of that element, both spells and attacks";
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
     }
 
     @Override

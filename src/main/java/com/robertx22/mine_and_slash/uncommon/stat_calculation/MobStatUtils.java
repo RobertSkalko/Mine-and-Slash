@@ -7,9 +7,9 @@ import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalPenetration;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalResist;
 import com.robertx22.mine_and_slash.database.stats.types.generated.ElementalSpellDamage;
+import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
-import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -73,7 +73,7 @@ public class MobStatUtils {
         for (StatData data : unit.getStats()
             .values()) {
             Stat stat = data.GetStat();
-            if (stat instanceof PhysicalDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
+            if (stat instanceof WeaponDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
                 data.multiplyFlat(config.DMG_MULTI);
             } else if (data.getId()
                 .equals(Health.GUID)) {

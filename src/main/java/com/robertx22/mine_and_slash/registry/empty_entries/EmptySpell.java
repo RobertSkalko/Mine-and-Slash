@@ -7,9 +7,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
@@ -20,10 +18,6 @@ public class EmptySpell extends BaseSpell {
 
     public EmptySpell() {
         super(new ImmutableSpellConfigs() {
-            @Override
-            public Masteries school() {
-                return null;
-            }
 
             @Override
             public SpellCastType castType() {
@@ -52,11 +46,6 @@ public class EmptySpell extends BaseSpell {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
         p.set(SC.CAST_TIME_TICKS, 0, 0);
         return p;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return null;
     }
 
     @Override

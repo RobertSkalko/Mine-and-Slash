@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
-import com.robertx22.mine_and_slash.database.stats.types.class_based.RogueStealth;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.AllAttributes;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
@@ -10,22 +9,18 @@ import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.stats.types.defense.*;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleDmg;
 import com.robertx22.mine_and_slash.database.stats.types.generated.*;
-import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
-import com.robertx22.mine_and_slash.database.stats.types.misc.LuckStat;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
-import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.EnergyToManaConversion;
-import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.ManaToEnergyConversion;
-import com.robertx22.mine_and_slash.database.stats.types.spell_calc.*;
+import com.robertx22.mine_and_slash.database.stats.types.spell_calc.FasterCastRate;
+import com.robertx22.mine_and_slash.database.stats.types.spell_calc.ReducedCooldownStat;
+import com.robertx22.mine_and_slash.database.stats.types.spell_calc.ReducedManaCost;
 import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
-import com.robertx22.mine_and_slash.registry.empty_entries.EmptySpell;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -46,10 +41,6 @@ public class Stats implements ISlashRegistryInit {
 
                     add(ArmorPenetration.getInstance());
 
-                    add(new LuckStat());
-
-                    add(new PlusAbilityLevelStat(new EmptySpell()));
-                    add(new PlusLevelToAllAbilitiesInSchoolStat(Masteries.OCEAN));
                     add(new LootTypeBonus(LootType.NormalItem));
                     add(new SpecificWeaponDamage(WeaponTypes.None));
                     add(new WeaponDamage(Elements.Physical));
@@ -66,23 +57,13 @@ public class Stats implements ISlashRegistryInit {
                     add(ReducedManaCost.getInstance());
                     add(FasterCastRate.getInstance());
 
-                    add(RogueStealth.getInstance());
-                    add(new PhysicalDispersion());
                     add(new AllAttributes());
                     add(new AllEleDmg());
                     add(SpellDamage.getInstance());
 
                     add(Strength.INSTANCE);
                     add(Dexterity.INSTANCE);
-                    add(Wisdom.INSTANCE);
                     add(Intelligence.INSTANCE);
-                    add(Stamina.INSTANCE);
-                    add(Vitality.INSTANCE);
-                    add(new BonusExp());
-
-                    add(new EnergyToManaConversion());
-
-                    add(new ManaToEnergyConversion());
 
                     add(new UnknownStat());
 
@@ -95,8 +76,6 @@ public class Stats implements ISlashRegistryInit {
                     add(Mana.getInstance());
                     add(ManaRegen.getInstance());
                     add(ManaOnHit.getInstance());
-                    add(Energy.getInstance());
-                    add(EnergyRegen.getInstance());
                     add(MagicShield.getInstance());
                     add(MagicShieldRegen.getInstance());
                     // Resources
@@ -105,9 +84,7 @@ public class Stats implements ISlashRegistryInit {
                     add(Armor.getInstance());
                     add(CriticalDamage.getInstance());
                     add(CriticalHit.getInstance());
-                    add(PhysicalDamage.getInstance());
                     add(DodgeRating.getInstance());
-                    add(new SpellDodge());
                     add(DamageShield.getInstance());
 
                     add(HealPower.getInstance());

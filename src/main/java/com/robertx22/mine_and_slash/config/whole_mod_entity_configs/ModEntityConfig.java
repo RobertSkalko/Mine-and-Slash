@@ -11,15 +11,13 @@ public class ModEntityConfig implements ISlashRegistryEntry<ModEntityConfig> {
 
     }
 
-    public ModEntityConfig(float loot, float exp) {
-        this.EXP_MULTI = exp;
+    public ModEntityConfig(float loot) {
         this.LOOT_MULTI = loot;
     }
 
     public transient String GUID = "";
 
     public double LOOT_MULTI = 1F;
-    public double EXP_MULTI = 1F;
     public int MIN_RARITY = 0;
     public int MAX_RARITY = 4;
     public double DMG_MULTI = 1;

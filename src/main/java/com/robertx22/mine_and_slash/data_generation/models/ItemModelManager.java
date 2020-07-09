@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Bow;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.CrossBow;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Crossbow;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.data.DataGenerator;
@@ -40,7 +40,7 @@ public class ItemModelManager extends ItemModelProvider {
         SlashRegistry.UniqueGears()
             .getSerializable()
             .forEach(x -> {
-                if (x.getGearSlot() != Bow.INSTANCE && x.getGearSlot() != CrossBow.INSTANCE) {
+                if (x.getGearSlot() != Bow.INSTANCE && x.getGearSlot() != Crossbow.INSTANCE) {
                     if (x.getGearSlot()
                         .slotTypeFamily()
                         .equals(GearItemSlot.SlotFamily.Weapon)) {
@@ -54,7 +54,7 @@ public class ItemModelManager extends ItemModelProvider {
             .getList()
             .forEach(x -> {
 
-                if (x != Bow.INSTANCE && x != CrossBow.INSTANCE && x != ArmorShield.INSTANCE) {
+                if (x != Bow.INSTANCE && x != Crossbow.INSTANCE && x != ArmorShield.INSTANCE) {
                     if (x.GUID()
                         .contains("cloth") || x.GUID()
                         .contains("leather")) {

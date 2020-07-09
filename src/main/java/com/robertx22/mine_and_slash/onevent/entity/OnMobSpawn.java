@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.world.WorldMapCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
@@ -69,12 +68,11 @@ public class OnMobSpawn {
             endata.setType(entity);
 
             PlayerEntity nearestPlayer = null;
-            WorldMapCap.IWorldMapData mapData = Load.world(entity.world);
 
             nearestPlayer = PlayerUtils.nearestPlayer((ServerWorld) entity.world, entity);
 
             if (endata.needsToBeGivenStats()) {
-                Unit unit = Mob(entity, endata, mapData, nearestPlayer);
+                Unit unit = Mob(entity, endata, nearestPlayer);
             } else {
                 if (endata.getUnit() == null) {
                     endata.setUnit(new Unit(), entity);
@@ -105,18 +103,12 @@ public class OnMobSpawn {
     }
 
     public static Unit Mob(LivingEntity entity, UnitData data,
-                           WorldMapCap.IWorldMapData mapData, @Nullable PlayerEntity nearestPlayer) {
+                           @Nullable PlayerEntity nearestPlayer) {
 
         Unit mob = new Unit();
         mob.initStats();
 
         UnitData endata = Load.Unit(entity);
-
-        if (WorldUtils.isMapWorldClass(entity.world)) {
-            endata.setTier(mapData.getTier(entity.getPosition(), entity.world));
-        }
-
-        endata.SetMobLevelAtSpawn(mapData, entity, nearestPlayer);
 
         int rar = mob.randomRarity(entity, endata);
         endata.setRarity(rar);
@@ -126,7 +118,7 @@ public class OnMobSpawn {
 
         endata.setUnit(mob, entity);
 
-        mob.recalculateStats(entity, endata, endata.getLevel(), null);
+        mob.recalculateStats(entity, endata, null);
 
         return mob;
 

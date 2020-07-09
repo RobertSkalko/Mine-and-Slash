@@ -16,7 +16,6 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.particles.ParticleTypes;
@@ -105,11 +104,6 @@ public class WoundsEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public BaseSpell getSpell() {
         return null;
-    }
-
-    @Override
-    public Masteries getMastery() {
-        return Masteries.HUNTING;
     }
 
     private static class SingletonHolder {
