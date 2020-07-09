@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.currency;
 
-import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
@@ -14,7 +13,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
@@ -23,20 +21,15 @@ import net.minecraft.item.Items;
 import java.util.Arrays;
 import java.util.List;
 
-public class OrbOfPrefixBlessingItem extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IShapedRecipe {
+public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
     @Override
     public String GUID() {
-        return "currency/reroll_prefix_numbers";
+        return "currency/reroll_affix_numbers";
     }
 
-    private static final String name = Ref.MODID + ":currency/reroll_prefix_numbers";
+    private static final String name = Ref.MODID + ":currency/reroll_affix_numbers";
 
-    @Override
-    public List<String> oldNames() {
-        return Arrays.asList(Ref.MODID + ":reroll_prefix_numbers");
-    }
-
-    public OrbOfPrefixBlessingItem() {
+    public OrbOfTurbulence() {
 
         super(name);
 
@@ -47,7 +40,8 @@ public class OrbOfPrefixBlessingItem extends CurrencyItem implements ICurrencyIt
 
         GearItemData gear = Gear.Load(stack);
 
-        gear.prefix.RerollNumbers(gear);
+        gear.prefixes.forEach(x -> x.RerollNumbers(gear));
+        gear.suffixes.forEach(x -> x.RerollNumbers(gear));
 
         Gear.Save(stack, gear);
 
@@ -56,7 +50,7 @@ public class OrbOfPrefixBlessingItem extends CurrencyItem implements ICurrencyIt
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, GearEnumLocReq.AFFIXES, SimpleGearLocReq.HAS_PREFIX);
+        return Arrays.asList(GearReq.INSTANCE, GearEnumLocReq.AFFIXES, SimpleGearLocReq.HAS_PREFIX, SimpleGearLocReq.HAS_SUFFIX);
     }
 
     @Override
@@ -76,12 +70,12 @@ public class OrbOfPrefixBlessingItem extends CurrencyItem implements ICurrencyIt
 
     @Override
     public String locNameForLangFile() {
-        return nameColor + "Orb Of Prefix Blessing";
+        return nameColor + "Orb of Turbulence";
     }
 
     @Override
     public String locDescForLangFile() {
-        return "Re-rolls numbers of a prefix";
+        return "Re-rolls all affix numbers";
     }
 
     @Override
@@ -99,7 +93,7 @@ public class OrbOfPrefixBlessingItem extends CurrencyItem implements ICurrencyIt
             .patternLine("v#v")
             .patternLine("vtv")
             .patternLine("ooo")
-            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));
+            .addCriterion("player_level", trigger());
     }
 
 }

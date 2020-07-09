@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.currency;
 
-import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
@@ -51,12 +50,10 @@ public class GemOfUniqueHeaven extends CurrencyItem implements ICurrencyItemEffe
         GearItemData gear = Gear.Load(stack);
 
         UniqueGearBlueprint gearPrint = new UniqueGearBlueprint(
-            gear.level, gear.uniqueStats.getUnique()
-            .getTier(), false);
+            gear.uniqueStats.getUnique()
+                .getTier(), false);
         gearPrint.rarity.setSpecificRarity(UniqueGear.getInstance()
             .Rank());
-
-        gearPrint.level.LevelRange = false;
 
         ItemStack newstack = gearPrint.createStack();
 
@@ -119,7 +116,7 @@ public class GemOfUniqueHeaven extends CurrencyItem implements ICurrencyItemEffe
             .patternLine("ooo")
             .patternLine("#t#")
             .patternLine("vvv")
-            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));
+            .addCriterion("player_level", trigger());
     }
 
 }

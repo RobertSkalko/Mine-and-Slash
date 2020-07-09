@@ -87,7 +87,7 @@ public class SpellCalcData {
     public float baseValue = 0;
 
     public int getCalculatedBaseValue(PlayerSpellCap.ISpellsCap spells, IAbility ability, EntityCap.UnitData data) {
-        return (int) baseScaling.scale(baseValue, ability.getEffectiveAbilityLevel(spells, data));
+        return (int) baseValue;
     }
 
     private int getCalculatedScalingValue(EntityCap.UnitData data) {

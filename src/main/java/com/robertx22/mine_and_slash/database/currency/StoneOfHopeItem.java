@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.currency;
 
-import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
@@ -48,10 +47,9 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
         GearItemData gear = Gear.Load(stack);
 
-        GearBlueprint blueprint = new GearBlueprint(gear.level);
+        GearBlueprint blueprint = new GearBlueprint();
         blueprint.gearItemSlot.set(gear.gear_type);
         blueprint.rarity.minRarity = gear.rarity + 1;
-        blueprint.level.LevelRange = false;
 
         GearItemData newgear = blueprint.createData();
         gear.WriteOverDataThatShouldStay(newgear);
@@ -119,6 +117,6 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
             .patternLine("#o#")
             .patternLine("#t#")
             .patternLine("vvv")
-            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));
+            .addCriterion("player_level", trigger());
     }
 }

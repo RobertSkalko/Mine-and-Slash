@@ -52,8 +52,8 @@ public class GearTooltipUtils {
             return;
         }
 
-        if (gear.primaryStats != null) {
-            tip.addAll(gear.primaryStats.GetTooltipString(info, gear));
+        if (gear.baseStats != null) {
+            tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
 
         tip.add(new StringTextComponent(""));

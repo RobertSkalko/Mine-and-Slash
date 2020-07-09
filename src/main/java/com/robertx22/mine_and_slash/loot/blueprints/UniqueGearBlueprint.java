@@ -11,20 +11,20 @@ import net.minecraft.item.ItemStack;
 
 public class UniqueGearBlueprint extends GearBlueprint {
 
-    public UniqueGearBlueprint(int level, int mapTier) {
-        super(level);
+    public UniqueGearBlueprint(int mapTier) {
+        super();
         this.tier.number = mapTier;
     }
 
-    public UniqueGearBlueprint(int level, int mapTier, boolean tierIsRandom) {
-        super(level);
+    public UniqueGearBlueprint(int mapTier, boolean tierIsRandom) {
+        super();
         this.tier.isRandom = tierIsRandom;
         this.tier.number = mapTier;
 
     }
 
-    public UniqueGearBlueprint(int level, IUnique uniq) {
-        super(level);
+    public UniqueGearBlueprint(IUnique uniq) {
+        super();
 
         this.unique.set(uniq);
         this.tier.set(uniq.getTier());

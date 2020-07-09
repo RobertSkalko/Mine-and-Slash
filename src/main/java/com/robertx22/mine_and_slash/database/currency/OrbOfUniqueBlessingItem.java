@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.currency;
 
-import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
@@ -100,7 +99,7 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
             .patternLine("o#o")
             .patternLine("oto")
             .patternLine("v#v")
-            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));
+            .addCriterion("player_level", trigger());
     }
 
 }

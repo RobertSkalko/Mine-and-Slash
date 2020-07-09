@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.items.misc;
 
-import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
@@ -74,7 +73,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
                 .patternLine("#c#")
                 .patternLine("ctc")
                 .patternLine("#c#")
-                .addCriterion("player_level", new PlayerLevelTrigger.Instance(5));
+                .addCriterion("player_level", trigger());
         }
         if (rarity == 1) {
             return shaped(ITEMS.get(rarity))
@@ -84,7 +83,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
                 .patternLine("#c#")
                 .patternLine("ctc")
                 .patternLine("#c#")
-                .addCriterion("player_level", new PlayerLevelTrigger.Instance(5));
+                .addCriterion("player_level", trigger());
         }
         if (rarity == 2) {
             return shaped(ITEMS.get(rarity))
@@ -94,7 +93,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
                 .patternLine("#c#")
                 .patternLine("ctc")
                 .patternLine("#c#")
-                .addCriterion("player_level", new PlayerLevelTrigger.Instance(5));
+                .addCriterion("player_level", trigger());
         }
         if (rarity == 3) {
             return shaped(ITEMS.get(rarity))
@@ -104,7 +103,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
                 .patternLine("#c#")
                 .patternLine("ctc")
                 .patternLine("#c#")
-                .addCriterion("player_level", new PlayerLevelTrigger.Instance(5));
+                .addCriterion("player_level", trigger());
         }
         if (rarity == 4) {
             return shaped(ITEMS.get(rarity))
@@ -114,7 +113,7 @@ public class ItemCapacitor extends Item implements IShapedRecipe {
                 .patternLine("#c#")
                 .patternLine("ctc")
                 .patternLine("#c#")
-                .addCriterion("player_level", new PlayerLevelTrigger.Instance(5));
+                .addCriterion("player_level", trigger());
         }
 
         return null;

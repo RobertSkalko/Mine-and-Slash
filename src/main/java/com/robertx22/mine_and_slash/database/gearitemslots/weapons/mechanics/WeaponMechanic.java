@@ -1,10 +1,11 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics;
 
 import com.robertx22.mine_and_slash.database.IGUID;
-import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
+import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.Arrays;
@@ -30,10 +31,6 @@ public abstract class WeaponMechanic implements IGUID {
         return Arrays.asList();
     }
 
-    protected boolean isPoweredAttack(DamageEventData data) {
-        return data.sourceData.isAttackCooldownInSweepRange();
-    }
-
     protected void doSpecialAttack(DamageEventData data) {
         doNormalAttack(data);
     }
@@ -41,7 +38,7 @@ public abstract class WeaponMechanic implements IGUID {
     protected void doNormalAttack(DamageEventData data) {
 
         int num = (int) data.sourceData.getUnit()
-            .getCreateStat(PhysicalDamage.GUID)
+            .getCreateStat(new WeaponDamage(Elements.Physical))
             .getRandomRangeValue();
         DamageEffect dmg = new DamageEffect(
             data.event, data.source, data.target, num, data.sourceData, data.targetData, EffectTypes.BASIC_ATTACK, data.weaponData.GetBaseGearType()

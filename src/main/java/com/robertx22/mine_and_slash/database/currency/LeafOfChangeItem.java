@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.currency;
 
-import com.robertx22.mine_and_slash.advacements.PlayerLevelTrigger;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
@@ -40,7 +39,7 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
 
         GearItemData gear = Gear.Load(stack);
 
-        gear.primaryStats.RerollNumbers(gear);
+        gear.baseStats.RerollNumbers(gear);
 
         Gear.Save(stack, gear);
 
@@ -92,7 +91,7 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
             .patternLine("#t#")
             .patternLine("tvt")
             .patternLine("oto")
-            .addCriterion("player_level", new PlayerLevelTrigger.Instance(10));
+            .addCriterion("player_level", trigger());
     }
 
 }

@@ -26,7 +26,7 @@ public class LegendaryCrate extends LootCrate {
     @Override
     public ItemStack generateStack(LootInfo info) {
 
-        GearBlueprint blueprint = new GearBlueprint(info.level);
+        GearBlueprint blueprint = new GearBlueprint();
         blueprint.rarity.setSpecificRarity(IRarity.Legendary);
         return GearCreationUtils.CreateStack(blueprint, GearItemEnum.NORMAL);
 

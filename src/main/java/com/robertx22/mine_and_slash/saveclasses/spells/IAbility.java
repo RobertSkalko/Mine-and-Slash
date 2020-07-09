@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
-import com.robertx22.mine_and_slash.database.spells.synergies.base.Synergy;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -30,8 +29,6 @@ public interface IAbility extends IGUID, ITooltipList {
 
         List<IAbility> list = new ArrayList<>();
 
-        list.addAll(SlashRegistry.Synergies()
-            .getList());
         list.addAll(SlashRegistry.Spells()
             .getList());
         list.addAll(SlashRegistry.PotionEffects()
@@ -46,11 +43,7 @@ public interface IAbility extends IGUID, ITooltipList {
     public static IAbility fromId(String id) {
         IAbility ability = null;
 
-        if (SlashRegistry.Synergies()
-            .isRegistered(id)) {
-            ability = SlashRegistry.Synergies()
-                .get(id);
-        } else if (SlashRegistry.Spells()
+        if (SlashRegistry.Spells()
             .isRegistered(id)) {
             ability = SlashRegistry.Spells()
                 .get(id);
@@ -89,16 +82,6 @@ public interface IAbility extends IGUID, ITooltipList {
 
                 list.addAll(ctx.getConfigFor(this)
                     .GetTooltipString(info, ctx));
-
-                if (this instanceof Synergy) {
-                    Synergy s = (Synergy) this;
-
-                    list.add(new SText(""));
-                    list.add(new SText(TextFormatting.LIGHT_PURPLE + "" + TextFormatting.BOLD + "Affects Spell: "));
-
-                    list.addAll(s.getConfigsAffectingSpell()
-                        .GetTooltipString(info, ctx));
-                }
 
             }
             TooltipUtils.removeDoubleBlankLines(list);

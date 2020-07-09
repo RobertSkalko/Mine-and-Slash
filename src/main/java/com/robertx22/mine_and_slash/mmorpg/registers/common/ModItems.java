@@ -37,9 +37,9 @@ public class ModItems {
     public static RegistryObject<CurrencyItem> CRYSTAL_OF_ASCENSION = of(() -> new CrystalOfAscensionItem());
 
     public static RegistryObject<CurrencyItem> ORB_OF_EVER_CHANGING_PREFIX = of(() -> new OrbOfEverChangingPrefixItem());
-    public static RegistryObject<CurrencyItem> ORB_OF_EVER_CHANGING_SUFFIX = of(() -> new OrbOfEverChangingSuffixItem());
+    public static RegistryObject<CurrencyItem> ORB_OF_EVER_CHANGING_SUFFIX = of(() -> new OrbOfDisorder());
 
-    public static RegistryObject<CurrencyItem> ORB_OF_PREFIX_BLESSING = of(() -> new OrbOfPrefixBlessingItem());
+    public static RegistryObject<CurrencyItem> ORB_OF_PREFIX_BLESSING = of(() -> new OrbOfTurbulence());
     public static RegistryObject<CurrencyItem> ORB_OF_SUFFIX_BLESSING = of(() -> new OrbOfSuffixBlessingItem());
 
     public static RegistryObject<CurrencyItem> STONE_OF_HOPE = of(() -> new StoneOfHopeItem());

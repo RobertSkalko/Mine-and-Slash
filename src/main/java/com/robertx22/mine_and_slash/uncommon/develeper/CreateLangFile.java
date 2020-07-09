@@ -143,22 +143,15 @@ public class CreateLangFile {
 
         list.addAll(SlashRegistry.MobAffixes()
             .getSerializable());
-        list.addAll(SlashRegistry.RuneWords()
-            .getSerializable());
         list.addAll(SlashRegistry.UniqueGears()
             .getSerializable());
         list.addAll(SlashRegistry.Affixes()
             .getSerializable());
 
-        list.addAll(SlashRegistry.Synergies()
-            .getList());
         list.addAll(SlashRegistry.Stats()
             .getAll()
             .values());
         list.addAll(SlashRegistry.GearTypes()
-            .getAll()
-            .values());
-        list.addAll(SlashRegistry.WorldProviders()
             .getAll()
             .values());
         list.addAll(Arrays.asList(Words.values()));

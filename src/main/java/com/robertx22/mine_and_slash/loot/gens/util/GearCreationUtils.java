@@ -133,8 +133,8 @@ public class GearCreationUtils {
         data.requirements.create(data);
 
         if (type.canGetPrimaryStats()) {
-            data.primaryStats = new BaseStatsData();
-            data.primaryStats.RerollFully(data);
+            data.baseStats = new BaseStatsData();
+            data.baseStats.RerollFully(data);
         }
 
         if (type.canGetChaosStats()) {

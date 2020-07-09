@@ -1,8 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.capability.player;
 
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.database.spells.synergies.base.Synergy;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.spells.AllocatedAbilitiesData;
@@ -11,7 +9,6 @@ import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
-import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -38,11 +35,6 @@ public class PlayerSpellCap {
     public static final Capability<ISpellsCap> Data = null;
 
     public abstract static class ISpellsCap implements ICommonPlayerCap {
-        public abstract int getAllowedPoints(EntityCap.UnitData data);
-
-        public abstract void addPoint(IAbility ability);
-
-        public abstract void applyStats(EntityCap.UnitData data, PlayerEntity player);
 
         public abstract AllocatedAbilitiesData getAbilitiesData();
 
@@ -53,10 +45,6 @@ public class PlayerSpellCap {
         public abstract boolean canCastRightClickSpell(BaseSpell spell, PlayerEntity player);
 
         public abstract List<BaseSpell> getAvailableSpells();
-
-        public abstract int getLevelOf(IAbility ability);
-
-        public abstract boolean hasSynergy(Synergy synergy);
 
         public abstract void reset();
 
@@ -140,28 +128,6 @@ public class PlayerSpellCap {
         }
 
         @Override
-        public int getAllowedPoints(EntityCap.UnitData data) {
-
-            int perlvl = (int) ((float) ModConfig.INSTANCE.Server.SPELL_POINTS_AT_MAX_LEVEL.get() / (float) ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get() * data.getLevel());
-
-            int starting = ModConfig.INSTANCE.Server.STARTING_SPELL_POINTS.get();
-
-            return starting + perlvl;
-
-        }
-
-        @Override
-        public void addPoint(IAbility ability) {
-            this.getAbilitiesData()
-                .addPoint(ability);
-        }
-
-        @Override
-        public void applyStats(EntityCap.UnitData data, PlayerEntity player) {
-            this.abilitiesData.applyStats(data);
-        }
-
-        @Override
         public AllocatedAbilitiesData getAbilitiesData() {
             return abilitiesData;
         }
@@ -191,17 +157,6 @@ public class PlayerSpellCap {
         @Override
         public List<BaseSpell> getAvailableSpells() {
             return this.abilitiesData.getAllocatedSpells();
-        }
-
-        @Override
-        public int getLevelOf(IAbility ability) {
-            return this.getAbilitiesData()
-                .getLevelOf(ability);
-        }
-
-        @Override
-        public boolean hasSynergy(Synergy synergy) {
-            return getLevelOf(synergy) > 0;
         }
 
         @Override

@@ -103,7 +103,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     @Store
     public UniqueStatsData uniqueStats;
     @Store
-    public BaseStatsData primaryStats;
+    public BaseStatsData baseStats;
     @Store
     public List<SuffixData> suffixes;
     @Store
@@ -212,7 +212,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
         List<IStatsContainer> list = new ArrayList<IStatsContainer>();
 
-        IfNotNullAdd(primaryStats, list);
+        IfNotNullAdd(baseStats, list);
 
         for (PrefixData d : prefixes) {
             IfNotNullAdd(d, list);
@@ -242,7 +242,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     public List<IRerollable> GetAllRerollable() {
         List<IRerollable> list = new ArrayList<IRerollable>();
-        IfNotNullAdd(primaryStats, list);
+        IfNotNullAdd(baseStats, list);
 
         for (PrefixData d : prefixes) {
             IfNotNullAdd(d, list);

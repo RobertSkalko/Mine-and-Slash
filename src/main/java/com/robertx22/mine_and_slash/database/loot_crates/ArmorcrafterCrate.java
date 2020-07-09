@@ -27,7 +27,7 @@ public class ArmorcrafterCrate extends LootCrate {
     @Override
     public ItemStack generateStack(LootInfo info) {
 
-        GearBlueprint blueprint = BlueprintUtils.randomGearBlueprint(info.level, info.tier);
+        GearBlueprint blueprint = BlueprintUtils.randomGearBlueprint(info.tier);
 
         blueprint.rarity.minRarity = 1;
 

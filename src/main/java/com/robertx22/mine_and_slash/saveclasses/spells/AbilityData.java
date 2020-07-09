@@ -3,16 +3,12 @@ package com.robertx22.mine_and_slash.saveclasses.spells;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
-import net.minecraft.util.math.MathHelper;
 
 @Storable
 public class AbilityData {
 
     @Store
-    private int currentLvl = 0;
-
-    @Store
-    private int bonusLvls = 0;
+    public boolean isLearned = false;
 
     @Store
     public String id = "";
@@ -25,31 +21,8 @@ public class AbilityData {
         this.type = type;
     }
 
-    public void setBonusLvl(int lvl) {
-        this.bonusLvls = lvl;
-    }
-
-    public int getBonusLvls() {
-        return bonusLvls;
-    }
-
-    public void setLevel(int i) {
-        this.currentLvl = i;
-    }
-
-    public void addLevels(int i) {
-        currentLvl = MathHelper.clamp(currentLvl + i, 0, getAbility().getMaxSpellLevelNormal());
-    }
-
-    public int getCurrentLevel() {
-        currentLvl = MathHelper.clamp(currentLvl, 0, getAbility().getMaxSpellLevelNormal());
-
-        if (currentLvl < 1) {
-            return currentLvl; // don't add bonus levels if ability isn't even allocated once.
-        }
-
-        return MathHelper.clamp(currentLvl + bonusLvls, 0, getAbility().getMaxSpellLevelBuffed());
-
+    public void setLearned() {
+        this.isLearned = true;
     }
 
     public AbilityData(IAbility ability) {
@@ -67,7 +40,7 @@ public class AbilityData {
             return false;
         }
 
-        if (currentLvl < 1) {
+        if (!isLearned) {
             return false;
         }
 
@@ -77,10 +50,8 @@ public class AbilityData {
         } else if (type == IAbility.Type.EFFECT) {
             return SlashRegistry.PotionEffects()
                 .isRegistered(id);
-        } else if (type == IAbility.Type.SYNERGY) {
-            return SlashRegistry.Synergies()
-                .isRegistered(id);
         }
+
         return false;
 
     }
@@ -89,9 +60,6 @@ public class AbilityData {
 
         if (type == IAbility.Type.SPELL) {
             return SlashRegistry.Spells()
-                .get(id);
-        } else if (type == IAbility.Type.SYNERGY) {
-            return SlashRegistry.Synergies()
                 .get(id);
         } else if (type == IAbility.Type.EFFECT) {
             return SlashRegistry.PotionEffects()
