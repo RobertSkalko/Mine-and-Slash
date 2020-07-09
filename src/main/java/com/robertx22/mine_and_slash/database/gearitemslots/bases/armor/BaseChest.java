@@ -9,9 +9,4 @@ public abstract class BaseChest extends BaseArmor {
         return EquipmentSlotType.CHEST;
     }
 
-    @Override
-    public String resourceID() {
-        return "chest";
-    }
-
 }

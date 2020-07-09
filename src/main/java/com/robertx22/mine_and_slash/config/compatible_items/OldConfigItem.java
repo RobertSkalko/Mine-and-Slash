@@ -48,10 +48,6 @@ public class OldConfigItem implements IWeighted {
         item.item_id = registryName;
         item.item_type = IGUID.getformattedString(itemType);
 
-        item.level_variance = levelVariance;
-        item.max_level = maxLevel;
-        item.min_level = minLevel;
-
         item.min_rarity = minRarity;
         item.max_rarity = maxRarity;
 

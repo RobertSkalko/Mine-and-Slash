@@ -41,14 +41,9 @@ public class EntityCalcSpellConfigs {
     }
 
     public EntityCalcSpellConfigs(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap spellsCap, IAbility ability) {
-        int lvl = spellsCap != null ? spellsCap.getLevelOf(ability) : 1;
-        int userLvl = data.getLevel();
+        int lvl = 1;
 
         PreCalcSpellConfigs pre = ability.getPreCalcConfig();
-
-        if (ability.getAbilityType() == IAbility.Type.SPELL) {
-            pre.modifyBySynergies(ability.getSpell(), spellsCap);
-        }
 
         if (pre.has(SC.BASE_VALUE)) {
             if (pre.has(SC.ATTACK_SCALE_VALUE)) {

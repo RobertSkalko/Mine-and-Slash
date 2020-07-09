@@ -41,8 +41,6 @@ public class AutoConfigItemType {
         comp.max_rarity = MAX_RARITY.get();
         comp.min_rarity = MIN_RARITY.get();
 
-        comp.max_level = MAX_LEVEL.get();
-
         comp.can_be_salvaged = CAN_BE_SALVAGED.get();
 
         return comp;

@@ -20,13 +20,12 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ISalvagable;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RecipeUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -175,20 +174,17 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
     @Override
     public ItemStack getSalvageResult(float salvageBonus) {
 
-        ItemStack stack = RecipeUtils.getSalvageStack(this);
+        int min = 1;
+        int max = 2;
 
-        if (!stack.isEmpty()) {
+        min = tryIncreaseAmount(salvageBonus, min);
+        max = tryIncreaseAmount(salvageBonus, max);
 
-            int min = MathHelper.clamp(stack.getCount() / 4, 1, 64);
-            int max = MathHelper.clamp(stack.getCount() / 2, 1, 64);
+        int amount = RandomUtils.RandomRange(min, max);
 
-            min = tryIncreaseAmount(salvageBonus, min);
-            max = tryIncreaseAmount(salvageBonus, max);
-
-            int amount = RandomUtils.RandomRange(min, max);
-
-            stack.setCount(amount);
-        }
+        Item item = ItemUtils.randomMagicEssence();
+        ItemStack stack = new ItemStack(item);
+        stack.setCount(amount);
 
         return stack;
     }

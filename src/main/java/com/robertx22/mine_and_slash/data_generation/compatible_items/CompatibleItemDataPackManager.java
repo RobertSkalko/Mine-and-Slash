@@ -54,35 +54,32 @@ public class CompatibleItemDataPackManager extends BaseDataPackManager<Compatibl
 
             for (GearItemSlot slot : SlashRegistry.GearTypes()
                 .getAll()
-                .values())
-                for (int i = 0; i < 5; i++) {
-                    Item item = slot.getItemForRarity(i);
+                .values()) {
+                Item item = slot.getItem();
 
-                    if (item == Items.AIR || item.getRegistryName() == null) {
-                        continue;
-                    }
-
-                    if (item.getRegistryName()
-                        .getNamespace()
-                        .equals(Ref.MODID)) {
-
-                        OldConfigItem config = new OldConfigItem().setGenerationWeights(1000, 200, 0)
-                            .setMaxRarity(i)
-                            .setMinRarity(i)
-                            .setSalvagable(true)
-                            .setType(slot);
-                        config.dropsAsLoot = false;
-
-                        String id = item.getRegistryName()
-                            .toString();
-
-                        CompatibleItem neww = config.convertToNewFormat();
-                        neww.guid = id;
-                        neww.item_id = id;
-
-                        items.add(neww);
-                    }
+                if (item == Items.AIR || item.getRegistryName() == null) {
+                    continue;
                 }
+
+                if (item.getRegistryName()
+                    .getNamespace()
+                    .equals(Ref.MODID)) {
+
+                    OldConfigItem config = new OldConfigItem().setGenerationWeights(1000, 200, 0)
+                        .setSalvagable(true)
+                        .setType(slot);
+                    config.dropsAsLoot = false;
+
+                    String id = item.getRegistryName()
+                        .toString();
+
+                    CompatibleItem neww = config.convertToNewFormat();
+                    neww.guid = id;
+                    neww.item_id = id;
+
+                    items.add(neww);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

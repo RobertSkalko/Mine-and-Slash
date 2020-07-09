@@ -9,9 +9,4 @@ public abstract class BaseBoots extends BaseArmor {
         return EquipmentSlotType.FEET;
     }
 
-    @Override
-    public String resourceID() {
-        return "boots";
-    }
-
 }

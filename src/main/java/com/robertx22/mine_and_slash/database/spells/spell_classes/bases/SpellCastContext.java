@@ -34,7 +34,6 @@ public class SpellCastContext {
             PreCalcSpellConfigs pre = ability.getPreCalcConfig();
 
             if (ability.getAbilityType() == IAbility.Type.SPELL) {
-                pre.modifyBySynergies(ability.getSpell(), spellsCap);
                 pre.modifyByUserStats(this);
             }
 

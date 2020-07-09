@@ -17,7 +17,6 @@ public abstract class WeaponMechanic implements IGUID {
     private static HashMap<String, WeaponMechanic> ALL = new HashMap<String, WeaponMechanic>() {
         {
             {
-                put(new HammerWeaponMechanic().GUID(), new HammerWeaponMechanic());
                 put(new NormalWeaponMechanic().GUID(), new NormalWeaponMechanic());
             }
         }

@@ -93,8 +93,8 @@ public class ResourcesData {
     public enum Type {
         HEALTH,
         MANA,
-        MAGIC_SHIELD,
-        BLOOD
+        MAGIC_SHIELD
+
     }
 
     public enum Use {
@@ -106,15 +106,9 @@ public class ResourcesData {
     private float mana = 0;
     @Store
     private float magicShield = 0;
-    @Store
-    private float blood = 0;
 
     public float getMana() {
         return mana;
-    }
-
-    public float getBlood() {
-        return blood;
     }
 
     public float getMagicShield() {
@@ -141,8 +135,6 @@ public class ResourcesData {
             return mana;
         } else if (ctx.type == Type.MAGIC_SHIELD) {
             return magicShield;
-        } else if (ctx.type == Type.BLOOD) {
-            return blood;
         } else if (ctx.type == Type.HEALTH) {
             return ctx.targetData.getUnit()
                 .health()
@@ -163,9 +155,6 @@ public class ResourcesData {
                 .magicShieldData()
                 .getAverageValue());
 
-        } else if (ctx.type == Type.BLOOD) {
-            blood = MathHelper.clamp(getModifiedValue(ctx), 0, ctx.targetData.getUnit()
-                .getMaximumBlood());
         } else if (ctx.type == Type.HEALTH) {
             if (ctx.use == Use.RESTORE) {
                 heal(ctx);

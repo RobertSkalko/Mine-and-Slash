@@ -243,7 +243,6 @@ public class SlashRegistry {
         new Tiers().registerAll();
 
         new Spells().registerAll(); // some stats are based on spells, so spells go first
-        new Synergies().registerAll(); // some stats are based on synergies, so they go first
         new PotionEffects().registerAll();// some stats are based on effects ,so they go first
 
         new Stats().registerAll();// STATS MUST BE INIT before STATMODS  cus statmods ARE DERIVED FROM STATS, or
@@ -255,9 +254,6 @@ public class SlashRegistry {
         new Suffixes().registerAll();
 
         new MobAffixes().registerAll();
-
-        new PerkEffectsInit().registerAll();
-        new Perks().registerAll();
 
         new LootCrates().registerAll();
 

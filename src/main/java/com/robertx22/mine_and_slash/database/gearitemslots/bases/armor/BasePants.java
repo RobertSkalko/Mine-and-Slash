@@ -9,9 +9,4 @@ public abstract class BasePants extends BaseArmor {
         return EquipmentSlotType.LEGS;
     }
 
-    @Override
-    public String resourceID() {
-        return "pants";
-    }
-
 }

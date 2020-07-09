@@ -414,12 +414,8 @@ public class Unit {
         removeEmptyStats();
 
         if (entity instanceof PlayerEntity) {
-            PlayerStatUtils.applyRequirementsUnmetPenalty(entity, data, gears);
 
             PlayerSpellCap.ISpellsCap spells = Load.spells(entity);
-
-            spells.getAbilitiesData()
-                .clearBonusLevels();
 
             try {
                 this.stats.stats.entrySet()

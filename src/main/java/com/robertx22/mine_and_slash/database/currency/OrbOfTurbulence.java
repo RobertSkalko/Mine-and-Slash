@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.currency.loc_reqs.GearEnumLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -87,9 +86,9 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModItems.ORB_OF_TURBULENCE.get())
             .key('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
-            .key('t', ModItems.ORB_OF_EVER_CHANGING_PREFIX.get())
+            .key('t', ModItems.ORB_OF_TRANSMUTATION.get())
             .key('v', Items.GLISTERING_MELON_SLICE)
-            .key('o', ItemOre.ItemOres.get(IRarity.Rare))
+            .key('o', ModItems.RARE_MAGIC_ESSENCE.get())
             .patternLine("v#v")
             .patternLine("vtv")
             .patternLine("ooo")

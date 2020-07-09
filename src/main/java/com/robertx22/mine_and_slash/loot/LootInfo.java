@@ -138,12 +138,6 @@ public class LootInfo {
             chance = LootUtils.applyLootMultipliers(chance, mobData, victim);
         }
 
-        if (mobData != null && playerData != null) {
-            if (gen.hasLevelDistancePunishment()) {
-                chance = LootUtils.ApplyLevelDistancePunishment(mobData, playerData, chance);
-            }
-        }
-
         amount = LootUtils.WhileRoll(chance);
     }
 

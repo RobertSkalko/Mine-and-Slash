@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class ModEntityContainer extends SlashRegistryContainer<ModEntityConfig> {
 
     public ModEntityContainer(SlashRegistryType type) {
-        super(type, new ModEntityConfig(0, 0));
+        super(type, new ModEntityConfig(0));
     }
 
     public HashMap<EntityTypeUtils.EntityType, ModEntityConfig> byEntityTypeDefault = new HashMap<>();

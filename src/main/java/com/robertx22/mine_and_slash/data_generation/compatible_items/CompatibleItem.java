@@ -34,7 +34,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     public int runed_item_weight = 20;
 
     public int min_rarity = 0;
-    public int max_rarity = 4;
+    public int max_rarity = 2;
 
     public boolean only_add_stats_if_loot_drop = false;
     public boolean add_to_loot_drops = true;
@@ -177,8 +177,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     private GearItemEnum getCreationType() {
         WeightedType result = RandomUtils.weightedRandom(Arrays.asList(
             new WeightedType(normal_item_weight, GearItemEnum.NORMAL),
-            new WeightedType(unique_item_weight, GearItemEnum.UNIQUE),
-            new WeightedType(runed_item_weight, GearItemEnum.RUNED)
+            new WeightedType(unique_item_weight, GearItemEnum.UNIQUE)
         ));
 
         return result.type;

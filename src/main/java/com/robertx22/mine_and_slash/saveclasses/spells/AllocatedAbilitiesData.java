@@ -23,7 +23,7 @@ public class AllocatedAbilitiesData {
 
         this.map.values()
             .forEach(x -> {
-                if (x.isValid() && x.isLearned && x.type == IAbility.Type.SPELL) {
+                if (x.isValid() && x.getAbility() != null) {
                     list.add((BaseSpell) x.getAbility());
                 }
             });
@@ -37,7 +37,7 @@ public class AllocatedAbilitiesData {
 
     public boolean isAllocated(String id) {
         return map.containsKey(id) && map.get(id)
-            .isLearned;
+            .getAbility() != null;
     }
 
     private static AbilityData EMPTY_ABILITY = new AbilityData();

@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.saveclasses.item_classes;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatsData;
@@ -17,11 +16,11 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipConte
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
@@ -36,7 +35,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Storable
@@ -312,8 +310,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
                 int amount = RandomUtils.RandomRange(min, max);
 
-                List<IWeighted> list = Arrays.asList((IWeighted) ModItems.MAGIC_ESSENCE.get(), (IWeighted) ModItems.RARE_MAGIC_ESSENCE.get());
-                Item item = (Item) RandomUtils.weightedRandom(list);
+                Item item = ItemUtils.randomMagicEssence();
                 stack = new ItemStack(item);
                 stack.setCount(amount);
 

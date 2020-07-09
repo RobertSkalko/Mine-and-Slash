@@ -9,9 +9,4 @@ public abstract class BaseHelmet extends BaseArmor {
         return EquipmentSlotType.HEAD;
     }
 
-    @Override
-    public String resourceID() {
-        return "helmet";
-    }
-
 }

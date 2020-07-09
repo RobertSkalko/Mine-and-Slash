@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
-import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.bases.BaseBarsOverlay;
 import com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup.SpellHotbatSetupScreen;
 import com.robertx22.mine_and_slash.gui.screens.stats_overview.StatOverviewScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -77,9 +76,6 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         super.render(x, y, ticks);
 
         renderTitle();
-
-        int expx = this.guiLeft + sizeX / 2 - BaseBarsOverlay.BAR_WIDTH / 2;
-        int expy = this.guiTop + sizeY - BaseBarsOverlay.BAR_HEIGHT - 5;
 
     }
 

@@ -43,8 +43,8 @@ public class Dexterity extends BaseCoreStat {
     @Override
     public List<StatModifier> statsThatBenefit() {
         return Arrays.asList(
-            new StatModifier(2F, DodgeRating.getInstance(), StatModTypes.GLOBAL_INCREASE),
-            new StatModifier(0.5F, CriticalHit.getInstance(), StatModTypes.Flat)
+            new StatModifier(2F, 2F, DodgeRating.getInstance(), StatModTypes.GLOBAL_INCREASE),
+            new StatModifier(0.5F, 0.5F, CriticalHit.getInstance(), StatModTypes.Flat)
         );
     }
 
