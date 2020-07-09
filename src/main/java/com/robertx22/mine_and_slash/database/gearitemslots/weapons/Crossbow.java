@@ -26,7 +26,7 @@ public class Crossbow extends BaseWeapon {
     @Override
     public List<StatModifier> BaseStats() {
         return Arrays.asList(
-            new StatModifier(3, 8, new WeaponDamage(Elements.Physical), StatModTypes.Flat),
+            new StatModifier(2, 4, 3, 7, new WeaponDamage(Elements.Physical), StatModTypes.Flat),
             new StatModifier(3, 6, CriticalHit.getInstance(), StatModTypes.Flat)
 
         );

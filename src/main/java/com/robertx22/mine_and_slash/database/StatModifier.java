@@ -67,7 +67,7 @@ public class StatModifier implements ISerializable<StatModifier> {
     }
 
     public StatModTypes getModType() {
-        return StatModTypes.valueOf(type);
+        return StatModTypes.fromString(type);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class StatModifier implements ISerializable<StatModifier> {
         json.addProperty("secondMax", secondMax);
 
         json.addProperty("stat", stat);
-        json.addProperty("type", type);
+        json.addProperty("type", StatModTypes.valueOf(type).id);
 
         return json;
     }
@@ -102,7 +102,7 @@ public class StatModifier implements ISerializable<StatModifier> {
         String stat = json.get("stat")
             .getAsString();
 
-        StatModTypes type = StatModTypes.valueOf(json.get("type")
+        StatModTypes type = StatModTypes.fromString(json.get("type")
             .getAsString());
 
         return new StatModifier(firstMin, firstMax, secondMin, secondMax, stat, type);
@@ -110,11 +110,7 @@ public class StatModifier implements ISerializable<StatModifier> {
     }
 
     public ExactStatData ToExactStat(int percent) {
-
-        float v1 = (firstMin + (firstMax - firstMin) * percent / 100);
-        float v2 = (secondMin + (secondMax - secondMin) * percent / 100);
-
-        return new ExactStatData();
+        return new ExactStatData(this, percent);
 
     }
 

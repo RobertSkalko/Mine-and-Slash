@@ -9,8 +9,12 @@ import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitDat
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
+import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -20,6 +24,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OnTooltip {
 
@@ -97,6 +105,36 @@ public class OnTooltip {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if (true) {
+            List<String> list = event.getToolTip()
+                .stream()
+                .map(x -> CLOC.translate(x))
+                .collect(Collectors.toList());
+
+            FontRenderer font = Minecraft.getInstance().fontRenderer;
+
+            int max = font.getStringWidth(list.stream()
+                .max(Comparator.comparingInt(x -> font.getStringWidth(x)))
+                .get());
+
+            event.getToolTip()
+                .clear();
+
+            list.forEach(x -> {
+
+                String str = x;
+
+                while (font.getStringWidth(str) <= max) {
+                    str = " " + str + " ";
+                }
+
+                event.getToolTip()
+                    .add(new SText(str));
+
+            });
+
         }
 
     }

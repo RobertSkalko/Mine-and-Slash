@@ -105,9 +105,9 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     @Store
     public BaseStatsData baseStats;
     @Store
-    public List<SuffixData> suffixes;
+    public List<SuffixData> suffixes = new ArrayList<>();
     @Store
-    public List<PrefixData> prefixes;
+    public List<PrefixData> prefixes = new ArrayList<>();
 
     // Stats
 
@@ -205,7 +205,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     private boolean addNormalAffixedPrefixesAndSuffixes() {
 
-        return !this.isUnique() && prefixes.size() < 2 && suffixes.size() < 2;
+        return prefixes != null && suffixes != null && !this.isUnique() && prefixes.size() < 2 && suffixes.size() < 2;
     }
 
     public List<IStatsContainer> GetAllStatContainers() {

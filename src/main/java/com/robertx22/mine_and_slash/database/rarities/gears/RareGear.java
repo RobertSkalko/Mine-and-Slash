@@ -18,11 +18,6 @@ public class RareGear extends BaseRare implements GearRarity {
     }
 
     @Override
-    public float requirementMulti() {
-        return 0.6F;
-    }
-
-    @Override
     public MinMax affixStatPercents() {
         return StatPercents();
     }
@@ -49,12 +44,7 @@ public class RareGear extends BaseRare implements GearRarity {
 
     @Override
     public int Weight() {
-        return 2500;
-    }
-
-    @Override
-    public int runeSlots() {
-        return 3;
+        return 100;
     }
 
     @Override

@@ -184,7 +184,9 @@ public class SlashRegistry {
 
                         List<ISerializedRegistryEntry> list = x.getFromDatapacks();
 
-                        if (list.size() < 100) {
+                        if (list.size() == 0) {
+                            throw new Exception("Registry empty");
+                        } else if (list.size() < 100) {
                             MMORPG.sendToClient(new RegistryPacket(x.getType(), list), player);
                         } else {
                             for (List<ISerializedRegistryEntry> part : Lists.partition(list, 100)) {

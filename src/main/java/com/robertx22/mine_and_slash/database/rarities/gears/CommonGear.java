@@ -13,11 +13,6 @@ public class CommonGear extends BaseCommon implements GearRarity {
     }
 
     @Override
-    public float requirementMulti() {
-        return 0.2F;
-    }
-
-    @Override
     public float unidentifiedChance() {
         return 0;
     }
@@ -49,12 +44,7 @@ public class CommonGear extends BaseCommon implements GearRarity {
 
     @Override
     public int Weight() {
-        return 30000;
-    }
-
-    @Override
-    public int runeSlots() {
-        return 1;
+        return 5000;
     }
 
     @Override

@@ -150,7 +150,7 @@ public abstract class CurrencyItem extends Item implements IAddsInstability, ISl
 
     @Override
     public Rarity getRarity() {
-        return Rarities.Gears.get(getRarityRank());
+        return Rarities.Mobs.get(getRarityRank());
     }
 
     @Override

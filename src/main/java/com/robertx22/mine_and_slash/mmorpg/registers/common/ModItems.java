@@ -27,14 +27,16 @@ import com.robertx22.mine_and_slash.items.misc.IdentifyTomeItem;
 import com.robertx22.mine_and_slash.items.misc.MagicEssenceItem;
 import com.robertx22.mine_and_slash.items.misc.RareMagicEssence;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
+import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Supplier;
 
 public class ModItems {
@@ -50,7 +52,7 @@ public class ModItems {
     public static RegistryObject<Item> AXE = of(() -> new ItemAxe(0), Axe.INSTANCE);
     public static RegistryObject<Item> STAFF = of(() -> new ItemStaff(0), Staff.INSTANCE);
     public static RegistryObject<Item> BOW = of(() -> new ItemBow(0), Bow.INSTANCE);
-    public static RegistryObject<Item> CROSSBOW = of(() -> Items.CROSSBOW, Crossbow.INSTANCE);
+    public static RegistryObject<Item> CROSSBOW = of(() -> new CrossbowItem(ItemUtils.getDefaultGearProperties()), Crossbow.INSTANCE);
     public static RegistryObject<Item> ARMOR_SHIELD = of(() -> new NormalShield(ArmorShield.INSTANCE), ArmorShield.INSTANCE);
 
     public static RegistryObject<Item> HEALTH_NECKLACE = of(() -> new ItemNecklace(0), HealthNecklace.INSTANCE);
@@ -95,7 +97,8 @@ public class ModItems {
 
     static RegistryObject<Item> of(Supplier<Item> c, GearItemSlot slot) {
         RegistryObject<Item> wrap = REG.register(slot.slotTypeFamily()
-            .name() + "/" + slot.GUID(), c);
+            .name()
+            .toLowerCase(Locale.ROOT) + "/" + slot.GUID(), c);
         return wrap;
 
     }

@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.database.stats.name_regex;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
+import net.minecraft.util.text.TextFormatting;
 
 public abstract class StatNameRegex {
 
@@ -15,25 +17,35 @@ public abstract class StatNameRegex {
 
     public static String NAME = "[NAME]";
 
-    public abstract String getStatNameRegex(StatModTypes type);
+    static TextFormatting TEXT_COLOR = TextFormatting.GRAY;
+    static TextFormatting NUMBER_COLOR = TextFormatting.GREEN;
+
+    public abstract String getStatNameRegex(StatModTypes type, Stat stat);
 
     public String translate(StatModTypes type, float v1, float v2, Stat stat) {
+
+        String v1s = NumberUtils.formatNumber(v1);
+        String v2s = NumberUtils.formatNumber(v2);
 
         String percent = "";
 
         String plusminus = v1 > 0 ? "+" : "-";
 
+        if (stat.UsesSecondValue()) {
+            plusminus = "";
+        }
+
         if (type == StatModTypes.LOCAL_INCREASE || type == StatModTypes.GLOBAL_INCREASE || stat.IsPercent()) {
             percent = "%";
         }
 
-        String str = getStatNameRegex(type);
+        String str = TEXT_COLOR + getStatNameRegex(type, stat);
 
-        if (stat.UsesSecondValue()) {
-            str = str.replace(MIN_VALUE, plusminus + v1 + percent);
-            str = str.replace(MAX_VALUE, plusminus + v2 + percent);
+        if (type == StatModTypes.Flat && stat.UsesSecondValue()) {
+            str = str.replace(MIN_VALUE, NUMBER_COLOR + plusminus + v1s + percent + TextFormatting.RESET + TEXT_COLOR);
+            str = str.replace(MAX_VALUE, NUMBER_COLOR + plusminus + v2s + percent + TextFormatting.RESET + TEXT_COLOR);
         } else {
-            str = str.replace(VALUE, plusminus + v1 + percent);
+            str = str.replace(VALUE, NUMBER_COLOR + plusminus + v1s + percent + TextFormatting.RESET + TEXT_COLOR);
         }
 
         str = str.replace(NAME, CLOC.translate(stat.locName()));

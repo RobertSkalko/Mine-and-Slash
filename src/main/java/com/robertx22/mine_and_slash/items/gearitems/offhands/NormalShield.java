@@ -24,13 +24,13 @@ public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem 
 
     public NormalShield(GearItemSlot slot) {
 
-        super(properties(slot));
+        super(properties());
 
         resource = getResource(slot);
 
     }
 
-    static Properties properties(GearItemSlot slot) {
+    static Properties properties() {
 
         Properties p = ItemUtils.getDefaultGearProperties();
 
@@ -38,7 +38,7 @@ public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem 
             p.setISTER(ShieldRenderer::new);
         });
 
-        return null;
+        return p;
     }
 
     public static ResourceLocation getResource(GearItemSlot slot) {

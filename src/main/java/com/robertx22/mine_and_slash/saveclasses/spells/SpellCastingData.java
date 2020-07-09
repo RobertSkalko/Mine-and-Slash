@@ -334,13 +334,15 @@ public class SpellCastingData {
     public BaseSpell getSpellByKeybind(int key, Hotbar hotbar) {
         String id = getMap(hotbar).get(key);
 
-        if (SlashRegistry.Spells()
-            .isRegistered(id)) {
-            return SlashRegistry.Spells()
-                .get(id);
-        } else {
-            return null;
-        }
+        if (id != null) {
+            if (SlashRegistry.Spells()
+                .isRegistered(id)) {
+                return SlashRegistry.Spells()
+                    .get(id);
+            }
 
+        }
+        return null;
     }
+
 }

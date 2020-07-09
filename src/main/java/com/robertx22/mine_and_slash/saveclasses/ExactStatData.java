@@ -126,7 +126,7 @@ public class ExactStatData extends BaseStatContainer implements ISerializable<Ex
 
         json.addProperty("first_val", this.first_val);
         json.addProperty("second_val", this.second_val);
-        json.addProperty("type", this.type.name());
+        json.addProperty("type", this.type.id);
         json.addProperty("stat", this.stat_id);
 
         return json;
@@ -143,7 +143,7 @@ public class ExactStatData extends BaseStatContainer implements ISerializable<Ex
         String stat = json.get("stat")
             .getAsString();
 
-        StatModTypes type = StatModTypes.valueOf(json.get("type")
+        StatModTypes type = StatModTypes.fromString(json.get("type")
             .getAsString());
 
         return new ExactStatData(first, second, type, stat);

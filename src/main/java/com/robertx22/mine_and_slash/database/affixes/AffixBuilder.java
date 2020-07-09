@@ -51,7 +51,7 @@ public class AffixBuilder {
     }
 
     public BaseAffix BuildSuffix() {
-        affix.type = BaseAffix.Type.prefix;
+        affix.type = BaseAffix.Type.suffix;
         affix.addToSerializables();
         return affix;
     }

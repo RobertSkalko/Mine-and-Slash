@@ -6,9 +6,7 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 public class SerializedGearRarity extends SerializedBaseRarity implements GearRarity {
 
     public int affixChance;
-    public int setChance;
-    public int runeSlots;
-    public MinMax secondaryStatsAmount;
+
     public MinMax statPercents;
     public MinMax primaryStatPercents;
     public MinMax secondaryStatPercents;
@@ -40,11 +38,6 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     }
 
     @Override
-    public int runeSlots() {
-        return runeSlots;
-    }
-
-    @Override
     public int maxAffixes() {
         return maxAffixes;
     }
@@ -52,11 +45,6 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     @Override
     public float itemTierPower() {
         return itemTierPower;
-    }
-
-    @Override
-    public float requirementMulti() {
-        return requirementMulti;
     }
 
     @Override

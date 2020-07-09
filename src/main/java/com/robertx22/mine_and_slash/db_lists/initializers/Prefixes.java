@@ -21,13 +21,13 @@ public class Prefixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
 
         AffixBuilder.Of("chilled")
             .Named("Chilled")
-            .Stats(new StatModifier(1, 6, new WeaponDamage(Elements.Water), StatModTypes.Flat))
+            .Stats(new StatModifier(1, 3, 2, 6, new WeaponDamage(Elements.Water), StatModTypes.Flat))
             .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
             .BuildPrefix();
 
         AffixBuilder.Of("scorched")
             .Named("Scorched")
-            .Stats(new StatModifier(1, 6, new WeaponDamage(Elements.Fire), StatModTypes.Flat))
+            .Stats(new StatModifier(1, 3, 2, 6, new WeaponDamage(Elements.Fire), StatModTypes.Flat))
             .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
             .BuildPrefix();
 

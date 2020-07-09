@@ -68,8 +68,12 @@ public class GearTooltipUtils {
 
         List<ExactStatData> lvlstatsmerged = new ArrayList<>();
 
-        gear.suffixes.forEach(x -> lvlstatsmerged.addAll(x.GetAllStats()));
-        gear.prefixes.forEach(x -> lvlstatsmerged.addAll(x.GetAllStats()));
+        if (gear.suffixes != null) {
+            gear.suffixes.forEach(x -> lvlstatsmerged.addAll(x.GetAllStats()));
+        }
+        if (gear.prefixes != null) {
+            gear.prefixes.forEach(x -> lvlstatsmerged.addAll(x.GetAllStats()));
+        }
 
         MergedStats merged = new MergedStats(lvlstatsmerged, info);
         list.add(merged);

@@ -26,7 +26,7 @@ public class Staff extends BaseWeapon {
     @Override
     public List<StatModifier> BaseStats() {
         return Arrays.asList(
-            new StatModifier(2, 7, new WeaponDamage(Elements.Physical), StatModTypes.Flat),
+            new StatModifier(1, 3, 3, 5, new WeaponDamage(Elements.Physical), StatModTypes.Flat),
             new StatModifier(3, 10, CriticalHit.getInstance(), StatModTypes.Flat)
 
         );

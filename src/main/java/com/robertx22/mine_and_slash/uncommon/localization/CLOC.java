@@ -10,7 +10,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class CLOC {
 
     public static String translate(ITextComponent s) {
-        return MMORPG.proxy.translate(s);
+        return MMORPG.proxy.translate(s)
+            .replaceAll("Format error:", "");
     }
 
     private static ITextComponent base(String s) {
@@ -30,7 +31,7 @@ public class CLOC {
     public static ITextComponent lore(String str) {
 
         return new StringTextComponent(TextFormatting.GREEN + "'").appendSibling(base(Ref.MODID + ".lore." + str)
-                .appendSibling(new StringTextComponent("'")));
+            .appendSibling(new StringTextComponent("'")));
 
     }
 

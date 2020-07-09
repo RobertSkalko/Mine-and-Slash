@@ -14,11 +14,6 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     }
 
     @Override
-    public float requirementMulti() {
-        return 1F;
-    }
-
-    @Override
     public float unidentifiedChance() {
         return 100;
     }
@@ -51,11 +46,6 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     @Override
     public float salvageLotteryWinChance() {
         return 50;
-    }
-
-    @Override
-    public int runeSlots() {
-        return 0;
     }
 
     @Override

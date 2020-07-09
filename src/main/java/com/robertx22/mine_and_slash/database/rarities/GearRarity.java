@@ -17,8 +17,6 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
         JsonObject json = this.getRarityJsonObject();
 
         json.addProperty("affix_chance", AffixChance());
-        json.addProperty("rune_slots", runeSlots());
-        json.addProperty("requirements_multi", requirementMulti());
         json.addProperty("unidentified_chance", unidentifiedChance());
         json.addProperty("salvage_lottery_chance", salvageLotteryWinChance());
         json.addProperty("max_affixes", maxAffixes());
@@ -42,10 +40,6 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
             .getAsInt();
         rar.salvageLotteryChance = json.get("salvage_lottery_chance")
             .getAsInt();
-        rar.setChance = json.get("set_chance")
-            .getAsInt();
-        rar.runeSlots = json.get("rune_slots")
-            .getAsInt();
         rar.unidentifiedChance = json.get("unidentified_chance")
             .getAsInt();
         rar.requirementMulti = json.get("requirements_multi")
@@ -65,9 +59,6 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
 
         rar.primaryStatPercents = MinMax.getSerializer()
             .fromJson(json.getAsJsonObject("primary_stat_percents"));
-
-        rar.secondaryStatsAmount = MinMax.getSerializer()
-            .fromJson(json.getAsJsonObject("secondary_stat_amount"));
 
         Preconditions.checkArgument(!StatPercents().isEmpty());
 
@@ -91,8 +82,6 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
 
     int AffixChance();
 
-    int runeSlots();
-
     int maxAffixes();
 
     default int maximumOfOneAffixType() {
@@ -100,8 +89,6 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
     }
 
     float itemTierPower();
-
-    float requirementMulti();
 
     float unidentifiedChance();
 }

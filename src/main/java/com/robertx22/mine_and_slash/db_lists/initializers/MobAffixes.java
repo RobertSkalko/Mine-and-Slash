@@ -20,6 +20,8 @@ public class MobAffixes implements ISlashRegistryInit {
     public static MobAffix LIGHTNING = new MobAffix("lightning", "Lightning", BaseAffix.Type.prefix).setMods(new ExactStatData(5, StatModTypes.Flat, new WeaponDamage(Elements.Thunder)));
     public static MobAffix VENOMOUS = new MobAffix("venom", "Venomous", BaseAffix.Type.prefix).setMods(new ExactStatData(5, StatModTypes.Flat, new WeaponDamage(Elements.Nature)));
 
+    public static MobAffix OF_RUIN = new MobAffix("of_ruin", "Of Ruin", BaseAffix.Type.suffix).setMods(new ExactStatData(5, StatModTypes.Flat, new WeaponDamage(Elements.Physical)));
+
     @Override
     public void registerAll() {
 
@@ -29,6 +31,8 @@ public class MobAffixes implements ISlashRegistryInit {
         all.add(FLAMING);
         all.add(LIGHTNING);
         all.add(VENOMOUS);
+
+        all.add(OF_RUIN);
 
         all.forEach(x -> x.addToSerializables());
 

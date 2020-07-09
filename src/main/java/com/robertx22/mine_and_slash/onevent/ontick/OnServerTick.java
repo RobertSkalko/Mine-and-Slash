@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
@@ -137,7 +136,7 @@ public class OnServerTick {
 
                     if (player.getServer()
                         .isSinglePlayer()) {
-                        SlashRegistry.restoreFromBackupifEmpty();
+                        // SlashRegistry.restoreFromBackupifEmpty();
                     }
                 }
                 if (data.ticksToProcessChunks > TicksToProcessChunks) {
