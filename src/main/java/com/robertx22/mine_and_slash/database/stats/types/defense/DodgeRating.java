@@ -1,5 +1,8 @@
 package com.robertx22.mine_and_slash.database.stats.types.defense;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
+import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.DodgeEffect;
@@ -7,7 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-public class DodgeRating extends Stat implements IStatEffects, IUsableStat {
+public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILocalStat {
 
     public static String GUID = "dodge";
 
@@ -62,6 +65,11 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat {
     @Override
     public float MaximumPercent() {
         return 0.9F;
+    }
+
+    @Override
+    public boolean IsNativeToGearType(GearItemSlot slot) {
+        return slot.slotType() == GearItemSlot.GearSlotType.Armor || slot.GUID() == Shield.INSTANCE.GUID();
     }
 
     @Override

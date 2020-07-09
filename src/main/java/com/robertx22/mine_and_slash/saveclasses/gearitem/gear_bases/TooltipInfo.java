@@ -9,18 +9,18 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class TooltipInfo implements Cloneable {
 
-    public TooltipInfo(EntityCap.UnitData unitdata, MinMax minmax, int level) {
+    public TooltipInfo(EntityCap.UnitData unitdata, MinMax minmax) {
         this.minmax = minmax;
-        this.level = level;
+
         this.unitdata = unitdata;
 
         this.hasAltDown = Screen.hasAltDown();
         this.hasShiftDown = Screen.hasShiftDown();
     }
 
-    public TooltipInfo(EntityCap.UnitData unitdata, int level) {
+    public TooltipInfo(EntityCap.UnitData unitdata) {
         this.minmax = new MinMax(100, 100);
-        this.level = level;
+
         this.unitdata = unitdata;
 
         this.hasAltDown = Screen.hasAltDown();
@@ -36,7 +36,7 @@ public class TooltipInfo implements Cloneable {
     public TooltipInfo(PlayerEntity player) {
         this.player = player;
         this.unitdata = Load.Unit(player);
-        this.level = unitdata.getLevel();
+
         this.minmax = new MinMax(100, 100);
 
         this.hasAltDown = Screen.hasAltDown();
@@ -53,7 +53,6 @@ public class TooltipInfo implements Cloneable {
     public PlayerEntity player;
     public EntityCap.UnitData unitdata;
     public MinMax minmax = new MinMax(0, 100);
-    public int level;
     public boolean isSet = false;
     public StatTooltipType statTooltipType = StatTooltipType.NORMAL;
 
@@ -76,8 +75,6 @@ public class TooltipInfo implements Cloneable {
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-
-        info.level = level;
 
         return info;
 

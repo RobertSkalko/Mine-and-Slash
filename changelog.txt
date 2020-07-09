@@ -1,120 +1,13 @@
-3.6.15
-* map portals now take less time to break
-* dmg numbers now show all elements 
-* changed hud render to not break if experience isn't rendered.
-* small perf improvement for auto config items
-* most spells now swing arm
-* fix entity configs not clamping correctly if dimension is set to scale mob lvl to player
-* fix imbue synergy not giving hunter stacks
-* added minion mob rarity (for boss summons so they dont drop loot)
-* fixed the "Tried to load a block entity for block Block{minecraft:air}" spam
-* fix skill damage stats not working (this sounds really dumb but i forgot to make them work differently after reworking the spell system, leaving them as dummy stats,
-it doesn't help that i didn't have time to play test my mod)
-* strength now increases elemental attack damage instead of all ele dmg, intelligence same but increases all elemental spell damage.
-* fix dungeon merchant dupe bug
+1.0
 
-3.6.14
-* fix divine buffs expiring randomly after a few seconds
+To rework the mod, I needed an almost clean slate, and to trim a lot of content that I feel wasn't very successful (for the amount of effort it requires).
+Other things were removed because I wanted to remove them, but I couldn't because I'd ruin existing worlds (*cough* master bag)
 
-3.6.13
-* dungeon chests now have a chance to give vanilla items that are dictated by lootables. (meaning configurable by modpack devs)
-Low lvl maps give stuff like coal, mid lvl give gold, and high lvl maps can give even diamonds!
-* fixed more dungeon signs
-* fix stations dupe bug
+* removed all auto pickup bags except currency bag
+* removed auto salvage bag
+* removed charms and bracelets
+* removed map dimensions
+* removed runes and runewords
+* removed sets 
 
-3.6.12
-* implemented an experimental simple way to minimize effectiveness of mob farms (ill implement configs later, first i need to see if it works)
-
-3.6.11
-* should fix mana cost reduction throwing exception on synergies that dont cost mana.
-
-3.6.10
-* starter item config is now common config
-
-3.6.9
-* trying out performance optimizations
-* added ignored entities config, this stops stat data packets from being sent to client,
- should make servers less laggy as most entities are bats and fish, and you don't really care about their stats. 
- You could also add sheep for example, if you have a huge sheep farm that's laggy.
- * orb of blessing can no longer reroll unique gear's stats
- * orb of unique blessing can now only reroll them, and the instability hit is now much higher (as unique gears are much less random now, i'm toning down the amount of times you can modify them)
-* made starter items a newbie gear bag instead. the bag now gives same items every time. 
-
-3.6.8
-* updated chinese lang
-* added mastery descriptions by dreckz
-* added 3 new divine buff spells
-* removed some advancements
-
-3.6.7
-* added a new mastery: divine!
-* added new fire mastery synergy
-* removed deobf jar, seemed to confuse more non modders than it helped modders
-* pets shouldnt take spell damage from owners anymore
-
-3.6.6
-* removed experimental map drop rate restrictions
-* effective spell level is now derived from effective mastery level.
-* fix death message
-* fix spell cooldown being synced wrongly when in gui
-* should fix ores not generating in modded biomes
-
-3.6.5
-* fixed volcano doing only 1 hit
-* buffed thorn armor and hunter instinct stats
-
-3.6.4
-* should fix possible server crash
-
-3.6.3
-* should fix some spells not going on cooldown after casting
-3.6.2
-* fix entrance room 
-
-3.6.1
-* should fix mobs sometimes not doing dmg
-* fix effect stats scaling to player level instead of spell level
-
-3.6.0
-
-SPELL REWORK!
-* spell tree has been remade into masteries.
-* spells and synergies now have levels
-* synergies now cost mana
-* removed some spells as i consider them bad (like geyser) and others because their spell school doesn't have enough spells, they'll probably be re-added later
-* added some new spells
-* spell damage stats are now percents and increase spell damage by percent, instead of adding to the damage.
-* infusion reworked
-* added cooldown reduction, mana cost reduction and cast rate stats (they might not be used yet though, but they're there)
-* added +1 to spell school levels stat
-* removed elemental conversion and transfer stats, mostly useless after spell damage became a percent
-* huge easy aoe spells now have much larger cooldown, added other semi aoe spells that are harder to hit and can't hit that many enemies at once.
-* added a new rune that adds levels to specific spells, you'll need that for after level 45
-
-What should happen with the rework:
-* players should think more about how many points they want to spend and where
-* players should decide between base stats or spell levels
-* players should be able to play 2 schools of magic that use different elements without feeling useless
-* magic should be less op at endgame and more useful at early game.
-* aoe clearing a bunch of mobs should be much harder to do, especially from range, as high aoe spells are under long cooldown
-
-If the system didn't make some of these happen, please tell me about it.
-
-Other:
-* bosses now spawn less minions but they're all max rarity
-* blocking fully now stops attack knockbacks. can't figure out how to stop the attack sounds though
-* made vanilla teams usable for exp and friendly fire off.
-* casting spells now slows you down
-* server performance improvements (syncing mob stat packets to client should lag server less now as i almost cut down the packet size in half)
-* added all the buildathon rewards that people asked for (still many didn't come claim them though)
-* fixed unique cangetset field not doing anything in datapacks
-* mobs now have a small chance to increase their own rarity and level by killing other mobs. (experimental feature but i think it will be good)
-* decreased default regen hunger cost
-* made weapon costs scale with weapon level. This is experimental until i see if it can be abused or not. If people find some way of using lvl 1 weapons to do a lot of damage 
-then i'll have to switch back to scaling costs to player level.
-* spells levels now dictate their damage and mana costs too. To get maximum player level of spell effectiveness you'll need +1 to skill level gear stats. (5 or 6 of them)
-* added new affixes and runeword.
-* increase default stat points per lvl
-* as talents pic is no longer 3 mb, starting talents shouldnt freeze game anymore
-* potion of spell reset now gives 10 spell reset points instead of 1, but its a bit more expensive
-* added a lot more dungeon rooms by @Eclipse
+Some of these will probably come back, after a rework. Others are gone for good.

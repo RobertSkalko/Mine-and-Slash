@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.AllEleDmgEffect;
-import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
@@ -18,11 +17,6 @@ public class AllEleDmg extends Stat implements IStatEffects {
 
     public AllEleDmg() {
 
-    }
-
-    @Override
-    public StatScaling getScaling() {
-        return StatScaling.NONE;
     }
 
     @Override

@@ -1,11 +1,6 @@
 package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.BaseItem;
@@ -53,18 +48,11 @@ public class ItemNewbieGearBag extends BaseItem {
 
                 List<GearItemSlot> list = new ArrayList<>();
 
-                list.add(PlatePants.INSTANCE);
-                list.add(PlateChest.INSTANCE);
-                list.add(PlateHelmet.INSTANCE);
-                list.add(PlateBoots.INSTANCE);
-
                 list.add(Sword.INSTANCE);
-
-                list.add(Ring.INSTANCE);
-                list.add(Ring.INSTANCE);
 
                 list.forEach(x -> {
                     GearItemData data = getBlueprint(x).createData();
+
                     data.isSalvagable = false;
                     ItemStack weaponStack = GearCreationUtils.CreateStack(data);
                     playerIn.dropItem(weaponStack, false, true);
@@ -85,7 +73,6 @@ public class ItemNewbieGearBag extends BaseItem {
     private static GearBlueprint getBlueprint(GearItemSlot type) {
         GearBlueprint print = new GearBlueprint(1);
         print.gearItemSlot.set(type);
-        print.level.LevelRange = false;
         print.rarity.setSpecificRarity(0);
 
         return print;

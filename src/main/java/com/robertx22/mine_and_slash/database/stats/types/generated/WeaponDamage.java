@@ -1,5 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.ElementalAttackDamageEffect;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
@@ -11,7 +13,7 @@ import com.robertx22.mine_and_slash.uncommon.wrappers.MapWrapper;
 
 import java.util.List;
 
-public class WeaponDamage extends ElementalStat implements IStatEffects {
+public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalStat {
     public static MapWrapper<Elements, WeaponDamage> MAP = new MapWrapper();
 
     @Override
@@ -58,6 +60,11 @@ public class WeaponDamage extends ElementalStat implements IStatEffects {
     @Override
     public String locDescLangFileGUID() {
         return Ref.MODID + ".stat_desc." + "ele_atk_dmg";
+    }
+
+    @Override
+    public boolean IsNativeToGearType(GearItemSlot slot) {
+        return slot.slotType() == GearItemSlot.GearSlotType.Weapon;
     }
 
     @Override

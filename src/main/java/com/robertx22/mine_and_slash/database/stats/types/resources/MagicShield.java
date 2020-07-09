@@ -1,5 +1,8 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
+import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.MagicShieldEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -7,7 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 import net.minecraft.util.text.TextFormatting;
 
-public class MagicShield extends Stat implements IStatEffects {
+public class MagicShield extends Stat implements IStatEffects, ILocalStat {
     public static String GUID = "magic_shield";
 
     private MagicShield() {
@@ -56,6 +59,11 @@ public class MagicShield extends Stat implements IStatEffects {
     @Override
     public boolean IsPercent() {
         return false;
+    }
+
+    @Override
+    public boolean IsNativeToGearType(GearItemSlot slot) {
+        return slot.slotType() == GearItemSlot.GearSlotType.Armor || slot.GUID() == Shield.INSTANCE.GUID();
     }
 
     @Override

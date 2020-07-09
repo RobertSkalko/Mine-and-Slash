@@ -1,5 +1,8 @@
 package com.robertx22.mine_and_slash.database.stats.types.defense;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
+import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.ArmorEffect;
@@ -7,7 +10,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
-public class Armor extends Stat implements IStatEffects, IUsableStat {
+public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat {
 
     public static Armor getInstance() {
         return SingletonHolder.INSTANCE;
@@ -72,6 +75,11 @@ public class Armor extends Stat implements IStatEffects, IUsableStat {
     @Override
     public String locNameForLangFile() {
         return "Armor";
+    }
+
+    @Override
+    public boolean IsNativeToGearType(GearItemSlot slot) {
+        return slot.slotType() == GearItemSlot.GearSlotType.Armor || slot.GUID() == Shield.INSTANCE.GUID();
     }
 
     private static class SingletonHolder {

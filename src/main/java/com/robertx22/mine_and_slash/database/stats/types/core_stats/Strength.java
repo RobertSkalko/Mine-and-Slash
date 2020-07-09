@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 
-import com.robertx22.mine_and_slash.database.stats.StatMod;
-import com.robertx22.mine_and_slash.database.stats.mods.flat.offense.CriticalDamageFlat;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.ElementalAttackDamagePercent;
-import com.robertx22.mine_and_slash.database.stats.mods.percent.offense.PhysicalDamagePercent;
+import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
+import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
+import com.robertx22.mine_and_slash.database.stats.types.resources.BonusMaximumHealth;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
@@ -41,8 +41,11 @@ public class Strength extends BaseCoreStat {
     }
 
     @Override
-    public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new PhysicalDamagePercent(), new CriticalDamageFlat(), new ElementalAttackDamagePercent(Elements.Elemental));
+    public List<StatModifier> statsThatBenefit() {
+        return Arrays.asList(
+            new StatModifier(0.2F, new WeaponDamage(Elements.Physical), StatModTypes.GLOBAL_INCREASE),
+            new StatModifier(0.5F, BonusMaximumHealth.getInstance(), StatModTypes.GLOBAL_INCREASE)
+        );
     }
 
     @Override
