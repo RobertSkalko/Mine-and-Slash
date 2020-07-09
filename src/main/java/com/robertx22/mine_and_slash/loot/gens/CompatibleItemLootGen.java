@@ -35,10 +35,10 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
     @Override
     public ItemStack generateOne() {
-        return gen(info.mobData.getLevel());
+        return gen();
     }
 
-    public static ItemStack gen(int level) {
+    public static ItemStack gen() {
 
         try {
             FilterListWrap<CompatibleItem> possible = SlashRegistry.CompatibleItems()
@@ -53,7 +53,7 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
                     if (ForgeRegistries.ITEMS.containsKey(res)) {
                         ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
-                        return config.create(stack, level);
+                        return config.create(stack);
                     }
                 }
             }

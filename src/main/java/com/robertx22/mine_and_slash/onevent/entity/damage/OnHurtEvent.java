@@ -1,10 +1,8 @@
 package com.robertx22.mine_and_slash.onevent.entity.damage;
 
-import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -28,17 +26,6 @@ public class OnHurtEvent {
             LivingHurtUtils.stopMobInWallDamageInMaps(event);
             LivingHurtUtils.damageCurioItems(event.getEntityLiving());
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @SubscribeEvent
-    public static void onPlayerAttackRecordCooldown(AttackEntityEvent event) {
-        try {
-            Load.Unit(event.getPlayer())
-                .setAttackCooldown(event.getPlayer());
         } catch (Exception e) {
             e.printStackTrace();
         }

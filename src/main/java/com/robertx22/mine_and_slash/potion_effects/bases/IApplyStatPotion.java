@@ -40,7 +40,6 @@ public interface IApplyStatPotion {
         List<ITextComponent> list = new ArrayList<>();
 
         ExtraPotionData minStacks = new ExtraPotionData();
-        minStacks.casterLvl = info.unitdata.getLevel();
 
         list.add(new StringTextComponent(TextFormatting.GREEN + "Affects stats: "));
 

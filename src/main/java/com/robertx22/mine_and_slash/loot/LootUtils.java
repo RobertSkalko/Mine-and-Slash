@@ -11,22 +11,11 @@ import net.minecraft.util.math.MathHelper;
 
 public class LootUtils {
 
-    public static ItemStack RandomDamagedGear(ItemStack stack, Rarity rar, int level) {
+    public static ItemStack RandomDamagedGear(ItemStack stack, Rarity rar) {
         if (stack.isDamageable()) {
-
-            float lvlDuraPenalty; // easier at low lvls, harder at later
-            if (level < 10) {
-                lvlDuraPenalty = -0.1F;
-            } else if (level < 30) {
-                lvlDuraPenalty = 0;
-            } else {
-                lvlDuraPenalty = 0.2F;
-            }
 
             float dmgMulti = (float) RandomUtils.RandomRange(
                 rar.SpawnDurabilityHit().min, rar.SpawnDurabilityHit().max) / (float) 100;
-
-            dmgMulti += lvlDuraPenalty;
 
             dmgMulti = MathHelper.clamp(dmgMulti, 0, 0.95F);
 

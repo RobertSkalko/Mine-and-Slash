@@ -97,7 +97,6 @@ public class GiveGear {
             if (!type.equals("random")) {
                 blueprint.gearItemSlot.set(type);
             }
-            blueprint.level.LevelRange = false;
 
             player.addItemStackToInventory(blueprint.createStack());
         }

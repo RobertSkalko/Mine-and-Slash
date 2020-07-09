@@ -36,6 +36,8 @@ public class PlayerSpellCap {
 
         public abstract AllocatedAbilitiesData getAbilitiesData();
 
+        public abstract BaseSpell getCurrentRightClickSpell();
+
         public abstract BaseSpell getSpellByKeybind(int key, SpellCastingData.Hotbar bar);
 
         public abstract SpellCastingData getCastingData();
@@ -116,6 +118,11 @@ public class PlayerSpellCap {
         @Override
         public AllocatedAbilitiesData getAbilitiesData() {
             return abilitiesData;
+        }
+
+        @Override
+        public BaseSpell getCurrentRightClickSpell() {
+            return null; // TODO
         }
 
         @Override

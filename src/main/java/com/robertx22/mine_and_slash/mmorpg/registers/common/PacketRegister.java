@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.packets.particles.ParticlePacket;
 import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
 import com.robertx22.mine_and_slash.packets.spells.ChangeSpellHotbarPacket;
 import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
-import com.robertx22.mine_and_slash.packets.spells.WeaponRightClickSpellPacket;
 import com.robertx22.mine_and_slash.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
 import net.minecraft.network.PacketBuffer;
@@ -73,8 +72,6 @@ public class PacketRegister {
             OnLoginClientPacket.class, OnLoginClientPacket::encode, OnLoginClientPacket::decode,
             OnLoginClientPacket::handle
         );
-
-        reg(WeaponRightClickSpellPacket.class, WeaponRightClickSpellPacket::encode, WeaponRightClickSpellPacket::decode, WeaponRightClickSpellPacket::handle);
 
         reg(RarityPacket.class, RarityPacket::encode, RarityPacket::decode, RarityPacket::handle);
 

@@ -28,9 +28,6 @@ public class ExtraPotionData {
     @Store
     private int stacks = 1;
 
-    @Store
-    public int casterLvl = 1;
-
     public int getInitialDurationTicks() {
         return initialDurationTicks;
     }

@@ -93,13 +93,11 @@ public class GiveUniqueGear {
 
         for (int i = 0; i < amount; i++) {
 
-            UniqueGearBlueprint blueprint = new UniqueGearBlueprint(lvl, tier, true);
+            UniqueGearBlueprint blueprint = new UniqueGearBlueprint(tier, true);
             blueprint.unidentifiedPart.set(false);
             if (type.equals("random") == false) {
                 blueprint.gearItemSlot.set(type);
             }
-
-            blueprint.level.LevelRange = false;
 
             player.addItemStackToInventory(blueprint.createStack());
         }

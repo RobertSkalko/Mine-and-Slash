@@ -10,22 +10,14 @@ import java.util.List;
 public class ItemFilterGroup {
 
     public static final ItemFilterGroup LOOT_BAG = new ItemFilterGroup(
-            Arrays.asList(new GearItemFilter(), new RuneItemFilter()));
-    public static final ItemFilterGroup ANY_MAP = new ItemFilterGroup(new MapItemFilter());
+        Arrays.asList(new GearItemFilter()));
     public static final ItemFilterGroup ANY_CURRENCY = new ItemFilterGroup(new CurrencyItemFilter());
-    public static final ItemFilterGroup ANY_AWAKEN = new ItemFilterGroup(new AwakenWordFilter());
     public static final ItemFilterGroup ANY_MODIFY = new ItemFilterGroup(new ModifyItemFilter());
     public static final ItemFilterGroup ANY_UNIQUE = new ItemFilterGroup(new UniqueItemFilter());
     public static final ItemFilterGroup ANY_GEAR = new ItemFilterGroup(new GearItemFilter());
-    public static final ItemFilterGroup ANY_ORE = new ItemFilterGroup(new OreItemFilter());
     public static final ItemFilterGroup ANY_GEAR_EXCEPT_UNIQUE = new ItemFilterGroup(new GearExceptUniqueFilter());
-    public static final ItemFilterGroup ANY_RUNE = new ItemFilterGroup(new RuneItemFilter());
-    public static final ItemFilterGroup ANY_MASTER_BAG = new ItemFilterGroup(
-            Arrays.asList(new OreItemFilter(), new AwakenWordFilter(), new MapItemFilter(), new CurrencyItemFilter(),
-                          new RuneItemFilter(), new GearItemFilter()
-            ));
     public static final ItemFilterGroup CURRENCY_BAG = new ItemFilterGroup(
-            Arrays.asList(new OreItemFilter(), new AwakenWordFilter(), new CurrencyItemFilter()));
+        Arrays.asList(new CurrencyItemFilter()));
 
     List<ItemFilter> filters = new ArrayList<>();
 

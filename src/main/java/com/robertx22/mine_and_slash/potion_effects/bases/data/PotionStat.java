@@ -20,14 +20,12 @@ public class PotionStat {
 
     public ExactStatData getExactStat(EntityCap.UnitData data, PlayerSpellCap.ISpellsCap cap, ExtraPotionData pdata, BasePotionEffect effect) {
 
-        float multi = effect.getAbilityThatDeterminesLevel()
-            .getLevelPowerMulti(cap);
+        float multi = 1;
 
         float finalVal = pdata.getStacks() * value * multi;
 
         ExactStatData statData = new ExactStatData(finalVal, type, stat);
-        statData.scaleToLvl(effect.getAbilityThatDeterminesLevel()
-            .getEffectiveAbilityLevel(cap, data));
+
         return statData;
 
     }

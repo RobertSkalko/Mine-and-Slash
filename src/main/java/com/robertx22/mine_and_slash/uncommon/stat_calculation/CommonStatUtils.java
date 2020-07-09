@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
-import com.robertx22.mine_and_slash.database.stats.Trait;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.ICoreStat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.IPreCoreStat;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
@@ -61,6 +60,7 @@ public class CommonStatUtils {
             }
 
         }
+        /*
         for (Trait trait : Stats.allPreGenMapStatLists.get(Trait.class)) {
 
             StatData statdata = theunit.peekAtStat(trait.GUID());
@@ -69,6 +69,8 @@ public class CommonStatUtils {
             }
 
         }
+
+         */
         for (IAffectsStats trait : Stats.allPreGenMapStatLists.get(IAffectsStats.class)) {
 
             StatData statdata = theunit.peekAtStat(trait.GUID());

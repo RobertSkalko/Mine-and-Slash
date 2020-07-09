@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.loot.gens;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 
@@ -15,7 +15,8 @@ public class CurrencyLootGen extends BaseLootGen<ItemBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return ModConfig.INSTANCE.DropRates.CURRENCY_DROPRATE.get().floatValue();
+        return ModConfig.INSTANCE.DropRates.CURRENCY_DROPRATE.get()
+            .floatValue();
     }
 
     @Override
@@ -25,13 +26,16 @@ public class CurrencyLootGen extends BaseLootGen<ItemBlueprint> {
 
     @Override
     public boolean condition() {
-        return info.level >= ModConfig.INSTANCE.Server.CURRENCY_DROP_AFTER_LEVEL.get();
+        return true;
     }
 
     @Override
     public ItemStack generateOne() {
 
-        return new ItemStack(SlashRegistry.CurrencyItems().getWrapped().ofTierOrLess(info.tier).random());
+        return new ItemStack(SlashRegistry.CurrencyItems()
+            .getWrapped()
+            .ofTierOrLess(info.tier)
+            .random());
 
     }
 

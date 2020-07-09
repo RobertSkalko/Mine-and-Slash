@@ -25,29 +25,6 @@ public class OnPlayerClone {
         }
 
         try {
-            Load.playerMapData(current)
-                .loadFromNBT(Load.playerMapData(original)
-                    .saveToNBT());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Load.statPoints(current)
-                .loadFromNBT(Load.statPoints(original)
-                    .saveToNBT());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Load.talents(current)
-                .loadFromNBT(Load.talents(original)
-                    .saveToNBT());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
             Load.spells(current)
                 .loadFromNBT(Load.spells(original)
                     .saveToNBT());

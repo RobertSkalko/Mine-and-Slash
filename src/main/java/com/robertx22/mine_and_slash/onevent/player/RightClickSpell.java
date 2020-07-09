@@ -2,12 +2,9 @@ package com.robertx22.mine_and_slash.onevent.player;
 
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -24,36 +21,30 @@ public class RightClickSpell {
                 return;
             }
 
-            ItemStack stack = event.getItemStack();
+            BaseSpell spell = Load.spells(player)
+                .getCurrentRightClickSpell();
 
-            GearItemData gear = Gear.Load(stack);
+            if (spell != null) {
 
-            if (gear != null) {
+                PlayerSpellCap.ISpellsCap spells = Load.spells(player);
 
-                BaseSpell spell = gear.getRightClickSpell();
-
-                if (spell != null) {
-
-                    PlayerSpellCap.ISpellsCap spells = Load.spells(player);
-
-                    if (spells.getCastingData()
-                        .isCasting()) {
-                        return;
-                    }
-
-                    if (spells.canCastRightClickSpell(spell, player)) {
-                        spells
-                            .getCastingData()
-                            .setToCast(spell, player);
-
-                        SpellCastContext ctx = new SpellCastContext(player, 0, spell);
-
-                        spell.spendResources(ctx);
-
-                    }
+                if (spells.getCastingData()
+                    .isCasting()) {
+                    return;
                 }
+
+                spells
+                    .getCastingData()
+                    .setToCast(spell, player);
+
+                SpellCastContext ctx = new SpellCastContext(player, 0, spell);
+
+                spell.spendResources(ctx);
+
             }
-        } catch (Exception e) {
+
+        } catch (
+            Exception e) {
             e.printStackTrace();
         }
 

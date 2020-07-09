@@ -7,7 +7,6 @@ import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
-import com.robertx22.mine_and_slash.packets.spells.WeaponRightClickSpellPacket;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
@@ -218,8 +217,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                 }
             } else {
                 if (this.getSpell() != null) {
-                    MMORPG.sendToServer(new WeaponRightClickSpellPacket(null));
-                    WeaponRightClickSpellPacket.activate(Minecraft.getInstance().player, ""); // for client sync
+                    //MMORPG.sendToServer(new WeaponRightClickSpellPacket(null));
                 } else {
                     SpellHotbatSetupScreen.barBeingPicked = this;
                 }
@@ -284,8 +282,8 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                     HotbarButton bar = SpellHotbatSetupScreen.barBeingPicked;
 
                     if (bar.isForRightClickWeaponSpell) {
-                        MMORPG.sendToServer(new WeaponRightClickSpellPacket(spell));
-                        WeaponRightClickSpellPacket.activate(Minecraft.getInstance().player, spell.GUID()); // for client sync
+                        //  MMORPG.sendToServer(new WeaponRightClickSpellPacket(spell));
+                        //    WeaponRightClickSpellPacket.activate(Minecraft.getInstance().player, spell.GUID()); // for client sync
                     } else {
                         if (bar.hotbar != null) {
                             MMORPG.sendToServer(new HotbarSetupPacket(spell, bar.number, bar.hotbar));

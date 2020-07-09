@@ -29,8 +29,6 @@ public class RegisterEvents {
 
     private static void registerPlayerEvents() {
 
-        register(OnDungeonBlockEvents.class);
-        register(OnDeath.class);
         register(OnPlayerClone.class);
         register(OnLogin.class);
         register(OnServerTick.class);
@@ -49,11 +47,9 @@ public class RegisterEvents {
 
     private static void registerEntityEvents() {
 
-        register(OnEntityDeathLevelEntity.class);
         register(CollectGearEvent.class);
         register(OnHurtEvent.class);
         register(OnEquipChange.class);
-        register(OnHealDecrease.class);
         register(OnMobDeathDrops.class);
         register(OnPotionChange.class);
         register(OnTrackEntity.class);

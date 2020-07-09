@@ -27,7 +27,7 @@ public class GearLootGen extends BaseLootGen<GearBlueprint> {
     @Override
     public ItemStack generateOne() {
 
-        GearBlueprint blueprint = new GearBlueprint(info.level, info.tier);
+        GearBlueprint blueprint = new GearBlueprint(info.tier);
         blueprint.rarity.setChanceForHigherRarityBasedOnMapTier();
 
         ItemStack stack = blueprint.createStack();

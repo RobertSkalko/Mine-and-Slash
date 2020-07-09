@@ -42,30 +42,24 @@ public class OpenGuiPacket {
 
     public static void handle(final OpenGuiPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
 
-                DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-                    if (pkt.type == GuiType.PICK_STATS) {
-                        OpenGuiWrapper.openStatAllocation();
-                    }
-                    if (pkt.type == GuiType.TALENTS) {
-                        OpenGuiWrapper.openTalents();
-                    }
-                    if (pkt.type == GuiType.SPELLS) {
-                        OpenGuiWrapper.openSpellPerks();
-                    }
-                    if (pkt.type == GuiType.MAIN_HUB) {
-                        OpenGuiWrapper.openMainHub();
-                    }
-                });
+                    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+                        if (pkt.type == GuiType.MAIN_HUB) {
+                            OpenGuiWrapper.openMainHub();
+                        }
+                    });
 
-        ctx.get().setPacketHandled(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+
+        ctx.get()
+            .setPacketHandled(true);
 
     }
 

@@ -9,7 +9,6 @@ import net.minecraft.util.text.ITextComponent;
 public enum ItemType {
 
     GEAR(ItemFilterGroup.ANY_GEAR, Words.Gears),
-    MAP(ItemFilterGroup.ANY_MAP, Words.Map),
     NONE(null, Words.None);
 
     ItemType(ItemFilterGroup filter, Words word) {
@@ -30,9 +29,9 @@ public enum ItemType {
     public static ITextComponent getTooltipString(ItemType types) {
 
         ITextComponent comp = Styles.LIGHT_PURPLECOMP()
-                .appendSibling(Words.UsableOn.locName())
-                .appendText(": ")
-                .appendSibling(types.word.locName());
+            .appendSibling(Words.UsableOn.locName())
+            .appendText(": ")
+            .appendSibling(types.word.locName());
 
         return comp;
 

@@ -15,7 +15,8 @@ public class UniqueGearLootGen extends BaseLootGen<UniqueGearBlueprint> {
 
     @Override
     public float baseDropChance() {
-        return ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE.get().floatValue();
+        return ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE.get()
+            .floatValue();
     }
 
     @Override
@@ -31,7 +32,7 @@ public class UniqueGearLootGen extends BaseLootGen<UniqueGearBlueprint> {
     @Override
     public ItemStack generateOne() {
 
-        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(info.level, info.tier, true);
+        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(info.tier, true);
 
         ItemStack stack = blueprint.createStack();
 

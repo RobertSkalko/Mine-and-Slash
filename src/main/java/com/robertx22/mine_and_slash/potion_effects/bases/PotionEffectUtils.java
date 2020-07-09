@@ -47,7 +47,6 @@ public class PotionEffectUtils {
 
         if (instance == null) {
 
-            extraData.casterLvl = casterData.getLevel();
             extraData.casterID = caster.getUniqueID()
                 .toString();
             extraData.setInitialDurationTicks(duration);
@@ -61,7 +60,6 @@ public class PotionEffectUtils {
                 duration = instance.getDuration();
             }
 
-            extraData.casterLvl = casterData.getLevel();
             extraData.casterID = caster.getUniqueID()
                 .toString();
             extraData.setInitialDurationTicks(duration);

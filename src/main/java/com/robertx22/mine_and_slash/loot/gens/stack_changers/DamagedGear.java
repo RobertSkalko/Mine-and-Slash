@@ -18,7 +18,7 @@ public class DamagedGear implements IStackAction {
         ICommonDataItem data = ICommonDataItem.load(stack);
 
         if (data != null) {
-            LootUtils.RandomDamagedGear(stack, data.getRarity(), data.getLevel());
+            LootUtils.RandomDamagedGear(stack, data.getRarity());
         }
 
     }

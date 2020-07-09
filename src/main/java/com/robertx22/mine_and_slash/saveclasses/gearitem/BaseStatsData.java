@@ -62,12 +62,7 @@ public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsConta
 
         info.statTooltipType = StatTooltipType.BASE_LOCAL_STATS;
 
-        for (LevelAndStats part : this.GetAllStats(info.level)) {
-            for (StatModData data : part.mods) {
-                list.addAll(data.GetTooltipString(info));
-            }
-
-        }
+        GetAllStats().forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         info.statTooltipType = StatTooltipType.NORMAL;
 
