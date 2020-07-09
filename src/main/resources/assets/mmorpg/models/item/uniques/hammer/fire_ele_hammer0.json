@@ -1,6 +1,0 @@
-{
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "mmorpg:items/uniques/hammer/fire_ele_hammer0"
-    }
-}

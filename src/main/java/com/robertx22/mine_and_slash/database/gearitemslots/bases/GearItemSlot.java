@@ -1,8 +1,9 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.*;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Axe;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -125,7 +126,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
                 .equals(Axe.INSTANCE.GUID())) {
                 bool = item instanceof AxeItem;
             } else if (slot.GUID()
-                .equals(Shield.INSTANCE.GUID())) {
+                .equals(ArmorShield.INSTANCE.GUID())) {
                 bool = item instanceof ShieldItem;
             } else if (slot.GUID()
                 .equals(CrossBow.INSTANCE.GUID())) {
@@ -150,8 +151,6 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return false;
 
     }
-
-    public abstract String resourceID();
 
     @Override
     public int getRarityRank() {

@@ -8,18 +8,20 @@ import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothPants;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Charm;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.HealthNecklace;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.ManaRing;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherPants;
-import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Torch;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.*;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Axe;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Staff;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
 import java.util.ArrayList;
@@ -47,10 +49,10 @@ public class GearTypes implements ISlashRegistryInit {
                     add(PlateHelmet.INSTANCE);
                     add(PlateChest.INSTANCE);
 
-                    add(Shield.INSTANCE);
+                    add(ArmorShield.INSTANCE);
                     add(Torch.INSTANCE);
 
-                    add(Ring.INSTANCE);
+                    add(ManaRing.INSTANCE);
                     add(HealthNecklace.INSTANCE);
                     add(Bracelet.INSTANCE);
                     add(Charm.INSTANCE);

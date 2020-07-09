@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs;
 
-import com.google.common.base.Preconditions;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.level_based_numbers.LevelBased;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
@@ -113,32 +111,8 @@ public class PreCalcSpellConfigs {
 
     }
 
-    private boolean modifiedBySynergies = false;
-
     public void modifyByUserStats(SpellCastContext ctx) {
         new SpellStatsCalcEffect(ctx, this, ctx.caster, ctx.caster).Activate();
-    }
-
-    public void modifyBySynergies(BaseSpell spell, PlayerSpellCap.ISpellsCap cap) {
-
-        Preconditions.checkArgument(
-            modifiedBySynergies == false,
-            "Cannot modify same spell calc config instance twice with synergies!,Make sure you're returning new config instances on each method call!!!");
-
-        spell.getAllocatedSynergies(cap)
-            .forEach(x -> {
-                PreCalcSpellConfigs sc = x.getConfigsAffectingSpell();
-
-                sc.map.entrySet()
-                    .forEach(e -> {
-                        this.map.get(e.getKey())
-                            .modifyBy(e.getValue());
-                    });
-
-            });
-
-        this.modifiedBySynergies = true;
-
     }
 
     public List<ITextComponent> GetTooltipString(TooltipInfo info, SpellCastContext ctx) {

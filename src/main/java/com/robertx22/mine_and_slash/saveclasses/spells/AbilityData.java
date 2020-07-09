@@ -1,33 +1,31 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 
 @Storable
 public class AbilityData {
 
     @Store
-    public boolean isLearned = false;
+    public SkillGemData skill_gem = new SkillGemData();
 
-    @Store
-    public String id = "";
-
-    @Store
-    public IAbility.Type type = IAbility.Type.SPELL;
-
-    public AbilityData(String id, IAbility.Type type) {
-        this.id = id;
-        this.type = type;
+    public void addSkillGem(ItemStack gem) {
+        skill_gem = SkillGem.Load(gem);
+        gem.shrink(1);
     }
 
-    public void setLearned() {
-        this.isLearned = true;
-    }
+    public void removeSkillGem(PlayerEntity player) {
+        ItemStack stack = new ItemStack(ModItems.SKILL_GEM.get());
 
-    public AbilityData(IAbility ability) {
-        this.id = ability.GUID();
-        this.type = ability.getAbilityType();
+        if (player.inventory.addItemStackToInventory(stack)) {
+            skill_gem = new SkillGemData();
+        }
     }
 
     public AbilityData() {
@@ -35,37 +33,15 @@ public class AbilityData {
     }
 
     public boolean isValid() {
-
-        if (id == null || id.isEmpty()) {
-            return false;
-        }
-
-        if (!isLearned) {
-            return false;
-        }
-
-        if (type == IAbility.Type.SPELL) {
-            return SlashRegistry.Spells()
-                .isRegistered(id);
-        } else if (type == IAbility.Type.EFFECT) {
-            return SlashRegistry.PotionEffects()
-                .isRegistered(id);
-        }
-
-        return false;
+        return SlashRegistry.Spells()
+            .isRegistered(this.skill_gem.spell_id);
 
     }
 
     public IAbility getAbility() {
+        return SlashRegistry.Spells()
+            .get(skill_gem.spell_id);
 
-        if (type == IAbility.Type.SPELL) {
-            return SlashRegistry.Spells()
-                .get(id);
-        } else if (type == IAbility.Type.EFFECT) {
-            return SlashRegistry.PotionEffects()
-                .get(id);
-        }
-        return null;
     }
 
 }

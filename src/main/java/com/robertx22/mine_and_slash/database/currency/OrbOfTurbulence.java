@@ -85,7 +85,7 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
-        return shaped(ModItems.ORB_OF_PREFIX_BLESSING.get())
+        return shaped(ModItems.ORB_OF_TURBULENCE.get())
             .key('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)
             .key('t', ModItems.ORB_OF_EVER_CHANGING_PREFIX.get())
             .key('v', Items.GLISTERING_MELON_SLICE)

@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "axis=z": { "model": "mmorpg:block/dungeon_portal_ew" },
-        "axis=x": { "model": "mmorpg:block/dungeon_portal_ns" }
-    }
-}

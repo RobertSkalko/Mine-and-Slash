@@ -82,7 +82,7 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
 
     @Override
     public ShapedRecipeBuilder getRecipe() {
-        return shaped(ModItems.ORB_OF_EVER_CHANGING_SUFFIX.get())
+        return shaped(ModItems.ORB_OF_DISORDER.get())
             .key('#', SimpleMatItem.INFUSED_IRON)
             .key('t', ModItems.ORB_OF_TRANSMUTATION.get())
             .key('v', Items.GOLD_NUGGET)

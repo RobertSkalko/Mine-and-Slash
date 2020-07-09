@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.defense;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
 import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -69,7 +69,7 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
 
     @Override
     public boolean IsNativeToGearType(GearItemSlot slot) {
-        return slot.slotTypeFamily() == GearItemSlot.SlotFamily.Armor || slot.GUID() == Shield.INSTANCE.GUID();
+        return slot.slotTypeFamily() == GearItemSlot.SlotFamily.Armor || slot.GUID() == ArmorShield.INSTANCE.GUID();
     }
 
     @Override

@@ -1,6 +1,0 @@
-{
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "mmorpg:items/uniques/sword/water_ele_saber0"
-    }
-}

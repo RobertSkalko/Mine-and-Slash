@@ -92,8 +92,8 @@ public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocD
     }
 
     default String getGeneratedResourceFolderPath() {
-        return "uniques/" + getGearSlot().
-            resourceID() + "/";
+        return "uniques/" + getGearSlot().slotTypeFamily()
+            .name() + "/";
     }
 
     @Override
@@ -112,7 +112,7 @@ public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocD
     }
 
     default Item getItemForRegistration() {
-        return getGearSlot().getDefaultItem();
+        return getGearSlot().getItem();
     }
 
     default ResourceLocation getResourceLocForItem() {

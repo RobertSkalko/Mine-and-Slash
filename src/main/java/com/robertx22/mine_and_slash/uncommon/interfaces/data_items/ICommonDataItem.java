@@ -3,12 +3,14 @@ package com.robertx22.mine_and_slash.uncommon.interfaces.data_items;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
 
-public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable, ITooltip, IType, IRarity {
+public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable, ITooltip, IRarity {
 
     DataItemType getDataType();
 
@@ -30,9 +32,11 @@ public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable,
         if (gear != null) {
             return gear;
         }
-
+        SkillGemData gem = SkillGem.Load(stack);
+        if (gem != null) {
+            return gear;
+        }
         return null;
     }
 
-    String getUniqueGUID();
 }

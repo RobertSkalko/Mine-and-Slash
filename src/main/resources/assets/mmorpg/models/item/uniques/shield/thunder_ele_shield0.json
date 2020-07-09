@@ -1,6 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "mmorpg:items/uniques/shield/thunder_ele_shield0"
-    }
-}

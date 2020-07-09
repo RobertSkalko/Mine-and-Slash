@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.IAfterStatCalc;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
-import com.robertx22.mine_and_slash.database.stats.types.resources.BonusMaximumHealth;
+import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -228,8 +228,8 @@ public class Unit {
     }
 
     // Stat shortcuts
-    public BonusMaximumHealth health() {
-        return BonusMaximumHealth.getInstance();
+    public Health health() {
+        return Health.getInstance();
     }
 
     public Mana mana() {
@@ -256,7 +256,7 @@ public class Unit {
 
     public StatData healthData() {
         try {
-            return getCreateStat(BonusMaximumHealth.GUID);
+            return getCreateStat(Health.GUID);
         } catch (Exception e) {
         }
         return StatData.empty();
@@ -354,7 +354,7 @@ public class Unit {
 
         DirtyCheck check = new DirtyCheck();
 
-        check.hp = (int) getCreateStat(BonusMaximumHealth.GUID).getAverageValue();
+        check.hp = (int) getCreateStat(Health.GUID).getAverageValue();
 
         return check;
     }

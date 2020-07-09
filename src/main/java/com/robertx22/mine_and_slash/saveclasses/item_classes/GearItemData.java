@@ -132,7 +132,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
             } else {
                 return SlashRegistry.GearTypes()
                     .get(gear_type)
-                    .getItemForRarity(getRarity().Rank());
+                    .getItem();
             }
         }
 

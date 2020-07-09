@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "mmorpg:block/map_device_normal" },
-        "facing=south": { "model": "mmorpg:block/map_device_normal", "y": 180 },
-        "facing=west":  { "model": "mmorpg:block/map_device_normal", "y": 270 },
-        "facing=east":  { "model": "mmorpg:block/map_device_normal", "y": 90 }
-    }
-}

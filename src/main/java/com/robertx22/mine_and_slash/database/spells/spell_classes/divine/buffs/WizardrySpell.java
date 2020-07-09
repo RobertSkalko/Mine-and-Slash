@@ -3,9 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.divine.buffs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.potion_effects.divine.WizardryEffect;
-import com.robertx22.mine_and_slash.saveclasses.spells.AbilityPlace;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
@@ -13,10 +11,6 @@ import net.minecraft.util.SoundEvents;
 public class WizardrySpell extends BaseDivineBuffSpell {
     private WizardrySpell() {
         super(new ImmutableSpellConfigs() {
-            @Override
-            public Masteries school() {
-                return Masteries.DIVINE;
-            }
 
             @Override
             public SpellCastType castType() {
@@ -47,11 +41,6 @@ public class WizardrySpell extends BaseDivineBuffSpell {
     @Override
     public Words getName() {
         return Words.Wizardry;
-    }
-
-    @Override
-    public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(5, 0);
     }
 
     private static class SingletonHolder {

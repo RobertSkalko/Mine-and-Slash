@@ -1,15 +1,17 @@
 package com.robertx22.mine_and_slash.items.gearitems.offhands;
 
-import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -20,16 +22,27 @@ public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem 
 
     public ResourceLocation resource = new ResourceLocation("");
 
-    public NormalShield(int rarity, Properties prop) {
+    public NormalShield(GearItemSlot slot) {
 
-        super(prop);
-        this.rarity = rarity;
-        resource = getResource(rarity);
+        super(properties(slot));
+
+        resource = getResource(slot);
 
     }
 
-    public static ResourceLocation getResource(int rarity) {
-        return new ResourceLocation(Ref.MODID, "items/shields/normal_shield" + rarity);
+    static Properties properties(GearItemSlot slot) {
+
+        Properties p = ItemUtils.getDefaultGearProperties();
+
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+            p.setISTER(ShieldRenderer::new);
+        });
+
+        return null;
+    }
+
+    public static ResourceLocation getResource(GearItemSlot slot) {
+        return new ResourceLocation(Ref.MODID, "items/shields/" + slot.GUID());
     }
 
     @Override
@@ -37,12 +50,9 @@ public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem 
         return AutoLocGroup.Gear_Items;
     }
 
-    public int rarity = 0;
-
     @Override
     public String locNameForLangFile() {
-        Rarity rar = Rarities.Gears.get(rarity);
-        return rar.textFormatting() + "Shield";
+        return "Shield";
     }
 
     @Override

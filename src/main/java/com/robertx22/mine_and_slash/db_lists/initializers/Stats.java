@@ -3,13 +3,18 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.database.stats.types.class_based.RogueStealth;
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.*;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.AllAttributes;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.stats.types.defense.*;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleDmg;
 import com.robertx22.mine_and_slash.database.stats.types.generated.*;
 import com.robertx22.mine_and_slash.database.stats.types.misc.BonusExp;
 import com.robertx22.mine_and_slash.database.stats.types.misc.LuckStat;
-import com.robertx22.mine_and_slash.database.stats.types.offense.*;
+import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
+import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
+import com.robertx22.mine_and_slash.database.stats.types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.EnergyToManaConversion;
 import com.robertx22.mine_and_slash.database.stats.types.resources.conversions.ManaToEnergyConversion;
@@ -82,7 +87,7 @@ public class Stats implements ISlashRegistryInit {
                     add(new UnknownStat());
 
                     // Resources
-                    add(BonusMaximumHealth.getInstance());
+                    add(Health.getInstance());
                     add(HealthRegen.getInstance());
                     add(Lifesteal.getInstance());
                     add(LifeOnHit.getInstance());

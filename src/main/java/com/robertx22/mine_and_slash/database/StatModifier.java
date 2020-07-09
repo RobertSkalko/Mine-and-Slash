@@ -31,13 +31,6 @@ public class StatModifier implements ISerializable<StatModifier> {
         this.type = type.name();
     }
 
-    public StatModifier(float firstMin, Stat stat, StatModTypes type) {
-        this.firstMin = firstMin;
-        this.firstMax = firstMin;
-        this.stat = stat.GUID();
-        this.type = type.name();
-    }
-
     public StatModifier(float firstMin, float firstMax, String stat, StatModTypes type) {
         this.firstMin = firstMin;
         this.firstMax = firstMax;

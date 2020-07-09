@@ -33,7 +33,7 @@ public class LevelBased {
     }
 
     public float get(PlayerSpellCap.ISpellsCap cap, IAbility ability) {
-        return get(cap.getLevelOf(ability), ability);
+        return get(1, ability);
     }
 
     public float get(int abilityLevel, IAbility ability) {

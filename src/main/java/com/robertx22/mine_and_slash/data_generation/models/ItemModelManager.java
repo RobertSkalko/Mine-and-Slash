@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.data_generation.models;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Shield;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Bow;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.CrossBow;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -52,22 +52,22 @@ public class ItemModelManager extends ItemModelProvider {
             });
         SlashRegistry.GearTypes()
             .getList()
-            .forEach(x -> x.getItemsForRaritiesMap()
-                .values()
-                .forEach(i -> {
-                    if (x != Bow.INSTANCE && x != CrossBow.INSTANCE && x != Shield.INSTANCE) {
-                        if (x.GUID()
-                            .contains("cloth") || x.GUID()
-                            .contains("leather")) {
-                            //generated(i, itemTexture(i), overlay(i));
-                        } else if (x.slotTypeFamily()
-                            .equals(GearItemSlot.SlotFamily.Weapon)) {
-                            handheld(i);
-                        } else {
-                            generated(i);
-                        }
+            .forEach(x -> {
+
+                if (x != Bow.INSTANCE && x != CrossBow.INSTANCE && x != ArmorShield.INSTANCE) {
+                    if (x.GUID()
+                        .contains("cloth") || x.GUID()
+                        .contains("leather")) {
+                        //generated(i, itemTexture(i), overlay(i));
+                    } else if (x.slotTypeFamily()
+                        .equals(GearItemSlot.SlotFamily.Weapon)) {
+                        handheld(x.getItem());
+                    } else {
+                        generated(x.getItem());
                     }
-                }));
+                }
+
+            });
 
     }
 
