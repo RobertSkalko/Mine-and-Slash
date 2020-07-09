@@ -57,8 +57,8 @@ public class CollectGearEvent {
             if (event.isStackValidGear(weapon)) {
                 GearItemData wep = Gear.Load(weapon);
                 if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
-                    .slotType()
-                    .equals(GearItemSlot.GearSlotType.Weapon)) {
+                    .slotTypeFamily()
+                    .equals(GearItemSlot.SlotFamily.Weapon)) {
                     hasWep = true;
                     event.add(wep);
                 }
@@ -72,12 +72,12 @@ public class CollectGearEvent {
 
             GearItemData off = Gear.Load(offhand);
             if (off != null && off.GetBaseGearType() != null && off.GetBaseGearType()
-                .slotType()
-                .equals(GearItemSlot.GearSlotType.OffHand)) {
+                .slotTypeFamily()
+                .equals(GearItemSlot.SlotFamily.OffHand)) {
                 event.add(off);
             } else if (off != null && off.GetBaseGearType()
-                .slotType()
-                .equals(GearItemSlot.GearSlotType.Weapon)) {
+                .slotTypeFamily()
+                .equals(GearItemSlot.SlotFamily.Weapon)) {
                 event.getEntityLiving()
                     .sendMessage(new StringTextComponent("You can't wear a weapon in offhand."));
             }

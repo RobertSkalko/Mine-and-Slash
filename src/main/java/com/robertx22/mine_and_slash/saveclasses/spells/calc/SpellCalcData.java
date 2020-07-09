@@ -3,10 +3,8 @@ package com.robertx22.mine_and_slash.saveclasses.spells.calc;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
-import com.robertx22.mine_and_slash.database.stats.types.offense.PhysicalDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
-import com.robertx22.mine_and_slash.saveclasses.spells.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -44,7 +42,7 @@ public class SpellCalcData {
         SpellCalcData data = new SpellCalcData();
 
         List<Stat> list = new WeaponDamage(Elements.Nature).generateAllSingleVariations();
-        list.add(PhysicalDamage.getInstance());
+        list.add(new WeaponDamage(Elements.Physical));
         data.mergedScalingValues.add(new MergedScalingStatsCalc(list, attack, new SText(TextFormatting.GOLD + "Attack Damage")));
 
         data.baseValue = base;
@@ -82,9 +80,6 @@ public class SpellCalcData {
 
     @Store
     public List<MergedScalingStatsCalc> mergedScalingValues = new ArrayList<>();
-
-    @Store
-    public StatScaling baseScaling = StatScaling.NORMAL;
 
     private boolean empty = false;
 

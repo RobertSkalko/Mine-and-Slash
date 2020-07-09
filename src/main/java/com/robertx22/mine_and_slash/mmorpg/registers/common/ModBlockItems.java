@@ -19,15 +19,9 @@ public class ModBlockItems {
     public static RegistryObject<Item> GEAR_MODIFY = of(ModBlocks.GEAR_MODIFY);
     public static RegistryObject<Item> GEAR_REPAIR = of(ModBlocks.GEAR_REPAIR);
     public static RegistryObject<Item> GEAR_SALVAGE = of(ModBlocks.GEAR_SALVAGE);
-    public static RegistryObject<Item> MAP_DEVICE = of(ModBlocks.MAP_DEVICE);
 
     public static RegistryObject<Item> MAGMA_FLOWER = invi(ModBlocks.MAGMA_FLOWER);
     public static RegistryObject<Item> THORN_BUSH = invi(ModBlocks.THORN_BUSH);
-
-    public static RegistryObject<Item> DUNGEON_PORTAL = invi(ModBlocks.DUNGEON_PORTAL);
-    public static RegistryObject<Item> MAP_CHEST = invi(ModBlocks.MAP_CHEST);
-
-    public static RegistryObject<Item> SCRABBLE = of(ModBlocks.SCRABBLE);
 
     static <T extends Block> RegistryObject<Item> invi(RegistryObject<T> block) {
         return REG.register(block.getId()

@@ -33,8 +33,8 @@ public class JewerlyCrafterCrate extends LootCrate {
 
         blueprint.gearItemSlot.set(SlashRegistry.GearTypes()
             .getFilterWrapped(
-                x -> x.slotType()
-                    .equals(GearItemSlot.GearSlotType.Jewerly))
+                x -> x.slotTypeFamily()
+                    .equals(GearItemSlot.SlotFamily.Jewelry))
             .random());
 
         return blueprint.createStack();

@@ -27,8 +27,8 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     public boolean isWeapon() {
-        return this.slotType()
-            .equals(GearSlotType.Weapon);
+        return this.slotTypeFamily()
+            .equals(SlotFamily.Weapon);
     }
 
     public abstract List<StatModifier> ImplicitStats();
@@ -47,10 +47,18 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public abstract EquipmentSlotType getVanillaSlotType();
 
-    public enum GearSlotType {
+    public enum SlotTag {
+        Sword, Axe, Bow, Staff,
+        Boots, Helmet, Pants, Chest,
+        Cloth, Plate, Leather,
+        Shield, Necklace, Ring,
+        MageWeapon
+    }
+
+    public enum SlotFamily {
         Weapon,
         Armor,
-        Jewerly,
+        Jewelry,
         OffHand
     }
 
@@ -122,8 +130,8 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
             } else if (slot.GUID()
                 .equals(CrossBow.INSTANCE.GUID())) {
                 bool = item instanceof CrossbowItem;
-            } else if (slot.slotType()
-                .equals(GearSlotType.Jewerly)) {
+            } else if (slot.slotTypeFamily()
+                .equals(SlotFamily.Jewelry)) {
                 bool = CuriosAPI.getCurioTags(item)
                     .stream()
                     .anyMatch(x -> x.toString()
@@ -165,35 +173,23 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return AutoLocGroup.Gear_Slots;
     }
 
-    public abstract GearSlotType slotType();
+    public abstract SlotFamily slotTypeFamily();
+
+    public abstract List<SlotTag> getTags();
 
     @Override
     public String locNameLangFileGUID() {
         return Ref.MODID + ".gear_type." + formattedGUID();
     }
 
-    public Item getDefaultItem() {
-        return Items.AIR;
-    }
-
-    public abstract HashMap<Integer, Item> getItemsForRaritiesMap();
+    public abstract Item getItem();
 
     public int Weight() {
         return 1000;
     }
 
-    public boolean isMageWeapon() {
-        return false;
-    }
-
-    public Item getItemForRarity(int rarityNum) {
-
-        if (getItemsForRaritiesMap().containsKey(rarityNum)) {
-            return getItemsForRaritiesMap().get(rarityNum);
-        }
-
-        return getDefaultItem();
-
+    public final boolean isMageWeapon() {
+        return getTags().contains(SlotTag.MageWeapon);
     }
 
 }

@@ -7,8 +7,6 @@ import com.robertx22.mine_and_slash.config.dimension_configs.DimensionsSerial;
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.config.forge.CommonConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.config.lvl_penalty.LvlPenaltySerial;
-import com.robertx22.mine_and_slash.config.mod_dmg_whitelist.ModDmgWhitelistSerial;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigsSerial;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -27,20 +25,16 @@ public class ConfigRegister {
     public static HashMap<Config, List<String>> SAVED_JSONS = new HashMap<>();
 
     public enum Config {
-        MOD_DMG_WHITELIST,
         MOD_ENTITY,
         DIMENSIONS,
-        LVL_PENALTY,
         BASE_PLAYER_STATS
     }
 
     public static void registerCustomConfigs() {
 
-        CONFIGS.put(Config.MOD_DMG_WHITELIST, ModDmgWhitelistSerial.INSTANCE);
         CONFIGS.put(Config.MOD_ENTITY, ModEntityConfigsSerial.INSTANCE);
         CONFIGS.put(Config.DIMENSIONS, DimensionsSerial.INSTANCE);
         CONFIGS.put(Config.BASE_PLAYER_STATS, BasePlayerStatSerial.INSTANCE);
-        CONFIGS.put(Config.LVL_PENALTY, LvlPenaltySerial.INSTANCE);
 
         unregisterFlaggedEntries(); // call first
 

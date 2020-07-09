@@ -69,7 +69,7 @@ public class DodgeRating extends Stat implements IStatEffects, IUsableStat, ILoc
 
     @Override
     public boolean IsNativeToGearType(GearItemSlot slot) {
-        return slot.slotType() == GearItemSlot.GearSlotType.Armor || slot.GUID() == Shield.INSTANCE.GUID();
+        return slot.slotTypeFamily() == GearItemSlot.SlotFamily.Armor || slot.GUID() == Shield.INSTANCE.GUID();
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.database.spells.synergies.base.OnBasicAttackSynergy;
 import com.robertx22.mine_and_slash.database.spells.synergies.base.OnDamageDoneSynergy;
@@ -19,7 +18,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.HealthUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TeamUtils;
@@ -27,7 +25,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvents;
@@ -129,21 +126,16 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     }
 
     public float getActualDamage() {
-        float dmg = this.number * damageMultiplier; // this way axes can do double damage instead of doing double
-        // attacks
-
+        float dmg = this.number * damageMultiplier;
         if (dmg <= 0) {
             return 0;
         }
-
-        dmg = HealthUtils.DamageToMinecraftHealth(dmg, target, targetData);
 
         return dmg;
     }
 
     public float getVisibleDamage() {
-        float dmg = this.number * damageMultiplier; // this way axes can do double damage instead of doing double
-        // attacks
+        float dmg = this.number * damageMultiplier;
         return dmg;
     }
 
@@ -251,42 +243,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         DmgByElement info = getDmgByElement();
         float dmg = info.totalDmg;
 
-        if (getEffectType()
-            .equals(EffectTypes.BASIC_ATTACK)) {
-            if (weaponType != null && weaponType.isMelee) {
-
-                if (this.source instanceof PlayerEntity) {
-
-                    PlayerEntity player = (PlayerEntity) source;
-
-                    // TODO SEEMS NOT NEEDED if (false && player.ticksExisted != sourceData.getLastHitTicksExisted()) { // allow sword sweep and other aoe stuff that happens at same tick
-
-                    float cooldown = sourceData.getAttackCooldown();
-
-                    dmg = dmg * (0.2F + cooldown * cooldown * 0.8F);
-
-                    if (cooldown > 0.9F) {
-                        if (player.getActiveItemStack()
-                            .getItem() instanceof SwordItem == false) {
-                            player.spawnSweepParticles();
-                        }
-
-                    }
-
-                    if (cooldown < 0.1F || dmg <= 0) {
-
-                        if (event != null) {
-                            player.resetCooldown();
-                            event.setCanceled(true);
-                        }
-
-                        return;
-                    }
-                }
-
-            }
-        }
-
         if (this.canceled) {
             cancelDamage();
             return;
@@ -315,8 +271,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             this.sourceData.onAttackEntity(source, target);
 
-            dmg += getEventDmg() * ModConfig.INSTANCE.Server.NON_MOD_DAMAGE_MULTI.get()
-                .floatValue();
+            dmg += getEventDmg() * 0;
 
             if (event != null) {
                 event.setAmount(dmg);
@@ -350,10 +305,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                             if (x.getValue() > 0) {
                                 ServerPlayerEntity player = (ServerPlayerEntity) source;
 
-                                String str = NumberUtils.formatDamageNumber(this, (int) HealthUtils.vanillaHealthToActualHealth(x.getValue(),
-                                    target,
-                                    targetData
-                                ));
+                                String str = NumberUtils.formatDamageNumber(this, x.getValue()
+                                    .intValue());
                                 DmgNumPacket packet = new DmgNumPacket(target, x.getKey(), str);
                                 MMORPG.sendToClient(packet, player);
                             }

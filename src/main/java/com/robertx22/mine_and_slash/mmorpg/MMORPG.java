@@ -2,17 +2,11 @@ package com.robertx22.mine_and_slash.mmorpg;
 
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
-import com.robertx22.mine_and_slash.blocks.scrabble.ScrabbleTile;
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
-import com.robertx22.mine_and_slash.data_generation.runes.RuneDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.runewords.RunewordDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeonDatapackManager;
-import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeonsReloadListener;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.db_lists.initializers.CurrencyItems;
 import com.robertx22.mine_and_slash.error_checks.DunSameSeedAreSame;
@@ -41,7 +35,6 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -55,7 +48,6 @@ import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import java.util.logging.Logger;
 
@@ -133,8 +125,6 @@ public class MMORPG {
 
         new DunSameSeedAreSame().check();
 
-        ScrabbleTile.loadWordList();
-
     }
 
     public static void logError(String s) {
@@ -183,14 +173,9 @@ public class MMORPG {
 
         manager.addReloadListener(new TierDatapackManager());
         manager.addReloadListener(new AffixDataPackManager());
-        manager.addReloadListener(new RuneDataPackManager());
         manager.addReloadListener(new MobAffixDataPackManager());
-        manager.addReloadListener(new RunewordDataPackManager());
         manager.addReloadListener(new UniqueGearDatapackManager());
         manager.addReloadListener(new CompatibleItemDataPackManager());
-        manager.addReloadListener(new UniqueDungeonsReloadListener());
-        manager.addReloadListener(new UniqueDungeonDatapackManager());
-
         manager.addReloadListener(new GearRarityManager());
 
     }
@@ -218,13 +203,6 @@ public class MMORPG {
             CreateLangFile.create();
             GenerateCurioDataJsons.generate();
             CountUniqueGearTypes.count();
-        }
-
-        if (ModConfig.INSTANCE.Server.DISABLE_VANILLA_HP_REGEN.get()) {
-            GameRules.BooleanValue value = ServerLifecycleHooks.getCurrentServer()
-                .getGameRules()
-                .get(GameRules.NATURAL_REGENERATION);
-            value.set(false, ServerLifecycleHooks.getCurrentServer());
         }
 
     }

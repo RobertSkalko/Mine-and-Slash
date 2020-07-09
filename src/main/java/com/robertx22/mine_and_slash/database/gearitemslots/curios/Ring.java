@@ -71,8 +71,8 @@ public class Ring extends BaseCurio {
     }
 
     @Override
-    public GearSlotType slotType() {
-        return GearSlotType.Jewerly;
+    public SlotFamily slotTypeFamily() {
+        return SlotFamily.Jewelry;
     }
 
     @Override

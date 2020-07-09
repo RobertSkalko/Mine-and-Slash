@@ -1,10 +1,6 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
-import com.robertx22.mine_and_slash.database.stats.mods.flat.defense.BlockStrengthFlat;
 import net.minecraft.inventory.EquipmentSlotType;
-
-import java.util.Arrays;
-import java.util.List;
 
 public abstract class BaseOffHand extends GearItemSlot {
     @Override
@@ -18,12 +14,7 @@ public abstract class BaseOffHand extends GearItemSlot {
     }
 
     @Override
-    public List<PosStats> getPossiblePrimaryStats() {
-        return Arrays.asList(new PosStats(new BlockStrengthFlat()));
-    }
-
-    @Override
-    public GearSlotType slotType() {
-        return GearSlotType.OffHand;
+    public SlotFamily slotTypeFamily() {
+        return SlotFamily.OffHand;
     }
 }

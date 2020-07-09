@@ -3,9 +3,6 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
-import com.robertx22.mine_and_slash.database.spells.synergies.base.OnSpellCastSynergy;
-import com.robertx22.mine_and_slash.database.spells.synergies.base.Synergy;
-import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -22,7 +19,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitDat
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
@@ -38,7 +34,6 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITooltipList, IAbility {
 
@@ -91,16 +86,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     }
 
-    public final List<Synergy> getAllocatedSynergies(PlayerSpellCap.ISpellsCap cap) {
-        return cap.getAbilitiesData()
-            .getAllocatedSynergies()
-            .stream()
-            .filter(x -> x.getRequiredAbility()
-                .GUID()
-                .equals(this.GUID()))
-            .collect(Collectors.toList());
-    }
-
     @Override
     public BaseSpell getSpell() {
         return this;
@@ -125,11 +110,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     @Override
     public Type getAbilityType() {
         return Type.SPELL;
-    }
-
-    @Override
-    public IAbility getRequiredAbility() {
-        return null;
     }
 
     public boolean isAllowedAsRightClickFor(GearItemSlot slot) {
@@ -164,12 +144,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     @Override
     public final ResourceLocation getIconLoc() {
-        return new ResourceLocation(Ref.MODID, "textures/gui/spells/" + getMastery().id + "/" + GUID() + ".png");
-    }
-
-    @Override
-    public final Masteries getMastery() {
-        return immutableConfigs.school();
+        return new ResourceLocation(Ref.MODID, "textures/gui/spells/icons/" + GUID() + ".png");
     }
 
     public int getCooldownInTicks(SpellCastContext ctx) {
@@ -196,10 +171,9 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     public abstract String GUID();
 
     public final int getCalculatedManaCost(SpellCastContext ctx) {
-        return (int) Mana.getInstance()
-            .calculateScalingStatGrowth((int) ctx.getConfigFor(this)
-                .get(SC.MANA_COST)
-                .get(ctx.spellsCap, this), getEffectiveAbilityLevel(ctx.spellsCap, ctx.data));
+        return (int) ctx.getConfigFor(this)
+            .get(SC.MANA_COST)
+            .get(ctx.spellsCap, this);
     }
 
     public final int useTimeTicks(SpellCastContext ctx) {
@@ -229,13 +203,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         boolean bool = immutableConfigs.castType()
             .cast(ctx);
 
-        getAllocatedSynergies(ctx.spellsCap).forEach(x -> {
-            if (x instanceof OnSpellCastSynergy) {
-                OnSpellCastSynergy s = (OnSpellCastSynergy) x;
-                s.tryActivate(ctx);
-            }
-        });
-
         ctx.castedThisTick = true;
 
         if (getImmutableConfigs().getSwingsArmOnCast()) {
@@ -258,15 +225,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     public ResourcesData.Context getManaCostCtx(SpellCastContext ctx) {
 
         float cost = 0;
-
-        for (Synergy x : getAllocatedSynergies(ctx.spellsCap)) {
-            if (ctx.getConfigFor(x)
-                .has(SC.MANA_COST)) {
-                cost += ctx.getConfigFor(x)
-                    .get(SC.MANA_COST)
-                    .get(ctx.spellsCap, x);
-            }
-        }
 
         cost += this.getCalculatedManaCost(ctx);
 
@@ -323,9 +281,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent(TextFormatting.BOLD + "" + getMastery().format).appendSibling(
-            getName().locName()));
-
         TooltipUtils.addEmpty(list);
 
         list.addAll(GetDescription(info, ctx));
@@ -335,10 +290,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         list.add(new StringTextComponent(TextFormatting.BLUE + "Mana Cost: " + getCalculatedManaCost(ctx)));
         list.add(new StringTextComponent(TextFormatting.YELLOW + "Cooldown: " + getCooldownInSeconds(ctx) + "s"));
         list.add(new StringTextComponent(TextFormatting.GREEN + "Cast time: " + getUseDurationInSeconds(ctx) + "s"));
-
-        TooltipUtils.addEmpty(list);
-
-        list.add(new StringTextComponent(getMastery().format + "").appendSibling(getMastery().getFullName()));
 
         TooltipUtils.addEmpty(list);
 

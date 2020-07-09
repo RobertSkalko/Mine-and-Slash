@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellPre
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.Masteries;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
@@ -35,8 +34,6 @@ public abstract class ImmutableSpellConfigs {
         this.swingArmOnCast = true;
         return this;
     }
-
-    public abstract Masteries school();
 
     public abstract SpellCastType castType();
 

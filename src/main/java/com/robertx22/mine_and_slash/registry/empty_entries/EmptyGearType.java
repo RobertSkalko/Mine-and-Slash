@@ -13,8 +13,8 @@ import java.util.List;
 
 public class EmptyGearType extends GearItemSlot {
     @Override
-    public GearSlotType slotType() {
-        return GearSlotType.Jewerly;
+    public SlotFamily slotTypeFamily() {
+        return SlotFamily.Jewelry;
     }
 
     @Override

@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothHelmet;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothPants;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Bracelet;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Charm;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.Necklace;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.HealthNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.Ring;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherChest;
@@ -51,7 +51,7 @@ public class GearTypes implements ISlashRegistryInit {
                     add(Torch.INSTANCE);
 
                     add(Ring.INSTANCE);
-                    add(Necklace.INSTANCE);
+                    add(HealthNecklace.INSTANCE);
                     add(Bracelet.INSTANCE);
                     add(Charm.INSTANCE);
 

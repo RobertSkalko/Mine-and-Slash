@@ -10,16 +10,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocName, IGearItem {
+public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem {
 
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
@@ -64,19 +59,6 @@ public class NormalShield extends ShieldItem implements IEffectItem, IAutoLocNam
     @Override
     public boolean isShield(ItemStack stack, @Nullable LivingEntity entity) {
         return true;
-    }
-
-    @Override
-    public List<ITextComponent> getEffectTooltip(boolean moreInfo) {
-
-        List<ITextComponent> list = new ArrayList<>();
-
-        list.add(new StringTextComponent(
-            color() + "" + TextFormatting.BOLD + "[Active]: " + TextFormatting.RESET + color() + "Block"));
-        if (moreInfo) {
-            list.add(new StringTextComponent(color() + "DMG Reduced Based on Block Strength"));
-        }
-        return list;
     }
 
 }

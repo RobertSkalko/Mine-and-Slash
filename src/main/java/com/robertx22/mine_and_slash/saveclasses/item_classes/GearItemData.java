@@ -5,11 +5,15 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.items.ores.ItemOre;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatsData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.PrefixData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.SuffixData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.UniqueStatsData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
@@ -35,9 +39,6 @@ import java.util.List;
 
 @Storable
 public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
-
-    @Store
-    public StatRequirementsData requirements = null;
 
     public boolean meetsRequirements(EntityCap.UnitData data) {
         return true;
@@ -149,20 +150,6 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
             .get(gear_type);
     }
 
-    public List<ITextComponent> getMergedStatsTooltip(List<IStatModsContainer.LevelAndStats> lvlstats,
-                                                      TooltipInfo info) {
-        List<ITextComponent> list = new ArrayList<ITextComponent>();
-// todo remove this
-        for (IStatModsContainer.LevelAndStats part : lvlstats) {
-            for (StatModData data : part.mods) {
-                list.addAll(data.GetTooltipString(info.withLevel(part.level)));
-            }
-        }
-
-        return list;
-
-    }
-
     public ITextComponent getOnGroundDisplayName() {
         return new SText(getRarity().textFormatting() + "").appendSibling(GetBaseGearType().locName());
     }
@@ -221,9 +208,9 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
         return !this.isUnique() && prefixes.size() < 2 && suffixes.size() < 2;
     }
 
-    public List<IStatModsContainer> GetAllStatContainers() {
+    public List<IStatsContainer> GetAllStatContainers() {
 
-        List<IStatModsContainer> list = new ArrayList<IStatModsContainer>();
+        List<IStatsContainer> list = new ArrayList<IStatsContainer>();
 
         IfNotNullAdd(primaryStats, list);
 
@@ -233,22 +220,18 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
         for (SuffixData d : suffixes) {
             IfNotNullAdd(d, list);
         }
-
         IfNotNullAdd(uniqueStats, list);
 
         return list;
 
     }
 
-    public List<IStatModsContainer.LevelAndStats> GetAllStats(int level) {
+    public List<ExactStatData> GetAllStats() {
 
-        List<IStatModsContainer.LevelAndStats> datas = new ArrayList<IStatModsContainer.LevelAndStats>();
-
-        for (IStatModsContainer con : GetAllStatContainers()) {
-            datas.addAll(con.GetAllStats(this.level));
-        }
-
-        return datas;
+        List<ExactStatData> list = new ArrayList<>();
+        GetAllStatContainers().stream()
+            .map(x -> list.addAll(x.GetAllStats()));
+        return list;
     }
 
     @OnlyIn(Dist.CLIENT)

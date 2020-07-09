@@ -3,13 +3,18 @@ package com.robertx22.mine_and_slash.items.gearitems.bases.armor_materials;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.inventory.EquipmentSlotType;
 
-public class LegendaryMat extends BaseMat {
+public class PlateMat extends BaseMat {
 
-    static int[] damageReductions = new int[]{3, 5, 7, 3};
+    static int[] damageReductions = new int[]{
+        2,
+        4,
+        6,
+        3
+    };
 
     @Override
     public int getDurability(EquipmentSlotType slotIn) {
-        return 1250;
+        return 1000;
     }
 
     @Override
@@ -24,7 +29,7 @@ public class LegendaryMat extends BaseMat {
 
     @Override
     public String getName() {
-        return Ref.MODID + ":" + "legendary";
+        return Ref.MODID + ":" + "plate";
     }
 
     @Override

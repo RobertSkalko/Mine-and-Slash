@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.database.stats.IAfterStatCalc;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.database.stats.types.resources.BonusMaximumHealth;
-import com.robertx22.mine_and_slash.database.stats.types.resources.Energy;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -237,10 +236,6 @@ public class Unit {
         return Mana.getInstance();
     }
 
-    public Energy energy() {
-        return Energy.getInstance();
-    }
-
     public float getCurrentEffectiveHealth(LivingEntity entity, UnitData data) {
         float curhp = health().CurrentValue(entity, this);
         if (data.getResources() != null) {
@@ -279,15 +274,6 @@ public class Unit {
     public StatData manaData() {
         try {
             return getCreateStat(Mana.GUID);
-        } catch (Exception e) {
-
-        }
-        return StatData.empty();
-    }
-
-    public StatData energyData() {
-        try {
-            return getCreateStat(Energy.GUID);
         } catch (Exception e) {
 
         }
@@ -394,7 +380,6 @@ public class Unit {
         Boolean isMapWorld = WorldUtils.isMapWorld(entity.world);
 
         CommonStatUtils.addPotionStats(entity, data);
-        CommonStatUtils.addCustomStats(data, this);
         CommonStatUtils.addExactCustomStats(data);
 
         if (entity instanceof PlayerEntity) {

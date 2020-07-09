@@ -63,7 +63,7 @@ public class MagicShield extends Stat implements IStatEffects, ILocalStat {
 
     @Override
     public boolean IsNativeToGearType(GearItemSlot slot) {
-        return slot.slotType() == GearItemSlot.GearSlotType.Armor || slot.GUID() == Shield.INSTANCE.GUID();
+        return slot.slotTypeFamily() == GearItemSlot.SlotFamily.Armor || slot.GUID() == Shield.INSTANCE.GUID();
     }
 
     @Override

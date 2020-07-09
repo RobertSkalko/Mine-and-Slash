@@ -3,13 +3,18 @@ package com.robertx22.mine_and_slash.items.gearitems.bases.armor_materials;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.inventory.EquipmentSlotType;
 
-public class CommonMat extends BaseMat {
+public class LeatherMat extends BaseMat {
 
-    static int[] damageReductions = new int[]{1, 2, 3, 1};
+    static int[] damageReductions = new int[]{
+        2,
+        4,
+        6,
+        3
+    };
 
     @Override
     public int getDurability(EquipmentSlotType slotIn) {
-        return 700;
+        return 1000;
     }
 
     @Override
@@ -24,7 +29,7 @@ public class CommonMat extends BaseMat {
 
     @Override
     public String getName() {
-        return Ref.MODID + ":common";
+        return Ref.MODID + ":" + "leather";
     }
 
     @Override

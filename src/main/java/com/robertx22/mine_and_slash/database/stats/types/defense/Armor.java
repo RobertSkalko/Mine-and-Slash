@@ -79,7 +79,7 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
 
     @Override
     public boolean IsNativeToGearType(GearItemSlot slot) {
-        return slot.slotType() == GearItemSlot.GearSlotType.Armor || slot.GUID() == Shield.INSTANCE.GUID();
+        return slot.slotTypeFamily() == GearItemSlot.SlotFamily.Armor || slot.GUID() == Shield.INSTANCE.GUID();
     }
 
     private static class SingletonHolder {

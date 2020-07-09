@@ -64,7 +64,7 @@ public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalS
 
     @Override
     public boolean IsNativeToGearType(GearItemSlot slot) {
-        return slot.slotType() == GearItemSlot.GearSlotType.Weapon;
+        return slot.slotTypeFamily() == GearItemSlot.SlotFamily.Weapon;
     }
 
     @Override
