@@ -20,6 +20,7 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
         json.addProperty("unidentified_chance", unidentifiedChance());
         json.addProperty("salvage_lottery_chance", salvageLotteryWinChance());
         json.addProperty("max_affixes", maxAffixes());
+        json.addProperty("min_affixes", minAffixes());
 
         json.add("unique_stat_percents", uniqueStatPercents().toJson());
         json.add("affix_stat_percents", affixStatPercents().toJson());
@@ -36,14 +37,14 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
 
         rar.maxAffixes = json.get("max_affixes")
             .getAsInt();
+        rar.minAffixes = json.get("min_affixes")
+            .getAsInt();
         rar.affixChance = json.get("affix_chance")
             .getAsInt();
         rar.salvageLotteryChance = json.get("salvage_lottery_chance")
             .getAsInt();
         rar.unidentifiedChance = json.get("unidentified_chance")
             .getAsInt();
-        rar.requirementMulti = json.get("requirements_multi")
-            .getAsFloat();
 
         rar.statPercents = MinMax.getSerializer()
             .fromJson(json.getAsJsonObject("stat_percents"));
@@ -83,6 +84,8 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
     int AffixChance();
 
     int maxAffixes();
+
+    int minAffixes();
 
     default int maximumOfOneAffixType() {
         return maxAffixes() / 2;

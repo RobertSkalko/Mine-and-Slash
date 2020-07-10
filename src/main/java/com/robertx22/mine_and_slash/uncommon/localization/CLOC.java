@@ -10,8 +10,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class CLOC {
 
     public static String translate(ITextComponent s) {
-        return MMORPG.proxy.translate(s)
-            .replaceAll("Format error:", "");
+        return MMORPG.proxy.translate(s);
+        //  .replaceAll("Format error:", "");
     }
 
     private static ITextComponent base(String s) {

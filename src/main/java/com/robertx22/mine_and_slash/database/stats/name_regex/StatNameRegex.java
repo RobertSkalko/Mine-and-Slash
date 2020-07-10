@@ -9,13 +9,14 @@ import net.minecraft.util.text.TextFormatting;
 public abstract class StatNameRegex {
 
     public static StatNameRegex BASIC = new BasicStatRegex();
+    public static StatNameRegex BASIC_LOCAL = new BasicLocalStatRegex();
 
-    public static String VALUE = "[N]";
+    public static String VALUE = "VALUE";
 
-    public static String MIN_VALUE = "[N1]";
-    public static String MAX_VALUE = "[N2]";
+    public static String MIN_VALUE = "MIN_VALUE";
+    public static String MAX_VALUE = "MAX_VALUE";
 
-    public static String NAME = "[NAME]";
+    public static String NAME = "STAT_NAME";
 
     static TextFormatting TEXT_COLOR = TextFormatting.GRAY;
     static TextFormatting NUMBER_COLOR = TextFormatting.GREEN;
@@ -24,8 +25,8 @@ public abstract class StatNameRegex {
 
     public String translate(StatModTypes type, float v1, float v2, Stat stat) {
 
-        String v1s = NumberUtils.formatNumber(v1);
-        String v2s = NumberUtils.formatNumber(v2);
+        String v1s = NumberUtils.format(v1);
+        String v2s = NumberUtils.format(v2);
 
         String percent = "";
 
@@ -42,8 +43,8 @@ public abstract class StatNameRegex {
         String str = TEXT_COLOR + getStatNameRegex(type, stat);
 
         if (type == StatModTypes.Flat && stat.UsesSecondValue()) {
-            str = str.replace(MIN_VALUE, NUMBER_COLOR + plusminus + v1s + percent + TextFormatting.RESET + TEXT_COLOR);
-            str = str.replace(MAX_VALUE, NUMBER_COLOR + plusminus + v2s + percent + TextFormatting.RESET + TEXT_COLOR);
+            str = str.replace(MIN_VALUE, NUMBER_COLOR + plusminus + v1s + percent + TEXT_COLOR);
+            str = str.replace(MAX_VALUE, NUMBER_COLOR + plusminus + v2s + percent + TEXT_COLOR);
         } else {
             str = str.replace(VALUE, NUMBER_COLOR + plusminus + v1s + percent + TextFormatting.RESET + TEXT_COLOR);
         }

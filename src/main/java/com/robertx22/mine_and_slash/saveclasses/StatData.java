@@ -195,7 +195,7 @@ public class StatData {
             Flat += v1;
             Flat2 += v2;
         } else if (type == StatModTypes.LOCAL_INCREASE) {
-            Percent += v;
+            // Percent += v;
         } else if (type == StatModTypes.GLOBAL_INCREASE) {
             Multi += v;
         }
@@ -221,7 +221,7 @@ public class StatData {
         if (type == StatModTypes.Flat) {
             this.addFlat(value);
         } else if (type == StatModTypes.LOCAL_INCREASE) {
-            this.Percent += value;
+            // this.Percent += value;
         } else {
             this.Multi += value;
         }

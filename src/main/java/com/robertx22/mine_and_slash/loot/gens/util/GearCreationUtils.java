@@ -131,7 +131,7 @@ public class GearCreationUtils {
 
         if (type.canGetAffixes()) {
             int maxOfEachAffixType = blueprint.gearItemSlot.get()
-                .maximumRareAffixes(rarity);
+                .maximumRareAffixes(rarity) / 2;
 
             for (int i = 0; i < maxOfEachAffixType; i++) {
 
@@ -139,7 +139,6 @@ public class GearCreationUtils {
                     SuffixData suffix = new SuffixData();
                     suffix.RerollFully(data);
                     data.suffixes.add(suffix);
-
                 }
 
                 if (blueprint.prefixChancePart.get()) {
@@ -149,6 +148,24 @@ public class GearCreationUtils {
                 }
 
             }
+        }
+
+        int minaffixes = rarity.minAffixes();
+        int affixesToGen = data.getNumberOfAffixes();
+
+        while (affixesToGen > 0) {
+
+            if (data.getNumberOfPrefixes() > data.getNumberOfSuffixes()) {
+                SuffixData suffix = new SuffixData();
+                suffix.RerollFully(data);
+                data.suffixes.add(suffix);
+            } else {
+                PrefixData prefix = new PrefixData();
+                prefix.RerollFully(data);
+                data.prefixes.add(prefix);
+            }
+
+            affixesToGen--;
         }
 
         if (blueprint.unidentifiedPart.get()) {

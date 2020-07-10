@@ -11,14 +11,9 @@ public class RegisterCurioSlots {
 
     public static void register(final InterModEnqueueEvent event) {
 
-        InterModComms.sendTo(CURIOS, CuriosAPI.IMC.REGISTER_TYPE, () -> new CurioIMCMessage(RefCurio.CHARM));
         InterModComms.sendTo(CURIOS, CuriosAPI.IMC.REGISTER_TYPE, () -> new CurioIMCMessage(RefCurio.NECKLACE));
-        InterModComms.sendTo(CURIOS, CuriosAPI.IMC.REGISTER_TYPE, () -> new CurioIMCMessage(RefCurio.BRACELET));
-        InterModComms.sendTo(CURIOS, CuriosAPI.IMC.REGISTER_TYPE, () -> new CurioIMCMessage(RefCurio.SALVAGE_BAG));
         InterModComms.sendTo(CURIOS, CuriosAPI.IMC.REGISTER_TYPE, () -> new CurioIMCMessage(RefCurio.RING)
-                .setSize(2));
-
-        InterModComms.sendTo(CURIOS, CuriosAPI.IMC.REGISTER_ICON, () -> new CurioIMCMessage(RefCurio.SALVAGE_BAG));
+            .setSize(2));
 
     }
 

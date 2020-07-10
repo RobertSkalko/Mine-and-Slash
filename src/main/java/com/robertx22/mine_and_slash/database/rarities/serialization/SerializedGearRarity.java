@@ -13,10 +13,10 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     public MinMax affixStatPercents;
     public MinMax uniqueStatPercents;
     public float itemTierPower;
-    public float requirementMulti;
     public float salvageLotteryChance;
     public int unidentifiedChance;
     public int maxAffixes;
+    public int minAffixes;
 
     public SerializedGearRarity(SerializedBaseRarity baseRarity) {
         super(baseRarity);
@@ -40,6 +40,11 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     @Override
     public int maxAffixes() {
         return maxAffixes;
+    }
+
+    @Override
+    public int minAffixes() {
+        return minAffixes;
     }
 
     @Override

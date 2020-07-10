@@ -30,7 +30,7 @@ public abstract class BaseRare implements Rarity {
 
     @Override
     public TextFormatting textFormatting() {
-        return TextFormatting.BLUE;
+        return TextFormatting.YELLOW;
     }
 
     @Override

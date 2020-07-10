@@ -5,7 +5,8 @@ import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatContainer;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class ExactStatData extends BaseStatContainer implements ISerializable<ExactStatData> {
+public class ExactStatData implements ISerializable<ExactStatData>, IApplyableStats, ITooltipList {
 
     public static ExactStatData EMPTY = new ExactStatData();
 
@@ -29,7 +30,12 @@ public class ExactStatData extends BaseStatContainer implements ISerializable<Ex
     public ExactStatData(StatModifier mod, int percent) {
 
         this.first_val = (mod.firstMin + (mod.firstMax - mod.firstMin) * percent / 100);
-        this.second_val = (mod.secondMin + (mod.secondMax - mod.secondMin) * percent / 100);
+
+        if (mod.usesNumberRanges()) {
+            this.second_val = (mod.secondMin + (mod.secondMax - mod.secondMin) * percent / 100);
+        } else {
+            this.second_val = first_val;
+        }
 
         this.type = mod.getModType();
         this.stat_id = mod.stat;
@@ -81,6 +87,26 @@ public class ExactStatData extends BaseStatContainer implements ISerializable<Ex
 
     @Store
     private String stat_id = "";
+
+    public float percentIncrease = 0;
+
+    public void add(ExactStatData other) {
+        if (type == other.type) {
+            first_val += other.first_val;
+            second_val += other.second_val;
+        } else {
+            System.out.println("error wrong types");
+        }
+    }
+
+    public void increaseByAddedPercent() {
+
+        first_val += first_val * percentIncrease / 100F;
+
+        if (second_val != 0) {
+            second_val += second_val * percentIncrease / 100F;
+        }
+    }
 
     public float getFirstValue() {
         return first_val;

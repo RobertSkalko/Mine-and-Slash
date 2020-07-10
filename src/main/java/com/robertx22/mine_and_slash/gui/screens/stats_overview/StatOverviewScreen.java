@@ -115,7 +115,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
         if (stat instanceof IUsableStat) {
             IUsableStat usable = (IUsableStat) stat;
 
-            String value = NumberUtils.formatNumber(
+            String value = NumberUtils.format(
                 usable.GetUsableValue((int) data.getUnit()
                     .getCreateStat(stat)
                     .getAverageValue()) * 100);

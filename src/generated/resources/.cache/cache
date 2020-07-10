@@ -52,10 +52,10 @@ d74cf25d26349b09ff3a3868532b7c74d46d1bed data\mmorpg\mob_affix\cold.json
 9b59fa3cad8dda3d27cdaf268bfcc8643dfdf10a data\mmorpg\mob_affix\lightning.json
 aa5d4bb3b33af5dca0869d1366f6c1c9bcf8daf0 data\mmorpg\mob_affix\of_ruin.json
 998fb7991e242a13e86439a351438711139a3098 data\mmorpg\mob_affix\venom.json
-638595b5193e398ec111051077edf58c12d99344 data\mmorpg\rarity\gear\common.json
-8e7e5bcf1c326844fde1be7f703c27ae088e913c data\mmorpg\rarity\gear\rare.json
-4041669bab4635e27170beaa94f08f4fc9eec327 data\mmorpg\rarity\gear\uncommon.json
-b0607475750775be8f52d6ef5d753168da67c664 data\mmorpg\rarity\gear\unique.json
+074ce1a070a30e6d64d8ed73b9a7abc18968ec51 data\mmorpg\rarity\gear\common.json
+bd2e116d7ef90413dd62ec42f962db3e3bee969c data\mmorpg\rarity\gear\rare.json
+b6ab274c34040395372de357eaa73b8b02f398c8 data\mmorpg\rarity\gear\uncommon.json
+6bca12154b6e1129695fccfdb7d5bd299505c87f data\mmorpg\rarity\gear\unique.json
 2627f019853a9252403630e0bca33500324a9ab4 data\mmorpg\recipes\currency\create_new_unique.json
 d8dda39653258a9abfa28745dedd79f9a54eb421 data\mmorpg\recipes\currency\number_reroll.json
 79f1eed6d3bebee4cda1dadba3a308d9ae372199 data\mmorpg\recipes\currency\orb_of_transmutation.json

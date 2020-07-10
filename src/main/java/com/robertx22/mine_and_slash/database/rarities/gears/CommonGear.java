@@ -53,6 +53,11 @@ public class CommonGear extends BaseCommon implements GearRarity {
     }
 
     @Override
+    public int minAffixes() {
+        return 0;
+    }
+
+    @Override
     public float itemTierPower() {
         return 1;
     }

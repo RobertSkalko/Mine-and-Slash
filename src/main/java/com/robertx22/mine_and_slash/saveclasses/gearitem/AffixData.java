@@ -37,7 +37,7 @@ public abstract class AffixData implements IRerollable, IGearPartTooltip, IStats
                 .appendText(": ")
                 .appendSibling(affix.locName())));
 
-        GetAllStats().forEach(x -> list.addAll(x.GetTooltipString(info)));
+        GetAllStats(gear).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         return list;
 
@@ -61,7 +61,7 @@ public abstract class AffixData implements IRerollable, IGearPartTooltip, IStats
     }
 
     @Override
-    public List<ExactStatData> GetAllStats() {
+    public List<ExactStatData> GetAllStats(GearItemData gear) {
         return this.BaseAffix()
             .StatMods()
             .stream()

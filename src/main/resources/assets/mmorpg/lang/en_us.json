@@ -86,6 +86,16 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+	"mmorpg.affix.chilled": "Chilled",
+	"mmorpg.affix.of_cruelty": "Of Cruelty",
+	"mmorpg.affix.of_tyranny": "Of Tyranny",
+	"mmorpg.affix.scorched": "Scorched",
+
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 	"mmorpg.word.activation_time": "Activation Time",
@@ -357,16 +367,6 @@
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-	"mmorpg.affix.chilled": "Chilled",
-	"mmorpg.affix.of_cruelty": "Of Cruelty",
-	"mmorpg.affix.of_tyranny": "Of Tyranny",
-	"mmorpg.affix.scorched": "Scorched",
-
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -415,7 +415,7 @@
 	"mmorpg.stat.bow_damage": "Bow Damage",
 	"mmorpg.stat.cdr": "Cooldown Reduction",
 	"mmorpg.stat.critical_damage": "Critical Damage",
-	"mmorpg.stat.critical_hit": "Critical Hit Chance",
+	"mmorpg.stat.critical_hit": "Critical Strike Chance",
 	"mmorpg.stat.crossbow_damage": "CrossBow Damage",
 	"mmorpg.stat.damage_shield": "Damage Shield",
 	"mmorpg.stat.dexterity": "Dexterity",
@@ -544,23 +544,6 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
-	"item.mmorpg.jewelry.occult_ring": "§7Ring",
-	"item.mmorpg.offhand.armor_shield": "Shield",
-	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
-	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
-	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
-	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
-	"item.mmorpg.weapon.axe": "§7Axe",
-	"item.mmorpg.weapon.hunter_bow": "§7Bow",
-	"item.mmorpg.weapon.staff": "§7Staff",
-	"item.mmorpg.weapon.sword": "§7Sword",
-
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: POTIONS - NAMES",
 
 	"effect.mmorpg.bravery": "Bravery",
@@ -583,6 +566,23 @@
 	"effect.mmorpg.wounds": "Wounds",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
+	"item.mmorpg.jewelry.occult_ring": "§7Ring",
+	"item.mmorpg.offhand.armor_shield": "Shield",
+	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
+	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
+	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
+	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
+	"item.mmorpg.weapon.axe": "§7Axe",
+	"item.mmorpg.weapon.hunter_bow": "§7Bow",
+	"item.mmorpg.weapon.staff": "§7Staff",
+	"item.mmorpg.weapon.sword": "§7Sword",
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",

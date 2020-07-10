@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import java.text.DecimalFormat;
 
 public class NumberUtils {
-    private static String formatNumber(int number, int divided, String letter) {
+    private static String format(int number, int divided, String letter) {
         int amount = number / divided;
         int remaining = (number - (amount * divided));
 
@@ -21,8 +21,8 @@ public class NumberUtils {
     static int MILLS = 1000000;
     static int THOUSANDS = 1000;
 
-    public static String formatNumber(float number) {
-        return formatNumber((int) number);
+    public static String format(float number) {
+        return format((int) number);
     }
 
     static DecimalFormat format = new DecimalFormat();
@@ -40,12 +40,12 @@ public class NumberUtils {
         }
     }
 
-    public static String formatNumber(int number) {
+    public static String format(int number) {
 
         if (Math.abs(number / MILLS) >= 1) {
-            return formatNumber(number, MILLS, "m");
+            return format(number, MILLS, "m");
         } else if (Math.abs(number / THOUSANDS) >= 1) {
-            return formatNumber(number, THOUSANDS, "k");
+            return format(number, THOUSANDS, "k");
         } else {
             return number + "";
         }
@@ -53,7 +53,7 @@ public class NumberUtils {
     }
 
     public static String formatDamageNumber(DamageEffect data, int val) {
-        String num = formatNumber(val);
+        String num = format(val);
 
         if (data.crit) {
             num += "!";

@@ -71,7 +71,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         list.add(new SText(""));
         list.add(getHeader());
 
-        GetAllStats().forEach(x -> list.addAll(x.GetTooltipString(info)));
+        GetAllStats(gear).forEach(x -> list.addAll(x.GetTooltipString(info)));
 
         return list;
 
@@ -89,7 +89,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
     }
 
     @Override
-    public List<ExactStatData> GetAllStats() {
+    public List<ExactStatData> GetAllStats(GearItemData gear) {
 
         List<ExactStatData> list = new ArrayList<>();
 

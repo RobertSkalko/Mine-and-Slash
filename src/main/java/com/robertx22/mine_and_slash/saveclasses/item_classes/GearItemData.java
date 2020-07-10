@@ -31,6 +31,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -61,6 +62,30 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     @Store
     private boolean ided = true;
+
+    public int getNumberOfPrefixes() {
+        int p = 0;
+
+        if (prefixes != null) {
+            p = prefixes.size();
+        }
+
+        return p;
+    }
+
+    public int getNumberOfSuffixes() {
+        int p = 0;
+
+        if (prefixes != null) {
+            p = prefixes.size();
+        }
+
+        return p;
+    }
+
+    public int getNumberOfAffixes() {
+        return getNumberOfPrefixes() + getNumberOfSuffixes();
+    }
 
     public boolean isIdentified() {
         return ided;
@@ -156,8 +181,11 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     public ITextComponent GetDisplayName(ItemStack stack) {
 
+        TextFormatting format = this.getRarity()
+            .textFormatting();
+
         if (!isIdentified()) {
-            ITextComponent text = new SText(getRarity().textFormatting() + "")
+            ITextComponent text = new SText(format + "")
                 .appendSibling(Words.Unidentified.locName())
                 .appendText(" ")
                 .appendSibling(getRarity().locName())
@@ -167,25 +195,26 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
             return text;
         }
 
-        ITextComponent text = new StringTextComponent(this.getRarity()
-            .textFormatting() + "");
+        ITextComponent text = new StringTextComponent(format + "[");
 
         if (addNormalAffixedPrefixesAndSuffixes()) {
 
-            if (prefixes.size() > 0) {
+            if (prefixes != null && prefixes.size() > 0) {
 
                 PrefixData prefix = prefixes.get(0);
 
-                text.appendSibling(prefix.BaseAffix()
-                    .locName()
-                    .appendText(" "));
+                text.appendText(format + "")
+                    .appendSibling(prefix.BaseAffix()
+                        .locName()
+                        .appendText(" "));
             }
-            text.appendSibling(name(stack));
+            text.appendSibling(GetBaseGearType().locName()
+                .applyTextStyle(format));
 
-            if (prefixes.size() > 0) {
+            if (suffixes != null && suffixes.size() > 0) {
                 SuffixData suffix = suffixes.get(0);
 
-                text.appendText(" ")
+                text.appendText(format + " ")
                     .appendSibling(suffix.BaseAffix()
                         .locName())
                     .appendText(" ");
@@ -194,25 +223,41 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
             if (!isUnique()) {
                 text.appendText("Test Rare Name")
                     .appendText(" ");
+                text
+                    .appendSibling(GetBaseGearType().locName()
+                        .applyTextStyle(format));
+            } else {
 
-                text.appendSibling(name(stack));
             }
         }
 
-        return text;
+        return text.appendText("]")
+            .applyTextStyle(format);
 
     }
 
     private boolean addNormalAffixedPrefixesAndSuffixes() {
 
-        return prefixes != null && suffixes != null && !this.isUnique() && prefixes.size() < 2 && suffixes.size() < 2;
+        if (isUnique()) {
+            return false;
+        }
+
+        if (prefixes != null && prefixes.size() > 1) {
+            return false;
+        }
+        if (suffixes != null && suffixes.size() > 1) {
+            return false;
+        }
+        return true;
     }
 
-    public List<IStatsContainer> GetAllStatContainers() {
+    public List<IStatsContainer> GetAllStatContainers(boolean includeBase) {
 
         List<IStatsContainer> list = new ArrayList<IStatsContainer>();
 
-        IfNotNullAdd(baseStats, list);
+        if (includeBase) {
+            IfNotNullAdd(baseStats, list);
+        }
 
         for (PrefixData d : prefixes) {
             IfNotNullAdd(d, list);
@@ -226,13 +271,15 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     }
 
-    public List<ExactStatData> GetAllStats() {
-
-        // TODO TODO TODO TODO CALCULATE LOCAL STATS HERE
+    public List<ExactStatData> GetAllStats(boolean includebase) {
 
         List<ExactStatData> list = new ArrayList<>();
-        GetAllStatContainers().stream()
-            .map(x -> list.addAll(x.GetAllStats()));
+        GetAllStatContainers(includebase).stream()
+            .forEach(x -> {
+
+                List<ExactStatData> stats = x.GetAllStats(this);
+                list.addAll(stats);
+            });
         return list;
     }
 

@@ -2,11 +2,8 @@ package com.robertx22.mine_and_slash.a_libraries.curios;
 
 public enum CurioSlots {
 
-    CHARM(RefCurio.CHARM),
     NECKLACE(RefCurio.NECKLACE),
-    RING(RefCurio.RING),
-    BRACELET(RefCurio.BRACELET),
-    SALVAGE_BAG(RefCurio.SALVAGE_BAG);
+    RING(RefCurio.RING);
 
     public String name;
 

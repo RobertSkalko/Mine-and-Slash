@@ -17,22 +17,9 @@ public class ClientProxy implements IProxy {
 
     @Override
     public String translate(ITextComponent comp) {
-
-        return I18n.format(comp.getFormattedText());
-
-            /*
-        String s;
-
-        if (comp instanceof TranslationTextComponent) {
-            TranslationTextComponent t = (TranslationTextComponent) comp;
-            s = I18n.format(t.getKey());
-        } else {
-            s = I18n.format(comp.getFormattedText());
-        }
-
-        return s;
-
-             */
+        return I18n.format(comp.getFormattedText()
+            .replaceAll("%", "PERCENT"))
+            .replaceAll("PERCENT", "%");
     }
 
 }

@@ -59,7 +59,7 @@ public class CriticalHit extends Stat implements IStatEffects, ILocalStat {
 
     @Override
     public String locNameForLangFile() {
-        return "Critical Hit Chance";
+        return "Critical Strike Chance";
     }
 
     @Override

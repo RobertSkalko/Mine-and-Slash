@@ -34,12 +34,17 @@ public class RareGear extends BaseRare implements GearRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(30, 80);
+        return new MinMax(10, 100);
     }
 
     @Override
     public float salvageLotteryWinChance() {
         return 2.5F;
+    }
+
+    @Override
+    public int minAffixes() {
+        return 3;
     }
 
     @Override
