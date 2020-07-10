@@ -271,14 +271,25 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     }
 
-    public List<ExactStatData> GetAllStats(boolean includebase) {
+    public List<ExactStatData> GetAllStats(boolean includebase, boolean includelocaladditions) {
 
         List<ExactStatData> list = new ArrayList<>();
         GetAllStatContainers(includebase).stream()
             .forEach(x -> {
 
                 List<ExactStatData> stats = x.GetAllStats(this);
-                list.addAll(stats);
+
+                stats.forEach(s -> {
+
+                    if (!x.isBaseStats() && s.shouldBeAddedToLocalStats(this)) {
+                        if (includelocaladditions) {
+                            list.add(s);
+                        }
+                    } else {
+                        list.add(s);
+                    }
+                });
+
             });
         return list;
     }

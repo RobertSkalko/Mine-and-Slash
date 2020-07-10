@@ -9,4 +9,8 @@ public interface IStatsContainer {
 
     List<ExactStatData> GetAllStats(GearItemData gear);
 
+    default boolean isBaseStats() {
+        return false;
+    }
+
 }

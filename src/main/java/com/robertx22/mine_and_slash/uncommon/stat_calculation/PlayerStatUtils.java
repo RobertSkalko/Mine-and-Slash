@@ -22,7 +22,7 @@ public class PlayerStatUtils {
                 continue;
             }
 
-            gear.GetAllStats(true)
+            gear.GetAllStats(true, false)
                 .forEach(x -> {
                     x.applyStats(unitdata);
                 });

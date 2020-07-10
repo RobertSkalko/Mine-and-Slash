@@ -2,12 +2,14 @@ package com.robertx22.mine_and_slash.saveclasses;
 
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.database.StatModifier;
+import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
@@ -90,6 +92,22 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
     public float percentIncrease = 0;
 
+    public boolean shouldBeAddedToLocalStats(GearItemData gear) {
+
+        if (getStat()
+            .isLocal()) {
+            if (getType() != StatModTypes.GLOBAL_INCREASE) {
+                ILocalStat local = (ILocalStat) getStat();
+                if (local.IsNativeToGearType(gear.GetBaseGearType())) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+
+    }
+
     public void add(ExactStatData other) {
         if (type == other.type) {
             first_val += other.first_val;
@@ -106,6 +124,8 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
         if (second_val != 0) {
             second_val += second_val * percentIncrease / 100F;
         }
+
+        percentIncrease = 0;
     }
 
     public float getFirstValue() {

@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
@@ -126,10 +125,15 @@ public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsConta
     }
 
     @Override
+    public boolean isBaseStats() {
+        return true;
+    }
+
+    @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
 
         List<ExactStatData> local = new ArrayList<>();
-        List<ExactStatData> all = gear.GetAllStats(false);
+        List<ExactStatData> all = gear.GetAllStats(false, true);
 
         int i = 0;
 
@@ -142,32 +146,28 @@ public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsConta
 
         // add up flats first
         all.forEach(x -> {
-            if (x.getStat()
-                .isLocal()) {
-                if (x.getType()
-                    .isFlat()) {
-                    if (((ILocalStat) x.getStat()).IsNativeToGearType(gear.GetBaseGearType())) {
-                        Optional<ExactStatData> opt = local.stream()
-                            .filter(t -> t.getStat() == x.getStat())
-                            .findFirst();
 
-                        if (opt.isPresent()) {
-                            opt.get()
-                                .add(x);
-                        } else {
-                            local.add(x);
-                        }
+            if (x.shouldBeAddedToLocalStats(gear) && x.getType()
+                .isFlat()) {
 
-                    }
+                Optional<ExactStatData> opt = local.stream()
+                    .filter(t -> t.getStat() == x.getStat())
+                    .findFirst();
+
+                if (opt.isPresent()) {
+                    opt.get()
+                        .add(x);
+                } else {
+                    local.add(x);
                 }
             }
         });
 
         // now increase all flats by local increases
         all.stream()
-            .filter(x -> x.getStat()
-                .isLocal() && x.getType()
-                == StatModTypes.LOCAL_INCREASE)
+            .filter(x ->
+                x.shouldBeAddedToLocalStats(gear) && x.getType()
+                    == StatModTypes.LOCAL_INCREASE)
             .forEach(s -> {
 
                 ExactStatData flatLocal = local.stream()

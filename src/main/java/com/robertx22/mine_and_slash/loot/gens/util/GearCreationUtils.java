@@ -151,7 +151,7 @@ public class GearCreationUtils {
         }
 
         int minaffixes = rarity.minAffixes();
-        int affixesToGen = data.getNumberOfAffixes();
+        int affixesToGen = minaffixes - data.getNumberOfAffixes();
 
         while (affixesToGen > 0) {
 
