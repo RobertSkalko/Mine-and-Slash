@@ -28,13 +28,13 @@ public class Suffixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
     @Override
     public void registerAll() {
 
-        AffixBuilder.Of("of_cruelty")
+        AffixBuilder.Normal("of_cruelty")
             .Named("Of Cruelty")
             .Stats(new StatModifier(10, 50, new WeaponDamage(Elements.Physical), StatModTypes.LOCAL_INCREASE))
             .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
             .BuildSuffix();
 
-        AffixBuilder.Of("of_tyranny")
+        AffixBuilder.Normal("of_tyranny")
             .Named("Of Tyranny")
             .Stats(new StatModifier(0.2F, 2.5F, 0.5F, 3F, new WeaponDamage(Elements.Physical), StatModTypes.Flat))
             .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
