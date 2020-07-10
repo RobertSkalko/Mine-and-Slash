@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class ArmorShield extends BaseOffHand {
 
     @Override
     public List<StatModifier> BaseStats() {
-        return Arrays.asList(new StatModifier(2, 6, Health.getInstance(), StatModTypes.Flat));
+        return Arrays.asList(new StatModifier(2, 6, Health.getInstance(), ModType.FLAT));
     }
 
     @Override

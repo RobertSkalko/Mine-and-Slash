@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class MergedStats implements IGearPartTooltip {
 
         this.list.sort(Comparator.comparingInt(x -> -(int) (x.firstValue + x.secondValue)));
         this.list.sort(Comparator.comparing(x -> !x.type
-            .equals(StatModTypes.Flat) && x.stat.IsPercent()));
+            .equals(ModType.FLAT) && x.stat.IsPercent()));
     }
 
     @Override

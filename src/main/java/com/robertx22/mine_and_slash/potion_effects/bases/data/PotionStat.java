@@ -5,11 +5,11 @@ import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
 public class PotionStat {
 
-    StatModTypes type = StatModTypes.Flat;
+    ModType type = ModType.FLAT;
     float value;
     Stat stat;
 

@@ -10,7 +10,7 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -26,8 +26,8 @@ public class Bow extends BaseWeapon {
     @Override
     public List<StatModifier> BaseStats() {
         return Arrays.asList(
-            new StatModifier(1, 3, 2, 8, new WeaponDamage(Elements.Physical), StatModTypes.Flat),
-            new StatModifier(5, 18, CriticalHit.getInstance(), StatModTypes.Flat)
+            new StatModifier(1, 3, 2, 8, new WeaponDamage(Elements.Physical), ModType.FLAT),
+            new StatModifier(5, 18, CriticalHit.getInstance(), ModType.FLAT)
 
         );
     }

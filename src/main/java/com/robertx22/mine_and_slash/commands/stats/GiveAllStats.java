@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.Entity;
@@ -43,7 +43,7 @@ public class GiveAllStats {
                     .getList()
                     .forEach(x -> data.getCustomExactStats()
                         .add(UUID.randomUUID()
-                            .toString(), x.GUID(), 100, StatModTypes.Flat));
+                            .toString(), x.GUID(), 100, ModType.FLAT));
             }
 
         } catch (Exception e) {

@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContai
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
@@ -167,7 +167,7 @@ public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsConta
         all.stream()
             .filter(x ->
                 x.shouldBeAddedToLocalStats(gear) && x.getType()
-                    == StatModTypes.LOCAL_INCREASE)
+                    == ModType.LOCAL_INCREASE)
             .forEach(s -> {
 
                 ExactStatData flatLocal = local.stream()

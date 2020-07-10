@@ -89,16 +89,16 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         return list;
     }
 
-    public enum StatType {
+    public enum StatClassType {
         NORMAL, CORE, TRAIT
     }
 
-    public StatType getStatType() {
-        return StatType.NORMAL;
+    public StatClassType getStatType() {
+        return StatClassType.NORMAL;
     }
 
     public boolean isTrait() {
-        return getStatType().equals(StatType.TRAIT);
+        return getStatType().equals(StatClassType.TRAIT);
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
 
 import java.util.Arrays;
@@ -36,7 +36,7 @@ public class ManaRing extends BaseCurio {
 
     @Override
     public List<StatModifier> BaseStats() {
-        return Arrays.asList(new StatModifier(5, 15, Mana.getInstance(), StatModTypes.Flat));
+        return Arrays.asList(new StatModifier(5, 15, Mana.getInstance(), ModType.FLAT));
     }
 
     @Override

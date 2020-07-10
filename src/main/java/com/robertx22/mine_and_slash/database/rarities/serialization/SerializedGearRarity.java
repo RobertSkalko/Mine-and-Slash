@@ -8,7 +8,6 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     public int affixChance;
 
     public MinMax statPercents;
-    public MinMax primaryStatPercents;
     public MinMax secondaryStatPercents;
     public MinMax affixStatPercents;
     public MinMax uniqueStatPercents;

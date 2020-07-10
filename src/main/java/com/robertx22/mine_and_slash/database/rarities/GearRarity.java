@@ -24,6 +24,7 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
 
         json.add("unique_stat_percents", uniqueStatPercents().toJson());
         json.add("affix_stat_percents", affixStatPercents().toJson());
+        json.add("stat_percents", StatPercents().toJson());
 
         return json;
     }
@@ -52,14 +53,8 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
         rar.affixStatPercents = MinMax.getSerializer()
             .fromJson(json.getAsJsonObject("affix_stat_percents"));
 
-        rar.secondaryStatPercents = MinMax.getSerializer()
-            .fromJson(json.getAsJsonObject("secondary_stat_percents"));
-
         rar.uniqueStatPercents = MinMax.getSerializer()
             .fromJson(json.getAsJsonObject("unique_stat_percents"));
-
-        rar.primaryStatPercents = MinMax.getSerializer()
-            .fromJson(json.getAsJsonObject("primary_stat_percents"));
 
         Preconditions.checkArgument(!StatPercents().isEmpty());
 

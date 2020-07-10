@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.saveclasses;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -184,19 +184,19 @@ public class StatData {
     }
 
     public void add(ExactStatData modData) {
-        StatModTypes type = modData.getType();
+        ModType type = modData.getType();
 
         Float v1 = modData.getFirstValue();
         Float v2 = modData.getSecondValue();
 
         Float v = (v1 + v2) / 2;
 
-        if (type == StatModTypes.Flat) {
+        if (type == ModType.FLAT) {
             Flat += v1;
             Flat2 += v2;
-        } else if (type == StatModTypes.LOCAL_INCREASE) {
+        } else if (type == ModType.LOCAL_INCREASE) {
             // Percent += v;
-        } else if (type == StatModTypes.GLOBAL_INCREASE) {
+        } else if (type == ModType.GLOBAL_INCREASE) {
             Multi += v;
         }
 
@@ -217,10 +217,10 @@ public class StatData {
         other.Multi += Multi;
     }
 
-    public void addExact(StatModTypes type, float value) {
-        if (type == StatModTypes.Flat) {
+    public void addExact(ModType type, float value) {
+        if (type == ModType.FLAT) {
             this.addFlat(value);
-        } else if (type == StatModTypes.LOCAL_INCREASE) {
+        } else if (type == ModType.LOCAL_INCREASE) {
             // this.Percent += value;
         } else {
             this.Multi += value;

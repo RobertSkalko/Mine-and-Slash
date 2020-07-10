@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.affixes.ElementalAffixBuilder;
-import com.robertx22.mine_and_slash.database.affixes.ElementalAffixTemplate;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
@@ -12,7 +11,7 @@ import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,39 +22,26 @@ public class Prefixes implements IRandomDefault<BaseAffix>, ISlashRegistryInit {
     public void registerAll() {
 
         ElementalAffixBuilder.start()
-            .guid(x -> x.guidName + "wep_dmg");
+            .guid(x -> x.guidName + "wep_dmg")
+            .add(Elements.Fire, "Scorched")
+            .add(Elements.Water, "Chilled")
+            .add(Elements.Thunder, "Sparkling")
+            .add(Elements.Nature, "Poisoned")
+            .mods(x -> Arrays.asList(new StatModifier(1, 3, 2, 6, new WeaponDamage(x), ModType.FLAT)))
+            .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
+            .Prefix()
+            .Build();
 
-        AffixBuilder.Elemental(new ElementalAffixTemplate() {
-            @Override
-            public String GUID(Elements element) {
-                return element.guidName + "wep_dmg";
-            }
+        AffixBuilder.Normal("cruel")
+            .Named("Cruel")
+            .Stats(new StatModifier(10, 50, new WeaponDamage(Elements.Physical), ModType.LOCAL_INCREASE))
+            .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
+            .Prefix()
+            .Build();
 
-            @Override
-            public List<StatModifier> Stats(Elements element) {
-                return Arrays.asList(new StatModifier(1, 3, 2, 6, new WeaponDamage(element), StatModTypes.Flat));
-            }
-
-            @Override
-            public String FireName() {
-                return "Scorched";
-            }
-
-            @Override
-            public String WaterName() {
-                return "Chilled";
-            }
-
-            @Override
-            public String NatureName() {
-                return "Poisoned";
-            }
-
-            @Override
-            public String ThunderName() {
-                return "Sparkling";
-            }
-        })
+        AffixBuilder.Normal("tyrannical")
+            .Named("Tyrannical")
+            .Stats(new StatModifier(0.2F, 2.5F, 0.5F, 3F, new WeaponDamage(Elements.Physical), ModType.FLAT))
             .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
             .Prefix()
             .Build();

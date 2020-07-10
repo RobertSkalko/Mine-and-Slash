@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
@@ -42,8 +42,8 @@ public class Intelligence extends BaseCoreStat {
     @Override
     public List<StatModifier> statsThatBenefit() {
         return Arrays.asList(
-            new StatModifier(2F, 2F, Mana.getInstance(), StatModTypes.Flat),
-            new StatModifier(0.5F, 0.5F, MagicShield.getInstance(), StatModTypes.GLOBAL_INCREASE)
+            new StatModifier(2F, 2F, Mana.getInstance(), ModType.FLAT),
+            new StatModifier(0.5F, 0.5F, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
         );
     }
 

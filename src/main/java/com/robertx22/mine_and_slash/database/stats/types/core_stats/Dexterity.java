@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
@@ -43,8 +43,8 @@ public class Dexterity extends BaseCoreStat {
     @Override
     public List<StatModifier> statsThatBenefit() {
         return Arrays.asList(
-            new StatModifier(2F, 2F, DodgeRating.getInstance(), StatModTypes.GLOBAL_INCREASE),
-            new StatModifier(0.5F, 0.5F, CriticalHit.getInstance(), StatModTypes.Flat)
+            new StatModifier(2F, 2F, DodgeRating.getInstance(), ModType.GLOBAL_INCREASE),
+            new StatModifier(0.5F, 0.5F, CriticalHit.getInstance(), ModType.FLAT)
         );
     }
 

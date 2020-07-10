@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCor
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.Arrays;
@@ -43,8 +43,8 @@ public class Strength extends BaseCoreStat {
     @Override
     public List<StatModifier> statsThatBenefit() {
         return Arrays.asList(
-            new StatModifier(0.2F, 0.2F, new WeaponDamage(Elements.Physical), StatModTypes.GLOBAL_INCREASE),
-            new StatModifier(0.5F, 0.5F, Health.getInstance(), StatModTypes.GLOBAL_INCREASE)
+            new StatModifier(0.2F, 0.2F, new WeaponDamage(Elements.Physical), ModType.GLOBAL_INCREASE),
+            new StatModifier(0.5F, 0.5F, Health.getInstance(), ModType.GLOBAL_INCREASE)
         );
     }
 

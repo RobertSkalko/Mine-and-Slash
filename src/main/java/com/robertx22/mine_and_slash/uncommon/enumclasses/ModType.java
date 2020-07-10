@@ -2,13 +2,13 @@ package com.robertx22.mine_and_slash.uncommon.enumclasses;
 
 import java.util.Locale;
 
-public enum StatModTypes {
+public enum ModType {
 
-    Flat("flat"),
+    FLAT("flat"),
     LOCAL_INCREASE("local_increase"),
     GLOBAL_INCREASE("global_increase");
 
-    StatModTypes(String id) {
+    ModType(String id) {
         this.id = id;
 
     }
@@ -16,12 +16,20 @@ public enum StatModTypes {
     public String id;
 
     public boolean isFlat() {
-        return this == Flat;
+        return this == FLAT;
     }
 
-    public static StatModTypes fromString(String str) {
+    public boolean isLocalIncrease() {
+        return this == LOCAL_INCREASE;
+    }
 
-        for (StatModTypes type : StatModTypes.values()) {
+    public boolean isGlobalIncrease() {
+        return this == GLOBAL_INCREASE;
+    }
+
+    public static ModType fromString(String str) {
+
+        for (ModType type : ModType.values()) {
             if (type.id.toLowerCase(Locale.ROOT)
                 .equals(str.toLowerCase(Locale.ROOT))) {
                 return type;

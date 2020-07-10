@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
 public class StatModifier implements ISerializable<StatModifier> {
 
@@ -24,21 +24,30 @@ public class StatModifier implements ISerializable<StatModifier> {
 
     }
 
-    public StatModifier(float firstMin, float firstMax, Stat stat, StatModTypes type) {
+    public StatModifier(float firstMin, float firstMax, Stat stat, ModType type) {
         this.firstMin = firstMin;
         this.firstMax = firstMax;
         this.stat = stat.GUID();
         this.type = type.name();
     }
 
-    public StatModifier(float firstMin, float firstMax, String stat, StatModTypes type) {
+    public StatModifier(float firstMin, float firstMax, String stat, ModType type) {
         this.firstMin = firstMin;
         this.firstMax = firstMax;
         this.stat = stat;
         this.type = type.name();
     }
 
-    public StatModifier(float firstMin, float firstMax, float secondMin, float secondMax, Stat stat, StatModTypes type) {
+    public StatModifier(float firstMin, float firstMax, float secondMin, float secondMax, Stat stat, ModType type) {
+
+        if (!stat.UsesSecondValue()) {
+            try {
+                throw new Exception(stat.GUID() + " doesn't need 2nd value for modifiers!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         this.firstMin = firstMin;
         this.firstMax = firstMax;
         this.secondMin = secondMin;
@@ -47,7 +56,8 @@ public class StatModifier implements ISerializable<StatModifier> {
         this.type = type.name();
     }
 
-    public StatModifier(float firstMin, float firstMax, float secondMin, float secondMax, String stat, StatModTypes type) {
+    public StatModifier(float firstMin, float firstMax, float secondMin, float secondMax, String stat, ModType type) {
+
         this.firstMin = firstMin;
         this.firstMax = firstMax;
         this.secondMin = secondMin;
@@ -63,11 +73,11 @@ public class StatModifier implements ISerializable<StatModifier> {
 
     public boolean usesNumberRanges() {
         return getModType()
-            .equals(StatModTypes.Flat) && secondMax != 0;
+            .equals(ModType.FLAT) && secondMax != 0;
     }
 
-    public StatModTypes getModType() {
-        return StatModTypes.fromString(type);
+    public ModType getModType() {
+        return ModType.fromString(type);
     }
 
     @Override
@@ -81,7 +91,7 @@ public class StatModifier implements ISerializable<StatModifier> {
         json.addProperty("secondMax", secondMax);
 
         json.addProperty("stat", stat);
-        json.addProperty("type", StatModTypes.valueOf(type).id);
+        json.addProperty("type", ModType.valueOf(type).id);
 
         return json;
     }
@@ -102,7 +112,7 @@ public class StatModifier implements ISerializable<StatModifier> {
         String stat = json.get("stat")
             .getAsString();
 
-        StatModTypes type = StatModTypes.fromString(json.get("type")
+        ModType type = ModType.fromString(json.get("type")
             .getAsString());
 
         return new StatModifier(firstMin, firstMax, secondMin, secondMax, stat, type);

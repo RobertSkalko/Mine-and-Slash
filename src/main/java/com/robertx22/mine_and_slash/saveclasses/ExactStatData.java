@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.StatModTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -43,14 +43,14 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
         this.stat_id = mod.stat;
     }
 
-    public ExactStatData(float value, StatModTypes type, String stat_id) {
+    public ExactStatData(float value, ModType type, String stat_id) {
         this.first_val = value;
         this.second_val = value;
         this.type = type;
         this.stat_id = stat_id;
     }
 
-    public ExactStatData(float value, StatModTypes type, Stat stat) {
+    public ExactStatData(float value, ModType type, Stat stat) {
         this.first_val = value;
         this.second_val = value;
 
@@ -58,7 +58,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
         this.stat_id = stat.GUID();
     }
 
-    public ExactStatData(float v1, float v2, StatModTypes type, String stat) {
+    public ExactStatData(float v1, float v2, ModType type, String stat) {
         this.first_val = v1;
         this.second_val = v2;
 
@@ -70,7 +70,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
         this.first_val = value;
         this.second_val = value;
 
-        this.type = StatModTypes.Flat;
+        this.type = ModType.FLAT;
         this.stat_id = stat.GUID();
     }
 
@@ -85,7 +85,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     @Store
     private float second_val = 0;
     @Store
-    private StatModTypes type = StatModTypes.Flat;
+    private ModType type = ModType.FLAT;
 
     @Store
     private String stat_id = "";
@@ -96,7 +96,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
         if (getStat()
             .isLocal()) {
-            if (getType() != StatModTypes.GLOBAL_INCREASE) {
+            if (getType() != ModType.GLOBAL_INCREASE) {
                 ILocalStat local = (ILocalStat) getStat();
                 if (local.IsNativeToGearType(gear.GetBaseGearType())) {
                     return true;
@@ -136,7 +136,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
         return second_val;
     }
 
-    public StatModTypes getType() {
+    public ModType getType() {
         return type;
     }
 
@@ -189,7 +189,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
         String stat = json.get("stat")
             .getAsString();
 
-        StatModTypes type = StatModTypes.fromString(json.get("type")
+        ModType type = ModType.fromString(json.get("type")
             .getAsString());
 
         return new ExactStatData(first, second, type, stat);
