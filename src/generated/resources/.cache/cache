@@ -11,6 +11,8 @@ dfd17ad3f87d514c2c6b908c216ed4ea8a0755c5 assets\mmorpg\models\item\currency\rero
 a55bb6c5a144fd4ea6fb6e9e171bf6a4695a6f01 assets\mmorpg\models\item\currency\stone_of_hope.json
 30d499ecda1d68f909fae8c2caebfc6d9f3721d2 assets\mmorpg\models\item\jewelry\life_necklace.json
 9c0d3d8ba2a8a8e082810e7f2580ae99d4f2b22c assets\mmorpg\models\item\jewelry\occult_ring.json
+b1b8830ceba85cdd6f0f975449a77462aba0e6ef assets\mmorpg\models\item\jewels\blue.json
+b243fa54a0c4bb587568f35e977b11c609a36de7 assets\mmorpg\models\item\jewels\green.json
 c220940d1c24792659e8d9c3720af16c352ed576 assets\mmorpg\models\item\weapon\axe.json
 ec33b382e5bd38bfca17e0451414f958cfa7a955 assets\mmorpg\models\item\weapon\staff.json
 66438d443f96dc0f2b965e7c5024e707336fd8c5 assets\mmorpg\models\item\weapon\sword.json
@@ -59,7 +61,7 @@ d74cf25d26349b09ff3a3868532b7c74d46d1bed data\mmorpg\mob_affix\cold.json
 aa5d4bb3b33af5dca0869d1366f6c1c9bcf8daf0 data\mmorpg\mob_affix\of_ruin.json
 998fb7991e242a13e86439a351438711139a3098 data\mmorpg\mob_affix\venom.json
 39958faad4c954b919111684709b8c4b9368e7ca data\mmorpg\rarity\gear\common.json
-c8c715fcb625ee06a5d2f2baf2107b3a259678b3 data\mmorpg\rarity\gear\rare.json
+dd19fbc539feedd130d75e49b8d7abc94c3f57d7 data\mmorpg\rarity\gear\rare.json
 bff9089f6d6e14b081f85aa76282ae40e6199034 data\mmorpg\rarity\gear\uncommon.json
 e620d8d084144b339481c41304619bc6f07d94c6 data\mmorpg\rarity\gear\unique.json
 2627f019853a9252403630e0bca33500324a9ab4 data\mmorpg\recipes\currency\create_new_unique.json

@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
+import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.AffixData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatsData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.PrefixData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.SuffixData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
@@ -83,6 +83,39 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
         return p;
     }
 
+    public List<AffixData> getAllAffixes() {
+        List<AffixData> list = new ArrayList<>();
+
+        if (prefixes != null) {
+            list.addAll(prefixes);
+        }
+        if (suffixes != null) {
+            list.addAll(suffixes);
+        }
+        return list;
+    }
+
+    public boolean containsAffix(BaseAffix affix) {
+        return containsAffix(affix.GUID());
+    }
+
+    public boolean containsAffix(String id) {
+
+        if (prefixes != null) {
+            if (prefixes.stream()
+                .anyMatch(x -> x.baseAffix == id)) {
+                return true;
+            }
+        }
+        if (suffixes != null) {
+            if (suffixes.stream()
+                .anyMatch(x -> x.baseAffix == id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getNumberOfAffixes() {
         return getNumberOfPrefixes() + getNumberOfSuffixes();
     }
@@ -130,9 +163,9 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
     @Store
     public BaseStatsData baseStats;
     @Store
-    public List<SuffixData> suffixes = new ArrayList<>();
+    public List<AffixData> suffixes = new ArrayList<>();
     @Store
-    public List<PrefixData> prefixes = new ArrayList<>();
+    public List<AffixData> prefixes = new ArrayList<>();
 
     // Stats
 
@@ -201,7 +234,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
             if (prefixes != null && prefixes.size() > 0) {
 
-                PrefixData prefix = prefixes.get(0);
+                AffixData prefix = prefixes.get(0);
 
                 text.appendText(format + "")
                     .appendSibling(prefix.BaseAffix()
@@ -212,7 +245,7 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
                 .applyTextStyle(format));
 
             if (suffixes != null && suffixes.size() > 0) {
-                SuffixData suffix = suffixes.get(0);
+                AffixData suffix = suffixes.get(0);
 
                 text.appendText(format + " ")
                     .appendSibling(suffix.BaseAffix()
@@ -259,10 +292,10 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
             IfNotNullAdd(baseStats, list);
         }
 
-        for (PrefixData d : prefixes) {
+        for (AffixData d : prefixes) {
             IfNotNullAdd(d, list);
         }
-        for (SuffixData d : suffixes) {
+        for (AffixData d : suffixes) {
             IfNotNullAdd(d, list);
         }
         IfNotNullAdd(uniqueStats, list);
@@ -304,10 +337,10 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
         List<IRerollable> list = new ArrayList<IRerollable>();
         IfNotNullAdd(baseStats, list);
 
-        for (PrefixData d : prefixes) {
+        for (AffixData d : prefixes) {
             IfNotNullAdd(d, list);
         }
-        for (SuffixData d : suffixes) {
+        for (AffixData d : suffixes) {
             IfNotNullAdd(d, list);
         }
         IfNotNullAdd(uniqueStats, list);

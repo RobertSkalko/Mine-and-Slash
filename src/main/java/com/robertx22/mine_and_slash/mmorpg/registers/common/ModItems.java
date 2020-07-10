@@ -24,6 +24,7 @@ import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemBow;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemStaff;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
 import com.robertx22.mine_and_slash.items.misc.IdentifyTomeItem;
+import com.robertx22.mine_and_slash.items.misc.JewelItem;
 import com.robertx22.mine_and_slash.items.misc.MagicEssenceItem;
 import com.robertx22.mine_and_slash.items.misc.RareMagicEssence;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -80,6 +81,17 @@ public class ModItems {
 
     public static RegistryObject<Item> MAGIC_ESSENCE = item(() -> new MagicEssenceItem(), "magic_essence");
     public static RegistryObject<Item> RARE_MAGIC_ESSENCE = item(() -> new RareMagicEssence(), "rare_magic_essence");
+
+    public static RegistryObject<JewelItem> BLUE_JEWEL = item(() -> new JewelItem(), "jewels/blue");
+    public static RegistryObject<JewelItem> GREEN_JEWEL = item(() -> new JewelItem(), "jewels/green");
+
+    public static List<RegistryObject<JewelItem>> ALL_JEWELS = new ArrayList<>();
+
+    static RegistryObject<JewelItem> jewel(Supplier<JewelItem> c, String id) {
+        RegistryObject<JewelItem> wrap = REG.register(id, c);
+        ALL_JEWELS.add(wrap);
+        return wrap;
+    }
 
     static <T extends Item & IGUID> RegistryObject<T> item(Supplier<T> c) {
 

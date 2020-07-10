@@ -14,7 +14,7 @@ public class RareGear extends BaseRare implements GearRarity {
 
     @Override
     public float unidentifiedChance() {
-        return 75;
+        return 25;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class RareGear extends BaseRare implements GearRarity {
 
     @Override
     public int AffixChance() {
-        return 50;
+        return 20;
     }
 
     @Override

@@ -18,7 +18,16 @@ public interface ICurrencyItemEffect {
 
     public abstract List<BaseLocRequirement> requirements();
 
-    boolean canItemBeModified(LocReqContext context);
+    default boolean canItemBeModified(LocReqContext context) {
+
+        for (BaseLocRequirement req : requirements()) {
+            if (req.isNotAllowed(context)) {
+                return false;
+            }
+
+        }
+        return true;
+    }
 
     public default void addToTooltip(List<ITextComponent> tooltip) {
 

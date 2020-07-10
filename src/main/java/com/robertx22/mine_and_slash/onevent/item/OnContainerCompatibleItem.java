@@ -3,11 +3,14 @@ package com.robertx22.mine_and_slash.onevent.item;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.items.misc.JewelItem;
 import com.robertx22.mine_and_slash.new_content.auto_comp.PowerLevel;
 import com.robertx22.mine_and_slash.registry.FilterListWrap;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.JewelData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -23,6 +26,13 @@ public class OnContainerCompatibleItem {
         try {
 
             if (stack.isEmpty()) {
+                return;
+            }
+
+            if (stack.getItem() instanceof JewelItem) {
+                JewelData jewel = new JewelData();
+                jewel.randomize();
+                Jewel.Save(stack, jewel);
                 return;
             }
 

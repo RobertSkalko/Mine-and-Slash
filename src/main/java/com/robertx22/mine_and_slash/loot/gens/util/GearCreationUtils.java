@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.loot.gens.util;
 
+import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -7,9 +8,8 @@ import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.registry.FilterListWrap;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.AffixData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatsData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.PrefixData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.SuffixData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
@@ -136,13 +136,13 @@ public class GearCreationUtils {
             for (int i = 0; i < maxOfEachAffixType; i++) {
 
                 if (blueprint.suffixChancePart.get()) {
-                    SuffixData suffix = new SuffixData();
+                    AffixData suffix = new AffixData(BaseAffix.Type.suffix);
                     suffix.RerollFully(data);
                     data.suffixes.add(suffix);
                 }
 
                 if (blueprint.prefixChancePart.get()) {
-                    PrefixData prefix = new PrefixData();
+                    AffixData prefix = new AffixData(BaseAffix.Type.prefix);
                     prefix.RerollFully(data);
                     data.prefixes.add(prefix);
                 }
@@ -156,11 +156,11 @@ public class GearCreationUtils {
         while (affixesToGen > 0) {
 
             if (data.getNumberOfPrefixes() > data.getNumberOfSuffixes()) {
-                SuffixData suffix = new SuffixData();
+                AffixData suffix = new AffixData(BaseAffix.Type.suffix);
                 suffix.RerollFully(data);
                 data.suffixes.add(suffix);
             } else {
-                PrefixData prefix = new PrefixData();
+                AffixData prefix = new AffixData(BaseAffix.Type.prefix);
                 prefix.RerollFully(data);
                 data.prefixes.add(prefix);
             }
