@@ -16,28 +16,38 @@ public class WeaponSuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_precision")
             .Named("Of Precision")
-            .Stats(new StatModifier(10F, 50F, CriticalHit.getInstance(), ModType.LOCAL_INCREASE))
+            .tier(1, new StatModifier(25F, 50F, CriticalHit.getInstance(), ModType.LOCAL_INCREASE))
+            .tier(2, new StatModifier(20F, 25F, CriticalHit.getInstance(), ModType.LOCAL_INCREASE))
+            .tier(3, new StatModifier(10, 20F, CriticalHit.getInstance(), ModType.LOCAL_INCREASE))
             .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
             .Suffix()
             .Build();
 
         AffixBuilder.Normal("of_good_aim")
             .Named("Of Good Aim")
-            .Stats(new StatModifier(1, 6F, CriticalHit.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(4, 8, CriticalHit.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(2, 4, CriticalHit.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(1, 2F, CriticalHit.getInstance(), ModType.FLAT))
+
             .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
             .Suffix()
             .Build();
 
         AffixBuilder.Normal("of_vampirism")
             .Named("Of Vampirism")
-            .Stats(new StatModifier(1, 3, Lifesteal.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(3, 5, Lifesteal.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(2, 3, Lifesteal.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(1, 2, Lifesteal.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
             .Suffix()
             .Build();
 
         AffixBuilder.Normal("of_brutality")
             .Named("Of Brutality")
-            .Stats(new StatModifier(4, 20, CriticalDamage.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(15, 20, CriticalDamage.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(10, 15, CriticalDamage.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(5, 10, CriticalDamage.getInstance(), ModType.FLAT))
+            .tier(4, new StatModifier(3, 5, CriticalDamage.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Weapon))
             .Suffix()
             .Build();

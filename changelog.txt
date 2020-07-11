@@ -9,5 +9,6 @@ Other things were removed because I wanted to remove them, but I couldn't becaus
 * removed map dimensions
 * removed runes and runewords
 * removed sets 
+* removed instability
 
 Some of these will probably come back, after a rework. Others are gone for good.

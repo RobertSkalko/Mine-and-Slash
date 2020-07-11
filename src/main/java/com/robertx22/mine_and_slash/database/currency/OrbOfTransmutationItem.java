@@ -95,11 +95,6 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
     }
 
     @Override
-    public int instabilityAddAmount() {
-        return 0;
-    }
-
-    @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModItems.ORB_OF_TRANSMUTATION.get())
             .key('t', Items.REDSTONE)

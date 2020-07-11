@@ -83,11 +83,6 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
     }
 
     @Override
-    public int instabilityAddAmount() {
-        return 100;
-    }
-
-    @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModItems.ORB_OF_UNIQUE_BLESSING.get())
             .key('#', SimpleMatItem.GOLDEN_ORB)

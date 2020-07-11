@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
@@ -8,6 +7,7 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.AffixData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatsData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.GearAffixesData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Storable
-public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
+public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean meetsRequirements(EntityCap.UnitData data) {
         return true;
@@ -62,63 +62,6 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     @Store
     private boolean ided = true;
-
-    public int getNumberOfPrefixes() {
-        int p = 0;
-
-        if (prefixes != null) {
-            p = prefixes.size();
-        }
-
-        return p;
-    }
-
-    public int getNumberOfSuffixes() {
-        int p = 0;
-
-        if (prefixes != null) {
-            p = prefixes.size();
-        }
-
-        return p;
-    }
-
-    public List<AffixData> getAllAffixes() {
-        List<AffixData> list = new ArrayList<>();
-
-        if (prefixes != null) {
-            list.addAll(prefixes);
-        }
-        if (suffixes != null) {
-            list.addAll(suffixes);
-        }
-        return list;
-    }
-
-    public boolean containsAffix(BaseAffix affix) {
-        return containsAffix(affix.GUID());
-    }
-
-    public boolean containsAffix(String id) {
-
-        if (prefixes != null) {
-            if (prefixes.stream()
-                .anyMatch(x -> x.baseAffix == id)) {
-                return true;
-            }
-        }
-        if (suffixes != null) {
-            if (suffixes.stream()
-                .anyMatch(x -> x.baseAffix == id)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int getNumberOfAffixes() {
-        return getNumberOfPrefixes() + getNumberOfSuffixes();
-    }
 
     public boolean isIdentified() {
         return ided;
@@ -159,24 +102,16 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     // Stats
     @Store
+    public BaseStatsData baseStats = new BaseStatsData();
+    @Store
+    public GearAffixesData affixes = new GearAffixesData();
+    @Store
     public UniqueStatsData uniqueStats;
-    @Store
-    public BaseStatsData baseStats;
-    @Store
-    public List<AffixData> suffixes = new ArrayList<>();
-    @Store
-    public List<AffixData> prefixes = new ArrayList<>();
 
     // Stats
 
     @Store
     public boolean isSalvagable = true;
-
-    // crafting limits
-    @Store
-    public int instability = 0;
-
-    //
 
     // used when upgrading item rarity
     public Item getItem() {
@@ -230,11 +165,11 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
         ITextComponent text = new StringTextComponent(format + "[");
 
-        if (addNormalAffixedPrefixesAndSuffixes()) {
+        if (useAffixedName()) {
 
-            if (prefixes != null && prefixes.size() > 0) {
+            if (affixes.hasPrefix()) {
 
-                AffixData prefix = prefixes.get(0);
+                AffixData prefix = affixes.prefixes.get(0);
 
                 text.appendText(format + "")
                     .appendSibling(prefix.BaseAffix()
@@ -244,8 +179,8 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
             text.appendSibling(GetBaseGearType().locName()
                 .applyTextStyle(format));
 
-            if (suffixes != null && suffixes.size() > 0) {
-                AffixData suffix = suffixes.get(0);
+            if (affixes.hasSuffix()) {
+                AffixData suffix = affixes.suffixes.get(0);
 
                 text.appendText(format + " ")
                     .appendSibling(suffix.BaseAffix()
@@ -269,16 +204,16 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
 
     }
 
-    private boolean addNormalAffixedPrefixesAndSuffixes() {
+    private boolean useAffixedName() {
 
         if (isUnique()) {
             return false;
         }
 
-        if (prefixes != null && prefixes.size() > 1) {
+        if (affixes.getNumberOfPrefixes() > 1) {
             return false;
         }
-        if (suffixes != null && suffixes.size() > 1) {
+        if (affixes.getNumberOfSuffixes() > 1) {
             return false;
         }
         return true;
@@ -292,12 +227,9 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
             IfNotNullAdd(baseStats, list);
         }
 
-        for (AffixData d : prefixes) {
-            IfNotNullAdd(d, list);
-        }
-        for (AffixData d : suffixes) {
-            IfNotNullAdd(d, list);
-        }
+        affixes.getAllAffixes()
+            .forEach(x -> IfNotNullAdd(x, list));
+
         IfNotNullAdd(uniqueStats, list);
 
         return list;
@@ -337,12 +269,9 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
         List<IRerollable> list = new ArrayList<IRerollable>();
         IfNotNullAdd(baseStats, list);
 
-        for (AffixData d : prefixes) {
-            IfNotNullAdd(d, list);
-        }
-        for (AffixData d : suffixes) {
-            IfNotNullAdd(d, list);
-        }
+        affixes.getAllAffixes()
+            .forEach(x -> IfNotNullAdd(x, list));
+
         IfNotNullAdd(uniqueStats, list);
         return list;
     }
@@ -446,16 +375,6 @@ public class GearItemData implements ICommonDataItem<GearRarity>, IInstability {
         }
 
         return 0;
-    }
-
-    @Override
-    public int getInstability() {
-        return this.instability;
-    }
-
-    @Override
-    public void increaseInstability(int amount) {
-        this.instability += amount;
     }
 
 }

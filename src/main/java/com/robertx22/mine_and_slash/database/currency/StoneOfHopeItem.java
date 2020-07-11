@@ -97,16 +97,6 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public float additionalBreakChance() {
-        return 25;
-    }
-
-    @Override
-    public int instabilityAddAmount() {
-        return 0;
-    }
-
-    @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModItems.STONE_OF_HOPE.get())
             .key('#', SimpleMatItem.MYTHIC_ESSENCE)

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.mob_affixes.base;
 
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_generation.JsonUtils;
-import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
+import com.robertx22.mine_and_slash.database.affixes.Affix;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
@@ -20,10 +20,10 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
     List<ExactStatData> stats;
     String id;
     String locName;
-    BaseAffix.Type type;
+    Affix.Type type;
     int weight = 1000;
 
-    public MobAffix(String id, String locName, BaseAffix.Type type) {
+    public MobAffix(String id, String locName, Affix.Type type) {
         this.id = id;
         this.locName = locName;
         this.type = type;
@@ -40,11 +40,11 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
     }
 
     public boolean isPrefix() {
-        return type == BaseAffix.Type.prefix;
+        return type == Affix.Type.prefix;
     }
 
     public boolean isSuffix() {
-        return type == BaseAffix.Type.suffix;
+        return type == Affix.Type.suffix;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
         MobAffix affix = new MobAffix(
             getGUIDFromJson(json),
             getLangNameStringFromJson(json),
-            BaseAffix.Type.valueOf(json.get("type")
+            Affix.Type.valueOf(json.get("type")
                 .getAsString()));
 
         try {

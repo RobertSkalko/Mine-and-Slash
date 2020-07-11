@@ -2,12 +2,9 @@ package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.blocks.bases.TileGui;
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.currency.base.IAddsInstability;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
@@ -89,45 +86,6 @@ public class GuiGearModify extends TileGui<ContainerGearModify, TileGearModify> 
 
                     font.drawString(txt, this.xSize / 2 - font.getStringWidth(txt) / 2, y, Color.red.getRGB());
                     y += font.FONT_HEIGHT;
-                }
-            }
-
-            if (ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM.get()) {
-                if (context.Currency.getItem() instanceof IAddsInstability) {
-                    IAddsInstability insta = (IAddsInstability) context.Currency.getItem();
-
-                    if (context.data instanceof IInstability) {
-                        IInstability i = (IInstability) context.data;
-
-                        if (i.isInstabilityCapReached() && !insta.canBeUsedAtFullInstability()) {
-                            String breaktxt = Words.InstabilityLimitReached.translate();
-                            font.drawString(
-                                breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y,
-                                Color.red.getRGB()
-                            );
-                            y += font.FONT_HEIGHT;
-
-                        } else {
-                            if (ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS.get()) {
-                                if (insta.activatesBreakRoll()) {
-
-                                    float breakChance =
-                                        (insta.additionalBreakChance() + i.getBreakChance()) * insta.breakChanceMulti();
-
-                                    if (breakChance > 0) {
-                                        String breaktxt = Words.BreakChance.translate() + ": " + String.format(
-                                            "%.1f", breakChance) + "%";
-                                        font.drawString(
-                                            breaktxt, this.xSize / 2 - font.getStringWidth(breaktxt) / 2, y,
-                                            Color.red.getRGB()
-                                        );
-                                        y += font.FONT_HEIGHT;
-
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
             }
 

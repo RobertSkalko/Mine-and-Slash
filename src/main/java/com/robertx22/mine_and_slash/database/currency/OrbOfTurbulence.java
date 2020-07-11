@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.database.currency.base.ICurrencyItemEffect;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequirement;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.GearEnumLocReq;
-import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -39,8 +38,8 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
 
         GearItemData gear = Gear.Load(stack);
 
-        gear.prefixes.forEach(x -> x.RerollNumbers(gear));
-        gear.suffixes.forEach(x -> x.RerollNumbers(gear));
+        gear.affixes.getAllAffixes()
+            .forEach(x -> x.RerollNumbers(gear));
 
         Gear.Save(stack, gear);
 
@@ -49,7 +48,7 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, GearEnumLocReq.AFFIXES, SimpleGearLocReq.HAS_PREFIX, SimpleGearLocReq.HAS_SUFFIX);
+        return Arrays.asList(GearReq.INSTANCE, GearEnumLocReq.AFFIXES);
     }
 
     @Override
@@ -75,11 +74,6 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
     @Override
     public String locDescForLangFile() {
         return "Re-rolls all affix numbers";
-    }
-
-    @Override
-    public int instabilityAddAmount() {
-        return 10;
     }
 
     @Override

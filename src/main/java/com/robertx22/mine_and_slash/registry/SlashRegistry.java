@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
-import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
+import com.robertx22.mine_and_slash.database.affixes.Affix;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
@@ -122,7 +122,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.COMPATIBLE_ITEM);
     }
 
-    public static SlashRegistryContainer<BaseAffix> Affixes() {
+    public static SlashRegistryContainer<Affix> Affixes() {
         return getRegistry(SlashRegistryType.AFFIX);
     }
 
@@ -270,7 +270,7 @@ public class SlashRegistry {
 
         // data pack ones
         addRegistry(new SlashRegistryContainer<Tier>(SlashRegistryType.TIER, new TierOne()).isDatapack());
-        addRegistry(new SlashRegistryContainer<BaseAffix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
+        addRegistry(new SlashRegistryContainer<Affix>(SlashRegistryType.AFFIX, EmptyAffix.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<MobAffix>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
         addRegistry(new SlashRegistryContainer<IUnique>(SlashRegistryType.UNIQUE_GEAR, null).isDatapack());
         addRegistry(new SlashRegistryContainer<CompatibleItem>(SlashRegistryType.COMPATIBLE_ITEM,

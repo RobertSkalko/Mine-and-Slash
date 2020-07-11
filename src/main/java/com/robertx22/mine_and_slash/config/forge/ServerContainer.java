@@ -11,14 +11,8 @@ import static net.minecraftforge.common.ForgeConfigSpec.*;
 public class ServerContainer {
 
     public BooleanValue USE_COMPATIBILITY_ITEMS;
-    public BooleanValue GENERATE_ORES;
     public BooleanValue ONLY_REPAIR_IN_STATION;
     public BooleanValue LOG_REGISTRY_ENTRIES;
-
-    public BooleanValue ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS;
-    public BooleanValue ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM;
-
-    public IntValue MAXIMUM_ITEM_INSTABILITY;
 
     public DoubleValue REPAIR_FUEL_NEEDED_MULTI;
     public DoubleValue REGEN_HUNGER_COST;
@@ -54,13 +48,8 @@ public class ServerContainer {
             .translation("mmorpg.word.")
             .defineInRange("REPAIR_FUEL_NEEDED_MULTI", 1D, 0, 100000D);
 
-        ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS = builder.comment(".")
-            .define("ENABLE_CURRENCY_ITEMS_BREAKING_MODIFIED_ITEMS", true);
         LOG_REGISTRY_ENTRIES = builder.comment(".")
             .define("LOG_REGISTRY_ENTRIES", false);
-
-        ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM = builder.comment(".")
-            .define("ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM", true);
 
         ONLY_REPAIR_IN_STATION = builder.comment(".")
             .define("ONLY_REPAIR_IN_STATION", true);
@@ -68,14 +57,6 @@ public class ServerContainer {
         USE_COMPATIBILITY_ITEMS = builder.comment(".")
             .translation("mmorpg.word.")
             .define("USE_COMPATIBILITY_ITEMS", true);
-
-        GENERATE_ORES = builder.comment(".")
-            .translation("mmorpg.word.")
-            .define("GENERATE_ORES", true);
-
-        MAXIMUM_ITEM_INSTABILITY = builder.comment(".")
-            .translation("mmorpg.word.")
-            .defineInRange("MAXIMUM_ITEM_INSTABILITY", 500, 0, Integer.MAX_VALUE);
 
         builder.pop();
     }

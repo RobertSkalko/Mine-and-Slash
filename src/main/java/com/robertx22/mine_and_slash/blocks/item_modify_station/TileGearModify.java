@@ -1,22 +1,16 @@
 package com.robertx22.mine_and_slash.blocks.item_modify_station;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
-import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.currency.base.IAddsInstability;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.LocReqContext;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.IInstability;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
@@ -64,38 +58,6 @@ public class TileGearModify extends BaseTile {
             if (context.effect.canItemBeModified(context)) {
                 ItemStack copy = context.stack.copy();
                 copy = context.effect.ModifyItem(copy, context.Currency);
-
-                ICommonDataItem data = ICommonDataItem.load(copy);
-
-                if (ModConfig.INSTANCE.Server.ENABLE_CURRENCY_ITEMS_INSTABILITY_SYSTEM.get()) {
-                    if (data instanceof IInstability && context.Currency.getItem() instanceof IAddsInstability) {
-
-                        IInstability insta = (IInstability) data;
-                        IAddsInstability addsInta = (IAddsInstability) context.Currency.getItem();
-
-                        if (insta.isInstabilityCapReached() && !addsInta.canBeUsedAtFullInstability()) {
-                            copy = ItemStack.EMPTY;
-                        } else {
-                            boolean broke = false;
-                            if (insta.usesBreakChance()) {
-                                if (addsInta.activatesBreakRoll()) {
-                                    float breakChance =
-                                        (addsInta.additionalBreakChance() + insta.getBreakChance()) * addsInta
-                                            .breakChanceMulti();
-                                    if (RandomUtils.roll(breakChance)) {
-                                        copy = new ItemStack(Items.GUNPOWDER);
-                                        broke = true;
-                                        return new ResultItem(new ItemStack(Items.GUNPOWDER), ModifyResult.BREAK);
-                                    }
-                                }
-                            }
-                            if (broke == false) {
-                                insta.increaseInstability(addsInta.instabilityAddAmount());
-                                data.saveToStack(copy);
-                            }
-                        }
-                    }
-                }
 
                 return new ResultItem(copy, ModifyResult.SUCCESS);
             } else {

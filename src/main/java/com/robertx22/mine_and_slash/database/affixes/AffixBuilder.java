@@ -4,20 +4,18 @@ import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
 import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class AffixBuilder {
 
     String guid;
-    List<StatModifier> mods;
+    HashMap<Integer, List<StatModifier>> modsPerTier = new HashMap<>();
     String langName;
 
     int weight = 1000;
     Requirements requirements;
     public List<AffixTag> tags = new ArrayList<>();
-    public BaseAffix.Type type;
+    public Affix.Type type;
 
     private AffixBuilder(String id) {
         this.guid = id;
@@ -47,37 +45,47 @@ public class AffixBuilder {
         return this;
     }
 
-    public AffixBuilder Stats(StatModifier... stats) {
-        this.mods = Arrays.asList(stats);
+    public AffixBuilder tier(int tier, StatModifier... stats) {
+        this.modsPerTier.put(tier, Arrays.asList(stats));
         return this;
     }
 
     public AffixBuilder Prefix() {
-        type = BaseAffix.Type.prefix;
+        type = Affix.Type.prefix;
         return this;
     }
 
     public AffixBuilder Suffix() {
-        type = BaseAffix.Type.suffix;
+        type = Affix.Type.suffix;
         return this;
     }
 
     public AffixBuilder Implicit() {
-        type = BaseAffix.Type.implicit;
+        type = Affix.Type.implicit;
         return this;
     }
 
     public void Build() {
 
-        BaseAffix affix = new BaseAffix();
-        affix.type = type;
-        affix.requirements = requirements;
-        affix.langName = langName;
-        affix.weight = weight;
-        affix.tags = tags;
-        affix.mods = mods;
+        Affix affix = new Affix();
         affix.guid = guid;
+
+        for (Map.Entry<Integer, List<StatModifier>> entry : this.modsPerTier.entrySet()) {
+
+            int tier = entry.getKey();
+            int tierweight = (tier + 1) * 100; // simple for now
+            AffixTier affixTier = new AffixTier(modsPerTier.get(tier), tierweight, tier);
+            affix.tierMap.put(tier, affixTier);
+        }
+
+        affix.type = type;
+        affix.weight = weight;
+        affix.langName = langName;
+        affix.tags = tags;
+        affix.requirements = requirements;
+
         affix.addToSerializables();
+
     }
 
 }

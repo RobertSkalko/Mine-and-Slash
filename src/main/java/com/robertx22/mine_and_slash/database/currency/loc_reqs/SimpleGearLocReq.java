@@ -10,9 +10,9 @@ import java.util.function.Predicate;
 public class SimpleGearLocReq extends BaseLocRequirement {
 
     public static final SimpleGearLocReq NO_PREFIX = new SimpleGearLocReq(
-        x -> x.prefixes.size() == 0, Words.NoPrefix.locName());
+        x -> x.affixes.prefixes.size() == 0, Words.NoPrefix.locName());
     public static final SimpleGearLocReq NO_SUFFIX = new SimpleGearLocReq(
-        x -> x.suffixes.size() == 0l, Words.NoSuffix.locName());
+        x -> x.affixes.suffixes.size() == 0l, Words.NoSuffix.locName());
     public static final SimpleGearLocReq IS_COMMON = new SimpleGearLocReq(
         x -> x.rarity == IRarity.Common, Words.IsCommon.locName());
     public static final SimpleGearLocReq IS_LOWER_THAN_LEGENDARY = new SimpleGearLocReq(
@@ -23,9 +23,9 @@ public class SimpleGearLocReq extends BaseLocRequirement {
         x -> x.isUnique(), Words.isUnique.locName());
 
     public static final BaseLocRequirement HAS_PREFIX = new SimpleGearLocReq(
-        x -> x.prefixes.size() > 0, Words.hasPrefix.locName());
+        x -> x.affixes.prefixes.size() > 0, Words.hasPrefix.locName());
     public static final BaseLocRequirement HAS_SUFFIX = new SimpleGearLocReq(
-        x -> x.suffixes.size() > 0, Words.hasSuffix.locName());
+        x -> x.affixes.suffixes.size() > 0, Words.hasSuffix.locName());
     public static final BaseLocRequirement HAS_PRIMARY_STATS = new SimpleGearLocReq(
         x -> x.baseStats != null, Words.hasSet.locName());
     public static final BaseLocRequirement HAS_UNIQUE_STATS = new SimpleGearLocReq(

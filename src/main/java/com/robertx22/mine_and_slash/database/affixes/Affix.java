@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.database.affixes;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.data_generation.JsonUtils;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.requirements.Requirements;
@@ -17,10 +16,12 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, IRarity,
-    ISerializedRegistryEntry<BaseAffix>, ISerializable<BaseAffix> {
+public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, IRarity,
+    ISerializedRegistryEntry<Affix>, ISerializable<Affix> {
 
     public enum Type {
         prefix,
@@ -29,16 +30,17 @@ public class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequiremen
     }
 
     String guid;
-    List<StatModifier> mods;
     String langName;
     int weight = 1000;
     Requirements requirements;
     public List<AffixTag> tags = new ArrayList<>();
     public Type type;
 
+    public HashMap<Integer, AffixTier> tierMap = new HashMap<>();
+
     @Override
     public boolean isRegistryEntryValid() {
-        if (guid == null || langName == null || mods == null || requirements == null || type == null || weight < 0) {
+        if (guid == null || langName == null || tierMap.isEmpty() || requirements == null || type == null || weight < 0) {
             return false;
         }
 
@@ -84,8 +86,19 @@ public class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequiremen
         return weight;
     }
 
-    public List<StatModifier> StatMods() {
-        return mods;
+    public List<StatModifier> getTierStats(int tier) {
+
+        if (tierMap.containsKey(tier)) {
+            return tierMap.get(tier).mods;
+        }
+
+        System.out.println("Tier number not found, returning default. Affix: " + GUID() + " tier: " + tier);
+
+        return tierMap.values()
+            .stream()
+            .findFirst()
+            .get().mods;
+
     }
 
     @Override
@@ -110,13 +123,19 @@ public class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequiremen
         json.addProperty("type", type.name());
         json.add("requirements", requirements().toJson());
 
-        JsonUtils.addStats(StatMods(), json, "stats");
+        JsonObject tiers = new JsonObject();
+
+        for (Map.Entry<Integer, AffixTier> entry : tierMap.entrySet()) {
+            tiers.add(entry.getKey() + "", entry.getValue()
+                .toJson());
+        }
+        json.add("tiers", tiers);
 
         return json;
     }
 
     @Override
-    public BaseAffix fromJson(JsonObject json) {
+    public Affix fromJson(JsonObject json) {
 
         try {
             String guid = getGUIDFromJson(json);
@@ -128,15 +147,22 @@ public class BaseAffix implements IWeighted, IGUID, IAutoLocName, IhasRequiremen
 
             Requirements req = Requirements.EMPTY.fromJson(json.getAsJsonObject("requirements"));
 
-            List<StatModifier> mods = JsonUtils.getStats(json, "stats");
-
-            BaseAffix affix = new BaseAffix();
+            Affix affix = new Affix();
             affix.weight = weight;
             affix.requirements = req;
             affix.guid = guid;
-            affix.mods = mods;
             affix.langName = langName;
             affix.type = type;
+
+            JsonObject tiers = json.getAsJsonObject("tiers");
+
+            for (int i = 0; i < 10; i++) {
+                if (tiers.has(i + "")) {
+                    AffixTier tier = AffixTier.EMPTY.fromJson(tiers.getAsJsonObject(i + ""));
+                    affix.tierMap.put(i, tier);
+                }
+            }
+
             return affix;
         } catch (IllegalArgumentException e) {
             e.printStackTrace();

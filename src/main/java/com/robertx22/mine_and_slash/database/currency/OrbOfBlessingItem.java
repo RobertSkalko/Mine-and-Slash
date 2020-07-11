@@ -85,11 +85,6 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public int instabilityAddAmount() {
-        return 25;
-    }
-
-    @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModItems.ORB_OF_BLESSING.get())
             .key('#', SimpleMatItem.CRYSTALLIZED_ESSENCE)

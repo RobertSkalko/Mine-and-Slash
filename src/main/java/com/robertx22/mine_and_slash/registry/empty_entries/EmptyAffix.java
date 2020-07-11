@@ -1,12 +1,8 @@
 package com.robertx22.mine_and_slash.registry.empty_entries;
 
-import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
+import com.robertx22.mine_and_slash.database.affixes.Affix;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class EmptyAffix extends BaseAffix {
+public class EmptyAffix extends Affix {
 
     private EmptyAffix() {
     }
@@ -18,11 +14,6 @@ public class EmptyAffix extends BaseAffix {
     @Override
     public String GUID() {
         return "unknown_affix";
-    }
-
-    @Override
-    public List<StatModifier> StatMods() {
-        return new ArrayList<>();
     }
 
     @Override

@@ -67,16 +67,12 @@ public class GearTooltipUtils {
 
         tip.add(new StringTextComponent(""));
 
-        List<ExactStatData> lvlstatsmerged = new ArrayList<>();
+        List<ExactStatData> stats = new ArrayList<>();
 
-        if (gear.suffixes != null) {
-            gear.suffixes.forEach(x -> lvlstatsmerged.addAll(x.GetAllStats(gear)));
-        }
-        if (gear.prefixes != null) {
-            gear.prefixes.forEach(x -> lvlstatsmerged.addAll(x.GetAllStats(gear)));
-        }
+        gear.affixes.getAllAffixes()
+            .forEach(x -> stats.addAll(x.GetAllStats(gear)));
 
-        MergedStats merged = new MergedStats(lvlstatsmerged, info);
+        MergedStats merged = new MergedStats(stats, info);
         list.add(merged);
 
         int n = 0;
@@ -85,7 +81,7 @@ public class GearTooltipUtils {
                 tip.addAll(part.GetTooltipString(info, gear));
 
                 if (n == list.size() - 1) {
-                    gear.getAllAffixes()
+                    gear.affixes.getAllAffixes()
                         .forEach(x -> {
                             if (x.isSocketAndEmpty()) {
                                 tip.add(new SText(TextFormatting.YELLOW + "[Socket]"));
@@ -122,17 +118,6 @@ public class GearTooltipUtils {
                 tip.add(Styles.REDCOMP()
                     .appendSibling(Words.Unsalvagable.locName()));
             }
-        }
-
-        if (Screen.hasShiftDown() == false) {
-
-        } else {
-
-            if (gear.usesInstability()) {
-                event.getToolTip()
-                    .add(TooltipUtils.instability(gear));
-            }
-
         }
 
         if (gear.is_unique) {

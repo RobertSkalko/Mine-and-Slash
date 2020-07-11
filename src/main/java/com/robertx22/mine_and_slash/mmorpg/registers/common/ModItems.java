@@ -64,7 +64,6 @@ public class ModItems {
     public static List<RegistryObject<CurrencyItem>> currencies = new ArrayList<>();
 
     public static RegistryObject<CurrencyItem> ORB_OF_TRANSMUTATION = of(() -> new OrbOfTransmutationItem());
-    public static RegistryObject<CurrencyItem> GEM_OF_UNIQUE_HEAVEN = of(() -> new GemOfUniqueHeaven());
 
     public static RegistryObject<CurrencyItem> ORB_OF_DISORDER = of(() -> new OrbOfDisorder());
 

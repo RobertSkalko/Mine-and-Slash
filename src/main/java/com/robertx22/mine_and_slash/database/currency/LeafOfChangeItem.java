@@ -75,11 +75,6 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public int instabilityAddAmount() {
-        return 5;
-    }
-
-    @Override
     public ShapedRecipeBuilder getRecipe() {
         return shaped(ModItems.LEAF_OF_CHANGE.get())
             .key('#', SimpleMatItem.GOLDEN_ORB)

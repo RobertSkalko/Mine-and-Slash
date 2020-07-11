@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
+import com.robertx22.mine_and_slash.database.affixes.Affix;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
@@ -31,7 +31,7 @@ public class JewelData implements ITooltip, ICommonDataItem {
 
     public void insertIntoGear(GearItemData gear) {
 
-        AffixData socket = gear.getAllAffixes()
+        AffixData socket = gear.affixes.getAllAffixes()
             .stream()
             .filter(x -> x.affixType == affix.affixType && x.isSocketAndEmpty())
             .findFirst()
@@ -43,16 +43,16 @@ public class JewelData implements ITooltip, ICommonDataItem {
 
     public boolean canInsertInto(GearItemData gear) {
 
-        if (gear.containsAffix(affix.baseAffix)) {
+        if (gear.affixes.containsAffix(affix.baseAffix)) {
             return false;
         }
 
-        BaseAffix af = affix.getAffix();
+        Affix af = affix.getAffix();
         if (!af.meetsRequirements(new GearRequestedFor(gear))) {
             return false;
         }
 
-        return gear.getAllAffixes()
+        return gear.affixes.getAllAffixes()
             .stream()
             .anyMatch(x -> x.isSocketAndEmpty() && x.affixType == affix.affixType);
 
@@ -71,7 +71,7 @@ public class JewelData implements ITooltip, ICommonDataItem {
 
     public void randomize() {
 
-        this.affix = new AffixData(RandomUtils.roll(50) ? BaseAffix.Type.prefix : BaseAffix.Type.suffix);
+        this.affix = new AffixData(RandomUtils.roll(50) ? Affix.Type.prefix : Affix.Type.suffix);
 
         this.affix.baseAffix = SlashRegistry.Affixes()
             .getFilterWrapped(x -> x.type == affix.affixType)

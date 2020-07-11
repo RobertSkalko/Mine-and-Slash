@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem;
 
-import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
+import com.robertx22.mine_and_slash.database.affixes.Affix;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
@@ -26,12 +26,15 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     public String baseAffix;
 
     @Store
-    public BaseAffix.Type affixType;
+    public Integer tier = 10;
+
+    @Store
+    public Affix.Type affixType;
 
     @Store
     public boolean is_socket = false;
 
-    public AffixData(BaseAffix.Type type) {
+    public AffixData(Affix.Type type) {
         this.affixType = type;
     }
 
@@ -43,14 +46,14 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
         return this.is_socket && percent < 1;
     }
 
-    public BaseAffix.Type getAffixType() {
+    public Affix.Type getAffixType() {
         return affixType;
     }
 
     @Override
     public List<ITextComponent> GetTooltipString(TooltipInfo info, GearItemData gear) {
 
-        BaseAffix affix = BaseAffix();
+        Affix affix = BaseAffix();
 
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
@@ -60,7 +63,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
 
     }
 
-    public BaseAffix getAffix() {
+    public Affix getAffix() {
         return SlashRegistry.Affixes()
             .get(this.baseAffix);
     }
@@ -77,7 +80,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
 
     }
 
-    public final BaseAffix BaseAffix() {
+    public final Affix BaseAffix() {
         return SlashRegistry.Affixes()
             .get(baseAffix);
     }
@@ -90,30 +93,31 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
         }
 
         return this.BaseAffix()
-            .StatMods()
+            .getTierStats(tier)
             .stream()
             .map(x -> x.ToExactStat(percent))
             .collect(Collectors.toList());
 
     }
 
-    public void create(GearItemData gear, BaseAffix suffix) {
+    public void create(GearItemData gear, Affix suffix) {
         baseAffix = suffix.GUID();
+        this.tier = RandomUtils.weightedRandom(suffix.tierMap.values()).tier;
         RerollNumbers(gear);
     }
 
     @Override
     public void RerollFully(GearItemData gear) {
 
-        if (gear.getAllAffixes()
+        if (gear.affixes.getNumberOfAffixes() > 2 && gear.affixes.getAllAffixes()
             .stream()
             .filter(x -> x.is_socket)
             .count() < 3 && RandomUtils.roll(5)) {
             this.is_socket = true;
         } else {
 
-            BaseAffix affix = SlashRegistry.Affixes()
-                .getFilterWrapped(x -> x.type == getAffixType() && !gear.containsAffix(x))
+            Affix affix = SlashRegistry.Affixes()
+                .getFilterWrapped(x -> x.type == getAffixType() && !gear.affixes.containsAffix(x))
                 .random();
 
             this.create(gear, affix);

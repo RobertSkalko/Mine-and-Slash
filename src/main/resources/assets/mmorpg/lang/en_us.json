@@ -86,22 +86,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-	"mmorpg.affix.cruel": "Cruel",
-	"mmorpg.affix.firewep_dmg": "Scorched",
-	"mmorpg.affix.naturewep_dmg": "Poisoned",
-	"mmorpg.affix.of_brutality": "Of Brutality",
-	"mmorpg.affix.of_good_aim": "Of Good Aim",
-	"mmorpg.affix.of_precision": "Of Precision",
-	"mmorpg.affix.of_vampirism": "Of Vampirism",
-	"mmorpg.affix.thunderwep_dmg": "Sparkling",
-	"mmorpg.affix.tyrannical": "Tyrannical",
-	"mmorpg.affix.waterwep_dmg": "Chilled",
-
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 	"mmorpg.word.activation_time": "Activation Time",
@@ -373,6 +357,22 @@
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+	"mmorpg.affix.cruel": "Cruel",
+	"mmorpg.affix.fire_wep_dmg": "Scorched",
+	"mmorpg.affix.nature_wep_dmg": "Poisoned",
+	"mmorpg.affix.of_brutality": "Of Brutality",
+	"mmorpg.affix.of_good_aim": "Of Good Aim",
+	"mmorpg.affix.of_precision": "Of Precision",
+	"mmorpg.affix.of_vampirism": "Of Vampirism",
+	"mmorpg.affix.thunder_wep_dmg": "Sparkling",
+	"mmorpg.affix.tyrannical": "Tyrannical",
+	"mmorpg.affix.water_wep_dmg": "Chilled",
+
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
 
 	"mmorpg.advancement.title.addaffix": "Add Affix",
@@ -593,7 +593,6 @@
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
 
-	"item.mmorpg.currency.create_new_unique": "§cGem Of Unique Heaven",
 	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
 	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
 	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
@@ -651,7 +650,6 @@
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
 
-	"item.mmorpg.currency.create_new_unique.desc": "Transform unique (same tier)",
 	"item.mmorpg.currency.number_reroll.desc": "Re-rolls all numbers on a gear",
 	"item.mmorpg.currency.orb_of_transmutation.desc": "Transform Common Item",
 	"item.mmorpg.currency.randomize_affixes.desc": "Re-rolls All affixes",
@@ -707,7 +705,6 @@
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - LORE LINES",
 
-	"lore_0_item.currency.create_new_unique": "Don't want it? Transform it!",
 	"lore_0_item.currency.number_reroll": "Hopefully works better than the last time.",
 	"lore_0_item.currency.orb_of_transmutation": "Turn trash into treasure!",
 	"lore_0_item.currency.randomize_affixes": "There is always a better choice",

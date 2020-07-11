@@ -37,8 +37,7 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
     @Override
     public ItemStack ModifyItem(ItemStack stack, ItemStack Currency) {
         GearItemData gear = Gear.Load(stack);
-        gear.suffixes.forEach(x -> x.RerollFully(gear));
-        gear.prefixes.forEach(x -> x.RerollFully(gear));
+        gear.affixes.randomize(gear);
         Gear.Save(stack, gear);
 
         return stack;
@@ -72,11 +71,6 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
     @Override
     public String locDescForLangFile() {
         return "Re-rolls All affixes";
-    }
-
-    @Override
-    public int instabilityAddAmount() {
-        return 25;
     }
 
     @Override
