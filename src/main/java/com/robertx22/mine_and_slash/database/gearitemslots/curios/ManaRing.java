@@ -56,7 +56,7 @@ public class ManaRing extends BaseCurio {
 
     @Override
     public List<SlotTag> getTags() {
-        return null;
+        return Arrays.asList(SlotTag.Ring);
     }
 
     @Override

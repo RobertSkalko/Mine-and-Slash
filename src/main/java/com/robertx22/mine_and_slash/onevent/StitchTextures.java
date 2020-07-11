@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.onevent;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.NormalShield;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.client.renderer.texture.AtlasTexture;
@@ -19,6 +20,9 @@ public class StitchTextures {
 
             SlashRegistry.GearTypes()
                 .getList()
+                .stream()
+                .filter(x -> x.getTags()
+                    .contains(GearItemSlot.SlotTag.Shield))
                 .forEach(x -> event.addSprite(NormalShield.getResource(x)));
 
         }

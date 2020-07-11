@@ -389,7 +389,7 @@ public class Unit {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
 
         } else {
-            MobStatUtils.AddMobcStats(data);
+            MobStatUtils.AddMobcStats(data, entity);
             MobStatUtils.addAffixStats(data);
             MobStatUtils.worldMultiplierStats(entity.world, this);
 

@@ -89,14 +89,22 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.cruel": "Cruel",
+	"mmorpg.affix.fire_res": "Of the Drake",
 	"mmorpg.affix.fire_wep_dmg": "Scorched",
+	"mmorpg.affix.nature_res": "Of the Snake",
 	"mmorpg.affix.nature_wep_dmg": "Poisoned",
 	"mmorpg.affix.of_brutality": "Of Brutality",
 	"mmorpg.affix.of_good_aim": "Of Good Aim",
 	"mmorpg.affix.of_precision": "Of Precision",
 	"mmorpg.affix.of_vampirism": "Of Vampirism",
+	"mmorpg.affix.protective": "Protective",
+	"mmorpg.affix.reinforced": "Reinforced",
+	"mmorpg.affix.scaled": "Scaled",
+	"mmorpg.affix.thunder_res": "Of the Tempest",
 	"mmorpg.affix.thunder_wep_dmg": "Sparkling",
 	"mmorpg.affix.tyrannical": "Tyrannical",
+	"mmorpg.affix.virile": "Virile",
+	"mmorpg.affix.water_res": "Of the Yeti",
 	"mmorpg.affix.water_wep_dmg": "Chilled",
 
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
@@ -469,7 +477,7 @@
 	"mmorpg.stat.fire_focus": "Fire Focus",
 	"mmorpg.stat.fire_penetration": "Fire Penetration",
 	"mmorpg.stat.fire_resist": "Fire Resist",
-	"mmorpg.stat.fire_thorns_reflect": "Flame Thorns",
+	"mmorpg.stat.fire_thorns_reflect": "Fire Thorns",
 	"mmorpg.stat.fire_weapon_damage": "Fire Damage",
 	"mmorpg.stat.hammer_damage": "Hammer Damage",
 	"mmorpg.stat.health": "Health",
@@ -488,17 +496,17 @@
 	"mmorpg.stat.nature_focus": "Nature Focus",
 	"mmorpg.stat.nature_penetration": "Nature Penetration",
 	"mmorpg.stat.nature_resist": "Nature Resist",
-	"mmorpg.stat.nature_thorns_reflect": "Venom Thorns",
+	"mmorpg.stat.nature_thorns_reflect": "Poison Thorns",
 	"mmorpg.stat.nature_weapon_damage": "Nature Damage",
 	"mmorpg.stat.physical_thorns_reflect": "Physical Thorns",
 	"mmorpg.stat.physical_weapon_damage": "Physical Damage",
 	"mmorpg.stat.renamed_or_deleted_stat": "Unknown",
 	"mmorpg.stat.spell_damage": "Spell Damage",
 	"mmorpg.stat.spell_elemental_damage": "Elemental Skill Damage",
-	"mmorpg.stat.spell_fire_damage": "Flame Skill Damage",
-	"mmorpg.stat.spell_nature_damage": "Venom Skill Damage",
+	"mmorpg.stat.spell_fire_damage": "Fire Skill Damage",
+	"mmorpg.stat.spell_nature_damage": "Poison Skill Damage",
 	"mmorpg.stat.spell_thunder_damage": "Lightning Skill Damage",
-	"mmorpg.stat.spell_water_damage": "Frost Skill Damage",
+	"mmorpg.stat.spell_water_damage": "Ice Skill Damage",
 	"mmorpg.stat.staff_damage": "Staff Damage",
 	"mmorpg.stat.strength": "Strength",
 	"mmorpg.stat.sword_damage": "Sword Damage",
@@ -511,7 +519,7 @@
 	"mmorpg.stat.water_focus": "Water Focus",
 	"mmorpg.stat.water_penetration": "Water Penetration",
 	"mmorpg.stat.water_resist": "Water Resist",
-	"mmorpg.stat.water_thorns_reflect": "Frost Thorns",
+	"mmorpg.stat.water_thorns_reflect": "Ice Thorns",
 	"mmorpg.stat.water_weapon_damage": "Water Damage",
 
 "_comment": " [CATEGORY]: STATS - NAMES",
@@ -565,9 +573,26 @@
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
-	"mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
+	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
+	"item.mmorpg.jewelry.occult_ring": "§7Ring",
+	"item.mmorpg.offhand.armor_shield": "Shield",
+	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
+	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
+	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
+	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
+	"item.mmorpg.weapon.axe": "§7Axe",
+	"item.mmorpg.weapon.hunter_bow": "§7Bow",
+	"item.mmorpg.weapon.staff": "§7Staff",
+	"item.mmorpg.weapon.sword": "§7Sword",
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
@@ -592,23 +617,6 @@
 	"effect.mmorpg.wounds": "Wounds",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
-	"item.mmorpg.jewelry.occult_ring": "§7Ring",
-	"item.mmorpg.offhand.armor_shield": "Shield",
-	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
-	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
-	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
-	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
-	"item.mmorpg.weapon.axe": "§7Axe",
-	"item.mmorpg.weapon.hunter_bow": "§7Bow",
-	"item.mmorpg.weapon.staff": "§7Staff",
-	"item.mmorpg.weapon.sword": "§7Sword",
-
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
@@ -657,7 +665,7 @@
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
 
-	"mmorpg.uniques.weapon.water_ele_sword.desc": "Essence lies in water.",
+	"item.mmorpg.uniques.weapon.water_ele_sword.desc": "Essence lies in water.",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
 

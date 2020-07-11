@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.data_generation.JsonUtils;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
@@ -45,9 +46,23 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
     }
 
+    public static SlotRequirement everthingBesides(GearItemSlot.SlotFamily type) {
+        return new SlotRequirement(SlashRegistry.GearTypes()
+            .getFiltered(x -> x.slotTypeFamily() != type));
+
+    }
+
     public static SlotRequirement Of(GearItemSlot.SlotFamily type) {
         return new SlotRequirement(SlashRegistry.GearTypes()
             .getFiltered(x -> x.slotTypeFamily() == type));
+
+    }
+
+    public static SlotRequirement hasBaseStat(Stat stat) {
+        return new SlotRequirement(SlashRegistry.GearTypes()
+            .getFiltered(x -> x.BaseStats()
+                .stream()
+                .anyMatch(s -> s.stat == stat.GUID())));
 
     }
 

@@ -35,7 +35,7 @@ public class ArmorShield extends BaseOffHand {
 
     @Override
     public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Shield);
+        return Arrays.asList(SlotTag.Shield, SlotTag.Plate);
     }
 
     @Override

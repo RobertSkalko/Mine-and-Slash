@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.affixes.Affix;
+import com.robertx22.mine_and_slash.database.affixes.data.ArmorPrefixes;
 import com.robertx22.mine_and_slash.database.affixes.data.WeaponPrefixes;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
@@ -14,6 +15,7 @@ public class Prefixes implements IRandomDefault<Affix>, ISlashRegistryInit {
     public void registerAll() {
 
         new WeaponPrefixes().registerAll();
+        new ArmorPrefixes().registerAll();
 
     }
 

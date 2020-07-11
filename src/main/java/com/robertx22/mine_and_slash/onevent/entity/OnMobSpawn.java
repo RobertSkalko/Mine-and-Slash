@@ -48,6 +48,8 @@ public class OnMobSpawn {
             }
         }
 
+        entity.heal(entity.getMaxHealth());
+
     }
 
     public static void setupNewMobOnSpawn(LivingEntity entity) {
