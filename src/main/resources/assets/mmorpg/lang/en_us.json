@@ -86,6 +86,71 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+	"mmorpg.affix.cruel": "Cruel",
+	"mmorpg.affix.fire_wep_dmg": "Scorched",
+	"mmorpg.affix.nature_wep_dmg": "Poisoned",
+	"mmorpg.affix.of_brutality": "Of Brutality",
+	"mmorpg.affix.of_good_aim": "Of Good Aim",
+	"mmorpg.affix.of_precision": "Of Precision",
+	"mmorpg.affix.of_vampirism": "Of Vampirism",
+	"mmorpg.affix.thunder_wep_dmg": "Sparkling",
+	"mmorpg.affix.tyrannical": "Tyrannical",
+	"mmorpg.affix.water_wep_dmg": "Chilled",
+
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+	"mmorpg.advancement.title.addaffix": "Add Affix",
+	"mmorpg.advancement.title.currencybag": "Currency Bag",
+	"mmorpg.advancement.title.factorystation": "Factory Station",
+	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
+	"mmorpg.advancement.title.level": "Level",
+	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
+	"mmorpg.advancement.title.lootbag": "Loot Bag",
+	"mmorpg.advancement.title.mapbag": "Map Bag",
+	"mmorpg.advancement.title.mapdevice": "Map Device",
+	"mmorpg.advancement.title.masterbag": "Master Bag",
+	"mmorpg.advancement.title.modifystation": "Modify Station",
+	"mmorpg.advancement.title.repairstation": "Repair Station",
+	"mmorpg.advancement.title.salvagestation": "Salvage Station",
+	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
+
+"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
+
+
+"_comment": " [CATEGORY]: RARITIES - NAMES",
+
+	"mmorpg.mob_rarity.common": "Weak",
+	"mmorpg.mob_rarity.epic": "Elite",
+	"mmorpg.mob_rarity.legendary": "Champion",
+	"mmorpg.mob_rarity.minion": "Minion",
+	"mmorpg.mob_rarity.rare": "Veteran",
+	"mmorpg.mob_rarity.uncommon": "Rare",
+	"mmorpg.rarity.common": "Common",
+	"mmorpg.rarity.rare": "Rare",
+	"mmorpg.rarity.uncommon": "Uncommon",
+	"mmorpg.rarity.unique": "Unique",
+
+"_comment": " [CATEGORY]: RARITIES - NAMES",
+
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
+	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
+	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
+	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
+	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
+	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
+	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+
+"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 	"mmorpg.word.activation_time": "Activation Time",
@@ -357,42 +422,6 @@
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-	"mmorpg.affix.cruel": "Cruel",
-	"mmorpg.affix.fire_wep_dmg": "Scorched",
-	"mmorpg.affix.nature_wep_dmg": "Poisoned",
-	"mmorpg.affix.of_brutality": "Of Brutality",
-	"mmorpg.affix.of_good_aim": "Of Good Aim",
-	"mmorpg.affix.of_precision": "Of Precision",
-	"mmorpg.affix.of_vampirism": "Of Vampirism",
-	"mmorpg.affix.thunder_wep_dmg": "Sparkling",
-	"mmorpg.affix.tyrannical": "Tyrannical",
-	"mmorpg.affix.water_wep_dmg": "Chilled",
-
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-	"mmorpg.advancement.title.addaffix": "Add Affix",
-	"mmorpg.advancement.title.currencybag": "Currency Bag",
-	"mmorpg.advancement.title.factorystation": "Factory Station",
-	"mmorpg.advancement.title.firstadventuremap": "First Adventure Map!",
-	"mmorpg.advancement.title.level": "Level",
-	"mmorpg.advancement.title.levelpenalty": "Level Penalty",
-	"mmorpg.advancement.title.lootbag": "Loot Bag",
-	"mmorpg.advancement.title.mapbag": "Map Bag",
-	"mmorpg.advancement.title.mapdevice": "Map Device",
-	"mmorpg.advancement.title.masterbag": "Master Bag",
-	"mmorpg.advancement.title.modifystation": "Modify Station",
-	"mmorpg.advancement.title.repairstation": "Repair Station",
-	"mmorpg.advancement.title.salvagestation": "Salvage Station",
-	"mmorpg.advancement.title.welcomemineandslash": "Welcome to Mine and Slash!",
-
-"_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
-
-
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 	"mmorpg.stat.all_attributes": "All Attributes",
@@ -516,22 +545,6 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 
-"_comment": " [CATEGORY]: RARITIES - NAMES",
-
-	"mmorpg.mob_rarity.common": "Weak",
-	"mmorpg.mob_rarity.epic": "Elite",
-	"mmorpg.mob_rarity.legendary": "Champion",
-	"mmorpg.mob_rarity.minion": "Minion",
-	"mmorpg.mob_rarity.rare": "Veteran",
-	"mmorpg.mob_rarity.uncommon": "Rare",
-	"mmorpg.rarity.common": "Common",
-	"mmorpg.rarity.rare": "Rare",
-	"mmorpg.rarity.uncommon": "Uncommon",
-	"mmorpg.rarity.unique": "Unique",
-
-"_comment": " [CATEGORY]: RARITIES - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.armor_shield": "Plate Shield",
@@ -550,21 +563,11 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
-	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
-	"item.mmorpg.jewelry.occult_ring": "§7Ring",
-	"item.mmorpg.offhand.armor_shield": "Shield",
-	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
-	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
-	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
-	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
-	"item.mmorpg.weapon.axe": "§7Axe",
-	"item.mmorpg.weapon.hunter_bow": "§7Bow",
-	"item.mmorpg.weapon.staff": "§7Staff",
-	"item.mmorpg.weapon.sword": "§7Sword",
+	"mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
 
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
@@ -591,17 +594,21 @@
 "_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
-	"item.mmorpg.currency.number_reroll": "§cOrb Of Blessing",
-	"item.mmorpg.currency.orb_of_transmutation": "§cOrb Of Transmutation",
-	"item.mmorpg.currency.randomize_affixes": "§cOrb Of Disorder",
-	"item.mmorpg.currency.reroll_affix_numbers": "§cOrb of Turbulence",
-	"item.mmorpg.currency.reroll_primary_stats_numbers": "§cLeaf of Change",
-	"item.mmorpg.currency.reroll_unique_numbers": "§cOrb Of Unique Blessing",
-	"item.mmorpg.currency.stone_of_hope": "§cStone Of Hope",
+	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
+	"item.mmorpg.jewelry.occult_ring": "§7Ring",
+	"item.mmorpg.offhand.armor_shield": "Shield",
+	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
+	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
+	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
+	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
+	"item.mmorpg.weapon.axe": "§7Axe",
+	"item.mmorpg.weapon.hunter_bow": "§7Bow",
+	"item.mmorpg.weapon.staff": "§7Staff",
+	"item.mmorpg.weapon.sword": "§7Sword",
 
-"_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
@@ -646,6 +653,13 @@
 	"mmorpg.chat.youneedheartstone": "You need a hearthstone item to attune to this block.",
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
+
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
+
+	"mmorpg.uniques.weapon.water_ele_sword.desc": "Essence lies in water.",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
 
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",

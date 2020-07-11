@@ -20,6 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
+import java.util.Locale;
 
 public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocDesc,
     ISerializedRegistryEntry<IUnique>, ISerializable<IUnique> {
@@ -93,7 +94,8 @@ public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocD
 
     default String getGeneratedResourceFolderPath() {
         return "uniques/" + getGearSlot().slotTypeFamily()
-            .name() + "/";
+            .name()
+            .toLowerCase(Locale.ROOT) + "/";
     }
 
     @Override
@@ -109,10 +111,6 @@ public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocD
     @Override
     public default SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.UNIQUE_GEAR;
-    }
-
-    default Item getItemForRegistration() {
-        return getGearSlot().getItem();
     }
 
     default ResourceLocation getResourceLocForItem() {

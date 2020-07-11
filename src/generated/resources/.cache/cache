@@ -12,6 +12,7 @@ a55bb6c5a144fd4ea6fb6e9e171bf6a4695a6f01 assets\mmorpg\models\item\currency\ston
 9c0d3d8ba2a8a8e082810e7f2580ae99d4f2b22c assets\mmorpg\models\item\jewelry\occult_ring.json
 b1b8830ceba85cdd6f0f975449a77462aba0e6ef assets\mmorpg\models\item\jewels\blue.json
 b243fa54a0c4bb587568f35e977b11c609a36de7 assets\mmorpg\models\item\jewels\green.json
+5074b891ff26cc84bf4d7322c8260037af7ff530 assets\mmorpg\models\item\uniques\weapon\water_ele_sword.json
 c220940d1c24792659e8d9c3720af16c352ed576 assets\mmorpg\models\item\weapon\axe.json
 ec33b382e5bd38bfca17e0451414f958cfa7a955 assets\mmorpg\models\item\weapon\staff.json
 66438d443f96dc0f2b965e7c5024e707336fd8c5 assets\mmorpg\models\item\weapon\sword.json
@@ -43,6 +44,7 @@ b4d98c99e662fdc1d5e2836d4d41ef9d32db9fa6 data\mmorpg\compatible_items\mmorpg\arm
 438e05845194f15ea2562a15fc263853774d43b6 data\mmorpg\compatible_items\mmorpg\jewelry\life_necklace.json
 f6a0e9649013be6313f214b207f42ae45782d3f1 data\mmorpg\compatible_items\mmorpg\jewelry\occult_ring.json
 4920f84a955786e41de50267d52747b6ada5391b data\mmorpg\compatible_items\mmorpg\offhand\armor_shield.json
+7ce3922b90ec9d2ee88505ee8c7db2fc426065aa data\mmorpg\compatible_items\mmorpg\uniques\weapon\water_ele_sword.json
 d402c49f79973aa654f01c7eec9bc9fd3ccd8a24 data\mmorpg\compatible_items\mmorpg\weapon\axe.json
 a52ab71b1aa3dd76adb626f3b363d595e1527d50 data\mmorpg\compatible_items\mmorpg\weapon\crossbow.json
 17905262a1db7a0b56f43493519838cb4627ee83 data\mmorpg\compatible_items\mmorpg\weapon\hunter_bow.json
@@ -61,7 +63,7 @@ aa5d4bb3b33af5dca0869d1366f6c1c9bcf8daf0 data\mmorpg\mob_affix\of_ruin.json
 39958faad4c954b919111684709b8c4b9368e7ca data\mmorpg\rarity\gear\common.json
 dd19fbc539feedd130d75e49b8d7abc94c3f57d7 data\mmorpg\rarity\gear\rare.json
 bff9089f6d6e14b081f85aa76282ae40e6199034 data\mmorpg\rarity\gear\uncommon.json
-e620d8d084144b339481c41304619bc6f07d94c6 data\mmorpg\rarity\gear\unique.json
+99fe4e5117330d5370a81e730569b8f469b56e7c data\mmorpg\rarity\gear\unique.json
 d8dda39653258a9abfa28745dedd79f9a54eb421 data\mmorpg\recipes\currency\number_reroll.json
 79f1eed6d3bebee4cda1dadba3a308d9ae372199 data\mmorpg\recipes\currency\orb_of_transmutation.json
 568361ef543b1300a7b039ffd1d4373e496e934a data\mmorpg\recipes\currency\randomize_affixes.json
@@ -80,3 +82,4 @@ de7291cf751afdaf5977f72c904089d70963a87a data\mmorpg\tier\2.json
 a44b175d07c62d00a57b95f08e4b86fdec13ec90 data\mmorpg\tier\3.json
 243fb7baf1a3a6b49bffd95a9b2c6aade97974c4 data\mmorpg\tier\4.json
 84a286a3fe1f8c86e434fb8bd9c0fb3fdaf7a964 data\mmorpg\tier\5.json
+fb5bb7fced7aa67b3a760af6e48cf92721b41b7e data\mmorpg\unique_gears\sword\water_ele_sword.json

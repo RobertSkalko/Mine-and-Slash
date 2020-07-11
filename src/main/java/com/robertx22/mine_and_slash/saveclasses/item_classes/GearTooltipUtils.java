@@ -128,7 +128,8 @@ public class GearTooltipUtils {
 
             int i = 0;
             for (String desc : lores) {
-                ITextComponent comp = Styles.GREENCOMP();
+                ITextComponent comp = new SText(gear.getRarity()
+                    .textFormatting() + "");
 
                 if (i == 0) {
                     comp.appendText("'");

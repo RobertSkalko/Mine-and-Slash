@@ -69,7 +69,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         List<ITextComponent> list = new ArrayList<ITextComponent>();
 
         list.add(new SText(""));
-        list.add(getHeader());
+        //list.add(getHeader());
 
         GetAllStats(gear).forEach(x -> list.addAll(x.GetTooltipString(info)));
 

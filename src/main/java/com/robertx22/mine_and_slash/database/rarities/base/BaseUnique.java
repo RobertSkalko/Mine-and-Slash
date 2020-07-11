@@ -25,7 +25,7 @@ public abstract class BaseUnique implements Rarity {
 
     @Override
     public TextFormatting textFormatting() {
-        return TextFormatting.YELLOW;
+        return TextFormatting.RED;
     }
 
     @Override

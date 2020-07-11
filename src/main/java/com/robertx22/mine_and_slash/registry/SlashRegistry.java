@@ -255,6 +255,8 @@ public class SlashRegistry {
         new Prefixes().registerAll();
         new Suffixes().registerAll();
 
+        new UniqueGears().registerAll();
+
         new MobAffixes().registerAll();
 
         new LootCrates().registerAll();

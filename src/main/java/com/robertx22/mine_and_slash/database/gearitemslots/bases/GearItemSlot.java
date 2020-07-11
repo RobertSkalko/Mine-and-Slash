@@ -60,6 +60,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         Boots, Helmet, Pants, Chest,
         Cloth, Plate, Leather,
         Shield, Necklace, Ring,
+        ArmorStat, MagicShieldStat, EvasionStat,
         MageWeapon
     }
 

@@ -122,10 +122,8 @@ public class GearCreationUtils {
         data.gear_type = blueprint.gearItemSlot.get()
             .GUID();
 
-        if (type.canGetPrimaryStats()) {
-            data.baseStats = new BaseStatsData();
-            data.baseStats.RerollFully(data);
-        }
+        data.baseStats = new BaseStatsData();
+        data.baseStats.RerollFully(data);
 
         if (type.canGetAffixes()) {
             data.affixes.randomize(data);

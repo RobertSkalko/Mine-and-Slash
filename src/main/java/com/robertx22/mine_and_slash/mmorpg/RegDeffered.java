@@ -12,6 +12,7 @@ public class RegDeffered {
         ModTileEntities.REG.register(bus);
         ModContainers.REG.register(bus);
         ModItems.REG.register(bus);
+        UniqueGearItemRegister.REG.register(bus);
     }
 
 }

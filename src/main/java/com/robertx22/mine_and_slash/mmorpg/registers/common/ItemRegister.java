@@ -1,13 +1,11 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.items.bags.currency_bag.ItemCurrencyBag;
 import com.robertx22.mine_and_slash.items.misc.ItemCapacitor;
 import com.robertx22.mine_and_slash.items.misc.ItemIncreaseRarityNearestEntity;
 import com.robertx22.mine_and_slash.items.misc.ItemNewbieGearBag;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -39,11 +37,6 @@ public class ItemRegister {
 
         ItemCapacitor.ITEMS.values()
             .forEach((x) -> r.register(x));
-
-        for (IUnique uniq : SlashRegistry.UniqueGears()
-            .getSerializable()) {
-            r.register(uniq.getItemForRegistration());
-        }
 
     }
 

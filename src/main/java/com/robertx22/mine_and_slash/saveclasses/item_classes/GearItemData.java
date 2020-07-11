@@ -196,6 +196,11 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
                         .applyTextStyle(format));
             } else {
 
+                text.appendSibling(this.uniqueStats.getUnique()
+                    .locName());
+                text.appendText(" ")
+                    .appendSibling(GetBaseGearType().locName());
+
             }
         }
 

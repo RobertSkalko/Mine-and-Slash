@@ -46,7 +46,7 @@ public class ItemModelManager extends ItemModelProvider {
                         .equals(GearItemSlot.SlotFamily.Weapon)) {
                         handheld(x.getUniqueItem());
                     } else {
-                        generated(x.getItemForRegistration());
+                        generated(x.getUniqueItem());
                     }
                 }
             });
