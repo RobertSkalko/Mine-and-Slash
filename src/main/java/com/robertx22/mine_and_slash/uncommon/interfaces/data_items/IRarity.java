@@ -9,17 +9,19 @@ public interface IRarity<R extends Rarity> {
     public R getRarity();
 
     public default boolean isUnique() {
-        return this.getRarityRank() == -1;
+        return this.getRarityRank() == Unique;
     }
 
-    int Unique = -1;
     int Common = 0;
     int Uncommon = 1;
     int Rare = 2;
     int Epic = 3;
     int Legendary = 4;
 
-    int Highest = 2;
+    int Unique = 10;
+
+    int Lowest = Common;
+    int Highest = Unique;
 
     int Boss = -2;
     int Minion = -3;

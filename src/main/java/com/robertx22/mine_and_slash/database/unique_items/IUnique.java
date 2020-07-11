@@ -123,19 +123,19 @@ public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocD
 
     @Override
     default String locDescLangFileGUID() {
-        return getUniqueItem().getRegistryName()
+        return "item." + getUniqueItem().getRegistryName()
             .toString()
             + ".desc";
     }
 
     @Override
     public default String getPrefix() {
-        return "item.";
+        return "";
     }
 
     @Override
     default String locNameLangFileGUID() {
-        return getUniqueItem().getRegistryName()
+        return "item." + getUniqueItem().getRegistryName()
             .toString();
     }
 

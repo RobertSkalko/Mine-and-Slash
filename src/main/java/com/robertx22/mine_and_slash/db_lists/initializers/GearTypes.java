@@ -1,8 +1,9 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.HealthNecklace;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.ManaRing;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.LifeNecklace;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultNecklace;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultRing;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
@@ -29,8 +30,9 @@ public class GearTypes implements ISlashRegistryInit {
 
                     add(ArmorShield.INSTANCE);
 
-                    add(ManaRing.INSTANCE);
-                    add(HealthNecklace.INSTANCE);
+                    add(OccultRing.INSTANCE);
+                    add(LifeNecklace.INSTANCE);
+                    add(OccultNecklace.INSTANCE);
 
                     add(Bow.INSTANCE);
                     add(Staff.INSTANCE);

@@ -30,7 +30,7 @@ public abstract class StatNameRegex {
 
         String percent = "";
 
-        String plusminus = v1 > 0 ? "+" : "-";
+        String plusminus = v1 > 0 ? "+" : "";
 
         if (stat.UsesSecondValue()) {
             plusminus = "";
@@ -46,7 +46,7 @@ public abstract class StatNameRegex {
             str = str.replace(MIN_VALUE, NUMBER_COLOR + plusminus + v1s + percent + TEXT_COLOR);
             str = str.replace(MAX_VALUE, NUMBER_COLOR + plusminus + v2s + percent + TEXT_COLOR);
         } else {
-            str = str.replace(VALUE, NUMBER_COLOR + plusminus + v1s + percent + TextFormatting.RESET + TEXT_COLOR);
+            str = str.replace(VALUE, NUMBER_COLOR + "" + plusminus + v1s + percent + TextFormatting.RESET + TEXT_COLOR);
         }
 
         str = str.replace(NAME, CLOC.translate(stat.locName()));

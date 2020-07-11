@@ -5,10 +5,7 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.AffixData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatsData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.GearAffixesData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.UniqueStatsData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
@@ -53,6 +50,11 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     @Store
     public int rarity;
+
+    @Store
+    public int rare_prefix = -1;
+    @Store
+    public int rare_suffix = -1;
 
     @Store
     public boolean is_not_my_mod = false;
@@ -189,19 +191,23 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             }
         } else {
             if (!isUnique()) {
-                text.appendText("Rare Name")
-                    .appendText(" ");
-                text
-                    .appendSibling(GetBaseGearType().locName()
-                        .applyTextStyle(format));
-            } else {
+                Words prefix = RareItemAffixNames.getPrefix(this);
+                Words suffix = RareItemAffixNames.getSuffix(this);
 
+                if (prefix != null && suffix != null) {
+                    text.appendSibling(prefix.locName())
+                        .appendText(" ")
+                        .appendSibling(suffix.locName());
+                }
+
+            } else {
                 text.appendSibling(this.uniqueStats.getUnique()
                     .locName());
-                text.appendText(" ")
-                    .appendSibling(GetBaseGearType().locName());
 
             }
+
+            text.appendText(" ")
+                .appendSibling(GetBaseGearType().locName());
         }
 
         return text.appendText("]")

@@ -11,11 +11,11 @@ import net.minecraft.item.Item;
 import java.util.Arrays;
 import java.util.List;
 
-public class ManaRing extends BaseCurio {
+public class OccultRing extends BaseCurio {
 
-    public static GearItemSlot INSTANCE = new ManaRing();
+    public static GearItemSlot INSTANCE = new OccultRing();
 
-    private ManaRing() {
+    private OccultRing() {
 
     }
 

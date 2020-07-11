@@ -15,6 +15,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -44,6 +45,11 @@ public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsConta
         gear.GetBaseGearType()
             .BaseStats()
             .forEach(x -> percents.add(getMinMax(gear).random()));
+
+        gear.rare_prefix = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.prefixAny
+            .keySet()));
+        gear.rare_suffix = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.getSuffixMap(gear.GetBaseGearType())
+            .keySet()));
 
     }
 

@@ -6,7 +6,9 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.commands.suggestions.GearTypeSuggestions;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,7 +36,7 @@ public class GiveGear {
                                     .then(argument(
                                         "rarity",
                                         IntegerArgumentType.integer(
-                                            -1, 4)
+                                            IRarity.Lowest - 1, IRarity.Highest)
                                     )
                                         .then(argument(
                                             "amount",
@@ -91,7 +93,8 @@ public class GiveGear {
 
             GearBlueprint blueprint = new GearBlueprint(lvl);
             blueprint.unidentifiedPart.set(false);
-            if (rarity > -1) {
+
+            if (Rarities.Gears.has(rarity)) {
                 blueprint.rarity.setSpecificRarity(rarity);
             }
             if (!type.equals("random")) {

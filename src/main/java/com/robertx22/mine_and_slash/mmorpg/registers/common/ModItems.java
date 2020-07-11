@@ -4,8 +4,9 @@ import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.currency.*;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.HealthNecklace;
-import com.robertx22.mine_and_slash.database.gearitemslots.curios.ManaRing;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.LifeNecklace;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultNecklace;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultRing;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
@@ -56,8 +57,9 @@ public class ModItems {
     public static RegistryObject<Item> CROSSBOW = of(() -> new CrossbowItem(ItemUtils.getDefaultGearProperties()), Crossbow.INSTANCE);
     public static RegistryObject<Item> ARMOR_SHIELD = of(() -> new NormalShield(ArmorShield.INSTANCE), ArmorShield.INSTANCE);
 
-    public static RegistryObject<Item> HEALTH_NECKLACE = of(() -> new ItemNecklace(0), HealthNecklace.INSTANCE);
-    public static RegistryObject<Item> MANA_RING = of(() -> new ItemRing(0), ManaRing.INSTANCE);
+    public static RegistryObject<Item> HEALTH_NECKLACE = of(() -> new ItemNecklace(0), LifeNecklace.INSTANCE);
+    public static RegistryObject<Item> MANA_REG_NECKLACE = of(() -> new ItemNecklace(0), OccultNecklace.INSTANCE);
+    public static RegistryObject<Item> MANA_RING = of(() -> new ItemRing(0), OccultRing.INSTANCE);
 
     // todo register all gears like this.
 

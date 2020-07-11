@@ -31,10 +31,9 @@ public abstract class BaseBagItem extends Item {
 
     public abstract INamedContainerProvider getNamedContainer(ItemStack stack);
 
-    public int size = 9 * 6;
+    public int size = 9 * 2;
 
     public BaseBagItem(String name) {
-
         super(new ItemSingle().group(CreativeTabs.MyModTab));
 
     }

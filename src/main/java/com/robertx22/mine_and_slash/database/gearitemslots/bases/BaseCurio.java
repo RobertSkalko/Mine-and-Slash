@@ -19,6 +19,16 @@ public abstract class BaseCurio extends GearItemSlot {
     }
 
     @Override
+    public SlotFamily family() {
+        return SlotFamily.Jewelry;
+    }
+
+    @Override
+    public PlayStyle getPlayStyle() {
+        return PlayStyle.NONE;
+    }
+
+    @Override
     public int Weight() {
         return 750;
     }

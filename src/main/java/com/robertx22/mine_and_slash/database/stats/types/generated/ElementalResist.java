@@ -71,8 +71,7 @@ public class ElementalResist extends ElementalStat implements IStatEffects {
 
     @Override
     public String locNameForLangFile() {
-        return this.getElement()
-            .name() + " Resist";
+        return this.getElement().dmgName + " Resistance";
     }
 
 }

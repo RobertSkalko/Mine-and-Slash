@@ -24,6 +24,10 @@ public abstract class BaseRaritiesContainer<T extends Rarity> {
 
     }
 
+    public boolean has(int rar) {
+        return map.containsKey(rar);
+    }
+
     public void updateFromDatapack(List<T> rarities) {
 
         Preconditions.checkArgument(rarities.size() == map.size(), "Rarities can't be added or removed through datapacks. This is a hard limitation.");
