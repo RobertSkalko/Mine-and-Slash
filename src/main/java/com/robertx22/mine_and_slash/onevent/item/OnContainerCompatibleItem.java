@@ -18,6 +18,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class OnContainerCompatibleItem {
 
+    // this happens many times, all items must have a "is already generated" check.
     @SubscribeEvent
     public static void onEntityConstruct(AttachCapabilitiesEvent<ItemStack> event) {
 
@@ -29,7 +30,7 @@ public class OnContainerCompatibleItem {
                 return;
             }
 
-            if (stack.getItem() instanceof JewelItem) {
+            if (stack.getItem() instanceof JewelItem && !Jewel.has(stack)) {
                 JewelData jewel = new JewelData();
                 jewel.randomize();
                 Jewel.Save(stack, jewel);

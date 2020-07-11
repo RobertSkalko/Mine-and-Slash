@@ -85,7 +85,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
 
-        if (this.is_socket) {
+        if (this.isSocketAndEmpty()) {
             return Arrays.asList();
         }
 

@@ -18,6 +18,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.ArrayList;
@@ -78,12 +79,23 @@ public class GearTooltipUtils {
         MergedStats merged = new MergedStats(lvlstatsmerged, info);
         list.add(merged);
 
+        int n = 0;
         for (IGearPartTooltip part : list) {
             if (part != null) {
                 tip.addAll(part.GetTooltipString(info, gear));
+
+                if (n == list.size() - 1) {
+                    gear.getAllAffixes()
+                        .forEach(x -> {
+                            if (x.isSocketAndEmpty()) {
+                                tip.add(new SText(TextFormatting.YELLOW + "[Socket]"));
+                            }
+                        });
+                }
+
                 tip.add(new StringTextComponent(""));
             }
-
+            n++;
         }
 
         if (Screen.hasShiftDown()) {

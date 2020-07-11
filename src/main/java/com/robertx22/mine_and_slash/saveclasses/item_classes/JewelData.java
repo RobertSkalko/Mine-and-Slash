@@ -31,6 +31,14 @@ public class JewelData implements ITooltip, ICommonDataItem {
 
     public void insertIntoGear(GearItemData gear) {
 
+        AffixData socket = gear.getAllAffixes()
+            .stream()
+            .filter(x -> x.affixType == affix.affixType && x.isSocketAndEmpty())
+            .findFirst()
+            .get();
+
+        socket.percent = affix.percent;
+        socket.baseAffix = affix.baseAffix;
     }
 
     public boolean canInsertInto(GearItemData gear) {
@@ -44,19 +52,9 @@ public class JewelData implements ITooltip, ICommonDataItem {
             return false;
         }
 
-        if (affix.affixType == BaseAffix.Type.suffix) {
-            if (gear.suffixes != null) {
-                return gear.suffixes.stream()
-                    .anyMatch(x -> x.isSocketAndEmpty());
-            }
-        } else {
-            if (gear.prefixes != null) {
-                return gear.prefixes.stream()
-                    .anyMatch(x -> x.isSocketAndEmpty());
-            }
-        }
-
-        return false;
+        return gear.getAllAffixes()
+            .stream()
+            .anyMatch(x -> x.isSocketAndEmpty() && x.affixType == affix.affixType);
 
     }
 

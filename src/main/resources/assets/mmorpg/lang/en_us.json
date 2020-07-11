@@ -86,6 +86,22 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+	"mmorpg.affix.cruel": "Cruel",
+	"mmorpg.affix.firewep_dmg": "Scorched",
+	"mmorpg.affix.naturewep_dmg": "Poisoned",
+	"mmorpg.affix.of_brutality": "Of Brutality",
+	"mmorpg.affix.of_good_aim": "Of Good Aim",
+	"mmorpg.affix.of_precision": "Of Precision",
+	"mmorpg.affix.of_vampirism": "Of Vampirism",
+	"mmorpg.affix.thunderwep_dmg": "Sparkling",
+	"mmorpg.affix.tyrannical": "Tyrannical",
+	"mmorpg.affix.waterwep_dmg": "Chilled",
+
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 	"mmorpg.word.activation_time": "Activation Time",
@@ -355,22 +371,6 @@
 	"mmorpg.word.world_type": "World Type",
 
 "_comment": " [CATEGORY]: WORDS - NAMES",
-
-
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-	"mmorpg.affix.cruel": "Cruel",
-	"mmorpg.affix.firewep_dmg": "Scorched",
-	"mmorpg.affix.naturewep_dmg": "Poisoned",
-	"mmorpg.affix.of_brutality": "Of Brutality",
-	"mmorpg.affix.of_good_aim": "Of Good Aim",
-	"mmorpg.affix.of_precision": "Of Precision",
-	"mmorpg.affix.of_vampirism": "Of Vampirism",
-	"mmorpg.affix.thunderwep_dmg": "Sparkling",
-	"mmorpg.affix.tyrannical": "Tyrannical",
-	"mmorpg.affix.waterwep_dmg": "Chilled",
-
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
 "_comment": " [CATEGORY]: ADVANCEMENT TITLES - NAMES",
