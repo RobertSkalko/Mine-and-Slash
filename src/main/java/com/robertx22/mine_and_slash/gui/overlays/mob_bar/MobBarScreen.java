@@ -66,8 +66,7 @@ public class MobBarScreen extends AbstractGui {
                 if (data != null && data.getUnit() != null) {
                     int currentHp = (int) data.getUnit()
                         .getCurrentEffectiveHealth(en, data);
-                    int maxHP = (int) data.getUnit()
-                        .getMaxEffectiveHealth();
+                    int maxHP = (int) en.getMaxHealth();
                     int percent = Math.round((float) currentHp / (float) maxHP * 100);
 
                     int height = mc.mainWindow.getScaledHeight();

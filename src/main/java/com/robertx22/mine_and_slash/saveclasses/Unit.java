@@ -31,6 +31,9 @@ import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -437,6 +440,8 @@ public class Unit {
 
         }
 
+        addToVanillaHealth(entity);
+
         DirtyCheck newcheck = getDirtyCheck();
 
         if (old.isDirty(newcheck)) {
@@ -445,6 +450,25 @@ public class Unit {
             }
             MMORPG.sendToTracking(getUpdatePacketFor(entity, data), entity);
         }
+
+    }
+
+    private void addToVanillaHealth(LivingEntity en) {
+
+        float hp = getCreateStat(Health.getInstance()).getAverageValue();
+
+        AttributeModifier mod = new AttributeModifier(
+            UUID.fromString("e926df30-c376-11ea-87d0-0242ac130003"),
+            SharedMonsterAttributes.MAX_HEALTH.getName(),
+            hp,
+            AttributeModifier.Operation.ADDITION
+        );
+
+        IAttributeInstance atri = en.getAttribute(SharedMonsterAttributes.MAX_HEALTH);
+        if (atri.hasModifier(mod)) {
+            atri.removeModifier(mod);
+        }
+        atri.applyModifier(mod);
 
     }
 

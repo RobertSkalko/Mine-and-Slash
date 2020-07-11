@@ -85,10 +85,13 @@ public class MobStatUtils {
 
     }
 
-    public static void AddMobcStats(UnitData unitdata) {
+    public static void AddMobcStats(UnitData unitdata, LivingEntity en) {
 
         MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();
+
+        unit.getCreateStat(Health.getInstance())
+            .addFlat(en.getMaxHealth() * rar.HealthMultiplier());
 
         unit.getCreateStat(Armor.GUID)
             .addFlat(Armor.getInstance()

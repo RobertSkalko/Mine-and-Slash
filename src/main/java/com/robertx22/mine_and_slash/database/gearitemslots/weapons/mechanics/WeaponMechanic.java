@@ -53,5 +53,7 @@ public abstract class WeaponMechanic implements IGUID {
 
         data.multiplier = 1;
 
+        doNormalAttack(data);
+
     }
 }

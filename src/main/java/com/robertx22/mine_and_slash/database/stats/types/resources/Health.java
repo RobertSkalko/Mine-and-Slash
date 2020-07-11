@@ -59,10 +59,7 @@ public class Health extends Stat {
 
     public int CurrentValue(LivingEntity entity, Unit unit) {
 
-        float mult = entity.getHealth() / entity.getMaxHealth();
-
-        return (int) (mult * unit.healthData()
-            .getAverageValue());
+        return (int) entity.getHealth();
 
     }
 
