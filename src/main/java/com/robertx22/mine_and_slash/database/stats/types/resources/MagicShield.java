@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
 import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.MagicShieldEffect;
@@ -59,11 +57,6 @@ public class MagicShield extends Stat implements IStatEffects, ILocalStat {
     @Override
     public boolean IsPercent() {
         return false;
-    }
-
-    @Override
-    public boolean IsNativeToGearType(GearItemSlot slot) {
-        return slot.slotTypeFamily() == GearItemSlot.SlotFamily.Armor || slot.GUID() == ArmorShield.INSTANCE.GUID();
     }
 
     @Override

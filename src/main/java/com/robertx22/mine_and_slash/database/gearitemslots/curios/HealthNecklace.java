@@ -39,7 +39,7 @@ public class HealthNecklace extends BaseCurio {
     }
 
     @Override
-    public SlotFamily slotTypeFamily() {
+    public SlotFamily family() {
         return SlotFamily.Jewelry;
     }
 

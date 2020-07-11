@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.ElementalAttackDamageEffect;
@@ -58,11 +57,6 @@ public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalS
     @Override
     public String locDescLangFileGUID() {
         return Ref.MODID + ".stat_desc." + "ele_atk_dmg";
-    }
-
-    @Override
-    public boolean IsNativeToGearType(GearItemSlot slot) {
-        return slot.slotTypeFamily() == GearItemSlot.SlotFamily.Weapon;
     }
 
     @Override

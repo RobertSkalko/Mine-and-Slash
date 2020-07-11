@@ -15,6 +15,7 @@ import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class SlotRequirement extends BaseRequirement<SlotRequirement> {
@@ -48,14 +49,20 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
     public static SlotRequirement everthingBesides(GearItemSlot.SlotFamily type) {
         return new SlotRequirement(SlashRegistry.GearTypes()
-            .getFiltered(x -> x.slotTypeFamily() != type));
+            .getFiltered(x -> x.family() != type));
 
     }
 
     public static SlotRequirement Of(GearItemSlot.SlotFamily type) {
         return new SlotRequirement(SlashRegistry.GearTypes()
-            .getFiltered(x -> x.slotTypeFamily() == type));
+            .getFiltered(x -> x.family() == type));
 
+    }
+
+    public SlotRequirement plus(Predicate<GearItemSlot> pred) {
+        this.slots.addAll(SlashRegistry.GearTypes()
+            .getFilterWrapped(pred).list);
+        return this;
     }
 
     public static SlotRequirement hasBaseStat(Stat stat) {
@@ -123,30 +130,30 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
         ITextComponent comp = new SText(TextFormatting.RED + "");
 
         List<GearItemSlot> armors = SlashRegistry.GearTypes()
-            .getFiltered(x -> x.slotTypeFamily()
+            .getFiltered(x -> x.family()
                 .equals(GearItemSlot.SlotFamily.Armor));
         if (copy.containsAll(armors)) {
-            copy.removeIf(x -> x.slotTypeFamily()
+            copy.removeIf(x -> x.family()
                 .equals(GearItemSlot.SlotFamily.Armor));
             comp.appendText(" ")
                 .appendSibling(new SText("All Armors"));
         }
 
         List<GearItemSlot> weapons = SlashRegistry.GearTypes()
-            .getFiltered(x -> x.slotTypeFamily()
+            .getFiltered(x -> x.family()
                 .equals(GearItemSlot.SlotFamily.Weapon));
         if (copy.containsAll(weapons)) {
-            copy.removeIf(x -> x.slotTypeFamily()
+            copy.removeIf(x -> x.family()
                 .equals(GearItemSlot.SlotFamily.Weapon));
             comp.appendText(" ")
                 .appendSibling(new SText("All Weapons"));
         }
 
         List<GearItemSlot> jewerly = SlashRegistry.GearTypes()
-            .getFiltered(x -> x.slotTypeFamily()
+            .getFiltered(x -> x.family()
                 .equals(GearItemSlot.SlotFamily.Jewelry));
         if (copy.containsAll(jewerly)) {
-            copy.removeIf(x -> x.slotTypeFamily()
+            copy.removeIf(x -> x.family()
                 .equals(GearItemSlot.SlotFamily.Jewelry));
             comp.appendText(" ")
                 .appendSibling(new SText("All Jewerly"));

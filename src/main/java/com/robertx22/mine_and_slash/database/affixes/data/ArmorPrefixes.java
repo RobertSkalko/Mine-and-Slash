@@ -49,7 +49,9 @@ public class ArmorPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(6, 8, Health.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(4, 6, Health.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(2, 4, Health.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Armor))
+            .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Armor)
+                .plus(x -> x.family()
+                    .isJewelry()))
             .Prefix()
             .Build();
 

@@ -9,7 +9,7 @@ public abstract class BaseWeapon extends GearItemSlot {
     }
 
     @Override
-    public SlotFamily slotTypeFamily() {
+    public SlotFamily family() {
         return SlotFamily.Weapon;
     }
 

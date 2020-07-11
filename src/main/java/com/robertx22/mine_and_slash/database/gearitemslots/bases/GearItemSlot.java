@@ -31,7 +31,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     }
 
     public boolean isWeapon() {
-        return this.slotTypeFamily()
+        return this.family()
             .equals(SlotFamily.Weapon);
     }
 
@@ -68,7 +68,24 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         Weapon,
         Armor,
         Jewelry,
-        OffHand
+        OffHand;
+
+        public boolean isJewelry() {
+            return this == Jewelry;
+        }
+
+        public boolean isArmor() {
+            return this == Armor;
+        }
+
+        public boolean isWeapon() {
+            return this == Weapon;
+        }
+
+        public boolean isOffhand() {
+            return this == OffHand;
+        }
+
     }
 
     public WeaponMechanic getWeaponMechanic() {
@@ -136,7 +153,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
             } else if (slot.GUID()
                 .equals(Crossbow.INSTANCE.GUID())) {
                 bool = item instanceof CrossbowItem;
-            } else if (slot.slotTypeFamily()
+            } else if (slot.family()
                 .equals(SlotFamily.Jewelry)) {
                 bool = CuriosAPI.getCurioTags(item)
                     .stream()
@@ -177,7 +194,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return AutoLocGroup.Gear_Slots;
     }
 
-    public abstract SlotFamily slotTypeFamily();
+    public abstract SlotFamily family();
 
     public abstract List<SlotTag> getTags();
 

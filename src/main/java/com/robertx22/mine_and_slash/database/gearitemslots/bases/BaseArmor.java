@@ -8,7 +8,7 @@ public abstract class BaseArmor extends GearItemSlot {
     }
 
     @Override
-    public SlotFamily slotTypeFamily() {
+    public SlotFamily family() {
         return SlotFamily.Armor;
     }
 }

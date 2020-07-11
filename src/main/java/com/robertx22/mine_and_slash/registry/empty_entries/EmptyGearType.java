@@ -30,7 +30,7 @@ public class EmptyGearType extends GearItemSlot {
     }
 
     @Override
-    public SlotFamily slotTypeFamily() {
+    public SlotFamily family() {
         return null;
     }
 

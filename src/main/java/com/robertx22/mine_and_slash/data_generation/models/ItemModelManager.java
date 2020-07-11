@@ -42,7 +42,7 @@ public class ItemModelManager extends ItemModelProvider {
             .forEach(x -> {
                 if (x.getGearSlot() != Bow.INSTANCE && x.getGearSlot() != Crossbow.INSTANCE) {
                     if (x.getGearSlot()
-                        .slotTypeFamily()
+                        .family()
                         .equals(GearItemSlot.SlotFamily.Weapon)) {
                         handheld(x.getUniqueItem());
                     } else {
@@ -59,7 +59,7 @@ public class ItemModelManager extends ItemModelProvider {
                         .contains("cloth") || x.GUID()
                         .contains("leather")) {
                         //generated(i, itemTexture(i), overlay(i));
-                    } else if (x.slotTypeFamily()
+                    } else if (x.family()
                         .equals(GearItemSlot.SlotFamily.Weapon)) {
                         handheld(x.getItem());
                     } else {

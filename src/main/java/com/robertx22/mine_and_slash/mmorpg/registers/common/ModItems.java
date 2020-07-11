@@ -107,7 +107,7 @@ public class ModItems {
     }
 
     static RegistryObject<Item> of(Supplier<Item> c, GearItemSlot slot) {
-        RegistryObject<Item> wrap = REG.register(slot.slotTypeFamily()
+        RegistryObject<Item> wrap = REG.register(slot.family()
             .name()
             .toLowerCase(Locale.ROOT) + "/" + slot.GUID(), c);
         return wrap;

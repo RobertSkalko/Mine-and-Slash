@@ -93,7 +93,7 @@ public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocD
     }
 
     default String getGeneratedResourceFolderPath() {
-        return "uniques/" + getGearSlot().slotTypeFamily()
+        return "uniques/" + getGearSlot().family()
             .name()
             .toLowerCase(Locale.ROOT) + "/";
     }

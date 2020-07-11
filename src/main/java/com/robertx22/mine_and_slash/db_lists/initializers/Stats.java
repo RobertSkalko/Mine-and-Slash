@@ -57,7 +57,7 @@ public class Stats implements ISlashRegistryInit {
                     add(ReducedManaCost.getInstance());
                     add(FasterCastRate.getInstance());
 
-                    add(new AllAttributes());
+                    add(AllAttributes.getInstance());
                     add(new AllEleDmg());
                     add(SpellDamage.getInstance());
 

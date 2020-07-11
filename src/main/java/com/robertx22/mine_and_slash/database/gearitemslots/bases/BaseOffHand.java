@@ -14,7 +14,7 @@ public abstract class BaseOffHand extends GearItemSlot {
     }
 
     @Override
-    public SlotFamily slotTypeFamily() {
+    public SlotFamily family() {
         return SlotFamily.OffHand;
     }
 }

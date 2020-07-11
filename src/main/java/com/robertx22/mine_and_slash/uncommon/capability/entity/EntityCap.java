@@ -574,7 +574,7 @@ public class EntityCap {
                     return false;
                 }
                 if (gear.GetBaseGearType()
-                    .slotTypeFamily()
+                    .family()
                     .equals(GearItemSlot.SlotFamily.Weapon)) {
                     return true;
                 }

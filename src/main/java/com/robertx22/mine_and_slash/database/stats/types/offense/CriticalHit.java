@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.database.stats.types.offense;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.CriticalHitEffect;
@@ -60,11 +59,6 @@ public class CriticalHit extends Stat implements IStatEffects, ILocalStat {
     @Override
     public String locNameForLangFile() {
         return "Critical Strike Chance";
-    }
-
-    @Override
-    public boolean IsNativeToGearType(GearItemSlot slot) {
-        return slot.slotTypeFamily() == GearItemSlot.SlotFamily.Weapon;
     }
 
     private static class SingletonHolder {

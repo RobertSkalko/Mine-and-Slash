@@ -12,6 +12,13 @@ import java.util.List;
 
 public class AllAttributes extends Stat implements IPreCoreStat {
 
+    private AllAttributes() {
+    }
+
+    public static AllAttributes getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+
     @Override
     public StatGroup statGroup() {
         return StatGroup.CoreStat;
@@ -50,6 +57,10 @@ public class AllAttributes extends Stat implements IPreCoreStat {
     @Override
     public String GUID() {
         return "all_attributes";
+    }
+
+    private static class SingletonHolder {
+        private static final AllAttributes INSTANCE = new AllAttributes();
     }
 }
 

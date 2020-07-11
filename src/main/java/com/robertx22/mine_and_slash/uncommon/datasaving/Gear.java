@@ -37,7 +37,7 @@ public class Gear {
         if (MineAndSlashEvents.CollectGearStacksEvent.isStackValidGear(weapon)) {
             GearItemData wep = Gear.Load(weapon);
             if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
-                .slotTypeFamily()
+                .family()
                 .equals(GearItemSlot.SlotFamily.Weapon)) {
                 return wep;
             }

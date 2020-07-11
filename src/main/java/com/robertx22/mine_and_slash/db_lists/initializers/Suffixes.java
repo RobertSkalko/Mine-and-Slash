@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.affixes.Affix;
+import com.robertx22.mine_and_slash.database.affixes.data.JewelrySuffixes;
 import com.robertx22.mine_and_slash.database.affixes.data.NonWeaponSuffixes;
 import com.robertx22.mine_and_slash.database.affixes.data.WeaponSuffixes;
 import com.robertx22.mine_and_slash.db_lists.bases.IRandomDefault;
@@ -18,6 +19,7 @@ public class Suffixes implements IRandomDefault<Affix>, ISlashRegistryInit {
 
         new WeaponSuffixes().registerAll();
         new NonWeaponSuffixes().registerAll();
+        new JewelrySuffixes().registerAll();
 
     }
 

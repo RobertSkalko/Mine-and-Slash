@@ -44,7 +44,7 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
 
     @Override
     public String locDescForLangFile() {
-        return "Increases All DMG of that element, both spells and attacks";
+        return "Increases All dmg of that element, both spells and attacks";
     }
 
     @Override
@@ -64,8 +64,8 @@ public class ElementalDamageBonus extends ElementalStat implements IStatEffects 
 
     @Override
     public String locNameForLangFile() {
-        return "All " + this.getElement()
-            .name() + " Damage";
+        return this.getElement()
+            .dmgName + " Damage";
     }
 
 }
