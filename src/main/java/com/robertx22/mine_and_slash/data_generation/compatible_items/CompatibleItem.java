@@ -212,8 +212,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
             blueprint = new UniqueGearBlueprint(if_unique_random_up_to_tier);
         }
 
-        blueprint.gearItemSlot.set(this.item_type);
-
         GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.can_be_salvaged;
         gear.is_not_my_mod = true;

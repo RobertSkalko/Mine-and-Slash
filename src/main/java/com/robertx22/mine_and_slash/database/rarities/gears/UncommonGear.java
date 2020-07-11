@@ -34,7 +34,7 @@ public class UncommonGear extends BaseUncommon implements GearRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(30, 100);
+        return new MinMax(20, 100);
     }
 
     @Override

@@ -189,7 +189,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             }
         } else {
             if (!isUnique()) {
-                text.appendText("Test Rare Name")
+                text.appendText("Rare Name")
                     .appendText(" ");
                 text
                     .appendSibling(GetBaseGearType().locName()

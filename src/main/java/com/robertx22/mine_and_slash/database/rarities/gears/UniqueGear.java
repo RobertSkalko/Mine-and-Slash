@@ -25,7 +25,7 @@ public class UniqueGear extends BaseUnique implements GearRarity {
 
     @Override
     public MinMax uniqueStatPercents() {
-        return new MinMax(25, 100);
+        return new MinMax(0, 100);
     }
 
     @Override

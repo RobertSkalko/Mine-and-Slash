@@ -34,7 +34,7 @@ public class RareGear extends BaseRare implements GearRarity {
 
     @Override
     public MinMax StatPercents() {
-        return new MinMax(10, 100);
+        return new MinMax(0, 100);
     }
 
     @Override

@@ -63,7 +63,7 @@ aa5d4bb3b33af5dca0869d1366f6c1c9bcf8daf0 data\mmorpg\mob_affix\of_ruin.json
 39958faad4c954b919111684709b8c4b9368e7ca data\mmorpg\rarity\gear\common.json
 dd19fbc539feedd130d75e49b8d7abc94c3f57d7 data\mmorpg\rarity\gear\rare.json
 bff9089f6d6e14b081f85aa76282ae40e6199034 data\mmorpg\rarity\gear\uncommon.json
-99fe4e5117330d5370a81e730569b8f469b56e7c data\mmorpg\rarity\gear\unique.json
+abe45cc76589b02772d7a005dfdd58ca316a90df data\mmorpg\rarity\gear\unique.json
 d8dda39653258a9abfa28745dedd79f9a54eb421 data\mmorpg\recipes\currency\number_reroll.json
 79f1eed6d3bebee4cda1dadba3a308d9ae372199 data\mmorpg\recipes\currency\orb_of_transmutation.json
 568361ef543b1300a7b039ffd1d4373e496e934a data\mmorpg\recipes\currency\randomize_affixes.json
