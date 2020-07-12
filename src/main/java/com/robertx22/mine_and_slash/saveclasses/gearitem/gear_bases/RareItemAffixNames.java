@@ -122,7 +122,7 @@ public class RareItemAffixNames {
         }
         if (slot.getTags()
             .contains(GearItemSlot.SlotTag.Pants)) {
-            return shield;
+            return pants;
         }
 
         return defaults;

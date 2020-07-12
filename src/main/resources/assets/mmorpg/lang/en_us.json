@@ -95,6 +95,7 @@
 	"mmorpg.affix.fire_res": "Of the Drake",
 	"mmorpg.affix.fire_wep_dmg": "Scorched",
 	"mmorpg.affix.fire_wep_dmg_jewelry": "Smoking",
+	"mmorpg.affix.glimmering": "Glimmering",
 	"mmorpg.affix.nature_ele_dmg_jewelry": "Of Venom",
 	"mmorpg.affix.nature_res": "Of the Snake",
 	"mmorpg.affix.nature_wep_dmg": "Poisoned",
@@ -109,7 +110,9 @@
 	"mmorpg.affix.of_vampirism": "Of Vampirism",
 	"mmorpg.affix.protective": "Protective",
 	"mmorpg.affix.reinforced": "Reinforced",
+	"mmorpg.affix.resolute": "Resolute",
 	"mmorpg.affix.scaled": "Scaled",
+	"mmorpg.affix.seraphim": "Seraphim's",
 	"mmorpg.affix.shades": "Shade's",
 	"mmorpg.affix.thunder_ele_dmg_jewelry": "Of Electricity",
 	"mmorpg.affix.thunder_res": "Of the Tempest",
@@ -599,6 +602,31 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.buckler": "Buckler",
+	"mmorpg.gear_type.cloth_slippers": "Cloth Slippers",
+	"mmorpg.gear_type.crossbow": "Crossbow",
+	"mmorpg.gear_type.hunter_bow": "Hunter Bow",
+	"mmorpg.gear_type.life_necklace": "Life Necklace",
+	"mmorpg.gear_type.occult_necklace": "Occult Necklace",
+	"mmorpg.gear_type.occult_ring": "Occult Ring",
+	"mmorpg.gear_type.occultist_robes": "Occultist Robes",
+	"mmorpg.gear_type.plate_boots": "Iron Greaves",
+	"mmorpg.gear_type.plate_chest": "Iron Chestplate",
+	"mmorpg.gear_type.plate_helmet": "Iron Helmet",
+	"mmorpg.gear_type.plate_pants": "Iron Legguards",
+	"mmorpg.gear_type.silk_pants": "Silk Pants",
+	"mmorpg.gear_type.sorcerer_circlet": "Sorcerer Circlet",
+	"mmorpg.gear_type.spirit_shield": "Spirit Shield",
+	"mmorpg.gear_type.staff": "Staff",
+	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.tower_shield": "Tower Shield",
+
+"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
@@ -606,27 +634,6 @@
 	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-	"mmorpg.gear_type.axe": "Axe",
-	"mmorpg.gear_type.buckler": "Buckler",
-	"mmorpg.gear_type.crossbow": "Crossbow",
-	"mmorpg.gear_type.hunter_bow": "Hunter Bow",
-	"mmorpg.gear_type.life_necklace": "Life Necklace",
-	"mmorpg.gear_type.occult_necklace": "Occult Necklace",
-	"mmorpg.gear_type.occult_ring": "Occult Ring",
-	"mmorpg.gear_type.plate_boots": "Plate Boots",
-	"mmorpg.gear_type.plate_chest": "Plate Chest",
-	"mmorpg.gear_type.plate_helmet": "Plate Helm",
-	"mmorpg.gear_type.plate_pants": "Plate Greaves",
-	"mmorpg.gear_type.spirit_shield": "Spirit Shield",
-	"mmorpg.gear_type.staff": "Staff",
-	"mmorpg.gear_type.sword": "Sword",
-	"mmorpg.gear_type.tower_shield": "Tower Shield",
-
-"_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -637,10 +644,14 @@
 	"item.mmorpg.offhand.buckler": "Shield",
 	"item.mmorpg.offhand.spirit_shield": "Shield",
 	"item.mmorpg.offhand.tower_shield": "Shield",
+	"item.mmorpg.armor.cloth_slippers": "§7Cloth Slippers",
+	"item.mmorpg.armor.occultist_robes": "§7Cloth Shirt",
 	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
 	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
 	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
 	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
+	"item.mmorpg.armor.silk_pants": "§7Cloth Pants",
+	"item.mmorpg.armor.sorcerer_circlet": "§7Cloth Hat",
 	"item.mmorpg.weapon.axe": "§7Axe",
 	"item.mmorpg.weapon.hunter_bow": "§7Bow",
 	"item.mmorpg.weapon.staff": "§7Staff",

@@ -29,7 +29,7 @@ public class ClothMat extends BaseMat {
 
     @Override
     public String getName() {
-        return Ref.MODID + ":" + "leather";
+        return Ref.MODID + ":" + "cloth";
     }
 
     @Override

@@ -4,17 +4,25 @@ import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.currency.*;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothSlippers;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.OccultistRobes;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.SilkPants;
+import com.robertx22.mine_and_slash.database.gearitemslots.cloth.SorcererCirclet;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.LifeNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultRing;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Buckler;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.SpiritShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.TowerShield;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
-import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlatePants;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.IronChestplate;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.IronGreaves;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.IronHelmet;
+import com.robertx22.mine_and_slash.database.gearitemslots.plate.IronLegguards;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.*;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothBootsItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothChestItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothHelmetItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothPantsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateBootsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateChestItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateHelmetItem;
@@ -47,10 +55,15 @@ public class ModItems {
 
     public static DeferredRegister<Item> REG = new DeferredRegister<>(ForgeRegistries.ITEMS, Ref.MODID);
 
-    public static RegistryObject<Item> PLATE_BOOTS = of(() -> new PlateBootsItem(0), PlateBoots.INSTANCE);
-    public static RegistryObject<Item> PLATE_HELMET = of(() -> new PlateHelmetItem(0), PlateHelmet.INSTANCE);
-    public static RegistryObject<Item> PLATE_CHEST = of(() -> new PlateChestItem(0), PlateChest.INSTANCE);
-    public static RegistryObject<Item> PLATE_PANTS = of(() -> new PlatePantsItem(0), PlatePants.INSTANCE);
+    public static RegistryObject<Item> PLATE_BOOTS = of(() -> new PlateBootsItem(0), IronGreaves.INSTANCE);
+    public static RegistryObject<Item> PLATE_HELMET = of(() -> new PlateHelmetItem(0), IronHelmet.INSTANCE);
+    public static RegistryObject<Item> PLATE_CHEST = of(() -> new PlateChestItem(0), IronChestplate.INSTANCE);
+    public static RegistryObject<Item> PLATE_PANTS = of(() -> new PlatePantsItem(0), IronLegguards.INSTANCE);
+
+    public static RegistryObject<Item> CLOTH_SLIPPERS = of(() -> new ClothBootsItem(0), ClothSlippers.INSTANCE);
+    public static RegistryObject<Item> SORCERER_CIRCLET = of(() -> new ClothHelmetItem(0), SorcererCirclet.INSTANCE);
+    public static RegistryObject<Item> OCCULTIST_ROBES = of(() -> new ClothChestItem(0), OccultistRobes.INSTANCE);
+    public static RegistryObject<Item> SILK_PANTS = of(() -> new ClothPantsItem(0), SilkPants.INSTANCE);
 
     public static RegistryObject<Item> SWORD = of(() -> new ItemSword(0), Sword.INSTANCE);
     public static RegistryObject<Item> AXE = of(() -> new ItemAxe(0), Axe.INSTANCE);

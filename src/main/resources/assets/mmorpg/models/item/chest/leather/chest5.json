@@ -1,7 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "mmorpg:items/chest/leather/chest",
-		"layer1": "mmorpg:items/chest/leather/overlay"		
-    }
-}

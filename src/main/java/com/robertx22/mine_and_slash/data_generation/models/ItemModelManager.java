@@ -54,11 +54,7 @@ public class ItemModelManager extends ItemModelProvider {
             .forEach(x -> {
 
                 if (x != HunterBow.INSTANCE && x != Crossbow.INSTANCE && !x.isShield()) {
-                    if (x.GUID()
-                        .contains("cloth") || x.GUID()
-                        .contains("leather")) {
-                        //generated(i, itemTexture(i), overlay(i));
-                    } else if (x.family()
+                    if (x.family()
                         .equals(GearItemSlot.SlotFamily.Weapon)) {
                         handheld(x.getItem());
                     } else {
