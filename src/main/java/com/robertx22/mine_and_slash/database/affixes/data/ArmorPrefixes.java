@@ -29,7 +29,8 @@ public class ArmorPrefixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(4, 6, Armor.getInstance(), ModType.FLAT), new StatModifier(3, 5, Health.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(3, 4, Armor.getInstance(), ModType.FLAT), new StatModifier(2, 3, Health.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(2, 3, Armor.getInstance(), ModType.FLAT), new StatModifier(1, 2, Health.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.hasBaseStat(Armor.getInstance()))
+            .Req(SlotRequirement.hasBaseStat(Armor.getInstance())
+                .plus(x -> x.isShield()))
             .Prefix()
             .Build();
 
@@ -39,7 +40,8 @@ public class ArmorPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(20F, 25F, Armor.getInstance(), ModType.LOCAL_INCREASE))
             .tier(3, new StatModifier(10, 20F, Armor.getInstance(), ModType.LOCAL_INCREASE))
             .tier(3, new StatModifier(5, 10, Armor.getInstance(), ModType.LOCAL_INCREASE))
-            .Req(SlotRequirement.hasBaseStat(Armor.getInstance()))
+            .Req(SlotRequirement.hasBaseStat(Armor.getInstance())
+                .plus(x -> x.isShield()))
             .Prefix()
             .Build();
 
@@ -50,6 +52,7 @@ public class ArmorPrefixes implements ISlashRegistryInit {
             .tier(3, new StatModifier(4, 6, Health.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(2, 4, Health.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Armor)
+                .plus(x -> x.isShield())
                 .plus(x -> x.family()
                     .isJewelry()))
             .Prefix()

@@ -492,7 +492,6 @@
 	"mmorpg.stat.armor": "Armor",
 	"mmorpg.stat.armor_penetration": "Armor Penetration",
 	"mmorpg.stat.axe_damage": "Axe Damage",
-	"mmorpg.stat.block_strength": "Block Strength",
 	"mmorpg.stat.bonus_all_drops": "Bonus All Drops",
 	"mmorpg.stat.bonus_awaken_runeword_drops": "Bonus Awaken Runeword Drops",
 	"mmorpg.stat.bonus_blueprint_drops": "Bonus Blueprint Drops",
@@ -527,7 +526,6 @@
 	"mmorpg.stat.fire_focus": "Fire Focus",
 	"mmorpg.stat.fire_penetration": "Fire Penetration",
 	"mmorpg.stat.fire_resist": "Fire Resistance",
-	"mmorpg.stat.fire_thorns_reflect": "Fire Thorns",
 	"mmorpg.stat.fire_weapon_damage": "Fire Damage",
 	"mmorpg.stat.hammer_damage": "Hammer Damage",
 	"mmorpg.stat.health": "Health",
@@ -546,9 +544,7 @@
 	"mmorpg.stat.nature_focus": "Nature Focus",
 	"mmorpg.stat.nature_penetration": "Nature Penetration",
 	"mmorpg.stat.nature_resist": "Poison Resistance",
-	"mmorpg.stat.nature_thorns_reflect": "Poison Thorns",
-	"mmorpg.stat.nature_weapon_damage": "Nature Damage",
-	"mmorpg.stat.physical_thorns_reflect": "Physical Thorns",
+	"mmorpg.stat.nature_weapon_damage": "Poison Damage",
 	"mmorpg.stat.physical_weapon_damage": "Physical Damage",
 	"mmorpg.stat.renamed_or_deleted_stat": "Unknown",
 	"mmorpg.stat.spell_damage": "Spell Damage",
@@ -563,14 +559,12 @@
 	"mmorpg.stat.thunder_focus": "Thunder Focus",
 	"mmorpg.stat.thunder_penetration": "Thunder Penetration",
 	"mmorpg.stat.thunder_resist": "Lightning Resistance",
-	"mmorpg.stat.thunder_thorns_reflect": "Lightning Thorns",
-	"mmorpg.stat.thunder_weapon_damage": "Thunder Damage",
+	"mmorpg.stat.thunder_weapon_damage": "Lightning Damage",
 	"mmorpg.stat.trident_damage": "Trident Damage",
 	"mmorpg.stat.water_focus": "Water Focus",
 	"mmorpg.stat.water_penetration": "Water Penetration",
 	"mmorpg.stat.water_resist": "Ice Resistance",
-	"mmorpg.stat.water_thorns_reflect": "Ice Thorns",
-	"mmorpg.stat.water_weapon_damage": "Water Damage",
+	"mmorpg.stat.water_weapon_damage": "Ice Damage",
 
 "_comment": " [CATEGORY]: STATS - NAMES",
 
@@ -631,6 +625,24 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
+	"item.mmorpg.jewelry.occult_necklace": "§7Necklace",
+	"item.mmorpg.jewelry.occult_ring": "§7Ring",
+	"item.mmorpg.offhand.armor_shield": "Shield",
+	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
+	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
+	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
+	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
+	"item.mmorpg.weapon.axe": "§7Axe",
+	"item.mmorpg.weapon.hunter_bow": "§7Bow",
+	"item.mmorpg.weapon.staff": "§7Staff",
+	"item.mmorpg.weapon.sword": "§7Sword",
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: POTIONS - NAMES",
 
 	"effect.mmorpg.bravery": "Bravery",
@@ -653,24 +665,6 @@
 	"effect.mmorpg.wounds": "Wounds",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
-	"item.mmorpg.jewelry.occult_necklace": "§7Necklace",
-	"item.mmorpg.jewelry.occult_ring": "§7Ring",
-	"item.mmorpg.offhand.armor_shield": "Shield",
-	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
-	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
-	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
-	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
-	"item.mmorpg.weapon.axe": "§7Axe",
-	"item.mmorpg.weapon.hunter_bow": "§7Bow",
-	"item.mmorpg.weapon.staff": "§7Staff",
-	"item.mmorpg.weapon.sword": "§7Sword",
-
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",
@@ -745,8 +739,6 @@
 	"mmorpg.stat_desc.all_ele_dmg": "Increases All dmg of that element, both spells and attacks",
 	"mmorpg.stat_desc.armor": "Decreases damage taken by a percent",
 	"mmorpg.stat_desc.armor_penetration": "Ignores x armor",
-	"mmorpg.stat_desc.block_reflect": "When blocking an attack, damage the enemy",
-	"mmorpg.stat_desc.block_strength": "Blocks part of DMG when blocking, if all damage is blocked, attack is canceled",
 	"mmorpg.stat_desc.cdr": "Reduces spell cooldown.",
 	"mmorpg.stat_desc.critical_damage": "If Critical, multiply by x",
 	"mmorpg.stat_desc.critical_hit": "Chance to multiply damage by critical damage",

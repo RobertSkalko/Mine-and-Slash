@@ -53,6 +53,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return false;
     }
 
+    public boolean isShield() {
+        return getTags().contains(SlotTag.Shield);
+    }
+
     public abstract EquipmentSlotType getVanillaSlotType();
 
     public enum SlotTag {

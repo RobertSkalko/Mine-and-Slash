@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.ItemStack;
@@ -21,18 +20,13 @@ import net.minecraft.item.Items;
 import java.util.Arrays;
 import java.util.List;
 
-public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyItemEffect, IRenamed, IShapedRecipe {
+public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyItemEffect, IShapedRecipe {
     @Override
     public String GUID() {
         return "currency/orb_of_transmutation";
     }
 
     public static final String ID = Ref.MODID + ":currency/orb_of_transmutation";
-
-    @Override
-    public List<String> oldNames() {
-        return Arrays.asList(Ref.MODID + ":orb_of_transmutation");
-    }
 
     public OrbOfTransmutationItem() {
 
@@ -47,7 +41,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
         GearBlueprint gearPrint = new GearBlueprint();
         gearPrint.gearItemSlot.set(gear.gear_type);
-        gearPrint.rarity.minRarity = 1;
+        gearPrint.rarity.setSpecificRarity(IRarity.Uncommon);
 
         GearItemData newgear = gearPrint.createData();
         gear.WriteOverDataThatShouldStay(newgear);

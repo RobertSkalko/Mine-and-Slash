@@ -1,7 +1,5 @@
 package com.robertx22.mine_and_slash.a_libraries.curios;
 
-import com.robertx22.mine_and_slash.mmorpg.Ref;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,9 +21,6 @@ public class CurioClientSetup {
 
     @SubscribeEvent
     public static void stitchTextures(TextureStitchEvent.Pre evt) {
-
-        evt.addSprite(new ResourceLocation(Ref.MODID, "items/slots/bracelet"));
-        evt.addSprite(new ResourceLocation(Ref.MODID, "items/slots/salvage_bag"));
 
     }
 

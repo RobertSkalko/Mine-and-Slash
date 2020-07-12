@@ -361,10 +361,6 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @Override
     public boolean isSalvagable(SalvageContext context) {
 
-        if (context == SalvageContext.AUTO_SALVAGE_BAG) {
-            return this.isUnique() == false && this.isSalvagable;
-
-        }
         return this.isSalvagable;
     }
 

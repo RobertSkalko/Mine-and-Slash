@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
@@ -137,21 +136,19 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
 
     public C get(String guid) {
 
-        String id = IGUID.getformattedString(guid);
-
         tryLogEmptyRegistry();
 
-        if (id == null || id.isEmpty()) {
+        if (guid == null || guid.isEmpty()) {
             return getDefault();
         }
-        if (map.containsKey(id)) {
-            return map.get(id);
+        if (map.containsKey(guid)) {
+            return map.get(guid);
         } else {
             if (logMissingEntryOnAccess) {
-                if (accessorErrosAletedFor.contains(id) == false) {
+                if (accessorErrosAletedFor.contains(guid) == false) {
                     logRegistryError(
-                        "GUID Error: " + id + " of type: " + type.toString() + " doesn't exist. This is either " + "a removed/renamed old registry, or robertx22 forgot to include it in an " + "update" + ".");
-                    accessorErrosAletedFor.add(id);
+                        "GUID Error: " + guid + " of type: " + type.toString() + " doesn't exist. This is either " + "a removed/renamed old registry, or robertx22 forgot to include it in an " + "update" + ".");
+                    accessorErrosAletedFor.add(guid);
                 }
             }
             return getDefault();
@@ -179,14 +176,11 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public boolean isRegistered(C c) {
-        String id = c.formattedGUID();
-        return map.containsKey(id);
+        return isRegistered(c.GUID());
     }
 
     public boolean isRegistered(String guid) {
-        String id = IGUID.getformattedString(guid);
-
-        return map.containsKey(id);
+        return map.containsKey(guid);
     }
 
     // for mod addon devs if they want to overwrite some of my stuff

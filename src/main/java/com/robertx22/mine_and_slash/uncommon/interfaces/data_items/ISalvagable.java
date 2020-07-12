@@ -7,8 +7,8 @@ import net.minecraft.util.math.MathHelper;
 public interface ISalvagable extends IRarity {
 
     enum SalvageContext {
-        SALVAGE_STATION,
-        AUTO_SALVAGE_BAG
+        SALVAGE_STATION
+
     }
 
     ItemStack getSalvageResult(float salvageBonus);

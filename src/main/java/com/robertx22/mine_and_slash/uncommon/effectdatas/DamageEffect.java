@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamageSource;
-import com.robertx22.mine_and_slash.database.stats.effects.defense.BlockEffect;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
@@ -107,19 +106,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public float healthHealed;
     public float magicShieldRestored;
     public float manaRestored;
-    public boolean isFullyBlocked = false;
-    public boolean isPartiallyBlocked = false;
     public boolean isDodged = false;
 
-    public boolean isBlocked() {
-        if (isFullyBlocked || isPartiallyBlocked) {
-            return true;
-        }
-        return false;
-    }
-
     public boolean isDmgAllowed() {
-        return !isFullyBlocked && !isDodged;
+        return !isDodged;
     }
 
     public float getActualDamage() {
@@ -192,10 +182,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             }
         }
 
-        if (this.removeKnockback || this.isFullyBlocked) {
-            BlockEffect.applyKnockbackResist(target);
-        }
-
         if (!this.isDmgAllowed()) {
             cancelDamage();
             return;
@@ -215,10 +201,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
 
         MyDamageSource dmgsource = new MyDamageSource(ds, dmgSourceName, this.source, element, (int) number);
-
-        if (this.isPartiallyBlocked) {
-            dmgsource.setDamageBypassesArmor();
-        }
 
         if (isDodged) {
             cancelDamage();
@@ -274,8 +256,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 }
             }
         }
-
-        BlockEffect.removeKnockbackResist(target);
 
     }
 

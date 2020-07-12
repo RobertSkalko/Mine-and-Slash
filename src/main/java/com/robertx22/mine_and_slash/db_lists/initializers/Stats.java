@@ -6,7 +6,10 @@ import com.robertx22.mine_and_slash.database.stats.types.core_stats.AllAttribute
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
-import com.robertx22.mine_and_slash.database.stats.types.defense.*;
+import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
+import com.robertx22.mine_and_slash.database.stats.types.defense.ArmorPenetration;
+import com.robertx22.mine_and_slash.database.stats.types.defense.DamageShield;
+import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleDmg;
 import com.robertx22.mine_and_slash.database.stats.types.generated.*;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
@@ -49,7 +52,6 @@ public class Stats implements ISlashRegistryInit {
                     add(new ElementalResist(Elements.Physical));
                     add(new ElementalPenetration(Elements.Physical));
                     add(new ElementalFocus(Elements.Physical));
-                    add(new BlockReflect(Elements.Physical));
 
                     // generated
 
@@ -80,7 +82,6 @@ public class Stats implements ISlashRegistryInit {
                     add(MagicShieldRegen.getInstance());
                     // Resources
 
-                    add(new BlockStrength());
                     add(Armor.getInstance());
                     add(CriticalDamage.getInstance());
                     add(CriticalHit.getInstance());

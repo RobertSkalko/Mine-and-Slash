@@ -18,10 +18,6 @@ public interface ICommonDataItem<R extends Rarity> extends ITiered, ISalvagable,
 
     @Override
     default boolean isSalvagable(SalvageContext context) {
-        if (context == SalvageContext.AUTO_SALVAGE_BAG) {
-            return this.isUnique() == false;
-
-        }
         return true;
     }
 
