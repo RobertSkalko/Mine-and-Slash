@@ -6,8 +6,6 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
@@ -24,24 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LivingHurtUtils {
-
-    public static void stopMobInWallDamageInMaps(LivingHurtEvent event) {
-        try {
-            if (event.getSource()
-                .equals(DamageSource.IN_WALL)) {
-                if (event.getEntityLiving() instanceof PlayerEntity == false) {
-                    if (WorldUtils.isMapWorldClass(event.getEntityLiving().world)) {
-                        event.setCanceled(true);
-                        // kick them in random directions until they get out of a wall
-                        event.getEntityLiving()
-                            .knockBack(event.getEntityLiving(), 1, RandomUtils.RandomRange(-2, 2), RandomUtils.RandomRange(-2, 2));
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void damageCurioItems(LivingEntity en) {
 
