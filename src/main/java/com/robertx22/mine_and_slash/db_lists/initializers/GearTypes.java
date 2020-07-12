@@ -8,6 +8,10 @@ import com.robertx22.mine_and_slash.database.gearitemslots.cloth.SorcererCirclet
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.LifeNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultRing;
+import com.robertx22.mine_and_slash.database.gearitemslots.leather.HunterHood;
+import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherLeggings;
+import com.robertx22.mine_and_slash.database.gearitemslots.leather.RawhideBoots;
+import com.robertx22.mine_and_slash.database.gearitemslots.leather.WildTunic;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Buckler;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.SpiritShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.TowerShield;
@@ -33,6 +37,11 @@ public class GearTypes implements ISlashRegistryInit {
                     add(IronLegguards.INSTANCE);
                     add(IronHelmet.INSTANCE);
                     add(IronChestplate.INSTANCE);
+
+                    add(RawhideBoots.INSTANCE);
+                    add(LeatherLeggings.INSTANCE);
+                    add(HunterHood.INSTANCE);
+                    add(WildTunic.INSTANCE);
 
                     add(ClothSlippers.INSTANCE);
                     add(OccultistRobes.INSTANCE);

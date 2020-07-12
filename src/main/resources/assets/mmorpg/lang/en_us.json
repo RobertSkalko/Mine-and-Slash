@@ -602,6 +602,15 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
+	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
+	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.axe": "Axe",
@@ -609,6 +618,8 @@
 	"mmorpg.gear_type.cloth_slippers": "Cloth Slippers",
 	"mmorpg.gear_type.crossbow": "Crossbow",
 	"mmorpg.gear_type.hunter_bow": "Hunter Bow",
+	"mmorpg.gear_type.hunter_hood": "Hunter Hood",
+	"mmorpg.gear_type.leather_leggings": "Leather Leggings",
 	"mmorpg.gear_type.life_necklace": "Life Necklace",
 	"mmorpg.gear_type.occult_necklace": "Occult Necklace",
 	"mmorpg.gear_type.occult_ring": "Occult Ring",
@@ -617,23 +628,16 @@
 	"mmorpg.gear_type.plate_chest": "Iron Chestplate",
 	"mmorpg.gear_type.plate_helmet": "Iron Helmet",
 	"mmorpg.gear_type.plate_pants": "Iron Legguards",
+	"mmorpg.gear_type.rawhide_boots": "Rawhide Boots",
 	"mmorpg.gear_type.silk_pants": "Silk Pants",
 	"mmorpg.gear_type.sorcerer_circlet": "Sorcerer Circlet",
 	"mmorpg.gear_type.spirit_shield": "Spirit Shield",
 	"mmorpg.gear_type.staff": "Staff",
 	"mmorpg.gear_type.sword": "Sword",
 	"mmorpg.gear_type.tower_shield": "Tower Shield",
+	"mmorpg.gear_type.wild_tunic": "Wild Tunic",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
-	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
-	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -645,13 +649,17 @@
 	"item.mmorpg.offhand.spirit_shield": "Shield",
 	"item.mmorpg.offhand.tower_shield": "Shield",
 	"item.mmorpg.armor.cloth_slippers": "§7Cloth Slippers",
+	"item.mmorpg.armor.hunter_hood": "§7Leather Hat",
+	"item.mmorpg.armor.leather_leggings": "§7Leather Pants",
 	"item.mmorpg.armor.occultist_robes": "§7Cloth Shirt",
 	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
 	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
 	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
 	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
+	"item.mmorpg.armor.rawhide_boots": "§7Leather Boots",
 	"item.mmorpg.armor.silk_pants": "§7Cloth Pants",
 	"item.mmorpg.armor.sorcerer_circlet": "§7Cloth Hat",
+	"item.mmorpg.armor.wild_tunic": "§7Leather Chest",
 	"item.mmorpg.weapon.axe": "§7Axe",
 	"item.mmorpg.weapon.hunter_bow": "§7Bow",
 	"item.mmorpg.weapon.staff": "§7Staff",

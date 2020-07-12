@@ -331,7 +331,7 @@ public class Unit {
     }
 
     class DirtyCheck {
-        int hp;
+        public int hp;
 
         public boolean isDirty(DirtyCheck newcheck) {
 
@@ -440,11 +440,13 @@ public class Unit {
 
         }
 
-        addToVanillaHealth(entity);
+        DirtyCheck aftercalc = getDirtyCheck();
 
-        DirtyCheck newcheck = getDirtyCheck();
+        if (old.hp != aftercalc.hp) {
+            addToVanillaHealth(entity);
+        }
 
-        if (old.isDirty(newcheck)) {
+        if (old.isDirty(aftercalc)) {
             if (!Unit.shouldSendUpdatePackets((LivingEntity) entity)) {
                 return;
             }
@@ -467,6 +469,7 @@ public class Unit {
         );
 
         IAttributeInstance atri = en.getAttribute(SharedMonsterAttributes.MAX_HEALTH);
+
         if (atri.hasModifier(mod)) {
             atri.removeModifier(mod);
         }

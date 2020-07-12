@@ -11,6 +11,10 @@ import com.robertx22.mine_and_slash.database.gearitemslots.cloth.SorcererCirclet
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.LifeNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultRing;
+import com.robertx22.mine_and_slash.database.gearitemslots.leather.HunterHood;
+import com.robertx22.mine_and_slash.database.gearitemslots.leather.LeatherLeggings;
+import com.robertx22.mine_and_slash.database.gearitemslots.leather.RawhideBoots;
+import com.robertx22.mine_and_slash.database.gearitemslots.leather.WildTunic;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Buckler;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.SpiritShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.TowerShield;
@@ -23,6 +27,10 @@ import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothBootsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothChestItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothHelmetItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.cloth.ClothPantsItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherBootsItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherChestItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherHelmetItem;
+import com.robertx22.mine_and_slash.items.gearitems.armor.leather.LeatherPantsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateBootsItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateChestItem;
 import com.robertx22.mine_and_slash.items.gearitems.armor.plate.PlateHelmetItem;
@@ -64,6 +72,11 @@ public class ModItems {
     public static RegistryObject<Item> SORCERER_CIRCLET = of(() -> new ClothHelmetItem(0), SorcererCirclet.INSTANCE);
     public static RegistryObject<Item> OCCULTIST_ROBES = of(() -> new ClothChestItem(0), OccultistRobes.INSTANCE);
     public static RegistryObject<Item> SILK_PANTS = of(() -> new ClothPantsItem(0), SilkPants.INSTANCE);
+
+    public static RegistryObject<Item> HUNTER_HOOD = of(() -> new LeatherHelmetItem(0), HunterHood.INSTANCE);
+    public static RegistryObject<Item> LEATHER_LEGGINGS = of(() -> new LeatherPantsItem(0), LeatherLeggings.INSTANCE);
+    public static RegistryObject<Item> RAWHIDE_BOOTS = of(() -> new LeatherBootsItem(0), RawhideBoots.INSTANCE);
+    public static RegistryObject<Item> WILD_TUNIC = of(() -> new LeatherChestItem(0), WildTunic.INSTANCE);
 
     public static RegistryObject<Item> SWORD = of(() -> new ItemSword(0), Sword.INSTANCE);
     public static RegistryObject<Item> AXE = of(() -> new ItemAxe(0), Axe.INSTANCE);
