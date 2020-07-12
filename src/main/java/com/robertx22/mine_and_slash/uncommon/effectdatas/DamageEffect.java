@@ -216,11 +216,14 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             if (event != null) {
                 event.setAmount(dmg);
+                /*
                 event.getSource()
                     .setDamageBypassesArmor(); // this also sets it as unblockable.. AND STOPS ARMOR FROM BEING
                 // DAMAGED
                 event.getSource()
                     .setDamageIsAbsolute();
+
+                 */
                 DmgSourceUtils.markSourceAsMine(event.getSource());
 
             } else {

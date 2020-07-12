@@ -2,7 +2,8 @@ buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
         maven { url 'https://plugins.gradle.org/m2/' }
-        maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }		   			
+        maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url = 'https://dist.creeper.host/Sponge/maven' }
         jcenter()
         mavenCentral()
 
@@ -10,7 +11,8 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
         classpath 'com.google.code.gson:gson:2.8.5'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'		
+        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 
@@ -38,7 +40,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-			ideaModule = "${project.name}.main"
+            ideaModule = "${project.name}.main"
             //property 'forge.logging.console.level', 'debug'
 
             mods {
@@ -50,7 +52,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-			ideaModule = "${project.name}.main"
+            ideaModule = "${project.name}.main"
             //property 'forge.logging.console.level', 'debug'
 
             mods {
@@ -60,7 +62,7 @@ minecraft {
             }
         }
 
-		intellijClient { // run this in debug so hotswap doesnt randomly fail
+        intellijClient { // run this in debug so hotswap doesnt randomly fail
             parent runs.client
 
             ideaModule "${project.name}.main"
@@ -75,16 +77,16 @@ minecraft {
             //property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP,CORE,PULSARCONFIG'
 
             // Recommended logging level for the console
-            //property 'forge.logging.console.level', 'debug'           
-          
+            //property 'forge.logging.console.level', 'debug'
+
             mods {
                 mmorpg {
                     source sourceSets.main
                 }
             }
-			
-			  args '--mod', 'mmorpg', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
-			
+
+            args '--mod', 'mmorpg', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
+
         }
     }
 }
@@ -105,13 +107,13 @@ repositories {
         name = "jitpack"
         url "https://jitpack.io"
     }
-	
-	maven { url "https://maven.tterrag.com/" }
 
-    //maven { url = "https://maven2.tterrag.com" } // AutoSave	
-		
-    maven { url = "https://maven.theillusivec4.top/" } // curios  	
-	
+    maven { url "https://maven.tterrag.com/" }
+
+    //maven { url = "https://maven2.tterrag.com" } // AutoSave
+
+    maven { url = "https://maven.theillusivec4.top/" } // curios
+
     maven {
         name = "CurseForge"
         url = "https://minecraft.curseforge.com/api/maven/"
@@ -133,8 +135,9 @@ dependencies {
     minecraft "net.minecraftforge:forge:${version_forge}"
 
     compile fg.deobf("top.theillusivec4.curios:curios:${version_curios}") // Trinkets, REQUIRED
-    compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED	
-	
+    compile 'com.google.code.gson:gson:2.8.5' // Serialize More Difficult Configs, REQUIRED
+    compile 'org.spongepowered:mixin:0.8.1-SNAPSHOT'
+
 }
 
 
@@ -152,8 +155,10 @@ jar {
                     "Specification-Version"   : "${version}",
                     "Implementation-Title"    : "${mod_name}",
                     "Implementation-Version"  : "${version}",
-                    "Implementation-Vendor"   : "${mod_author}",
-                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
+                    "Implementation-Vendor"   : "${mod_author}",                   
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+					"MixinConnector"          : "com.robertx22.mine_and_slash.mmorpg.MixinConnector",
+					],)
     }
 
 
@@ -184,6 +189,24 @@ curseforge {
         changelogType = 'text'
         changelog = file('CHANGELOG.txt')
         addGameVersion("Forge")
-        relations(myCurseRelatons)      
+        relations(myCurseRelatons)
     }
+}
+
+repositories {
+    maven { url = 'https://files.minecraftforge.net/maven' }
+    jcenter()
+    mavenCentral()
+    maven { url = 'https://dist.creeper.host/Sponge/maven' }    
+
+    flatDir {
+        dirs 'deps'
+    }
+
+}
+
+apply plugin: 'org.spongepowered.mixin'
+
+mixin {
+    add sourceSets.main, "mmorpg.refmap.json"
 }
