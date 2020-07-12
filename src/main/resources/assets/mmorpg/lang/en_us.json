@@ -88,7 +88,9 @@
 
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
+	"mmorpg.affix.agile": "Agile",
 	"mmorpg.affix.cruel": "Cruel",
+	"mmorpg.affix.fawns": "Fawn's",
 	"mmorpg.affix.fire_ele_dmg_jewelry": "Of Embers",
 	"mmorpg.affix.fire_res": "Of the Drake",
 	"mmorpg.affix.fire_wep_dmg": "Scorched",
@@ -108,6 +110,7 @@
 	"mmorpg.affix.protective": "Protective",
 	"mmorpg.affix.reinforced": "Reinforced",
 	"mmorpg.affix.scaled": "Scaled",
+	"mmorpg.affix.shades": "Shade's",
 	"mmorpg.affix.thunder_ele_dmg_jewelry": "Of Electricity",
 	"mmorpg.affix.thunder_res": "Of the Tempest",
 	"mmorpg.affix.thunder_wep_dmg": "Sparkling",

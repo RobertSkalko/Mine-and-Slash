@@ -9,10 +9,18 @@ public class BasicStatRegex extends StatNameRegex {
     public String getStatNameRegex(ModType type, Stat stat) {
 
         if (type == ModType.FLAT) {
-            if (!stat.UsesSecondValue()) {
-                return VALUE + " " + NAME;
+
+            String adds = "";
+
+            if (stat.UsesSecondValue() || stat.isLocal()) {
+                adds = "Adds ";
+            }
+
+            if (stat.UsesSecondValue()) {
+
+                return adds + MIN_VALUE + " to " + MAX_VALUE + " " + NAME;
             } else {
-                return "Adds " + MIN_VALUE + " to " + MAX_VALUE + " " + NAME;
+                return adds + VALUE + " To " + NAME;
             }
         }
         if (type == ModType.LOCAL_INCREASE) {

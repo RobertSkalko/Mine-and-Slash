@@ -47,13 +47,13 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
     }
 
-    public static SlotRequirement everthingBesides(GearItemSlot.SlotFamily type) {
+    public static SlotRequirement everythingBesides(GearItemSlot.SlotFamily type) {
         return new SlotRequirement(SlashRegistry.GearTypes()
             .getFiltered(x -> x.family() != type));
 
     }
 
-    public static SlotRequirement Of(GearItemSlot.SlotFamily type) {
+    public static SlotRequirement of(GearItemSlot.SlotFamily type) {
         return new SlotRequirement(SlashRegistry.GearTypes()
             .getFiltered(x -> x.family() == type));
 
@@ -65,6 +65,11 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
         return this;
     }
 
+    public static SlotRequirement of(Predicate<GearItemSlot> pred) {
+        return new SlotRequirement(SlashRegistry.GearTypes()
+            .getFilterWrapped(pred).list);
+    }
+
     public static SlotRequirement hasBaseStat(Stat stat) {
         return new SlotRequirement(SlashRegistry.GearTypes()
             .getFiltered(x -> x.BaseStats()
@@ -73,7 +78,7 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
     }
 
-    public static SlotRequirement Of(GearItemSlot.SlotTag tag) {
+    public static SlotRequirement of(GearItemSlot.SlotTag tag) {
         return new SlotRequirement(SlashRegistry.GearTypes()
             .getFiltered(x -> x.getTags()
                 .contains(tag)));

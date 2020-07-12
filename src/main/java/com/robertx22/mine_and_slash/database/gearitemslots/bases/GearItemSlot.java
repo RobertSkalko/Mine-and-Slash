@@ -27,7 +27,20 @@ import java.util.List;
 public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashRegistryEntry<GearItemSlot> {
 
     public enum PlayStyle {
-        INT, DEX, STR, NONE
+        INT, DEX, STR, NONE;
+
+        public boolean isINT() {
+            return this == INT;
+        }
+
+        public boolean isDEX() {
+            return this == DEX;
+        }
+
+        public boolean isSTR() {
+            return this == STR;
+        }
+
     }
 
     public boolean isWeapon() {

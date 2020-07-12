@@ -24,7 +24,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(1, x -> Arrays.asList(new StatModifier(2, 3, 2, 3, new WeaponDamage(x), ModType.FLAT)))
             .tier(2, x -> Arrays.asList(new StatModifier(1, 3, 2, 3, new WeaponDamage(x), ModType.FLAT)))
             .tier(3, x -> Arrays.asList(new StatModifier(1, 1, 2, 2, new WeaponDamage(x), ModType.FLAT)))
-            .Req(SlotRequirement.Of(GearItemSlot.SlotFamily.Jewelry))
+            .Req(SlotRequirement.of(GearItemSlot.SlotFamily.Jewelry))
             .Weight(200)
             .Prefix()
             .Build();
