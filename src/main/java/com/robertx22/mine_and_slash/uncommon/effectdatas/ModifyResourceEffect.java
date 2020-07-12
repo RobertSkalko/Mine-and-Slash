@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
-import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
+import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 
 public class ModifyResourceEffect extends EffectData {
 

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.effects.defense;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.base.BaseStatEffect;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
+import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IArmorReducable;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IPenetrable;

@@ -32,17 +32,17 @@ public class AutoCompatibleItemConfig {
             .getLeft();
         TRASH = builder.comment("")
             .configure((ForgeConfigSpec.Builder b) -> {
-                return new AutoConfigItemType(0.03F, b, "TRASH", 40, IRarity.Common, IRarity.Rare);
+                return new AutoConfigItemType(0.03F, b, "TRASH", 40, IRarity.Common, IRarity.Uncommon);
             })
             .getLeft();
         NORMAL = builder.comment("")
             .configure((ForgeConfigSpec.Builder b) -> {
-                return new AutoConfigItemType(0.3F, b, "NORMAL", 80, IRarity.Common, IRarity.Legendary);
+                return new AutoConfigItemType(0.3F, b, "NORMAL", 80, IRarity.Uncommon, IRarity.Uncommon);
             })
             .getLeft();
         BEST = builder.comment("")
             .configure((ForgeConfigSpec.Builder b) -> {
-                return new AutoConfigItemType(0.8F, b, "BEST", Integer.MAX_VALUE, IRarity.Uncommon, IRarity.Highest);
+                return new AutoConfigItemType(0.8F, b, "BEST", Integer.MAX_VALUE, IRarity.Uncommon, IRarity.Rare);
             })
             .getLeft();
 

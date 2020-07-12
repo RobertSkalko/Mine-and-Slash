@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.effects.base;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
+import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.SpellStatsCalcEffect;
 
 public abstract class BaseSpellCalcEffect extends BaseStatEffect<SpellStatsCalcEffect> {

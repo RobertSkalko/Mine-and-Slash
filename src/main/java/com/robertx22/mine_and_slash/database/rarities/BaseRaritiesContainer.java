@@ -2,21 +2,17 @@ package com.robertx22.mine_and_slash.database.rarities;
 
 import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class BaseRaritiesContainer<T extends Rarity> {
 
-    public int minRarity;
-    public int maxRarity;
-
-    public List<T> normalRarities;
+    public T minRarity;
+    public T maxRarity;
 
     HashMap<Integer, T> map = new HashMap<>();
 
@@ -40,26 +36,16 @@ public abstract class BaseRaritiesContainer<T extends Rarity> {
     public final void onInit() {
         this.minRarity = getAllRarities().stream()
             .min((Comparator.comparingInt(Rarity::Rank)))
-            .get()
-            .Rank();
+            .get();
+
         this.maxRarity = getAllRarities().stream()
             .max((Comparator.comparingInt(Rarity::Rank)))
-            .get()
-            .Rank();
-
-        normalRarities = getMap().values()
-            .stream()
-            .filter(x -> x.Rank() >= IRarity.Common && x.Rank() <= IRarity.Highest)
-            .collect(Collectors.toList());
+            .get();
 
     }
 
     public final HashMap<Integer, T> getMap() {
         return map;
-    }
-
-    public List<T> getNormalRarities() {
-        return new ArrayList<>(normalRarities);
     }
 
     protected void add(T r) {
@@ -71,20 +57,28 @@ public abstract class BaseRaritiesContainer<T extends Rarity> {
         return new ArrayList<>(getMap().values());
     }
 
+    public T highest() {
+        return maxRarity;
+    }
+
+    public T lowest() {
+        return minRarity;
+    }
+
     public T random() {
-        return RandomUtils.weightedRandom(getNormalRarities());
+        return RandomUtils.weightedRandom(getAllRarities());
     }
 
     public final T get(int i) {
 
-        if (i < minRarity) {
+        if (i < minRarity.Rank()) {
             try {
                 throw new Exception("Rarity can't be less than " + minRarity);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        if (i > maxRarity) {
+        if (i > maxRarity.Rank()) {
             try {
                 throw new Exception("Rarity can't be more than " + maxRarity);
             } catch (Exception e) {

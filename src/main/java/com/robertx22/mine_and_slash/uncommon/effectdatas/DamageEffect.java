@@ -9,7 +9,7 @@ import com.robertx22.mine_and_slash.onevent.entity.damage.DmgSourceUtils;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
-import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
+import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;

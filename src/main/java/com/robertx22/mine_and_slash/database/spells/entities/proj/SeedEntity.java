@@ -4,7 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.entities.bases.EntityBasePro
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
-import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
+import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

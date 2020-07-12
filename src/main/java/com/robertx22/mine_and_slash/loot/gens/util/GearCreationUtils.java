@@ -7,9 +7,9 @@ import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.registry.FilterListWrap;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.BaseStatsData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.UniqueStatsData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.BaseStatsData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.UniqueStatsData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -124,6 +124,8 @@ public class GearCreationUtils {
 
         data.baseStats = new BaseStatsData();
         data.baseStats.RerollFully(data);
+
+        data.implicitStats.RerollFully(data);
 
         if (type.canGetAffixes()) {
             data.affixes.randomize(data);

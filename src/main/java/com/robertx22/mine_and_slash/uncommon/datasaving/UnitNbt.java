@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.datasaving;
 
+import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import net.minecraft.nbt.CompoundNBT;
 
 public class UnitNbt {

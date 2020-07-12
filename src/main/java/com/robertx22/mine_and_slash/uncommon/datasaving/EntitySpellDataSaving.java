@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.datasaving;
 
-import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
+import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -9,7 +9,8 @@ public class EntitySpellDataSaving {
     private static final String LOC = "entitySpellData";
 
     public static boolean has(ItemStack stack) {
-        return stack.hasTag() && stack.getTag().contains(LOC);
+        return stack.hasTag() && stack.getTag()
+            .contains(LOC);
     }
 
     public static EntitySpellData Load(CompoundNBT nbt) {

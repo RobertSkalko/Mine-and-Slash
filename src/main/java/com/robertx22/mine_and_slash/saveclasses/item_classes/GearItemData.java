@@ -5,11 +5,8 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.*;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.*;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
@@ -84,7 +81,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     @Override
     public int getRarityRank() {
-        return MathHelper.clamp(rarity, -1, IRarity.Highest);
+        return MathHelper.clamp(rarity, Rarities.Gears.lowest()
+            .Rank(), Rarities.Gears.highest()
+            .Rank());
     }
 
     @Override
@@ -105,6 +104,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     // Stats
     @Store
     public BaseStatsData baseStats = new BaseStatsData();
+    @Store
+    public ImplicitStatsData implicitStats = new ImplicitStatsData();
     @Store
     public GearAffixesData affixes = new GearAffixesData();
     @Store
@@ -238,6 +239,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
             IfNotNullAdd(baseStats, list);
         }
 
+        IfNotNullAdd(implicitStats, list);
+
         affixes.getAllAffixes()
             .forEach(x -> IfNotNullAdd(x, list));
 
@@ -282,6 +285,8 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
         affixes.getAllAffixes()
             .forEach(x -> IfNotNullAdd(x, list));
+
+        list.add(implicitStats);
 
         IfNotNullAdd(uniqueStats, list);
         return list;

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.spells.entities.trident;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ParticleRegister;
-import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
+import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GeometryUtils;

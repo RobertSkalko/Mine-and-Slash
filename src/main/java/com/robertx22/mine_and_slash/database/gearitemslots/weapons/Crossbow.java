@@ -44,7 +44,7 @@ public class Crossbow extends BaseWeapon {
 
     @Override
     public PlayStyle getPlayStyle() {
-        return PlayStyle.THIEF;
+        return PlayStyle.DEX;
     }
 
     @Override

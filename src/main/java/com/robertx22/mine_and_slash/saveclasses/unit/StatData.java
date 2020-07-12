@@ -1,7 +1,8 @@
-package com.robertx22.mine_and_slash.saveclasses;
+package com.robertx22.mine_and_slash.saveclasses.unit;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;

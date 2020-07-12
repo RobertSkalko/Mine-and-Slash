@@ -7,7 +7,9 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.LifeNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultRing;
-import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.Buckler;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.SpiritShield;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.TowerShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateBoots;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateChest;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.PlateHelmet;
@@ -53,9 +55,11 @@ public class ModItems {
     public static RegistryObject<Item> SWORD = of(() -> new ItemSword(0), Sword.INSTANCE);
     public static RegistryObject<Item> AXE = of(() -> new ItemAxe(0), Axe.INSTANCE);
     public static RegistryObject<Item> STAFF = of(() -> new ItemStaff(0), Staff.INSTANCE);
-    public static RegistryObject<Item> BOW = of(() -> new ItemBow(0), Bow.INSTANCE);
+    public static RegistryObject<Item> BOW = of(() -> new ItemBow(0), HunterBow.INSTANCE);
     public static RegistryObject<Item> CROSSBOW = of(() -> new CrossbowItem(ItemUtils.getDefaultGearProperties()), Crossbow.INSTANCE);
-    public static RegistryObject<Item> ARMOR_SHIELD = of(() -> new NormalShield(ArmorShield.INSTANCE), ArmorShield.INSTANCE);
+    public static RegistryObject<Item> TOWER_SHIELD = of(() -> new NormalShield(TowerShield.INSTANCE), TowerShield.INSTANCE);
+    public static RegistryObject<Item> SPIRIT_SHIELD = of(() -> new NormalShield(SpiritShield.INSTANCE), SpiritShield.INSTANCE);
+    public static RegistryObject<Item> BUCKLER = of(() -> new NormalShield(Buckler.INSTANCE), Buckler.INSTANCE);
 
     public static RegistryObject<Item> HEALTH_NECKLACE = of(() -> new ItemNecklace(0), LifeNecklace.INSTANCE);
     public static RegistryObject<Item> MANA_REG_NECKLACE = of(() -> new ItemNecklace(0), OccultNecklace.INSTANCE);

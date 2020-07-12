@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
-import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
+import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityFinder;
 import net.minecraft.block.Block;

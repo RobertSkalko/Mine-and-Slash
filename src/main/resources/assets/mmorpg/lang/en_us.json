@@ -147,7 +147,6 @@
 	"mmorpg.mob_rarity.common": "Weak",
 	"mmorpg.mob_rarity.epic": "Elite",
 	"mmorpg.mob_rarity.legendary": "Champion",
-	"mmorpg.mob_rarity.minion": "Minion",
 	"mmorpg.mob_rarity.rare": "Veteran",
 	"mmorpg.mob_rarity.uncommon": "Rare",
 	"mmorpg.rarity.common": "Common",
@@ -608,8 +607,8 @@
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
-	"mmorpg.gear_type.armor_shield": "Plate Shield",
 	"mmorpg.gear_type.axe": "Axe",
+	"mmorpg.gear_type.buckler": "Buckler",
 	"mmorpg.gear_type.crossbow": "Crossbow",
 	"mmorpg.gear_type.hunter_bow": "Hunter Bow",
 	"mmorpg.gear_type.life_necklace": "Life Necklace",
@@ -619,10 +618,32 @@
 	"mmorpg.gear_type.plate_chest": "Plate Chest",
 	"mmorpg.gear_type.plate_helmet": "Plate Helm",
 	"mmorpg.gear_type.plate_pants": "Plate Greaves",
+	"mmorpg.gear_type.spirit_shield": "Spirit Shield",
 	"mmorpg.gear_type.staff": "Staff",
 	"mmorpg.gear_type.sword": "Sword",
+	"mmorpg.gear_type.tower_shield": "Tower Shield",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
+	"item.mmorpg.jewelry.occult_necklace": "§7Necklace",
+	"item.mmorpg.jewelry.occult_ring": "§7Ring",
+	"item.mmorpg.offhand.buckler": "Shield",
+	"item.mmorpg.offhand.spirit_shield": "Shield",
+	"item.mmorpg.offhand.tower_shield": "Shield",
+	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
+	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
+	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
+	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
+	"item.mmorpg.weapon.axe": "§7Axe",
+	"item.mmorpg.weapon.hunter_bow": "§7Bow",
+	"item.mmorpg.weapon.staff": "§7Staff",
+	"item.mmorpg.weapon.sword": "§7Sword",
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
@@ -647,24 +668,6 @@
 	"effect.mmorpg.wounds": "Wounds",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
-
-
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
-	"item.mmorpg.jewelry.occult_necklace": "§7Necklace",
-	"item.mmorpg.jewelry.occult_ring": "§7Ring",
-	"item.mmorpg.offhand.armor_shield": "Shield",
-	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
-	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
-	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
-	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
-	"item.mmorpg.weapon.axe": "§7Axe",
-	"item.mmorpg.weapon.hunter_bow": "§7Bow",
-	"item.mmorpg.weapon.staff": "§7Staff",
-	"item.mmorpg.weapon.sword": "§7Sword",
-
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",

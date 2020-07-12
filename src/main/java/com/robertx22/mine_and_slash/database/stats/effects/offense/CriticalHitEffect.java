@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.effects.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.base.BaseAnyEffect;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
+import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.ICrittable;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.IPreCoreStat;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
+import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 

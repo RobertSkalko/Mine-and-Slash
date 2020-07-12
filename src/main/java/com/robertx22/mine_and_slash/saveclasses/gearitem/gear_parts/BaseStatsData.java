@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.saveclasses.gearitem;
+package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -6,10 +6,7 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IStatsContainer;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
@@ -127,7 +124,7 @@ public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsConta
 
     @Override
     public Part getPart() {
-        return Part.PRIMARY_STATS;
+        return Part.BASE_STATS;
     }
 
     @Override

@@ -1,8 +1,8 @@
-package com.robertx22.mine_and_slash.database.gearitemslots.plate;
+package com.robertx22.mine_and_slash.database.gearitemslots.offhand;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
@@ -11,18 +11,16 @@ import net.minecraft.item.Item;
 import java.util.Arrays;
 import java.util.List;
 
-public class PlateChest extends BaseChest {
-    public static GearItemSlot INSTANCE = new PlateChest();
+public class TowerShield extends BaseOffHand {
+    public static GearItemSlot INSTANCE = new TowerShield();
 
-    private PlateChest() {
+    private TowerShield() {
 
     }
 
     @Override
     public List<StatModifier> BaseStats() {
-        return Arrays.asList(
-            new StatModifier(30, 100, Armor.getInstance(), ModType.FLAT)
-        );
+        return Arrays.asList(new StatModifier(20, 80, Armor.getInstance(), ModType.FLAT));
     }
 
     @Override
@@ -31,28 +29,27 @@ public class PlateChest extends BaseChest {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Plate, SlotTag.Chest);
-    }
-
-    @Override
-    public Item getItem() {
-        return ModItems.PLATE_CHEST.get();
-    }
-
-    @Override
-    public String GUID() {
-        return "plate_chest";
-    }
-
-    @Override
     public PlayStyle getPlayStyle() {
         return PlayStyle.STR;
     }
 
     @Override
-    public String locNameForLangFile() {
-        return "Plate Chest";
+    public List<SlotTag> getTags() {
+        return Arrays.asList(SlotTag.Shield, SlotTag.Plate);
     }
 
+    @Override
+    public Item getItem() {
+        return ModItems.TOWER_SHIELD.get();
+    }
+
+    @Override
+    public String GUID() {
+        return "tower_shield";
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Tower Shield";
+    }
 }

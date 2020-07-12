@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.entities.bases;
 
-import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
+import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -34,8 +34,8 @@ public abstract class BaseInvisibleEntity extends Entity implements IMyRenderAsI
     public void tick() {
         if (this.spellData == null || this.spellData.getCaster(world) == null) {
             Log.info(
-                    "Removing spell entity because data or caster is null. This happens sometimes and is normal, i'm " +
-                            "just logging to see how often it happens.");
+                "Removing spell entity because data or caster is null. This happens sometimes and is normal, i'm " +
+                    "just logging to see how often it happens.");
             this.remove();
         } else {
             try {

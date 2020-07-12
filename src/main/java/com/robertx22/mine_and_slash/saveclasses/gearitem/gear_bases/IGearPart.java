@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 public interface IGearPart {
 
     public enum Part {
-        AFFIX, PRIMARY_STATS, SECONDARY_STATS, UNIQUE_STATS, OTHER;
+        AFFIX, BASE_STATS, IMPLICIT_STATS, UNIQUE_STATS, OTHER;
     }
 
     Part getPart();

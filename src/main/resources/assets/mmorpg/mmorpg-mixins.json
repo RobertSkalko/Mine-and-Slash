@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "mmorpg.refmap.json",
   "mixins": [
-    "ArmorMixin"
+    "LivingEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

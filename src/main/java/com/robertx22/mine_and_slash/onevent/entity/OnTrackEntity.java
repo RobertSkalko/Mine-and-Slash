@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

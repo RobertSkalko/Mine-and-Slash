@@ -6,7 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.nature.NatureB
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.potion_effects.bases.OnTickAction;
-import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
+import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ParticleUtils;
 import net.minecraft.particles.ParticleTypes;

@@ -20,13 +20,13 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
 
         //base ones
 
-        c.base(Health.getInstance(), 25);
-        c.base(HealthRegen.getInstance(), 1);
-        c.base(MagicShieldRegen.getInstance(), 1.5F);
+        c.base(Health.getInstance(), 0);
+        c.base(HealthRegen.getInstance(), 0.05);
+        c.base(MagicShieldRegen.getInstance(), 0.05F);
         c.base(CriticalHit.getInstance(), 1);
         c.base(CriticalDamage.getInstance(), 0);
-        c.base(Mana.getInstance(), 100);
-        c.base(ManaRegen.getInstance(), 3);
+        c.base(Mana.getInstance(), 20);
+        c.base(ManaRegen.getInstance(), 0.5F);
 
         return c;
 

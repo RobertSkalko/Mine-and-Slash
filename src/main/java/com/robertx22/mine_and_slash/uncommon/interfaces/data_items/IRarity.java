@@ -20,10 +20,4 @@ public interface IRarity<R extends Rarity> {
 
     int Unique = 10;
 
-    int Lowest = Common;
-    int Highest = Unique;
-
-    int Boss = -2;
-    int Minion = -3;
-
 }

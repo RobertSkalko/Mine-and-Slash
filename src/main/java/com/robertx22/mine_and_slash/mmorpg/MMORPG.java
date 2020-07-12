@@ -30,6 +30,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -54,6 +55,13 @@ public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
     public static boolean RUN_DEV_TOOLS = true;
+    public static boolean RUN_MIXIN_LOGS = false;
+
+    public static void mixinLog(String str) {
+        if (RUN_MIXIN_LOGS) {
+            System.out.println(str);
+        }
+    }
 
     public static boolean statEffectDebuggingEnabled() {
         return false && RUN_DEV_TOOLS;
@@ -177,6 +185,8 @@ public class MMORPG {
 
     }
 
+    static boolean regDefault = true;
+
     @SubscribeEvent
     public static void onServerStarted(FMLServerStartedEvent event) {
 
@@ -190,6 +200,16 @@ public class MMORPG {
             .forEach(x -> x.check());
         SlashRegistry.unregisterInvalidEntries();
 
+        regDefault = event.getServer()
+            .getGameRules()
+            .get(GameRules.NATURAL_REGENERATION)
+            .get();
+
+        event.getServer()
+            .getGameRules()
+            .get(GameRules.NATURAL_REGENERATION)
+            .set(false, event.getServer());
+
         if (RUN_DEV_TOOLS) { // CHANGE ON PUBLIC BUILDS TO FALSE
             TestManager.RunAllTests();
             CreateLangFile.create();
@@ -201,7 +221,10 @@ public class MMORPG {
 
     @SubscribeEvent
     public static void onServerStopping(FMLServerStoppedEvent event) {
-
+        event.getServer()
+            .getGameRules()
+            .get(GameRules.NATURAL_REGENERATION)
+            .set(regDefault, event.getServer());
     }
 
     @SubscribeEvent

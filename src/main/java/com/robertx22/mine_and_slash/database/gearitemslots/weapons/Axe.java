@@ -49,7 +49,7 @@ public class Axe extends BaseWeapon {
 
     @Override
     public PlayStyle getPlayStyle() {
-        return PlayStyle.WARRIOR;
+        return PlayStyle.STR;
     }
 
     @Override

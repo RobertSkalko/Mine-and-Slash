@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.gearitemslots.offhand.ArmorShield;
+import com.robertx22.mine_and_slash.database.gearitemslots.offhand.TowerShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Axe;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Bow;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Crossbow;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.HunterBow;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
@@ -27,7 +27,7 @@ import java.util.List;
 public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashRegistryEntry<GearItemSlot> {
 
     public enum PlayStyle {
-        MAGE, THIEF, WARRIOR, NONE
+        INT, DEX, STR, NONE
     }
 
     public boolean isWeapon() {
@@ -146,13 +146,13 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
                 .equals(Sword.INSTANCE.GUID())) {
                 bool = item instanceof SwordItem;
             } else if (slot.GUID()
-                .equals(Bow.INSTANCE.GUID())) {
+                .equals(HunterBow.INSTANCE.GUID())) {
                 bool = item instanceof BowItem;
             } else if (slot.GUID()
                 .equals(Axe.INSTANCE.GUID())) {
                 bool = item instanceof AxeItem;
             } else if (slot.GUID()
-                .equals(ArmorShield.INSTANCE.GUID())) {
+                .equals(TowerShield.INSTANCE.GUID())) {
                 bool = item instanceof ShieldItem;
             } else if (slot.GUID()
                 .equals(Crossbow.INSTANCE.GUID())) {

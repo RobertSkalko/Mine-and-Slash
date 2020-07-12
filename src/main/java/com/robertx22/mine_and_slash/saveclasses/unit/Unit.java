@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.saveclasses;
+package com.robertx22.mine_and_slash.saveclasses.unit;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
@@ -287,7 +287,7 @@ public class Unit {
 
         double y = entity.posY;
 
-        List<MobRarity> rarities = Rarities.Mobs.getNormalRarities();
+        List<MobRarity> rarities = Rarities.Mobs.getAllRarities();
 
         if (entity.world.rand.nextBoolean()) {
             if (entity.dimension.equals(DimensionType.OVERWORLD)) {
@@ -453,12 +453,14 @@ public class Unit {
 
     }
 
+    public static UUID hpID = UUID.fromString("e926df30-c376-11ea-87d0-0242ac130003");
+
     private void addToVanillaHealth(LivingEntity en) {
 
         float hp = getCreateStat(Health.getInstance()).getAverageValue();
 
         AttributeModifier mod = new AttributeModifier(
-            UUID.fromString("e926df30-c376-11ea-87d0-0242ac130003"),
+            hpID,
             SharedMonsterAttributes.MAX_HEALTH.getName(),
             hp,
             AttributeModifier.Operation.ADDITION

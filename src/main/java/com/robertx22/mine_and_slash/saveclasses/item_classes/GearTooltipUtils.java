@@ -57,6 +57,10 @@ public class GearTooltipUtils {
             tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
 
+        if (gear.implicitStats != null) {
+            tip.addAll(gear.implicitStats.GetTooltipString(info, gear));
+        }
+
         tip.add(new StringTextComponent(""));
 
         List<IGearPartTooltip> list = new ArrayList<IGearPartTooltip>();

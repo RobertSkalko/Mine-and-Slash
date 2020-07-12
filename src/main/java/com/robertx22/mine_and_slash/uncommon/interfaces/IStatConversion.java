@@ -2,8 +2,8 @@ package com.robertx22.mine_and_slash.uncommon.interfaces;
 
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.stats.ConversionMethod;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
+import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
+import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 
 import java.util.List;
 

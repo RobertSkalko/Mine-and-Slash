@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.effects.resource;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.base.BaseHealEffect;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
+import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.HealEffect;
 
 public class IncreaseHealingEffect extends BaseHealEffect {

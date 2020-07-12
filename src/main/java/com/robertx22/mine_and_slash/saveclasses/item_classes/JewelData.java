@@ -5,11 +5,11 @@ import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.AffixData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltip;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.AffixData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;

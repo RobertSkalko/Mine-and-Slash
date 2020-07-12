@@ -47,7 +47,7 @@ public class PlateBoots extends BaseBoots {
 
     @Override
     public PlayStyle getPlayStyle() {
-        return PlayStyle.WARRIOR;
+        return PlayStyle.STR;
     }
 
     @Override

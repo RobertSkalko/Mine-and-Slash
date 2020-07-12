@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.effects.defense;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
+import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData.EffectTypes;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;

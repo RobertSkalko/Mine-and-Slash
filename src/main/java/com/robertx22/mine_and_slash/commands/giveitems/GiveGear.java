@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.commands.suggestions.GearTypeSuggestions;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.arguments.EntityArgument;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,7 +35,9 @@ public class GiveGear {
                                     .then(argument(
                                         "rarity",
                                         IntegerArgumentType.integer(
-                                            IRarity.Lowest - 1, IRarity.Highest)
+                                            Rarities.Gears.lowest()
+                                                .Rank() - 1, Rarities.Gears.highest()
+                                                .Rank())
                                     )
                                         .then(argument(
                                             "amount",

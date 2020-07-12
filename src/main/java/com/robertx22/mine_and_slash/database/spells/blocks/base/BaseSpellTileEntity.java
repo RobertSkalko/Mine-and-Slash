@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.spells.blocks.base;
 
 import com.robertx22.mine_and_slash.database.spells.entities.bases.ISpellEntity;
-import com.robertx22.mine_and_slash.saveclasses.EntitySpellData;
+import com.robertx22.mine_and_slash.saveclasses.spells.EntitySpellData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.EntitySpellDataSaving;
 import net.minecraft.block.Blocks;
 import net.minecraft.nbt.CompoundNBT;

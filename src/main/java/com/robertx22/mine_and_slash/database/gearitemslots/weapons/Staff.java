@@ -54,7 +54,7 @@ public class Staff extends BaseWeapon {
 
     @Override
     public PlayStyle getPlayStyle() {
-        return PlayStyle.MAGE;
+        return PlayStyle.INT;
     }
 
     @Override

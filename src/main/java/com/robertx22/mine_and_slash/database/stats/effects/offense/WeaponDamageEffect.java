@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.effects.offense;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.base.BaseDamageEffect;
 import com.robertx22.mine_and_slash.database.stats.types.generated.SpecificWeaponDamage;
-import com.robertx22.mine_and_slash.saveclasses.StatData;
+import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 
 public class WeaponDamageEffect extends BaseDamageEffect {

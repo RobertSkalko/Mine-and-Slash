@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.mixins;
 
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.entity.damage.LivingHurtUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.DamageSource;
@@ -9,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public abstract class ArmorMixin {
+public abstract class LivingEntityMixin {
 
     @Inject(
         method = "net.minecraft.entity.LivingEntity.applyArmorCalculations(Lnet/minecraft/util/DamageSource;F)F",
@@ -17,21 +18,23 @@ public abstract class ArmorMixin {
         cancellable = true
     )
     public void onArmorReduction(DamageSource source, float damage, CallbackInfoReturnable<Float> ci) {
-        System.out.println(source.damageType + " class:" + source.getClass()
+        MMORPG.mixinLog(source.damageType + " class:" + source.getClass()
             .toString());
 
         if (LivingHurtUtils.isEnviromentalDmg(source)) {
-            System.out.println("Not changing enviromental");
+            MMORPG.mixinLog("Not changing enviromental dmg");
             return;
         } else {
             if (!source.isUnblockable()) {
-                System.out.println("Returning dmg value before it's affected by armor calculation.");
+                MMORPG.mixinLog("Returning dmg value before it's affected by armor calculation.");
 
                 LivingEntity en = (LivingEntity) (Object) this;
 
                 LivingHurtUtils.damageArmorItems(en);
 
                 ci.setReturnValue(damage);
+            } else {
+                MMORPG.mixinLog("Is unblockable");
             }
         }
 

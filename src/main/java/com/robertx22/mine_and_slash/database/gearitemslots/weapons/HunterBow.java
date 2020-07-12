@@ -16,10 +16,10 @@ import net.minecraft.item.Item;
 import java.util.Arrays;
 import java.util.List;
 
-public class Bow extends BaseWeapon {
-    public static GearItemSlot INSTANCE = new Bow();
+public class HunterBow extends BaseWeapon {
+    public static GearItemSlot INSTANCE = new HunterBow();
 
-    private Bow() {
+    private HunterBow() {
 
     }
 
@@ -44,7 +44,7 @@ public class Bow extends BaseWeapon {
 
     @Override
     public PlayStyle getPlayStyle() {
-        return PlayStyle.THIEF;
+        return PlayStyle.DEX;
     }
 
     @Override

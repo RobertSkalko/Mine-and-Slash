@@ -47,7 +47,7 @@ public class PlateHelmet extends BaseHelmet {
 
     @Override
     public PlayStyle getPlayStyle() {
-        return PlayStyle.WARRIOR;
+        return PlayStyle.STR;
     }
 
     @Override

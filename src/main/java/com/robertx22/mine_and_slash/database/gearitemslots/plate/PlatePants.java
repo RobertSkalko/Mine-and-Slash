@@ -47,7 +47,7 @@ public class PlatePants extends BasePants {
 
     @Override
     public PlayStyle getPlayStyle() {
-        return PlayStyle.WARRIOR;
+        return PlayStyle.STR;
     }
 
     @Override

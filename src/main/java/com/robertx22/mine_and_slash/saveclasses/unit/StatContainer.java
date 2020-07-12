@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.saveclasses;
+package com.robertx22.mine_and_slash.saveclasses.unit;
 
 import info.loenwind.autosave.Registry;
 import info.loenwind.autosave.annotations.Storable;

@@ -14,9 +14,9 @@ import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.CustomExactStatsData;
 import com.robertx22.mine_and_slash.saveclasses.EntityDmgStatsData;
-import com.robertx22.mine_and_slash.saveclasses.ResourcesData;
-import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
+import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
@@ -28,7 +28,6 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.EffectData;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Styles;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.EntityTypeUtils;
 import net.minecraft.entity.Entity;
@@ -144,6 +143,8 @@ public class EntityCap {
         ResourcesData getResources();
 
         float getCurrentMana();
+
+        void mobStatsAreSet();
 
         void attackWithWeapon(DamageEventData data);
 
@@ -392,13 +393,18 @@ public class EntityCap {
 
         @Override
         public void setRarity(int rarity) {
-            this.rarity = MathHelper.clamp(rarity, -2, IRarity.Highest);
+            this.rarity = MathHelper.clamp(rarity, Rarities.Mobs.lowest()
+                .Rank(), Rarities.Mobs.highest()
+                .Rank());
             this.equipsChanged = true;
+            this.shouldSync = true;
         }
 
         @Override
         public int getRarity() {
-            return MathHelper.clamp(rarity, -2, IRarity.Highest);
+            return MathHelper.clamp(rarity, Rarities.Mobs.lowest()
+                .Rank(), Rarities.Mobs.highest()
+                .Rank());
         }
 
         @Override
@@ -543,10 +549,12 @@ public class EntityCap {
         @Override
         public boolean increaseRarity(LivingEntity entity) {
 
-            if (rarity == IRarity.Highest) {
+            if (rarity >= Rarities.Mobs.highest()
+                .Rank()) {
                 return false;
             } else {
                 rarity = rarity + 1;
+                this.equipsChanged = true;
                 this.shouldSync = true;
                 return true;
 
@@ -613,6 +621,11 @@ public class EntityCap {
         @Override
         public float getCurrentMana() {
             return this.resources.getMana();
+        }
+
+        @Override
+        public void mobStatsAreSet() {
+            this.setMobStats = true;
         }
 
         @Override
