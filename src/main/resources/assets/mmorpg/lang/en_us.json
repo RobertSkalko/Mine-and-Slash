@@ -597,15 +597,6 @@
 "_comment": " [CATEGORY]: ADVANCEMENT DESCRIPTIONS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
-	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
-	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.armor_shield": "Plate Shield",
@@ -625,22 +616,13 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
-	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
-	"item.mmorpg.jewelry.occult_necklace": "§7Necklace",
-	"item.mmorpg.jewelry.occult_ring": "§7Ring",
-	"item.mmorpg.offhand.armor_shield": "Shield",
-	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
-	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
-	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
-	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
-	"item.mmorpg.weapon.axe": "§7Axe",
-	"item.mmorpg.weapon.hunter_bow": "§7Bow",
-	"item.mmorpg.weapon.staff": "§7Staff",
-	"item.mmorpg.weapon.sword": "§7Sword",
+	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
+	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
+	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
 
-"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
@@ -665,6 +647,24 @@
 	"effect.mmorpg.wounds": "Wounds",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
+
+	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
+	"item.mmorpg.jewelry.occult_necklace": "§7Necklace",
+	"item.mmorpg.jewelry.occult_ring": "§7Ring",
+	"item.mmorpg.offhand.armor_shield": "Shield",
+	"item.mmorpg.armor.plate_boots": "§7Plate Boots",
+	"item.mmorpg.armor.plate_chest": "§7Plate Cuirass",
+	"item.mmorpg.armor.plate_helmet": "§7Plate Helm",
+	"item.mmorpg.armor.plate_pants": "§7Plate Greaves",
+	"item.mmorpg.weapon.axe": "§7Axe",
+	"item.mmorpg.weapon.hunter_bow": "§7Bow",
+	"item.mmorpg.weapon.staff": "§7Staff",
+	"item.mmorpg.weapon.sword": "§7Sword",
+
+"_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",

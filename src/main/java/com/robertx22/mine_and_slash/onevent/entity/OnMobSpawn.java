@@ -9,17 +9,12 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.goal.BreakDoorGoal;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.PrioritizedGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
 
 public class OnMobSpawn {
 
@@ -44,7 +39,6 @@ public class OnMobSpawn {
             if (entity instanceof MobEntity) {
                 MobEntity mob = (MobEntity) entity;
                 mob.enablePersistence();
-                setupMobGoals((MobEntity) entity);
             }
         }
 
@@ -87,21 +81,6 @@ public class OnMobSpawn {
             }
 
         }
-    }
-
-    public static void setupMobGoals(MobEntity en) {
-
-        int count = en.goalSelector.goals.size();
-
-        for (PrioritizedGoal x : new HashSet<>(en.goalSelector.goals)) {
-            Goal g = x.getGoal();
-
-            if (g instanceof RandomWalkingGoal
-                || g instanceof BreakDoorGoal) {
-                en.goalSelector.removeGoal(g);
-            }
-        }
-
     }
 
     public static Unit Mob(LivingEntity entity, UnitData data,
