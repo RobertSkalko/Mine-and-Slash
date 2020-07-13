@@ -5,7 +5,8 @@
   "refmap": "mmorpg.refmap.json",
   "mixins": [
     "LivingEntityMixin",
-	"ChestMixin"
+	"ChestMixin",
+	"ArrowShootMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -20,8 +20,8 @@ public class AllEleDmgEffect extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        float multi = data.getMultiplier();
-        effect.number *= multi;
+
+        effect.percentIncrease += data.getAverageValue();
 
         return effect;
     }

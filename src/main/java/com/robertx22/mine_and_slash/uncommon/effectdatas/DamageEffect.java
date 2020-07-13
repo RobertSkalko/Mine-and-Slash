@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
-import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamageSource;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -21,10 +20,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvents;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import java.util.HashMap;
@@ -34,6 +34,7 @@ import java.util.stream.Collectors;
 
 public class DamageEffect extends EffectData implements IArmorReducable, IPenetrable, IDamageEffect,
     IElementalResistable, IElementalPenetrable, ICrittable {
+    public static String ARROW_DMG_MULTI_TAG = Ref.MODID + ":dmg_multi";
 
     public DamageEffect(LivingHurtEvent event, LivingEntity source, LivingEntity target, int dmg, UnitData sourceData,
                         UnitData targetData, EffectTypes effectType, WeaponTypes weptype) {
@@ -96,6 +97,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
     }
 
+    public float percentIncrease = 0;
+
     public static String dmgSourceName = Ref.MODID + ".custom_damage";
     public Elements element = Elements.Physical;
     public int armorPene;
@@ -114,11 +117,34 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
     public float getActualDamage() {
         float dmg = this.number * damageMultiplier;
+
         if (dmg <= 0) {
             return 0;
         }
 
-        return dmg;
+        float percentMulti = 1 + this.percentIncrease / 100;
+
+        if (event != null && event.getSource() != null) {
+            if (event.getSource()
+                .getImmediateSource() instanceof AbstractArrowEntity) {
+
+                CompoundNBT arrownbt = event.getSource()
+                    .getImmediateSource()
+                    .getPersistentData();
+
+                if (!arrownbt.contains(ARROW_DMG_MULTI_TAG)) {
+                    System.out.println("Arrow didn't save charge tag? Means the mixin broke.");
+                }
+
+                float arrowmulti = arrownbt
+                    .getFloat(ARROW_DMG_MULTI_TAG);
+
+                dmg *= arrowmulti;
+                // multiply dmg by saved charge value
+            }
+        }
+
+        return dmg * percentMulti;
     }
 
     public float getVisibleDamage() {
@@ -208,20 +234,10 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         } else {
 
-            MinecraftForge.EVENT_BUS.post(new MineAndSlashEvents.OnDmgDoneEvent(this.source, this));
-
             this.sourceData.onAttackEntity(source, target);
 
             if (event != null) {
                 event.setAmount(dmg);
-                /*
-                event.getSource()
-                    .setDamageBypassesArmor(); // this also sets it as unblockable.. AND STOPS ARMOR FROM BEING
-                // DAMAGED
-                event.getSource()
-                    .setDamageIsAbsolute();
-
-                 */
                 DmgSourceUtils.markSourceAsMine(event.getSource());
 
             } else {

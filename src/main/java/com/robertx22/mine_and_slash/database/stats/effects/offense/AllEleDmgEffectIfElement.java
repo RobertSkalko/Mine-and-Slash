@@ -20,7 +20,7 @@ public class AllEleDmgEffectIfElement extends BaseDamageEffect {
 
     @Override
     public DamageEffect activate(DamageEffect effect, StatData data, Stat stat) {
-        effect.number *= data.getMultiplier();
+        effect.percentIncrease += data.getAverageValue();
 
         return effect;
     }

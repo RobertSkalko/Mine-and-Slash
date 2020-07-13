@@ -9,7 +9,7 @@ Big changes that required the rework:
 * Gear now has local and global stats, local stats are weapon damage, armor etc. 
 Think Path of exile 50 base armor + adds 20 to armor + 80% increased armor and the item totals it up.
 * Gear rarities trimmed, now Common, Magical, Rare and Unique. Common complaint was that "Legendary" gear was sometimes too weak for the name.
-New system doesn't have that issue, the rarity describes the rarity now, not power level. 
+New system doesn't have that issue, the rarity describes how rare it is now, not power level.
 
 Added features:
 * generated chests everywhere now have random loot in them
@@ -30,3 +30,6 @@ Some of these will probably come back, after a rework. Others are gone for good.
 Changed features:
 * dimension configs are now datapacks
 * entity configs are now datapacks
+* damage increases are now totalled up before being applied. (this resulted in some insane damage multiplication)
+* attack speed should work properly now
+* bows now dont do full damage anymore on short charges

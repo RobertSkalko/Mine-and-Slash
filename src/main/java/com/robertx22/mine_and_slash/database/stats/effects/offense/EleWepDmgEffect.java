@@ -27,7 +27,8 @@ public class EleWepDmgEffect extends BaseDamageEffect {
         if (wepStat.weaponType()
             .equals(effect.weaponType)) {
             if (effect.isElemental()) {
-                effect.number *= data.getMultiplier();
+                effect.percentIncrease += data.getAverageValue();
+
             }
         }
 

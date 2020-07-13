@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.effectdatas.DamageEffect;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -13,27 +12,6 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import java.util.List;
 
 public class MineAndSlashEvents {
-
-    public static class OnDmgDoneEvent extends LivingEvent {
-
-        public DamageEffect data;
-
-        public OnDmgDoneEvent(LivingEntity entity, DamageEffect data) {
-            super(entity);
-            this.data = data;
-        }
-
-        public float getTotalDamage() {
-            if (data.isDmgAllowed()) {
-                DamageEffect.DmgByElement info = data.getDmgByElement();
-                return info.totalDmg;
-            } else {
-                return 0;
-            }
-
-        }
-
-    }
 
     // called right before stats are calculated.
     public static class OnStatCalculation extends LivingEvent {
