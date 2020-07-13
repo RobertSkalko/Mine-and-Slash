@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.registry;
 
 import com.google.common.collect.Lists;
-import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
+import com.robertx22.mine_and_slash.database.DimensionConfig;
 import com.robertx22.mine_and_slash.database.affixes.Affix;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
@@ -110,7 +110,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.CURRENCY_ITEMS);
     }
 
-    private static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
+    public static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
         return getRegistry(SlashRegistryType.DIMENSION_CONFIGS);
     }
 
@@ -258,6 +258,7 @@ public class SlashRegistry {
         new UniqueGears().registerAll();
 
         new MobAffixes().registerAll();
+        new DimConfigs().registerAll();
 
         new LootCrates().registerAll();
 
@@ -279,6 +280,11 @@ public class SlashRegistry {
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .isDatapack()
             .logAdditions());
+        addRegistry(new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()
+            ).logAdditions()
+                .isDatapack()
+                .dontErrorMissingEntriesOnAccess()
+        );
         // data pack ones
 
         addRegistry(new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType()));
@@ -286,10 +292,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
         addRegistry(new SlashRegistryContainer<BasePotionEffect>(SlashRegistryType.EFFECT, null));
-        addRegistry(new SlashRegistryContainer<DimensionConfig>(SlashRegistryType.DIMENSION_CONFIGS, DimensionConfig.DefaultExtra()
-            ).logAdditions()
-                .dontErrorMissingEntriesOnAccess()
-        );
         addRegistry(new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS).logAdditions());
         addRegistry(new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
     }

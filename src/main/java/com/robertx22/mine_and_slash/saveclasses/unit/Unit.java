@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.saveclasses.unit;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
-import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
+import com.robertx22.mine_and_slash.database.DimensionConfig;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.IAfterStatCalc;
@@ -26,7 +26,6 @@ import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.MobStatUtils;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.PlayerStatUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.entity.EntityType;
@@ -380,8 +379,6 @@ public class Unit {
 
         MobRarity rar = Rarities.Mobs.get(data.getRarity());
 
-        Boolean isMapWorld = WorldUtils.isMapWorld(entity.world);
-
         CommonStatUtils.addPotionStats(entity, data);
         CommonStatUtils.addExactCustomStats(data);
 
@@ -392,13 +389,8 @@ public class Unit {
             MobStatUtils.AddMobcStats(data, entity);
             MobStatUtils.addAffixStats(data);
             MobStatUtils.worldMultiplierStats(entity.world, this);
-
-            if (isMapWorld) {
-                MobStatUtils.increaseMobStatsPerTier(data, this);
-            }
-
+            MobStatUtils.increaseMobStatsPerTier(data, this);
             MobStatUtils.modifyMobStatsByConfig(entity, data);
-
         }
 
         PlayerStatUtils.AddAllGearStats(entity, gears, data);

@@ -121,22 +121,13 @@ public class WorldUtils {
 
     public static boolean isMapWorldClass(IWorld world) {
 
-        return SlashRegistry.getDimensionConfig(world).MAP_TIER > 0;
+        return SlashRegistry.getDimensionConfig(world).mob_tier > 0;
     }
 
     public static int getTier(World world, BlockPos pos) {
 
-        return SlashRegistry.getDimensionConfig(world).MAP_TIER;
+        return SlashRegistry.getDimensionConfig(world).mob_tier;
 
-    }
-
-    public static boolean dropsUniques(World world) {
-
-        if (isMapWorld(world)) {
-            return true;
-        }
-
-        return SlashRegistry.getDimensionConfig(world).DROPS_UNIQUE_ITEMS;
     }
 
 }

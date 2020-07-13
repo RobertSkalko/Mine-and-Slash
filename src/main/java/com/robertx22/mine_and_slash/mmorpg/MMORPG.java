@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
+import com.robertx22.mine_and_slash.data_generation.DimConfigsDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
@@ -55,10 +56,13 @@ public class MMORPG {
 
     // DISABLE WHEN PUBLIC BUILD
     public static boolean RUN_DEV_TOOLS = true;
-    public static boolean RUN_MIXIN_LOGS = false;
+
+    public static boolean RUN_MIXIN_LOGS() {
+        return false;
+    }
 
     public static void mixinLog(String str) {
-        if (RUN_MIXIN_LOGS) {
+        if (RUN_MIXIN_LOGS()) {
             System.out.println(str);
         }
     }
@@ -177,6 +181,7 @@ public class MMORPG {
         manager.addReloadListener(new UniqueGearDatapackManager());
         manager.addReloadListener(new CompatibleItemDataPackManager());
         manager.addReloadListener(new GearRarityManager());
+        manager.addReloadListener(new DimConfigsDatapackManager());
 
     }
 

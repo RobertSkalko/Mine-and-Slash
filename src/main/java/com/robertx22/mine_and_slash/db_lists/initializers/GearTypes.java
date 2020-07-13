@@ -32,7 +32,6 @@ public class GearTypes implements ISlashRegistryInit {
         List<GearItemSlot> All = new ArrayList<GearItemSlot>() {
             {
                 {
-
                     add(IronGreaves.INSTANCE);
                     add(IronLegguards.INSTANCE);
                     add(IronHelmet.INSTANCE);

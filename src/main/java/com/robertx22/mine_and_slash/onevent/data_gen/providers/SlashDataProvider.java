@@ -43,7 +43,8 @@ public class SlashDataProvider<T extends ISerializedRegistryEntry & IGUID & ISer
 
     public Path resolve(Path path, T object) {
         return path.resolve(
-            "data/" + Ref.MODID + "/" + category + "/" + object.datapackFolder() + object.formattedGUID() +
+            "data/" + Ref.MODID + "/" + category + "/" + object.datapackFolder() + object.formattedGUID()
+                .replaceAll(":", "_") +
                 ".json");
     }
 

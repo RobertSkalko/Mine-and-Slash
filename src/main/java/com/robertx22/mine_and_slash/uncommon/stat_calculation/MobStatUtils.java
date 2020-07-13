@@ -62,7 +62,7 @@ public class MobStatUtils {
     public static void worldMultiplierStats(World world, Unit unit) {
         for (StatData stat : unit.getStats()
             .values()) {
-            stat.multiplyFlat(SlashRegistry.getDimensionConfig(world).MOB_STRENGTH_MULTIPLIER);
+            stat.multiplyFlat(SlashRegistry.getDimensionConfig(world).mob_strength_multi);
         }
 
     }

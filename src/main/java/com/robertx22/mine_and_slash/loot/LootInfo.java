@@ -130,7 +130,7 @@ public class LootInfo {
                     .getDropMultiForMob(victim);
             }
 
-            chance *= SlashRegistry.getDimensionConfig(world).DROP_MULTIPLIER;
+            chance *= SlashRegistry.getDimensionConfig(world).all_drop_multi;
 
         }
 
