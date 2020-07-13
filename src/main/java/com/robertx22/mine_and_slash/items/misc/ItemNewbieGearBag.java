@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.GemstoneSword;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee.GemstoneSword;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.BaseItem;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;

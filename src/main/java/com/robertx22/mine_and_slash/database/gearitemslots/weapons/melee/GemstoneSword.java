@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
+package com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
@@ -19,7 +19,7 @@ public class GemstoneSword extends BaseWeapon {
     public static GearItemSlot INSTANCE = new GemstoneSword();
 
     private GemstoneSword() {
-
+        this.attacksPerSecond = 0.75F;
     }
 
     @Override

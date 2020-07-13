@@ -52,7 +52,7 @@ public class MagicShieldRegen extends BaseRegenClass {
 
     @Override
     public String locNameForLangFile() {
-        return "Magic Shield Regeneration";
+        return "Magic Shield Regen";
     }
 
     private static class SingletonHolder {

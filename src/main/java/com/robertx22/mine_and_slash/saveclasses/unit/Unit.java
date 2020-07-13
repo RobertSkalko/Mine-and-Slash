@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.IAfterStatCalc;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
-import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
@@ -435,8 +434,6 @@ public class Unit {
 
         DirtyCheck aftercalc = getDirtyCheck();
 
-        addToAttackSpeed(entity);
-
         if (old.hp != aftercalc.hp) {
             addToVanillaHealth(entity);
         }
@@ -451,7 +448,6 @@ public class Unit {
     }
 
     public static UUID hpID = UUID.fromString("e926df30-c376-11ea-87d0-0242ac130003");
-    public static UUID atkspeedID = UUID.fromString("e926df30-c376-11ea-87d0-0242ac130004");
 
     private void addToVanillaHealth(LivingEntity en) {
 
@@ -471,28 +467,6 @@ public class Unit {
         }
         atri.applyModifier(mod);
 
-    }
-
-    private void addToAttackSpeed(LivingEntity en) {
-
-        float speed = peekAtStat(AttackSpeed.getInstance()).getReverseMultiplier();
-
-        AttributeModifier mod = new AttributeModifier(
-            atkspeedID,
-            SharedMonsterAttributes.ATTACK_SPEED.getName(),
-            speed,
-            AttributeModifier.Operation.MULTIPLY_TOTAL
-        );
-
-        IAttributeInstance atri = en.getAttribute(SharedMonsterAttributes.ATTACK_SPEED);
-
-        if (atri != null) {
-
-            if (atri.hasModifier(mod)) {
-                atri.removeModifier(mod);
-            }
-            atri.applyModifier(mod);
-        }
     }
 
     private static List<EntityType> IGNORED_ENTITIES = null;

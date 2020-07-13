@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.unique_items.weapons.sword;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.GemstoneSword;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee.GemstoneSword;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaOnHit;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;

@@ -3,17 +3,19 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.TowerShield;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Crossbow;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.GemstoneSword;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.HunterBow;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.PrimitiveAxe;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee.GemstoneSword;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee.PrimitiveAxe;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
@@ -25,6 +27,17 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashRegistryEntry<GearItemSlot> {
+
+    public float attacksPerSecond = 1;
+
+    public float getAttacksPerSecondCalculated(EntityCap.UnitData data) {
+
+        float f = data.getUnit()
+            .peekAtStat(AttackSpeed.getInstance())
+            .getMultiplier() * attacksPerSecond;
+
+        return f;
+    }
 
     public enum PlayStyle {
         INT, DEX, STR, NONE;

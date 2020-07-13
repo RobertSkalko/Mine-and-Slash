@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Storable
-public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsContainer {
+public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartTooltip {
 
     @Store
     public List<Integer> percents = new ArrayList<Integer>();
@@ -70,6 +70,8 @@ public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsConta
         ITextComponent eledmg = null;
         ITextComponent critchance = null;
 
+        float totalDmg = 0;
+
         String eleDmgs = "";
 
         for (ExactStatData exactStatData : all) {
@@ -92,6 +94,9 @@ public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsConta
                     eleDmgs += dot + " " + stat.getElement().format +
                         NumberUtils.format(exactStatData.getFirstValue()) + "-" + NumberUtils.format(exactStatData.getSecondValue());
                 }
+
+                totalDmg += exactStatData.getAverageValue();
+
             } else {
 
                 ITextComponent comp = new SText(TEXT_COLOR + CLOC.translate(stat.locName()) + ": " + NUMBER_COLOR + NumberUtils.format(exactStatData.getFirstValue()) + perc);
@@ -117,14 +122,19 @@ public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsConta
         if (critchance != null) {
             list.add(critchance);
         }
+        if (gear.GetBaseGearType()
+            .isMeleeWeapon()) {
+
+            float atk_per_sec = gear.GetBaseGearType()
+                .getAttacksPerSecondCalculated(info.unitdata);
+
+            list.add(new SText(TEXT_COLOR + "Attacks per Second: " + NUMBER_COLOR + NumberUtils.formatForTooltip(atk_per_sec)));
+            // unsure if i want dps on tooltip//list.add(new SText(TEXT_COLOR + "DPS: " + NUMBER_COLOR + NumberUtils.formatForTooltip(totalDmg * atk_per_sec)));
+
+        }
 
         return list;
 
-    }
-
-    @Override
-    public Part getPart() {
-        return Part.BASE_STATS;
     }
 
     @Override
@@ -189,5 +199,10 @@ public class BaseStatsData implements IGearPartTooltip, IRerollable, IStatsConta
 
         return local;
 
+    }
+
+    @Override
+    public Part getPart() {
+        return Part.BASE_STATS;
     }
 }

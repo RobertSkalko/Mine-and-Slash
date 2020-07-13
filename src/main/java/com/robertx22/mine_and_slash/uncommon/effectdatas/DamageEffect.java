@@ -8,8 +8,10 @@ import com.robertx22.mine_and_slash.onevent.entity.damage.DmgSourceUtils;
 import com.robertx22.mine_and_slash.packets.DmgNumPacket;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.*;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
@@ -124,32 +126,33 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         float percentMulti = 1 + this.percentIncrease / 100;
 
+        dmg = modifyByAttackSpeedIfMelee(dmg);
+
         dmg = modifyIfArrowDamage(dmg);
 
         return dmg * percentMulti;
     }
-/*
+
     private float modifyByAttackSpeedIfMelee(float dmg) {
 
         if (this.weaponType.isMelee) {
             float cool = 1;
             if (this.source instanceof PlayerEntity) {
-                cool = sourceData.getCooledAttackStrength();
 
-                float reduced = 1 - cool;
+                GearItemData gear = Gear.Load(source.getHeldItemMainhand());
 
-                if (reduced > 0) {
+                float atkpersec = gear.GetBaseGearType()
+                    .getAttacksPerSecondCalculated(sourceData);
 
-                    float atkspeed = this.sourceUnit.getCreateStat(AttackSpeed.getInstance())
-                        .getAverageValue();
+                float secWaited = (float) (source.ticksExisted - source.getLastAttackedEntityTime()) / 20F;
 
-                    if (atkspeed > 0) {
-
-                    }
-
+                if (secWaited > atkpersec) {
+                    secWaited = atkpersec;
                 }
 
-                dmg = dmg * (0.2F + cool * cool * 0.8F); // THIS IS WHERE ATTACK SPEED HAPPENS!!!
+                cool = secWaited / atkpersec;
+
+                dmg *= cool;
 
             }
         }
@@ -157,7 +160,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         return dmg;
 
     }
-    */
 
     private float modifyIfArrowDamage(float dmg) {
         if (event != null && event.getSource() != null) {

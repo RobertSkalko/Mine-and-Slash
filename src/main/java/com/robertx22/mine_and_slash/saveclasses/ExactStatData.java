@@ -92,6 +92,10 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
     public float percentIncrease = 0;
 
+    public float getAverageValue() {
+        return (first_val + second_val) / 2F;
+    }
+
     public boolean shouldBeAddedToLocalStats(GearItemData gear) {
 
         if (getStat()
