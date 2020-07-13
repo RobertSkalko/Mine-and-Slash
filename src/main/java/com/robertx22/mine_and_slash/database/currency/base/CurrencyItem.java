@@ -139,7 +139,7 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
 
     @Override
     public int getRarityRank() {
-        return IRarity.Uncommon;
+        return IRarity.Magical;
     }
 
     @Override

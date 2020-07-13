@@ -103,7 +103,7 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
 
     @Override
     public int getRarityRank() {
-        return IRarity.Uncommon;
+        return IRarity.Magical;
     }
 
     // this is used for alltraitmods, check if confused

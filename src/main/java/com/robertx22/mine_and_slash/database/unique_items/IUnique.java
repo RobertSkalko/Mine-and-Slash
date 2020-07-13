@@ -80,7 +80,7 @@ public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocD
 
     @Override
     public default int getRarityRank() {
-        return IRarity.Uncommon;
+        return IRarity.Magical;
     }
 
     @Override

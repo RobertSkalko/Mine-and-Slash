@@ -29,7 +29,7 @@ public class JewerlyCrafterCrate extends LootCrate {
 
         GearBlueprint blueprint = BlueprintUtils.randomGearBlueprint(info.tier);
 
-        blueprint.rarity.minRarity = IRarity.Uncommon;
+        blueprint.rarity.minRarity = IRarity.Magical;
 
         blueprint.gearItemSlot.set(SlashRegistry.GearTypes()
             .getFilterWrapped(

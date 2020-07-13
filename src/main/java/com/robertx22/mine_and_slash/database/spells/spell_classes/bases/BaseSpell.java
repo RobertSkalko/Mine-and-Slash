@@ -129,7 +129,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     @Override
     public int getRarityRank() {
-        return IRarity.Uncommon;
+        return IRarity.Magical;
     }
 
     @Override

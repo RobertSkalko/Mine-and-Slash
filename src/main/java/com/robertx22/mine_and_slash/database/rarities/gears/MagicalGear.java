@@ -2,13 +2,13 @@ package com.robertx22.mine_and_slash.database.rarities.gears;
 
 import com.robertx22.mine_and_slash.database.MinMax;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.rarities.base.BaseUncommon;
+import com.robertx22.mine_and_slash.database.rarities.base.BaseMagical;
 
-public class UncommonGear extends BaseUncommon implements GearRarity {
-    UncommonGear() {
+public class MagicalGear extends BaseMagical implements GearRarity {
+    MagicalGear() {
     }
 
-    public static UncommonGear getInstance() {
+    public static MagicalGear getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -63,6 +63,6 @@ public class UncommonGear extends BaseUncommon implements GearRarity {
     }
 
     private static class SingletonHolder {
-        private static final UncommonGear INSTANCE = new UncommonGear();
+        private static final MagicalGear INSTANCE = new MagicalGear();
     }
 }

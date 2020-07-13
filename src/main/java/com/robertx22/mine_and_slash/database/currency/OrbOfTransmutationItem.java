@@ -41,7 +41,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
         GearBlueprint gearPrint = new GearBlueprint();
         gearPrint.gearItemSlot.set(gear.gear_type);
-        gearPrint.rarity.setSpecificRarity(IRarity.Uncommon);
+        gearPrint.rarity.setSpecificRarity(IRarity.Magical);
 
         GearItemData newgear = gearPrint.createData();
         gear.WriteOverDataThatShouldStay(newgear);

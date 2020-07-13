@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import net.minecraft.util.text.TextFormatting;
 
-public abstract class BaseUncommon implements Rarity {
+public abstract class BaseMagical implements Rarity {
     @Override
     public int colorInt() {
         return 5635925;
@@ -13,12 +13,12 @@ public abstract class BaseUncommon implements Rarity {
 
     @Override
     public String GUID() {
-        return "uncommon";
+        return "magical";
     }
 
     @Override
     public int Rank() {
-        return IRarity.Uncommon;
+        return IRarity.Magical;
     }
 
     @Override
@@ -33,6 +33,6 @@ public abstract class BaseUncommon implements Rarity {
 
     @Override
     public String locNameForLangFile() {
-        return "Uncommon";
+        return "Magical";
     }
 }

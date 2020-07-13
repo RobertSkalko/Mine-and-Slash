@@ -1,5 +1,19 @@
 1.0
 
+Big changes that required the rework:
+
+* Mod no longer overrides damage (this means all other gear and spell mobs are compatible!)
+* Levels are gone, so are skill, spell and talent point allocations
+* Spells are now Skill Gems. // TODO!!!
+* Mod no longer uses hidden hp values, vanilla hp now increases (this makes other hp gui mods compatible but be wary of those that display each heart, mobs will have lots of hearts)
+* Gear now has local and global stats, local stats are weapon damage, armor etc. 
+Think Path of exile 50 base armor + adds 20 to armor + 80% increased armor and the item totals it up.
+* Gear rarities trimmed, now Common, Magical, Rare and Unique. Common complaint was that "Legendary" gear was sometimes too weak for the name.
+New system doesn't have that issue, the rarity describes the rarity now, not power level. 
+
+Added features:
+* generated chests everywhere now have random loot in them
+
 To rework the mod, I needed an almost clean slate, and to trim a lot of content that I feel wasn't very successful (for the amount of effort it requires).
 Other things were removed because I wanted to remove them, but I couldn't because I'd ruin existing worlds (*cough* master bag)
 
@@ -13,4 +27,5 @@ Other things were removed because I wanted to remove them, but I couldn't becaus
 
 Some of these will probably come back, after a rework. Others are gone for good.
 
+Changed features:
 * dimension configs are now datapacks

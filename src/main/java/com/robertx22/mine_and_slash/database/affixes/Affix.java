@@ -108,7 +108,7 @@ public class Affix implements IWeighted, IGUID, IAutoLocName, IhasRequirements, 
 
     @Override
     public int getRarityRank() {
-        return IRarity.Uncommon;
+        return IRarity.Magical;
     }
 
     @Override

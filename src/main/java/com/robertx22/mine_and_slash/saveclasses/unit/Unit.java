@@ -294,7 +294,7 @@ public class Unit {
                     rarities.removeIf(x -> x.Rank() == IRarity.Common);
                 }
                 if (y < 30) {
-                    rarities.removeIf(x -> x.Rank() == IRarity.Uncommon);
+                    rarities.removeIf(x -> x.Rank() == IRarity.Magical);
                 }
             }
         }

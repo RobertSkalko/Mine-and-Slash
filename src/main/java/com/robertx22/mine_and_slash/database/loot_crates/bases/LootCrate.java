@@ -57,7 +57,7 @@ public abstract class LootCrate implements ISlashRegistryEntry {
 
     @Override
     public int getRarityRank() {
-        return IRarity.Uncommon;
+        return IRarity.Magical;
     }
 
     @Override

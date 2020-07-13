@@ -2,9 +2,9 @@ package com.robertx22.mine_and_slash.database.rarities.mobs;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
-import com.robertx22.mine_and_slash.database.rarities.base.BaseUncommon;
+import com.robertx22.mine_and_slash.database.rarities.base.BaseMagical;
 
-public class UncommonMob extends BaseUncommon implements MobRarity {
+public class UncommonMob extends BaseMagical implements MobRarity {
 
     private UncommonMob() {
     }
