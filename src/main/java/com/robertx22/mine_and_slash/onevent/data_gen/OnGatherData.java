@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.onevent.data_gen;
 
 import com.robertx22.mine_and_slash.data_generation.DimConfigsDatapackManager;
+import com.robertx22.mine_and_slash.data_generation.EntityConfigsDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.loot_tables.ModLootTableProvider;
@@ -27,6 +28,7 @@ public class OnGatherData {
             gen.addProvider(new UniqueGearDatapackManager().getDataPackCreator(gen));
             gen.addProvider(new CompatibleItemDataPackManager().getDataPackCreator(gen));
             gen.addProvider(new DimConfigsDatapackManager().getDataPackCreator(gen));
+            gen.addProvider(new EntityConfigsDatapackManager().getDataPackCreator(gen));
 
             gen.addProvider(new SlashRecipeProvider(gen));
 

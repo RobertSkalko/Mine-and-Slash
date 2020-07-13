@@ -6,27 +6,21 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
 
 public class EntityTypeUtils {
 
     public enum EntityType {
-        MOB(Items.ZOMBIE_SPAWN_EGG),
-        PLAYER(null),
-        ANIMAL(Items.WHEAT),
-        NPC(Items.EMERALD),
-        OTHER(null);
+        MOB("mob"),
+        PLAYER("player"),
+        ANIMAL("animal"),
+        NPC("npc"),
+        OTHER("other");
 
-        EntityType(Item item) {
-            this.itemDenotingType = item;
+        EntityType(String id) {
+            this.id = id;
         }
 
-        public Item itemDenotingType;
-
-        public boolean showsItem() {
-            return itemDenotingType != null;
-        }
+        public String id;
 
     }
 

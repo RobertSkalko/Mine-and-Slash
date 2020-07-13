@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.config.compatible_items.OldCompatibleItemSer
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.config.forge.CommonConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfigsSerial;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryContainer;
@@ -24,14 +23,11 @@ public class ConfigRegister {
     public static HashMap<Config, List<String>> SAVED_JSONS = new HashMap<>();
 
     public enum Config {
-        MOD_ENTITY,
-        DIMENSIONS,
         BASE_PLAYER_STATS
     }
 
     public static void registerCustomConfigs() {
 
-        CONFIGS.put(Config.MOD_ENTITY, ModEntityConfigsSerial.INSTANCE);
         CONFIGS.put(Config.BASE_PLAYER_STATS, BasePlayerStatSerial.INSTANCE);
 
         unregisterFlaggedEntries(); // call first

@@ -657,7 +657,7 @@ public class EntityCap {
 
             float num = vanilla * rar.DamageMultiplier() * getMapTier().mob_damage_multi;
 
-            num *= SlashRegistry.getEntityConfig(data.source, data.sourceData).DMG_MULTI;
+            num *= SlashRegistry.getEntityConfig(data.source, data.sourceData).dmg_multi;
 
             DamageEffect dmg = new DamageEffect(
                 data, (int) num, EffectData.EffectTypes.BASIC_ATTACK, WeaponTypes.None

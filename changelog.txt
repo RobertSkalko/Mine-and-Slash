@@ -29,3 +29,4 @@ Some of these will probably come back, after a rework. Others are gone for good.
 
 Changed features:
 * dimension configs are now datapacks
+* entity configs are now datapacks

@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.registry;
 
 import com.google.common.collect.Lists;
-import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.DimensionConfig;
+import com.robertx22.mine_and_slash.database.EntityConfig;
 import com.robertx22.mine_and_slash.database.affixes.Affix;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
@@ -61,7 +61,7 @@ public class SlashRegistry {
         return DimensionConfigs().get(id);
     }
 
-    public static ModEntityConfig getEntityConfig(LivingEntity entity, EntityCap.UnitData data) {
+    public static EntityConfig getEntityConfig(LivingEntity entity, EntityCap.UnitData data) {
 
         String monster_id = entity.getType()
             .getRegistryName()
@@ -70,7 +70,7 @@ public class SlashRegistry {
             .getRegistryName()
             .getNamespace();
 
-        ModEntityConfig config = null;
+        EntityConfig config = null;
 
         if (EntityConfigs().isRegistered(monster_id)) {
             config = EntityConfigs().get(monster_id);
@@ -86,7 +86,7 @@ public class SlashRegistry {
                 }
 
             } else {
-                config = EntityConfigs().byEntityTypeDefault.get(data.getType());
+                config = EntityConfigs().get(data.getType().id);
 
                 if (config != null) {
                     return config;
@@ -142,8 +142,8 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.MOB_AFFIX);
     }
 
-    public static ModEntityContainer EntityConfigs() {
-        return (ModEntityContainer) getRegistry(SlashRegistryType.MOD_ENTITY_CONFIGS);
+    public static SlashRegistryContainer<EntityConfig> EntityConfigs() {
+        return getRegistry(SlashRegistryType.ENTITY_CONFIGS);
     }
 
     public static SlashRegistryContainer<Stat> Stats() {
@@ -185,7 +185,8 @@ public class SlashRegistry {
                         List<ISerializedRegistryEntry> list = x.getFromDatapacks();
 
                         if (list.size() == 0) {
-                            throw new Exception("Registry empty");
+                            throw new Exception("Registry empty: " + x.getType()
+                                .name());
                         } else if (list.size() < 100) {
                             MMORPG.sendToClient(new RegistryPacket(x.getType(), list), player);
                         } else {
@@ -259,6 +260,7 @@ public class SlashRegistry {
 
         new MobAffixes().registerAll();
         new DimConfigs().registerAll();
+        new EntityConfigs().registerAll();
 
         new LootCrates().registerAll();
 
@@ -285,14 +287,15 @@ public class SlashRegistry {
                 .isDatapack()
                 .dontErrorMissingEntriesOnAccess()
         );
-        // data pack ones
+        addRegistry(new SlashRegistryContainer<EntityConfig>(SlashRegistryType.ENTITY_CONFIGS, new EntityConfig("", 0)).logAdditions()
+            .isDatapack());
 
+        // data pack ones
         addRegistry(new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType()));
         addRegistry(new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance()));
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
         addRegistry(new SlashRegistryContainer<BasePotionEffect>(SlashRegistryType.EFFECT, null));
-        addRegistry(new ModEntityContainer(SlashRegistryType.MOD_ENTITY_CONFIGS).logAdditions());
         addRegistry(new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
     }
 

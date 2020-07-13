@@ -108,7 +108,7 @@ public class LootInfo {
         chance *= multi;
 
         if (victim != null && mobData != null) {
-            chance *= SlashRegistry.getEntityConfig(victim, this.mobData).LOOT_MULTI;
+            chance *= SlashRegistry.getEntityConfig(victim, this.mobData).loot_multi;
         }
 
         if (this.playerData != null) {

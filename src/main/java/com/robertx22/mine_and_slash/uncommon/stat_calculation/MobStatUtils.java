@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
-import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
+import com.robertx22.mine_and_slash.database.EntityConfig;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
@@ -70,18 +70,18 @@ public class MobStatUtils {
     public static void modifyMobStatsByConfig(LivingEntity entity, UnitData unitdata) {
 
         Unit unit = unitdata.getUnit();
-        ModEntityConfig config = SlashRegistry.getEntityConfig(entity, unitdata);
+        EntityConfig config = SlashRegistry.getEntityConfig(entity, unitdata);
 
         for (StatData data : unit.getStats()
             .values()) {
             Stat stat = data.GetStat();
             if (stat instanceof WeaponDamage || stat instanceof ElementalSpellDamage || stat instanceof CriticalDamage || stat instanceof CriticalHit) {
-                data.multiplyFlat(config.DMG_MULTI);
+                data.multiplyFlat(config.dmg_multi);
             } else if (data.getId()
                 .equals(Health.GUID)) {
-                data.multiplyFlat(config.HP_MULTI);
+                data.multiplyFlat(config.hp_multi);
             } else {
-                data.multiplyFlat(config.STAT_MULTI);
+                data.multiplyFlat(config.stat_multi);
             }
         }
 

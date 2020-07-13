@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
-import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
+import com.robertx22.mine_and_slash.database.EntityConfig;
 import com.robertx22.mine_and_slash.loot.MasterLootGen;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
@@ -38,9 +38,9 @@ public class OnMobDeathDrops {
                         ServerPlayerEntity player = (ServerPlayerEntity) killerEntity;
                         UnitData playerData = Load.Unit(player);
 
-                        ModEntityConfig config = SlashRegistry.getEntityConfig(mobKilled, mobKilledData);
+                        EntityConfig config = SlashRegistry.getEntityConfig(mobKilled, mobKilledData);
 
-                        float loot_multi = (float) config.LOOT_MULTI;
+                        float loot_multi = (float) config.loot_multi;
 
                         if (loot_multi > 0) {
                             player.world.getCapability(AntiMobFarmCap.Data)

@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.DimensionConfig;
+import com.robertx22.mine_and_slash.database.EntityConfig;
 import com.robertx22.mine_and_slash.database.tiers.base.Tier;
 import com.robertx22.mine_and_slash.db_lists.initializers.MobAffixes;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
@@ -52,7 +53,12 @@ public enum SlashRegistryType {
             return DimensionConfig.EMPTY;
         }
     },
-    MOD_ENTITY_CONFIGS("mod_entiy_config"),
+    ENTITY_CONFIGS("entity_config") {
+        @Override
+        public ISerializable getSerializer() {
+            return EntityConfig.EMPTY;
+        }
+    },
     CURRENCY_ITEMS("currency_item"),
     COMPATIBLE_ITEM("compatible_item") {
         @Override

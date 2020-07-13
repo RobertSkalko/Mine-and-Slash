@@ -22,6 +22,11 @@ public interface ISerializedRegistryEntry<T> extends ISlashRegistryEntry<T>, IFr
     }
 
     @Override
+    default boolean isFromDatapack() {
+        return true;
+    }
+
+    @Override
     default T fromRegistryJson(JsonObject json) {
         SlashRegistryType type = SlashRegistryType.getFromString(json.get(ISerializable.REGISTRY)
             .getAsString());

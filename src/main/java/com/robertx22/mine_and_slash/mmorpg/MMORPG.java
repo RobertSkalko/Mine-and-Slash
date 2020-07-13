@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg;
 import com.robertx22.mine_and_slash.a_libraries.curios.GenerateCurioDataJsons;
 import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.data_generation.DimConfigsDatapackManager;
+import com.robertx22.mine_and_slash.data_generation.EntityConfigsDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
@@ -182,6 +183,7 @@ public class MMORPG {
         manager.addReloadListener(new CompatibleItemDataPackManager());
         manager.addReloadListener(new GearRarityManager());
         manager.addReloadListener(new DimConfigsDatapackManager());
+        manager.addReloadListener(new EntityConfigsDatapackManager());
 
     }
 
