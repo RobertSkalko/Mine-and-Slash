@@ -23,7 +23,6 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
-import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -312,10 +311,6 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         this.immutableConfigs.castRequirements()
             .forEach(x -> list.add(x.text));
 
-        if (this.immutableConfigs.allowedAsRightClickOn() == AllowedAsRightClickOn.MAGE_WEAPON) {
-            TooltipUtils.addEmpty(list);
-            list.add(new SText(TextFormatting.LIGHT_PURPLE + "Can be set as right click for a Mage Weapon"));
-        }
         TooltipUtils.addEmpty(list);
 
         finishTooltip(list, ctx, info);

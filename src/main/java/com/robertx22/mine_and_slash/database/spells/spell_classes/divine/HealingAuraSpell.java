@@ -85,7 +85,7 @@ public class HealingAuraSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
         c.set(SC.MANA_COST, 5, 12);
-        c.set(SC.BASE_VALUE, 6, 30);
+        c.set(SC.BASE_VALUE, 6, 25);
         c.set(SC.CAST_TIME_TICKS, 80, 60);
         c.set(SC.COOLDOWN_SECONDS, 60, 30);
         c.set(SC.TIMES_TO_CAST, 4, 4);

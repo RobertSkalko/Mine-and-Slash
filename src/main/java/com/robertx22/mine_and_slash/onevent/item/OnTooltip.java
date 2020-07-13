@@ -103,38 +103,38 @@ public class OnTooltip {
                     .add(broken);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            if (data instanceof GearItemData) {
+                List<String> list = event.getToolTip()
+                    .stream()
+                    .map(x -> CLOC.translate(x))
+                    .collect(Collectors.toList());
 
-        if (true) {
-            List<String> list = event.getToolTip()
-                .stream()
-                .map(x -> CLOC.translate(x))
-                .collect(Collectors.toList());
+                FontRenderer font = Minecraft.getInstance().fontRenderer;
 
-            FontRenderer font = Minecraft.getInstance().fontRenderer;
-
-            int max = font.getStringWidth(list.stream()
-                .max(Comparator.comparingInt(x -> font.getStringWidth(x)))
-                .get());
-
-            event.getToolTip()
-                .clear();
-
-            list.forEach(x -> {
-
-                String str = x;
-
-                while (font.getStringWidth(str) <= max) {
-                    str = " " + str + " ";
-                }
+                int max = font.getStringWidth(list.stream()
+                    .max(Comparator.comparingInt(x -> font.getStringWidth(x)))
+                    .get());
 
                 event.getToolTip()
-                    .add(new SText(str));
+                    .clear();
 
-            });
+                list.forEach(x -> {
 
+                    String str = x;
+
+                    while (font.getStringWidth(str) <= max) {
+                        str = " " + str + " ";
+                    }
+
+                    event.getToolTip()
+                        .add(new SText(str));
+
+                });
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

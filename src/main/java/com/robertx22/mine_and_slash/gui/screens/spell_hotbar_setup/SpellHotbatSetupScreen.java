@@ -22,12 +22,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
@@ -186,7 +188,11 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
             if (this.getSpell() != null) {
                 if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
                     TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
-                    GuiUtils.renderTooltip(getSpell().GetTooltipString(info), mouseX, mouseY);
+
+                    List<ITextComponent> tooltip = new ArrayList<>();
+                    tooltip.add(getSpell().getLocName());
+                    tooltip.addAll(getSpell().GetTooltipString(info));
+                    GuiUtils.renderTooltip(tooltip, mouseX, mouseY);
                 }
             }
         }

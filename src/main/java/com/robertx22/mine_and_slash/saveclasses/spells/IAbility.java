@@ -79,11 +79,10 @@ public interface IAbility extends IGUID, ITooltipList {
                 list.add(new SText(TextFormatting.BLUE + "").appendSibling(Words.Press_Shift_For_More_Info.locName()));
             } else {
                 list.add(new SText(TextFormatting.LIGHT_PURPLE + "" + TextFormatting.BOLD).appendText("Ability Stats:"));
-
                 list.addAll(ctx.getConfigFor(this)
                     .GetTooltipString(info, ctx));
-
             }
+
             TooltipUtils.removeDoubleBlankLines(list);
         } catch (Exception e) {
             e.printStackTrace();

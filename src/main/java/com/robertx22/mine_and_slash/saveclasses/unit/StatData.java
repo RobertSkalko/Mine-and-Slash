@@ -195,8 +195,9 @@ public class StatData {
         if (type == ModType.FLAT) {
             Flat += v1;
             Flat2 += v2;
-        } else if (type == ModType.LOCAL_INCREASE) {
-            // Percent += v;
+        } else if (type == ModType.LOCAL_INCREASE && !this.GetStat()
+            .isLocal()) {
+            Percent += v;
         } else if (type == ModType.GLOBAL_INCREASE) {
             Multi += v;
         }
