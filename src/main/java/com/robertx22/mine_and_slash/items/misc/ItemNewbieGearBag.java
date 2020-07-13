@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.items.misc;
 
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.GemstoneSword;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.BaseItem;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
@@ -48,7 +48,7 @@ public class ItemNewbieGearBag extends BaseItem {
 
                 List<GearItemSlot> list = new ArrayList<>();
 
-                list.add(Sword.INSTANCE);
+                list.add(GemstoneSword.INSTANCE);
 
                 list.forEach(x -> {
                     GearItemData data = getBlueprint(x).createData();

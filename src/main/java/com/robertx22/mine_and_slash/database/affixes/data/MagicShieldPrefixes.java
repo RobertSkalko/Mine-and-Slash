@@ -19,7 +19,9 @@ public class MagicShieldPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(4, 6, MagicShield.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(2, 4, MagicShield.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(1, 2, MagicShield.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.hasBaseStat(MagicShield.getInstance()))
+            .Req(SlotRequirement.hasBaseStat(MagicShield.getInstance())
+                .plus(x -> x.family()
+                    .isJewelry()))
             .Prefix()
             .Build();
 

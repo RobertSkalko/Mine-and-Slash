@@ -3,6 +3,8 @@ package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
@@ -14,18 +16,18 @@ import net.minecraft.item.Item;
 import java.util.Arrays;
 import java.util.List;
 
-public class Sword extends BaseWeapon {
-    public static GearItemSlot INSTANCE = new Sword();
+public class PrimitiveAxe extends BaseWeapon {
+    public static GearItemSlot INSTANCE = new PrimitiveAxe();
 
-    private Sword() {
+    private PrimitiveAxe() {
 
     }
 
     @Override
     public List<StatModifier> BaseStats() {
         return Arrays.asList(
-            new StatModifier(1, 3, 2, 5, new WeaponDamage(Elements.Physical), ModType.FLAT),
-            new StatModifier(2, 6, CriticalHit.getInstance(), ModType.FLAT)
+            new StatModifier(2, 3, 3, 8, new WeaponDamage(Elements.Physical), ModType.FLAT),
+            new StatModifier(4, 15, CriticalHit.getInstance(), ModType.FLAT)
 
         );
     }
@@ -36,38 +38,43 @@ public class Sword extends BaseWeapon {
     }
 
     @Override
-    public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Sword, SlotTag.MeleeWeapon);
-    }
-
-    @Override
-    public Item getItem() {
-        return ModItems.SWORD.get();
-    }
-
-    @Override
-    public WeaponTypes weaponType() {
-        return WeaponTypes.Sword;
+    public WeaponMechanic getWeaponMechanic() {
+        return new NormalWeaponMechanic();
     }
 
     @Override
     public PlayStyle getPlayStyle() {
-        return PlayStyle.DEX;
+        return PlayStyle.STR;
+    }
+
+    @Override
+    public List<SlotTag> getTags() {
+        return Arrays.asList(SlotTag.Axe, SlotTag.MeleeWeapon);
+    }
+
+    @Override
+    public Item getItem() {
+        return ModItems.PRIMITIVE_AXE.get();
+    }
+
+    @Override
+    public WeaponTypes weaponType() {
+        return WeaponTypes.Axe;
     }
 
     @Override
     public String GUID() {
-        return "sword";
-    }
-
-    @Override
-    public String locNameForLangFile() {
-        return "Sword";
+        return "primitive_axe";
     }
 
     @Override
     public int Weight() {
-        return 1500;
+        return 1000;
+    }
+
+    @Override
+    public String locNameForLangFile() {
+        return "Primitive Axe";
     }
 
 }

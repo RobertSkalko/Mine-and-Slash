@@ -19,7 +19,9 @@ public class EvasionPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(20, 30, DodgeRating.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(10, 20, DodgeRating.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(5, 10, DodgeRating.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.hasBaseStat(DodgeRating.getInstance()))
+            .Req(SlotRequirement.hasBaseStat(DodgeRating.getInstance())
+                .plus(x -> x.family()
+                    .isJewelry()))
             .Prefix()
             .Build();
 

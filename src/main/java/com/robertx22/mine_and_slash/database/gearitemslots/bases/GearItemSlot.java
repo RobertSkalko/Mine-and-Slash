@@ -2,10 +2,10 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.offhand.TowerShield;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Axe;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Crossbow;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.GemstoneSword;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.HunterBow;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Sword;
+import com.robertx22.mine_and_slash.database.gearitemslots.weapons.PrimitiveAxe;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
@@ -74,7 +74,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
     public abstract EquipmentSlotType getVanillaSlotType();
 
     public enum SlotTag {
-        Sword, Axe, Bow, Staff, Crossbow,
+        Sword, Axe, Bow, Wand, Crossbow,
         Boots, Helmet, Pants, Chest,
         Cloth, Plate, Leather,
         Shield, Necklace, Ring,
@@ -157,13 +157,13 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
                     }
                 }
             } else if (slot.GUID()
-                .equals(Sword.INSTANCE.GUID())) {
+                .equals(GemstoneSword.INSTANCE.GUID())) {
                 bool = item instanceof SwordItem;
             } else if (slot.GUID()
                 .equals(HunterBow.INSTANCE.GUID())) {
                 bool = item instanceof BowItem;
             } else if (slot.GUID()
-                .equals(Axe.INSTANCE.GUID())) {
+                .equals(PrimitiveAxe.INSTANCE.GUID())) {
                 bool = item instanceof AxeItem;
             } else if (slot.GUID()
                 .equals(TowerShield.INSTANCE.GUID())) {

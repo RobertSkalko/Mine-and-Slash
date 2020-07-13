@@ -14,10 +14,10 @@ import net.minecraft.world.World;
 
 import java.util.HashMap;
 
-public class ItemStaff extends BaseWeaponItem {
+public class ItemWand extends BaseWeaponItem {
     public static HashMap<Integer, Item> Items = new HashMap<Integer, Item>();
 
-    public ItemStaff(int rar) {
+    public ItemWand(int rar) {
         super(rar);
         this.attackSpeed = -2.6F;
     }

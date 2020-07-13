@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.unique_items.bases;
 
 import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
-import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemStaff;
+import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemWand;
 
-public final class BaseUniqueStaff extends ItemStaff {
+public final class BaseUniqueWand extends ItemWand {
 
-    public BaseUniqueStaff() {
+    public BaseUniqueWand() {
         super(UniqueGear.getInstance()
             .Rank());
     }

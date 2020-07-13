@@ -9,6 +9,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.cloth.OccultistRobes;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.SilkPants;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.SorcererCirclet;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.LifeNecklace;
+import com.robertx22.mine_and_slash.database.gearitemslots.curios.LifeRing;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultNecklace;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.OccultRing;
 import com.robertx22.mine_and_slash.database.gearitemslots.leather.HunterHood;
@@ -40,8 +41,8 @@ import com.robertx22.mine_and_slash.items.gearitems.baubles.ItemRing;
 import com.robertx22.mine_and_slash.items.gearitems.offhands.NormalShield;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemAxe;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemBow;
-import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemStaff;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
+import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemWand;
 import com.robertx22.mine_and_slash.items.misc.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
@@ -75,9 +76,9 @@ public class ModItems {
     public static RegistryObject<Item> RAWHIDE_BOOTS = of(() -> new LeatherBootsItem(0), RawhideBoots.INSTANCE);
     public static RegistryObject<Item> WILD_TUNIC = of(() -> new LeatherChestItem(0), WildTunic.INSTANCE);
 
-    public static RegistryObject<Item> SWORD = of(() -> new ItemSword(0), Sword.INSTANCE);
-    public static RegistryObject<Item> AXE = of(() -> new ItemAxe(0), Axe.INSTANCE);
-    public static RegistryObject<Item> STAFF = of(() -> new ItemStaff(0), Staff.INSTANCE);
+    public static RegistryObject<Item> GEMSTONE_SWORD = of(() -> new ItemSword(0), GemstoneSword.INSTANCE);
+    public static RegistryObject<Item> PRIMITIVE_AXE = of(() -> new ItemAxe(0), PrimitiveAxe.INSTANCE);
+    public static RegistryObject<Item> SAGE_WAND = of(() -> new ItemWand(0), SageWand.INSTANCE);
     public static RegistryObject<Item> BOW = of(() -> new ItemBow(0), HunterBow.INSTANCE);
     public static RegistryObject<Item> CROSSBOW = of(() -> new CrossbowItem(ItemUtils.getDefaultGearProperties()), Crossbow.INSTANCE);
     public static RegistryObject<Item> TOWER_SHIELD = of(() -> new NormalShield(TowerShield.INSTANCE), TowerShield.INSTANCE);
@@ -87,6 +88,7 @@ public class ModItems {
     public static RegistryObject<Item> HEALTH_NECKLACE = of(() -> new ItemNecklace(0), LifeNecklace.INSTANCE);
     public static RegistryObject<Item> MANA_REG_NECKLACE = of(() -> new ItemNecklace(0), OccultNecklace.INSTANCE);
     public static RegistryObject<Item> MANA_RING = of(() -> new ItemRing(0), OccultRing.INSTANCE);
+    public static RegistryObject<Item> LIFE_RING = of(() -> new ItemRing(0), LifeRing.INSTANCE);
 
     // todo register all gears like this.
 
