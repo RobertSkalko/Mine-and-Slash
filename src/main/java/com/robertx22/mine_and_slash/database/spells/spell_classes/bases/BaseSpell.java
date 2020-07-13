@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.packets.NoEnergyPacket;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
@@ -26,6 +27,7 @@ import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -73,6 +75,20 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         } else if (timesToCast < 1) {
             System.out.println("Times to cast spell is: " + timesToCast + " . this seems like a bug.");
         }
+
+    }
+
+    public abstract GearItemSlot.PlayStyle getPlayStyle();
+
+    public Item getItem() {
+
+        if (getPlayStyle().isINT()) {
+            return ModItems.INT_SKILL_GEM.get();
+        }
+        if (getPlayStyle().isDEX()) {
+            return ModItems.DEX_SKILL_GEM.get();
+        }
+        return ModItems.STR_SKILL_GEM.get();
 
     }
 

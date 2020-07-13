@@ -276,7 +276,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void BuildTooltip(TooltipContext ctx) {
-        GearTooltipUtils.BuildTooltip(this, ctx.stack, ctx.event, ctx.data);
+        GearTooltipUtils.BuildTooltip(this, ctx.stack, ctx.tooltip, ctx.data);
     }
 
     public List<IRerollable> GetAllRerollable() {

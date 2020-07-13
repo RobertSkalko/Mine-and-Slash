@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
@@ -29,8 +31,19 @@ public class SkillGemData implements ICommonDataItem<GearRarity> {
         SkillGem.Save(stack, this);
     }
 
+    public BaseSpell getSpell() {
+        return SlashRegistry.Spells()
+            .get(spell_id);
+    }
+
     @Override
     public void BuildTooltip(TooltipContext ctx) {
+
+        BaseSpell spell = SlashRegistry.Spells()
+            .get(spell_id);
+
+        ctx.tooltip
+            .add(spell.getLocName());
 
     }
 
@@ -54,4 +67,21 @@ public class SkillGemData implements ICommonDataItem<GearRarity> {
         return 0;
     }
 
+    public ItemStack toItemStack() {
+        ItemStack stack = new ItemStack(SlashRegistry.Spells()
+            .get(spell_id)
+            .getItem());
+
+        this.saveToStack(stack);
+
+        return stack;
+    }
+
+    public void create() {
+
+        this.spell_id = SlashRegistry.Spells()
+            .random()
+            .GUID();
+
+    }
 }

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
+import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Lifesteal;
@@ -49,6 +50,17 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .tier(3, new StatModifier(5, 10, CriticalDamage.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(3, 5, CriticalDamage.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(GearItemSlot.SlotFamily.Weapon))
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_speed")
+            .Named("Of Speed")
+            .tier(1, new StatModifier(20, 25, AttackSpeed.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(15, 20, AttackSpeed.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(10, 15, AttackSpeed.getInstance(), ModType.FLAT))
+            .tier(4, new StatModifier(7, 10, AttackSpeed.getInstance(), ModType.FLAT))
+            .tier(4, new StatModifier(5, 7, AttackSpeed.getInstance(), ModType.FLAT))
+            .Req(SlotRequirement.of(x -> x.isMeleeWeapon()))
             .Suffix()
             .Build();
 

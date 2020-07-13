@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.registry.empty_entries;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
@@ -34,6 +35,11 @@ public class EmptySpell extends BaseSpell {
                 return null;
             }
         });
+    }
+
+    @Override
+    public GearItemSlot.PlayStyle getPlayStyle() {
+        return GearItemSlot.PlayStyle.INT;
     }
 
     @Override

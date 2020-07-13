@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.nature;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.PoisonBallEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
@@ -40,6 +41,11 @@ public class PoisonBallSpell extends BaseSpell {
                 }
             }.rightClickFor(AllowedAsRightClickOn.MAGE_WEAPON)
                 .summonsEntity(world -> new PoisonBallEntity(world)));
+    }
+
+    @Override
+    public GearItemSlot.PlayStyle getPlayStyle() {
+        return GearItemSlot.PlayStyle.INT;
     }
 
     @Override

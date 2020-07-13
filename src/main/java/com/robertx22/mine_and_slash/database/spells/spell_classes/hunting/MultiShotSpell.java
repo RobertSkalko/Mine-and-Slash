@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.hunting;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.RangerArrowEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
@@ -42,6 +43,11 @@ public class MultiShotSpell extends BaseSpell {
             }.cooldownIfCanceled(true)
                 .summonsEntity(w -> new RangerArrowEntity(w))
                 .addCastRequirement(SpellPredicates.REQUIRE_SHOOTABLE));
+    }
+
+    @Override
+    public GearItemSlot.PlayStyle getPlayStyle() {
+        return GearItemSlot.PlayStyle.DEX;
     }
 
     @Override

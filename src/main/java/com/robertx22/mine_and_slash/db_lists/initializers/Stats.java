@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.database.stats.types.defense.DamageShield;
 import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleDmg;
 import com.robertx22.mine_and_slash.database.stats.types.generated.*;
+import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.types.offense.SpellDamage;
@@ -42,6 +43,7 @@ public class Stats implements ISlashRegistryInit {
             {
                 {
 
+                    add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
 
                     add(new LootTypeBonus(LootType.NormalItem));

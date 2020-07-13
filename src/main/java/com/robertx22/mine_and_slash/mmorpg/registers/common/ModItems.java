@@ -42,10 +42,7 @@ import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemAxe;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemBow;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemStaff;
 import com.robertx22.mine_and_slash.items.gearitems.weapons.ItemSword;
-import com.robertx22.mine_and_slash.items.misc.IdentifyTomeItem;
-import com.robertx22.mine_and_slash.items.misc.JewelItem;
-import com.robertx22.mine_and_slash.items.misc.MagicEssenceItem;
-import com.robertx22.mine_and_slash.items.misc.RareMagicEssence;
+import com.robertx22.mine_and_slash.items.misc.*;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ItemUtils;
 import net.minecraft.item.CrossbowItem;
@@ -115,6 +112,10 @@ public class ModItems {
 
     public static RegistryObject<JewelItem> BLUE_JEWEL = item(() -> new JewelItem(), "jewels/blue");
     public static RegistryObject<JewelItem> GREEN_JEWEL = item(() -> new JewelItem(), "jewels/green");
+
+    public static RegistryObject<Item> INT_SKILL_GEM = item(() -> new SkillGemItem(), "skill_gems/int");
+    public static RegistryObject<Item> DEX_SKILL_GEM = item(() -> new SkillGemItem(), "skill_gems/dex");
+    public static RegistryObject<Item> STR_SKILL_GEM = item(() -> new SkillGemItem(), "skill_gems/str");
 
     public static List<RegistryObject<JewelItem>> ALL_JEWELS = new ArrayList<>();
 

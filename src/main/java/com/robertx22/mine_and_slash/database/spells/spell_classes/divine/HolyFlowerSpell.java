@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.divine;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.SeedEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
@@ -63,6 +64,11 @@ public class HolyFlowerSpell extends BaseSpell {
 
         c.setMaxLevel(12);
         return c;
+    }
+
+    @Override
+    public GearItemSlot.PlayStyle getPlayStyle() {
+        return GearItemSlot.PlayStyle.INT;
     }
 
     @Override

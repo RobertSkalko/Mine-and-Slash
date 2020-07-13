@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.divine;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
@@ -51,6 +52,11 @@ public class PurifyingFiresSpell extends BaseSpell {
             }.cooldownIfCanceled(true)
                 .rightClickFor(AllowedAsRightClickOn.MELEE_WEAPON)
                 .setSwingArmOnCast());
+    }
+
+    @Override
+    public GearItemSlot.PlayStyle getPlayStyle() {
+        return GearItemSlot.PlayStyle.STR;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.storm;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.LightningTotemEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
@@ -42,6 +43,11 @@ public class LightningTotemSpell extends BaseSpell {
                 .summonsEntity(w -> new LightningTotemEntity(w))
                 .setSwingArmOnCast()
         );
+    }
+
+    @Override
+    public GearItemSlot.PlayStyle getPlayStyle() {
+        return GearItemSlot.PlayStyle.INT;
     }
 
     @Override

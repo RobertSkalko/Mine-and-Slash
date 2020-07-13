@@ -49,7 +49,7 @@ public class HunterBow extends BaseWeapon {
 
     @Override
     public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Bow);
+        return Arrays.asList(SlotTag.Bow, SlotTag.RangedWeapon);
     }
 
     @Override

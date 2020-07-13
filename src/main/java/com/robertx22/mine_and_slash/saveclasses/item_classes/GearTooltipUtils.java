@@ -19,16 +19,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GearTooltipUtils {
 
-    public static void BuildTooltip(GearItemData gear, ItemStack stack, ItemTooltipEvent event, UnitData data) {
+    public static void BuildTooltip(GearItemData gear, ItemStack stack, List<ITextComponent> tooltip, UnitData data) {
 
-        List<ITextComponent> tip = event.getToolTip();
+        List<ITextComponent> tip = tooltip;
 
         TooltipInfo info = new TooltipInfo(data, gear.getRarity()
             .StatPercents());
@@ -151,7 +150,7 @@ public class GearTooltipUtils {
         tip.add(new StringTextComponent(""));
 
         if (Screen.hasShiftDown() == false) {
-            event.getToolTip()
+            tooltip
                 .add(Styles.BLUECOMP()
                     .appendSibling(CLOC.tooltip("press_shift_more_info")));
         }

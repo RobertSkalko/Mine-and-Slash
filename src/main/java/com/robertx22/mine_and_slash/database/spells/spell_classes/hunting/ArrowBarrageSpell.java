@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.hunting;
 
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.RangerArrowEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
@@ -45,16 +46,21 @@ public class ArrowBarrageSpell extends BaseSpell {
     }
 
     @Override
+    public GearItemSlot.PlayStyle getPlayStyle() {
+        return GearItemSlot.PlayStyle.DEX;
+    }
+
+    @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
         c.set(SC.MANA_COST, 15, 25);
         c.set(SC.BASE_VALUE, 2, 6);
-        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.3F);
+        c.set(SC.ATTACK_SCALE_VALUE, 0.2F, 0.4F);
         c.set(SC.PROJECTILE_COUNT, 1, 1);
-        c.set(SC.SHOOT_SPEED, 1, 1.5F);
+        c.set(SC.SHOOT_SPEED, 1, 1.3F);
         c.set(SC.CAST_TIME_TICKS, 40, 30);
-        c.set(SC.COOLDOWN_SECONDS, 30, 20);
+        c.set(SC.COOLDOWN_SECONDS, 30, 25);
         c.set(SC.TIMES_TO_CAST, 4, 6);
         c.set(SC.DURATION_TICKS, 100, 160);
 

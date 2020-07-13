@@ -4,13 +4,16 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.items.misc.JewelItem;
+import com.robertx22.mine_and_slash.items.misc.SkillGemItem;
 import com.robertx22.mine_and_slash.new_content.auto_comp.PowerLevel;
 import com.robertx22.mine_and_slash.registry.FilterListWrap;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.JewelData;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
+import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -34,6 +37,12 @@ public class OnContainerCompatibleItem {
                 JewelData jewel = new JewelData();
                 jewel.randomize();
                 Jewel.Save(stack, jewel);
+                return;
+            }
+            if (stack.getItem() instanceof SkillGemItem && !SkillGem.has(stack)) {
+                SkillGemData skillgem = new SkillGemData();
+                skillgem.create();
+                SkillGem.Save(stack, skillgem);
                 return;
             }
 

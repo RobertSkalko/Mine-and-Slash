@@ -37,17 +37,12 @@ public class Sword extends BaseWeapon {
 
     @Override
     public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Sword);
+        return Arrays.asList(SlotTag.Sword, SlotTag.MeleeWeapon);
     }
 
     @Override
     public Item getItem() {
         return ModItems.SWORD.get();
-    }
-
-    @Override
-    public boolean isMeleeWeapon() {
-        return true;
     }
 
     @Override

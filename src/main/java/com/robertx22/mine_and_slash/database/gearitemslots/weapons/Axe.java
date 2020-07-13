@@ -38,11 +38,6 @@ public class Axe extends BaseWeapon {
     }
 
     @Override
-    public boolean isMeleeWeapon() {
-        return true;
-    }
-
-    @Override
     public WeaponMechanic getWeaponMechanic() {
         return new NormalWeaponMechanic();
     }
@@ -54,7 +49,7 @@ public class Axe extends BaseWeapon {
 
     @Override
     public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Axe);
+        return Arrays.asList(SlotTag.Axe, SlotTag.MeleeWeapon);
     }
 
     @Override

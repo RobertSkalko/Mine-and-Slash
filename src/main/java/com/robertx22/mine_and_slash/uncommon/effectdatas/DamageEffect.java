@@ -124,6 +124,42 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
         float percentMulti = 1 + this.percentIncrease / 100;
 
+        dmg = modifyIfArrowDamage(dmg);
+
+        return dmg * percentMulti;
+    }
+/*
+    private float modifyByAttackSpeedIfMelee(float dmg) {
+
+        if (this.weaponType.isMelee) {
+            float cool = 1;
+            if (this.source instanceof PlayerEntity) {
+                cool = sourceData.getCooledAttackStrength();
+
+                float reduced = 1 - cool;
+
+                if (reduced > 0) {
+
+                    float atkspeed = this.sourceUnit.getCreateStat(AttackSpeed.getInstance())
+                        .getAverageValue();
+
+                    if (atkspeed > 0) {
+
+                    }
+
+                }
+
+                dmg = dmg * (0.2F + cool * cool * 0.8F); // THIS IS WHERE ATTACK SPEED HAPPENS!!!
+
+            }
+        }
+
+        return dmg;
+
+    }
+    */
+
+    private float modifyIfArrowDamage(float dmg) {
         if (event != null && event.getSource() != null) {
             if (event.getSource()
                 .getImmediateSource() instanceof AbstractArrowEntity) {
@@ -144,7 +180,8 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             }
         }
 
-        return dmg * percentMulti;
+        return dmg;
+
     }
 
     public float getVisibleDamage() {
@@ -365,11 +402,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public DmgByElement getDmgByElement() {
         DmgByElement info = new DmgByElement();
 
-        float cool = 1;
-        if (this.source instanceof PlayerEntity) {
-            cool = sourceData.getCooledAttackStrength();
-        }
-
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(null, source, target, entry.getValue(), this.sourceData,
@@ -379,8 +411,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 bonus.damageMultiplier = this.damageMultiplier;
                 bonus.calculateEffects();
                 float dmg = bonus.getActualDamage();
-
-                dmg = dmg * (0.2F + cool * cool * 0.8F); // THIS IS WHERE ATTACK SPEED HAPPENS!!!
 
                 info.addDmg(dmg, bonus.element);
 

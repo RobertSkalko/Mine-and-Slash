@@ -72,7 +72,7 @@ public class OnTooltip {
                 return;
             }
 
-            TooltipContext ctx = new TooltipContext(stack, event, unitdata);
+            TooltipContext ctx = new TooltipContext(stack, event.getToolTip(), unitdata);
 
             if (!stack.hasTag()) {
                 return;

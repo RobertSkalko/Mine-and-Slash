@@ -62,8 +62,9 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public abstract PlayStyle getPlayStyle();
 
-    public boolean isMeleeWeapon() {
-        return false;
+    public final boolean isMeleeWeapon() {
+        return this.getTags()
+            .contains(SlotTag.MeleeWeapon);
     }
 
     public boolean isShield() {
@@ -78,7 +79,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         Cloth, Plate, Leather,
         Shield, Necklace, Ring,
         ArmorStat, MagicShieldStat, EvasionStat,
-        MageWeapon
+        MageWeapon, MeleeWeapon, RangedWeapon
     }
 
     public enum SlotFamily {

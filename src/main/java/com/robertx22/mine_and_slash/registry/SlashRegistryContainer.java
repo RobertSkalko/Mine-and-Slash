@@ -1,9 +1,11 @@
 package com.robertx22.mine_and_slash.registry;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
+import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
@@ -115,7 +117,18 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public List<C> getList() {
-        return new ArrayList<C>(map.values());
+        if (!map.isEmpty()) {
+            return new ArrayList<C>(map.values());
+        }
+        if (MMORPG.RUN_DEV_TOOLS && !serializables.isEmpty()) {
+            return new ArrayList<C>(serializables.values());
+            // if called before datapacks load, get serializables. This should only be used in dev enviroment to generate data
+            // this should allow multiple registries to depend on each other before datapacks load while they're in serializables list
+        } else {
+            this.tryLogEmptyRegistry();
+        }
+
+        return Arrays.asList();
     }
 
     public List<C> getAllIncludingSeriazable() {

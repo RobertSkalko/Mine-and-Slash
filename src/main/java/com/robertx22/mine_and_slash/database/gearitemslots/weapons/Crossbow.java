@@ -49,7 +49,7 @@ public class Crossbow extends BaseWeapon {
 
     @Override
     public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.Crossbow);
+        return Arrays.asList(SlotTag.Crossbow, SlotTag.RangedWeapon);
     }
 
     @Override

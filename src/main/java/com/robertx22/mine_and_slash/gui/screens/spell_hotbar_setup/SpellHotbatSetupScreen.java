@@ -4,19 +4,24 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
+import com.robertx22.mine_and_slash.items.misc.SkillGemItem;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
+import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
@@ -26,6 +31,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
@@ -48,16 +54,18 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
     protected void init() {
         super.init();
 
-        List<BaseSpell> spells = this.spells.getAvailableSpells();
+        List<ItemStack> skillgems = mc.player.inventory.mainInventory.stream()
+            .filter(x -> x.getItem() instanceof SkillGemItem)
+            .collect(Collectors.toList());
 
         int x = guiLeft + 7;
         int y = guiTop + 40;
 
         int count = 0;
 
-        for (BaseSpell spell : spells) {
+        for (ItemStack stack : skillgems) {
 
-            if (spell == null) {
+            if (stack == null) {
                 continue;
             }
 
@@ -70,7 +78,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                 x += AvailableSpellButton.xSize + 2;
             }
             count++;
-            addButton(new AvailableSpellButton(spell, x, y));
+            addButton(new AvailableSpellButton(stack, SkillGem.Load(stack), x, y));
         }
 
         count = 0;
@@ -271,9 +279,10 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
         static ResourceLocation buttonLoc = new ResourceLocation(Ref.MODID, "textures/gui/main_hub/buttons.png");
 
-        BaseSpell spell;
+        ItemStack stack;
+        SkillGemData skillgem;
 
-        public AvailableSpellButton(BaseSpell spell, int xPos, int yPos) {
+        public AvailableSpellButton(ItemStack stack, SkillGemData skillgem, int xPos, int yPos) {
 
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
 
@@ -281,28 +290,24 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
                     HotbarButton bar = SpellHotbatSetupScreen.barBeingPicked;
 
-                    if (bar.isForRightClickWeaponSpell) {
-                        //  MMORPG.sendToServer(new WeaponRightClickSpellPacket(spell));
-                        //    WeaponRightClickSpellPacket.activate(Minecraft.getInstance().player, spell.GUID()); // for client sync
-                    } else {
-                        if (bar.hotbar != null) {
-                            MMORPG.sendToServer(new HotbarSetupPacket(spell, bar.number, bar.hotbar));
-                        }
+                    if (bar.hotbar != null) {
+                        MMORPG.sendToServer(new HotbarSetupPacket(skillgem.getSpell(), bar.number, bar.hotbar));
                     }
                 }
 
             });
-
-            this.spell = spell;
-
+            this.skillgem = skillgem;
         }
 
         @Override
         public void renderToolTip(int mouseX, int mouseY) {
-            if (spell != null) {
+            if (skillgem != null) {
                 if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
                     TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
-                    GuiUtils.renderTooltip(spell.GetTooltipString(info), mouseX, mouseY);
+
+                    TooltipContext ctx = new TooltipContext(stack, new ArrayList<>(), Load.Unit(Minecraft.getInstance().player));
+                    skillgem.BuildTooltip(ctx);
+                    GuiUtils.renderTooltip(ctx.tooltip, mouseX, mouseY);
                 }
             }
         }
@@ -311,8 +316,10 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         public void renderButton(int x, int y, float ticks) {
             //super.renderButton(x, y, ticks);
 
-            if (spell != null && spell.getIconLoc() != null) {
-                RenderUtils.render16Icon(spell.getIconLoc(), this.x, this.y);
+            if (skillgem != null && skillgem.getSpell()
+                .getIconLoc() != null) {
+                RenderUtils.render16Icon(skillgem.getSpell()
+                    .getIconLoc(), this.x, this.y);
             }
         }
 

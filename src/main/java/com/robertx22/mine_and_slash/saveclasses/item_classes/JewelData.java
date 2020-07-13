@@ -64,7 +64,7 @@ public class JewelData implements ITooltip, ICommonDataItem {
         TooltipInfo info = new TooltipInfo(ctx.data);
         GearItemData gear = Gear.Load(ctx.stack);
 
-        ctx.event.getToolTip()
+        ctx.tooltip
             .addAll(this.affix.GetTooltipString(info, null));
 
     }

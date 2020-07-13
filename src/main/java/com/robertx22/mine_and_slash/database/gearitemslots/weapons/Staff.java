@@ -39,17 +39,12 @@ public class Staff extends BaseWeapon {
 
     @Override
     public List<SlotTag> getTags() {
-        return Arrays.asList(SlotTag.MageWeapon, SlotTag.Staff);
+        return Arrays.asList(SlotTag.MageWeapon, SlotTag.Staff, SlotTag.MeleeWeapon);
     }
 
     @Override
     public Item getItem() {
         return ModItems.STAFF.get();
-    }
-
-    @Override
-    public boolean isMeleeWeapon() {
-        return true;
     }
 
     @Override
