@@ -72,6 +72,10 @@ public class EntityCap {
 
     public interface UnitData extends ICommonPlayerCap, INeededForClient {
 
+        void setCooledAttackStrength(float f);
+
+        float getCooledAttackStrength();
+
         void modifyResource(ResourcesData.Context ctx);
 
         void onDeath(LivingEntity en);
@@ -191,6 +195,8 @@ public class EntityCap {
 
         EntityTypeUtils.EntityType type = EntityTypeUtils.EntityType.PLAYER;
         // sync these for mobs
+
+        float cooledAtkStr = 0;
 
         boolean setMobStats = false;
         String uuid = "";
@@ -341,6 +347,16 @@ public class EntityCap {
         @Override
         public void onAttackEntity(LivingEntity attacker, LivingEntity victim) {
 
+        }
+
+        @Override
+        public void setCooledAttackStrength(float f) {
+            this.cooledAtkStr = f;
+        }
+
+        @Override
+        public float getCooledAttackStrength() {
+            return this.cooledAtkStr;
         }
 
         @Override

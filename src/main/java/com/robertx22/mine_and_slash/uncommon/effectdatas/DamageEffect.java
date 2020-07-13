@@ -212,8 +212,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
             this.sourceData.onAttackEntity(source, target);
 
-            dmg += getEventDmg() * 0;
-
             if (event != null) {
                 event.setAmount(dmg);
                 /*
@@ -231,7 +229,6 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 target.hurtResistantTime = 0;
                 target.attackEntityFrom(dmgsource, dmg);
                 target.hurtResistantTime = hurtResistantTime;
-
             }
 
             Heal();
@@ -352,6 +349,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public DmgByElement getDmgByElement() {
         DmgByElement info = new DmgByElement();
 
+        float cool = 1;
+        if (this.source instanceof PlayerEntity) {
+            cool = sourceData.getCooledAttackStrength();
+        }
+
         for (Entry<Elements, Integer> entry : bonusElementDamageMap.entrySet()) {
             if (entry.getValue() > 0) {
                 DamageEffect bonus = new DamageEffect(null, source, target, entry.getValue(), this.sourceData,
@@ -360,7 +362,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 bonus.element = entry.getKey();
                 bonus.damageMultiplier = this.damageMultiplier;
                 bonus.calculateEffects();
-                info.addDmg(bonus.getActualDamage(), bonus.element);
+                float dmg = bonus.getActualDamage();
+
+                dmg = dmg * (0.2F + cool * cool * 0.8F); // THIS IS WHERE ATTACK SPEED HAPPENS!!!
+
+                info.addDmg(dmg, bonus.element);
 
             }
         }

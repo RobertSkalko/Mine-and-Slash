@@ -47,6 +47,7 @@ public class RegisterEvents {
 
     private static void registerEntityEvents() {
 
+        register(OnPlayerAtkEntity.class);
         register(CollectGearEvent.class);
         register(OnHurtEvent.class);
         register(OnEquipChange.class);
