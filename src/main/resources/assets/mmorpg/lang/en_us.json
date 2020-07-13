@@ -107,6 +107,7 @@
 	"mmorpg.affix.of_the_philosopher": "Of the Philosopher",
 	"mmorpg.affix.of_the_sky": "Of the Sky",
 	"mmorpg.affix.of_the_titan": "Of the Titan",
+	"mmorpg.affix.of_the_troll": "Of The Troll",
 	"mmorpg.affix.of_the_wind": "Of the Wind",
 	"mmorpg.affix.of_vampirism": "Of Vampirism",
 	"mmorpg.affix.protective": "Protective",
@@ -536,7 +537,7 @@
 	"mmorpg.stat.fire_weapon_damage": "Fire Damage",
 	"mmorpg.stat.hammer_damage": "Hammer Damage",
 	"mmorpg.stat.health": "Health",
-	"mmorpg.stat.health_regen": "Health Regen",
+	"mmorpg.stat.health_regen": "Health Regeneration",
 	"mmorpg.stat.increase_healing": "Heal Power",
 	"mmorpg.stat.intelligence": "Intelligence",
 	"mmorpg.stat.life_on_hit": "Life on Hit",
@@ -642,6 +643,30 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+	"effect.mmorpg.bravery": "Bravery",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Cold Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.judgement": "Judgement",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thorns": "Thorns",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.trickery": "Trickery",
+	"effect.mmorpg.wizardry": "Wizardry",
+	"effect.mmorpg.wounds": "Wounds",
+
+"_comment": " [CATEGORY]: POTIONS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
 
 	"item.mmorpg.jewelry.life_necklace": "§7Necklace",
@@ -668,30 +693,6 @@
 	"item.mmorpg.weapon.sword": "§7Sword",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.bravery": "Bravery",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Cold Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.judgement": "Judgement",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thorns": "Thorns",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.trickery": "Trickery",
-	"effect.mmorpg.wizardry": "Wizardry",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: CHAT MESSAGES - NAMES",

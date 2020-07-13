@@ -124,7 +124,7 @@ public class PreCalcSpellConfigs {
                 .forEach(x -> {
                     if (x.getKey()
                         .shouldAddToTooltip()) {
-                        String val = NumberUtils.trimFloat(x.getValue()
+                        String val = NumberUtils.formatForTooltip(x.getValue()
                             .get(ctx.spellsCap, ctx.ability));
                         list.add(new SText(TextFormatting.GRAY + "").appendSibling(x.getKey().word.locName())
                             .appendText(": " + TextFormatting.GREEN + val));

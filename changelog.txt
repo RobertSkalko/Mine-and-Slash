@@ -34,3 +34,4 @@ Changed features:
 * damage increases are now totalled up before being applied. (this resulted in some insane damage multiplication)
 * attack speed should work properly now
 * bows now dont do full damage anymore on short charges
+* changed hp regen to reduce saturation by % of total hp regenerated. This means more hp won't cost more saturation to regen.

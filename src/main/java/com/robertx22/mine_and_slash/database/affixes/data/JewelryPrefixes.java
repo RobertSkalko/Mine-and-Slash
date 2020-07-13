@@ -1,10 +1,12 @@
 package com.robertx22.mine_and_slash.database.affixes.data;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
+import com.robertx22.mine_and_slash.database.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.affixes.ElementalAffixBuilder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
+import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
@@ -27,6 +29,16 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .Req(SlotRequirement.of(GearItemSlot.SlotFamily.Jewelry))
             .Weight(200)
             .Prefix()
+            .Build();
+
+        AffixBuilder.Normal("of_the_troll")
+            .Named("Of The Troll")
+            .tier(1, new StatModifier(1, 2, HealthRegen.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(0.5F, 1, HealthRegen.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(0.3F, 0.5F, HealthRegen.getInstance(), ModType.FLAT))
+            .Req(SlotRequirement.of(GearItemSlot.SlotFamily.Jewelry))
+            .Weight(200)
+            .Suffix()
             .Build();
     }
 }

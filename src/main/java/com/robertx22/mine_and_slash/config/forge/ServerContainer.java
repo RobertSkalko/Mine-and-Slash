@@ -42,7 +42,7 @@ public class ServerContainer {
 
         REGEN_HUNGER_COST = builder.comment(".")
             .translation("mmorpg.word.")
-            .defineInRange("REGEN_HUNGER_COST", 3D, 0, 1000D);
+            .defineInRange("REGEN_HUNGER_COST", 20D, 0, 1000D);
 
         REPAIR_FUEL_NEEDED_MULTI = builder.comment(".")
             .translation("mmorpg.word.")

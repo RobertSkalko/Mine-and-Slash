@@ -25,8 +25,8 @@ public abstract class StatNameRegex {
 
     public String translate(ModType type, float v1, float v2, Stat stat) {
 
-        String v1s = NumberUtils.format(v1);
-        String v2s = NumberUtils.format(v2);
+        String v1s = NumberUtils.formatForTooltip(v1);
+        String v2s = NumberUtils.formatForTooltip(v2);
 
         String percent = "";
 

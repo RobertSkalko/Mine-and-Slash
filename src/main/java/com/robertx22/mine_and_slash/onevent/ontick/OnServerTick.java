@@ -10,7 +10,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -115,14 +114,13 @@ public class OnServerTick {
 
                                     if (restored) {
 
-                                        float hpRegenEffectiveness = MathHelper.clamp(missingHp / healthrestored, 0, 1);
-                                        float msRegenEffectiveness = MathHelper.clamp(missingMs / magicshieldrestored, 0, 1);
+                                        float percentHealed = healthrestored / player.getMaxHealth();
 
-                                        float maxHealthedEffectiveness = Math.max(hpRegenEffectiveness, msRegenEffectiveness);
+                                        float exhaustion = ModConfig.INSTANCE.Server.REGEN_HUNGER_COST.get()
+                                            .floatValue() * percentHealed;
 
                                         player.getFoodStats()
-                                            .addExhaustion(ModConfig.INSTANCE.Server.REGEN_HUNGER_COST.get()
-                                                .floatValue() / maxHealthedEffectiveness);
+                                            .addExhaustion(exhaustion);
 
                                     }
                                 }

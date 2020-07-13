@@ -32,7 +32,7 @@ public class NumberUtils {
         format.setMaximumFractionDigits(1);
     }
 
-    public static String trimFloat(float num) {
+    public static String formatForTooltip(float num) {
         if (num < 10) {
             return format.format(num);
         } else {
