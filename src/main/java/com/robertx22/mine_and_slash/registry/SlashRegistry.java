@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.registry;
 
 import com.google.common.collect.Lists;
-import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
 import com.robertx22.mine_and_slash.database.DimensionConfig;
 import com.robertx22.mine_and_slash.database.EntityConfig;
 import com.robertx22.mine_and_slash.database.affixes.Affix;
+import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;

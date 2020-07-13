@@ -1,7 +1,6 @@
-package com.robertx22.mine_and_slash.data_generation.compatible_items;
+package com.robertx22.mine_and_slash.database.compatible_item;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.config.compatible_items.WeightedType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
@@ -31,7 +30,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
     public int unique_item_weight = 0;
     public int normal_item_weight = 80;
-    public int runed_item_weight = 20;
 
     public int min_rarity = 0;
     public int max_rarity = 2;
@@ -67,7 +65,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         JsonObject gearType = new JsonObject();
         gearType.addProperty("normal_item_weight", normal_item_weight);
-        gearType.addProperty("runed_item_weight", runed_item_weight);
         gearType.addProperty("unique_item_weight", unique_item_weight);
         json.add("gear_type", gearType);
 
@@ -103,8 +100,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         JsonObject gearType = json.getAsJsonObject("gear_type");
         obj.normal_item_weight = gearType.get("normal_item_weight")
-            .getAsInt();
-        obj.runed_item_weight = gearType.get("runed_item_weight")
             .getAsInt();
         obj.unique_item_weight = gearType.get("unique_item_weight")
             .getAsInt();

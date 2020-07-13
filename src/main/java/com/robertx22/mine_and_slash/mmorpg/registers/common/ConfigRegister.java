@@ -2,7 +2,6 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.config.base.ISerializedConfig;
 import com.robertx22.mine_and_slash.config.base_player_stat.BasePlayerStatSerial;
-import com.robertx22.mine_and_slash.config.compatible_items.OldCompatibleItemSerial;
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.config.forge.CommonConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
@@ -44,7 +43,7 @@ public class ConfigRegister {
     }
 
     private static void createTutorials() {
-        OldCompatibleItemSerial.INSTANCE.generateConfigTutorials();
+
     }
 
     // should be called only on server, then packets sent to client

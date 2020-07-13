@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.data_generation.compatible_items;
 
-import com.robertx22.mine_and_slash.config.compatible_items.OldConfigItem;
 import com.robertx22.mine_and_slash.data_generation.BaseDataPackManager;
+import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -34,22 +34,25 @@ public class CompatibleItemDataPackManager extends BaseDataPackManager<Compatibl
             for (IUnique uniq : SlashRegistry.UniqueGears()
                 .getSerializable()
             ) {
-                OldConfigItem old = new OldConfigItem().setAlwaysUnique()
-                    .setUniqueId(uniq)
-                    .setSalvagable(true)
-                    .setType(uniq.getGearSlot());
+
+                CompatibleItem c = new CompatibleItem();
+
+                c.normal_item_weight = 0;
+                c.unique_item_weight = 100;
+                c.unique_id = uniq.GUID();
+                c.can_be_salvaged = true;
+                c.item_type = uniq.getGearSlot()
+                    .GUID();
 
                 Item theitem = (Item) uniq.getUniqueItem();
-                old.registryName = theitem.getRegistryName()
+                c.item_id = theitem.getRegistryName()
                     .toString();
-                old.dropsAsLoot = false;
+                c.add_to_loot_drops = false;
 
-                CompatibleItem neww = old.convertToNewFormat();
-
-                neww.guid = theitem.getRegistryName()
+                c.guid = theitem.getRegistryName()
                     .toString();
 
-                items.add(neww);
+                items.add(c);
             }
 
             for (GearItemSlot slot : SlashRegistry.GearTypes()
@@ -65,19 +68,19 @@ public class CompatibleItemDataPackManager extends BaseDataPackManager<Compatibl
                     .getNamespace()
                     .equals(Ref.MODID)) {
 
-                    OldConfigItem config = new OldConfigItem().setGenerationWeights(1000, 200, 0)
-                        .setSalvagable(true)
-                        .setType(slot);
-                    config.dropsAsLoot = false;
+                    CompatibleItem c = new CompatibleItem();
+                    c.normal_item_weight = 100;
+                    c.can_be_salvaged = true;
+                    c.item_type = slot.GUID();
+                    c.add_to_loot_drops = false;
 
                     String id = item.getRegistryName()
                         .toString();
 
-                    CompatibleItem neww = config.convertToNewFormat();
-                    neww.guid = id;
-                    neww.item_id = id;
+                    c.guid = id;
+                    c.item_id = id;
 
-                    items.add(neww);
+                    items.add(c);
                 }
             }
         } catch (Exception e) {

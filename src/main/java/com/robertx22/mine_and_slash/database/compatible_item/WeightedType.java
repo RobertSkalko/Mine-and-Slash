@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.config.compatible_items;
+package com.robertx22.mine_and_slash.database.compatible_item;
 
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;

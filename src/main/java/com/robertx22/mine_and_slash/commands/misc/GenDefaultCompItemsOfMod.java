@@ -5,7 +5,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.robertx22.mine_and_slash.commands.CommandRefs;
 import com.robertx22.mine_and_slash.commands.suggestions.ModsWithItemsSuggestions;
-import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
+import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.onevent.data_gen.providers.SlashDataProvider;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
