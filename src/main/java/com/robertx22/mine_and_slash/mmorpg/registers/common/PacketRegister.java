@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.packets.*;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacket;
 import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
-import com.robertx22.mine_and_slash.packets.spells.ChangeSpellHotbarPacket;
 import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
 import com.robertx22.mine_and_slash.packets.sync_cap.RequestSyncCapToClient;
 import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
@@ -34,7 +33,7 @@ public class PacketRegister {
 
         reg(DmgNumPacket.class, DmgNumPacket::encode, DmgNumPacket::decode, DmgNumPacket::handle);
 
-        reg(NoEnergyPacket.class, NoEnergyPacket::encode, NoEnergyPacket::decode, NoEnergyPacket::handle);
+        reg(NoManaPacket.class, NoManaPacket::encode, NoManaPacket::decode, NoManaPacket::handle);
 
         reg(RequestTilePacket.class, RequestTilePacket::encode, RequestTilePacket::decode, RequestTilePacket::handle);
 
@@ -57,10 +56,6 @@ public class PacketRegister {
         );
 
         reg(CastSpellPacket.class, CastSpellPacket::encode, CastSpellPacket::decode, CastSpellPacket::handle);
-
-        reg(ChangeSpellHotbarPacket.class, ChangeSpellHotbarPacket::encode, ChangeSpellHotbarPacket::decode,
-            ChangeSpellHotbarPacket::handle
-        );
 
         reg(HotbarSetupPacket.class, HotbarSetupPacket::encode, HotbarSetupPacket::decode, HotbarSetupPacket::handle);
 

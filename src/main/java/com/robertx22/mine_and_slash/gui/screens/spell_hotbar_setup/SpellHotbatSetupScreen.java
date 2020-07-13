@@ -18,20 +18,16 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
-import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 import javax.annotation.Nullable;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
@@ -54,41 +50,39 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
     protected void init() {
         super.init();
 
-        List<ItemStack> skillgems = mc.player.inventory.mainInventory.stream()
-            .filter(x -> x.getItem() instanceof SkillGemItem)
-            .collect(Collectors.toList());
-
         int x = guiLeft + 7;
         int y = guiTop + 40;
 
         int count = 0;
 
-        for (ItemStack stack : skillgems) {
+        for (int i = 0; i < mc.player.inventory.mainInventory.size(); i++) {
 
-            if (stack == null) {
-                continue;
+            ItemStack stack = mc.player.inventory.mainInventory.get(i);
+
+            if (stack.getItem() instanceof SkillGemItem) {
+
+                if (stack == null) {
+                    continue;
+                }
+
+                if (count >= 11) {
+                    y += AvailableSpellButton.ySize + 2;
+                    x = guiLeft + 7;
+                    count = 0;
+                }
+                if (count >= 1) {
+                    x += AvailableSpellButton.xSize + 2;
+                }
+                count++;
+                addButton(new AvailableSpellButton(i, stack, SkillGem.Load(stack), x, y));
             }
 
-            if (count >= 11) {
-                y += AvailableSpellButton.ySize + 2;
-                x = guiLeft + 7;
-                count = 0;
-            }
-            if (count >= 1) {
-                x += AvailableSpellButton.xSize + 2;
-            }
-            count++;
-            addButton(new AvailableSpellButton(stack, SkillGem.Load(stack), x, y));
         }
-
         count = 0;
+        /////////////////
 
         x = guiLeft + 55;
         y = guiTop + 90;
-
-        HotbarButton right = new HotbarButton(0, SpellCastingData.Hotbar.FIRST, guiLeft + SpellHotbatSetupScreen.x / 2 - HotbarButton.xSize / 2, y);
-        right.isForRightClickWeaponSpell = true;
-        this.addButton(right);
 
         for (SpellCastingData.Hotbar bar : Arrays.asList(
             SpellCastingData.Hotbar.FIRST, SpellCastingData.Hotbar.SECOND)) {
@@ -127,14 +121,9 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
         double scale = 1.25;
 
-        String str = "Weapon Right Click Spell";
+        String str = "First Hotbar";
         int xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
-        int yp = 80 + guiTop;
-        GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.LIGHT_PURPLE);
-
-        str = "First Hotbar";
-        xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
-        yp = 130 + guiTop;
+        int yp = 130 + guiTop;
         GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.GREEN);
 
         str = "Second Hotbar";
@@ -142,7 +131,7 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         yp = 180 + guiTop;
         GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.GREEN);
 
-        str = "Available Spells";
+        str = "Skill Gems in Inventory";
         xp = (int) (guiLeft + (SpellHotbatSetupScreen.x / 2));
         yp = 12 + guiTop;
         GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.YELLOW);
@@ -183,8 +172,6 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         int number;
         SpellCastingData.Hotbar hotbar;
 
-        public boolean isForRightClickWeaponSpell = false;
-
         public HotbarButton(int number, SpellCastingData.Hotbar hotbar, int xPos, int yPos) {
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
             });
@@ -201,15 +188,6 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                     TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
                     GuiUtils.renderTooltip(getSpell().GetTooltipString(info), mouseX, mouseY);
                 }
-            } else {
-                if (this.isForRightClickWeaponSpell) {
-                    if (GuiUtils.isInRectPoints(new Point(x, y), new Point(xSize, ySize), new Point(mouseX, mouseY))) {
-                        TooltipInfo info = new TooltipInfo(Minecraft.getInstance().player);
-                        List<ITextComponent> tip = new ArrayList<>();
-                        tip.add(new SText(TextFormatting.BLUE + "Some spells can be attached to a weapon as a right click spell."));
-                        GuiUtils.renderTooltip(tip, mouseX, mouseY);
-                    }
-                }
             }
         }
 
@@ -217,31 +195,20 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
         public void onPress() {
             super.onPress();
 
-            if (!isForRightClickWeaponSpell) {
-                if (this.getSpell() != null) {
-                    MMORPG.sendToServer(new HotbarSetupPacket(null, number, hotbar));
-                } else {
-                    SpellHotbatSetupScreen.barBeingPicked = this;
-                }
+            if (this.getSpell() != null) {
+                MMORPG.sendToServer(new HotbarSetupPacket(-1, number, hotbar));
             } else {
-                if (this.getSpell() != null) {
-                    //MMORPG.sendToServer(new WeaponRightClickSpellPacket(null));
-                } else {
-                    SpellHotbatSetupScreen.barBeingPicked = this;
-                }
+                SpellHotbatSetupScreen.barBeingPicked = this;
             }
+
         }
 
         @Nullable
         public BaseSpell getSpell() {
+            return Load.spells(Minecraft.getInstance().player)
+                .getCastingData()
+                .getSpellByKeybind(number, hotbar);
 
-            if (false && isForRightClickWeaponSpell) {
-                return null; // todo
-            } else {
-                return Load.spells(Minecraft.getInstance().player)
-                    .getCastingData()
-                    .getSpellByKeybind(number, hotbar);
-            }
         }
 
         @Override
@@ -281,8 +248,9 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
 
         ItemStack stack;
         SkillGemData skillgem;
+        int invslot;
 
-        public AvailableSpellButton(ItemStack stack, SkillGemData skillgem, int xPos, int yPos) {
+        public AvailableSpellButton(int invslot, ItemStack stack, SkillGemData skillgem, int xPos, int yPos) {
 
             super(xPos, yPos, xSize, ySize, 0, 0, ySize + 1, new ResourceLocation(""), (button) -> {
 
@@ -291,11 +259,12 @@ public class SpellHotbatSetupScreen extends BaseScreen implements INamedScreen {
                     HotbarButton bar = SpellHotbatSetupScreen.barBeingPicked;
 
                     if (bar.hotbar != null) {
-                        MMORPG.sendToServer(new HotbarSetupPacket(skillgem.getSpell(), bar.number, bar.hotbar));
+                        MMORPG.sendToServer(new HotbarSetupPacket(invslot, bar.number, bar.hotbar));
                     }
                 }
 
             });
+            this.invslot = invslot;
             this.skillgem = skillgem;
         }
 

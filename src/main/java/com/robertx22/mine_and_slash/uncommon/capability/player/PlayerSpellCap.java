@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.uncommon.capability.player;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
-import com.robertx22.mine_and_slash.saveclasses.spells.AllocatedAbilitiesData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
@@ -19,8 +18,6 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.List;
-
 @Mod.EventBusSubscriber
 public class PlayerSpellCap {
 
@@ -34,15 +31,11 @@ public class PlayerSpellCap {
 
     public abstract static class ISpellsCap implements ICommonPlayerCap {
 
-        public abstract AllocatedAbilitiesData getAbilitiesData();
-
         public abstract BaseSpell getCurrentRightClickSpell();
 
         public abstract BaseSpell getSpellByKeybind(int key, SpellCastingData.Hotbar bar);
 
         public abstract SpellCastingData getCastingData();
-
-        public abstract List<BaseSpell> getAvailableSpells();
 
     }
 
@@ -71,19 +64,11 @@ public class PlayerSpellCap {
     }
 
     public static class DefaultImpl extends ISpellsCap {
-
-        AllocatedAbilitiesData abilitiesData = new AllocatedAbilitiesData();
         SpellCastingData spellCastingData = new SpellCastingData();
 
         @Override
         public CompoundNBT saveToNBT() {
             CompoundNBT nbt = new CompoundNBT();
-
-            try {
-                LoadSave.Save(abilitiesData, nbt, SPELL_PERK_DATA);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
             try {
                 LoadSave.Save(spellCastingData, nbt, PLAYER_SPELL_DATA);
@@ -101,11 +86,6 @@ public class PlayerSpellCap {
 
         @Override
         public void loadFromNBT(CompoundNBT nbt) {
-            this.abilitiesData = LoadSave.Load(AllocatedAbilitiesData.class, new AllocatedAbilitiesData(), nbt, SPELL_PERK_DATA);
-
-            if (abilitiesData == null) {
-                abilitiesData = new AllocatedAbilitiesData();
-            }
 
             this.spellCastingData = LoadSave.Load(
                 SpellCastingData.class, new SpellCastingData(), nbt, PLAYER_SPELL_DATA);
@@ -113,11 +93,6 @@ public class PlayerSpellCap {
             if (spellCastingData == null) {
                 spellCastingData = new SpellCastingData();
             }
-        }
-
-        @Override
-        public AllocatedAbilitiesData getAbilitiesData() {
-            return abilitiesData;
         }
 
         @Override
@@ -133,11 +108,6 @@ public class PlayerSpellCap {
         @Override
         public SpellCastingData getCastingData() {
             return this.spellCastingData;
-        }
-
-        @Override
-        public List<BaseSpell> getAvailableSpells() {
-            return this.abilitiesData.getAllocatedSpells();
         }
 
     }

@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpel
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
@@ -66,10 +67,10 @@ public class SpellCastingData {
     }
 
     @Store
-    private HashMap<Integer, String> firstHotbar = new HashMap<>();
+    private HashMap<Integer, SkillGemData> firstHotbar = new HashMap<>();
 
     @Store
-    private HashMap<Integer, String> secondHotbar = new HashMap<>();
+    private HashMap<Integer, SkillGemData> secondHotbar = new HashMap<>();
 
     @Store
     private HashMap<String, SpellData> spellDatas = new HashMap<>();
@@ -184,45 +185,33 @@ public class SpellCastingData {
                 BaseSpell spell = SlashRegistry.Spells()
                     .get(spellBeingCast);
 
-                if (spells.getAbilitiesData()
-                    .getAllocatedSpells()
-                    .contains(spell)) {
+                int timesToCast = (int) ctx.getConfigFor(spell)
+                    .get(SC.TIMES_TO_CAST)
+                    .get(ctx.spellsCap, spell);
 
-                    int timesToCast = (int) ctx.getConfigFor(spell)
-                        .get(SC.TIMES_TO_CAST)
-                        .get(ctx.spellsCap, spell);
-
-                    if (timesToCast == 1) {
-                        spell.cast(ctx);
-                    }
-
-                    player.getHeldItemMainhand()
-                        .damageItem(1, player, x -> {
-                            player.sendBreakAnimation(player.getActiveHand());
-                        });
-
-                    onSpellCast(spell, player, spells);
-
-                    spellBeingCast = "";
-
-                } else {
-                    firstHotbar.entrySet()
-                        .removeIf(x -> x.getValue()
-                            .equals(spell.GUID()));
-                    secondHotbar.entrySet()
-                        .removeIf(x -> x.getValue()
-                            .equals(spell.GUID()));
+                if (timesToCast == 1) {
+                    spell.cast(ctx);
                 }
+
+                player.getHeldItemMainhand()
+                    .damageItem(1, player, x -> {
+                        player.sendBreakAnimation(player.getActiveHand());
+                    });
+
+                onSpellCast(spell, player, spells);
+
+                spellBeingCast = "";
+
             }
         }
 
     }
 
-    public void setHotbar(int number, Hotbar hotbar, String spellID) {
+    public void setHotbar(int number, Hotbar hotbar, SkillGemData data) {
 
-        if (!spellID.isEmpty()) {
+        if (data != null) {
             if (!SlashRegistry.Spells()
-                .isRegistered(spellID)) {
+                .isRegistered(data.spell_id)) {
                 try {
                     throw new Exception("Trying to setup spell that isn't registered!");
                 } catch (Exception e) {
@@ -231,7 +220,7 @@ public class SpellCastingData {
             }
         }
 
-        getMap(hotbar).put(number, spellID);
+        getMap(hotbar).put(number, data);
     }
 
     public BaseSpell getSpellBeingCast() {
@@ -298,7 +287,7 @@ public class SpellCastingData {
 
     }
 
-    public HashMap<Integer, String> getMap(Hotbar hotbar) {
+    public HashMap<Integer, SkillGemData> getMap(Hotbar hotbar) {
         if (hotbar == Hotbar.FIRST) {
             return this.firstHotbar;
         } else {
@@ -320,7 +309,7 @@ public class SpellCastingData {
 
     public SpellData getDataByKeybind(int key, Hotbar hotbar) {
 
-        String id = getMap(hotbar).get(key);
+        String id = getMap(hotbar).get(key).spell_id;
 
         if (spellDatas.containsKey(id) == false) {
             spellDatas.put(id, new SpellData());
@@ -332,7 +321,7 @@ public class SpellCastingData {
 
     @Nullable
     public BaseSpell getSpellByKeybind(int key, Hotbar hotbar) {
-        String id = getMap(hotbar).get(key);
+        String id = getMap(hotbar).getOrDefault(key, new SkillGemData()).spell_id;
 
         if (id != null) {
             if (SlashRegistry.Spells()

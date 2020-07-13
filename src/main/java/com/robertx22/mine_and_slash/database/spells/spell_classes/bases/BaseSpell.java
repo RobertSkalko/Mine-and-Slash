@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
-import com.robertx22.mine_and_slash.packets.NoEnergyPacket;
+import com.robertx22.mine_and_slash.packets.NoManaPacket;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
@@ -278,7 +278,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
                     return true;
                 } else {
                     if (caster instanceof ServerPlayerEntity) {
-                        MMORPG.sendToClient(new NoEnergyPacket(), (ServerPlayerEntity) caster);
+                        MMORPG.sendToClient(new NoManaPacket(), (ServerPlayerEntity) caster);
                     }
 
                 }

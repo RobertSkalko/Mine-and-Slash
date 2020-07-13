@@ -22,6 +22,9 @@ a55bb6c5a144fd4ea6fb6e9e171bf6a4695a6f01 assets\mmorpg\models\item\currency\ston
 9c0d3d8ba2a8a8e082810e7f2580ae99d4f2b22c assets\mmorpg\models\item\jewelry\occult_ring.json
 b1b8830ceba85cdd6f0f975449a77462aba0e6ef assets\mmorpg\models\item\jewels\blue.json
 b243fa54a0c4bb587568f35e977b11c609a36de7 assets\mmorpg\models\item\jewels\green.json
+869d9ebc8e2ee21196f79cae17406b20a4b05f91 assets\mmorpg\models\item\skill_gems\dex.json
+25400e6d766837a670915f127756cb512e040c90 assets\mmorpg\models\item\skill_gems\int.json
+e881b768ee3e0ae99486692673186bb92c302c5a assets\mmorpg\models\item\skill_gems\str.json
 fee1e0ecfc52bfa2bd1aac12b61ca4b85e7ec9e1 assets\mmorpg\models\item\uniques\jewelry\birth_miracle.json
 ae0aec650f8474182b5e352e79f1aed1919ae91d assets\mmorpg\models\item\uniques\jewelry\skull_of_spirits.json
 5074b891ff26cc84bf4d7322c8260037af7ff530 assets\mmorpg\models\item\uniques\weapon\water_ele_sword.json

@@ -54,10 +54,6 @@ public class OnLogin {
                 SlashRegistry.restoreFromBackupifEmpty();
                 data.onLogin(player);
 
-                Load.spells(player)
-                    .getAbilitiesData()
-                    .clean();
-
                 data.syncToClient(player);
 
             } else {
