@@ -17,6 +17,11 @@ public class AllAttributes extends Stat implements IPreCoreStat {
     }
 
     @Override
+    public boolean IsShownOnStatGui() {
+        return false;
+    }
+
+    @Override
     public StatScaling getScaling() {
         return StatScaling.LINEAR;
     }
@@ -42,8 +47,11 @@ public class AllAttributes extends Stat implements IPreCoreStat {
 
     @Override
     public void addToCoreStats(EntityCap.UnitData unitdata, StatData data) {
-        coreStatsThatBenefit().forEach(x -> x.getMods(data, unitdata.getLevel())
-            .forEach(m -> m.applyStats(unitdata)));
+        coreStatsThatBenefit().forEach(x -> {
+            unitdata.getUnit()
+                .getCreateStat(x)
+                .addAlreadyScaledFlat(data.getAverageValue());
+        });
     }
 
     public List<BaseCoreStat> coreStatsThatBenefit() {

@@ -58,8 +58,8 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
 
     public float mob_strength_multi = 1F;
 
-    public int min_lvl = 0;
-    public int max_lvl = 0;
+    public int min_lvl = 1;
+    public int max_lvl = Integer.MAX_VALUE;
     public int mob_lvl_per_distance = 0;
     public boolean scale_to_nearest_player = false;
 

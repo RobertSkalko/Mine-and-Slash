@@ -4,7 +4,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.robertx22.mine_and_slash.commands.entity.SetEntityRarity;
 import com.robertx22.mine_and_slash.commands.giveitems.GiveExactUnique;
 import com.robertx22.mine_and_slash.commands.giveitems.GiveGear;
-import com.robertx22.mine_and_slash.commands.giveitems.GiveUniqueGear;
 import com.robertx22.mine_and_slash.commands.misc.GenDefaultCompItemsOfMod;
 import com.robertx22.mine_and_slash.commands.misc.ReloadConfigs;
 import com.robertx22.mine_and_slash.commands.open_gui.OpenHub;
@@ -26,7 +25,6 @@ public class CommandRegister {
 
         GiveExactUnique.register(dispatcher);
         GiveGear.register(dispatcher);
-        GiveUniqueGear.register(dispatcher);
         SetEntityRarity.register(dispatcher);
 
         ResetSpellCooldowns.register(dispatcher);

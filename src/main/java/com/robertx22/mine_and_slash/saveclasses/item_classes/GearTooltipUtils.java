@@ -58,21 +58,22 @@ public class GearTooltipUtils {
         }
 
         StatRequirement req = gear.getStatRequirements();
-        String reqtext = TextFormatting.GRAY + "Requires Lvl " + TextFormatting.WHITE + gear.level;
+        String reqtext = TextFormatting.GRAY + "(Level " + TextFormatting.WHITE + gear.level;
 
         int dex = req.getDex(gear);
         int str = req.getStr(gear);
         int intr = req.getInt(gear);
 
         if (str > 0) {
-            reqtext += TextFormatting.GRAY + ", " + TextFormatting.WHITE + " " + str + TextFormatting.GRAY + " STR";
+            reqtext += TextFormatting.GRAY + ", STR " + TextFormatting.WHITE + "" + str;
         }
         if (intr > 0) {
-            reqtext += TextFormatting.GRAY + ", " + TextFormatting.WHITE + " " + intr + TextFormatting.GRAY + " INT";
+            reqtext += TextFormatting.GRAY + ", INT " + TextFormatting.WHITE + "" + intr;
         }
         if (dex > 0) {
-            reqtext += TextFormatting.GRAY + ", " + TextFormatting.WHITE + " " + dex + TextFormatting.GRAY + " DEX";
+            reqtext += TextFormatting.GRAY + ", DEX " + TextFormatting.WHITE + "" + dex;
         }
+        reqtext += ")";
 
         tip.add(new SText(""));
         tip.add(new SText(reqtext));

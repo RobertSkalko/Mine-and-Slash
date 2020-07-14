@@ -91,6 +91,8 @@ public class OnMobSpawn {
 
         UnitData endata = Load.Unit(entity);
 
+        endata.SetMobLevelAtSpawn(entity, nearestPlayer);
+
         int rar = mob.randomRarity(entity, endata);
         endata.setRarity(rar);
 

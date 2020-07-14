@@ -3,100 +3,95 @@ package com.robertx22.mine_and_slash.onevent.item;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.items.misc.JewelItem;
-import com.robertx22.mine_and_slash.items.misc.SkillGemItem;
 import com.robertx22.mine_and_slash.new_content.auto_comp.PowerLevel;
 import com.robertx22.mine_and_slash.registry.FilterListWrap;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.JewelData;
-import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
-import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
-import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class OnContainerCompatibleItem {
 
-    // this happens many times, all items must have a "is already generated" check.
     @SubscribeEvent
-    public static void onEntityConstruct(AttachCapabilitiesEvent<ItemStack> event) {
-
-        ItemStack stack = event.getObject();
+    public static void onContainerCompatibleItem(PlayerContainerEvent event) {
 
         try {
 
-            if (stack.isEmpty()) {
+            if (ModConfig.INSTANCE.Server.USE_COMPATIBILITY_ITEMS.get() == false) {
+                return;
+            }
+            if (event.getPlayer().world.isRemote) {
                 return;
             }
 
-            if (stack.getItem() instanceof JewelItem && !Jewel.has(stack)) {
-                JewelData jewel = new JewelData();
-                jewel.randomize();
-                Jewel.Save(stack, jewel);
-                return;
-            }
-            if (stack.getItem() instanceof SkillGemItem && !SkillGem.has(stack)) {
-                SkillGemData skillgem = new SkillGemData();
-                skillgem.create();
-                SkillGem.Save(stack, skillgem);
-                return;
-            }
+            EntityCap.UnitData data = null;
 
-            // fast check for every item
-            if (Gear.has(stack) == false) {
+            for (ItemStack stack : event.getPlayer().inventory.mainInventory) {
 
-                String reg = stack.getItem()
-                    .getRegistryName()
-                    .toString();
+                if (stack.isEmpty()) {
+                    continue;
+                }
 
-                FilterListWrap<CompatibleItem> matchingItems = SlashRegistry.CompatibleItems()
-                    .getFilterWrapped(x -> x.item_id.equals(reg.toString()) && !x.only_add_stats_if_loot_drop);
+                // fast check for every item
+                if (Gear.has(stack) == false) {
 
-                CompatibleItem config = null;
+                    String reg = stack.getItem()
+                        .getRegistryName()
+                        .toString();
 
-                if (!matchingItems.list.isEmpty()) {
-                    config = matchingItems.random();
-                } else {
+                    FilterListWrap<CompatibleItem> matchingItems = SlashRegistry.CompatibleItems()
+                        .getFilterWrapped(x -> x.item_id.equals(reg.toString()) && !x.only_add_stats_if_loot_drop);
 
-                    if (ModConfig.INSTANCE.autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS.get()) {
+                    CompatibleItem config = null;
 
-                        final ItemStack finalStack = stack;
+                    if (!matchingItems.list.isEmpty()) {
+                        config = matchingItems.random();
+                    } else {
 
-                        final Item item = finalStack.getItem();
+                        if (ModConfig.INSTANCE.autoCompatibleItems.ENABLE_AUTOMATIC_COMPATIBLE_ITEMS.get()) {
 
-                        FilterListWrap<GearItemSlot> wrapped = SlashRegistry.GearTypes()
-                            .getFilterWrapped(x -> GearItemSlot.isGearOfThisType(x, item));
+                            final ItemStack finalStack = stack;
 
-                        if (!wrapped.list.isEmpty()) {
+                            final Item item = finalStack.getItem();
 
-                            GearItemSlot slot = wrapped.random();
+                            FilterListWrap<GearItemSlot> wrapped = SlashRegistry.GearTypes()
+                                .getFilterWrapped(x -> GearItemSlot.isGearOfThisType(x, item));
 
-                            PowerLevel.Types type = PowerLevel.getPowerClassification(item);
+                            if (!wrapped.list.isEmpty()) {
 
-                            config = type.getConfig()
-                                .getAutoCompatibleItem(item, slot);
+                                GearItemSlot slot = wrapped.random();
+
+                                PowerLevel.Types type = PowerLevel.getPowerClassification(item);
+
+                                config = type.getConfig()
+                                    .getAutoCompatibleItem(item, slot);
+
+                            }
 
                         }
-
                     }
-                }
 
-                if (config != null) {
+                    if (config != null) {
+                        if (data == null) {
+                            data = Load.Unit(event.getPlayer());
+                        }
 
-                    // slow check to make absolutely sure it doesnt have stats
-                    GearItemData gear = Gear.Load(stack);
-                    if (gear == null) {
-                        stack = config.create(stack);
+                        // slow check to make absolutely sure it doesnt have stats
+                        GearItemData gear = Gear.Load(stack);
+                        if (gear == null) {
+                            stack = config.create(data.getLevel(), stack);
+                            event.getPlayer().inventory.markDirty();
+                        }
                     }
                 }
             }
 
-        } catch (
-            Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

@@ -6,7 +6,6 @@ import com.robertx22.mine_and_slash.database.DimensionConfig;
 import com.robertx22.mine_and_slash.database.EntityConfig;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
-import com.robertx22.mine_and_slash.database.stats.IAfterStatCalc;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
@@ -19,7 +18,6 @@ import com.robertx22.mine_and_slash.packets.EfficientMobUnitPacket;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
-import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.stat_calculation.CommonStatUtils;
@@ -393,11 +391,7 @@ public class Unit {
             MobStatUtils.modifyMobStatsByConfig(entity, data);
         }
 
-        PlayerStatUtils.AddAllGearStats(entity, gears, data);
-
-        Unit copy = this.Clone();
-
-        CommonStatUtils.CalcStatConversionsAndTransfers(copy, this);
+        addGearStats(gears, entity, data);
 
         CommonStatUtils.CalcTraitsAndCoreStats(
             data); // has to be at end for the conditionals like if crit higher than x
@@ -407,30 +401,6 @@ public class Unit {
         CalcStats(data);
 
         removeEmptyStats();
-
-        if (entity instanceof PlayerEntity) {
-
-            PlayerSpellCap.ISpellsCap spells = Load.spells(entity);
-
-            try {
-                this.stats.stats.entrySet()
-                    .forEach(x -> {
-                        Stat stat = x.getValue()
-                            .GetStat();
-
-                        if (stat instanceof IAfterStatCalc) {
-                            IAfterStatCalc after = (IAfterStatCalc) stat;
-
-                            ((IAfterStatCalc) stat).doAfterStatCalc(x.getValue(), data, spells);
-
-                        }
-
-                    });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
 
         DirtyCheck aftercalc = getDirtyCheck();
 
@@ -443,6 +413,71 @@ public class Unit {
                 return;
             }
             MMORPG.sendToTracking(getUpdatePacketFor(entity, data), entity);
+        }
+
+    }
+
+    private void addGearStats(List<GearItemData> gears, LivingEntity entity, UnitData data) {
+
+        /*
+        Add all gear stats that meet requirements
+        >
+        Remove the gears that added stats
+        >
+        Recalculate stats
+        >
+        Add all gear stats that meet requirements
+        ...
+        If recalculated already and leftover gear still doesn't meet requirements, stop and remove all.
+        */
+
+        boolean addedAny = true;
+
+        while (!gears.isEmpty()) {
+
+            this.CalcStats(data);
+
+            List<Integer> toremove = new ArrayList<>();
+
+            for (int i = 0; i < gears.size(); i++) {
+
+                GearItemData gear = gears.get(i);
+
+                boolean addstats = true;
+
+                if (entity instanceof PlayerEntity) {
+                    if (!gear.isIdentified()) {
+                        addstats = false;
+                        continue;
+                    } else if (data.getLevel() < gear.level) {
+                        addstats = false;
+                        continue;
+                    } else if (!gear.meetsStatRequirements(data)) {
+                        addstats = false;
+                    }
+                }
+
+                if (addstats) {
+                    gear.GetAllStats(true, false)
+                        .forEach(x -> {
+                            x.applyStats(data);
+                        });
+                    toremove.add(i);
+                }
+
+            }
+
+            if (toremove.isEmpty()) {
+                if (!addedAny) {
+                    gears.clear();
+                    return;
+                } else {
+                    addedAny = false;
+                }
+            }
+
+            toremove.forEach(x -> gears.remove((int) x));
+
         }
 
     }

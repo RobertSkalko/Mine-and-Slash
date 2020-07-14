@@ -11,6 +11,24 @@ import net.minecraft.util.math.MathHelper;
 
 public class LootUtils {
 
+    // prevents lvl 50 players farming lvl 1 mobs
+    public static float ApplyLevelDistancePunishment(UnitData mob, UnitData player, float chance) {
+
+        int diff = Math.abs(mob.getLevel() - player.getLevel());
+
+        if (diff < 5) {
+            return chance;
+        } else {
+            chance = chance * (1 - diff - 0.05F);
+        }
+
+        if (chance < 0) {
+            return 0;
+        }
+        return chance;
+
+    }
+
     public static ItemStack RandomDamagedGear(ItemStack stack, Rarity rar) {
         if (stack.isDamageable()) {
 

@@ -23,7 +23,7 @@ public class UniqueCrate extends LootCrate {
     @Override
     public ItemStack generateStack(LootInfo info) {
 
-        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(info.tier, true);
+        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(info.level, info.tier, true);
 
         ItemStack stack = blueprint.createStack();
 

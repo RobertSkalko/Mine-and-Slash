@@ -43,8 +43,8 @@ public class Strength extends BaseCoreStat {
     @Override
     public List<StatModifier> statsThatBenefit() {
         return Arrays.asList(
-            new StatModifier(0.2F, 0.2F, new WeaponDamage(Elements.Physical), ModType.GLOBAL_INCREASE),
-            new StatModifier(0.5F, 0.5F, Health.getInstance(), ModType.GLOBAL_INCREASE)
+            new StatModifier(0.1F, 0.1F, new WeaponDamage(Elements.Physical), ModType.GLOBAL_INCREASE),
+            new StatModifier(0.75F, 0.75F, Health.getInstance(), ModType.GLOBAL_INCREASE)
         );
     }
 

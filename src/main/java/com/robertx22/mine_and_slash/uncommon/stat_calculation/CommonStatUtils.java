@@ -11,8 +11,6 @@ import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitDat
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAffectsStats;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatConversion;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IStatTransfer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectInstance;
 
@@ -79,32 +77,6 @@ public class CommonStatUtils {
             }
 
         }
-    }
-
-    /**
-     * A unit copy is needed so there's no randomness to stat transfers and
-     * conversions. All changes are based on old copy but applied to the unit that's
-     * used
-     */
-    public static void CalcStatConversionsAndTransfers(Unit copy, Unit unit) {
-
-        for (IStatConversion core : Stats.allPreGenMapStatLists.get(IStatConversion.class)) {
-
-            StatData statdata = copy.peekAtStat(core.GUID());
-            if (statdata.isMoreThanZero()) {
-                core.convertStats(copy, unit, copy.getCreateStat(core.GUID()));
-            }
-
-        }
-        for (IStatTransfer core : Stats.allPreGenMapStatLists.get(IStatTransfer.class)) {
-
-            StatData statdata = copy.peekAtStat(core.GUID());
-            if (statdata.isMoreThanZero()) {
-                core.transferStats(copy, unit, copy.getCreateStat(core.GUID()));
-            }
-
-        }
-
     }
 
 }

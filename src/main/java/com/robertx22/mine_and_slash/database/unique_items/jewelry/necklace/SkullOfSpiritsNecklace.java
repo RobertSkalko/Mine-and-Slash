@@ -17,8 +17,8 @@ public class SkullOfSpiritsNecklace implements IUnique {
     @Override
     public List<StatModifier> uniqueStats() {
         return Arrays.asList(
-            new StatModifier(4, 18, AllAttributes.getInstance(), ModType.FLAT),
-            new StatModifier(15, 30, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
+            new StatModifier(0.5F, 1.5F, AllAttributes.getInstance(), ModType.FLAT),
+            new StatModifier(10, 20, MagicShieldRegen.getInstance(), ModType.LOCAL_INCREASE),
             new StatModifier(-5, -15, new ElementalResist(Elements.Water), ModType.FLAT),
             new StatModifier(-5, -15, new ElementalResist(Elements.Fire), ModType.FLAT)
         );

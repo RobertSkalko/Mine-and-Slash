@@ -13,7 +13,7 @@ public class LevelUtils {
 
         DimensionConfig dimConfig = SlashRegistry.getDimensionConfig(world);
 
-        int lvl = 1;
+        int lvl = 0;
 
         if (dimConfig.scale_to_nearest_player) {
             if (nearestPlayer != null) {
@@ -26,7 +26,7 @@ public class LevelUtils {
             lvl = determineLevelPerDistanceFromSpawn(world, pos, dimConfig);
         }
 
-        lvl = MathHelper.clamp(lvl, dimConfig.min_lvl, dimConfig.max_lvl);
+        lvl = MathHelper.clamp(dimConfig.min_lvl + lvl, dimConfig.min_lvl, dimConfig.max_lvl);
 
         return lvl;
     }

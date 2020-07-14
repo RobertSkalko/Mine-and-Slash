@@ -16,7 +16,7 @@ public class WaterElementalSword implements IUnique {
     @Override
     public List<StatModifier> uniqueStats() {
         return Arrays.asList(
-            new StatModifier(1, 3, 5, 14, new WeaponDamage(Elements.Water), ModType.FLAT),
+            new StatModifier(1, 3, 4, 13, new WeaponDamage(Elements.Water), ModType.FLAT),
             new StatModifier(10, 50, new WeaponDamage(Elements.Water), ModType.LOCAL_INCREASE),
             new StatModifier(1, 2, ManaOnHit.getInstance(), ModType.FLAT)
         );

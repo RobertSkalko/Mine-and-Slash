@@ -16,13 +16,15 @@ public class OnCurioChangEvent {
 
         LivingEntity entity = event.getEntityLiving();
         if (entity != null) {
-            EntityCap.UnitData data = Load.Unit(entity);
-            if (data != null) {
-                data.setEquipsChanged(true);
-                data.tryRecalculateStats(entity);
+            if (!entity.world.isRemote) {
+                EntityCap.UnitData data = Load.Unit(entity);
+                if (data != null) {
+                    data.setEquipsChanged(true);
+                    data.tryRecalculateStats(entity);
 
-                if (entity instanceof ServerPlayerEntity) {
-                    data.syncToClient((ServerPlayerEntity) entity);
+                    if (entity instanceof ServerPlayerEntity) {
+                        data.syncToClient((ServerPlayerEntity) entity);
+                    }
                 }
             }
         }

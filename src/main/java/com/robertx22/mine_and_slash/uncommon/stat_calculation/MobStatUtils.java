@@ -92,6 +92,8 @@ public class MobStatUtils {
         MobRarity rar = Rarities.Mobs.get(unitdata.getRarity());
         Unit unit = unitdata.getUnit();
 
+        int lvl = unitdata.getLevel();
+
         float hpaddedalready = 0;
         AttributeModifier hpmod = en.getAttribute(SharedMonsterAttributes.MAX_HEALTH)
             .getModifier(Unit.hpID);
@@ -100,27 +102,27 @@ public class MobStatUtils {
         }
 
         unit.getCreateStat(Health.getInstance())
-            .addFlat((en.getMaxHealth() - hpaddedalready) * rar.HealthMultiplier());
+            .addFlat((en.getMaxHealth() - hpaddedalready) * rar.HealthMultiplier(), lvl);
 
         unit.getCreateStat(Armor.GUID)
             .addFlat(Armor.getInstance()
-                .valueNeededToReachMaximumPercentAtLevelOne() * rar.StatMultiplier());
+                .valueNeededToReachMaximumPercentAtLevelOne() * rar.StatMultiplier(), lvl);
         unit.getCreateStat(CriticalHit.GUID)
-            .addFlat(5 * rar.DamageMultiplier());
+            .addFlat(5 * rar.DamageMultiplier(), lvl);
         unit.getCreateStat(CriticalDamage.GUID)
-            .addFlat(5 * rar.DamageMultiplier());
+            .addFlat(5 * rar.DamageMultiplier(), lvl);
 
         ElementalResist.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)
-                .addFlat(5 * rar.StatMultiplier()));
+                .addFlat(5 * rar.StatMultiplier(), lvl));
 
         ElementalSpellDamage.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)
-                .addFlat(spelldmg * rar.DamageMultiplier()));
+                .addFlat(spelldmg * rar.DamageMultiplier(), lvl));
 
         ElementalPenetration.MAP.getList()
             .forEach(x -> unit.getCreateStat(x)
-                .addFlat(4 * rar.DamageMultiplier()));
+                .addFlat(4 * rar.DamageMultiplier(), lvl));
 
     }
 

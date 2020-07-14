@@ -9,11 +9,13 @@ public class UniqueGearsSuggestions extends CommandSuggestions {
 
     @Override
     public List<String> suggestions() {
-        return SlashRegistry.UniqueGears()
+        List<String> list = SlashRegistry.UniqueGears()
             .getList()
             .stream()
             .map(x -> x.GUID())
             .collect(Collectors.toList());
+        list.add("random");
+        return list;
     }
 
 }

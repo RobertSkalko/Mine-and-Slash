@@ -498,7 +498,7 @@ public class EntityCap {
                 }
 
                 ITextComponent lvlcomp = Styles.YELLOWCOMP()
-                    .appendSibling(new StringTextComponent(""));
+                    .appendSibling(new StringTextComponent("[" + getLevel() + "] "));
 
                 ITextComponent part = new StringTextComponent(rarity.textFormatting() + "").appendSibling(
                     rarityprefix.appendText(" ")
@@ -774,7 +774,7 @@ public class EntityCap {
                 nearestPlayer
             );
 
-            this.level = MathHelper.clamp(lvl, entityConfig.min_lvl, entityConfig.max_rarity);
+            setLevel(MathHelper.clamp(lvl, entityConfig.min_lvl, entityConfig.max_lvl), entity);
         }
 
         @Override

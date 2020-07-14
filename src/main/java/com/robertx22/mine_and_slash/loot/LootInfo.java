@@ -6,16 +6,21 @@ import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.PlayerUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.WorldUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class LootInfo {
 
     public int amount = 0;
     public int tier = 0;
+    public int level = 0;
 
     public UnitData mobData;
     public UnitData playerData;
@@ -60,6 +65,7 @@ public class LootInfo {
         info.victim = mob;
         info.killer = player;
         info.pos = mob.getPosition();
+        info.level = info.mobData.getLevel();
 
         info.setupAllFields();
         return info;
@@ -71,6 +77,7 @@ public class LootInfo {
 
         info.world = world;
         info.pos = pos;
+        info.level = LevelUtils.determineLevel(world, pos, PlayerUtils.nearestPlayer((ServerWorld) world, new Vec3d(pos)));
 
         info.setupAllFields();
 
@@ -82,6 +89,7 @@ public class LootInfo {
         errorIfClient();
         setWorld();
         setTier();
+        setLevel();
     }
 
     private LootInfo setTier() {
@@ -93,6 +101,14 @@ public class LootInfo {
         }
         return this;
 
+    }
+
+    private void setLevel() {
+        if (mobData != null) {
+            level = mobData.getLevel();
+        } else {
+            level = LevelUtils.determineLevel(world, pos, killer);
+        }
     }
 
     private void errorIfClient() {
@@ -142,6 +158,11 @@ public class LootInfo {
 
         if (mobData != null && victim != null) {
             chance = LootUtils.applyLootMultipliers(chance, mobData, victim);
+
+            if (this.playerData != null) {
+                chance = LootUtils.ApplyLevelDistancePunishment(mobData, playerData, chance);
+            }
+
         }
 
         amount = LootUtils.WhileRoll(chance);

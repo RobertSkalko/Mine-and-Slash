@@ -54,9 +54,15 @@ public class StatRequirement implements ISerializable<StatRequirement> {
     }
 
     private float scale(float val, GearItemData gear) {
-        return (int) Dexterity.INSTANCE.scale(gear.getRarity()
+        if (val <= 0) {
+            return 0;
+        }
+
+        float calc = val * gear.getRarity()
             .statReqMulti() * ModConfig.INSTANCE.Server.STAT_POINTS_PER_LVL.get()
-            .floatValue(), gear.level);
+            .floatValue();
+
+        return (int) Dexterity.INSTANCE.scale(calc, gear.level);
     }
 
     public StatRequirement dexterity(float dex_req) {

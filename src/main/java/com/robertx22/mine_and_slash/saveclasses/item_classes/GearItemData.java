@@ -35,11 +35,7 @@ import java.util.List;
 @Storable
 public class GearItemData implements ICommonDataItem<GearRarity> {
 
-    public boolean meetsRequirements(EntityCap.UnitData data) {
-
-        if (data.getLevel() < level) {
-            return false;
-        }
+    public boolean meetsStatRequirements(EntityCap.UnitData data) {
 
         if (!getStatRequirements().passesStatRequirements(data, this)) {
             return false;

@@ -50,7 +50,7 @@ public class BasePlayerStatContainer implements ISlashRegistryInit, IApplyableSt
                 data.getUnit()
                     .getCreateStat(x.getKey())
                     .addFlat(x.getValue()
-                        .floatValue());
+                        .floatValue(), data.getLevel());
             });
 
     }

@@ -83,6 +83,7 @@ public class GearCreationUtils {
         GearRarity rarity = (GearRarity) blueprint.rarity.get();
         GearItemData data = new GearItemData();
 
+        data.level = blueprint.level.get();
         data.rarity = rarity.Rank();
 
         if (blueprint instanceof UniqueGearBlueprint) {

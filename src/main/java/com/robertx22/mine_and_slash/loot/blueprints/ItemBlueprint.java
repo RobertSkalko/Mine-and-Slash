@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.loot.blueprints;
 
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.loot.LootInfo;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.LevelPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.RarityPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.TierPart;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.IStackAction;
@@ -14,19 +15,21 @@ import java.util.List;
 // use once and discard!
 public abstract class ItemBlueprint {
 
-    public ItemBlueprint() {
+    public ItemBlueprint(int lvl) {
+        this.level.number = lvl;
         this.onConstruct();
     }
 
     public ItemBlueprint(LootInfo info) {
+        this.level.number = info.level;
         this.tier.number = info.tier;
 
         this.onConstruct();
     }
 
-    public ItemBlueprint(int tier) {
+    public ItemBlueprint(int lvl, int tier) {
         this.tier.number = tier;
-
+        this.level.number = lvl;
         this.onConstruct();
     }
 
@@ -40,6 +43,7 @@ public abstract class ItemBlueprint {
 
     public RarityPart rarity = new RarityPart(this);
     public TierPart tier = new TierPart(this);
+    public LevelPart level = new LevelPart(this);
 
     abstract ItemStack generate();
 

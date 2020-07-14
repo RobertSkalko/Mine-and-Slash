@@ -46,7 +46,7 @@ public class UniqueGearLootGen extends BaseLootGen<UniqueGearBlueprint> {
     @Override
     public ItemStack generateOne() {
 
-        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(info.tier, true);
+        UniqueGearBlueprint blueprint = new UniqueGearBlueprint(info.level, info.tier, true);
 
         ItemStack stack = blueprint.createStack();
 

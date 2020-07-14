@@ -20,9 +20,9 @@ public interface IStatTransfer extends IGUID {
 
             if (val != 0) {
                 unit.getCreateStat(stat.converted)
-                    .addFlat(-val);
+                    .addAlreadyScaledFlat(-val);
                 unit.getCreateStat(stat.statThatBenefits)
-                    .addFlat(val);
+                    .addAlreadyScaledFlat(val);
             }
         }
 

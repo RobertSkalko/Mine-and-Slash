@@ -15,8 +15,8 @@ import net.minecraft.item.ItemStack;
 
 public class GearBlueprint extends ItemBlueprint {
 
-    public GearBlueprint() {
-        super();
+    public GearBlueprint(int lvl) {
+        super(lvl);
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
     }
 
@@ -25,7 +25,7 @@ public class GearBlueprint extends ItemBlueprint {
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
     }
 
-    public GearBlueprint(int tier) {
+    public GearBlueprint(int lvl, int tier) {
         super(tier);
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
     }

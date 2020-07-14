@@ -24,7 +24,7 @@ public class GiveExactUnique {
         commandDispatcher.register(
             literal(CommandRefs.ID)
                 .then(literal("give").requires(e -> e.hasPermissionLevel(2))
-                    .then(literal("exact_unique")
+                    .then(literal("unique_gear")
                         .requires(e -> e.hasPermissionLevel(2))
                         .then(argument("target", EntityArgument.player())
                             .then(argument("uniqueID", StringArgumentType.word())
@@ -54,12 +54,14 @@ public class GiveExactUnique {
         }
 
         for (int i = 0; i < amount; i++) {
-            UniqueGearBlueprint blueprint = new UniqueGearBlueprint(0, true);
-
+            UniqueGearBlueprint blueprint = new UniqueGearBlueprint(lvl, 0, true);
             blueprint.unidentifiedPart.set(false);
 
-            blueprint.unique.set(SlashRegistry.UniqueGears()
-                .get(id));
+            if (!id.equals("random")) {
+
+                blueprint.unique.set(SlashRegistry.UniqueGears()
+                    .get(id));
+            }
 
             player.addItemStackToInventory(blueprint.createStack());
         }

@@ -16,6 +16,7 @@ import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +34,9 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
     public int min_rarity = 0;
     public int max_rarity = 2;
+
+    public int min_level = 1;
+    public int max_level = Integer.MAX_VALUE;
 
     public boolean only_add_stats_if_loot_drop = false;
     public boolean add_to_loot_drops = true;
@@ -80,6 +84,11 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         Misc.addProperty("can_be_salvaged", can_be_salvaged);
         json.add("misc", Misc);
 
+        JsonObject level = new JsonObject();
+        level.addProperty("min_level", min_level);
+        level.addProperty("max_level", max_level);
+        json.add("level", level);
+
         JsonObject unique = new JsonObject();
         unique.addProperty("if_unique_random_up_to_tier", if_unique_random_up_to_tier);
         unique.addProperty("unique_id", unique_id);
@@ -120,6 +129,12 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         obj.can_be_salvaged = misc.get("can_be_salvaged")
             .getAsBoolean();
 
+        JsonObject level = json.getAsJsonObject("level");
+        obj.min_level = level.get("min_level")
+            .getAsInt();
+        obj.max_level = level.get("max_level")
+            .getAsInt();
+
         JsonObject unique = json.getAsJsonObject("unique");
         obj.if_unique_random_up_to_tier = unique.get("if_unique_random_up_to_tier")
             .getAsInt();
@@ -153,20 +168,25 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         return guid;
     }
 
-    public ItemStack create(ItemStack stack) {
+    public ItemStack create(int playerlvl, ItemStack stack) {
+        int lvl = getLevel(playerlvl);
 
         switch (getCreationType()) {
             case NORMAL:
-                createNormal(stack);
+                createNormal(lvl, stack);
                 break;
             case UNIQUE:
-                createUnique(stack);
+                createUnique(lvl, stack);
                 break;
 
         }
 
         return stack;
 
+    }
+
+    private int getLevel(int playerlevel) {
+        return MathHelper.clamp(playerlevel, min_level, max_level);
     }
 
     private GearItemEnum getCreationType() {
@@ -178,9 +198,9 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         return result.type;
     }
 
-    private ItemStack createNormal(ItemStack stack) {
+    private ItemStack createNormal(int lvl, ItemStack stack) {
 
-        GearBlueprint blueprint = new GearBlueprint();
+        GearBlueprint blueprint = new GearBlueprint(lvl);
         blueprint.gearItemSlot.set(this.item_type);
         blueprint.rarity.minRarity = this.min_rarity;
         blueprint.rarity.maxRarity = this.max_rarity;
@@ -195,16 +215,16 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
     }
 
-    private ItemStack createUnique(ItemStack stack) {
+    private ItemStack createUnique(int lvl, ItemStack stack) {
 
         UniqueGearBlueprint blueprint = null;
 
         if (SlashRegistry.UniqueGears()
             .isRegistered(unique_id)) {
-            blueprint = new UniqueGearBlueprint(SlashRegistry.UniqueGears()
+            blueprint = new UniqueGearBlueprint(lvl, SlashRegistry.UniqueGears()
                 .get(unique_id));
         } else {
-            blueprint = new UniqueGearBlueprint(if_unique_random_up_to_tier);
+            blueprint = new UniqueGearBlueprint(lvl, if_unique_random_up_to_tier);
         }
 
         GearItemData gear = blueprint.createData();
@@ -213,7 +233,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         if (gear.unique_id == null || !SlashRegistry.UniqueGears()
             .isRegistered(gear.unique_id)) {
-            return createNormal(stack);
+            return createNormal(lvl, stack);
         } else {
             Gear.Save(stack, gear);
         }
@@ -252,43 +272,5 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         return true;
     }
-
-    //this is how the file should look and be separated into
-    /*
-
-        public String item_type = "Sword";
-
-
-    class GearType {
-            public int unique_item_weight = 0;
-            public int normal_item_weight = 80;
-            public int runed_item_weight = 20;
-        }
-
-    class Rarity {
-        public int min_rarity = 0;
-        public int max_rarity = 5;
-    }
-
-    class Misc {
-        public boolean only_add_stats_if_loot_drop = false;
-        public boolean add_to_loot_drops = true;
-        public int loot_drop_weight = 1000;
-
-        public boolean can_be_salvaged = false;
-    }
-
-    class Level {
-        public int level_variance = 0;
-        public int min_level = 1;
-        public int max_level = 100;
-    }
-
-    class IfUnique {
-        public int if_unique_random_up_to_tier = 10;
-        public String unique_id = "";
-    }
-
-     */
 
 }

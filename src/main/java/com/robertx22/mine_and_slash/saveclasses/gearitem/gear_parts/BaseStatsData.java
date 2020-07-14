@@ -99,7 +99,13 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
 
             } else {
 
-                ITextComponent comp = new SText(TEXT_COLOR + CLOC.translate(stat.locName()) + ": " + NUMBER_COLOR + NumberUtils.format(exactStatData.getFirstValue()) + perc);
+                TextFormatting color = NUMBER_COLOR;
+
+                if (stat instanceof CriticalHit) {
+                    color = TextFormatting.YELLOW;
+                }
+
+                ITextComponent comp = new SText(TEXT_COLOR + CLOC.translate(stat.locName()) + ": " + color + NumberUtils.format(exactStatData.getFirstValue()) + perc);
 
                 if (stat instanceof CriticalHit) {
                     critchance = comp;
@@ -128,7 +134,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
             float atk_per_sec = gear.GetBaseGearType()
                 .getAttacksPerSecondCalculated(info.unitdata);
 
-            list.add(new SText(TEXT_COLOR + "Attacks per Second: " + NUMBER_COLOR + NumberUtils.formatForTooltip(atk_per_sec)));
+            list.add(new SText(TEXT_COLOR + "Attacks per Second: " + TextFormatting.GREEN + NumberUtils.formatForTooltip(atk_per_sec)));
             // unsure if i want dps on tooltip//list.add(new SText(TEXT_COLOR + "DPS: " + NUMBER_COLOR + NumberUtils.formatForTooltip(totalDmg * atk_per_sec)));
 
         }

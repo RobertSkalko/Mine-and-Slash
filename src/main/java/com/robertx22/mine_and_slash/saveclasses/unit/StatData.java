@@ -43,12 +43,12 @@ public class StatData {
     private float Multi = 0;
 
     @Store
-    private float val = 0;
+    private float v1 = 0;
     @Store
     private float v2 = 0;
 
     public String toSerializationString() {
-        return id + ":" + val + ":" + v2;
+        return id + ":" + v1 + ":" + v2;
     }
 
     public static StatData fromSerializationString(String str) {
@@ -57,16 +57,21 @@ public class StatData {
 
         String[] parts = str.split(":");
         obj.id = parts[0];
-        obj.val = Float.parseFloat(parts[1]);
+        obj.v1 = Float.parseFloat(parts[1]);
         obj.v2 = Float.parseFloat(parts[2]);
 
         return obj;
 
     }
 
-    public void addFlat(float val1) {
+    public void addAlreadyScaledFlat(float val1) {
         this.Flat += val1;
         this.Flat2 += val1;
+    }
+
+    public void addFlat(float val1, int lvl) {
+        this.Flat += GetStat().scale(val1, lvl);
+        this.Flat2 += GetStat().scale(val1, lvl);
     }
 
     public float getFlatAverage() {
@@ -74,8 +79,6 @@ public class StatData {
     }
 
     public void CalcVal(EntityCap.UnitData data) {
-
-        Stat stat = this.GetStat();
 
         calcFirstValue(data);
         calcSecondValue(data);
@@ -87,11 +90,10 @@ public class StatData {
 
         if (stat.isTrait()) {
             if (Flat > 0) {
-                val = 1;
+                v1 = 1;
 
             } else {
-                val = 0;
-
+                v1 = 0;
             }
             return;
         } else {
@@ -103,7 +105,7 @@ public class StatData {
 
             finalValue *= 1 + Multi / 100;
 
-            val = MathHelper.clamp(finalValue, stat.minimumValue, stat.maximumValue);
+            v1 = MathHelper.clamp(finalValue, stat.minimumValue, stat.maximumValue);
 
         }
     }
@@ -145,7 +147,7 @@ public class StatData {
     public void setValue(float val) {
         Stat stat = GetStat();
 
-        this.val = MathHelper.clamp(val, stat.minimumValue, stat.maximumValue);
+        this.v1 = MathHelper.clamp(val, stat.minimumValue, stat.maximumValue);
 
     }
 
@@ -158,7 +160,7 @@ public class StatData {
     }
 
     public float getFirstValue() {
-        return val;
+        return v1;
     }
 
     public float getSecondValue() {
@@ -173,7 +175,7 @@ public class StatData {
     }
 
     public boolean isNotZero() {
-        return val != 0 && v2 != 0;
+        return v1 != 0 && v2 != 0;
     }
 
     public float getRandomRangeValue() {
@@ -181,7 +183,7 @@ public class StatData {
     }
 
     public boolean isMoreThanZero() {
-        return val > 0 || v2 > 0;
+        return v1 > 0 || v2 > 0;
     }
 
     public void add(ExactStatData modData) {
@@ -208,7 +210,7 @@ public class StatData {
         addFullyTo(other);
 
         this.Clear();
-        this.val = 0;
+        this.v1 = 0;
         this.v2 = 0;
     }
 
@@ -217,25 +219,6 @@ public class StatData {
         other.Flat2 += Flat2;
         other.Percent += Percent;
         other.Multi += Multi;
-    }
-
-    public void addExact(ModType type, float value) {
-        if (type == ModType.FLAT) {
-            this.addFlat(value);
-        } else if (type == ModType.LOCAL_INCREASE) {
-            // this.Percent += value;
-        } else {
-            this.Multi += value;
-        }
-    }
-
-    public void addExact(StatData data) {
-        if (data.id.equals(this.id)) {
-            this.Flat += data.Flat;
-            this.Flat2 += data.Flat2;
-            this.Percent += data.Percent;
-            this.Multi += data.Multi;
-        }
     }
 
     public void Clear() {
@@ -272,7 +255,7 @@ public class StatData {
     }
 
     public boolean isNotEmpty() {
-        return Flat != 0 || val != 0 || Percent != 0 || Multi != 0;
+        return Flat != 0 || v1 != 0 || Percent != 0 || Multi != 0;
     }
 
     public void multiplyFlat(float multi) {

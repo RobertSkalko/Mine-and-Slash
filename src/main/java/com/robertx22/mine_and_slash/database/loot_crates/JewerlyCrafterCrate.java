@@ -27,7 +27,7 @@ public class JewerlyCrafterCrate extends LootCrate {
     @Override
     public ItemStack generateStack(LootInfo info) {
 
-        GearBlueprint blueprint = BlueprintUtils.randomGearBlueprint(info.tier);
+        GearBlueprint blueprint = BlueprintUtils.randomGearBlueprint(info.level, info.tier);
 
         blueprint.rarity.minRarity = IRarity.Magical;
 

@@ -72,8 +72,10 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
     private void scaleToLevel(int lvl) {
         if (!scaled) {
-            this.first_val = getStat().scale(first_val, lvl);
-            this.second_val = getStat().scale(second_val, lvl);
+            if (this.type.isFlat()) {
+                this.first_val = getStat().scale(first_val, lvl);
+                this.second_val = getStat().scale(second_val, lvl);
+            }
         }
     }
 

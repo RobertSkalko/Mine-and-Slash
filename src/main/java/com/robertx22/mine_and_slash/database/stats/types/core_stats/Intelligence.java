@@ -42,8 +42,8 @@ public class Intelligence extends BaseCoreStat {
     @Override
     public List<StatModifier> statsThatBenefit() {
         return Arrays.asList(
-            new StatModifier(2F, 2F, Mana.getInstance(), ModType.FLAT),
-            new StatModifier(0.5F, 0.5F, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
+            new StatModifier(1F, 1F, Mana.getInstance(), ModType.LOCAL_INCREASE),
+            new StatModifier(1F, 1F, MagicShield.getInstance(), ModType.GLOBAL_INCREASE)
         );
     }
 
