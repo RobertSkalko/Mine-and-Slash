@@ -19,7 +19,7 @@ public class DropRatesContainer {
             .defineInRange("GEAR_DROPRATE", 7F, 0, Integer.MAX_VALUE);
 
         SKILL_GEM_DROPRATE = builder.comment(".")
-            .defineInRange("SKILL_GEM_DROPRATE", 300F, 0, Integer.MAX_VALUE);
+            .defineInRange("SKILL_GEM_DROPRATE", 3F, 0, Integer.MAX_VALUE);
         //TODO
         UNIQUE_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.unique_droprate")
