@@ -44,31 +44,35 @@ public class LootInfo {
         return this;
     }
 
-    public LootInfo(UnitData mobData, UnitData playerData, LivingEntity victim, PlayerEntity killer) {
-        this.world = victim.world;
-        this.mobData = mobData;
-        this.playerData = playerData;
-        this.victim = victim;
-        this.killer = killer;
-        this.pos = victim.getPosition();
+    private LootInfo() {
 
-        setupAllFields();
     }
 
-    public LootInfo(World world, BlockPos pos) {
+    public static LootInfo ofMobKilled(PlayerEntity player, LivingEntity mob) {
 
-        this.world = world;
-        this.pos = pos;
+        LootInfo info = new LootInfo();
 
-        setupAllFields();
+        info.world = mob.world;
+        info.mobData = Load.Unit(mob);
+        info.playerData = Load.Unit(player);
+        info.victim = mob;
+        info.killer = player;
+        info.pos = mob.getPosition();
+
+        info.setupAllFields();
+        return info;
     }
 
-    public LootInfo(PlayerEntity player) {
-        this.world = player.world;
-        this.playerData = Load.Unit(player);
-        this.pos = player.getPosition();
+    public static LootInfo ofBlockPosition(World world, BlockPos pos) {
 
-        setupAllFields();
+        LootInfo info = new LootInfo();
+
+        info.world = world;
+        info.pos = pos;
+
+        info.setupAllFields();
+
+        return info;
     }
 
     private void setupAllFields() {

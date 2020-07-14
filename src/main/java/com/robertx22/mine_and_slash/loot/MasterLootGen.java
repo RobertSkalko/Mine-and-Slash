@@ -71,7 +71,7 @@ public class MasterLootGen {
     public static List<ItemStack> generateLoot(UnitData mob, UnitData player,
                                                LivingEntity victim, PlayerEntity killer) {
 
-        LootInfo info = new LootInfo(mob, player, victim, killer);
+        LootInfo info = LootInfo.ofMobKilled(killer, victim);
         List<ItemStack> items = generateLoot(info);
 
         return items;
