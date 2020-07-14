@@ -153,14 +153,14 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         return guid;
     }
 
-    public ItemStack create(ItemStack stack) {
+    public ItemStack create(ItemStack stack, int lvl) {
 
         switch (getCreationType()) {
             case NORMAL:
-                createNormal(stack);
+                createNormal(stack, lvl);
                 break;
             case UNIQUE:
-                createUnique(stack);
+                createUnique(stack, lvl);
                 break;
 
         }
@@ -178,9 +178,9 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         return result.type;
     }
 
-    private ItemStack createNormal(ItemStack stack) {
+    private ItemStack createNormal(ItemStack stack, int lvl) {
 
-        GearBlueprint blueprint = new GearBlueprint();
+        GearBlueprint blueprint = new GearBlueprint(lvl);
         blueprint.gearItemSlot.set(this.item_type);
         blueprint.rarity.minRarity = this.min_rarity;
         blueprint.rarity.maxRarity = this.max_rarity;
@@ -195,16 +195,16 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
     }
 
-    private ItemStack createUnique(ItemStack stack) {
+    private ItemStack createUnique(ItemStack stack, int lvl) {
 
         UniqueGearBlueprint blueprint = null;
 
         if (SlashRegistry.UniqueGears()
             .isRegistered(unique_id)) {
-            blueprint = new UniqueGearBlueprint(SlashRegistry.UniqueGears()
+            blueprint = new UniqueGearBlueprint(lvl, SlashRegistry.UniqueGears()
                 .get(unique_id));
         } else {
-            blueprint = new UniqueGearBlueprint(if_unique_random_up_to_tier);
+            blueprint = new UniqueGearBlueprint(lvl, if_unique_random_up_to_tier);
         }
 
         GearItemData gear = blueprint.createData();
@@ -213,7 +213,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
 
         if (gear.unique_id == null || !SlashRegistry.UniqueGears()
             .isRegistered(gear.unique_id)) {
-            return createNormal(stack);
+            return createNormal(stack, lvl);
         } else {
             Gear.Save(stack, gear);
         }
