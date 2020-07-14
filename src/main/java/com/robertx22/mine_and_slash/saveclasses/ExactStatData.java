@@ -152,7 +152,7 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
     public void applyStats(EntityCap.UnitData data) {
         data.getUnit()
             .getCreateStat(stat_id)
-            .add(this);
+            .add(this, data);
     }
 
     @Override

@@ -10,6 +10,7 @@ public abstract class StatNameRegex {
 
     public static StatNameRegex BASIC = new BasicStatRegex();
     public static StatNameRegex BASIC_LOCAL = new BasicLocalStatRegex();
+    public static StatNameRegex REDUCED_REQ_BY_PECRENT = new ReducedReqByPercentRegex();
 
     public static String VALUE = "VALUE";
 
@@ -21,7 +22,7 @@ public abstract class StatNameRegex {
     static TextFormatting TEXT_COLOR = TextFormatting.GRAY;
     static TextFormatting NUMBER_COLOR = TextFormatting.GREEN;
 
-    public abstract String getStatNameRegex(ModType type, Stat stat);
+    public abstract String getStatNameRegex(ModType type, Stat stat, float v1, float v2);
 
     public String translate(ModType type, float v1, float v2, Stat stat) {
 
@@ -40,7 +41,7 @@ public abstract class StatNameRegex {
             percent = "%";
         }
 
-        String str = TEXT_COLOR + getStatNameRegex(type, stat);
+        String str = TEXT_COLOR + getStatNameRegex(type, stat, v1, v2);
 
         if (type == ModType.FLAT && stat.UsesSecondValue()) {
             str = str.replace(MIN_VALUE, NUMBER_COLOR + plusminus + v1s + percent + TEXT_COLOR);

@@ -438,7 +438,7 @@ public class Unit {
 
             this.CalcStats(data);
 
-            List<Integer> toremove = new ArrayList<>();
+            List<GearItemData> toremove = new ArrayList<>();
 
             for (int i = 0; i < gears.size(); i++) {
 
@@ -463,7 +463,8 @@ public class Unit {
                         .forEach(x -> {
                             x.applyStats(data);
                         });
-                    toremove.add(i);
+                    toremove.add(gear);
+                    addedAny = true;
                 }
 
             }
@@ -477,8 +478,8 @@ public class Unit {
                 }
             }
 
-            toremove.forEach(x -> gears.remove((int) x));
-
+            toremove.forEach(x -> gears.removeIf(g -> g.equals(x)));
+            toremove.clear();
         }
 
     }

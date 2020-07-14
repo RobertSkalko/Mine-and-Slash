@@ -45,7 +45,12 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     }
 
     public StatRequirement getStatRequirements() {
-        return GetBaseGearType().getStatRequirements(); // todo maybe uniques will have diff req
+        StatRequirement req = GetBaseGearType().getStatRequirements();
+
+        req.calculate(this);
+
+        return req;
+
     }
 
     @Store

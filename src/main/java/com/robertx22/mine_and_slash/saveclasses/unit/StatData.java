@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.unit;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.IAddToOtherStats;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -67,6 +68,11 @@ public class StatData {
     public void addAlreadyScaledFlat(float val1) {
         this.Flat += val1;
         this.Flat2 += val1;
+    }
+
+    public void addAlreadyScaledFlat(float val1, float val2) {
+        this.Flat += val1;
+        this.Flat2 += val2;
     }
 
     public void addFlat(float val1, int lvl) {
@@ -186,7 +192,7 @@ public class StatData {
         return v1 > 0 || v2 > 0;
     }
 
-    public void add(ExactStatData modData) {
+    public void add(ExactStatData modData, EntityCap.UnitData data) {
         ModType type = modData.getType();
 
         Float v1 = modData.getFirstValue();
@@ -202,6 +208,12 @@ public class StatData {
             Percent += v;
         } else if (type == ModType.GLOBAL_INCREASE) {
             Multi += v;
+        }
+
+        if (GetStat() instanceof IAddToOtherStats) {
+            IAddToOtherStats add = (IAddToOtherStats) GetStat();
+            add.addToOtherStats(data, v1, v2);
+            // good reason why this is here. stat requirements..
         }
 
     }

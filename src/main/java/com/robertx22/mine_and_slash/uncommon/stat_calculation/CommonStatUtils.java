@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.ICoreStat;
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.IPreCoreStat;
 import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
 import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
@@ -42,14 +41,6 @@ public class CommonStatUtils {
 
         Unit theunit = unit.getUnit();
 
-        for (IPreCoreStat core : Stats.allPreGenMapStatLists.get(IPreCoreStat.class)) {
-
-            StatData statdata = theunit.peekAtStat(core.GUID());
-            if (statdata.isMoreThanZero()) {
-                core.addToCoreStats(unit, statdata);
-            }
-
-        }
         for (ICoreStat core : Stats.allPreGenMapStatLists.get(ICoreStat.class)) {
 
             StatData statdata = theunit.peekAtStat(core.GUID());
@@ -58,17 +49,7 @@ public class CommonStatUtils {
             }
 
         }
-        /*
-        for (Trait trait : Stats.allPreGenMapStatLists.get(Trait.class)) {
 
-            StatData statdata = theunit.peekAtStat(trait.GUID());
-            if (statdata.isMoreThanZero()) {
-                trait.TryAffectOtherStats(unit, statdata);
-            }
-
-        }
-
-         */
         for (IAffectsStats trait : Stats.allPreGenMapStatLists.get(IAffectsStats.class)) {
 
             StatData statdata = theunit.peekAtStat(trait.GUID());

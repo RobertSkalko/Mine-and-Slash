@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
+import com.robertx22.mine_and_slash.database.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -17,24 +18,56 @@ public class StatRequirement implements ISerializable<StatRequirement> {
     private float int_req = 0;
     private float str_req = 0;
 
+    public int dexterity;
+    public int intelligence;
+    public int strength;
+
+    public boolean hasAny() {
+        return dex_req > 0 || int_req > 0 || str_req > 0;
+    }
+
     public StatRequirement() {
+    }
+
+    public void calculate(GearItemData gear) {
+
+        dexterity = getDex(gear);
+        intelligence = getInt(gear);
+        strength = getStr(gear);
+
+        gear.GetAllStats(false, false)
+            .forEach(x -> {
+                if (x.getStat() instanceof ReducedAllStatReqOnItem) {
+                    ReducedAllStatReqOnItem reduce = (ReducedAllStatReqOnItem) x.getStat();
+
+                    if (dexterity > 0) {
+                        dexterity = (int) reduce.getModifiedRequirement(dexterity, x);
+                    }
+                    if (intelligence > 0) {
+                        intelligence = (int) reduce.getModifiedRequirement(intelligence, x);
+                    }
+                    if (strength > 0) {
+                        strength = (int) reduce.getModifiedRequirement(strength, x);
+                    }
+                }
+            });
     }
 
     public boolean passesStatRequirements(EntityCap.UnitData data, GearItemData gear) {
 
         if (data.getUnit()
             .peekAtStat(Dexterity.INSTANCE)
-            .getAverageValue() < getDex(gear)) {
+            .getAverageValue() < dexterity) {
             return false;
         }
         if (data.getUnit()
             .peekAtStat(Intelligence.INSTANCE)
-            .getAverageValue() < getInt(gear)) {
+            .getAverageValue() < intelligence) {
             return false;
         }
         if (data.getUnit()
             .peekAtStat(Strength.INSTANCE)
-            .getAverageValue() < getStr(gear)) {
+            .getAverageValue() < strength) {
             return false;
         }
 

@@ -68,9 +68,9 @@ public class GearTooltipUtils {
         StatRequirement req = gear.getStatRequirements();
         String reqtext = reqColor + "(Level " + reqNumberColor + gear.level;
 
-        int dex = req.getDex(gear);
-        int str = req.getStr(gear);
-        int intr = req.getInt(gear);
+        int dex = req.dexterity;
+        int str = req.strength;
+        int intr = req.intelligence;
 
         if (str > 0) {
             reqtext += reqColor + ", STR " + reqNumberColor + "" + str;
@@ -129,25 +129,6 @@ public class GearTooltipUtils {
         }
 
         if (Screen.hasShiftDown()) {
-            boolean addRarityTooltip = true;
-
-            if (gear.is_unique) {
-                IUnique unique = gear.uniqueStats.getUnique();
-
-                addRarityTooltip = false;
-
-                tip.add(new StringTextComponent(""));
-            }
-
-            if (addRarityTooltip) {
-
-            }
-        }
-
-        GearRarity rarity = gear.getRarity();
-        tip.add(TooltipUtils.rarity(rarity));
-
-        if (Screen.hasShiftDown()) {
             if (!gear.isSalvagable) {
                 tip.add(Styles.REDCOMP()
                     .appendSibling(Words.Unsalvagable.locName()));
@@ -178,11 +159,17 @@ public class GearTooltipUtils {
 
             }
         }
+
         tip.add(new SText(""));
+
+        GearRarity rarity = gear.getRarity();
+        tip.add(TooltipUtils.rarity(rarity));
+
+        //tip.add(new SText(""));
 
         tip.add(new SText(TextFormatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
 
-        tip.add(new SText(""));
+        //tip.add(new SText(""));
 
         if (Screen.hasShiftDown() == false) {
             tooltip

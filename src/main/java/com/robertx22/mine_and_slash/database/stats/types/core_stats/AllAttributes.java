@@ -3,15 +3,14 @@ package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.IPreCoreStat;
-import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.IAddToOtherStats;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class AllAttributes extends Stat implements IPreCoreStat {
+public class AllAttributes extends Stat implements IAddToOtherStats {
 
     private AllAttributes() {
     }
@@ -45,15 +44,6 @@ public class AllAttributes extends Stat implements IPreCoreStat {
         return null;
     }
 
-    @Override
-    public void addToCoreStats(EntityCap.UnitData unitdata, StatData data) {
-        coreStatsThatBenefit().forEach(x -> {
-            unitdata.getUnit()
-                .getCreateStat(x)
-                .addAlreadyScaledFlat(data.getAverageValue());
-        });
-    }
-
     public List<BaseCoreStat> coreStatsThatBenefit() {
         return Arrays.asList(Dexterity.INSTANCE, Intelligence.INSTANCE, Strength.INSTANCE);
     }
@@ -71,6 +61,15 @@ public class AllAttributes extends Stat implements IPreCoreStat {
     @Override
     public String GUID() {
         return "all_attributes";
+    }
+
+    @Override
+    public void addToOtherStats(EntityCap.UnitData unit, float v1, float v2) {
+        coreStatsThatBenefit().forEach(x -> {
+            unit.getUnit()
+                .getCreateStat(x)
+                .addAlreadyScaledFlat(v1, v2);
+        });
     }
 
     private static class SingletonHolder {

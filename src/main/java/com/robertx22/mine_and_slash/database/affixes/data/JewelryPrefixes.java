@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.affixes.ElementalAffixBuilder;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
+import com.robertx22.mine_and_slash.database.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
@@ -53,6 +54,17 @@ public class JewelryPrefixes implements ISlashRegistryInit {
                 .isJewelry() || x.getTags()
                 .contains(GearItemSlot.SlotTag.Cloth)))
             .Weight(200)
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_ease")
+            .Named("Of Ease")
+            .tier(1, new StatModifier(20, 30, new ReducedAllStatReqOnItem(), ModType.FLAT))
+            .tier(2, new StatModifier(15, 20, new ReducedAllStatReqOnItem(), ModType.FLAT))
+            .tier(3, new StatModifier(10, 15, new ReducedAllStatReqOnItem(), ModType.FLAT))
+            .Req(SlotRequirement.of(x -> x.getStatRequirements()
+                .hasAny()))
+            .Weight(300)
             .Suffix()
             .Build();
 

@@ -16,6 +16,7 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.types.offense.SpellDamage;
+import com.robertx22.mine_and_slash.database.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.mine_and_slash.database.stats.types.resources.*;
 import com.robertx22.mine_and_slash.database.stats.types.spell_calc.FasterCastRate;
 import com.robertx22.mine_and_slash.database.stats.types.spell_calc.ReducedCooldownStat;
@@ -42,6 +43,8 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
+
+                    add(new ReducedAllStatReqOnItem());
 
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());

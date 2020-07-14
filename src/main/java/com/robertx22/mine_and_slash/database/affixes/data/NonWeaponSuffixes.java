@@ -27,6 +27,7 @@ public class NonWeaponSuffixes implements ISlashRegistryInit {
             .tier(4, x -> Arrays.asList(new StatModifier(6, 12, new ElementalResist(x), ModType.FLAT)))
             .tier(5, x -> Arrays.asList(new StatModifier(3, 6, new ElementalResist(x), ModType.FLAT)))
             .Req(SlotRequirement.everythingBesides(GearItemSlot.SlotFamily.Weapon))
+            .Weight(1500)
             .Suffix()
             .Build();
     }
