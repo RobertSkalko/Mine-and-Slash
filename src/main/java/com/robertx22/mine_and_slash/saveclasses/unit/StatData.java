@@ -43,12 +43,12 @@ public class StatData {
     private float Multi = 0;
 
     @Store
-    private float v1 = 0;
+    private float val = 0;
     @Store
     private float v2 = 0;
 
     public String toSerializationString() {
-        return id + ":" + v1 + ":" + v2;
+        return id + ":" + val + ":" + v2;
     }
 
     public static StatData fromSerializationString(String str) {
@@ -57,7 +57,7 @@ public class StatData {
 
         String[] parts = str.split(":");
         obj.id = parts[0];
-        obj.v1 = Float.parseFloat(parts[1]);
+        obj.val = Float.parseFloat(parts[1]);
         obj.v2 = Float.parseFloat(parts[2]);
 
         return obj;
@@ -87,10 +87,10 @@ public class StatData {
 
         if (stat.isTrait()) {
             if (Flat > 0) {
-                v1 = 1;
+                val = 1;
 
             } else {
-                v1 = 0;
+                val = 0;
 
             }
             return;
@@ -103,7 +103,7 @@ public class StatData {
 
             finalValue *= 1 + Multi / 100;
 
-            v1 = MathHelper.clamp(finalValue, stat.minimumValue, stat.maximumValue);
+            val = MathHelper.clamp(finalValue, stat.minimumValue, stat.maximumValue);
 
         }
     }
@@ -145,7 +145,7 @@ public class StatData {
     public void setValue(float val) {
         Stat stat = GetStat();
 
-        this.v1 = MathHelper.clamp(val, stat.minimumValue, stat.maximumValue);
+        this.val = MathHelper.clamp(val, stat.minimumValue, stat.maximumValue);
 
     }
 
@@ -158,7 +158,7 @@ public class StatData {
     }
 
     public float getFirstValue() {
-        return v1;
+        return val;
     }
 
     public float getSecondValue() {
@@ -173,7 +173,7 @@ public class StatData {
     }
 
     public boolean isNotZero() {
-        return v1 != 0 && v2 != 0;
+        return val != 0 && v2 != 0;
     }
 
     public float getRandomRangeValue() {
@@ -181,7 +181,7 @@ public class StatData {
     }
 
     public boolean isMoreThanZero() {
-        return v1 > 0 || v2 > 0;
+        return val > 0 || v2 > 0;
     }
 
     public void add(ExactStatData modData) {
@@ -208,7 +208,7 @@ public class StatData {
         addFullyTo(other);
 
         this.Clear();
-        this.v1 = 0;
+        this.val = 0;
         this.v2 = 0;
     }
 
@@ -272,7 +272,7 @@ public class StatData {
     }
 
     public boolean isNotEmpty() {
-        return Flat != 0 || v1 != 0 || Percent != 0 || Multi != 0;
+        return Flat != 0 || val != 0 || Percent != 0 || Multi != 0;
     }
 
     public void multiplyFlat(float multi) {

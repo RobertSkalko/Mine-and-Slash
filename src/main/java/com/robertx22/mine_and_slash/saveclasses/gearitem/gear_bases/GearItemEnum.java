@@ -35,7 +35,7 @@ public enum GearItemEnum implements IWeighted {
     UNIQUE() {
         @Override
         public int Weight() {
-            return (int) (ModConfig.INSTANCE.DropRates.CHANCE_FOR_ITEM_TO_BECOME_UNIQUE.get()
+            return (int) (ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE.get()
                 .floatValue() * 100); // cus some config values are < 1 like 0.1F
         }
 
