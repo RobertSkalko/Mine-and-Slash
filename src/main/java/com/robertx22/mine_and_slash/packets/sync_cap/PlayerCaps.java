@@ -11,6 +11,11 @@ public enum PlayerCaps {
         public ICommonPlayerCap getCap(PlayerEntity player) {
             return Load.Unit(player);
         }
+    }, STAT_POINTS {
+        @Override
+        public ICommonPlayerCap getCap(PlayerEntity player) {
+            return Load.statPoints(player);
+        }
     },
 
     SPELLS {

@@ -70,6 +70,8 @@ public class PacketRegister {
 
         reg(RarityPacket.class, RarityPacket::encode, RarityPacket::decode, RarityPacket::handle);
 
+        reg(SpendStatPointsPacket.class, SpendStatPointsPacket::encode, SpendStatPointsPacket::decode, SpendStatPointsPacket::handle);
+
     }
 
 }

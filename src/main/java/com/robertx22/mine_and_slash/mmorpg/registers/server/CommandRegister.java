@@ -1,7 +1,9 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.server;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.robertx22.mine_and_slash.commands.entity.GiveExp;
 import com.robertx22.mine_and_slash.commands.entity.SetEntityRarity;
+import com.robertx22.mine_and_slash.commands.entity.SetLevel;
 import com.robertx22.mine_and_slash.commands.giveitems.GiveExactUnique;
 import com.robertx22.mine_and_slash.commands.giveitems.GiveGear;
 import com.robertx22.mine_and_slash.commands.misc.GenDefaultCompItemsOfMod;
@@ -26,6 +28,8 @@ public class CommandRegister {
         GiveExactUnique.register(dispatcher);
         GiveGear.register(dispatcher);
         SetEntityRarity.register(dispatcher);
+        SetLevel.register(dispatcher);
+        GiveExp.register(dispatcher);
 
         ResetSpellCooldowns.register(dispatcher);
 

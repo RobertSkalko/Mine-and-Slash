@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
+import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerStatsCap;
 import com.robertx22.mine_and_slash.uncommon.capability.world.AntiMobFarmCap;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
@@ -16,6 +17,9 @@ public class CapabilityRegister {
 
         CapabilityManager.INSTANCE.register(
             AntiMobFarmCap.IAntiMobFarmData.class, new AntiMobFarmCap.Storage(), AntiMobFarmCap.DefaultImpl::new);
+
+        CapabilityManager.INSTANCE.register(
+            PlayerStatsCap.IPlayerStatPointsData.class, new PlayerStatsCap.Storage(), PlayerStatsCap.DefaultImpl::new);
 
     }
 

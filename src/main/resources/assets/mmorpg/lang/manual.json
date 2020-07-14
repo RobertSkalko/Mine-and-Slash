@@ -67,7 +67,7 @@
 "_comment": "MAPS",
 "mmorpg.name.map": "Adventure Map",
 "mmorpg.tooltip.put_in_mapdevice": "Right Click on Map Device to Use",
-"mmorpg.tooltip.press_shift_more_info": "[Shift]: Info, [Alt]: Desc, [Ctrl]: Ench",
+"mmorpg.tooltip.press_shift_more_info": "[Alt]: Desc, [Ctrl]: Hide",
 "mmorpg.tooltip.affix_rarity_lootbonus": "Affix Rarity Loot Bonus",
 "curios.identifier.salvage_bag": "Salvage Bag",
 "curios.identifier.bracelet": "Bracelet",

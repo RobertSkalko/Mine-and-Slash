@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.IAlertScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
 import com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup.SpellHotbatSetupScreen;
+import com.robertx22.mine_and_slash.gui.screens.stat_alloc.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.screens.stats_overview.StatOverviewScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
@@ -44,6 +45,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
 
         screens.add(new SpellHotbatSetupScreen());
         screens.add(new StatOverviewScreen());
+        screens.add(new StatAllocationScreen());
 
         int x = guiLeft + 10;
         int y = guiTop + 45;

@@ -382,7 +382,8 @@ public class Unit {
 
         if (entity instanceof PlayerEntity) {
             PlayerStatUtils.AddPlayerBaseStats(data, this);
-
+            Load.statPoints((PlayerEntity) entity)
+                .applyStats(data);
         } else {
             MobStatUtils.AddMobcStats(data, entity);
             MobStatUtils.addAffixStats(data);
