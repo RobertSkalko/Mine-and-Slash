@@ -119,9 +119,8 @@ public class StatModifier implements ISerializable<StatModifier> {
 
     }
 
-    public ExactStatData ToExactStat(int percent) {
-        return new ExactStatData(this, percent);
-
+    public ExactStatData ToExactStat(int percent, int lvl) {
+        return ExactStatData.fromStatModifier(this, percent, lvl);
     }
 
 }

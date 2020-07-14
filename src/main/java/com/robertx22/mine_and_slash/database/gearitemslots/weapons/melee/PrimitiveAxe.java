@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.Wea
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
@@ -30,6 +31,11 @@ public class PrimitiveAxe extends BaseWeapon {
             new StatModifier(4, 15, CriticalHit.getInstance(), ModType.FLAT)
 
         );
+    }
+
+    @Override
+    public StatRequirement getStatRequirements() {
+        return new StatRequirement().strength(0.5F);
     }
 
     @Override

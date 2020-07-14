@@ -28,6 +28,8 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
     public double loot_multi = 1F;
     public int min_rarity = 0;
     public int max_rarity = 4;
+    public int min_lvl = 0;
+    public int max_lvl = 10000;
     public double dmg_multi = 1;
     public double hp_multi = 1;
     public double stat_multi = 1;
@@ -56,6 +58,8 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
         json.addProperty("identifier", identifier);
         json.addProperty("min_rarity", min_rarity);
         json.addProperty("max_rarity", max_rarity);
+        json.addProperty("min_lvl", min_lvl);
+        json.addProperty("max_lvl", max_lvl);
         json.addProperty("dmg_multi", dmg_multi);
         json.addProperty("hp_multi", hp_multi);
         json.addProperty("stat_multi", stat_multi);
@@ -75,6 +79,10 @@ public class EntityConfig implements ISerializedRegistryEntry<EntityConfig>, ISe
         c.min_rarity = json.get("min_rarity")
             .getAsInt();
         c.max_rarity = json.get("max_rarity")
+            .getAsInt();
+        c.min_lvl = json.get("min_lvl")
+            .getAsInt();
+        c.max_lvl = json.get("max_lvl")
             .getAsInt();
 
         c.dmg_multi = json.get("dmg_multi")

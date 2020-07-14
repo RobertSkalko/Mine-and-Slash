@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import net.minecraft.item.Item;
 
@@ -23,6 +24,11 @@ public class SilkPants extends BaseBoots {
         return Arrays.asList(
             new StatModifier(4, 12, MagicShield.getInstance(), ModType.FLAT)
         );
+    }
+
+    @Override
+    public StatRequirement getStatRequirements() {
+        return new StatRequirement().intelligence(0.5F);
     }
 
     @Override

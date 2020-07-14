@@ -29,6 +29,8 @@ public abstract class ChestMixin {
             MMORPG.mixinLog("Loottable isn't null");
 
             LootInfo info = LootInfo.ofBlockPosition(chest.getWorld(), chest.getPos());
+            info.isChestLoot = true;
+
             info.minItems = RandomUtils.RandomRange(1, 3);
             List<ItemStack> items = MasterLootGen.generateLoot(info);
 

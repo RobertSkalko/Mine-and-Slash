@@ -2,12 +2,18 @@ package com.robertx22.mine_and_slash.registry.empty_entries;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 
 import java.util.List;
 
 public class EmptyGearType extends GearItemSlot {
+
+    @Override
+    public StatRequirement getStatRequirements() {
+        return new StatRequirement().intelligence(0.5F);
+    }
 
     @Override
     public List<StatModifier> ImplicitStats() {

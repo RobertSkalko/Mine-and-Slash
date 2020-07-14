@@ -95,7 +95,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
         return this.BaseAffix()
             .getTierStats(tier)
             .stream()
-            .map(x -> x.ToExactStat(percent))
+            .map(x -> x.ToExactStat(percent, gear.level))
             .collect(Collectors.toList());
 
     }

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
@@ -9,6 +10,11 @@ public class MagicShieldRegen extends BaseRegenClass {
 
     private MagicShieldRegen() {
 
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     public static MagicShieldRegen getInstance() {

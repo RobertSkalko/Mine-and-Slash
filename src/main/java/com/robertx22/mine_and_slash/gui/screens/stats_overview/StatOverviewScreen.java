@@ -43,6 +43,8 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
     }
 
+    EntityCap.UnitData data = Load.Unit(Minecraft.getInstance().player);
+
     @Override
     public ResourceLocation iconLocation() {
         return new ResourceLocation(Ref.MODID, "textures/gui/main_hub/icons/stat_overview.png");
@@ -116,7 +118,7 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
             IUsableStat usable = (IUsableStat) stat;
 
             String value = NumberUtils.format(
-                usable.GetUsableValue((int) data.getUnit()
+                usable.getUsableValue(data.getLevel(), (int) data.getUnit()
                     .getCreateStat(stat)
                     .getAverageValue()) * 100);
 

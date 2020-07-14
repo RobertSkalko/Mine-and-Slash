@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.offense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.AllSpellDamageEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
@@ -11,6 +12,11 @@ public class SpellDamage extends Stat implements IStatEffects {
 
     private SpellDamage() {
 
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     public static String GUID = "spell_damage";

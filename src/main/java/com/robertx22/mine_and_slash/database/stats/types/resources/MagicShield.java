@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.stats.types.resources;
 
 import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.MagicShieldEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
@@ -17,6 +18,11 @@ public class MagicShield extends Stat implements IStatEffects, ILocalStat {
 
     public static MagicShield getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     @Override

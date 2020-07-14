@@ -16,6 +16,10 @@ public class ServerContainer {
 
     public DoubleValue REPAIR_FUEL_NEEDED_MULTI;
     public DoubleValue REGEN_HUNGER_COST;
+    public DoubleValue EXP_LOSS_ON_DEATH;
+    public DoubleValue STAT_POINTS_PER_LVL;
+
+    public IntValue MAX_LEVEL;
 
     public ConfigValue<List<? extends String>> IGNORED_ENTITIES;
 
@@ -36,6 +40,10 @@ public class ServerContainer {
                 .toString())
             .collect(Collectors.toList());
 
+        MAX_LEVEL = builder.comment(".")
+            .translation("mmorpg.word.")
+            .defineInRange("MAX_LEVEL", 50, 0, 10000);
+
         IGNORED_ENTITIES = builder.comment(".")
             .translation("mmorpg.word.")
             .defineList("IGNORED_ENTITIES", idlist, x -> true);
@@ -43,6 +51,14 @@ public class ServerContainer {
         REGEN_HUNGER_COST = builder.comment(".")
             .translation("mmorpg.word.")
             .defineInRange("REGEN_HUNGER_COST", 20D, 0, 1000D);
+
+        STAT_POINTS_PER_LVL = builder.comment(".")
+            .translation("mmorpg.word.")
+            .defineInRange("STAT_POINTS_PER_LVL", 1, 0, 50D);
+
+        EXP_LOSS_ON_DEATH = builder.comment(".")
+            .translation("mmorpg.word.")
+            .defineInRange("EXP_LOSS_ON_DEATH", 0.05F, 0, 1000D);
 
         REPAIR_FUEL_NEEDED_MULTI = builder.comment(".")
             .translation("mmorpg.word.")

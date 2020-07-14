@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.effects.resource.ManaOnHitEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
@@ -10,6 +11,11 @@ public class ManaOnHit extends Stat implements IStatEffects {
     public static String GUID = "mana_on_hit";
 
     private ManaOnHit() {
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     public static ManaOnHit getInstance() {

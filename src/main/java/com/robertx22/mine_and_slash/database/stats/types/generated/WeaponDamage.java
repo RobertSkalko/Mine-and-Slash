@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.generated;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.ElementalAttackDamageEffect;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -19,6 +20,11 @@ public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalS
         List<Stat> list = super.generateAllPossibleStatVariations();
         list.add(newGeneratedInstance(Elements.Physical));
         return list;
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     @Override

@@ -58,6 +58,11 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
 
     public float mob_strength_multi = 1F;
 
+    public int min_lvl = 0;
+    public int max_lvl = 0;
+    public int mob_lvl_per_distance = 0;
+    public boolean scale_to_nearest_player = false;
+
     @Override
     public SlashRegistryType getSlashRegistryType() {
         return SlashRegistryType.DIMENSION_CONFIGS;
@@ -100,8 +105,12 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
         json.addProperty("drops_unique_gear", drops_unique_gear);
         json.addProperty("mob_tier", mob_tier);
         json.addProperty("all_drop_multi", all_drop_multi);
+        json.addProperty("mob_lvl_per_distance", mob_lvl_per_distance);
         json.addProperty("unique_gear_drop_multi", unique_gear_drop_multi);
         json.addProperty("mob_strength_multi", mob_strength_multi);
+        json.addProperty("min_lvl", min_lvl);
+        json.addProperty("max_lvl", max_lvl);
+        json.addProperty("scale_to_nearest_player", scale_to_nearest_player);
 
         return json;
     }
@@ -123,8 +132,16 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
                 .getAsFloat();
             config.unique_gear_drop_multi = json.get("unique_gear_drop_multi")
                 .getAsFloat();
+            config.mob_lvl_per_distance = json.get("mob_lvl_per_distance")
+                .getAsInt();
             config.mob_strength_multi = json.get("mob_strength_multi")
                 .getAsFloat();
+            config.min_lvl = json.get("min_lvl")
+                .getAsInt();
+            config.max_lvl = json.get("max_lvl")
+                .getAsInt();
+            config.scale_to_nearest_player = json.get("scale_to_nearest_player")
+                .getAsBoolean();
 
             return config;
         } catch (IllegalArgumentException e) {

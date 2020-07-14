@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.core_stats.base;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
@@ -14,6 +15,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class BaseCoreStat extends Stat implements ICoreStat {
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.LINEAR;
+    }
 
     @Override
     public StatGroup statGroup() {
@@ -46,15 +52,15 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
         List<ITextComponent> list = new ArrayList<>();
         list.add(Styles.GREENCOMP()
             .appendText("Stats that benefit: "));
-        getMods(data).forEach(x -> list.addAll(x.GetTooltipString(info)));
+        getMods(data, unitdata.getLevel()).forEach(x -> list.addAll(x.GetTooltipString(info)));
         return list;
 
     }
 
-    public List<ExactStatData> getMods(StatData data) {
+    public List<ExactStatData> getMods(StatData data, int lvl) {
         return this.statsThatBenefit()
             .stream()
-            .map(x -> x.ToExactStat((int) getPercent(data))
+            .map(x -> x.ToExactStat((int) getPercent(data), lvl)
             )
             .collect(Collectors.toList());
 
@@ -62,7 +68,7 @@ public abstract class BaseCoreStat extends Stat implements ICoreStat {
 
     @Override
     public void addToOtherStats(EntityCap.UnitData unitdata, StatData data) {
-        getMods(data).forEach(x -> x.applyStats(unitdata));
+        getMods(data, unitdata.getLevel()).forEach(x -> x.applyStats(unitdata));
     }
 
 }

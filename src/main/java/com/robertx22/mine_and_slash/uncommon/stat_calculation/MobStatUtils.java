@@ -104,7 +104,7 @@ public class MobStatUtils {
 
         unit.getCreateStat(Armor.GUID)
             .addFlat(Armor.getInstance()
-                .AverageStat() * rar.StatMultiplier());
+                .valueNeededToReachMaximumPercentAtLevelOne() * rar.StatMultiplier());
         unit.getCreateStat(CriticalHit.GUID)
             .addFlat(5 * rar.DamageMultiplier());
         unit.getCreateStat(CriticalDamage.GUID)

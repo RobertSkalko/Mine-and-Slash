@@ -153,7 +153,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
         for (StatModifier mod : SlashRegistry.GearTypes()
             .get(gear_type)
             .BaseStats()) {
-            local.add(mod.ToExactStat(percents.get(i)));
+            local.add(mod.ToExactStat(percents.get(i), gear.level));
             i++;
         }
 

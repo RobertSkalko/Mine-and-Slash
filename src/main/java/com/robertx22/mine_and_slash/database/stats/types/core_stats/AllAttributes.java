@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.core_stats;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.IPreCoreStat;
 import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
@@ -13,6 +14,11 @@ import java.util.List;
 public class AllAttributes extends Stat implements IPreCoreStat {
 
     private AllAttributes() {
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.LINEAR;
     }
 
     public static AllAttributes getInstance() {
@@ -36,7 +42,7 @@ public class AllAttributes extends Stat implements IPreCoreStat {
 
     @Override
     public void addToCoreStats(EntityCap.UnitData unitdata, StatData data) {
-        coreStatsThatBenefit().forEach(x -> x.getMods(data)
+        coreStatsThatBenefit().forEach(x -> x.getMods(data, unitdata.getLevel())
             .forEach(m -> m.applyStats(unitdata)));
     }
 

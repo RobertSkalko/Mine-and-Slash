@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.TooltipStatInfo;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
+import info.loenwind.autosave.annotations.Factory;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.util.text.ITextComponent;
@@ -25,59 +26,55 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
 
     public static ExactStatData EMPTY = new ExactStatData();
 
-    public ExactStatData() {
+    @Factory
+    private ExactStatData() {
 
     }
 
-    public ExactStatData(StatModifier mod, int percent) {
+    public static ExactStatData fromStatModifier(StatModifier mod, int percent, int lvl) {
+        ExactStatData data = new ExactStatData();
 
-        this.first_val = (mod.firstMin + (mod.firstMax - mod.firstMin) * percent / 100);
+        data.first_val = (mod.firstMin + (mod.firstMax - mod.firstMin) * percent / 100);
 
         if (mod.usesNumberRanges()) {
-            this.second_val = (mod.secondMin + (mod.secondMax - mod.secondMin) * percent / 100);
+            data.second_val = (mod.secondMin + (mod.secondMax - mod.secondMin) * percent / 100);
         } else {
-            this.second_val = first_val;
+            data.second_val = data.first_val;
         }
 
-        this.type = mod.getModType();
-        this.stat_id = mod.stat;
+        data.type = mod.getModType();
+        data.stat_id = mod.stat;
+
+        data.scaleToLevel(lvl);
+
+        return data;
     }
 
-    public ExactStatData(float value, ModType type, String stat_id) {
-        this.first_val = value;
-        this.second_val = value;
-        this.type = type;
-        this.stat_id = stat_id;
+    public static ExactStatData scaleTo(float value, ModType type, String stat_id, int level) {
+        return scaleTo(value, value, type, stat_id, level);
     }
 
-    public ExactStatData(float value, ModType type, Stat stat) {
-        this.first_val = value;
-        this.second_val = value;
+    public static ExactStatData scaleTo(float v1, float v2, ModType type, String stat, int level) {
+        ExactStatData data = new ExactStatData();
 
-        this.type = type;
-        this.stat_id = stat.GUID();
+        data.first_val = v1;
+        data.second_val = v2;
+
+        data.type = type;
+        data.stat_id = stat;
+
+        data.scaleToLevel(level);
+
+        return data;
     }
 
-    public ExactStatData(float v1, float v2, ModType type, String stat) {
-        this.first_val = v1;
-        this.second_val = v2;
+    private boolean scaled = false;
 
-        this.type = type;
-        this.stat_id = stat;
-    }
-
-    public ExactStatData(float value, Stat stat) {
-        this.first_val = value;
-        this.second_val = value;
-
-        this.type = ModType.FLAT;
-        this.stat_id = stat.GUID();
-    }
-
-    public void setValue(float val) {
-        this.first_val = val;
-        this.second_val = val;
-
+    private void scaleToLevel(int lvl) {
+        if (!scaled) {
+            this.first_val = getStat().scale(first_val, lvl);
+            this.second_val = getStat().scale(second_val, lvl);
+        }
     }
 
     @Store
@@ -196,7 +193,13 @@ public class ExactStatData implements ISerializable<ExactStatData>, IApplyableSt
         ModType type = ModType.fromString(json.get("type")
             .getAsString());
 
-        return new ExactStatData(first, second, type, stat);
+        ExactStatData data = new ExactStatData();
+        data.first_val = first;
+        data.second_val = second;
+        data.stat_id = stat;
+        data.type = type;
 
+        data.scaled = true;
+        return data;
     }
 }

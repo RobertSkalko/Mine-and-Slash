@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
 import com.robertx22.mine_and_slash.database.stats.FillableStat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
@@ -9,6 +10,11 @@ public class Mana extends FillableStat {
 
     public static Mana getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     @Override

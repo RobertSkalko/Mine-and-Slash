@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.util.text.TextFormatting;
 
@@ -8,6 +9,11 @@ public class HealthRegen extends BaseRegenClass {
 
     public static HealthRegen getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     @Override

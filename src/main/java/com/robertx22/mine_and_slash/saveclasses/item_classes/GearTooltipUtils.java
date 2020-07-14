@@ -6,6 +6,7 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.MergedStats;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
@@ -55,6 +56,27 @@ public class GearTooltipUtils {
         if (gear.baseStats != null) {
             tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
+
+        StatRequirement req = gear.getStatRequirements();
+        String reqtext = TextFormatting.GRAY + "Requires Lvl " + TextFormatting.WHITE + gear.level;
+
+        int dex = req.getDex(gear);
+        int str = req.getStr(gear);
+        int intr = req.getInt(gear);
+
+        if (str > 0) {
+            reqtext += TextFormatting.GRAY + ", " + TextFormatting.WHITE + " " + str + TextFormatting.GRAY + " STR";
+        }
+        if (intr > 0) {
+            reqtext += TextFormatting.GRAY + ", " + TextFormatting.WHITE + " " + intr + TextFormatting.GRAY + " INT";
+        }
+        if (dex > 0) {
+            reqtext += TextFormatting.GRAY + ", " + TextFormatting.WHITE + " " + dex + TextFormatting.GRAY + " DEX";
+        }
+
+        tip.add(new SText(""));
+        tip.add(new SText(reqtext));
+        tip.add(new SText(""));
 
         if (gear.implicitStats != null) {
             tip.addAll(gear.implicitStats.GetTooltipString(info, gear));

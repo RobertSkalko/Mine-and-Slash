@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import net.minecraft.util.text.TextFormatting;
 
 public class ManaRegen extends BaseRegenClass {
@@ -7,6 +8,11 @@ public class ManaRegen extends BaseRegenClass {
 
     public static ManaRegen getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     @Override

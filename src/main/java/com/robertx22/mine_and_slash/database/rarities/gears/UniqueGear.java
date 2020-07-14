@@ -19,6 +19,11 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     }
 
     @Override
+    public float statReqMulti() {
+        return 1;
+    }
+
+    @Override
     public MinMax affixStatPercents() {
         return StatPercents();
     }

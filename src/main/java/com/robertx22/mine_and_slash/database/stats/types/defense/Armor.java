@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.stats.types.defense;
 import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.IUsableStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.ArmorEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
@@ -12,6 +13,11 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
 
     public static Armor getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     @Override
@@ -56,12 +62,12 @@ public class Armor extends Stat implements IStatEffects, IUsableStat, ILocalStat
     }
 
     @Override
-    public float MaximumPercent() {
+    public float getMaxMulti() {
         return 0.8F;
     }
 
     @Override
-    public float AverageStat() {
+    public float valueNeededToReachMaximumPercentAtLevelOne() {
         return 10;
     }
 

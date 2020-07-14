@@ -24,7 +24,7 @@ public class PotionStat {
 
         float finalVal = pdata.getStacks() * value * multi;
 
-        ExactStatData statData = new ExactStatData(finalVal, type, stat);
+        ExactStatData statData = ExactStatData.scaleTo(finalVal, type, stat.GUID(), data.getLevel());
 
         return statData;
 

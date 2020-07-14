@@ -7,6 +7,7 @@ import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Lifesteal;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
@@ -34,6 +35,12 @@ public class GemstoneSword extends BaseWeapon {
     @Override
     public List<StatModifier> ImplicitStats() {
         return Arrays.asList(new StatModifier(1, 3, Lifesteal.getInstance(), ModType.FLAT));
+    }
+
+    @Override
+    public StatRequirement getStatRequirements() {
+        return new StatRequirement().strength(0.3F)
+            .dexterity(0.1F);
     }
 
     @Override

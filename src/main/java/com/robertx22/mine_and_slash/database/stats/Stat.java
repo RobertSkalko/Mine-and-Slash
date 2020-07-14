@@ -54,6 +54,14 @@ public abstract class Stat implements IGUID, IAutoLocName, IWeighted, IRarity, I
         }
     }
 
+    public StatScaling getScaling() {
+        return StatScaling.SLOW_SCALING;
+    }
+
+    public final float scale(float stat, int lvl) {
+        return getScaling().scale(stat, lvl);
+    }
+
     public String getIcon() {
         if (this.getElement() != null) {
             return this.getElement().icon;

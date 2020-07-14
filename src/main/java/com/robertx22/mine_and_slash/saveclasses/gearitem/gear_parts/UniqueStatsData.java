@@ -97,7 +97,7 @@ public class UniqueStatsData implements IGearPartTooltip, IRerollable, IStatsCon
         for (StatModifier mod : SlashRegistry.UniqueGears()
             .get(uniqueGUID)
             .uniqueStats()) {
-            list.add(mod.ToExactStat(percents.get(i)));
+            list.add(mod.ToExactStat(percents.get(i), gear.level));
             i++;
         }
         return list;

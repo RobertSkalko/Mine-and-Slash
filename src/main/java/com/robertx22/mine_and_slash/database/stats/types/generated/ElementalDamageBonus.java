@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.effects.offense.AllEleDmgEffectIfElement;
 import com.robertx22.mine_and_slash.database.stats.types.ElementalStat;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -14,6 +15,11 @@ import java.util.List;
 public class ElementalDamageBonus extends ElementalStat implements IStatEffects {
 
     public static MapWrapper<Elements, ElementalDamageBonus> MAP = new MapWrapper();
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.NONE;
+    }
 
     @Override
     public List<Stat> generateAllPossibleStatVariations() {

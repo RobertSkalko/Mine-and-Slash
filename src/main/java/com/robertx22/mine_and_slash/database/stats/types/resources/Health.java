@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.resources;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import net.minecraft.entity.LivingEntity;
@@ -15,6 +16,11 @@ public class Health extends Stat {
 
     public static Health getInstance() {
         return SingletonHolder.INSTANCE;
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     @Override

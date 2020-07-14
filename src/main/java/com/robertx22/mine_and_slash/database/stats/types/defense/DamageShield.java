@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.database.stats.types.defense;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.effects.defense.DamageShieldEffect;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
@@ -9,6 +10,11 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 public class DamageShield extends Stat implements IStatEffects {
 
     private DamageShield() {
+    }
+
+    @Override
+    public StatScaling getScaling() {
+        return StatScaling.SCALING;
     }
 
     public static DamageShield getInstance() {

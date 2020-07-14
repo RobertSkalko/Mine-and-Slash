@@ -27,6 +27,8 @@ public class LootInfo {
     public int maxItems = 50;
     public boolean isMapWorld = false;
 
+    public boolean isChestLoot = false;
+
     public BlockPos pos;
 
     public LootInfo setMaximum(int max) {

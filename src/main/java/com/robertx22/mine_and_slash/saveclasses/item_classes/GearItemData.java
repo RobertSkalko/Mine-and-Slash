@@ -36,7 +36,20 @@ import java.util.List;
 public class GearItemData implements ICommonDataItem<GearRarity> {
 
     public boolean meetsRequirements(EntityCap.UnitData data) {
+
+        if (data.getLevel() < level) {
+            return false;
+        }
+
+        if (!getStatRequirements().passesStatRequirements(data, this)) {
+            return false;
+        }
+
         return true;
+    }
+
+    public StatRequirement getStatRequirements() {
+        return GetBaseGearType().getStatRequirements(); // todo maybe uniques will have diff req
     }
 
     @Store
@@ -52,6 +65,9 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public int rare_prefix = -1;
     @Store
     public int rare_suffix = -1;
+
+    @Store
+    public int level = 1;
 
     @Store
     public boolean is_not_my_mod = false;

@@ -1,35 +1,32 @@
 package com.robertx22.mine_and_slash.database.stats;
 
-import net.minecraft.util.math.MathHelper;
-
 public interface IUsableStat {
 
     /**
      * 0.75 means 75% will be maximum value
      */
-    public float MaximumPercent();
+    public float getMaxMulti();
 
     /**
      * Used to get usable value. So 5000 armor turns into 50% armor reduction
      */
-    public float AverageStat();
+    public float valueNeededToReachMaximumPercentAtLevelOne();
 
-    public default float GetUsableValue(int value) {
+    public default float getUsableValue(int value, int lvl) {
 
         if (this instanceof Stat) {
             Stat stat = (Stat) this;
 
-            float AvgStat = this.AverageStat();
+            float valNeededForMax = this.valueNeededToReachMaximumPercentAtLevelOne();
 
-            float number = (float) value / AvgStat;
+            float percOfMax = (float) value / stat.scale(valNeededForMax, lvl);
 
-            if (number < 0) {
-                number = 0;
+            if (percOfMax > 1) {
+                percOfMax = 1;
             }
 
-            float finalval = (float) (MaximumPercent() * (float) number / ((float) number + (float) 10));
+            return percOfMax * getMaxMulti();
 
-            return MathHelper.clamp(finalval, 0, MaximumPercent());
         }
         return 0;
     }

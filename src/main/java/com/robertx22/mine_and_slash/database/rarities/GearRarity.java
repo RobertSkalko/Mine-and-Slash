@@ -18,6 +18,7 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
 
         json.addProperty("affix_chance", AffixChance());
         json.addProperty("unidentified_chance", unidentifiedChance());
+        json.addProperty("stat_req_multi", statReqMulti());
         json.addProperty("salvage_lottery_chance", salvageLotteryWinChance());
         json.addProperty("max_affixes", maxAffixes());
         json.addProperty("min_affixes", minAffixes());
@@ -46,6 +47,8 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
             .getAsInt();
         rar.unidentifiedChance = json.get("unidentified_chance")
             .getAsInt();
+        rar.stat_req_multi = json.get("stat_req_multi")
+            .getAsFloat();
 
         rar.statPercents = MinMax.getSerializer()
             .fromJson(json.getAsJsonObject("stat_percents"));
@@ -71,6 +74,8 @@ public interface GearRarity extends Rarity, SalvagableItem, IStatPercents {
             return StatPercents();
         }
     }
+
+    float statReqMulti();
 
     MinMax affixStatPercents();
 

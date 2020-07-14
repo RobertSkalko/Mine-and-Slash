@@ -2,12 +2,12 @@ package com.robertx22.mine_and_slash.database.mob_affixes.base;
 
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_generation.JsonUtils;
+import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.affixes.Affix;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializable<MobAffix>, IAutoLocName, IApplyableStats {
 
-    List<ExactStatData> stats;
+    List<StatModifier> stats;
     String id;
     String locName;
     Affix.Type type;
@@ -29,7 +29,7 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
         this.type = type;
     }
 
-    public MobAffix setMods(ExactStatData... mods) {
+    public MobAffix setMods(StatModifier... mods) {
         this.stats = Arrays.asList(mods);
         return this;
     }
@@ -54,7 +54,7 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
         json.addProperty("type", type.name());
 
         if (stats != null) {
-            JsonUtils.addExactStats(stats, json, "stats");
+            JsonUtils.addStats(stats, json, "stats");
         }
 
         return json;
@@ -70,7 +70,7 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
                 .getAsString()));
 
         try {
-            affix.stats = JsonUtils.getExactStats(json, "stats");
+            affix.stats = JsonUtils.getStats(json, "stats");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -115,6 +115,7 @@ public class MobAffix implements ISerializedRegistryEntry<MobAffix>, ISerializab
 
     @Override
     public void applyStats(EntityCap.UnitData data) {
-        this.stats.forEach(x -> x.applyStats(data));
+        this.stats.forEach(x -> x.ToExactStat(100, data.getLevel())
+            .applyStats(data));
     }
 }

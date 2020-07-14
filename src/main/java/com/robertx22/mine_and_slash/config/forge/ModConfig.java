@@ -12,6 +12,7 @@ public class ModConfig {
     public ServerContainer Server;
     public DropRatesContainer DropRates;
     public AutoCompatibleItemConfig autoCompatibleItems;
+    public StatScaleConfigs statScalings;
 
     public static final String NAME = "SERVER";
     public static final ForgeConfigSpec spec;
@@ -36,6 +37,8 @@ public class ModConfig {
         DropRates = builder.configure(DropRatesContainer::new)
             .getLeft();
         autoCompatibleItems = builder.configure(AutoCompatibleItemConfig::new)
+            .getLeft();
+        statScalings = builder.configure(StatScaleConfigs::new)
             .getLeft();
 
         builder.pop();
