@@ -34,6 +34,11 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     }
 
     @Override
+    public MinMax SpawnDurabilityHit() {
+        return new MinMax(75, 90);
+    }
+
+    @Override
     public int Weight() {
         return 0;
     }

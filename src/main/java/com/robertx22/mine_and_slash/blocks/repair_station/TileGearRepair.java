@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
 import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
-import com.robertx22.mine_and_slash.uncommon.utilityclasses.RepairUtils;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -109,7 +108,7 @@ public class TileGearRepair extends BaseTile {
                     dmg = 0;
                 }
 
-                RepairUtils.setDamage(copy, dmg);
+                stack.setDamage(dmg);
 
                 return copy;
             }

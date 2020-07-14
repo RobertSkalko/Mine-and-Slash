@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.IGUID;
 public enum LootType implements IGUID {
 
     NormalItem("Normal Item", "normal_item"),
+    SkillGem("Skill Gem", "skill_gem"),
     UniqueItem("Unique Item", "unique_item"),
     Currency("Currency", "currency"),
     CompatibleItem("Compatible Item", "compatible_item"),

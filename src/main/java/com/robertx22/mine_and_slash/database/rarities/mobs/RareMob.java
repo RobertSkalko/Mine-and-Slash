@@ -40,17 +40,17 @@ public class RareMob extends BaseRare implements MobRarity {
 
     @Override
     public float oneAffixChance() {
-        return 25;
+        return 100;
     }
 
     @Override
     public float bothAffixesChance() {
-        return 10;
+        return 50;
     }
 
     @Override
-    public float ExpOnKill() {
-        return 15;
+    public float expMulti() {
+        return 2;
     }
 
     @Override

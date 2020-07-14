@@ -40,7 +40,7 @@ public class UncommonMob extends BaseMagical implements MobRarity {
 
     @Override
     public float oneAffixChance() {
-        return 10;
+        return 75;
     }
 
     @Override
@@ -49,8 +49,8 @@ public class UncommonMob extends BaseMagical implements MobRarity {
     }
 
     @Override
-    public float ExpOnKill() {
-        return 5;
+    public float expMulti() {
+        return 1.2F;
     }
 
     @Override

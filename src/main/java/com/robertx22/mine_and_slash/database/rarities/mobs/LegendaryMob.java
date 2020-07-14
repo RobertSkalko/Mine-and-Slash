@@ -45,12 +45,12 @@ public class LegendaryMob extends BaseLegendary implements MobRarity {
 
     @Override
     public float bothAffixesChance() {
-        return 50;
+        return 75;
     }
 
     @Override
-    public float ExpOnKill() {
-        return 80;
+    public float expMulti() {
+        return 5;
     }
 
     @Override

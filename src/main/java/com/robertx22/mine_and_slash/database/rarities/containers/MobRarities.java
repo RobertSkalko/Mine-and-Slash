@@ -23,7 +23,7 @@ public class MobRarities extends BaseRaritiesContainer<MobRarity> {
 
     @Override
     public RarityTypeEnum getType() {
-        return null;
+        return RarityTypeEnum.MOB;
     }
 
     public List<MobRarity> getElite() {

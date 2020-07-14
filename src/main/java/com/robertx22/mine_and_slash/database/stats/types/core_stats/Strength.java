@@ -32,7 +32,7 @@ public class Strength extends BaseCoreStat {
 
     @Override
     public String locDescForLangFile() {
-        return "Increases Physical DMG, Critical DMG, Physical DMG multi";
+        return "Increases Physical Dmg and health";
     }
 
     @Override

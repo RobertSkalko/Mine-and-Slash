@@ -3,6 +3,7 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
+import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -186,9 +187,10 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
     public abstract String GUID();
 
     public final int getCalculatedManaCost(SpellCastContext ctx) {
-        return (int) ctx.getConfigFor(this)
-            .get(SC.MANA_COST)
-            .get(ctx.spellsCap, this);
+        return (int) Mana.getInstance()
+            .scale(ctx.getConfigFor(this)
+                .get(SC.MANA_COST)
+                .get(ctx.spellsCap, this), ctx.spellsCap.getEffectiveAbilityLevel(ctx.data, this));
     }
 
     public final int useTimeTicks(SpellCastContext ctx) {

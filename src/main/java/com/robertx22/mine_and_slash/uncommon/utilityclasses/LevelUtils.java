@@ -9,6 +9,16 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class LevelUtils {
+
+    public static int getExpRequiredForLevel(int level) {
+        return level * level * 20;
+    }
+
+    // dirty hack, let's see how useful you are.
+    public static int getExpDropForLevel(int level) {
+        return getExpRequiredForLevel((int) MathHelper.clamp(level * 0.8F, 1, Integer.MAX_VALUE)) / 50;
+    }
+
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {
 
         DimensionConfig dimConfig = SlashRegistry.getDimensionConfig(world);
@@ -62,7 +72,6 @@ public class LevelUtils {
     }
 
     public static int determineLevelPerDistanceFromSpawn(World world, BlockPos pos) {
-
         return determineLevelPerDistanceFromSpawn(world, pos, SlashRegistry.getDimensionConfig(world));
 
     }

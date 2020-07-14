@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.loot;
 
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;
@@ -19,7 +19,7 @@ public class LootUtils {
         if (diff < 5) {
             return chance;
         } else {
-            chance = chance * (1 - diff - 0.05F);
+            chance = chance * (1F - diff * 0.05F);
         }
 
         if (chance < 0) {
@@ -29,7 +29,7 @@ public class LootUtils {
 
     }
 
-    public static ItemStack RandomDamagedGear(ItemStack stack, Rarity rar) {
+    public static ItemStack RandomDamagedGear(ItemStack stack, GearRarity rar) {
         if (stack.isDamageable()) {
 
             float dmgMulti = (float) RandomUtils.RandomRange(

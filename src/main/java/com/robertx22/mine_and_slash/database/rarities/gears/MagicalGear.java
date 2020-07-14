@@ -28,6 +28,11 @@ public class MagicalGear extends BaseMagical implements GearRarity {
     }
 
     @Override
+    public MinMax SpawnDurabilityHit() {
+        return new MinMax(70, 90);
+    }
+
+    @Override
     public MinMax affixStatPercents() {
         return StatPercents();
     }

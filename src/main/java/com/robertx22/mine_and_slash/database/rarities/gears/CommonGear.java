@@ -23,6 +23,11 @@ public class CommonGear extends BaseCommon implements GearRarity {
     }
 
     @Override
+    public MinMax SpawnDurabilityHit() {
+        return new MinMax(60, 80);
+    }
+
+    @Override
     public MinMax affixStatPercents() {
         return StatPercents();
     }

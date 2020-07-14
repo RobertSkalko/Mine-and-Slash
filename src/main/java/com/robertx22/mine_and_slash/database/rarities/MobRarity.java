@@ -13,7 +13,7 @@ public interface MobRarity extends Rarity {
 
     public float LootMultiplier();
 
-    public float ExpOnKill();
+    public float expMulti();
 
     public float oneAffixChance();
 

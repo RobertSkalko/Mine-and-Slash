@@ -739,24 +739,7 @@ public class EntityCap {
 
         @Override
         public int getExpRequiredForLevelUp() {
-            return levelToExp(this.getLevel() + 1);
-        }
-
-        public static int equateXp(double lvl) {
-            return (int) Math.floor(lvl + 340 * Math.pow(2, lvl / 9));
-        }
-
-        public static int levelToExp(int level) {
-            if (true) {
-                return level * level * level * 10;
-            }
-
-            double xp = 0;
-
-            for (int i = 1; i < level; i++)
-                xp += equateXp(i);
-
-            return (int) Math.floor(xp / 4);
+            return LevelUtils.getExpRequiredForLevel(this.getLevel() + 1);
         }
 
         @Override

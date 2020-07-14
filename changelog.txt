@@ -36,3 +36,4 @@ Changed features:
 * bows now dont do full damage anymore on short charges
 * changed hp regen to reduce saturation by % of total hp regenerated. This means more hp won't cost more saturation to regen.
 * made unique gear datapacks more powerful
+* gears now break on 0 durability

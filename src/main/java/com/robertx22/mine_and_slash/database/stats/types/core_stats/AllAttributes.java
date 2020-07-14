@@ -60,7 +60,7 @@ public class AllAttributes extends Stat implements IPreCoreStat {
 
     @Override
     public String locDescForLangFile() {
-        return "Adds to all core stats like VIT, DEX, STR, INT, WIS, STA";
+        return "Adds to Dexterity, Intelligence and Strength.";
     }
 
     @Override

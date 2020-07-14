@@ -108,7 +108,7 @@ public class BlazingInfernoSpell extends BaseSpell {
             pdata.radius = radius;
             ParticleEnum.BLAZING_INFERNO.sendToClients(caster, pdata);
 
-            int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.spellsCap, ctx.ability);
+            int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.spellsCap, this);
 
             List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
                 .radius(radius)

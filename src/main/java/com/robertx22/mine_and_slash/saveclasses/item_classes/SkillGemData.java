@@ -1,27 +1,38 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.database.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.rarities.SkillGemRarity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 
 @Storable
-public class SkillGemData implements ICommonDataItem<GearRarity> {
+public class SkillGemData implements ICommonDataItem<SkillGemRarity> {
 
 // todo add affixes and stuff
 
     @Store
     public String spell_id = "";
+
+    @Store
+    public int rarity = 0;
+
+    @Store
+    public int level = 1;
+
+    @Store
+    public int stat_percents = 0;
 
     @Override
     public DataItemType getDataType() {
@@ -48,6 +59,9 @@ public class SkillGemData implements ICommonDataItem<GearRarity> {
             .add(spell.getLocName());
 
         ctx.tooltip.addAll(spell.GetTooltipString(new TooltipInfo(ClientOnly.getPlayer())));
+
+        ctx.tooltip.add(TooltipUtils.rarity(getRarity()));
+        ctx.tooltip.add(new SText(TextFormatting.YELLOW + "Level: " + level));
     }
 
     @Override
@@ -57,12 +71,12 @@ public class SkillGemData implements ICommonDataItem<GearRarity> {
 
     @Override
     public int getRarityRank() {
-        return 0;
+        return rarity;
     }
 
     @Override
-    public Rarity getRarity() {
-        return Rarities.Gears.get(0);
+    public SkillGemRarity getRarity() {
+        return Rarities.SkillGems.get(rarity);
     }
 
     @Override
@@ -80,11 +94,4 @@ public class SkillGemData implements ICommonDataItem<GearRarity> {
         return stack;
     }
 
-    public void create() {
-
-        this.spell_id = SlashRegistry.Spells()
-            .random()
-            .GUID();
-
-    }
 }

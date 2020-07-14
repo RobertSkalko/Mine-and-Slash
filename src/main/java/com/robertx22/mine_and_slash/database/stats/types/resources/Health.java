@@ -45,7 +45,7 @@ public class Health extends Stat {
 
     @Override
     public String locDescForLangFile() {
-        return "Allows you to take more damage from mobs";
+        return "Increases your total hearts amount.";
     }
 
     @Override

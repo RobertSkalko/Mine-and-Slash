@@ -8,6 +8,8 @@ import com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup.SpellHotbatSe
 import com.robertx22.mine_and_slash.gui.screens.stat_alloc.StatAllocationScreen;
 import com.robertx22.mine_and_slash.gui.screens.stats_overview.StatOverviewScreen;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
@@ -34,7 +36,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
     public MainHubScreen() {
         super(x, y);
         this.mc = Minecraft.getInstance();
-
+        this.data = Load.Unit(mc.player);
     }
 
     @Override
@@ -78,6 +80,7 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         super.render(x, y, ticks);
 
         renderTitle();
+        renderLevelExp();
 
     }
 
@@ -87,6 +90,17 @@ public class MainHubScreen extends BaseScreen implements INamedScreen {
         int xp = (int) (guiLeft + (MainHubScreen.x / 2));
         int yp = (int) (guiTop + 20);
         GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.YELLOW);
+    }
+
+    EntityCap.UnitData data;
+
+    private void renderLevelExp() {
+
+        double scale = 1.5;
+        String str = "Level: " + data.getLevel() + ", Exp: " + data.getExp() + "/" + data.getExpRequiredForLevelUp();
+        int xp = (int) (guiLeft + (MainHubScreen.x / 2));
+        int yp = (int) (guiTop + 200);
+        GuiUtils.renderScaledText(xp, yp, scale, str, TextFormatting.GREEN);
     }
 
     protected void drawBackground(float partialTicks, int x, int y) {

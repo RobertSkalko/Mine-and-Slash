@@ -16,17 +16,20 @@ public class UniqueGearLootGen extends BaseLootGen<UniqueGearBlueprint> {
     @Override
     public float baseDropChance() {
 
-        float drop;
+        float drop = ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE.get()
+            .floatValue();
 
-        if (info.world == null) {
-            drop = ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE.get()
-                .floatValue();
+        if (info.world != null) {
+            drop *= SlashRegistry.getDimensionConfig(info.world).unique_gear_drop_multi;
         } else {
-            drop = ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE.get()
-                .floatValue() * SlashRegistry.getDimensionConfig(info.world).unique_gear_drop_multi;
+            drop = 0;
         }
 
         if (info.isChestLoot) {
+            if (drop <= 0) {
+                drop = ModConfig.INSTANCE.DropRates.UNIQUE_DROPRATE.get()
+                    .floatValue();
+            }
             drop *= 2; // encourage exploring to find chests
         }
 
@@ -40,7 +43,7 @@ public class UniqueGearLootGen extends BaseLootGen<UniqueGearBlueprint> {
 
     @Override
     public boolean condition() {
-        return info.world != null && SlashRegistry.getDimensionConfig(info.world).drops_unique_gear;
+        return true;
     }
 
     @Override

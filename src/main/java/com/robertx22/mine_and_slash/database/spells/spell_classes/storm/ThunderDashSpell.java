@@ -122,7 +122,7 @@ public class ThunderDashSpell extends BaseSpell {
 
         dashForward(ctx.caster);
 
-        int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.spellsCap, ctx.ability);
+        int num = getCalculation(ctx).getCalculatedValue(Load.Unit(caster), ctx.spellsCap, this);
 
         List<LivingEntity> entities = EntityFinder.start(caster, LivingEntity.class, caster.getPositionVector())
             .radius(2)

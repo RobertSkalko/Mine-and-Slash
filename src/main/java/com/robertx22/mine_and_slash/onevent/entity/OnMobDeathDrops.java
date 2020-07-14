@@ -11,6 +11,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitDat
 import com.robertx22.mine_and_slash.uncommon.capability.world.AntiMobFarmCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TeamUtils;
 import net.minecraft.entity.Entity;
@@ -80,10 +81,10 @@ public class OnMobDeathDrops {
 
     private static void GiveExp(LivingEntity victim, PlayerEntity killer, UnitData killerData, UnitData mobData, float multi) {
 
-        int exp = (int) (mobData.getLevel() * Rarities.Mobs.get(mobData.getRarity())
-            .ExpOnKill() * multi);
+        int exp = (int) (LevelUtils.getExpDropForLevel(mobData.getLevel()) * Rarities.Mobs.get(mobData.getRarity())
+            .expMulti() * multi);
 
-        exp = (int) (exp * (1 + victim.getMaxHealth() / 20));
+        exp = (int) (exp * (1 + victim.getMaxHealth() / 10));
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mobData, killerData, exp);
 

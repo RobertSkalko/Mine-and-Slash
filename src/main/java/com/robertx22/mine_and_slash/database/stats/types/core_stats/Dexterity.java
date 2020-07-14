@@ -32,7 +32,7 @@ public class Dexterity extends BaseCoreStat {
 
     @Override
     public String locDescForLangFile() {
-        return "Increases Crit Hit, Dodge and Armor";
+        return "Increases Crit Hit and Dodge";
     }
 
     @Override

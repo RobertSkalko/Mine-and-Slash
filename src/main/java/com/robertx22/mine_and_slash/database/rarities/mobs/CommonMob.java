@@ -49,8 +49,8 @@ public class CommonMob extends BaseCommon implements MobRarity {
     }
 
     @Override
-    public float ExpOnKill() {
-        return 3;
+    public float expMulti() {
+        return 1;
     }
 
     @Override

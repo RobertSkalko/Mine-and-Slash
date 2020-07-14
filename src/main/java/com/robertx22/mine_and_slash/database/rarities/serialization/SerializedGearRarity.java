@@ -17,9 +17,15 @@ public class SerializedGearRarity extends SerializedBaseRarity implements GearRa
     public int unidentifiedChance;
     public int maxAffixes;
     public int minAffixes;
+    public MinMax spawnDurabilityHit;
 
     public SerializedGearRarity(SerializedBaseRarity baseRarity) {
         super(baseRarity);
+    }
+
+    @Override
+    public MinMax SpawnDurabilityHit() {
+        return spawnDurabilityHit;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.loot.gens.stack_changers;
 
+import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import net.minecraft.item.ItemStack;
@@ -18,7 +19,11 @@ public class DamagedGear implements IStackAction {
         ICommonDataItem data = ICommonDataItem.load(stack);
 
         if (data != null) {
-            LootUtils.RandomDamagedGear(stack, data.getRarity());
+            if (data.getRarity() instanceof GearRarity) {
+                LootUtils.RandomDamagedGear(stack, (GearRarity) data.getRarity());
+            } else {
+                System.out.println("trying to damage gear that isn't gear rarity");
+            }
         }
 
     }

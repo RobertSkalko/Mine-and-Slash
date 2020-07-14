@@ -16,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -293,6 +294,27 @@ public class SpellCastingData {
         } else {
             return this.secondHotbar;
         }
+    }
+
+    public SkillGemData getSkillGem(String id) {
+
+        Optional<SkillGemData> opt1 = getMap(Hotbar.FIRST).values()
+            .stream()
+            .filter(x -> x.spell_id.equals(id))
+            .findFirst();
+        Optional<SkillGemData> opt2 = getMap(Hotbar.SECOND).values()
+            .stream()
+            .filter(x -> x.spell_id.equals(id))
+            .findFirst();
+
+        if (opt1.isPresent()) {
+            return opt1.get();
+        }
+        if (opt2.isPresent()) {
+            return opt2.get();
+        }
+        return null;
+
     }
 
     public SpellData getDataBySpell(BaseSpell spell) {

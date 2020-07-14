@@ -57,21 +57,29 @@ public class GearTooltipUtils {
             tip.addAll(gear.baseStats.GetTooltipString(info, gear));
         }
 
+        TextFormatting reqColor = TextFormatting.GRAY;
+        TextFormatting reqNumberColor = TextFormatting.WHITE;
+
+        if (!gear.meetsStatRequirements(data) || gear.level > data.getLevel()) {
+            reqColor = TextFormatting.RED;
+            reqNumberColor = TextFormatting.RED;
+        }
+
         StatRequirement req = gear.getStatRequirements();
-        String reqtext = TextFormatting.GRAY + "(Level " + TextFormatting.WHITE + gear.level;
+        String reqtext = reqColor + "(Level " + reqNumberColor + gear.level;
 
         int dex = req.getDex(gear);
         int str = req.getStr(gear);
         int intr = req.getInt(gear);
 
         if (str > 0) {
-            reqtext += TextFormatting.GRAY + ", STR " + TextFormatting.WHITE + "" + str;
+            reqtext += reqColor + ", STR " + reqNumberColor + "" + str;
         }
         if (intr > 0) {
-            reqtext += TextFormatting.GRAY + ", INT " + TextFormatting.WHITE + "" + intr;
+            reqtext += reqColor + ", INT " + reqNumberColor + "" + intr;
         }
         if (dex > 0) {
-            reqtext += TextFormatting.GRAY + ", DEX " + TextFormatting.WHITE + "" + dex;
+            reqtext += reqColor + ", DEX " + reqNumberColor + "" + dex;
         }
         reqtext += ")";
 
@@ -170,7 +178,11 @@ public class GearTooltipUtils {
 
             }
         }
-        tip.add(new StringTextComponent(""));
+        tip.add(new SText(""));
+
+        tip.add(new SText(TextFormatting.GRAY + "Durability: " + (stack.getMaxDamage() - stack.getDamage()) + "/" + stack.getMaxDamage()));
+
+        tip.add(new SText(""));
 
         if (Screen.hasShiftDown() == false) {
             tooltip

@@ -28,6 +28,11 @@ public class RareGear extends BaseRare implements GearRarity {
     }
 
     @Override
+    public MinMax SpawnDurabilityHit() {
+        return new MinMax(75, 95);
+    }
+
+    @Override
     public MinMax uniqueStatPercents() {
         return StatPercents();
     }

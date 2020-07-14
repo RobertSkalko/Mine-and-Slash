@@ -11,7 +11,6 @@ import static net.minecraftforge.common.ForgeConfigSpec.*;
 public class ServerContainer {
 
     public BooleanValue USE_COMPATIBILITY_ITEMS;
-    public BooleanValue ONLY_REPAIR_IN_STATION;
     public BooleanValue LOG_REGISTRY_ENTRIES;
 
     public DoubleValue REPAIR_FUEL_NEEDED_MULTI;
@@ -66,9 +65,6 @@ public class ServerContainer {
 
         LOG_REGISTRY_ENTRIES = builder.comment(".")
             .define("LOG_REGISTRY_ENTRIES", false);
-
-        ONLY_REPAIR_IN_STATION = builder.comment(".")
-            .define("ONLY_REPAIR_IN_STATION", true);
 
         USE_COMPATIBILITY_ITEMS = builder.comment(".")
             .translation("mmorpg.word.")

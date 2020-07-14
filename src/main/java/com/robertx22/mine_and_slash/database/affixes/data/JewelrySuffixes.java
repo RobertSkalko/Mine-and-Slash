@@ -38,7 +38,7 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_the_philosopher")
             .Named("Of the Philosopher")
-            .tier(1, new StatModifier(2, 3, Intelligence.INSTANCE, ModType.FLAT))
+            .tier(1, new StatModifier(1, 2, Intelligence.INSTANCE, ModType.FLAT))
             .tier(2, new StatModifier(1, 2, Intelligence.INSTANCE, ModType.FLAT))
             .tier(3, new StatModifier(0.5F, 1, Intelligence.INSTANCE, ModType.FLAT))
             .Req(SlotRequirement.of(x -> !x.isWeapon() && x.family()
@@ -49,7 +49,7 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_the_titan")
             .Named("Of the Titan")
-            .tier(1, new StatModifier(2, 3, Strength.INSTANCE, ModType.FLAT))
+            .tier(1, new StatModifier(1, 2, Strength.INSTANCE, ModType.FLAT))
             .tier(2, new StatModifier(1, 2, Strength.INSTANCE, ModType.FLAT))
             .tier(3, new StatModifier(0.5F, 1, Strength.INSTANCE, ModType.FLAT))
             .Req(SlotRequirement.of(x -> !x.isWeapon() && x.family()
@@ -60,7 +60,7 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_the_wind")
             .Named("Of the Wind")
-            .tier(1, new StatModifier(2, 3, Dexterity.INSTANCE, ModType.FLAT))
+            .tier(1, new StatModifier(1, 2, Dexterity.INSTANCE, ModType.FLAT))
             .tier(2, new StatModifier(1, 2, Dexterity.INSTANCE, ModType.FLAT))
             .tier(3, new StatModifier(0.5F, 5, Dexterity.INSTANCE, ModType.FLAT))
             .Req(SlotRequirement.of(x -> !x.isWeapon() && x.family()
@@ -71,9 +71,9 @@ public class JewelrySuffixes implements ISlashRegistryInit {
 
         AffixBuilder.Normal("of_the_sky")
             .Named("Of the Sky")
-            .tier(1, new StatModifier(1.5F, 2, AllAttributes.getInstance(), ModType.FLAT))
-            .tier(2, new StatModifier(1, 1.5F, AllAttributes.getInstance(), ModType.FLAT))
-            .tier(3, new StatModifier(0.5F, 1, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(1, new StatModifier(1, 1.5F, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(0.5F, 1, AllAttributes.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(0.3F, 0.5F, AllAttributes.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(GearItemSlot.SlotFamily.Jewelry))
             .Weight(100)
             .Suffix()

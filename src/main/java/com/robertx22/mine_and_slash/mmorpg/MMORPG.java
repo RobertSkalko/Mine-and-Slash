@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
+import com.robertx22.mine_and_slash.data_generation.rarities.SkillGemRarityManager;
 import com.robertx22.mine_and_slash.data_generation.tiers.TierDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.unique_gears.UniqueGearDatapackManager;
 import com.robertx22.mine_and_slash.db_lists.initializers.CurrencyItems;
@@ -182,6 +183,7 @@ public class MMORPG {
         manager.addReloadListener(new UniqueGearDatapackManager());
         manager.addReloadListener(new CompatibleItemDataPackManager());
         manager.addReloadListener(new GearRarityManager());
+        manager.addReloadListener(new SkillGemRarityManager());
         manager.addReloadListener(new DimConfigsDatapackManager());
         manager.addReloadListener(new EntityConfigsDatapackManager());
 
