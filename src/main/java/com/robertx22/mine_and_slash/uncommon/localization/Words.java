@@ -78,6 +78,7 @@ public enum Words implements IAutoLocName {
     SummonedEntities("Summoned Entities"),
 
     Chance("Chance"),
+    IsNotMaxRarity("Is not max rarity"),
 
     CooldownReductionEfficiency("Cooldown Reduction Efficiency"),
 
@@ -243,8 +244,6 @@ public enum Words implements IAutoLocName {
 
     Instability("Instability"),
 
-    CraftingDeletesItemsInside("Crafting deletes items inside, empty beforehand!"),
-
     CurrentMapInfo("Current Map Info"),
 
     Decreased("Decreased"),
@@ -257,19 +256,7 @@ public enum Words implements IAutoLocName {
 
     isUnique("Is Unique"),
 
-    OnlyOneUniqueRune("Only One Unique Rune Per Gear"),
-
     hasMatchingRunes("Matching Runes are in gear"),
-
-    canUpgradeInfusion("Can Upgrade Infusion"),
-
-    noGroupAffix("No Group Map Affix"),
-
-    Runelvlnothigherthanitemlvl("Rune lvl not higher than item lvl"),
-
-    ItemHasRuneSlots("Item has empty rune slot"),
-
-    NoDuplicateRunes("No duplicate runes of same type"),
 
     hasUniqueStats("Has Unique stats"),
 
@@ -283,25 +270,13 @@ public enum Words implements IAutoLocName {
 
     isNotUnique("Is Not Unique"),
 
-    isLowerThanLegendary("Is Not Legendary"),
-
     IsCommon("Is Common Rarity"),
 
     LvlLessThanMax("Lvl Less than max lvl"),
 
-    NoChaosStats("Doesn't have Chaos Stats"),
-
-    HasInfusion("Has Infusion Stats"),
-
     NoSuffix("Doesn't have suffix"),
 
     NoPrefix("Doesn't have prefix"),
-
-    CanOnlyUseOnce("Can only use once"),
-
-    CanOnlyUse10times("Can only use 10 times"),
-
-    Doesnthaveset("Doesn't have set"),
 
     TierLessThanMax("Tier less than maximum"),
 
@@ -319,21 +294,7 @@ public enum Words implements IAutoLocName {
 
     HoldToPreventPickup("Hold in your hand to prevent item pickup."),
 
-    BewareCreativeBagBug1("Beware, switching to Creative"),
-
-    BewareCreativeBagBug2("while on server could clear the bag!"),
-
     AddRarestAffixes("Add Rarest Affixes"),
-
-    PefectPrimaryStats("Perfect Primary Stats"),
-
-    BetterPrimaryStats("Better Primary Stats"),
-
-    AddSet("Add Set"),
-
-    AddChaosStats("Add ChaosStats"),
-
-    NeedsGearWithRunesInserted("Needs Gear with these runes inserted"),
 
     Requirements("Requirements"),
 
@@ -363,15 +324,11 @@ public enum Words implements IAutoLocName {
 
     Item_modifiable_in_station("Can be used inside Modify Station"),
 
-    unlocks_runeword_combo("Unlocks RuneWord combination."),
-
     Press_Shift_For_Setup_Info("Press Shift For Setup Info"),
 
     Press_Shift_For_More_Info("Press Shift For More Info"),
 
     Penetration("Penetration"),
-
-    Map_Device("Map Device"),
 
     Core_Stat("Core Stat"),
 
@@ -383,8 +340,6 @@ public enum Words implements IAutoLocName {
 
     Activation_Time("Activation Time"),
 
-    Affixes_Affecting_All("Affixes Affecting All"),
-
     Animal("Animal"),
 
     Attack("Attack"),
@@ -394,8 +349,6 @@ public enum Words implements IAutoLocName {
     Works_when_equipped("Works when equipped"),
 
     Blocks("Blocks"),
-
-    Automatically_salvages_items("Automatically salvages items"),
 
     Loot("Loot"), Exp("Exp"),
 

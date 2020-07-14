@@ -60,11 +60,6 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
     }
 
     @Override
-    public List<String> loreLines() {
-        return Arrays.asList("Let winds of change blow.");
-    }
-
-    @Override
     public String locNameForLangFile() {
         return nameColor + "Leaf of Change";
     }

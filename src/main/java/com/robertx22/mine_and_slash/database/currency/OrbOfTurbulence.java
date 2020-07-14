@@ -62,11 +62,6 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
     }
 
     @Override
-    public List<String> loreLines() {
-        return Arrays.asList("I command you to change!");
-    }
-
-    @Override
     public String locNameForLangFile() {
         return nameColor + "Orb of Turbulence";
     }

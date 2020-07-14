@@ -68,11 +68,6 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
     }
 
     @Override
-    public List<String> loreLines() {
-        return Arrays.asList("Anything can change.");
-    }
-
-    @Override
     public String locNameForLangFile() {
         return nameColor + "Orb Of Unique Blessing";
     }

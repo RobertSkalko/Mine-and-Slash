@@ -36,7 +36,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<CurrencyItem>, ISalvagable,
-    ICurrencyItemEffect, IWeighted, ITiered, IAutoLocMultiLore, IAutoLocDesc, IAutoLocName, IAutoModel {
+    ICurrencyItemEffect, IWeighted, ITiered, IAutoLocDesc, IAutoLocName, IAutoModel {
 
     public ItemType itemTypesUsableOn = ItemType.GEAR;
 
@@ -78,11 +78,6 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
     public String locDescLangFileGUID() {
         return this.getRegistryName()
             .toString() + ".desc";
-    }
-
-    @Override
-    public AutoLocGroup locLoresGroup() {
-        return AutoLocGroup.Currency_Items;
     }
 
     @Override

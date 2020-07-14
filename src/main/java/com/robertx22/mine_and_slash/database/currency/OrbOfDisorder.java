@@ -59,11 +59,6 @@ public class OrbOfDisorder extends CurrencyItem implements ICurrencyItemEffect, 
     }
 
     @Override
-    public List<String> loreLines() {
-        return Arrays.asList("There is always a better choice");
-    }
-
-    @Override
     public String locNameForLangFile() {
         return nameColor + "Orb Of Disorder";
     }

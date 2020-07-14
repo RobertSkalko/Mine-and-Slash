@@ -6,8 +6,6 @@ import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IBaseAutoLoc;
-import com.robertx22.mine_and_slash.uncommon.localization.AdvDescs;
-import com.robertx22.mine_and_slash.uncommon.localization.AdvTitles;
 import com.robertx22.mine_and_slash.uncommon.localization.Chats;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.DirUtils;
@@ -158,8 +156,6 @@ public class CreateLangFile {
         list.addAll(Rarities.Gears.getAllRarities());
         list.addAll(Rarities.Mobs.getAllRarities());
         list.addAll(Arrays.asList(Chats.values()));
-        list.addAll(Arrays.asList(AdvDescs.values()));
-        list.addAll(Arrays.asList(AdvTitles.values()));
 
         HashMap<IAutoLocName.AutoLocGroup, List<IAutoLocName>> map = new HashMap<>();
 

@@ -1,10 +1,12 @@
 package com.robertx22.mine_and_slash.database.currency.loc_reqs;
 
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import net.minecraft.util.text.ITextComponent;
 
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 public class SimpleGearLocReq extends BaseLocRequirement {
@@ -15,8 +17,13 @@ public class SimpleGearLocReq extends BaseLocRequirement {
         x -> x.affixes.suffixes.size() == 0l, Words.NoSuffix.locName());
     public static final SimpleGearLocReq IS_COMMON = new SimpleGearLocReq(
         x -> x.rarity == IRarity.Common, Words.IsCommon.locName());
-    public static final SimpleGearLocReq IS_LOWER_THAN_LEGENDARY = new SimpleGearLocReq(
-        x -> x.rarity < IRarity.Legendary, Words.isLowerThanLegendary.locName());
+    public static final SimpleGearLocReq IS_NOT_HIGHEST_RARITY = new SimpleGearLocReq(
+        x -> x.rarity < Rarities.Gears.getAllRarities()
+            .stream()
+            .filter(t -> t.Rank() != IRarity.Unique)
+            .max(Comparator.comparingInt(r -> r.Rank()))
+            .get()
+            .Rank(), Words.IsNotMaxRarity.locName());
     public static final SimpleGearLocReq IS_NOT_UNIQUE = new SimpleGearLocReq(
         x -> !x.isUnique(), Words.isNotUnique.locName());
     public static final SimpleGearLocReq IS_UNIQUE = new SimpleGearLocReq(

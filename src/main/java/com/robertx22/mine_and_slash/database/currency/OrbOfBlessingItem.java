@@ -70,11 +70,6 @@ public class OrbOfBlessingItem extends CurrencyItem implements ICurrencyItemEffe
     }
 
     @Override
-    public List<String> loreLines() {
-        return Arrays.asList("Hopefully works better than the last time.");
-    }
-
-    @Override
     public String locNameForLangFile() {
         return nameColor + "Orb Of Blessing";
     }

@@ -68,7 +68,7 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
 
     @Override
     public List<BaseLocRequirement> requirements() {
-        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_LOWER_THAN_LEGENDARY, SimpleGearLocReq.IS_NOT_UNIQUE);
+        return Arrays.asList(GearReq.INSTANCE, SimpleGearLocReq.IS_NOT_HIGHEST_RARITY, SimpleGearLocReq.IS_NOT_UNIQUE);
     }
 
     @Override
@@ -79,11 +79,6 @@ public class StoneOfHopeItem extends CurrencyItem implements ICurrencyItemEffect
     @Override
     public int getTier() {
         return 2;
-    }
-
-    @Override
-    public List<String> loreLines() {
-        return Arrays.asList("When there is hope, there is a way.");
     }
 
     @Override
