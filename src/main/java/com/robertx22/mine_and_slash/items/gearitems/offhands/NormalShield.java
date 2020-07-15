@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.gearitems.offhands;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGearItem;
@@ -22,7 +22,7 @@ public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem 
 
     public ResourceLocation resource = new ResourceLocation("");
 
-    public NormalShield(GearItemSlot slot) {
+    public NormalShield(BaseGearType slot) {
 
         super(properties());
 
@@ -41,7 +41,7 @@ public class NormalShield extends ShieldItem implements IAutoLocName, IGearItem 
         return p;
     }
 
-    public static ResourceLocation getResource(GearItemSlot slot) {
+    public static ResourceLocation getResource(BaseGearType slot) {
         return new ResourceLocation(Ref.MODID, "items/shields/" + slot.GUID());
     }
 

@@ -4,7 +4,7 @@ import com.google.common.collect.Multimap;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.AutoCompatibleItemConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.AutoConfigItemType;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.Item;
@@ -18,7 +18,7 @@ public class PowerLevel {
 
     public static HashMap<Item, Types> CACHED = new HashMap<>();
 
-    public PowerLevel(Item item, GearItemSlot slot) {
+    public PowerLevel(Item item, BaseGearType slot) {
 
         try {
             this.item = item;
@@ -43,15 +43,15 @@ public class PowerLevel {
     }
 
     public static float getFloatValueOf(Item item) {
-        List<GearItemSlot> slots = SlashRegistry.GearTypes()
+        List<BaseGearType> slots = SlashRegistry.GearTypes()
             .getList()
             .stream()
-            .filter(x -> GearItemSlot.isGearOfThisType(x, item))
+            .filter(x -> BaseGearType.isGearOfThisType(x, item))
             .collect(Collectors.toList());
 
         float val = 0;
 
-        for (GearItemSlot slot : slots) {
+        for (BaseGearType slot : slots) {
             PowerLevel power = new PowerLevel(item, slot);
 
             PowerLevel best = DeterminePowerLevels.STRONGEST.get(slot);

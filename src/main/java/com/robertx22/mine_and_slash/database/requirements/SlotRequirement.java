@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.requirements;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.data_generation.JsonUtils;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.requirements.bases.BaseRequirement;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -20,24 +20,24 @@ import java.util.stream.Collectors;
 
 public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
-    public List<GearItemSlot> slots = new ArrayList<>();
+    public List<BaseGearType> slots = new ArrayList<>();
 
     public SlotRequirement() {
 
     }
 
-    private SlotRequirement(GearItemSlot slot) {
+    private SlotRequirement(BaseGearType slot) {
         this.slots.add(slot);
     }
 
-    private SlotRequirement(List<GearItemSlot> slots) {
+    private SlotRequirement(List<BaseGearType> slots) {
         this.slots.addAll(slots);
     }
 
     @Override
     public boolean meetsRequierment(GearRequestedFor requested) {
 
-        for (GearItemSlot slot : slots) {
+        for (BaseGearType slot : slots) {
             if (requested.forSlot.getClass()
                 .isAssignableFrom(slot.getClass())) {
                 return true;
@@ -47,38 +47,38 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
     }
 
-    public static SlotRequirement everythingBesides(GearItemSlot.SlotFamily type) {
+    public static SlotRequirement everythingBesides(BaseGearType.SlotFamily type) {
         return new SlotRequirement(SlashRegistry.GearTypes()
             .getFiltered(x -> x.family() != type));
 
     }
 
-    public static SlotRequirement of(GearItemSlot.SlotFamily type) {
+    public static SlotRequirement of(BaseGearType.SlotFamily type) {
         return new SlotRequirement(SlashRegistry.GearTypes()
             .getFiltered(x -> x.family() == type));
 
     }
 
-    public SlotRequirement plus(Predicate<GearItemSlot> pred) {
+    public SlotRequirement plus(Predicate<BaseGearType> pred) {
         this.slots.addAll(SlashRegistry.GearTypes()
             .getFilterWrapped(pred).list);
         return this;
     }
 
-    public static SlotRequirement of(Predicate<GearItemSlot> pred) {
+    public static SlotRequirement of(Predicate<BaseGearType> pred) {
         return new SlotRequirement(SlashRegistry.GearTypes()
             .getFilterWrapped(pred).list);
     }
 
     public static SlotRequirement hasBaseStat(Stat stat) {
         return new SlotRequirement(SlashRegistry.GearTypes()
-            .getFiltered(x -> x.BaseStats()
+            .getFiltered(x -> x.baseStats()
                 .stream()
                 .anyMatch(s -> s.stat == stat.GUID())));
 
     }
 
-    public static SlotRequirement of(GearItemSlot.SlotTag tag) {
+    public static SlotRequirement of(BaseGearType.SlotTag tag) {
         return new SlotRequirement(SlashRegistry.GearTypes()
             .getFiltered(x -> x.getTags()
                 .contains(tag)));
@@ -130,36 +130,36 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
 
         list.add(new SText(TextFormatting.GREEN + "Allowed on: "));
 
-        List<GearItemSlot> copy = new ArrayList<>(this.slots);
+        List<BaseGearType> copy = new ArrayList<>(this.slots);
 
         ITextComponent comp = new SText(TextFormatting.RED + "");
 
-        List<GearItemSlot> armors = SlashRegistry.GearTypes()
+        List<BaseGearType> armors = SlashRegistry.GearTypes()
             .getFiltered(x -> x.family()
-                .equals(GearItemSlot.SlotFamily.Armor));
+                .equals(BaseGearType.SlotFamily.Armor));
         if (copy.containsAll(armors)) {
             copy.removeIf(x -> x.family()
-                .equals(GearItemSlot.SlotFamily.Armor));
+                .equals(BaseGearType.SlotFamily.Armor));
             comp.appendText(" ")
                 .appendSibling(new SText("All Armors"));
         }
 
-        List<GearItemSlot> weapons = SlashRegistry.GearTypes()
+        List<BaseGearType> weapons = SlashRegistry.GearTypes()
             .getFiltered(x -> x.family()
-                .equals(GearItemSlot.SlotFamily.Weapon));
+                .equals(BaseGearType.SlotFamily.Weapon));
         if (copy.containsAll(weapons)) {
             copy.removeIf(x -> x.family()
-                .equals(GearItemSlot.SlotFamily.Weapon));
+                .equals(BaseGearType.SlotFamily.Weapon));
             comp.appendText(" ")
                 .appendSibling(new SText("All Weapons"));
         }
 
-        List<GearItemSlot> jewerly = SlashRegistry.GearTypes()
+        List<BaseGearType> jewerly = SlashRegistry.GearTypes()
             .getFiltered(x -> x.family()
-                .equals(GearItemSlot.SlotFamily.Jewelry));
+                .equals(BaseGearType.SlotFamily.Jewelry));
         if (copy.containsAll(jewerly)) {
             copy.removeIf(x -> x.family()
-                .equals(GearItemSlot.SlotFamily.Jewelry));
+                .equals(BaseGearType.SlotFamily.Jewelry));
             comp.appendText(" ")
                 .appendSibling(new SText("All Jewerly"));
         }

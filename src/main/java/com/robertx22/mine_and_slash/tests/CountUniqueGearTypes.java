@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.tests;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 
 public class CountUniqueGearTypes {
@@ -9,7 +9,7 @@ public class CountUniqueGearTypes {
 
         System.out.println("[UNIQUES PER SLOT");
 
-        for (GearItemSlot slot : SlashRegistry.GearTypes().getList()) {
+        for (BaseGearType slot : SlashRegistry.GearTypes().getList()) {
 
             int amount = SlashRegistry.UniqueGears()
                     .getWrapped()

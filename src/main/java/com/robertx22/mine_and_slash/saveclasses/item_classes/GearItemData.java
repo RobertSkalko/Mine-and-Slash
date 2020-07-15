@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -156,7 +156,7 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
 
     }
 
-    public GearItemSlot GetBaseGearType() {
+    public BaseGearType GetBaseGearType() {
         return SlashRegistry.GearTypes()
             .get(gear_type);
     }

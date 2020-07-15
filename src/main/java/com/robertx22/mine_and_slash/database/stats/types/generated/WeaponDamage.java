@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.stats.types.generated;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.stats.ILocalStat;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatScaling;
@@ -42,7 +42,7 @@ public class WeaponDamage extends ElementalStat implements IStatEffects, ILocalS
     }
 
     @Override
-    public boolean IsNativeToGearType(GearItemSlot slot) {
+    public boolean IsNativeToGearType(BaseGearType slot) {
         return slot.isWeapon();
     }
 

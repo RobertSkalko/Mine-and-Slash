@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.offhand;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
@@ -14,30 +14,25 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SpiritShield extends BaseOffHand {
-    public static GearItemSlot INSTANCE = new SpiritShield();
+    public static BaseGearType INSTANCE = new SpiritShield();
 
     private SpiritShield() {
 
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(new StatModifier(5, 15, MagicShield.getInstance(), ModType.FLAT));
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList(new StatModifier(3, 8, SpellDamage.getInstance(), ModType.FLAT));
     }
 
     @Override
     public StatRequirement getStatRequirements() {
         return new StatRequirement().intelligence(0.5F);
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.INT;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.mmorpg.registers.common;
 import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.currency.*;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothSlippers;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.OccultistRobes;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.SilkPants;
@@ -147,7 +147,7 @@ public class ModItems {
         return wrap;
     }
 
-    static RegistryObject<Item> of(Supplier<Item> c, GearItemSlot slot) {
+    static RegistryObject<Item> of(Supplier<Item> c, BaseGearType slot) {
         RegistryObject<Item> wrap = REG.register(slot.family()
             .name()
             .toLowerCase(Locale.ROOT) + "/" + slot.GUID(), c);

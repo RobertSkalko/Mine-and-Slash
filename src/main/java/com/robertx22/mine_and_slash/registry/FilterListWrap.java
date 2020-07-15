@@ -8,7 +8,7 @@ import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.comparators.RarityComparator;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IGearSlotType;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IBaseGearType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -115,7 +115,7 @@ public class FilterListWrap<C extends ISlashRegistryEntry> {
             // keep everything the same
         } else {
             this.list = list.stream()
-                .filter(x -> ((IGearSlotType) x).getGearSlot()
+                .filter(x -> ((IBaseGearType) x).getBaseGearType()
                     .GUID()
                     .equals(type))
                 .collect(Collectors.toList());

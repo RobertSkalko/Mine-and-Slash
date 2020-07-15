@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import net.minecraft.inventory.EquipmentSlotType;
 
-public abstract class BaseCurio extends GearItemSlot {
+public abstract class BaseCurio extends BaseGearType {
 
     @Override
     public EquipmentSlotType getVanillaSlotType() {
@@ -16,16 +16,6 @@ public abstract class BaseCurio extends GearItemSlot {
         } else {
             return rarity.maxAffixes();
         }
-    }
-
-    @Override
-    public SlotFamily family() {
-        return SlotFamily.Jewelry;
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.NONE;
     }
 
     @Override

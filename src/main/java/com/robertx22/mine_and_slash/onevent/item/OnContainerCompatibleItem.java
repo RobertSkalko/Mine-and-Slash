@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.onevent.item;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.new_content.auto_comp.PowerLevel;
 import com.robertx22.mine_and_slash.registry.FilterListWrap;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -59,12 +59,12 @@ public class OnContainerCompatibleItem {
 
                             final Item item = finalStack.getItem();
 
-                            FilterListWrap<GearItemSlot> wrapped = SlashRegistry.GearTypes()
-                                .getFilterWrapped(x -> GearItemSlot.isGearOfThisType(x, item));
+                            FilterListWrap<BaseGearType> wrapped = SlashRegistry.GearTypes()
+                                .getFilterWrapped(x -> BaseGearType.isGearOfThisType(x, item));
 
                             if (!wrapped.list.isEmpty()) {
 
-                                GearItemSlot slot = wrapped.random();
+                                BaseGearType slot = wrapped.random();
 
                                 PowerLevel.Types type = PowerLevel.getPowerClassification(item);
 

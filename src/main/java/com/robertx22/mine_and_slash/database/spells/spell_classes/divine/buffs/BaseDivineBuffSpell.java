@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.divine.buffs;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
@@ -33,8 +33,8 @@ public abstract class BaseDivineBuffSpell extends BaseSpell {
     }
 
     @Override
-    public GearItemSlot.PlayStyle getPlayStyle() {
-        return GearItemSlot.PlayStyle.INT;
+    public BaseGearType.PlayStyle getPlayStyle() {
+        return BaseGearType.PlayStyle.INT;
     }
 
     @Override

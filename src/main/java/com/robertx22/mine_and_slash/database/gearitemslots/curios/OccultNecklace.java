@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -13,14 +13,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OccultNecklace extends BaseCurio {
-    public static GearItemSlot INSTANCE = new OccultNecklace();
+    public static BaseGearType INSTANCE = new OccultNecklace();
 
     private OccultNecklace() {
 
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(new StatModifier(1, 2, ManaRegen.getInstance(), ModType.FLAT));
     }
 
@@ -30,7 +30,7 @@ public class OccultNecklace extends BaseCurio {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList();
     }
 

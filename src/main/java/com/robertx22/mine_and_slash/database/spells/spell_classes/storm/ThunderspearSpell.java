@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.storm;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.SpellTooltips;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
@@ -44,8 +44,8 @@ public class ThunderspearSpell extends BaseSpell {
     }
 
     @Override
-    public GearItemSlot.PlayStyle getPlayStyle() {
-        return GearItemSlot.PlayStyle.INT;
+    public BaseGearType.PlayStyle getPlayStyle() {
+        return BaseGearType.PlayStyle.INT;
     }
 
     @Override

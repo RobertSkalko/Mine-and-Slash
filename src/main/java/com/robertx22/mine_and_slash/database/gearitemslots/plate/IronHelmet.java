@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.plate;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseHelmet;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
@@ -13,14 +13,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class IronHelmet extends BaseHelmet {
-    public static GearItemSlot INSTANCE = new IronHelmet();
+    public static BaseGearType INSTANCE = new IronHelmet();
 
     private IronHelmet() {
 
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(
             new StatModifier(15, 35, Armor.getInstance(), ModType.FLAT)
         );
@@ -32,7 +32,7 @@ public class IronHelmet extends BaseHelmet {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList();
     }
 
@@ -49,11 +49,6 @@ public class IronHelmet extends BaseHelmet {
     @Override
     public String GUID() {
         return "plate_helmet";
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.STR;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.uncommon.capability.entity;
 import com.robertx22.mine_and_slash.config.forge.CommonConfig;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.EntityConfig;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.rarities.MobRarity;
 import com.robertx22.mine_and_slash.database.tiers.base.Tier;
@@ -566,7 +566,7 @@ public class EntityCap {
 
                 if (weaponData != null) {
 
-                    GearItemSlot slot = weaponData.GetBaseGearType();
+                    BaseGearType slot = weaponData.GetBaseGearType();
 
                     return true;
 
@@ -638,7 +638,7 @@ public class EntityCap {
                 }
                 if (gear.GetBaseGearType()
                     .family()
-                    .equals(GearItemSlot.SlotFamily.Weapon)) {
+                    .equals(BaseGearType.SlotFamily.Weapon)) {
                     return true;
                 }
             } catch (Exception e) {

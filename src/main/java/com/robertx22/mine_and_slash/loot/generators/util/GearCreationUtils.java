@@ -55,7 +55,7 @@ public class GearCreationUtils {
                 IUnique unique = blueprint.uniquePart.get();
 
                 Preconditions.checkNotNull(unique);
-                Preconditions.checkArgument(data.gear_type.equals(unique.getGearSlot()
+                Preconditions.checkArgument(data.gear_type.equals(unique.getBaseGearType()
                     .GUID()));
 
                 gearType = GearItemEnum.UNIQUE;

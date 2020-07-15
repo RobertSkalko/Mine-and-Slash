@@ -40,7 +40,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
         this.gear_type = gear.gear_type;
 
         gear.GetBaseGearType()
-            .BaseStats()
+            .baseStats()
             .forEach(x -> percents.add(getMinMax(gear).random()));
 
         gear.rare_prefix = RandomUtils.randomFromList(new ArrayList<>(RareItemAffixNames.prefixAny
@@ -158,7 +158,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
 
         for (StatModifier mod : SlashRegistry.GearTypes()
             .get(gear_type)
-            .BaseStats()) {
+            .baseStats()) {
             local.add(mod.ToExactStat(percents.get(i), gear.level));
             i++;
         }

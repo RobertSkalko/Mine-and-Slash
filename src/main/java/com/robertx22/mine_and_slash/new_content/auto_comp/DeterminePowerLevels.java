@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.new_content.auto_comp;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.testing.Watch;
@@ -10,14 +10,14 @@ import java.util.*;
 
 public class DeterminePowerLevels {
 
-    public static HashMap<GearItemSlot, List<PowerLevel>> MAP = new HashMap<>();
-    public static HashMap<GearItemSlot, PowerLevel> STRONGEST = new HashMap<>();
+    public static HashMap<BaseGearType, List<PowerLevel>> MAP = new HashMap<>();
+    public static HashMap<BaseGearType, PowerLevel> STRONGEST = new HashMap<>();
 
     public static void setupHashMaps() {
 
         Watch watch = new Watch();
 
-        Set<GearItemSlot> types = new HashSet<>(SlashRegistry.GearTypes()
+        Set<BaseGearType> types = new HashSet<>(SlashRegistry.GearTypes()
             .getList());
 
         types.forEach(x -> {
@@ -33,7 +33,7 @@ public class DeterminePowerLevels {
 
                     types
                         .forEach(slot -> {
-                            if (GearItemSlot.isGearOfThisType(slot, item)) {
+                            if (BaseGearType.isGearOfThisType(slot, item)) {
 
                                 PowerLevel current = new PowerLevel(item, slot);
 

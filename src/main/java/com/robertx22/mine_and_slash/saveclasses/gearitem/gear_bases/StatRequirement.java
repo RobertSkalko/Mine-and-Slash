@@ -10,9 +10,9 @@ public class StatRequirement implements ISerializable<StatRequirement> {
 
     //the float means % of lvl up points required
 
-    private float dex_req = 0;
-    private float int_req = 0;
-    private float str_req = 0;
+    public float dex_req = 0;
+    public float int_req = 0;
+    public float str_req = 0;
 
     public boolean hasAny() {
         return dex_req > 0 || int_req > 0 || str_req > 0;

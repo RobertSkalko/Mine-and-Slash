@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.bases;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
@@ -78,7 +78,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
     }
 
-    public abstract GearItemSlot.PlayStyle getPlayStyle();
+    public abstract BaseGearType.PlayStyle getPlayStyle();
 
     public Item getItem() {
 
@@ -128,7 +128,7 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
         return Type.SPELL;
     }
 
-    public boolean isAllowedAsRightClickFor(GearItemSlot slot) {
+    public boolean isAllowedAsRightClickFor(BaseGearType slot) {
         switch (immutableConfigs.allowedAsRightClickOn()) {
             case NONE: {
                 return false;

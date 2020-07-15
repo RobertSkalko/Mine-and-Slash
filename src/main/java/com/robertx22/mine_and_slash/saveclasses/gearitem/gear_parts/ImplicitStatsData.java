@@ -61,7 +61,7 @@ public class ImplicitStatsData implements IGearPartTooltip, IRerollable, IStatsC
     @Override
     public List<ExactStatData> GetAllStats(GearItemData gear) {
         return gear.GetBaseGearType()
-            .ImplicitStats()
+            .implicitStats()
             .stream()
             .map(x -> x.ToExactStat(percent, gear.level))
             .collect(Collectors.toList());

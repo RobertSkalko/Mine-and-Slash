@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.data_generation.unique_gears;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import net.minecraft.item.Item;
@@ -79,7 +79,7 @@ public class SerializableUniqueGear implements IUnique {
     }
 
     @Override
-    public GearItemSlot getGearSlot() {
+    public BaseGearType getBaseGearType() {
         return SlashRegistry.GearTypes()
             .get(gearType);
     }

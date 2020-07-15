@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.affixes.Affix;
 import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -20,7 +20,7 @@ import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.packets.RegistryPacket;
 import com.robertx22.mine_and_slash.potion_effects.bases.BasePotionEffect;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyAffix;
-import com.robertx22.mine_and_slash.registry.empty_entries.EmptyGearType;
+import com.robertx22.mine_and_slash.registry.empty_entries.EmptyBaseGearType;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptySpell;
 import com.robertx22.mine_and_slash.registry.empty_entries.EmptyStat;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
@@ -124,7 +124,7 @@ public class SlashRegistry {
         return getRegistry(SlashRegistryType.TIER);
     }
 
-    public static SlashRegistryContainer<GearItemSlot> GearTypes() {
+    public static SlashRegistryContainer<BaseGearType> GearTypes() {
         return getRegistry(SlashRegistryType.GEAR_TYPE);
     }
 
@@ -283,7 +283,7 @@ public class SlashRegistry {
             .isDatapack());
 
         // data pack ones
-        addRegistry(new SlashRegistryContainer<GearItemSlot>(SlashRegistryType.GEAR_TYPE, new EmptyGearType()));
+        addRegistry(new SlashRegistryContainer<BaseGearType>(SlashRegistryType.GEAR_TYPE, new EmptyBaseGearType()));
         addRegistry(new SlashRegistryContainer<Stat>(SlashRegistryType.STAT, EmptyStat.getInstance()));
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));

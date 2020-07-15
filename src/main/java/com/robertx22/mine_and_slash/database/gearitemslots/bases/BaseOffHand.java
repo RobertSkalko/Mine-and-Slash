@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import net.minecraft.inventory.EquipmentSlotType;
 
-public abstract class BaseOffHand extends GearItemSlot {
+public abstract class BaseOffHand extends BaseGearType {
     @Override
     public EquipmentSlotType getVanillaSlotType() {
         return EquipmentSlotType.OFFHAND;
@@ -13,8 +13,4 @@ public abstract class BaseOffHand extends GearItemSlot {
         return super.Weight() / 2;
     }
 
-    @Override
-    public SlotFamily family() {
-        return SlotFamily.OffHand;
-    }
 }

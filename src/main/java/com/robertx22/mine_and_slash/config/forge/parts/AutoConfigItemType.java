@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.config.forge.parts;
 
 import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -36,7 +36,7 @@ public class AutoConfigItemType {
         builder.pop();
     }
 
-    public CompatibleItem getAutoCompatibleItem(Item item, GearItemSlot slot) {
+    public CompatibleItem getAutoCompatibleItem(Item item, BaseGearType slot) {
 
         CompatibleItem comp = CompatibleItem.getDefaultAuto(item, slot);
 

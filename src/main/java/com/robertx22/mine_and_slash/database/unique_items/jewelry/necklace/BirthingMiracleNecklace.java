@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.unique_items.jewelry.necklace;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.curios.LifeNecklace;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.AllAttributes;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
@@ -41,7 +41,7 @@ public class BirthingMiracleNecklace implements IUnique {
     }
 
     @Override
-    public GearItemSlot getGearSlot() {
+    public BaseGearType getBaseGearType() {
         return LifeNecklace.INSTANCE;
     }
 }

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.affixes.data;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.affixes.AffixBuilder;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
@@ -51,7 +51,7 @@ public class ArmorPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(6, 8, Health.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(4, 6, Health.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(2, 4, Health.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.of(GearItemSlot.SlotFamily.Armor)
+            .Req(SlotRequirement.of(BaseGearType.SlotFamily.Armor)
                 .plus(x -> x.isShield())
                 .plus(x -> x.family()
                     .isJewelry()))

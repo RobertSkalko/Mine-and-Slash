@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 
@@ -91,37 +91,37 @@ public class RareItemAffixNames {
         }
     };
 
-    public static HashMap<Integer, Words> getSuffixMap(GearItemSlot slot) {
+    public static HashMap<Integer, Words> getSuffixMap(BaseGearType slot) {
 
         if (slot.isWeapon()) {
             return weapons;
         }
         if (slot.getTags()
-            .contains(GearItemSlot.SlotTag.Boots)) {
+            .contains(BaseGearType.SlotTag.Boots)) {
             return boots;
         }
         if (slot.getTags()
-            .contains(GearItemSlot.SlotTag.Chest)) {
+            .contains(BaseGearType.SlotTag.Chest)) {
             return chest;
         }
         if (slot.getTags()
-            .contains(GearItemSlot.SlotTag.Helmet)) {
+            .contains(BaseGearType.SlotTag.Helmet)) {
             return helmet;
         }
         if (slot.getTags()
-            .contains(GearItemSlot.SlotTag.Ring)) {
+            .contains(BaseGearType.SlotTag.Ring)) {
             return ring;
         }
         if (slot.getTags()
-            .contains(GearItemSlot.SlotTag.Necklace)) {
+            .contains(BaseGearType.SlotTag.Necklace)) {
             return necklace;
         }
         if (slot.getTags()
-            .contains(GearItemSlot.SlotTag.Shield)) {
+            .contains(BaseGearType.SlotTag.Shield)) {
             return shield;
         }
         if (slot.getTags()
-            .contains(GearItemSlot.SlotTag.Pants)) {
+            .contains(BaseGearType.SlotTag.Pants)) {
             return pants;
         }
 

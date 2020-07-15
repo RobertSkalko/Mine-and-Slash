@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.nature;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
@@ -44,8 +44,8 @@ public class PoisonedWeaponsSpell extends BaseSpell {
     }
 
     @Override
-    public GearItemSlot.PlayStyle getPlayStyle() {
-        return GearItemSlot.PlayStyle.STR;
+    public BaseGearType.PlayStyle getPlayStyle() {
+        return BaseGearType.PlayStyle.STR;
     }
 
     @Override

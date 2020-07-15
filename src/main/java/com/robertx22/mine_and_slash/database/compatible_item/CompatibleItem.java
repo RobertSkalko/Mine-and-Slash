@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.compatible_item;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
@@ -37,7 +37,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     public float chance_to_become_unique = 0.025F;
     public String unique_id = "";
 
-    public static CompatibleItem getDefaultAuto(Item item, GearItemSlot slot) {
+    public static CompatibleItem getDefaultAuto(Item item, BaseGearType slot) {
 
         CompatibleItem comp = new CompatibleItem();
         comp.item_type = slot.GUID();

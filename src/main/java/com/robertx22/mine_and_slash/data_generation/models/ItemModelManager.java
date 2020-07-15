@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.data_generation.models;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Crossbow;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.HunterBow;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -39,10 +39,10 @@ public class ItemModelManager extends ItemModelProvider {
         SlashRegistry.UniqueGears()
             .getSerializable()
             .forEach(x -> {
-                if (x.getGearSlot() != HunterBow.INSTANCE && x.getGearSlot() != Crossbow.INSTANCE) {
-                    if (x.getGearSlot()
+                if (x.getBaseGearType() != HunterBow.INSTANCE && x.getBaseGearType() != Crossbow.INSTANCE) {
+                    if (x.getBaseGearType()
                         .family()
-                        .equals(GearItemSlot.SlotFamily.Weapon)) {
+                        .equals(BaseGearType.SlotFamily.Weapon)) {
                         handheld(x.getUniqueItem());
                     } else {
                         generated(x.getUniqueItem());
@@ -55,7 +55,7 @@ public class ItemModelManager extends ItemModelProvider {
 
                 if (x != HunterBow.INSTANCE && x != Crossbow.INSTANCE && !x.isShield()) {
                     if (x.family()
-                        .equals(GearItemSlot.SlotFamily.Weapon)) {
+                        .equals(BaseGearType.SlotFamily.Weapon)) {
                         handheld(x.getItem());
                     } else {
                         generated(x.getItem());

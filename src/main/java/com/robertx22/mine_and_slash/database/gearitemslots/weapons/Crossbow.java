@@ -1,10 +1,8 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
@@ -18,14 +16,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Crossbow extends BaseWeapon {
-    public static GearItemSlot INSTANCE = new Crossbow();
+    public static BaseGearType INSTANCE = new Crossbow();
 
     private Crossbow() {
 
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(
             new StatModifier(2, 4, 3, 7, new WeaponDamage(Elements.Physical), ModType.FLAT),
             new StatModifier(3, 6, CriticalHit.getInstance(), ModType.FLAT)
@@ -39,18 +37,8 @@ public class Crossbow extends BaseWeapon {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList();
-    }
-
-    @Override
-    public WeaponMechanic getWeaponMechanic() {
-        return new NormalWeaponMechanic();
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.DEX;
     }
 
     @Override

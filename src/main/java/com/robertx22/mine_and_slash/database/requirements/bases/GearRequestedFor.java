@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.database.requirements.bases;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 
 public class GearRequestedFor {
 
-    public GearItemSlot forSlot;
+    public BaseGearType forSlot;
     public GearItemData gearData;
 
     public GearRequestedFor(GearItemData data) {
@@ -13,7 +13,7 @@ public class GearRequestedFor {
         this.gearData = data;
     }
 
-    public GearRequestedFor(GearItemSlot slot) {
+    public GearRequestedFor(BaseGearType slot) {
         this.forSlot = slot;
         this.gearData = new GearItemData();
     }

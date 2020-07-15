@@ -63,7 +63,7 @@ public class GiveExactUnique {
                 blueprint.uniquePart.set(SlashRegistry.UniqueGears()
                     .get(id));
                 blueprint.gearItemSlot.set(blueprint.uniquePart.get()
-                    .getGearSlot());
+                    .getBaseGearType());
             }
 
             player.addItemStackToInventory(blueprint.createStack());

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.hunting;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.RangerArrowEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
@@ -46,8 +46,8 @@ public class ArrowBarrageSpell extends BaseSpell {
     }
 
     @Override
-    public GearItemSlot.PlayStyle getPlayStyle() {
-        return GearItemSlot.PlayStyle.DEX;
+    public BaseGearType.PlayStyle getPlayStyle() {
+        return BaseGearType.PlayStyle.DEX;
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.affixes.data;
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.affixes.ElementalAffixBuilder;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.reduced_req.ReducedAllStatReqOnItem;
@@ -28,7 +28,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(1, x -> Arrays.asList(new StatModifier(2, 3, 2, 3, new WeaponDamage(x), ModType.FLAT)))
             .tier(2, x -> Arrays.asList(new StatModifier(1, 3, 2, 3, new WeaponDamage(x), ModType.FLAT)))
             .tier(3, x -> Arrays.asList(new StatModifier(1, 1, 2, 2, new WeaponDamage(x), ModType.FLAT)))
-            .Req(SlotRequirement.of(GearItemSlot.SlotFamily.Jewelry))
+            .Req(SlotRequirement.of(BaseGearType.SlotFamily.Jewelry))
             .Weight(200)
             .Prefix()
             .Build();
@@ -40,7 +40,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(3, new StatModifier(0.3F, 0.5F, HealthRegen.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(x -> x.family()
                 .isJewelry() || x.getTags()
-                .contains(GearItemSlot.SlotTag.Plate)))
+                .contains(BaseGearType.SlotTag.Plate)))
             .Weight(200)
             .Suffix()
             .Build();
@@ -52,7 +52,7 @@ public class JewelryPrefixes implements ISlashRegistryInit {
             .tier(3, new StatModifier(0.3F, 0.5F, MagicShieldRegen.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(x -> x.family()
                 .isJewelry() || x.getTags()
-                .contains(GearItemSlot.SlotTag.Cloth)))
+                .contains(BaseGearType.SlotTag.Cloth)))
             .Weight(200)
             .Suffix()
             .Build();

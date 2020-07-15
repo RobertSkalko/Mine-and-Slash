@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.offhand;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseOffHand;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -13,14 +13,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TowerShield extends BaseOffHand {
-    public static GearItemSlot INSTANCE = new TowerShield();
+    public static BaseGearType INSTANCE = new TowerShield();
 
     private TowerShield() {
 
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(new StatModifier(20, 80, Armor.getInstance(), ModType.FLAT));
     }
 
@@ -30,13 +30,8 @@ public class TowerShield extends BaseOffHand {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList();
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.STR;
     }
 
     @Override

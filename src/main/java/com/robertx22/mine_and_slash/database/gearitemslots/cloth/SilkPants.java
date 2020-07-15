@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.cloth;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
@@ -13,14 +13,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SilkPants extends BaseBoots {
-    public static GearItemSlot INSTANCE = new SilkPants();
+    public static BaseGearType INSTANCE = new SilkPants();
 
     private SilkPants() {
 
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(
             new StatModifier(4, 12, MagicShield.getInstance(), ModType.FLAT)
         );
@@ -32,7 +32,7 @@ public class SilkPants extends BaseBoots {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList();
     }
 
@@ -49,11 +49,6 @@ public class SilkPants extends BaseBoots {
     @Override
     public String GUID() {
         return "silk_pants";
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.INT;
     }
 
     @Override

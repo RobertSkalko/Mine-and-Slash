@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -13,14 +13,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LifeNecklace extends BaseCurio {
-    public static GearItemSlot INSTANCE = new LifeNecklace();
+    public static BaseGearType INSTANCE = new LifeNecklace();
 
     private LifeNecklace() {
 
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(new StatModifier(2, 6, Health.getInstance(), ModType.FLAT));
     }
 
@@ -30,23 +30,13 @@ public class LifeNecklace extends BaseCurio {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList();
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.NONE;
     }
 
     @Override
     public String GUID() {
         return "life_necklace";
-    }
-
-    @Override
-    public SlotFamily family() {
-        return SlotFamily.Jewelry;
     }
 
     @Override

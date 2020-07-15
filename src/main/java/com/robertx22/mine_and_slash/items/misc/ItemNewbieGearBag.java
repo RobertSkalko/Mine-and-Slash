@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.items.misc;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee.GemstoneSword;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.BaseItem;
@@ -46,7 +46,7 @@ public class ItemNewbieGearBag extends BaseItem {
         if (!worldIn.isRemote) {
             try {
 
-                List<GearItemSlot> list = new ArrayList<>();
+                List<BaseGearType> list = new ArrayList<>();
 
                 list.add(GemstoneSword.INSTANCE);
 
@@ -70,7 +70,7 @@ public class ItemNewbieGearBag extends BaseItem {
         return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
     }
 
-    private static GearBlueprint getBlueprint(GearItemSlot type) {
+    private static GearBlueprint getBlueprint(BaseGearType type) {
         GearBlueprint print = new GearBlueprint(1);
         print.gearItemSlot.set(type);
         print.rarity.setSpecificRarity(0);

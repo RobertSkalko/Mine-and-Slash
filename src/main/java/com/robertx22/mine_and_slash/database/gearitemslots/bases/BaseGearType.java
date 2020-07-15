@@ -8,7 +8,6 @@ import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.Nor
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee.GemstoneSword;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee.PrimitiveAxe;
-import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -22,7 +21,6 @@ import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import top.theillusivec4.curios.api.CuriosAPI;
@@ -30,19 +28,37 @@ import top.theillusivec4.curios.api.CuriosAPI;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashRegistryEntry<GearItemSlot> {
+public abstract class BaseGearType implements IAutoLocName, ISlashRegistryEntry<BaseGearType> {
 
     public float attacksPerSecond = 1;
 
-    public static class Constants {
+    public abstract List<StatModifier> implicitStats();
 
+    public abstract List<StatModifier> baseStats();
+
+    public WeaponTypes weaponType() {
+        return WeaponTypes.None;
+    }
+
+    public abstract List<SlotTag> getTags();
+
+    public abstract Item getItem();
+
+    public abstract StatRequirement getStatRequirements();
+
+    public abstract EquipmentSlotType getVanillaSlotType();
+
+    public int Weight() {
+        return 1000;
+    }
+
+    public static class Constants {
         public static float SWORD_ATK_SPEED = 0.75F;
         public static float WAND_ATK_SPEED = 1;
         public static float AXE_ATK_SPEED = 1.25F;
-
     }
 
-    public float getAttacksPerSecondCalculated(EntityCap.UnitData data) {
+    public final float getAttacksPerSecondCalculated(EntityCap.UnitData data) {
 
         float multi = data.getUnit()
             .peekAtStat(AttackSpeed.getInstance())
@@ -53,7 +69,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return f;
     }
 
-    public float getAttacksPerSecondForTooltip(GearItemData gear) {
+    public final float getAttacksPerSecondForTooltip(GearItemData gear) {
         // only show bonus atk speed from this item
 
         float speed = attacksPerSecond;
@@ -69,7 +85,7 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public final boolean hasUniqueItemVersions() {
         return !SlashRegistry.UniqueGears()
-            .getFilterWrapped(x -> x.getGearSlot()
+            .getFilterWrapped(x -> x.getBaseGearType()
                 .GUID()
                 .equals(GUID())).list.isEmpty();
     }
@@ -91,26 +107,10 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     }
 
-    public abstract StatRequirement getStatRequirements();
-
-    public boolean isWeapon() {
+    public final boolean isWeapon() {
         return this.family()
             .equals(SlotFamily.Weapon);
     }
-
-    public abstract List<StatModifier> ImplicitStats();
-
-    public abstract List<StatModifier> BaseStats();
-
-    public int maximumRareAffixes(GearRarity rarity) {
-        return rarity.maxAffixes();
-    }
-
-    public WeaponTypes weaponType() {
-        return WeaponTypes.None;
-    }
-
-    public abstract PlayStyle getPlayStyle();
 
     public final boolean isMeleeWeapon() {
         return this.getTags()
@@ -121,22 +121,41 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return getTags().contains(SlotTag.Shield);
     }
 
-    public abstract EquipmentSlotType getVanillaSlotType();
-
     public enum SlotTag {
-        Sword, Axe, Bow, Wand, Crossbow,
-        Boots, Helmet, Pants, Chest,
-        Cloth, Plate, Leather,
-        Shield, Necklace, Ring,
-        ArmorStat, MagicShieldStat, EvasionStat,
-        MageWeapon, MeleeWeapon, RangedWeapon
+        Sword(SlotFamily.Weapon),
+        Axe(SlotFamily.Weapon),
+        Bow(SlotFamily.Weapon),
+        Wand(SlotFamily.Weapon),
+        Crossbow(SlotFamily.Weapon),
+
+        Boots(SlotFamily.Armor),
+        Helmet(SlotFamily.Armor),
+        Pants(SlotFamily.Armor),
+        Chest(SlotFamily.Armor),
+
+        Necklace(SlotFamily.Jewelry),
+        Ring(SlotFamily.Jewelry),
+
+        Cloth(SlotFamily.NONE),
+        Plate(SlotFamily.NONE),
+        Leather(SlotFamily.NONE),
+        Shield(SlotFamily.NONE),
+
+        MageWeapon(SlotFamily.NONE), MeleeWeapon(SlotFamily.NONE), RangedWeapon(SlotFamily.NONE);
+
+        public SlotFamily family = null;
+
+        SlotTag(SlotFamily family) {
+            this.family = family;
+        }
     }
 
     public enum SlotFamily {
         Weapon,
         Armor,
         Jewelry,
-        OffHand;
+        OffHand,
+        NONE;
 
         public boolean isJewelry() {
             return this == Jewelry;
@@ -156,14 +175,21 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     }
 
-    public WeaponMechanic getWeaponMechanic() {
+    public final SlotFamily family() {
+        return getTags().stream()
+            .filter(x -> x.family != null)
+            .findFirst()
+            .get().family;
+    }
+
+    public final WeaponMechanic getWeaponMechanic() {
         return new NormalWeaponMechanic();
     }
 
     private static HashMap<String, HashMap<Item, Boolean>> CACHED = new HashMap<>();
 
     // has to use ugly stuff like this cus datapacks.
-    public static boolean isGearOfThisType(GearItemSlot slot, Item item) {
+    public static boolean isGearOfThisType(BaseGearType slot, Item item) {
 
         String id = slot.GUID();
 
@@ -262,19 +288,9 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         return AutoLocGroup.Gear_Slots;
     }
 
-    public abstract SlotFamily family();
-
-    public abstract List<SlotTag> getTags();
-
     @Override
     public String locNameLangFileGUID() {
         return Ref.MODID + ".gear_type." + formattedGUID();
-    }
-
-    public abstract Item getItem();
-
-    public int Weight() {
-        return 1000;
     }
 
     public final boolean isMageWeapon() {

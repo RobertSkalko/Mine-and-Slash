@@ -12,7 +12,7 @@ import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IGearSlotType;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IBaseGearType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ITiered;
 import net.minecraft.item.Item;
@@ -22,7 +22,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.List;
 import java.util.Locale;
 
-public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocDesc,
+public interface IUnique extends IBaseGearType, ITiered, IAutoLocName, IAutoLocDesc,
     ISerializedRegistryEntry<IUnique>, ISerializable<IUnique> {
 
     @Override
@@ -32,7 +32,7 @@ public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocD
 
     @Override
     default String datapackFolder() {
-        return getGearSlot().GUID() + "/";
+        return getBaseGearType().GUID() + "/";
     }
 
     @Override
@@ -41,7 +41,7 @@ public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocD
 
         JsonUtils.addStats(uniqueStats(), json, "unique_stats");
 
-        json.addProperty("gear_type", this.getGearSlot()
+        json.addProperty("gear_type", this.getBaseGearType()
             .GUID());
         json.addProperty("item_id", this.getResourceLocForItem()
             .toString());
@@ -93,7 +93,7 @@ public interface IUnique extends IGearSlotType, ITiered, IAutoLocName, IAutoLocD
     }
 
     default String getGeneratedResourceFolderPath() {
-        return "uniques/" + getGearSlot().family()
+        return "uniques/" + getBaseGearType().family()
             .name()
             .toLowerCase(Locale.ROOT) + "/";
     }

@@ -1,10 +1,8 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
@@ -18,14 +16,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PrimitiveAxe extends BaseWeapon {
-    public static GearItemSlot INSTANCE = new PrimitiveAxe();
+    public static BaseGearType INSTANCE = new PrimitiveAxe();
 
     private PrimitiveAxe() {
         this.attacksPerSecond = Constants.AXE_ATK_SPEED;
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(
             new StatModifier(2, 3, 3, 8, new WeaponDamage(Elements.Physical), ModType.FLAT),
             new StatModifier(4, 15, CriticalHit.getInstance(), ModType.FLAT)
@@ -39,18 +37,8 @@ public class PrimitiveAxe extends BaseWeapon {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList();
-    }
-
-    @Override
-    public WeaponMechanic getWeaponMechanic() {
-        return new NormalWeaponMechanic();
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.STR;
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.database.gearitemslots.curios;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseCurio;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
@@ -14,15 +14,10 @@ import java.util.List;
 
 public class OccultRing extends BaseCurio {
 
-    public static GearItemSlot INSTANCE = new OccultRing();
+    public static BaseGearType INSTANCE = new OccultRing();
 
     private OccultRing() {
 
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.NONE;
     }
 
     @Override
@@ -36,12 +31,12 @@ public class OccultRing extends BaseCurio {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList();
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(new StatModifier(5, 15, Mana.getInstance(), ModType.FLAT));
     }
 
@@ -53,11 +48,6 @@ public class OccultRing extends BaseCurio {
     @Override
     public int Weight() {
         return super.Weight() * 2;
-    }
-
-    @Override
-    public SlotFamily family() {
-        return SlotFamily.Jewelry;
     }
 
     @Override

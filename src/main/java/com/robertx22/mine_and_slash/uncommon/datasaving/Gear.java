@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.datasaving;
 
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.item.ItemStack;
@@ -37,7 +37,7 @@ public class Gear {
             GearItemData wep = Gear.Load(weapon);
             if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
                 .family()
-                .equals(GearItemSlot.SlotFamily.Weapon)) {
+                .equals(BaseGearType.SlotFamily.Weapon)) {
                 return wep;
             }
 

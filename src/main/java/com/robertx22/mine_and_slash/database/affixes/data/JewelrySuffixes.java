@@ -3,7 +3,7 @@ package com.robertx22.mine_and_slash.database.affixes.data;
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.affixes.ElementalAffixBuilder;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.AllAttributes;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
@@ -32,7 +32,7 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .tier(3, x -> Arrays.asList(new StatModifier(7, 11, new ElementalDamageBonus(x), ModType.FLAT)))
             .tier(4, x -> Arrays.asList(new StatModifier(5, 7, new ElementalDamageBonus(x), ModType.FLAT)))
             .tier(5, x -> Arrays.asList(new StatModifier(2, 5, new ElementalDamageBonus(x), ModType.FLAT)))
-            .Req(SlotRequirement.of(GearItemSlot.SlotFamily.Jewelry))
+            .Req(SlotRequirement.of(BaseGearType.SlotFamily.Jewelry))
             .Suffix()
             .Build();
 
@@ -42,8 +42,7 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(1, 2, Intelligence.INSTANCE, ModType.FLAT))
             .tier(3, new StatModifier(0.5F, 1, Intelligence.INSTANCE, ModType.FLAT))
             .Req(SlotRequirement.of(x -> !x.isWeapon() && x.family()
-                .isJewelry() || x.getPlayStyle()
-                .isINT()))
+                .isJewelry() || x.getStatRequirements().int_req > 0))
             .Suffix()
             .Build();
 
@@ -53,8 +52,7 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(1, 2, Strength.INSTANCE, ModType.FLAT))
             .tier(3, new StatModifier(0.5F, 1, Strength.INSTANCE, ModType.FLAT))
             .Req(SlotRequirement.of(x -> !x.isWeapon() && x.family()
-                .isJewelry() || x.getPlayStyle()
-                .isSTR()))
+                .isJewelry() || x.getStatRequirements().str_req > 0))
             .Suffix()
             .Build();
 
@@ -64,8 +62,7 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(1, 2, Dexterity.INSTANCE, ModType.FLAT))
             .tier(3, new StatModifier(0.5F, 5, Dexterity.INSTANCE, ModType.FLAT))
             .Req(SlotRequirement.of(x -> !x.isWeapon() && x.family()
-                .isJewelry() || x.getPlayStyle()
-                .isDEX()))
+                .isJewelry() || x.getStatRequirements().dex_req > 0))
             .Suffix()
             .Build();
 
@@ -74,7 +71,7 @@ public class JewelrySuffixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(1, 1.5F, AllAttributes.getInstance(), ModType.FLAT))
             .tier(2, new StatModifier(0.5F, 1, AllAttributes.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(0.3F, 0.5F, AllAttributes.getInstance(), ModType.FLAT))
-            .Req(SlotRequirement.of(GearItemSlot.SlotFamily.Jewelry))
+            .Req(SlotRequirement.of(BaseGearType.SlotFamily.Jewelry))
             .Weight(100)
             .Suffix()
             .Build();

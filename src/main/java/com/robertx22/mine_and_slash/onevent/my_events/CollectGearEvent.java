@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.onevent.my_events;
 
 import com.robertx22.mine_and_slash.a_libraries.curios.MyCurioUtils;
 import com.robertx22.mine_and_slash.api.MineAndSlashEvents;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import net.minecraft.entity.LivingEntity;
@@ -58,7 +58,7 @@ public class CollectGearEvent {
                 GearItemData wep = Gear.Load(weapon);
                 if (wep != null && wep.GetBaseGearType() != null && wep.GetBaseGearType()
                     .family()
-                    .equals(GearItemSlot.SlotFamily.Weapon)) {
+                    .equals(BaseGearType.SlotFamily.Weapon)) {
                     hasWep = true;
                     event.add(wep);
                 }
@@ -73,11 +73,11 @@ public class CollectGearEvent {
             GearItemData off = Gear.Load(offhand);
             if (off != null && off.GetBaseGearType() != null && off.GetBaseGearType()
                 .family()
-                .equals(GearItemSlot.SlotFamily.OffHand)) {
+                .equals(BaseGearType.SlotFamily.OffHand)) {
                 event.add(off);
             } else if (off != null && off.GetBaseGearType()
                 .family()
-                .equals(GearItemSlot.SlotFamily.Weapon)) {
+                .equals(BaseGearType.SlotFamily.Weapon)) {
                 event.getEntityLiving()
                     .sendMessage(new StringTextComponent("You can't wear a weapon in offhand."));
             }

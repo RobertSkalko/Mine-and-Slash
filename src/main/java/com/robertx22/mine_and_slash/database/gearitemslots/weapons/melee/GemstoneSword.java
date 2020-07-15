@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseWeapon;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Lifesteal;
@@ -17,14 +17,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GemstoneSword extends BaseWeapon {
-    public static GearItemSlot INSTANCE = new GemstoneSword();
+    public static BaseGearType INSTANCE = new GemstoneSword();
 
     private GemstoneSword() {
         this.attacksPerSecond = Constants.SWORD_ATK_SPEED;
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(
             new StatModifier(1, 3, 2, 4, new WeaponDamage(Elements.Physical), ModType.FLAT),
             new StatModifier(2, 6, CriticalHit.getInstance(), ModType.FLAT)
@@ -33,7 +33,7 @@ public class GemstoneSword extends BaseWeapon {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList(new StatModifier(1, 3, Lifesteal.getInstance(), ModType.FLAT));
     }
 
@@ -56,11 +56,6 @@ public class GemstoneSword extends BaseWeapon {
     @Override
     public WeaponTypes weaponType() {
         return WeaponTypes.Sword;
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.DEX;
     }
 
     @Override

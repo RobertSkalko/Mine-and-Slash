@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.database.spells.spell_classes.nature;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.SeedEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
@@ -45,8 +45,8 @@ public class ThornBushSpell extends BaseSpell {
     }
 
     @Override
-    public GearItemSlot.PlayStyle getPlayStyle() {
-        return GearItemSlot.PlayStyle.INT;
+    public BaseGearType.PlayStyle getPlayStyle() {
+        return BaseGearType.PlayStyle.INT;
     }
 
     public static ThornBushSpell getInstance() {

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.leather;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseChest;
 import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
@@ -13,14 +13,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HunterHood extends BaseChest {
-    public static GearItemSlot INSTANCE = new HunterHood();
+    public static BaseGearType INSTANCE = new HunterHood();
 
     private HunterHood() {
 
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(
             new StatModifier(20, 50, DodgeRating.getInstance(), ModType.FLAT)
         );
@@ -32,7 +32,7 @@ public class HunterHood extends BaseChest {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList();
     }
 
@@ -49,11 +49,6 @@ public class HunterHood extends BaseChest {
     @Override
     public String GUID() {
         return "hunter_hood";
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.DEX;
     }
 
     @Override

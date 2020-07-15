@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.ClothSlippers;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.OccultistRobes;
 import com.robertx22.mine_and_slash.database.gearitemslots.cloth.SilkPants;
@@ -34,7 +34,7 @@ public class GearTypes implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
-        List<GearItemSlot> All = new ArrayList<GearItemSlot>() {
+        List<BaseGearType> All = new ArrayList<BaseGearType>() {
             {
                 {
                     add(IronGreaves.INSTANCE);

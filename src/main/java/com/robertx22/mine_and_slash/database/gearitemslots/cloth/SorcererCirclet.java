@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.cloth;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
+import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.armor.BaseBoots;
 import com.robertx22.mine_and_slash.database.stats.types.offense.SpellDamage;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
@@ -14,14 +14,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SorcererCirclet extends BaseBoots {
-    public static GearItemSlot INSTANCE = new SorcererCirclet();
+    public static BaseGearType INSTANCE = new SorcererCirclet();
 
     private SorcererCirclet() {
 
     }
 
     @Override
-    public List<StatModifier> BaseStats() {
+    public List<StatModifier> baseStats() {
         return Arrays.asList(
             new StatModifier(3, 8, MagicShield.getInstance(), ModType.FLAT)
         );
@@ -33,7 +33,7 @@ public class SorcererCirclet extends BaseBoots {
     }
 
     @Override
-    public List<StatModifier> ImplicitStats() {
+    public List<StatModifier> implicitStats() {
         return Arrays.asList(new StatModifier(3, 8, SpellDamage.getInstance(), ModType.FLAT));
     }
 
@@ -50,11 +50,6 @@ public class SorcererCirclet extends BaseBoots {
     @Override
     public String GUID() {
         return "sorcerer_circlet";
-    }
-
-    @Override
-    public PlayStyle getPlayStyle() {
-        return PlayStyle.INT;
     }
 
     @Override
