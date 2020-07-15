@@ -15,20 +15,21 @@ public class DimensionConfig implements ISerializedRegistryEntry<DimensionConfig
 
     public static DimensionConfig EMPTY = new DimensionConfig();
 
-    public DimensionConfig(String dimension_id) {
+    public DimensionConfig(int startlvl, String dimension_id) {
+        this.min_lvl = startlvl;
         this.dimension_id = dimension_id;
     }
 
     public static DimensionConfig Overworld() {
-        return new DimensionConfig("minecraft:overworld");
+        return new DimensionConfig(1, "minecraft:overworld");
     }
 
     public static DimensionConfig Nether() {
-        return new DimensionConfig("minecraft:the_nether").setMobTier(2);
+        return new DimensionConfig(15, "minecraft:the_nether").setMobTier(2);
     }
 
     public static DimensionConfig End() {
-        return new DimensionConfig("minecraft:the_end").setMobTier(2);
+        return new DimensionConfig(20, "minecraft:the_end").setMobTier(2);
     }
 
     public static DimensionConfig DefaultExtra() {

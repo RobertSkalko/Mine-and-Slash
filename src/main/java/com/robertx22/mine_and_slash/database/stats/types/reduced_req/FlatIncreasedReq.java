@@ -4,13 +4,14 @@ import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.name_regex.StatNameRegex;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.BaseCoreStat;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
 public class FlatIncreasedReq extends Stat {
-    Stat statReq;
+    BaseCoreStat statReq;
 
-    public FlatIncreasedReq(Stat statReq) {
+    public FlatIncreasedReq(BaseCoreStat statReq) {
         this.statReq = statReq;
     }
 

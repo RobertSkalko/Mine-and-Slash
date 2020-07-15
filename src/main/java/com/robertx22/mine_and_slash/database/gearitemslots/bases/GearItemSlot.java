@@ -31,6 +31,14 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public float attacksPerSecond = 1;
 
+    public static class Constants {
+
+        public static float SWORD_ATK_SPEED = 0.75F;
+        public static float WAND_ATK_SPEED = 1;
+        public static float AXE_ATK_SPEED = 1.25F;
+
+    }
+
     public float getAttacksPerSecondCalculated(EntityCap.UnitData data) {
 
         float f = data.getUnit()

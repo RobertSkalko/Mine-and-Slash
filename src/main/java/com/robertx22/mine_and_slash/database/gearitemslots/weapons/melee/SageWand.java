@@ -22,7 +22,7 @@ public class SageWand extends BaseWeapon {
     public static GearItemSlot INSTANCE = new SageWand();
 
     private SageWand() {
-        this.attacksPerSecond = 1F;
+        this.attacksPerSecond = Constants.WAND_ATK_SPEED;
     }
 
     @Override
@@ -30,7 +30,6 @@ public class SageWand extends BaseWeapon {
         return Arrays.asList(
             new StatModifier(1, 3, 3, 5, new WeaponDamage(Elements.Physical), ModType.FLAT),
             new StatModifier(3, 10, CriticalHit.getInstance(), ModType.FLAT)
-
         );
     }
 

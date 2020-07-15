@@ -123,6 +123,8 @@ public class ModItems {
     public static RegistryObject<Item> DEX_SKILL_GEM = item(() -> new SkillGemItem(), "skill_gems/dex");
     public static RegistryObject<Item> STR_SKILL_GEM = item(() -> new SkillGemItem(), "skill_gems/str");
 
+    public static RegistryObject<Item> RESET_STATS_POTION = item(() -> new ResetStatPointsItem(), "potions/reset_stats_potion");
+
     public static List<RegistryObject<JewelItem>> ALL_JEWELS = new ArrayList<>();
 
     static RegistryObject<JewelItem> jewel(Supplier<JewelItem> c, String id) {

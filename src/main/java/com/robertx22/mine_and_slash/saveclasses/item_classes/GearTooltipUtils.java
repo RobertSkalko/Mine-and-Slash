@@ -5,8 +5,8 @@ import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
+import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.FinalizedGearStatReq;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips.MergedStats;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
@@ -65,7 +65,7 @@ public class GearTooltipUtils {
             reqNumberColor = TextFormatting.RED;
         }
 
-        StatRequirement req = gear.getStatRequirements();
+        FinalizedGearStatReq req = gear.getStatRequirements();
         String reqtext = reqColor + "(Level " + reqNumberColor + gear.level;
 
         int dex = req.dexterity;

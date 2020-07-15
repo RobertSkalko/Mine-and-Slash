@@ -44,13 +44,11 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
         return true;
     }
 
-    public StatRequirement getStatRequirements() {
-        StatRequirement req = GetBaseGearType().getStatRequirements();
-
+    public FinalizedGearStatReq getStatRequirements() {
+        FinalizedGearStatReq req = GetBaseGearType().getStatRequirements()
+            .getFinalized(this);
         req.calculate(this);
-
         return req;
-
     }
 
     @Store

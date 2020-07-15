@@ -20,7 +20,7 @@ public class GemstoneSword extends BaseWeapon {
     public static GearItemSlot INSTANCE = new GemstoneSword();
 
     private GemstoneSword() {
-        this.attacksPerSecond = 0.75F;
+        this.attacksPerSecond = Constants.SWORD_ATK_SPEED;
     }
 
     @Override

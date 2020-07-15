@@ -12,7 +12,6 @@ import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocDesc;
-import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocMultiLore;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IWeighted;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
@@ -95,16 +94,6 @@ public abstract class CurrencyItem extends Item implements ISlashRegistryEntry<C
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
                                ITooltipFlag flagIn) {
-
-        if (this instanceof IAutoLocMultiLore) {
-            IAutoLocMultiLore auto = (IAutoLocMultiLore) this;
-            for (ITextComponent comp : auto.getComponents()) {
-                tooltip.add(Styles.GREENCOMP()
-                    .appendText("'")
-                    .appendSibling(comp)
-                    .appendText("'"));
-            }
-        }
 
         if (this instanceof IAutoLocDesc) {
             IAutoLocDesc auto = (IAutoLocDesc) this;

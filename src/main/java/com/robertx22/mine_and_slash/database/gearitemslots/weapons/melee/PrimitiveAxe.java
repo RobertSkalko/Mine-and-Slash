@@ -21,7 +21,7 @@ public class PrimitiveAxe extends BaseWeapon {
     public static GearItemSlot INSTANCE = new PrimitiveAxe();
 
     private PrimitiveAxe() {
-        this.attacksPerSecond = 1.25F;
+        this.attacksPerSecond = Constants.AXE_ATK_SPEED;
     }
 
     @Override
