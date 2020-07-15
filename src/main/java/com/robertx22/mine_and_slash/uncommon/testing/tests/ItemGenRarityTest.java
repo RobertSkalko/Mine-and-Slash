@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.uncommon.testing.tests;
 
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
+import com.robertx22.mine_and_slash.loot.generators.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import org.apache.commons.lang3.time.StopWatch;
 
@@ -39,13 +39,13 @@ public class ItemGenRarityTest {
         for (Entry<Integer, Integer> entry : RarityandNumber.entrySet()) {
             float percent = (float) entry.getValue() / (float) amount * 100;
             System.out.println("Rarity: " + Rarities.Gears.get(entry.getKey())
-                    .locName() + " has this many items: " + entry.getValue() + " , percent of total: " + Float.toString(
-                    percent));
+                .locName() + " has this many items: " + entry.getValue() + " , percent of total: " + Float.toString(
+                percent));
         }
         System.out.println(
-                "It took " + watch.getTime() + " miliseconds for " + amount + " items to addPieces, in other words it" +
-                        " took this many miliseconds for one item: " + watch
-                        .getTime() / amount);
+            "It took " + watch.getTime() + " miliseconds for " + amount + " items to addPieces, in other words it" +
+                " took this many miliseconds for one item: " + watch
+                .getTime() / amount);
 
     }
 }

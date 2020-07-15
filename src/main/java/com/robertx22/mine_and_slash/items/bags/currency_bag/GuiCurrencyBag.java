@@ -23,7 +23,7 @@ public class GuiCurrencyBag extends BaseBagGui<ContainerCurrencyBag> {
 
     @Override
     public int rows() {
-        return 6;
+        return 2;
     }
 
     @Override

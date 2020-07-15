@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee.Gemston
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.BaseItem;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
+import com.robertx22.mine_and_slash.loot.generators.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;

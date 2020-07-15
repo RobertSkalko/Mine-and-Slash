@@ -11,7 +11,7 @@ public class BaseInventory extends Inventory {
     protected final ItemStack stack;
 
     public BaseInventory(ItemStack stack) {
-        super(9 * 6);
+        super(9 * 2);
         this.stack = stack;
         setup();
     }

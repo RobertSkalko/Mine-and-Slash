@@ -80,9 +80,9 @@
 	"mmorpg.mob_affix.lightning": "Lightning",
 	"mmorpg.mob_affix.of_ruin": "Of Ruin",
 	"mmorpg.mob_affix.venom": "Venomous",
-	"item.mmorpg.magic_essence": "Magic Essence",
+	"item.mmorpg.mat.magic_essence": "Magic Essence",
+	"item.mmorpg.mat.rare_magic_essence": "Rare Magic Essence",
 	"item.mmorpg.potions.reset_stats_potion": "Reset Stat Points Potion",
-	"item.mmorpg.rare_magic_essence": "Rare Magic Essence",
 
 "_comment": " [CATEGORY]: MISC - NAMES",
 
@@ -523,15 +523,6 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
-	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
-	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.buckler": "Buckler",
@@ -560,6 +551,15 @@
 	"mmorpg.gear_type.wild_tunic": "Wild Tunic",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
+	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
+	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",

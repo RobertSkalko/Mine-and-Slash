@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.items.misc;
 
+import com.robertx22.mine_and_slash.database.IGUID;
 import com.robertx22.mine_and_slash.database.currency.base.IShapedRecipe;
 import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
@@ -15,7 +16,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
 import net.minecraft.world.World;
 
-public class ResetStatPointsItem extends Item implements IShapedRecipe, IAutoLocName {
+public class ResetStatPointsItem extends Item implements IShapedRecipe, IAutoLocName, IGUID {
 
     public ResetStatPointsItem() {
         super(new Properties().group(CreativeTabs.MyModTab)
@@ -79,6 +80,6 @@ public class ResetStatPointsItem extends Item implements IShapedRecipe, IAutoLoc
 
     @Override
     public String GUID() {
-        return "reset_stat_points_potion";
+        return "potions/reset_stats_potion";
     }
 }

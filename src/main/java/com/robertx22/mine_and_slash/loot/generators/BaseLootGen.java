@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.loot.gens;
+package com.robertx22.mine_and_slash.loot.generators;
 
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;

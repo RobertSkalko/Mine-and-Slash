@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.loot.gens.util;
+package com.robertx22.mine_and_slash.loot.generators.util;
 
 import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.LevelPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.RarityPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.TierPart;
-import com.robertx22.mine_and_slash.loot.gens.stack_changers.IStackAction;
+import com.robertx22.mine_and_slash.loot.generators.stack_changers.IStackAction;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import net.minecraft.item.ItemStack;
 

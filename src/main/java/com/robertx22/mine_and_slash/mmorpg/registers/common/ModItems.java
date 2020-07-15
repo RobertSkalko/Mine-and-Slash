@@ -113,8 +113,8 @@ public class ModItems {
     public static RegistryObject<Item> SKILL_GEM = item(() -> new Item(new Item.Properties().maxStackSize(1)
         .maxDamage(0)), "skill_gem");
 
-    public static RegistryObject<Item> MAGIC_ESSENCE = item(() -> new MagicEssenceItem(), "magic_essence");
-    public static RegistryObject<Item> RARE_MAGIC_ESSENCE = item(() -> new RareMagicEssence(), "rare_magic_essence");
+    public static RegistryObject<MagicEssenceItem> MAGIC_ESSENCE = item(() -> new MagicEssenceItem());
+    public static RegistryObject<RareMagicEssence> RARE_MAGIC_ESSENCE = item(() -> new RareMagicEssence());
 
     public static RegistryObject<JewelItem> BLUE_JEWEL = item(() -> new JewelItem(), "jewels/blue");
     public static RegistryObject<JewelItem> GREEN_JEWEL = item(() -> new JewelItem(), "jewels/green");
@@ -123,7 +123,7 @@ public class ModItems {
     public static RegistryObject<Item> DEX_SKILL_GEM = item(() -> new SkillGemItem(), "skill_gems/dex");
     public static RegistryObject<Item> STR_SKILL_GEM = item(() -> new SkillGemItem(), "skill_gems/str");
 
-    public static RegistryObject<Item> RESET_STATS_POTION = item(() -> new ResetStatPointsItem(), "potions/reset_stats_potion");
+    public static RegistryObject<ResetStatPointsItem> RESET_STATS_POTION = item(() -> new ResetStatPointsItem());
 
     public static List<RegistryObject<JewelItem>> ALL_JEWELS = new ArrayList<>();
 

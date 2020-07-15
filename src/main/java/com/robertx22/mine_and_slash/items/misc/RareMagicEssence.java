@@ -32,7 +32,7 @@ public class RareMagicEssence extends Item implements IAutoLocName, IWeighted, I
 
     @Override
     public String GUID() {
-        return "";
+        return "mat/rare_magic_essence";
     }
 
     @Override

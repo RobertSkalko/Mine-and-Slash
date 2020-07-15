@@ -18,8 +18,8 @@ public abstract class BaseContainer extends Container {
 
     public abstract BaseSlot slot(Inventory inv, int index, int x, int y);
 
-    public static int size = 9 * 6;
-    public static int numRows = 6;
+    public static int size = 9 * 2;
+    public static int numRows = 2;
 
     public int bagHash;
 
@@ -28,7 +28,8 @@ public abstract class BaseContainer extends Container {
         super(type, id);
 
         this.inventory = basebag;
-        this.bagHash = basebag.getStack().hashCode();
+        this.bagHash = basebag.getStack()
+            .hashCode();
 
         int i = (this.numRows - 4) * 18;
 
@@ -54,7 +55,9 @@ public abstract class BaseContainer extends Container {
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn,
                                PlayerEntity player) {
         try {
-            if (this.getSlot(slotId).getStack().getItem() instanceof BaseBagItem) {
+            if (this.getSlot(slotId)
+                .getStack()
+                .getItem() instanceof BaseBagItem) {
                 return ItemStack.EMPTY;
             }
         } catch (Exception e) {
@@ -76,7 +79,7 @@ public abstract class BaseContainer extends Container {
         ItemStack held = player.getHeldItemMainhand();
 
         return held == this.inventory.getStack() && this.inventory.getStack()
-                .isEmpty() == false && held.hashCode() == this.bagHash && held.getItem() instanceof BaseBagItem;
+            .isEmpty() == false && held.hashCode() == this.bagHash && held.getItem() instanceof BaseBagItem;
     }
 
     @Nonnull
@@ -91,7 +94,7 @@ public abstract class BaseContainer extends Container {
 
             if (index < this.numRows * 9) {
                 if (!this.mergeItemStack(itemstack1, this.numRows * 9, this.inventorySlots
-                        .size(), true)) {
+                    .size(), true)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!this.mergeItemStack(itemstack1, 0, this.numRows * 9, false)) {

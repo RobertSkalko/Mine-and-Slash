@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.loot;
 
-import com.robertx22.mine_and_slash.loot.gens.CompatibleItemLootGen;
-import com.robertx22.mine_and_slash.loot.gens.CurrencyLootGen;
-import com.robertx22.mine_and_slash.loot.gens.GearLootGen;
-import com.robertx22.mine_and_slash.loot.gens.SkillGemLootGen;
+import com.robertx22.mine_and_slash.loot.generators.CompatibleItemLootGen;
+import com.robertx22.mine_and_slash.loot.generators.CurrencyLootGen;
+import com.robertx22.mine_and_slash.loot.generators.GearLootGen;
+import com.robertx22.mine_and_slash.loot.generators.SkillGemLootGen;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

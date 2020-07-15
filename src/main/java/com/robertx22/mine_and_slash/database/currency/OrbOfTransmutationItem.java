@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.currency.loc_reqs.BaseLocRequiremen
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.SimpleGearLocReq;
 import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearReq;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
+import com.robertx22.mine_and_slash.loot.generators.util.GearCreationUtils;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;

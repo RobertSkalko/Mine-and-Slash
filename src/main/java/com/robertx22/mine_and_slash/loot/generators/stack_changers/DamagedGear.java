@@ -1,4 +1,4 @@
-package com.robertx22.mine_and_slash.loot.gens.stack_changers;
+package com.robertx22.mine_and_slash.loot.generators.stack_changers;
 
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.loot.LootUtils;
