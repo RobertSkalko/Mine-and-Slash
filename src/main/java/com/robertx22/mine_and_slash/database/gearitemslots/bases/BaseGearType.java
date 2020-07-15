@@ -1,13 +1,8 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
 import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.gearitemslots.offhand.TowerShield;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Crossbow;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.HunterBow;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee.GemstoneSword;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.melee.PrimitiveAxe;
 import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
@@ -27,6 +22,7 @@ import top.theillusivec4.curios.api.CuriosAPI;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class BaseGearType implements IAutoLocName, ISlashRegistryEntry<BaseGearType> {
 
@@ -135,15 +131,15 @@ public abstract class BaseGearType implements IAutoLocName, ISlashRegistryEntry<
 
         Necklace(SlotFamily.Jewelry),
         Ring(SlotFamily.Jewelry),
+        Shield(SlotFamily.OffHand),
 
         Cloth(SlotFamily.NONE),
         Plate(SlotFamily.NONE),
         Leather(SlotFamily.NONE),
-        Shield(SlotFamily.NONE),
 
         MageWeapon(SlotFamily.NONE), MeleeWeapon(SlotFamily.NONE), RangedWeapon(SlotFamily.NONE);
 
-        public SlotFamily family = null;
+        public SlotFamily family = SlotFamily.NONE;
 
         SlotTag(SlotFamily family) {
             this.family = family;
@@ -176,10 +172,16 @@ public abstract class BaseGearType implements IAutoLocName, ISlashRegistryEntry<
     }
 
     public final SlotFamily family() {
-        return getTags().stream()
-            .filter(x -> x.family != null)
-            .findFirst()
-            .get().family;
+        Optional<SlotTag> opt = getTags().stream()
+            .filter(x -> x.family != SlotFamily.NONE)
+            .findFirst();
+
+        if (!opt.isPresent()) {
+            System.out.println(GUID() + " doesn't have a slot family tag.");
+            return null;
+        } else {
+            return opt.get().family;
+        }
     }
 
     public final WeaponMechanic getWeaponMechanic() {
@@ -232,27 +234,33 @@ public abstract class BaseGearType implements IAutoLocName, ISlashRegistryEntry<
                             .equals(EquipmentSlotType.LEGS);
                     }
                 }
-            } else if (slot.GUID()
-                .equals(GemstoneSword.INSTANCE.GUID())) {
+            } else if (slot.getTags()
+                .contains(SlotTag.Sword)) {
                 bool = item instanceof SwordItem;
-            } else if (slot.GUID()
-                .equals(HunterBow.INSTANCE.GUID())) {
+            } else if (slot.getTags()
+                .contains(SlotTag.Bow)) {
                 bool = item instanceof BowItem;
-            } else if (slot.GUID()
-                .equals(PrimitiveAxe.INSTANCE.GUID())) {
+            } else if (slot.getTags()
+                .contains(SlotTag.Axe)) {
                 bool = item instanceof AxeItem;
-            } else if (slot.GUID()
-                .equals(TowerShield.INSTANCE.GUID())) {
+            } else if (slot.getTags()
+                .contains(SlotTag.Shield)) {
                 bool = item instanceof ShieldItem;
-            } else if (slot.GUID()
-                .equals(Crossbow.INSTANCE.GUID())) {
+            } else if (slot.getTags()
+                .contains(SlotTag.Crossbow)) {
                 bool = item instanceof CrossbowItem;
-            } else if (slot.family()
-                .equals(SlotFamily.Jewelry)) {
+            } else if (slot.getTags()
+                .contains(SlotTag.Ring)) {
                 bool = CuriosAPI.getCurioTags(item)
                     .stream()
                     .anyMatch(x -> x.toString()
-                        .contains(slot.GUID()));
+                        .contains("ring"));
+            } else if (slot.getTags()
+                .contains(SlotTag.Necklace)) {
+                bool = CuriosAPI.getCurioTags(item)
+                    .stream()
+                    .anyMatch(x -> x.toString()
+                        .contains("necklace"));
             }
 
             CACHED.get(slot.GUID())
