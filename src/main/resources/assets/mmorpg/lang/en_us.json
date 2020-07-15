@@ -86,52 +86,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-	"mmorpg.affix.agile": "Agile",
-	"mmorpg.affix.cruel": "Cruel",
-	"mmorpg.affix.fawns": "Fawn's",
-	"mmorpg.affix.fire_ele_dmg_jewelry": "Of Embers",
-	"mmorpg.affix.fire_res": "Of the Drake",
-	"mmorpg.affix.fire_wep_dmg": "Scorched",
-	"mmorpg.affix.fire_wep_dmg_jewelry": "Smoking",
-	"mmorpg.affix.glimmering": "Glimmering",
-	"mmorpg.affix.nature_ele_dmg_jewelry": "Of Venom",
-	"mmorpg.affix.nature_res": "Of the Snake",
-	"mmorpg.affix.nature_wep_dmg": "Poisoned",
-	"mmorpg.affix.nature_wep_dmg_jewelry": "Dripping",
-	"mmorpg.affix.of_brutality": "Of Brutality",
-	"mmorpg.affix.of_ease": "Of Ease",
-	"mmorpg.affix.of_good_aim": "Of Good Aim",
-	"mmorpg.affix.of_precision": "Of Precision",
-	"mmorpg.affix.of_speed": "Of Speed",
-	"mmorpg.affix.of_spirit_markings": "Of Spirit Markings",
-	"mmorpg.affix.of_the_philosopher": "Of the Philosopher",
-	"mmorpg.affix.of_the_sky": "Of the Sky",
-	"mmorpg.affix.of_the_titan": "Of the Titan",
-	"mmorpg.affix.of_the_troll": "Of The Troll",
-	"mmorpg.affix.of_the_wind": "Of the Wind",
-	"mmorpg.affix.of_vampirism": "Of Vampirism",
-	"mmorpg.affix.protective": "Protective",
-	"mmorpg.affix.reinforced": "Reinforced",
-	"mmorpg.affix.resolute": "Resolute",
-	"mmorpg.affix.scaled": "Scaled",
-	"mmorpg.affix.seraphim": "Seraphim's",
-	"mmorpg.affix.shades": "Shade's",
-	"mmorpg.affix.thunder_ele_dmg_jewelry": "Of Electricity",
-	"mmorpg.affix.thunder_res": "Of the Tempest",
-	"mmorpg.affix.thunder_wep_dmg": "Sparkling",
-	"mmorpg.affix.thunder_wep_dmg_jewelry": "Shocking",
-	"mmorpg.affix.tyrannical": "Tyrannical",
-	"mmorpg.affix.virile": "Virile",
-	"mmorpg.affix.water_ele_dmg_jewelry": "Of Ice",
-	"mmorpg.affix.water_res": "Of the Yeti",
-	"mmorpg.affix.water_wep_dmg": "Chilled",
-	"mmorpg.affix.water_wep_dmg_jewelry": "Freezing",
-
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 	"mmorpg.word.activation_time": "Activation Time",
@@ -418,6 +372,52 @@
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+	"mmorpg.affix.agile": "Agile",
+	"mmorpg.affix.cruel": "Cruel",
+	"mmorpg.affix.fawns": "Fawn's",
+	"mmorpg.affix.fire_ele_dmg_jewelry": "Of Embers",
+	"mmorpg.affix.fire_res": "Of the Drake",
+	"mmorpg.affix.fire_wep_dmg": "Scorched",
+	"mmorpg.affix.fire_wep_dmg_jewelry": "Smoking",
+	"mmorpg.affix.glimmering": "Glimmering",
+	"mmorpg.affix.nature_ele_dmg_jewelry": "Of Venom",
+	"mmorpg.affix.nature_res": "Of the Snake",
+	"mmorpg.affix.nature_wep_dmg": "Poisoned",
+	"mmorpg.affix.nature_wep_dmg_jewelry": "Dripping",
+	"mmorpg.affix.of_brutality": "Of Brutality",
+	"mmorpg.affix.of_ease": "Of Ease",
+	"mmorpg.affix.of_good_aim": "Of Good Aim",
+	"mmorpg.affix.of_precision": "Of Precision",
+	"mmorpg.affix.of_speed": "Of Speed",
+	"mmorpg.affix.of_spirit_markings": "Of Spirit Markings",
+	"mmorpg.affix.of_the_philosopher": "Of the Philosopher",
+	"mmorpg.affix.of_the_sky": "Of the Sky",
+	"mmorpg.affix.of_the_titan": "Of the Titan",
+	"mmorpg.affix.of_the_troll": "Of The Troll",
+	"mmorpg.affix.of_the_wind": "Of the Wind",
+	"mmorpg.affix.of_vampirism": "Of Vampirism",
+	"mmorpg.affix.protective": "Protective",
+	"mmorpg.affix.reinforced": "Reinforced",
+	"mmorpg.affix.resolute": "Resolute",
+	"mmorpg.affix.scaled": "Scaled",
+	"mmorpg.affix.seraphim": "Seraphim's",
+	"mmorpg.affix.shades": "Shade's",
+	"mmorpg.affix.thunder_ele_dmg_jewelry": "Of Electricity",
+	"mmorpg.affix.thunder_res": "Of the Tempest",
+	"mmorpg.affix.thunder_wep_dmg": "Sparkling",
+	"mmorpg.affix.thunder_wep_dmg_jewelry": "Shocking",
+	"mmorpg.affix.tyrannical": "Tyrannical",
+	"mmorpg.affix.virile": "Virile",
+	"mmorpg.affix.water_ele_dmg_jewelry": "Of Ice",
+	"mmorpg.affix.water_res": "Of the Yeti",
+	"mmorpg.affix.water_wep_dmg": "Chilled",
+	"mmorpg.affix.water_wep_dmg_jewelry": "Freezing",
+
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 	"mmorpg.stat.all_attributes": "All Attributes",
@@ -427,7 +427,7 @@
 	"mmorpg.stat.all_nature_damage": "Poison Damage",
 	"mmorpg.stat.all_thunder_damage": "Lightning Damage",
 	"mmorpg.stat.all_water_damage": "Ice Damage",
-	"mmorpg.stat.alter_req_percent": "Attribute Requirements",
+	"mmorpg.stat.alter_req_percent": "Stat Requirements",
 	"mmorpg.stat.armor": "Armor",
 	"mmorpg.stat.armor_penetration": "Armor Penetration",
 	"mmorpg.stat.attack_speed": "Attack Speed",
@@ -446,6 +446,7 @@
 	"mmorpg.stat.crossbow_damage": "CrossBow Damage",
 	"mmorpg.stat.damage_shield": "Damage Shield",
 	"mmorpg.stat.dexterity": "Dexterity",
+	"mmorpg.stat.dexterity_flat_stat_req": "Dexterity Requirement",
 	"mmorpg.stat.dodge": "Dodge Rating",
 	"mmorpg.stat.ele_axe_damage": "Elemental Axe Damage",
 	"mmorpg.stat.ele_bow_damage": "Elemental Bow Damage",
@@ -467,6 +468,7 @@
 	"mmorpg.stat.health_regen": "Health Regeneration",
 	"mmorpg.stat.increase_healing": "Heal Power",
 	"mmorpg.stat.intelligence": "Intelligence",
+	"mmorpg.stat.intelligence_flat_stat_req": "Intelligence Requirement",
 	"mmorpg.stat.life_on_hit": "Life on Hit",
 	"mmorpg.stat.lifesteal": "Lifesteal",
 	"mmorpg.stat.magic_shield": "Magic Shield",
@@ -489,6 +491,7 @@
 	"mmorpg.stat.spell_thunder_damage": "Lightning Skill Damage",
 	"mmorpg.stat.spell_water_damage": "Ice Skill Damage",
 	"mmorpg.stat.strength": "Strength",
+	"mmorpg.stat.strength_flat_stat_req": "Strength Requirement",
 	"mmorpg.stat.sword_damage": "Sword Damage",
 	"mmorpg.stat.thunder_focus": "Thunder Focus",
 	"mmorpg.stat.thunder_penetration": "Thunder Penetration",
@@ -519,6 +522,15 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
+	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
+	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.buckler": "Buckler",
@@ -547,15 +559,6 @@
 	"mmorpg.gear_type.wild_tunic": "Wild Tunic",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
-
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
-	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
-	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
@@ -679,6 +682,7 @@
 	"mmorpg.stat_desc.critical_hit": "Chance to multiply damage by critical damage",
 	"mmorpg.stat_desc.damage_shield": "Decreases that amount of damage from every attack.",
 	"mmorpg.stat_desc.dexterity": "Increases Crit Hit and Dodge",
+	"mmorpg.stat_desc.dexterity_flat_stat_req": "Alters stat requirements of this item.",
 	"mmorpg.stat_desc.dodge": "Chance to ignore all damage",
 	"mmorpg.stat_desc.ele_atk_dmg": "Adds x element damage on weapon hit",
 	"mmorpg.stat_desc.ele_pene": "Ignores that much resists, it works as subtraction.",
@@ -691,6 +695,7 @@
 	"mmorpg.stat_desc.health_regen": "Regen happens every few seconds but is also used for other stats or spells",
 	"mmorpg.stat_desc.increase_healing": "Increases all types of healing recieved like health regen, lifesteal, life on hit, spell heals etc",
 	"mmorpg.stat_desc.intelligence": "Increase Magic Shield and Mana.",
+	"mmorpg.stat_desc.intelligence_flat_stat_req": "Alters stat requirements of this item.",
 	"mmorpg.stat_desc.life_on_hit": "Gives health on basic attack hit",
 	"mmorpg.stat_desc.lifesteal": "Percent of basic attack DMG added to health",
 	"mmorpg.stat_desc.loot_drop_bonus": "Increases Loot Drops of the type",
@@ -703,6 +708,7 @@
 	"mmorpg.stat_desc.mana_regen": "Regen happens every few seconds but is also used for other stats or spells",
 	"mmorpg.stat_desc.spell_damage": "Increases DMG of all spells no matter the element",
 	"mmorpg.stat_desc.strength": "Increases Physical Dmg and health",
+	"mmorpg.stat_desc.strength_flat_stat_req": "Alters stat requirements of this item.",
 	"mmorpg.stat_desc.weapon_damage": "Increases damage done if it was caused by that weapon",
 
 "_comment": " [CATEGORY]: STATS - DESCRIPTIONS"

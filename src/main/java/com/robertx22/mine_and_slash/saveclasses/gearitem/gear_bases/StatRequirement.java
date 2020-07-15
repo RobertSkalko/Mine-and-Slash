@@ -5,10 +5,14 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
+import com.robertx22.mine_and_slash.database.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.mine_and_slash.database.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+
+import java.util.List;
 
 public class StatRequirement implements ISerializable<StatRequirement> {
 
@@ -35,7 +39,24 @@ public class StatRequirement implements ISerializable<StatRequirement> {
         intelligence = getInt(gear);
         strength = getStr(gear);
 
-        gear.GetAllStats(false, false)
+        List<ExactStatData> stats = gear.GetAllStats(false, false);
+
+        // first apply flat +x str req, then x% reduced requirements
+
+        stats.forEach(x -> {
+            if (x.getStat() instanceof FlatIncreasedReq) {
+                FlatIncreasedReq reduce = (FlatIncreasedReq) x.getStat();
+
+                dexterity = (int) reduce.getModifiedRequirement(Dexterity.INSTANCE, dexterity, x);
+
+                intelligence = (int) reduce.getModifiedRequirement(Intelligence.INSTANCE, intelligence, x);
+
+                strength = (int) reduce.getModifiedRequirement(Strength.INSTANCE, strength, x);
+
+            }
+        });
+
+        stats
             .forEach(x -> {
                 if (x.getStat() instanceof ReducedAllStatReqOnItem) {
                     ReducedAllStatReqOnItem reduce = (ReducedAllStatReqOnItem) x.getStat();

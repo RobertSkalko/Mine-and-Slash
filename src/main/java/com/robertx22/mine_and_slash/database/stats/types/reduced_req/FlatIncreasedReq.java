@@ -3,33 +3,37 @@ package com.robertx22.mine_and_slash.database.stats.types.reduced_req;
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.StatScaling;
 import com.robertx22.mine_and_slash.database.stats.name_regex.StatNameRegex;
+import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 
-public class ReducedAllStatReqOnItem extends Stat {
+public class FlatIncreasedReq extends Stat {
+    Stat statReq;
 
-    public ReducedAllStatReqOnItem() {
-
+    public FlatIncreasedReq(Stat statReq) {
+        this.statReq = statReq;
     }
 
     @Override
     public StatNameRegex getStatNameRegex() {
-        return StatNameRegex.REDUCED_REQ_BY_PECRENT;
+        return StatNameRegex.BASIC;
     }
 
     @Override
     public StatScaling getScaling() {
-        return StatScaling.NONE;
+        return Dexterity.INSTANCE.getScaling();
     }
 
-    public float getModifiedRequirement(float req, ExactStatData data) {
-        float multi = 1F - data.getAverageValue() / 100;
-        return req * multi;
+    public float getModifiedRequirement(Stat stat, float req, ExactStatData data) {
+        if (stat == statReq) {
+            return req + data.getAverageValue();
+        }
+        return req;
     }
 
     @Override
     public boolean IsPercent() {
-        return true;
+        return false;
     }
 
     @Override
@@ -39,16 +43,16 @@ public class ReducedAllStatReqOnItem extends Stat {
 
     @Override
     public String locDescForLangFile() {
-        return "Alters requirements of this item.";
+        return "Alters stat requirements of this item.";
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Stat Requirements";
+        return statReq.locNameForLangFile() + " Requirement";
     }
 
     @Override
     public String GUID() {
-        return "alter_req_percent";
+        return statReq.GUID() + "_flat_stat_req";
     }
 }
