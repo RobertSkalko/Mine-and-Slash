@@ -8,8 +8,6 @@ import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
 import com.robertx22.mine_and_slash.database.currency.base.CurrencyItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.loot_crates.CommonerCrate;
-import com.robertx22.mine_and_slash.database.loot_crates.bases.LootCrate;
 import com.robertx22.mine_and_slash.database.mob_affixes.base.MobAffix;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.database.stats.Stat;
@@ -112,10 +110,6 @@ public class SlashRegistry {
 
     public static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
         return getRegistry(SlashRegistryType.DIMENSION_CONFIGS);
-    }
-
-    public static SlashRegistryContainer<LootCrate> LootCrates() {
-        return getRegistry(SlashRegistryType.LOOT_CRATE);
     }
 
     public static SlashRegistryContainer<CompatibleItem> CompatibleItems() {
@@ -262,8 +256,6 @@ public class SlashRegistry {
         new DimConfigs().registerAll();
         new EntityConfigs().registerAll();
 
-        new LootCrates().registerAll();
-
     }
 
     private static void addRegistry(SlashRegistryContainer cont) {
@@ -296,7 +288,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<BaseSpell>(SlashRegistryType.SPELL, new EmptySpell()));
         addRegistry(new SlashRegistryContainer<CurrencyItem>(SlashRegistryType.CURRENCY_ITEMS, new OrbOfTransmutationItem()));
         addRegistry(new SlashRegistryContainer<BasePotionEffect>(SlashRegistryType.EFFECT, null));
-        addRegistry(new SlashRegistryContainer<LootCrate>(SlashRegistryType.LOOT_CRATE, CommonerCrate.INSTANCE));
     }
 
 }

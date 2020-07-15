@@ -84,7 +84,7 @@ public class OnContainerCompatibleItem {
                         // slow check to make absolutely sure it doesnt have stats
                         GearItemData gear = Gear.Load(stack);
                         if (gear == null) {
-                            stack = config.create(data.getLevel(), stack);
+                            stack = config.createStack(data.getLevel(), stack);
                             event.getPlayer().inventory.markDirty();
                         }
                     }

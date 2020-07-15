@@ -28,7 +28,6 @@ public class SkillGemLootGen extends BaseLootGen<SkillGemBlueprint> {
     public ItemStack generateOne() {
 
         SkillGemBlueprint blueprint = new SkillGemBlueprint(info.level);
-        blueprint.rarity.setChanceForHigherRarityBasedOnMapTier();
 
         ItemStack stack = blueprint.createStack();
 

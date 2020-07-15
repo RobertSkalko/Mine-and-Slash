@@ -13,6 +13,7 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -64,6 +65,13 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
         }
 
         return speed;
+    }
+
+    public final boolean hasUniqueItemVersions() {
+        return !SlashRegistry.UniqueGears()
+            .getFilterWrapped(x -> x.getGearSlot()
+                .GUID()
+                .equals(GUID())).list.isEmpty();
     }
 
     public enum PlayStyle {

@@ -53,7 +53,7 @@ public class CompatibleItemLootGen extends BaseLootGen<GearBlueprint> {
 
                     if (ForgeRegistries.ITEMS.containsKey(res)) {
                         ItemStack stack = new ItemStack(ForgeRegistries.ITEMS.getValue(res));
-                        return config.create(info.level, stack);
+                        return config.createStack(info.level, stack);
                     }
                 }
             }

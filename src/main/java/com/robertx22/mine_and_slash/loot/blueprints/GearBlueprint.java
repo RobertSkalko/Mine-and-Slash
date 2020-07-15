@@ -3,12 +3,12 @@ package com.robertx22.mine_and_slash.loot.blueprints;
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.loot.LootInfo;
-import com.robertx22.mine_and_slash.loot.blueprints.bases.AffixChancePart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.GearItemSlotPart;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.IsUniquePart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.UnidentifiedPart;
+import com.robertx22.mine_and_slash.loot.blueprints.bases.UniqueGearPart;
 import com.robertx22.mine_and_slash.loot.gens.stack_changers.DamagedGear;
 import com.robertx22.mine_and_slash.loot.gens.util.GearCreationUtils;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import net.minecraft.item.ItemStack;
@@ -23,6 +23,9 @@ public class GearBlueprint extends ItemBlueprint {
     public GearBlueprint(LootInfo info) {
         super(info);
         actionsAfterGeneration.add(DamagedGear.INSTANCE);
+
+        this.rarity.setupChances(info);
+        this.isUniquePart.setupChances(info);
     }
 
     public GearBlueprint(int lvl, int tier) {
@@ -31,10 +34,9 @@ public class GearBlueprint extends ItemBlueprint {
     }
 
     public GearItemSlotPart gearItemSlot = new GearItemSlotPart(this);
-
     public UnidentifiedPart unidentifiedPart = new UnidentifiedPart(this);
-    public AffixChancePart prefixChancePart = new AffixChancePart(this);
-    public AffixChancePart suffixChancePart = new AffixChancePart(this);
+    public UniqueGearPart uniquePart = new UniqueGearPart(this);
+    public IsUniquePart isUniquePart = new IsUniquePart(this);
 
     @Override
     public BaseRaritiesContainer<? extends Rarity> getRarityContainer() {
@@ -42,7 +44,7 @@ public class GearBlueprint extends ItemBlueprint {
     }
 
     public GearItemData createData() {
-        return GearCreationUtils.CreateData(this, GearItemEnum.NORMAL);
+        return GearCreationUtils.CreateData(this);
     }
 
     @Override

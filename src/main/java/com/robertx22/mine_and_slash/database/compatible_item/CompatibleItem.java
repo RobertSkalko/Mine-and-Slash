@@ -2,14 +2,11 @@ package com.robertx22.mine_and_slash.database.compatible_item;
 
 import com.google.gson.JsonObject;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.loot.blueprints.UniqueGearBlueprint;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
 import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -18,19 +15,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class CompatibleItem implements ISerializable<CompatibleItem>, ISerializedRegistryEntry<CompatibleItem> {
 
     public static CompatibleItem EMPTY = new CompatibleItem();
 
-    public String item_type = "sword";
+    public String item_type = "gemstone_sword";
     public String guid = "guid_for_this_entry";
     public String item_id = "item_id";
-
-    public int unique_item_weight = 0;
-    public int normal_item_weight = 80;
 
     public int min_rarity = 0;
     public int max_rarity = 2;
@@ -43,7 +34,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
     public int loot_drop_weight = 1000;
     public boolean can_be_salvaged = false;
 
-    public int if_unique_random_up_to_tier = 10;
+    public float chance_to_become_unique = 0.025F;
     public String unique_id = "";
 
     public static CompatibleItem getDefaultAuto(Item item, GearItemSlot slot) {
@@ -67,11 +58,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         json.addProperty("item_id", item_id);
         json.addProperty("id", guid);
 
-        JsonObject gearType = new JsonObject();
-        gearType.addProperty("normal_item_weight", normal_item_weight);
-        gearType.addProperty("unique_item_weight", unique_item_weight);
-        json.add("gear_type", gearType);
-
         JsonObject rarity = new JsonObject();
         rarity.addProperty("min_rarity", min_rarity);
         rarity.addProperty("max_rarity", max_rarity);
@@ -90,7 +76,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         json.add("level", level);
 
         JsonObject unique = new JsonObject();
-        unique.addProperty("if_unique_random_up_to_tier", if_unique_random_up_to_tier);
+        unique.addProperty("chance_to_become_unique", chance_to_become_unique);
         unique.addProperty("unique_id", unique_id);
         json.add("unique", unique);
 
@@ -106,12 +92,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         obj.item_id = json.get("item_id")
             .getAsString();
         obj.guid = getGUIDFromJson(json);
-
-        JsonObject gearType = json.getAsJsonObject("gear_type");
-        obj.normal_item_weight = gearType.get("normal_item_weight")
-            .getAsInt();
-        obj.unique_item_weight = gearType.get("unique_item_weight")
-            .getAsInt();
 
         JsonObject rarity = json.getAsJsonObject("rarity");
         obj.min_rarity = rarity.get("min_rarity")
@@ -136,7 +116,7 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
             .getAsInt();
 
         JsonObject unique = json.getAsJsonObject("unique");
-        obj.if_unique_random_up_to_tier = unique.get("if_unique_random_up_to_tier")
+        obj.chance_to_become_unique = unique.get("chance_to_become_unique")
             .getAsInt();
         obj.unique_id = unique.get("unique_id")
             .getAsString();
@@ -168,75 +148,34 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
         return guid;
     }
 
-    public ItemStack create(int playerlvl, ItemStack stack) {
-        int lvl = getLevel(playerlvl);
-
-        switch (getCreationType()) {
-            case NORMAL:
-                createNormal(lvl, stack);
-                break;
-            case UNIQUE:
-                createUnique(lvl, stack);
-                break;
-
-        }
-
-        return stack;
-
-    }
-
     private int getLevel(int playerlevel) {
         return MathHelper.clamp(playerlevel, min_level, max_level);
     }
 
-    private GearItemEnum getCreationType() {
-        WeightedType result = RandomUtils.weightedRandom(Arrays.asList(
-            new WeightedType(normal_item_weight, GearItemEnum.NORMAL),
-            new WeightedType(unique_item_weight, GearItemEnum.UNIQUE)
-        ));
-
-        return result.type;
-    }
-
-    private ItemStack createNormal(int lvl, ItemStack stack) {
+    public ItemStack createStack(int lvl, ItemStack stack) {
 
         GearBlueprint blueprint = new GearBlueprint(lvl);
         blueprint.gearItemSlot.set(this.item_type);
         blueprint.rarity.minRarity = this.min_rarity;
         blueprint.rarity.maxRarity = this.max_rarity;
 
+        if (RandomUtils.roll(chance_to_become_unique)) {
+            if (blueprint.gearItemSlot.get()
+                .hasUniqueItemVersions()) {
+                blueprint.isUniquePart.set(true);
+                if (SlashRegistry.UniqueGears()
+                    .isRegistered(this.unique_id)) {
+                    blueprint.uniquePart.set(SlashRegistry.UniqueGears()
+                        .get(unique_id));
+                }
+            }
+        }
+
         GearItemData gear = blueprint.createData();
         gear.isSalvagable = this.can_be_salvaged;
         gear.is_not_my_mod = true;
 
         Gear.Save(stack, gear);
-
-        return stack;
-
-    }
-
-    private ItemStack createUnique(int lvl, ItemStack stack) {
-
-        UniqueGearBlueprint blueprint = null;
-
-        if (SlashRegistry.UniqueGears()
-            .isRegistered(unique_id)) {
-            blueprint = new UniqueGearBlueprint(lvl, SlashRegistry.UniqueGears()
-                .get(unique_id));
-        } else {
-            blueprint = new UniqueGearBlueprint(lvl, if_unique_random_up_to_tier);
-        }
-
-        GearItemData gear = blueprint.createData();
-        gear.isSalvagable = this.can_be_salvaged;
-        gear.is_not_my_mod = true;
-
-        if (gear.unique_id == null || !SlashRegistry.UniqueGears()
-            .isRegistered(gear.unique_id)) {
-            return createNormal(lvl, stack);
-        } else {
-            Gear.Save(stack, gear);
-        }
 
         return stack;
 
@@ -255,18 +194,6 @@ public class CompatibleItem implements ISerializable<CompatibleItem>, ISerialize
                 .isRegistered(unique_id)) {
                 System.out.println("Invalid unique gear id: " + unique_id);
                 return false;
-            }
-        }
-
-        if (unique_id.isEmpty() && unique_item_weight > 0) {
-            List<IUnique> possible = SlashRegistry.UniqueGears()
-                .getFiltered(x -> x.getGearSlot()
-                    .GUID()
-                    .equals(item_type) && x.getTier() <= if_unique_random_up_to_tier);
-            if (possible.isEmpty()) {
-                System.out.println("There are no possible random uniques for item type of: " + item_type + " of unique tier of " + if_unique_random_up_to_tier + " or less.");
-                System.out.println("This won't prevent the compatible item from functioning, but it means whenever it tries to generate as unique, it will turn to fallback normal item.");
-                return true;
             }
         }
 

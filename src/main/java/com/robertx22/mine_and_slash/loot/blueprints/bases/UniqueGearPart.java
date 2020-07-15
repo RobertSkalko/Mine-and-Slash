@@ -14,29 +14,12 @@ public class UniqueGearPart extends BlueprintPart<IUnique> {
     @Override
     protected IUnique generateIfNull() {
 
-        if (blueprint.tier.isRandom == false) {
-            return SlashRegistry.UniqueGears()
-                .getWrapped()
-                .ofExactTier(blueprint.tier.get())
-                .random();
-        } else {
-            return randomUnique();
-        }
-
-    }
-
-    private IUnique randomUnique() {
-
         GearBlueprint gearBlueprint = (GearBlueprint) blueprint;
 
         FilterListWrap<IUnique> gen = SlashRegistry.UniqueGears()
             .getWrapped()
-            .ofTierOrLess(blueprint.tier.get());
-
-        if (gearBlueprint.gearItemSlot.isGenerated()) {
-            gen.ofSpecificGearType(gearBlueprint.gearItemSlot.get()
-                .GUID()); // if not specified, dont need to set exact
-        }
+            .ofSpecificGearType(gearBlueprint.gearItemSlot.get()
+                .GUID());
 
         return gen.random();
 

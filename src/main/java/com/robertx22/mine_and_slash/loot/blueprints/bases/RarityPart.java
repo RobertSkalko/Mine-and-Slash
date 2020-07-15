@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
+import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
@@ -17,7 +18,7 @@ public class RarityPart extends BlueprintPart<Rarity> {
     public int maxRarity = 5;
     public float chanceForHigherRarity = 0;
 
-    public void setChanceForHigherRarityBasedOnMapTier() {
+    public void setupChances(LootInfo info) {
         this.chanceForHigherRarity = SlashRegistry.Tiers()
             .get(this.blueprint.tier.get() + "").chance_for_higher_drop_rarity;
     }
