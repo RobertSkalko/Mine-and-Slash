@@ -30,7 +30,7 @@ import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GearTypes implements ISlashRegistryInit {
+public class BaseGearTypes implements ISlashRegistryInit {
 
     @Override
     public void registerAll() {
@@ -72,7 +72,7 @@ public class GearTypes implements ISlashRegistryInit {
             }
         };
 
-        All.forEach(x -> x.registerToSlashRegistry());
+        All.forEach(x -> x.addToSerializables());
 
     }
 }

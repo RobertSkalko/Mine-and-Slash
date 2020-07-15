@@ -141,19 +141,21 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
                 GearItemData gear = Gear.Load(source.getHeldItemMainhand());
 
-                float atkpersec = gear.GetBaseGearType()
-                    .getAttacksPerSecondCalculated(sourceData);
+                if (gear != null) {
+                    float atkpersec = gear.GetBaseGearType()
+                        .getAttacksPerSecondCalculated(sourceData);
 
-                float secWaited = (float) (source.ticksExisted - source.getLastAttackedEntityTime()) / 20F;
+                    float secWaited = (float) (source.ticksExisted - source.getLastAttackedEntityTime()) / 20F;
 
-                if (secWaited > atkpersec) {
-                    secWaited = atkpersec;
+                    if (secWaited > atkpersec) {
+                        secWaited = atkpersec;
+                    }
+
+                    cool = secWaited / atkpersec;
+
+                    dmg *= cool;
+
                 }
-
-                cool = secWaited / atkpersec;
-
-                dmg *= cool;
-
             }
         }
 

@@ -1,12 +1,17 @@
 package com.robertx22.mine_and_slash.database.gearitemslots.bases;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.robertx22.mine_and_slash.data_generation.JsonUtils;
+import com.robertx22.mine_and_slash.data_generation.base_gear_types.SerializableBaseGearType;
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.NormalWeaponMechanic;
 import com.robertx22.mine_and_slash.database.gearitemslots.weapons.mechanics.WeaponMechanic;
 import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
+import com.robertx22.mine_and_slash.onevent.data_gen.ISerializedRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
@@ -23,8 +28,9 @@ import top.theillusivec4.curios.api.CuriosAPI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-public abstract class BaseGearType implements IAutoLocName, ISlashRegistryEntry<BaseGearType> {
+public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryEntry<BaseGearType>, ISerializable<BaseGearType> {
 
     public float attacksPerSecond = 1;
 
@@ -42,7 +48,29 @@ public abstract class BaseGearType implements IAutoLocName, ISlashRegistryEntry<
 
     public abstract StatRequirement getStatRequirements();
 
-    public abstract EquipmentSlotType getVanillaSlotType();
+    public final EquipmentSlotType getVanillaSlotType() {
+
+        if (getTags().contains(SlotTag.Shield)) {
+            return EquipmentSlotType.OFFHAND;
+        }
+        if (getTags().contains(SlotTag.Boots)) {
+            return EquipmentSlotType.FEET;
+        }
+        if (getTags().contains(SlotTag.Chest)) {
+            return EquipmentSlotType.CHEST;
+        }
+        if (getTags().contains(SlotTag.Pants)) {
+            return EquipmentSlotType.LEGS;
+        }
+        if (getTags().contains(SlotTag.Helmet)) {
+            return EquipmentSlotType.HEAD;
+        }
+        if (isWeapon()) {
+            return EquipmentSlotType.MAINHAND;
+        }
+
+        return null;
+    }
 
     public int Weight() {
         return 1000;
@@ -305,4 +333,45 @@ public abstract class BaseGearType implements IAutoLocName, ISlashRegistryEntry<
         return getTags().contains(SlotTag.MageWeapon);
     }
 
+    @Override
+    public JsonObject toJson() {
+        JsonObject json = getDefaultJson();
+
+        JsonUtils.addStats(implicitStats(), json, "implicit_stats");
+        JsonUtils.addStats(baseStats(), json, "base_stats");
+
+        JsonArray tagArray = JsonUtils.stringListToJsonArray(getTags().stream()
+            .map(x -> x.name())
+            .collect(Collectors.toList()));
+
+        json.add("tags", tagArray);
+        json.add("stat_req", getStatRequirements().toJson());
+        json.addProperty("item_id", getItem().getRegistryName()
+            .toString());
+
+        return json;
+    }
+
+    @Override
+    public BaseGearType fromJson(JsonObject json) {
+
+        SerializableBaseGearType o = new SerializableBaseGearType();
+
+        o.identifier = this.getGUIDFromJson(json);
+        o.weight = this.getWeightFromJson(json);
+        o.lang_name_id = this.getLangNameStringFromJson(json);
+
+        o.stat_req = StatRequirement.EMPTY.fromJson(json.getAsJsonObject("stat_req"));
+        o.base_stats = JsonUtils.getStats(json, "base_stats");
+        o.implicit_stats = JsonUtils.getStats(json, "implicit_stats");
+        o.item_id = json.get("item_id")
+            .getAsString();
+
+        o.tags = JsonUtils.jsonArrayToStringList(json.getAsJsonArray("tags"))
+            .stream()
+            .map(x -> SlotTag.valueOf(x))
+            .collect(Collectors.toList());
+
+        return o;
+    }
 }

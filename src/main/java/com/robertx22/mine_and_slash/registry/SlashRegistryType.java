@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.registry;
 
+import com.robertx22.mine_and_slash.data_generation.base_gear_types.SerializableBaseGearType;
 import com.robertx22.mine_and_slash.database.DimensionConfig;
 import com.robertx22.mine_and_slash.database.EntityConfig;
 import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
@@ -37,7 +38,12 @@ public enum SlashRegistryType {
             return new EmptyUniqueGear();
         }
     },
-    GEAR_TYPE("gear_type"),
+    GEAR_TYPE("gear_type") {
+        @Override
+        public ISerializable getSerializer() {
+            return SerializableBaseGearType.EMPTY;
+        }
+    },
     SPELL("spell"),
     AFFIX("affix") {
         @Override

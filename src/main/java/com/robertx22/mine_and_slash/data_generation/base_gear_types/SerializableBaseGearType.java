@@ -3,7 +3,6 @@ package com.robertx22.mine_and_slash.data_generation.base_gear_types;
 import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -12,14 +11,16 @@ import java.util.List;
 
 public class SerializableBaseGearType extends BaseGearType {
 
-    List<StatModifier> implicit_stats;
-    List<StatModifier> base_stats;
-    List<SlotTag> tags;
-    String item_id;
-    StatRequirement stat_req;
-    EquipmentSlotType vanillaSlotType;
-    String identifier;
-    String lang_name_id;
+    public static SerializableBaseGearType EMPTY = new SerializableBaseGearType();
+
+    public List<StatModifier> implicit_stats;
+    public List<StatModifier> base_stats;
+    public List<SlotTag> tags;
+    public String item_id;
+    public StatRequirement stat_req;
+    public String identifier;
+    public String lang_name_id;
+    public int weight;
 
     @Override
     public String locNameLangFileGUID() {
@@ -52,11 +53,6 @@ public class SerializableBaseGearType extends BaseGearType {
     }
 
     @Override
-    public EquipmentSlotType getVanillaSlotType() {
-        return vanillaSlotType;
-    }
-
-    @Override
     public String locNameForLangFile() {
         return null;
     }
@@ -65,4 +61,5 @@ public class SerializableBaseGearType extends BaseGearType {
     public String GUID() {
         return identifier;
     }
+
 }

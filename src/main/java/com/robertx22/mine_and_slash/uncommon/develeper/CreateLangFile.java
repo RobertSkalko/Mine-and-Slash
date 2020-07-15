@@ -150,8 +150,7 @@ public class CreateLangFile {
             .getAll()
             .values());
         list.addAll(SlashRegistry.GearTypes()
-            .getAll()
-            .values());
+            .getSerializable());
         list.addAll(Arrays.asList(Words.values()));
         list.addAll(Rarities.Gears.getAllRarities());
         list.addAll(Rarities.Mobs.getAllRarities());

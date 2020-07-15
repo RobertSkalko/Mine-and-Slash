@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.a_libraries.curios.RegisterCurioSlots;
 import com.robertx22.mine_and_slash.data_generation.DimConfigsDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.EntityConfigsDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
+import com.robertx22.mine_and_slash.data_generation.base_gear_types.BaseGearTypeDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
@@ -177,6 +178,7 @@ public class MMORPG {
         IReloadableResourceManager manager = event.getServer()
             .getResourceManager();
 
+        manager.addReloadListener(new BaseGearTypeDatapackManager());
         manager.addReloadListener(new TierDatapackManager());
         manager.addReloadListener(new AffixDataPackManager());
         manager.addReloadListener(new MobAffixDataPackManager());

@@ -32,8 +32,8 @@ public class CompatibleItemDataPackManager extends BaseDataPackManager<Compatibl
         try {
 
             for (BaseGearType slot : SlashRegistry.GearTypes()
-                .getAll()
-                .values()) {
+                .getList()
+            ) {
                 Item item = slot.getItem();
 
                 if (item == Items.AIR || item.getRegistryName() == null) {

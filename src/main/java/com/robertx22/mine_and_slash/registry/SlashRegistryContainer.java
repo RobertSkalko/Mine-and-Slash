@@ -111,6 +111,7 @@ public class SlashRegistryContainer<C extends ISlashRegistryEntry> {
     }
 
     public HashMap<String, C> getAll() {
+
         tryLogEmptyRegistry();
 
         return map;
