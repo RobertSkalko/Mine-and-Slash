@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.database.rarities;
 
 import com.google.common.base.Preconditions;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
+import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public abstract class BaseRaritiesContainer<T extends Rarity> {
 
     public T minRarity;
     public T maxRarity;
+    public T maxNonUniqueRarity;
 
     HashMap<Integer, T> map = new HashMap<>();
 
@@ -42,6 +44,32 @@ public abstract class BaseRaritiesContainer<T extends Rarity> {
             .max((Comparator.comparingInt(Rarity::Rank)))
             .get();
 
+        this.maxNonUniqueRarity = getAllRarities().stream()
+            .filter(x -> x.Rank() != IRarity.Unique)
+            .max((Comparator.comparingInt(Rarity::Rank)))
+            .get();
+
+    }
+
+    public T getHigherRarity(T rar) {
+
+        for (T check : getAllRarities()) {
+            if (check.Rank() > rar.Rank()) {
+                return check;
+            }
+
+        }
+        return rar;
+
+    }
+
+    public T getLowerRarity(T rar) {
+        for (T check : getAllRarities()) {
+            if (check.Rank() < rar.Rank()) {
+                return check;
+            }
+        }
+        return rar;
     }
 
     public final HashMap<Integer, T> getMap() {
@@ -59,6 +87,10 @@ public abstract class BaseRaritiesContainer<T extends Rarity> {
 
     public T highest() {
         return maxRarity;
+    }
+
+    public T highestNonUnique() {
+        return maxNonUniqueRarity;
     }
 
     public T lowest() {

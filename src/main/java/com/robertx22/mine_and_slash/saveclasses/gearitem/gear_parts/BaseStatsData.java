@@ -132,7 +132,7 @@ public class BaseStatsData implements IRerollable, IStatsContainer, IGearPartToo
             .isMeleeWeapon()) {
 
             float atk_per_sec = gear.GetBaseGearType()
-                .getAttacksPerSecondCalculated(info.unitdata);
+                .getAttacksPerSecondForTooltip(gear);
 
             list.add(new SText(TEXT_COLOR + "Attacks per Second: " + TextFormatting.GREEN + NumberUtils.formatForTooltip(atk_per_sec)));
             // unsure if i want dps on tooltip//list.add(new SText(TEXT_COLOR + "DPS: " + NUMBER_COLOR + NumberUtils.formatForTooltip(totalDmg * atk_per_sec)));

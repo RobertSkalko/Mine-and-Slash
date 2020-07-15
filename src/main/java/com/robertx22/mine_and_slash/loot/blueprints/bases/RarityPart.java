@@ -4,7 +4,6 @@ import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 
 import java.util.List;
@@ -41,8 +40,8 @@ public class RarityPart extends BlueprintPart<Rarity> {
 
         Rarity rar = RandomUtils.weightedRandom(possible);
 
-        if (rar.Rank() < IRarity.Legendary && RandomUtils.roll(chanceForHigherRarity)) {
-            rar = container.get(rar.Rank() + 1);
+        if (rar.Rank() < container.maxNonUniqueRarity.Rank() && RandomUtils.roll(chanceForHigherRarity)) {
+            rar = container.getHigherRarity(rar);
         }
 
         return rar;

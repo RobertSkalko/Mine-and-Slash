@@ -106,9 +106,21 @@ public class StatOverviewScreen extends Screen implements INamedScreen {
 
     public String getStatString(Stat stat, EntityCap.UnitData data) {
 
-        String str = stat.translate() + ": " + data.getUnit()
-            .getCreateStat(stat)
-            .formattedValue();
+        String v1 = NumberUtils.formatForTooltip(data.getUnit()
+            .peekAtStat(stat)
+            .getFirstValue());
+        String v2 = NumberUtils.formatForTooltip(data.getUnit()
+            .peekAtStat(stat)
+            .getSecondValue());
+
+        String str = "";
+
+        if (stat.UsesSecondValue()) {
+            str = stat.translate() + ": " + v1 + "-" + v2;
+
+        } else {
+            str = stat.translate() + ": " + v1;
+        }
 
         if (stat.IsPercent()) {
             str += '%';

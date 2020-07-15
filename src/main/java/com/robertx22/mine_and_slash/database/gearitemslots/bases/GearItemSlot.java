@@ -14,8 +14,10 @@ import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryEntry;
 import com.robertx22.mine_and_slash.registry.SlashRegistryType;
+import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
+import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
@@ -41,11 +43,27 @@ public abstract class GearItemSlot implements IWeighted, IAutoLocName, ISlashReg
 
     public float getAttacksPerSecondCalculated(EntityCap.UnitData data) {
 
-        float f = data.getUnit()
+        float multi = data.getUnit()
             .peekAtStat(AttackSpeed.getInstance())
-            .getMultiplier() * attacksPerSecond;
+            .getMultiplier();
+
+        float f = multi * attacksPerSecond;
 
         return f;
+    }
+
+    public float getAttacksPerSecondForTooltip(GearItemData gear) {
+        // only show bonus atk speed from this item
+
+        float speed = attacksPerSecond;
+
+        for (ExactStatData x : gear.GetAllStats(false, false)) {
+            if (x.getStat() instanceof AttackSpeed) {
+                speed *= 1F + x.getAverageValue() / 100F;
+            }
+        }
+
+        return speed;
     }
 
     public enum PlayStyle {

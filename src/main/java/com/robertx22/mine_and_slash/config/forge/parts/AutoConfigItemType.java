@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.config.forge.parts;
 
 import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.GearItemSlot;
-import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
+import com.robertx22.mine_and_slash.db_lists.Rarities;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
@@ -26,8 +26,10 @@ public class AutoConfigItemType {
 
         POWER_REQ = builder.defineInRange("POWER_REQ", req, 0F, 1F);
 
-        MIN_RARITY = builder.defineInRange("MIN_RARITY", minrar, 0, IRarity.Legendary);
-        MAX_RARITY = builder.defineInRange("MAX_RARITY", maxrar, 0, IRarity.Legendary);
+        MIN_RARITY = builder.defineInRange("MIN_RARITY", minrar, 0, Rarities.Gears.highestNonUnique()
+            .Rank());
+        MAX_RARITY = builder.defineInRange("MAX_RARITY", maxrar, 0, Rarities.Gears.highestNonUnique()
+            .Rank());
 
         CAN_BE_SALVAGED = builder.define("CAN_BE_SALVAGED", false);
 
