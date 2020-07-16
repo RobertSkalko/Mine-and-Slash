@@ -69,6 +69,16 @@ public class UniqueGear extends BaseUnique implements GearRarity {
     }
 
     @Override
+    public int maxSockets() {
+        return 0;
+    }
+
+    @Override
+    public float socketChance() {
+        return 0;
+    }
+
+    @Override
     public float itemTierPower() {
         return 3.5F;
     }

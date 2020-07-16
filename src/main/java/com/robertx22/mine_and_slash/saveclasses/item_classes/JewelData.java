@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.database.affixes.Affix;
-import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -15,6 +14,8 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.Jewel;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.DataItemType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import info.loenwind.autosave.annotations.Storable;
 import info.loenwind.autosave.annotations.Store;
 import net.minecraft.item.ItemStack;
@@ -29,49 +30,26 @@ public class JewelData implements ITooltip, ICommonDataItem {
 
     }
 
-    public void insertIntoGear(GearItemData gear) {
-
-        AffixData socket = gear.affixes.getAllAffixes()
-            .stream()
-            .filter(x -> x.affixType == affix.affixType && x.isSocketAndEmpty())
-            .findFirst()
-            .get();
-
-        socket.percent = affix.percent;
-        socket.baseAffix = affix.baseAffix;
-    }
-
-    public boolean canInsertInto(GearItemData gear) {
-
-        if (gear.affixes.containsAffix(affix.baseAffix)) {
-            return false;
-        }
-
-        Affix af = affix.getAffix();
-        if (!af.meetsRequirements(new GearRequestedFor(gear))) {
-            return false;
-        }
-
-        return gear.affixes.getAllAffixes()
-            .stream()
-            .anyMatch(x -> x.isSocketAndEmpty() && x.affixType == affix.affixType);
-
-    }
-
     @Override
     public void BuildTooltip(TooltipContext ctx) {
 
         TooltipInfo info = new TooltipInfo(ctx.data);
         GearItemData gear = Gear.Load(ctx.stack);
 
+        ctx.tooltip.add(TooltipUtils.level(affix.level));
+
+        ctx.tooltip.add(new SText(""));
+
         ctx.tooltip
             .addAll(this.affix.GetTooltipString(info, null));
 
     }
 
-    public void randomize() {
+    public void randomize(int level) {
 
         this.affix = new AffixData(RandomUtils.roll(50) ? Affix.Type.prefix : Affix.Type.suffix);
+
+        this.affix.level = level;
 
         this.affix.baseAffix = SlashRegistry.Affixes()
             .getFilterWrapped(x -> x.type == affix.affixType)

@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.loot;
 
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
@@ -51,7 +52,11 @@ public class LootUtils {
         float after_rarity = first * Rarities.Mobs.get(mob.getRarity())
             .LootMultiplier();
 
-        float after_mob_health = after_rarity * (1 + entity.getMaxHealth() / 20);
+        float hp = entity.getMaxHealth() - mob.getUnit()
+            .peekAtStat(Health.getInstance())
+            .getAverageValue();
+
+        float after_mob_health = after_rarity * (1 + hp / 20);
 
         if (entity instanceof SlimeEntity) {
             after_mob_health /= 15;

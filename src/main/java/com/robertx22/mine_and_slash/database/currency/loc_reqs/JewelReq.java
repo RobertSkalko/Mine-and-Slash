@@ -18,7 +18,7 @@ public class JewelReq extends BaseLocRequirement {
         JewelData jewel = Jewel.Load(context.Currency);
         GearItemData gear = (GearItemData) context.data;
 
-        return jewel.canInsertInto(gear);
+        return gear.canInsertJewel(jewel);
 
     }
 }

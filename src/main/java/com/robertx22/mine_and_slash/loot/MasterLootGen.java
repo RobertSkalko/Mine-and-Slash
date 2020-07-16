@@ -1,9 +1,6 @@
 package com.robertx22.mine_and_slash.loot;
 
-import com.robertx22.mine_and_slash.loot.generators.CompatibleItemLootGen;
-import com.robertx22.mine_and_slash.loot.generators.CurrencyLootGen;
-import com.robertx22.mine_and_slash.loot.generators.GearLootGen;
-import com.robertx22.mine_and_slash.loot.generators.SkillGemLootGen;
+import com.robertx22.mine_and_slash.loot.generators.*;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -62,6 +59,7 @@ public class MasterLootGen {
         items.addAll(new GearLootGen(info).tryGenerate());
         items.addAll(new CompatibleItemLootGen(info).tryGenerate());
         items.addAll(new SkillGemLootGen(info).tryGenerate());
+        items.addAll(new JewelLootGen(info).tryGenerate());
 
         return items.stream()
             .filter(x -> x.isEmpty() == false)

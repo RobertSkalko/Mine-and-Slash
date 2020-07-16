@@ -155,10 +155,10 @@ a71d6c438729ab17bb062cdf000c7b8933b416fd data\mmorpg\loot_tables\chests\tier_5_d
 fb74ad91ac24d5cd347db0475d22fc8ebe19cb70 data\mmorpg\mob_affix\lightning.json
 a477dbcb83adda88e54b0cd1dc93c78cfb499609 data\mmorpg\mob_affix\of_ruin.json
 55cf2e24e8f591a845d39f5ff08c01a303cf89da data\mmorpg\mob_affix\venom.json
-be33e4451a91ba8f305b0b97dfe5c8db2e3c33ee data\mmorpg\rarity\gear\common.json
-05fed2b614b86bef3ae78fca2e71463d3f4f47e4 data\mmorpg\rarity\gear\magical.json
-d8a82ee1a0bccf3fdbfb42546572952b90b587e0 data\mmorpg\rarity\gear\rare.json
-fdc27be4fcb3247d93ff95c129b2749dcc5ed0a9 data\mmorpg\rarity\gear\unique.json
+b1bd2d990e761666a5b4b0e866667cc7348117b6 data\mmorpg\rarity\gear\common.json
+de682e1e49ff44f70833215ad5d216d457112acf data\mmorpg\rarity\gear\magical.json
+3655b086e571addbb6faaa08a498512c3fcd825a data\mmorpg\rarity\gear\rare.json
+08086503bc6d96cf53140562597fc05a5eaed459 data\mmorpg\rarity\gear\unique.json
 722d8763ede3f6a17493cc7f52cd0ffd9c9901c8 data\mmorpg\rarity\skill_gem\common.json
 216ca8db4a726ac57b3a2ef07c9d67a4439b114a data\mmorpg\rarity\skill_gem\magical.json
 48746e7e394d8765830be883dec2ee1258a162a8 data\mmorpg\rarity\skill_gem\rare.json

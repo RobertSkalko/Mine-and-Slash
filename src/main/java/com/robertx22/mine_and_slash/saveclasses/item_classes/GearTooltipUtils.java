@@ -103,7 +103,7 @@ public class GearTooltipUtils {
 
         List<ExactStatData> stats = new ArrayList<>();
 
-        gear.affixes.getAllAffixes()
+        gear.affixes.getAllAffixesAndSockets()
             .forEach(x -> stats.addAll(x.GetAllStats(gear)));
 
         MergedStats merged = new MergedStats(stats, info);
@@ -115,12 +115,9 @@ public class GearTooltipUtils {
                 tip.addAll(part.GetTooltipString(info, gear));
 
                 if (n == list.size() - 1) {
-                    gear.affixes.getAllAffixes()
-                        .forEach(x -> {
-                            if (x.isSocketAndEmpty()) {
-                                tip.add(new SText(TextFormatting.YELLOW + "[Socket]"));
-                            }
-                        });
+                    for (int i = 0; i < gear.affixes.getNumberOfEmptySockets(); i++) {
+                        tip.add(new SText(TextFormatting.YELLOW + "[Socket]"));
+                    }
                 }
 
                 tip.add(new StringTextComponent(""));
@@ -164,6 +161,12 @@ public class GearTooltipUtils {
 
         GearRarity rarity = gear.getRarity();
         tip.add(TooltipUtils.rarity(rarity));
+
+        int jewels = gear.affixes.getSocketedJewelsCount();
+
+        if (jewels > 0) {
+            tip.add(new SText(TextFormatting.LIGHT_PURPLE + "Socketed [" + jewels + "]"));
+        }
 
         //tip.add(new SText(""));
 

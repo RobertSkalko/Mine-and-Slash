@@ -38,7 +38,7 @@ public class OrbOfTurbulence extends CurrencyItem implements ICurrencyItemEffect
 
         GearItemData gear = Gear.Load(stack);
 
-        gear.affixes.getAllAffixes()
+        gear.affixes.getAllAffixesAndSockets()
             .forEach(x -> x.RerollNumbers(gear));
 
         Gear.Save(stack, gear);

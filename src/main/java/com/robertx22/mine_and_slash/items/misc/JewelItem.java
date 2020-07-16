@@ -37,7 +37,7 @@ public class JewelItem extends Item implements IAutoModel, ICurrencyItemEffect {
 
         JewelData jewel = Jewel.Load(currency);
 
-        jewel.insertIntoGear(gear);
+        gear.insertJewel(jewel);
 
         Gear.Save(stack, gear);
 

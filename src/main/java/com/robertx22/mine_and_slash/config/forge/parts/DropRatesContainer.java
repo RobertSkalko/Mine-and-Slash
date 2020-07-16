@@ -7,6 +7,7 @@ public class DropRatesContainer {
 
     public DoubleValue GEAR_DROPRATE;
     public DoubleValue SKILL_GEM_DROPRATE;
+    public DoubleValue JEWEL_DROPRATE;
     public DoubleValue UNIQUE_DROPRATE;
     public DoubleValue CURRENCY_DROPRATE;
     public DoubleValue COMPATIBLE_ITEMS_DROPRATE;
@@ -20,7 +21,10 @@ public class DropRatesContainer {
 
         SKILL_GEM_DROPRATE = builder.comment(".")
             .defineInRange("SKILL_GEM_DROPRATE", 3F, 0, Integer.MAX_VALUE);
-        //TODO
+
+        JEWEL_DROPRATE = builder.comment(".")
+            .defineInRange("JEWEL_DROPRATE", 2.5F, 0, Integer.MAX_VALUE);
+
         UNIQUE_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.unique_droprate")
             .defineInRange("UNIQUE_DROPRATE", 0.25F, 0, Integer.MAX_VALUE);

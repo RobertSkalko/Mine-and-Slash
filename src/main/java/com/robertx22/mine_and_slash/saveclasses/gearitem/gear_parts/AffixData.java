@@ -23,6 +23,9 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     public Integer percent = 0;
 
     @Store
+    public Integer level = 0;
+
+    @Store
     public String baseAffix;
 
     @Store
@@ -44,6 +47,10 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
 
     public boolean isSocketAndEmpty() {
         return this.is_socket && percent < 1;
+    }
+
+    public boolean isEmpty() {
+        return percent < 1;
     }
 
     public Affix.Type getAffixType() {
@@ -95,7 +102,7 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
         return this.BaseAffix()
             .getTierStats(tier)
             .stream()
-            .map(x -> x.ToExactStat(percent, gear.level))
+            .map(x -> x.ToExactStat(percent, this.level))
             .collect(Collectors.toList());
 
     }
@@ -103,25 +110,19 @@ public class AffixData implements IRerollable, IGearPartTooltip, IStatsContainer
     public void create(GearItemData gear, Affix suffix) {
         baseAffix = suffix.GUID();
         this.tier = RandomUtils.weightedRandom(suffix.tierMap.values()).tier;
+        this.level = gear.level;
         RerollNumbers(gear);
     }
 
     @Override
     public void RerollFully(GearItemData gear) {
 
-        if (gear.affixes.getNumberOfAffixes() > 2 && gear.affixes.getAllAffixes()
-            .stream()
-            .filter(x -> x.is_socket)
-            .count() < 3 && RandomUtils.roll(5)) {
-            this.is_socket = true;
-        } else {
+        Affix affix = SlashRegistry.Affixes()
+            .getFilterWrapped(x -> x.type == getAffixType() && !gear.affixes.containsAffix(x))
+            .allThatMeetRequirement(gear)
+            .random();
 
-            Affix affix = SlashRegistry.Affixes()
-                .getFilterWrapped(x -> x.type == getAffixType() && !gear.affixes.containsAffix(x))
-                .allThatMeetRequirement(gear)
-                .random();
+        this.create(gear, affix);
 
-            this.create(gear, affix);
-        }
     }
 }

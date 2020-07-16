@@ -64,6 +64,7 @@ import java.util.function.Supplier;
 public class ModItems {
 
     public static DeferredRegister<Item> REG = new DeferredRegister<>(ForgeRegistries.ITEMS, Ref.MODID);
+    public static List<RegistryObject<JewelItem>> ALL_JEWELS = new ArrayList<>();
 
     public static RegistryObject<Item> PLATE_BOOTS = of(() -> new PlateBootsItem(0), IronGreaves.INSTANCE);
     public static RegistryObject<Item> PLATE_HELMET = of(() -> new PlateHelmetItem(0), IronHelmet.INSTANCE);
@@ -116,8 +117,8 @@ public class ModItems {
     public static RegistryObject<MagicEssenceItem> MAGIC_ESSENCE = item(() -> new MagicEssenceItem());
     public static RegistryObject<RareMagicEssence> RARE_MAGIC_ESSENCE = item(() -> new RareMagicEssence());
 
-    public static RegistryObject<JewelItem> BLUE_JEWEL = item(() -> new JewelItem(), "jewels/blue");
-    public static RegistryObject<JewelItem> GREEN_JEWEL = item(() -> new JewelItem(), "jewels/green");
+    public static RegistryObject<JewelItem> BLUE_JEWEL = jewel(() -> new JewelItem(), "jewels/blue");
+    public static RegistryObject<JewelItem> GREEN_JEWEL = jewel(() -> new JewelItem(), "jewels/green");
 
     public static RegistryObject<Item> INT_SKILL_GEM = item(() -> new SkillGemItem(), "skill_gems/int");
     public static RegistryObject<Item> DEX_SKILL_GEM = item(() -> new SkillGemItem(), "skill_gems/dex");
@@ -125,10 +126,13 @@ public class ModItems {
 
     public static RegistryObject<ResetStatPointsItem> RESET_STATS_POTION = item(() -> new ResetStatPointsItem());
 
-    public static List<RegistryObject<JewelItem>> ALL_JEWELS = new ArrayList<>();
-
     static RegistryObject<JewelItem> jewel(Supplier<JewelItem> c, String id) {
         RegistryObject<JewelItem> wrap = REG.register(id, c);
+
+        if (ALL_JEWELS == null) {
+            ALL_JEWELS = new ArrayList<>();
+        }
+
         ALL_JEWELS.add(wrap);
         return wrap;
     }

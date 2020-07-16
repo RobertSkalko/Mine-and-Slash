@@ -68,6 +68,6 @@ public class SageWand extends BaseWeapon {
 
     @Override
     public String locNameForLangFile() {
-        return "Staff";
+        return "Sage Wand";
     }
 }

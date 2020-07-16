@@ -63,6 +63,16 @@ public class CommonGear extends BaseCommon implements GearRarity {
     }
 
     @Override
+    public int maxSockets() {
+        return 1;
+    }
+
+    @Override
+    public float socketChance() {
+        return 5;
+    }
+
+    @Override
     public int minAffixes() {
         return 0;
     }

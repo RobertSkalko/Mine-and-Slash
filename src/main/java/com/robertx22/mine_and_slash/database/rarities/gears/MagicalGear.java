@@ -63,6 +63,16 @@ public class MagicalGear extends BaseMagical implements GearRarity {
     }
 
     @Override
+    public int maxSockets() {
+        return new RareGear().maxAffixes() - this.maxAffixes();
+    }
+
+    @Override
+    public float socketChance() {
+        return 20;
+    }
+
+    @Override
     public int minAffixes() {
         return 1;
     }

@@ -38,8 +38,8 @@ public class SlotRequirement extends BaseRequirement<SlotRequirement> {
     public boolean meetsRequierment(GearRequestedFor requested) {
 
         for (BaseGearType slot : slots) {
-            if (requested.forSlot.getClass()
-                .isAssignableFrom(slot.getClass())) {
+            if (requested.forSlot.GUID()
+                .equals(slot.GUID())) {
                 return true;
             }
         }

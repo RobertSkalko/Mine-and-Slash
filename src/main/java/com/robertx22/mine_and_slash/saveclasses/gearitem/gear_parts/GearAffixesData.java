@@ -17,6 +17,18 @@ public class GearAffixesData {
     @Store
     public List<AffixData> prefixes = new ArrayList<>();
 
+    @Store
+    public List<AffixData> prefix_sockets = new ArrayList<>();
+    @Store
+    public List<AffixData> suffix_sockets = new ArrayList<>();
+
+    public int getSocketedJewelsCount() {
+        return (int) getAllAffixesAndSockets().stream()
+            .filter(x -> x.is_socket && !x.isEmpty())
+            .count();
+
+    }
+
     public int getMaxAffixesPerType(GearItemData gear) {
         return gear.getRarity()
             .maximumOfOneAffixType();
@@ -28,6 +40,14 @@ public class GearAffixesData {
 
     public int getNumberOfSuffixes() {
         return suffixes.size();
+    }
+
+    public int getNumberOfEmptySockets() {
+        return (int) (prefix_sockets.stream()
+            .filter(x -> x.isSocketAndEmpty())
+            .count() + suffix_sockets.stream()
+            .filter(x -> x.isSocketAndEmpty())
+            .count());
     }
 
     public void randomize(GearItemData gear) {
@@ -68,6 +88,22 @@ public class GearAffixesData {
             affixesToGen--;
         }
 
+        for (int i = 0; i < gear.getRarity()
+            .maxSockets() / 2; i++) {
+            if (RandomUtils.roll(gear.getRarity()
+                .socketChance())) {
+                AffixData socket = new AffixData(Affix.Type.prefix);
+                socket.is_socket = true;
+                this.prefix_sockets.add(socket);
+            }
+            if (RandomUtils.roll(gear.getRarity()
+                .socketChance())) {
+                AffixData socket = new AffixData(Affix.Type.suffix);
+                socket.is_socket = true;
+                this.suffix_sockets.add(socket);
+            }
+        }
+
     }
 
     public boolean hasSuffix() {
@@ -78,12 +114,13 @@ public class GearAffixesData {
         return getNumberOfPrefixes() > 0;
     }
 
-    public List<AffixData> getAllAffixes() {
+    public List<AffixData> getAllAffixesAndSockets() {
         List<AffixData> list = new ArrayList<>();
 
         list.addAll(prefixes);
-
         list.addAll(suffixes);
+        list.addAll(prefix_sockets);
+        list.addAll(suffix_sockets);
 
         return list;
     }
@@ -93,7 +130,7 @@ public class GearAffixesData {
     }
 
     public boolean containsAffix(String id) {
-        return getAllAffixes().stream()
+        return getAllAffixesAndSockets().stream()
             .anyMatch(x -> x.baseAffix == id);
     }
 
