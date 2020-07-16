@@ -55,6 +55,11 @@ public class Stats implements ISlashRegistryInit {
                     add(BonusDmgToStatusAffected.POISON);
                     add(BonusDmgToStatusAffected.STATIC);
 
+                    add(ChanceToApplyEffect.CHILL);
+                    add(ChanceToApplyEffect.BURN);
+                    add(ChanceToApplyEffect.POISON);
+                    add(ChanceToApplyEffect.STATIC);
+
                     add(new FlatIncreasedReq(Dexterity.INSTANCE));
                     add(new FlatIncreasedReq(Strength.INSTANCE));
                     add(new FlatIncreasedReq(Intelligence.INSTANCE));

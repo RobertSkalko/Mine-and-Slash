@@ -40,7 +40,7 @@ public class MagicShieldPrefixes implements ISlashRegistryInit {
             .tier(1, new StatModifier(25F, 50F, MagicShield.getInstance(), ModType.LOCAL_INCREASE))
             .tier(2, new StatModifier(20F, 25F, MagicShield.getInstance(), ModType.LOCAL_INCREASE))
             .tier(3, new StatModifier(10, 20F, MagicShield.getInstance(), ModType.LOCAL_INCREASE))
-            .tier(3, new StatModifier(5, 10, MagicShield.getInstance(), ModType.LOCAL_INCREASE))
+            .tier(4, new StatModifier(5, 10, MagicShield.getInstance(), ModType.LOCAL_INCREASE))
             .Req(SlotRequirement.hasBaseStat(MagicShield.getInstance()))
             .Prefix()
             .Build();

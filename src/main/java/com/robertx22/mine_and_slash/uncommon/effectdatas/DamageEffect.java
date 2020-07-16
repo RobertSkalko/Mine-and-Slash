@@ -18,6 +18,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TeamUtils;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -272,7 +273,12 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
             ds = event.getSource();
         }
 
-        MyDamageSource dmgsource = new MyDamageSource(ds, dmgSourceName, this.source, element, (int) number);
+        Entity sourcevar = source;
+        if (removeKnockback) {
+            sourcevar = null; // by making source entity null, knockback isnt applied..
+        }
+
+        MyDamageSource dmgsource = new MyDamageSource(ds, dmgSourceName, sourcevar, element, (int) number);
 
         if (isDodged) {
             cancelDamage();

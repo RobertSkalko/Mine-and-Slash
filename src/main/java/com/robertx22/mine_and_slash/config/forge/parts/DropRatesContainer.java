@@ -17,13 +17,13 @@ public class DropRatesContainer {
 
         GEAR_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.gear_droprate")
-            .defineInRange("GEAR_DROPRATE", 7F, 0, Integer.MAX_VALUE);
+            .defineInRange("GEAR_DROPRATE", 5F, 0, Integer.MAX_VALUE);
 
         SKILL_GEM_DROPRATE = builder.comment(".")
-            .defineInRange("SKILL_GEM_DROPRATE", 3F, 0, Integer.MAX_VALUE);
+            .defineInRange("SKILL_GEM_DROPRATE", 2F, 0, Integer.MAX_VALUE);
 
         JEWEL_DROPRATE = builder.comment(".")
-            .defineInRange("JEWEL_DROPRATE", 2.5F, 0, Integer.MAX_VALUE);
+            .defineInRange("JEWEL_DROPRATE", 2F, 0, Integer.MAX_VALUE);
 
         UNIQUE_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.unique_droprate")
@@ -31,7 +31,7 @@ public class DropRatesContainer {
 
         CURRENCY_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.currency_droprate")
-            .defineInRange("CURRENCY_DROPRATE", 1.2F, 0, Integer.MAX_VALUE);
+            .defineInRange("CURRENCY_DROPRATE", 0.75F, 0, Integer.MAX_VALUE);
 
         COMPATIBLE_ITEMS_DROPRATE = builder.comment(".")
             .translation("mmorpg.config.compatible_items_droprate")

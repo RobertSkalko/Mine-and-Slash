@@ -60,7 +60,7 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(15, 20, AttackSpeed.getInstance(), ModType.FLAT))
             .tier(3, new StatModifier(10, 15, AttackSpeed.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(7, 10, AttackSpeed.getInstance(), ModType.FLAT))
-            .tier(4, new StatModifier(5, 7, AttackSpeed.getInstance(), ModType.FLAT))
+            .tier(5, new StatModifier(5, 7, AttackSpeed.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(x -> x.isMeleeWeapon()))
             .Suffix()
             .Build();

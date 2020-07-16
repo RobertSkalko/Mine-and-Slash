@@ -46,6 +46,15 @@ public class AffixBuilder {
     }
 
     public AffixBuilder tier(int tier, StatModifier... stats) {
+
+        if (modsPerTier.containsKey(tier)) {
+            try {
+                throw new Exception(this.guid + " already has tier " + tier);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         this.modsPerTier.put(tier, Arrays.asList(stats));
         return this;
     }

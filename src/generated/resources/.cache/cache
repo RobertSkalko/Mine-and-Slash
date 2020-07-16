@@ -51,6 +51,7 @@ fd16a166122f56fd5683b492fa577e9399feeeb7 data\mmorpg\advancements\recipes\mmorpg
 0fcc8357fe56ce26588af749a2e91d4486b4dbeb data\mmorpg\affixes\prefix\agile.json
 60eac4722d1dae02b6fb88247601ab13372a7198 data\mmorpg\affixes\prefix\azure.json
 191d69608ab53f50b55417fee88e6462111d45bf data\mmorpg\affixes\prefix\cruel.json
+c4875e49b4e04cb4fa4b7963d0d1dbc4a704b16f data\mmorpg\affixes\prefix\drakes.json
 e717f5b662d59ece303d46285b281201ba8bca6e data\mmorpg\affixes\prefix\fawns.json
 ffc7e3642e037c3f41d7659fad21b38d15a26631 data\mmorpg\affixes\prefix\fire_wep_dmg.json
 19498e242f594007c6b8bce4feac9786ece000a6 data\mmorpg\affixes\prefix\fire_wep_dmg_jewelry.json
@@ -63,12 +64,15 @@ b1bd3ef3974224c2d472d738b4e2a030abe363b5 data\mmorpg\affixes\prefix\reinforced.j
 d41f5ed4224c06b76e4f013581a873cbc512d3d3 data\mmorpg\affixes\prefix\scaled.json
 13dd6bf36df14ec28d8b47732e4a906a6a7f704b data\mmorpg\affixes\prefix\seraphim.json
 a4e1e051acb8ea322a6d627024e7d990aa02bec0 data\mmorpg\affixes\prefix\shades.json
+2ee1079ca0980ea5fdfc4d6a5595138001a2f812 data\mmorpg\affixes\prefix\snakes.json
 00191865b20d24793e405993972918aed719142e data\mmorpg\affixes\prefix\thunder_wep_dmg.json
 84f3cf7fc1081f94d7d60b537268295ddadde493 data\mmorpg\affixes\prefix\thunder_wep_dmg_jewelry.json
-62ad35f7fcaf8ed5d632d36b24caf788f557536b data\mmorpg\affixes\prefix\tyrannical.json
+abbe78b89cb1c982a1b11a8a46aebfb87129816e data\mmorpg\affixes\prefix\tyrannical.json
+4e5bba090a736b66aef8ce5ee5f9037e327d70bc data\mmorpg\affixes\prefix\valkyrie.json
 5321fe6e1f682765a2bc650d63c5aba938d81324 data\mmorpg\affixes\prefix\virile.json
 e79fe13ed2b3f3a9d37aedc8a75a8a0c9b29c0c0 data\mmorpg\affixes\prefix\water_wep_dmg.json
 d696f1cf0f1784e02edf7ef04927442a527bb9b5 data\mmorpg\affixes\prefix\water_wep_dmg_jewelry.json
+1c84c57c6e58ee3d0c557d0ca2017e63b9968523 data\mmorpg\affixes\prefix\yetis.json
 44ffe42cd23c4abb783d75841dee342aec399659 data\mmorpg\affixes\suffix\fire_ele_dmg_jewelry.json
 cbb783f5c703c63b72c9507fe4bf77e14ae8ca37 data\mmorpg\affixes\suffix\fire_res.json
 8f415a183e816860493661bbcdbaf5f6842f0013 data\mmorpg\affixes\suffix\nature_ele_dmg_jewelry.json

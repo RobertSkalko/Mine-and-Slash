@@ -13,7 +13,7 @@ New system doesn't have that issue, the rarity describes how rare it is now, not
 
 Added features:
 * generated chests everywhere now have random loot in them
-* added attack speed stat
+* added many new stats like attack speed, magic find, bonus damage to burning enemies etc.
 
 To rework the mod, I needed an almost clean slate, and to trim a lot of content that I feel wasn't very successful (for the amount of effort it requires).
 Other things were removed because I wanted to remove them, but I couldn't because I'd ruin existing worlds (*cough* master bag)
@@ -37,3 +37,5 @@ Changed features:
 * changed hp regen to reduce saturation by % of total hp regenerated. This means more hp won't cost more saturation to regen.
 * made unique gear datapacks more powerful
 * gears now break on 0 durability
+* runes deleted, jewels used instead. Magic items can have sockets.
+* gui changed to more vanilla like. Capped hearts display to one row.
