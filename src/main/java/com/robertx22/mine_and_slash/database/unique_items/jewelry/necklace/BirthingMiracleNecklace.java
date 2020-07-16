@@ -7,7 +7,7 @@ import com.robertx22.mine_and_slash.database.stats.types.core_stats.AllAttribute
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.database.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
-import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
+import com.robertx22.mine_and_slash.database.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.mine_and_slash.database.unique_items.IUnique;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -18,9 +18,9 @@ public class BirthingMiracleNecklace implements IUnique {
     @Override
     public List<StatModifier> uniqueStats() {
         return Arrays.asList(
-            new StatModifier(1, 10, Health.getInstance(), ModType.FLAT),
+            new StatModifier(3, 8, Health.getInstance(), ModType.FLAT),
             new StatModifier(0.5F, 1, AllAttributes.getInstance(), ModType.FLAT),
-            new StatModifier(1, 1, HealthRegen.getInstance(), ModType.FLAT),
+            new StatModifier(2, 5, PlusResourceOnKill.HEALTH, ModType.FLAT),
             new StatModifier(0.5F, 2, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
         );
     }

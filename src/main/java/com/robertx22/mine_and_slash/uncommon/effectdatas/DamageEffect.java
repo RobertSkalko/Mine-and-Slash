@@ -111,6 +111,11 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
     public float healthHealed;
     public float magicShieldRestored;
     public float manaRestored;
+
+    public float healthHealedOnKill;
+    public float magicShieldRestoredOnKill;
+    public float manaRestoredOnKill;
+
     public boolean isDodged = false;
 
     public boolean isDmgAllowed() {
@@ -288,9 +293,15 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
                 target.hurtResistantTime = hurtResistantTime;
             }
 
-            Heal();
-            RestoreMana();
-            restoreMagicShield();
+            Heal(healthHealed);
+            RestoreMana(manaRestored);
+            restoreMagicShield(magicShieldRestored);
+
+            if (!target.isAlive()) {
+                Heal(healthHealedOnKill);
+                RestoreMana(manaRestoredOnKill);
+                restoreMagicShield(magicShieldRestoredOnKill);
+            }
 
             if (dmg > 0) {
 
@@ -336,20 +347,18 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
     }
 
-    public void RestoreMana() {
-        int restored = (int) manaRestored;
-        if (restored > 0) {
+    public void RestoreMana(float healed) {
+        if (healed > 0) {
 
             sourceData.getResources()
-                .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MANA, restored,
+                .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MANA, healed,
                     ResourcesData.Use.RESTORE
                 ));
 
         }
     }
 
-    public void Heal() {
-        int healed = (int) healthHealed;
+    public void Heal(float healed) {
         if (healed > 0) {
             sourceData.getResources()
                 .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.HEALTH, healed,
@@ -358,8 +367,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
         }
     }
 
-    public void restoreMagicShield() {
-        int healed = (int) magicShieldRestored;
+    public void restoreMagicShield(float healed) {
         if (healed > 0) {
             sourceData.getResources()
                 .modify(new ResourcesData.Context(sourceData, source, ResourcesData.Type.MAGIC_SHIELD, healed,

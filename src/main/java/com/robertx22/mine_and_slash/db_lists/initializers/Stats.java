@@ -45,6 +45,9 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
+                    add(PlusResourceOnKill.HEALTH);
+                    add(PlusResourceOnKill.MAGIC_SHIELD);
+                    add(PlusResourceOnKill.MANA);
 
                     add(BonusDmgToStatusAffected.FROST);
                     add(BonusDmgToStatusAffected.BURN);
