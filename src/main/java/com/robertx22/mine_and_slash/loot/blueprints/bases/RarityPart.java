@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
 import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
+import com.robertx22.mine_and_slash.database.stats.types.loot.MagicFind;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -21,6 +22,12 @@ public class RarityPart extends BlueprintPart<Rarity> {
     public void setupChances(LootInfo info) {
         this.chanceForHigherRarity = SlashRegistry.Tiers()
             .get(this.blueprint.tier.get() + "").chance_for_higher_drop_rarity;
+
+        if (info.playerData != null) {
+            chanceForHigherRarity += info.playerData.getUnit()
+                .peekAtStat(MagicFind.getInstance())
+                .getAverageValue();
+        }
     }
 
     public RarityPart(ItemBlueprint blueprint) {

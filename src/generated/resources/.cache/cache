@@ -29,6 +29,7 @@ b243fa54a0c4bb587568f35e977b11c609a36de7 assets\mmorpg\models\item\jewels\green.
 25400e6d766837a670915f127756cb512e040c90 assets\mmorpg\models\item\skill_gems\int.json
 e881b768ee3e0ae99486692673186bb92c302c5a assets\mmorpg\models\item\skill_gems\str.json
 fee1e0ecfc52bfa2bd1aac12b61ca4b85e7ec9e1 assets\mmorpg\models\item\uniques\jewelry\birth_miracle.json
+a2012735056679ded1a582ae5e006a56b74ca35d assets\mmorpg\models\item\uniques\jewelry\greed_persist.json
 ae0aec650f8474182b5e352e79f1aed1919ae91d assets\mmorpg\models\item\uniques\jewelry\skull_of_spirits.json
 5074b891ff26cc84bf4d7322c8260037af7ff530 assets\mmorpg\models\item\uniques\weapon\water_ele_sword.json
 2f5bec5dc22416d582a1580519b066a5df0b480b assets\mmorpg\models\item\weapon\gemstone_sword.json
@@ -188,3 +189,4 @@ a44b175d07c62d00a57b95f08e4b86fdec13ec90 data\mmorpg\tier\3.json
 b2e7bbf7be97e91b829b417882f3fa9675cad099 data\mmorpg\unique_gears\gemstone_sword\water_ele_sword.json
 6a89c3a6c77b94baccddf68acfde02167b96dd43 data\mmorpg\unique_gears\life_necklace\birth_miracle.json
 238b6d2487c1a1679d4f8c2afe88e10b4287484f data\mmorpg\unique_gears\occult_necklace\skull_of_spirits.json
+3daac5280d3e1f616606090547f05293d17dad89 data\mmorpg\unique_gears\occult_ring\greed_persist.json

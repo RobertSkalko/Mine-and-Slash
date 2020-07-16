@@ -437,13 +437,6 @@
 	"mmorpg.stat.armor_penetration": "Armor Penetration",
 	"mmorpg.stat.attack_speed": "Attack Speed",
 	"mmorpg.stat.axe_damage": "Axe Damage",
-	"mmorpg.stat.bonus_all_drops": "Bonus All Drops",
-	"mmorpg.stat.bonus_blueprint_drops": "Bonus Blueprint Drops",
-	"mmorpg.stat.bonus_compatible_item_drops": "Bonus Compatible Item Drops",
-	"mmorpg.stat.bonus_currency_drops": "Bonus Currency Drops",
-	"mmorpg.stat.bonus_normal_item_drops": "Bonus Normal Item Drops",
-	"mmorpg.stat.bonus_skill_gem_drops": "Bonus Skill Gem Drops",
-	"mmorpg.stat.bonus_unique_item_drops": "Bonus Unique Item Drops",
 	"mmorpg.stat.bow_damage": "Bow Damage",
 	"mmorpg.stat.burn_bonus_dmg": "Damage to Burning Enemies",
 	"mmorpg.stat.cdr": "Cooldown Reduction",
@@ -475,10 +468,12 @@
 	"mmorpg.stat.health_on_kill": "Health Restored on Kill",
 	"mmorpg.stat.health_regen": "Health Regeneration",
 	"mmorpg.stat.increase_healing": "Heal Power",
+	"mmorpg.stat.increased_quantity": "Item Quantity",
 	"mmorpg.stat.intelligence": "Intelligence",
 	"mmorpg.stat.intelligence_flat_stat_req": "Intelligence Requirement",
 	"mmorpg.stat.life_on_hit": "Life on Hit",
 	"mmorpg.stat.lifesteal": "Lifesteal",
+	"mmorpg.stat.magic_find": "Magic Find",
 	"mmorpg.stat.magic_shield": "Magic Shield",
 	"mmorpg.stat.magic_shield_on_kill": "Magic Shield Restored on Kill",
 	"mmorpg.stat.magic_shield_regen": "Magic Shield Regen",
@@ -534,6 +529,16 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
+	"item.mmorpg.uniques.jewelry.greed_persist": "Greed's Persistence",
+	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
+	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.buckler": "Buckler",
@@ -564,13 +569,28 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
-	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
-	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
-	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
+	"effect.mmorpg.bravery": "Bravery",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.frost": "Chill",
+	"effect.mmorpg.frost_essence": "Cold Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.judgement": "Judgement",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poison": "Poison",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.trickery": "Trickery",
+	"effect.mmorpg.wizardry": "Wizardry",
+	"effect.mmorpg.wounds": "Wounds",
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -600,30 +620,6 @@
 	"item.mmorpg.weapon.sage_wand": "§7Staff",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.bravery": "Bravery",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.frost": "Chill",
-	"effect.mmorpg.frost_essence": "Cold Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.judgement": "Judgement",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poison": "Poison",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.trickery": "Trickery",
-	"effect.mmorpg.wizardry": "Wizardry",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",
@@ -662,6 +658,7 @@
 "_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
 
 	"item.mmorpg.uniques.jewelry.birth_miracle.desc": "Life can sometimes keep on giving.",
+	"item.mmorpg.uniques.jewelry.greed_persist.desc": "When desire for perfection overtakes your sanity, you too will be blessed.",
 	"item.mmorpg.uniques.jewelry.skull_of_spirits.desc": "The mysterious skull contains knowledge of the contained spirits, but also their madness.",
 	"item.mmorpg.uniques.weapon.water_ele_sword.desc": "Essence lies in water.",
 
@@ -709,11 +706,12 @@
 	"mmorpg.stat_desc.health_on_kill": "Restore Health Every time you kill a mob",
 	"mmorpg.stat_desc.health_regen": "Regen happens every few seconds but is also used for other stats or spells",
 	"mmorpg.stat_desc.increase_healing": "Increases all types of healing recieved like health regen, lifesteal, life on hit, spell heals etc",
+	"mmorpg.stat_desc.increased_quantity": "Increases Loot Drop amount",
 	"mmorpg.stat_desc.intelligence": "Increase Magic Shield and Mana.",
 	"mmorpg.stat_desc.intelligence_flat_stat_req": "Alters stat requirements of this item.",
 	"mmorpg.stat_desc.life_on_hit": "Gives health on basic attack hit",
 	"mmorpg.stat_desc.lifesteal": "Percent of basic attack DMG added to health",
-	"mmorpg.stat_desc.loot_drop_bonus": "Increases Loot Drops of the type",
+	"mmorpg.stat_desc.magic_find": "Adds chance for higher rarity of items",
 	"mmorpg.stat_desc.magic_shield": "Works like extra health. But regen is separate.",
 	"mmorpg.stat_desc.magic_shield_on_kill": "Restore Magic Shield Every time you kill a mob",
 	"mmorpg.stat_desc.magic_shield_regen": "Regen happens every few seconds but is also used for other stats or spells",

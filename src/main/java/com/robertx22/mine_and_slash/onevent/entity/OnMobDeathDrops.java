@@ -115,7 +115,7 @@ public class OnMobDeathDrops {
 
             if (exp > 0) {
                 DmgNumPacket packet = new DmgNumPacket(
-                    victim, Elements.Nature, "+" + NumberUtils.format(exp) + " Exp!");
+                    victim, Elements.Nature, "+" + NumberUtils.format(exp) + " Exp!", exp);
                 packet.isExp = true;
                 MMORPG.sendToClient(packet, (ServerPlayerEntity) killer);
 

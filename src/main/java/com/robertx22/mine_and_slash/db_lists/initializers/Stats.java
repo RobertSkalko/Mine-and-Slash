@@ -13,6 +13,8 @@ import com.robertx22.mine_and_slash.database.stats.types.defense.DamageShield;
 import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleDmg;
 import com.robertx22.mine_and_slash.database.stats.types.generated.*;
+import com.robertx22.mine_and_slash.database.stats.types.loot.IncreasedItemQuantity;
+import com.robertx22.mine_and_slash.database.stats.types.loot.MagicFind;
 import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
@@ -27,7 +29,6 @@ import com.robertx22.mine_and_slash.db_lists.bases.AllPreGenMapStats;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
-import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
 
 import java.util.ArrayList;
@@ -63,7 +64,9 @@ public class Stats implements ISlashRegistryInit {
                     add(AttackSpeed.getInstance());
                     add(ArmorPenetration.getInstance());
 
-                    add(new LootTypeBonus(LootType.NormalItem));
+                    add(MagicFind.getInstance());
+                    add(IncreasedItemQuantity.getInstance());
+
                     add(new SpecificWeaponDamage(WeaponTypes.None));
                     add(new WeaponDamage(Elements.Physical));
                     add(new ElementalDamageBonus(Elements.Physical));

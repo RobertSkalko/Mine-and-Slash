@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
+import com.robertx22.mine_and_slash.database.stats.types.loot.MagicFind;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -20,6 +21,12 @@ public class IsUniquePart extends BlueprintPart<Boolean> {
         }
         if (info.world != null) {
             chance *= SlashRegistry.getDimensionConfig(info.world).unique_gear_drop_multi;
+        }
+
+        if (info.playerData != null) {
+            chance *= info.playerData.getUnit()
+                .peekAtStat(MagicFind.getInstance())
+                .getMultiplier();
         }
     }
 

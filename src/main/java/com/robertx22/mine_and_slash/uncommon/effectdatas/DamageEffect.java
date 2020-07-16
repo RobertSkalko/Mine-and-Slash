@@ -316,7 +316,7 @@ public class DamageEffect extends EffectData implements IArmorReducable, IPenetr
 
                                 String str = NumberUtils.formatDamageNumber(this, x.getValue()
                                     .intValue());
-                                DmgNumPacket packet = new DmgNumPacket(target, x.getKey(), str);
+                                DmgNumPacket packet = new DmgNumPacket(target, x.getKey(), str, x.getValue());
                                 MMORPG.sendToClient(packet, player);
                             }
                         });
