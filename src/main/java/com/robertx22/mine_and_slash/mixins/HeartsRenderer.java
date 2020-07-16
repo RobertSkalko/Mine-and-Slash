@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.mixins;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +21,19 @@ public abstract class HeartsRenderer {
 
     @ModifyVariable(method = "renderHealth(II)V", at = @At("LOAD"), name = "healthMax", remap = false)
     public float modify$maxHealth(float healthMax) {
+        return 20;
+    }
+
+    @ModifyVariable(method = "renderHealthMount(II)V", at = @At("LOAD"), name = "health", remap = false)
+    public int modify$currentHealthMounted(int health) {
+        LivingEntity mount = (LivingEntity) Minecraft.getInstance().player.getRidingEntity();
+        int current = MathHelper.ceil(mount.getHealth());
+        float healthMax = (float) mount.getMaxHealth();
+        return (int) ((float) current / (float) healthMax * 20);
+    }
+
+    @ModifyVariable(method = "renderHealthMount(II)V", at = @At("LOAD"), name = "healthMax", remap = false)
+    public float modify$maxHealthMounted(float healthMax) {
         return 20;
     }
 
