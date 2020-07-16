@@ -3,14 +3,17 @@ package com.robertx22.mine_and_slash.database.spells.spell_classes.nature;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.spells.entities.proj.SeedEntity;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.EffectChance;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.cast_types.SpellCastType;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.ImmutableSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.SC;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModBlocks;
+import com.robertx22.mine_and_slash.potion_effects.druid.PoisonEffect;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.util.SoundEvent;
@@ -42,6 +45,8 @@ public class ThornBushSpell extends BaseSpell {
         }.spawnBlock(ModBlocks.THORN_BUSH)
             .summonsEntity((world) -> new SeedEntity(world))
             .setSwingArmOnCast());
+
+        this.onDamageEffects.add(new EffectChance(PoisonEffect.INSTANCE, 25, IStatEffect.EffectSides.Target));
     }
 
     @Override

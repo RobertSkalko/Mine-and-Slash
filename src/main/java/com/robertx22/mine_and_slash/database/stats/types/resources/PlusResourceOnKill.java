@@ -2,7 +2,9 @@ package com.robertx22.mine_and_slash.database.stats.types.resources;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.effects.resource.ResourceOnKill;
+import com.robertx22.mine_and_slash.database.stats.name_regex.StatNameRegex;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffect;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IStatEffects;
 
@@ -21,6 +23,16 @@ public class PlusResourceOnKill extends Stat implements IStatEffects {
     }
 
     @Override
+    public StatNameRegex getStatNameRegex() {
+        return new StatNameRegex() {
+            @Override
+            public String getStatNameRegex(ModType type, Stat stat, float v1, float v2) {
+                return StatNameRegex.VALUE + " " + StatNameRegex.NAME;
+            }
+        };
+    }
+
+    @Override
     public boolean IsPercent() {
         return false;
     }
@@ -32,7 +44,7 @@ public class PlusResourceOnKill extends Stat implements IStatEffects {
 
     @Override
     public String locDescForLangFile() {
-        return "";
+        return "Restore " + statRestored.locNameForLangFile() + " Every time you kill a mob";
     }
 
     @Override

@@ -3,8 +3,11 @@ package com.robertx22.mine_and_slash.packets;
 import com.robertx22.mine_and_slash.a_libraries.dmg_number_particle.OnDisplayDamage;
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
+import com.robertx22.mine_and_slash.uncommon.utilityclasses.ClientOnly;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -18,18 +21,20 @@ public class DmgNumPacket {
     public double z;
     public float height;
     public boolean isExp;
+    public float number;
 
     private DmgNumPacket() {
 
     }
 
-    public DmgNumPacket(LivingEntity entity, Elements ele, String str) {
+    public DmgNumPacket(LivingEntity entity, Elements ele, String str, float number) {
         this.element = ele.toString();
         this.string = str;
         this.x = entity.posX;
         this.y = entity.posY;
         this.z = entity.posZ;
         this.height = entity.getHeight();
+        this.number = number;
 
     }
 
@@ -43,8 +48,8 @@ public class DmgNumPacket {
         newpkt.z = buf.readDouble();
         newpkt.height = buf.readFloat();
         newpkt.isExp = buf.readBoolean();
-
         newpkt.string = buf.readString(30);
+        newpkt.number = buf.readFloat();
 
         return newpkt;
 
@@ -59,24 +64,29 @@ public class DmgNumPacket {
         tag.writeFloat(packet.height);
         tag.writeBoolean(packet.isExp);
         tag.writeString(packet.string);
+        tag.writeFloat(packet.number);
 
     }
 
     public static void handle(final DmgNumPacket pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
-                if (pkt.isExp && ClientContainer.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_EXP.get()) {
-                    OnDisplayDamage.displayParticle(pkt);
-                } else if (pkt.isExp == false && ClientContainer.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_DMG.get()) {
-                    OnDisplayDamage.displayParticle(pkt);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
+                    if (pkt.isExp && ClientContainer.INSTANCE.dmgParticleConfig.ENABLE_CHAT_EXP_MSG.get()) {
+                        ClientOnly.getPlayer()
+                            .sendMessage(new SText(TextFormatting.GREEN + "" + TextFormatting.BOLD + "+" + pkt.number + " EXP"));
 
-        ctx.get().setPacketHandled(true);
+                    } else if (pkt.isExp == false && ClientContainer.INSTANCE.dmgParticleConfig.ENABLE_FLOATING_DMG.get()) {
+                        OnDisplayDamage.displayParticle(pkt);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+
+        ctx.get()
+            .setPacketHandled(true);
 
     }
 

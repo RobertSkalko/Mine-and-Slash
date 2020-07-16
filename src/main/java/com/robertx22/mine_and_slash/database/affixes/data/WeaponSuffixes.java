@@ -8,6 +8,7 @@ import com.robertx22.mine_and_slash.database.stats.types.offense.AttackSpeed;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
 import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Lifesteal;
+import com.robertx22.mine_and_slash.database.stats.types.resources.PlusResourceOnKill;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -61,6 +62,33 @@ public class WeaponSuffixes implements ISlashRegistryInit {
             .tier(4, new StatModifier(7, 10, AttackSpeed.getInstance(), ModType.FLAT))
             .tier(4, new StatModifier(5, 7, AttackSpeed.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.of(x -> x.isMeleeWeapon()))
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_gluttony")
+            .Named("Of Gluttony")
+            .tier(1, new StatModifier(4, 6, PlusResourceOnKill.HEALTH, ModType.FLAT))
+            .tier(2, new StatModifier(3, 4, PlusResourceOnKill.HEALTH, ModType.FLAT))
+            .tier(3, new StatModifier(1, 3, PlusResourceOnKill.HEALTH, ModType.FLAT))
+            .Req(SlotRequirement.of(BaseGearType.SlotFamily.Weapon))
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_absorption")
+            .Named("Of Absorption")
+            .tier(1, new StatModifier(4, 6, PlusResourceOnKill.MAGIC_SHIELD, ModType.FLAT))
+            .tier(2, new StatModifier(3, 4, PlusResourceOnKill.MAGIC_SHIELD, ModType.FLAT))
+            .tier(3, new StatModifier(1, 3, PlusResourceOnKill.MAGIC_SHIELD, ModType.FLAT))
+            .Req(SlotRequirement.of(BaseGearType.SlotFamily.Weapon))
+            .Suffix()
+            .Build();
+
+        AffixBuilder.Normal("of_consumption")
+            .Named("Of Consumption")
+            .tier(1, new StatModifier(4, 6, PlusResourceOnKill.MANA, ModType.FLAT))
+            .tier(2, new StatModifier(3, 4, PlusResourceOnKill.MANA, ModType.FLAT))
+            .tier(3, new StatModifier(1, 3, PlusResourceOnKill.MANA, ModType.FLAT))
+            .Req(SlotRequirement.of(BaseGearType.SlotFamily.Weapon))
             .Suffix()
             .Build();
 

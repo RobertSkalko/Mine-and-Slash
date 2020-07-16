@@ -15,8 +15,8 @@ public class LevelUtils {
     }
 
     // dirty hack, let's see how useful you are.
-    public static int getExpDropForLevel(int level) {
-        return getExpRequiredForLevel((int) MathHelper.clamp(level * 0.8F, 1, Integer.MAX_VALUE)) / 50;
+    public static float getExpDropForLevel(int level) {
+        return getExpRequiredForLevel((int) MathHelper.clamp(level * 0.8F, 1, Integer.MAX_VALUE)) / 50F;
     }
 
     public static int determineLevel(World world, BlockPos pos, PlayerEntity nearestPlayer) {

@@ -48,6 +48,7 @@ de5e34f7900ac971fd7f5f9bf521e5255550a578 data\mmorpg\advancements\recipes\mmorpg
 806b42ff40ad1c9353ae269f60c9c739487d5b07 data\mmorpg\advancements\recipes\mmorpg_main\mat\mythic_essence.json
 fd16a166122f56fd5683b492fa577e9399feeeb7 data\mmorpg\advancements\recipes\mmorpg_main\potions\reset_stats_potion.json
 0fcc8357fe56ce26588af749a2e91d4486b4dbeb data\mmorpg\affixes\prefix\agile.json
+60eac4722d1dae02b6fb88247601ab13372a7198 data\mmorpg\affixes\prefix\azure.json
 191d69608ab53f50b55417fee88e6462111d45bf data\mmorpg\affixes\prefix\cruel.json
 e717f5b662d59ece303d46285b281201ba8bca6e data\mmorpg\affixes\prefix\fawns.json
 ffc7e3642e037c3f41d7659fad21b38d15a26631 data\mmorpg\affixes\prefix\fire_wep_dmg.json
@@ -71,8 +72,11 @@ d696f1cf0f1784e02edf7ef04927442a527bb9b5 data\mmorpg\affixes\prefix\water_wep_dm
 cbb783f5c703c63b72c9507fe4bf77e14ae8ca37 data\mmorpg\affixes\suffix\fire_res.json
 8f415a183e816860493661bbcdbaf5f6842f0013 data\mmorpg\affixes\suffix\nature_ele_dmg_jewelry.json
 e62bf1a686c17f30eee9c848724b9b3b3684b9f9 data\mmorpg\affixes\suffix\nature_res.json
+bc08af40b44726d6b09786bf121b283ad997fe4b data\mmorpg\affixes\suffix\of_absorption.json
 928a29b737f0aa200cfd405c48e272ddbcf0fb9a data\mmorpg\affixes\suffix\of_brutality.json
+e1a237f858ce6ca5cd598fb4dd48014b4ab682b6 data\mmorpg\affixes\suffix\of_consumption.json
 a9c092a1e5dcf624dfc6fd8a1974c4a0d27850de data\mmorpg\affixes\suffix\of_ease.json
+effefd28bd176062bc8694fff4bb39ab6efa85da data\mmorpg\affixes\suffix\of_gluttony.json
 db8650990b07c259b3e9b906f71797d453cae397 data\mmorpg\affixes\suffix\of_good_aim.json
 c2dfe14fbeaf6ed433c6c3818bc4036e7106b6fd data\mmorpg\affixes\suffix\of_precision.json
 7dbf5a7c33f669b3664de0860c4cc19ee306a16d data\mmorpg\affixes\suffix\of_speed.json
@@ -182,5 +186,5 @@ a44b175d07c62d00a57b95f08e4b86fdec13ec90 data\mmorpg\tier\3.json
 243fb7baf1a3a6b49bffd95a9b2c6aade97974c4 data\mmorpg\tier\4.json
 84a286a3fe1f8c86e434fb8bd9c0fb3fdaf7a964 data\mmorpg\tier\5.json
 b2e7bbf7be97e91b829b417882f3fa9675cad099 data\mmorpg\unique_gears\gemstone_sword\water_ele_sword.json
-8008dc9d756e1a1e1c1a347c28aaea5abe90bd08 data\mmorpg\unique_gears\life_necklace\birth_miracle.json
+6a89c3a6c77b94baccddf68acfde02167b96dd43 data\mmorpg\unique_gears\life_necklace\birth_miracle.json
 238b6d2487c1a1679d4f8c2afe88e10b4287484f data\mmorpg\unique_gears\occult_necklace\skull_of_spirits.json

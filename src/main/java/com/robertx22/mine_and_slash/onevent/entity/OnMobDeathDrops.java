@@ -81,10 +81,18 @@ public class OnMobDeathDrops {
 
     private static void GiveExp(LivingEntity victim, PlayerEntity killer, UnitData killerData, UnitData mobData, float multi) {
 
-        int exp = (int) (LevelUtils.getExpDropForLevel(mobData.getLevel()) * Rarities.Mobs.get(mobData.getRarity())
-            .expMulti() * multi);
+        float exp = LevelUtils.getExpDropForLevel(mobData.getLevel());
 
-        exp = (int) (exp * (1 + victim.getMaxHealth() / 10));
+        if (exp < 1) {
+            exp++;
+        }
+
+        exp *= multi;
+
+        exp *= Rarities.Mobs.get(mobData.getRarity())
+            .expMulti();
+
+        exp = (int) (exp * (1F + victim.getMaxHealth() / 10F));
 
         exp = (int) LootUtils.ApplyLevelDistancePunishment(mobData, killerData, exp);
 
@@ -113,7 +121,7 @@ public class OnMobDeathDrops {
 
                 for (PlayerEntity x : list) {
                     Load.Unit(x)
-                        .GiveExp(x, exp);
+                        .GiveExp(x, (int) exp);
                 }
             }
 

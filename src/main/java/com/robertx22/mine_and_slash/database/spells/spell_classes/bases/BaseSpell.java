@@ -24,6 +24,7 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.IRarity;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TooltipUtils;
+import com.robertx22.mine_and_slash.uncommon.wrappers.SText;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -38,6 +39,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITooltipList, IAbility {
+
+    public List<EffectChance> onDamageEffects = new ArrayList<>();
 
     private final ImmutableSpellConfigs immutableConfigs;
 
@@ -312,6 +315,11 @@ public abstract class BaseSpell implements ISlashRegistryEntry<BaseSpell>, ITool
 
         this.immutableConfigs.castRequirements()
             .forEach(x -> list.add(x.text));
+
+        TooltipUtils.addEmpty(list);
+        this.onDamageEffects.forEach(x -> {
+            list.add(new SText(x.chance + "% Chance to apply " + x.effect.locNameForLangFile()));
+        });
 
         TooltipUtils.addEmpty(list);
 

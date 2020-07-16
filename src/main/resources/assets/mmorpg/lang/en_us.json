@@ -90,6 +90,7 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 	"mmorpg.affix.agile": "Agile",
+	"mmorpg.affix.azure": "Azure",
 	"mmorpg.affix.cruel": "Cruel",
 	"mmorpg.affix.fawns": "Fawn's",
 	"mmorpg.affix.fire_ele_dmg_jewelry": "Of Embers",
@@ -101,8 +102,11 @@
 	"mmorpg.affix.nature_res": "Of the Snake",
 	"mmorpg.affix.nature_wep_dmg": "Poisoned",
 	"mmorpg.affix.nature_wep_dmg_jewelry": "Dripping",
+	"mmorpg.affix.of_absorption": "Of Absorption",
 	"mmorpg.affix.of_brutality": "Of Brutality",
+	"mmorpg.affix.of_consumption": "Of Consumption",
 	"mmorpg.affix.of_ease": "Of Ease",
+	"mmorpg.affix.of_gluttony": "Of Gluttony",
 	"mmorpg.affix.of_good_aim": "Of Good Aim",
 	"mmorpg.affix.of_precision": "Of Precision",
 	"mmorpg.affix.of_speed": "Of Speed",
@@ -530,15 +534,6 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
-	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
-	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
-
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
-
-
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.buckler": "Buckler",
@@ -567,6 +562,15 @@
 	"mmorpg.gear_type.wild_tunic": "Wild Tunic",
 
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
+
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
+	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
+	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -702,6 +706,7 @@
 	"mmorpg.stat_desc.faster_cast_rate": "Reduces amount of time needed to cast spells.",
 	"mmorpg.stat_desc.frost_bonus_dmg": "Increases dmg if enemy is affected by: Chill",
 	"mmorpg.stat_desc.health": "Increases your total hearts amount.",
+	"mmorpg.stat_desc.health_on_kill": "Restore Health Every time you kill a mob",
 	"mmorpg.stat_desc.health_regen": "Regen happens every few seconds but is also used for other stats or spells",
 	"mmorpg.stat_desc.increase_healing": "Increases all types of healing recieved like health regen, lifesteal, life on hit, spell heals etc",
 	"mmorpg.stat_desc.intelligence": "Increase Magic Shield and Mana.",
@@ -710,11 +715,13 @@
 	"mmorpg.stat_desc.lifesteal": "Percent of basic attack DMG added to health",
 	"mmorpg.stat_desc.loot_drop_bonus": "Increases Loot Drops of the type",
 	"mmorpg.stat_desc.magic_shield": "Works like extra health. But regen is separate.",
+	"mmorpg.stat_desc.magic_shield_on_kill": "Restore Magic Shield Every time you kill a mob",
 	"mmorpg.stat_desc.magic_shield_regen": "Regen happens every few seconds but is also used for other stats or spells",
 	"mmorpg.stat_desc.magic_steal": "Percent of basic attack DMG will restore magic shield.",
 	"mmorpg.stat_desc.mana": "Mana is used to cast spells",
 	"mmorpg.stat_desc.mana_cost_red": "Reduces Mana Cost of all spells.",
 	"mmorpg.stat_desc.mana_on_hit": "Gives mana on basic attack",
+	"mmorpg.stat_desc.mana_on_kill": "Restore Mana Every time you kill a mob",
 	"mmorpg.stat_desc.mana_regen": "Regen happens every few seconds but is also used for other stats or spells",
 	"mmorpg.stat_desc.poison_bonus_dmg": "Increases dmg if enemy is affected by: Poison",
 	"mmorpg.stat_desc.spell_damage": "Increases DMG of all spells no matter the element",

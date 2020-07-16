@@ -5,6 +5,7 @@ import com.robertx22.mine_and_slash.database.affixes.AffixBuilder;
 import com.robertx22.mine_and_slash.database.requirements.SlotRequirement;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShield;
+import com.robertx22.mine_and_slash.database.stats.types.resources.Mana;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 
@@ -40,6 +41,16 @@ public class MagicShieldPrefixes implements ISlashRegistryInit {
             .tier(2, new StatModifier(20F, 25F, MagicShield.getInstance(), ModType.LOCAL_INCREASE))
             .tier(3, new StatModifier(10, 20F, MagicShield.getInstance(), ModType.LOCAL_INCREASE))
             .tier(3, new StatModifier(5, 10, MagicShield.getInstance(), ModType.LOCAL_INCREASE))
+            .Req(SlotRequirement.hasBaseStat(MagicShield.getInstance()))
+            .Prefix()
+            .Build();
+
+        AffixBuilder.Normal("azure")
+            .Named("Azure")
+            .tier(1, new StatModifier(8, 12, Mana.getInstance(), ModType.FLAT))
+            .tier(2, new StatModifier(6, 8, Mana.getInstance(), ModType.FLAT))
+            .tier(3, new StatModifier(4, 6, Mana.getInstance(), ModType.FLAT))
+            .tier(4, new StatModifier(2, 4, Mana.getInstance(), ModType.FLAT))
             .Req(SlotRequirement.hasBaseStat(MagicShield.getInstance()))
             .Prefix()
             .Build();
