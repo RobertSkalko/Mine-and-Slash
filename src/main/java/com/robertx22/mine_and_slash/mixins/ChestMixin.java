@@ -21,7 +21,7 @@ import java.util.Random;
 @Mixin(LockableLootTileEntity.class)
 public abstract class ChestMixin {
 
-    @Inject(method = "net.minecraft.tileentity.LockableLootTileEntity.fillWithLoot(Lnet/minecraft/entity/player/PlayerEntity;)V", at = @At("HEAD"))
+    @Inject(method = "fillWithLoot(Lnet/minecraft/entity/player/PlayerEntity;)V", at = @At("HEAD"))
     public void onLootGen(PlayerEntity player, CallbackInfo ci) {
         LockableLootTileEntity chest = (LockableLootTileEntity) (Object) this;
 

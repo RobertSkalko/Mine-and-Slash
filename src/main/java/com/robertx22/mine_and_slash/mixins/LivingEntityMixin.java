@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class LivingEntityMixin {
 
     @Inject(
-        method = "net.minecraft.entity.LivingEntity.applyArmorCalculations(Lnet/minecraft/util/DamageSource;F)F",
+        method = "applyArmorCalculations(Lnet/minecraft/util/DamageSource;F)F",
         at = @At("HEAD"),
         cancellable = true
     )

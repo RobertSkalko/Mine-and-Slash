@@ -6,7 +6,8 @@
   "mixins": [
     "LivingEntityMixin",
 	"ChestMixin",
-	"ArrowShootMixin"
+	"ArrowShootMixin",
+	"HeartsRenderer"
   ],
   "injectors": {
     "defaultRequire": 1

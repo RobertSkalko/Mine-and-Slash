@@ -87,52 +87,6 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-	"mmorpg.affix.agile": "Agile",
-	"mmorpg.affix.cruel": "Cruel",
-	"mmorpg.affix.fawns": "Fawn's",
-	"mmorpg.affix.fire_ele_dmg_jewelry": "Of Embers",
-	"mmorpg.affix.fire_res": "Of the Drake",
-	"mmorpg.affix.fire_wep_dmg": "Scorched",
-	"mmorpg.affix.fire_wep_dmg_jewelry": "Smoking",
-	"mmorpg.affix.glimmering": "Glimmering",
-	"mmorpg.affix.nature_ele_dmg_jewelry": "Of Venom",
-	"mmorpg.affix.nature_res": "Of the Snake",
-	"mmorpg.affix.nature_wep_dmg": "Poisoned",
-	"mmorpg.affix.nature_wep_dmg_jewelry": "Dripping",
-	"mmorpg.affix.of_brutality": "Of Brutality",
-	"mmorpg.affix.of_ease": "Of Ease",
-	"mmorpg.affix.of_good_aim": "Of Good Aim",
-	"mmorpg.affix.of_precision": "Of Precision",
-	"mmorpg.affix.of_speed": "Of Speed",
-	"mmorpg.affix.of_spirit_markings": "Of Spirit Markings",
-	"mmorpg.affix.of_the_philosopher": "Of the Philosopher",
-	"mmorpg.affix.of_the_sky": "Of the Sky",
-	"mmorpg.affix.of_the_titan": "Of the Titan",
-	"mmorpg.affix.of_the_troll": "Of The Troll",
-	"mmorpg.affix.of_the_wind": "Of the Wind",
-	"mmorpg.affix.of_vampirism": "Of Vampirism",
-	"mmorpg.affix.protective": "Protective",
-	"mmorpg.affix.reinforced": "Reinforced",
-	"mmorpg.affix.resolute": "Resolute",
-	"mmorpg.affix.scaled": "Scaled",
-	"mmorpg.affix.seraphim": "Seraphim's",
-	"mmorpg.affix.shades": "Shade's",
-	"mmorpg.affix.thunder_ele_dmg_jewelry": "Of Electricity",
-	"mmorpg.affix.thunder_res": "Of the Tempest",
-	"mmorpg.affix.thunder_wep_dmg": "Sparkling",
-	"mmorpg.affix.thunder_wep_dmg_jewelry": "Shocking",
-	"mmorpg.affix.tyrannical": "Tyrannical",
-	"mmorpg.affix.virile": "Virile",
-	"mmorpg.affix.water_ele_dmg_jewelry": "Of Ice",
-	"mmorpg.affix.water_res": "Of the Yeti",
-	"mmorpg.affix.water_wep_dmg": "Chilled",
-	"mmorpg.affix.water_wep_dmg_jewelry": "Freezing",
-
-"_comment": " [CATEGORY]: AFFIXES - NAMES",
-
-
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 	"mmorpg.word.activation_time": "Activation Time",
@@ -419,6 +373,52 @@
 "_comment": " [CATEGORY]: WORDS - NAMES",
 
 
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+	"mmorpg.affix.agile": "Agile",
+	"mmorpg.affix.cruel": "Cruel",
+	"mmorpg.affix.fawns": "Fawn's",
+	"mmorpg.affix.fire_ele_dmg_jewelry": "Of Embers",
+	"mmorpg.affix.fire_res": "Of the Drake",
+	"mmorpg.affix.fire_wep_dmg": "Scorched",
+	"mmorpg.affix.fire_wep_dmg_jewelry": "Smoking",
+	"mmorpg.affix.glimmering": "Glimmering",
+	"mmorpg.affix.nature_ele_dmg_jewelry": "Of Venom",
+	"mmorpg.affix.nature_res": "Of the Snake",
+	"mmorpg.affix.nature_wep_dmg": "Poisoned",
+	"mmorpg.affix.nature_wep_dmg_jewelry": "Dripping",
+	"mmorpg.affix.of_brutality": "Of Brutality",
+	"mmorpg.affix.of_ease": "Of Ease",
+	"mmorpg.affix.of_good_aim": "Of Good Aim",
+	"mmorpg.affix.of_precision": "Of Precision",
+	"mmorpg.affix.of_speed": "Of Speed",
+	"mmorpg.affix.of_spirit_markings": "Of Spirit Markings",
+	"mmorpg.affix.of_the_philosopher": "Of the Philosopher",
+	"mmorpg.affix.of_the_sky": "Of the Sky",
+	"mmorpg.affix.of_the_titan": "Of the Titan",
+	"mmorpg.affix.of_the_troll": "Of The Troll",
+	"mmorpg.affix.of_the_wind": "Of the Wind",
+	"mmorpg.affix.of_vampirism": "Of Vampirism",
+	"mmorpg.affix.protective": "Protective",
+	"mmorpg.affix.reinforced": "Reinforced",
+	"mmorpg.affix.resolute": "Resolute",
+	"mmorpg.affix.scaled": "Scaled",
+	"mmorpg.affix.seraphim": "Seraphim's",
+	"mmorpg.affix.shades": "Shade's",
+	"mmorpg.affix.thunder_ele_dmg_jewelry": "Of Electricity",
+	"mmorpg.affix.thunder_res": "Of the Tempest",
+	"mmorpg.affix.thunder_wep_dmg": "Sparkling",
+	"mmorpg.affix.thunder_wep_dmg_jewelry": "Shocking",
+	"mmorpg.affix.tyrannical": "Tyrannical",
+	"mmorpg.affix.virile": "Virile",
+	"mmorpg.affix.water_ele_dmg_jewelry": "Of Ice",
+	"mmorpg.affix.water_res": "Of the Yeti",
+	"mmorpg.affix.water_wep_dmg": "Chilled",
+	"mmorpg.affix.water_wep_dmg_jewelry": "Freezing",
+
+"_comment": " [CATEGORY]: AFFIXES - NAMES",
+
+
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 	"mmorpg.stat.all_attributes": "All Attributes",
@@ -523,6 +523,15 @@
 "_comment": " [CATEGORY]: RARITIES - NAMES",
 
 
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
+	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
+	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
+
+"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+
+
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 	"mmorpg.gear_type.buckler": "Buckler",
@@ -553,13 +562,28 @@
 "_comment": " [CATEGORY]: GEAR SLOTS - NAMES",
 
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
-	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
-	"item.mmorpg.uniques.jewelry.skull_of_spirits": "Skull of Spirits",
-	"item.mmorpg.uniques.weapon.water_ele_sword": "Water Elemental",
+	"effect.mmorpg.bravery": "Bravery",
+	"effect.mmorpg.burn": "Burn",
+	"effect.mmorpg.frost": "Frost",
+	"effect.mmorpg.frost_essence": "Cold Essence",
+	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
+	"effect.mmorpg.imbue": "Imbue",
+	"effect.mmorpg.judgement": "Judgement",
+	"effect.mmorpg.petrify": "Petrify",
+	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
+	"effect.mmorpg.self_regen": "Regenerate",
+	"effect.mmorpg.shiver": "Shiver",
+	"effect.mmorpg.static": "Static",
+	"effect.mmorpg.thorn_armor": "Thorn Armor",
+	"effect.mmorpg.thorns": "Thorns",
+	"effect.mmorpg.thunder_essence": "Thunder Essence",
+	"effect.mmorpg.trickery": "Trickery",
+	"effect.mmorpg.wizardry": "Wizardry",
+	"effect.mmorpg.wounds": "Wounds",
 
-"_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
+"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
@@ -589,30 +613,6 @@
 	"item.mmorpg.weapon.sage_wand": "§7Staff",
 
 "_comment": " [CATEGORY]: GEAR ITEMS - NAMES",
-
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
-
-	"effect.mmorpg.bravery": "Bravery",
-	"effect.mmorpg.burn": "Burn",
-	"effect.mmorpg.frost": "Frost",
-	"effect.mmorpg.frost_essence": "Cold Essence",
-	"effect.mmorpg.hunter_instinct": "Hunter Instinct",
-	"effect.mmorpg.imbue": "Imbue",
-	"effect.mmorpg.judgement": "Judgement",
-	"effect.mmorpg.petrify": "Petrify",
-	"effect.mmorpg.poisoned_weapons": "Poisoned Weapons",
-	"effect.mmorpg.self_regen": "Regenerate",
-	"effect.mmorpg.shiver": "Shiver",
-	"effect.mmorpg.static": "Static",
-	"effect.mmorpg.thorn_armor": "Thorn Armor",
-	"effect.mmorpg.thorns": "Thorns",
-	"effect.mmorpg.thunder_essence": "Thunder Essence",
-	"effect.mmorpg.trickery": "Trickery",
-	"effect.mmorpg.wizardry": "Wizardry",
-	"effect.mmorpg.wounds": "Wounds",
-
-"_comment": " [CATEGORY]: POTIONS - NAMES",
 
 
 "_comment": " [CATEGORY]: CURRENCY ITEMS - NAMES",

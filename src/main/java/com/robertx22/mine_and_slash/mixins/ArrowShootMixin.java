@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(AbstractArrowEntity.class)
 public abstract class ArrowShootMixin {
 
-    @Inject(method = "net.minecraft.entity.projectile.AbstractArrowEntity.shoot(Lnet/minecraft/entity/Entity;FFFFF)V", at = @At("HEAD"))
+    @Inject(method = "shoot(Lnet/minecraft/entity/Entity;FFFFF)V", at = @At("HEAD"))
     public void myOnShoot(Entity shooter, float pitch, float yaw, float p_184547_4_, float velocity, float inaccuracy, CallbackInfo ci) {
         AbstractArrowEntity arrow = (AbstractArrowEntity) (Object) this;
 
@@ -23,6 +23,7 @@ public abstract class ArrowShootMixin {
             .putFloat(DamageEffect.ARROW_DMG_MULTI_TAG, multi);
 
     }
+
 }
 
 
