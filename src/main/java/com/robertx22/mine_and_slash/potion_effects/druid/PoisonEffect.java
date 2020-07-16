@@ -27,11 +27,11 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThornsEffect extends BasePotionEffect implements IApplyStatPotion {
+public class PoisonEffect extends BasePotionEffect implements IApplyStatPotion {
 
-    public static final ThornsEffect INSTANCE = new ThornsEffect();
+    public static final PoisonEffect INSTANCE = new PoisonEffect();
 
-    private ThornsEffect() {
+    private PoisonEffect() {
         super(EffectType.HARMFUL, 4393423);
         this.setRegistryName(new ResourceLocation(Ref.MODID, GUID()));
 
@@ -61,12 +61,12 @@ public class ThornsEffect extends BasePotionEffect implements IApplyStatPotion {
 
     @Override
     public String GUID() {
-        return "thorns";
+        return "poison";
     }
 
     @Override
     public String locNameForLangFile() {
-        return "Thorns";
+        return "Poison";
     }
 
     @Override

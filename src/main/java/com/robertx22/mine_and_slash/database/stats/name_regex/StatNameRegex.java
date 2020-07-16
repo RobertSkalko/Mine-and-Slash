@@ -11,6 +11,7 @@ public abstract class StatNameRegex {
     public static StatNameRegex BASIC = new BasicStatRegex();
     public static StatNameRegex BASIC_LOCAL = new BasicLocalStatRegex();
     public static StatNameRegex REDUCED_REQ_BY_PECRENT = new ReducedReqByPercentRegex();
+    public static StatNameRegex STATUS_EFFECT = new StatusEffectBonusDmgRegex();
 
     public static String VALUE = "VALUE";
 

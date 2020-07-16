@@ -2,6 +2,7 @@ package com.robertx22.mine_and_slash.db_lists.initializers;
 
 import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.database.stats.types.UnknownStat;
+import com.robertx22.mine_and_slash.database.stats.types.bonus_dmg_to_status_affected.BonusDmgToStatusAffected;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.AllAttributes;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
@@ -44,6 +45,11 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
+
+                    add(BonusDmgToStatusAffected.FROST);
+                    add(BonusDmgToStatusAffected.BURN);
+                    add(BonusDmgToStatusAffected.POISON);
+                    add(BonusDmgToStatusAffected.STATIC);
 
                     add(new FlatIncreasedReq(Dexterity.INSTANCE));
                     add(new FlatIncreasedReq(Strength.INSTANCE));

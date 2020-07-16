@@ -36,7 +36,7 @@ public class PotionRegister {
         reg.register(TrickeryEffect.INSTANCE);
 
         reg.register(FrostEffect.INSTANCE);
-        reg.register(ThornsEffect.INSTANCE);
+        reg.register(PoisonEffect.INSTANCE);
         reg.register(PetrifyEffect.INSTANCE);
         reg.register(ShiverEffect.INSTANCE);
         reg.register(ColdEssenceEffect.INSTANCE);

@@ -23,7 +23,7 @@ public class PotionEffects implements ISlashRegistryInit {
             .registerToSlashRegistry();
         RegenerateEffect.INSTANCE.registerToSlashRegistry();
         ThornArmorEffect.INSTANCE.registerToSlashRegistry();
-        ThornsEffect.INSTANCE.registerToSlashRegistry();
+        PoisonEffect.INSTANCE.registerToSlashRegistry();
 
         BurnEffect.INSTANCE.registerToSlashRegistry();
 
