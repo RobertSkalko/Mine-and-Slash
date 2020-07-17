@@ -84,14 +84,14 @@ public class StatData {
         return (Flat + Flat2) / 2;
     }
 
-    public void CalcVal(EntityCap.UnitData data) {
+    public void CalcVal() {
 
-        calcFirstValue(data);
-        calcSecondValue(data);
+        calcFirstValue();
+        calcSecondValue();
 
     }
 
-    private void calcFirstValue(EntityCap.UnitData data) {
+    private void calcFirstValue() {
         Stat stat = this.GetStat();
 
         if (stat.isTrait()) {
@@ -116,7 +116,7 @@ public class StatData {
         }
     }
 
-    private void calcSecondValue(EntityCap.UnitData data) {
+    private void calcSecondValue() {
         Stat stat = this.GetStat();
 
         if (stat.isTrait()) {
@@ -210,7 +210,7 @@ public class StatData {
             Multi += v;
         }
 
-        if (GetStat() instanceof IAddToOtherStats) {
+        if (data != null && GetStat() instanceof IAddToOtherStats) {
             IAddToOtherStats add = (IAddToOtherStats) GetStat();
             add.addToOtherStats(data, v1, v2);
             // good reason why this is here. stat requirements..

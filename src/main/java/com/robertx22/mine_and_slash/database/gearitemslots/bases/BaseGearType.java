@@ -18,8 +18,10 @@ import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.StatRequirement;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
+import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;
+import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IAutoLocName;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
@@ -83,9 +85,13 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
     }
 
     public final float getAttacksPerSecondCalculated(EntityCap.UnitData data) {
+        return getAttacksPerSecondCalculated(data.getUnit()
+            .peekAtStat(AttackSpeed.getInstance()));
+    }
 
-        float multi = data.getUnit()
-            .peekAtStat(AttackSpeed.getInstance())
+    public final float getAttacksPerSecondCalculated(StatData stat) {
+
+        float multi = stat
             .getMultiplier();
 
         float f = multi * attacksPerSecond;
@@ -94,13 +100,19 @@ public abstract class BaseGearType implements IAutoLocName, ISerializedRegistryE
     }
 
     public final float getAttacksPerSecondForTooltip(GearItemData gear) {
+        return getAttacksPerSecondForTooltip(gear.GetAllStats(false, false));
+    }
+
+    public final float getAttacksPerSecondForTooltip(List<ExactStatData> stats) {
         // only show bonus atk speed from this item
 
         float speed = attacksPerSecond;
 
-        for (ExactStatData x : gear.GetAllStats(false, false)) {
+        for (ExactStatData x : stats) {
             if (x.getStat() instanceof AttackSpeed) {
-                speed *= 1F + x.getAverageValue() / 100F;
+                if (x.getType() == ModType.LOCAL_INCREASE) {
+                    speed *= 1F + x.getAverageValue() / 100F;
+                }
             }
         }
 

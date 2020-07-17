@@ -4,11 +4,13 @@ import com.robertx22.mine_and_slash.database.affixes.Affix;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
+import com.robertx22.mine_and_slash.database.stats.Stat;
 import com.robertx22.mine_and_slash.db_lists.Rarities;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.*;
+import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.datasaving.ItemType;
@@ -56,6 +58,16 @@ public class GearItemData implements ICommonDataItem<GearRarity> {
     public int getMaxSockets() {
         return this.getRarity()
             .maxSockets();
+    }
+
+    public StatData getStatTotalOf(Stat stat) {
+
+        StatData data = new StatData();
+
+        this.GetAllStats(true, true)
+            .forEach(x -> data.add(x, null));
+
+        return data;
     }
 
     public void insertJewel(JewelData jewel) {

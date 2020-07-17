@@ -25,6 +25,7 @@ import com.robertx22.mine_and_slash.mmorpg.registers.server.CommandRegister;
 import com.robertx22.mine_and_slash.new_content.auto_comp.DeterminePowerLevels;
 import com.robertx22.mine_and_slash.onevent.data_gen.OnGatherData;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.tests.CheckWeaponDpsBalanceTest;
 import com.robertx22.mine_and_slash.tests.CountUniqueGearTypes;
 import com.robertx22.mine_and_slash.uncommon.develeper.CreateLangFile;
 import com.robertx22.mine_and_slash.uncommon.testing.TestManager;
@@ -226,6 +227,7 @@ public class MMORPG {
             CreateLangFile.create();
             GenerateCurioDataJsons.generate();
             CountUniqueGearTypes.count();
+            CheckWeaponDpsBalanceTest.run();
         }
 
     }

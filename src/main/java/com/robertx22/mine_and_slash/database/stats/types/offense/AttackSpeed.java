@@ -8,6 +8,7 @@ public class AttackSpeed extends Stat {
     public static String GUID = "attack_speed";
 
     private AttackSpeed() {
+        this.BaseFlat = 100; // todo unsure
     }
 
     public static AttackSpeed getInstance() {
