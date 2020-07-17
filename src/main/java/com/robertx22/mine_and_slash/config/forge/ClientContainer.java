@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.config.forge;
 
-import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.DmgParticleConfig;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -22,7 +21,6 @@ public class ClientContainer {
 
     }
 
-    public NeatConfig neatConfig;
     public DmgParticleConfig dmgParticleConfig;
 
     public BooleanValue RENDER_ITEM_NAMES_ON_GROUND;
@@ -45,8 +43,6 @@ public class ClientContainer {
         RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST = builder.comment(".")
             .defineInRange("RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, -10000, 10000);
 
-        neatConfig = builder.configure(NeatConfig::new)
-            .getLeft();
         dmgParticleConfig = builder.configure(DmgParticleConfig::new)
             .getLeft();
 

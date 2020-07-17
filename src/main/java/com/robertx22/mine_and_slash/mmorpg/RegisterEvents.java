@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
-import com.robertx22.mine_and_slash.mmorpg.registers.client.ItemDyeRegister;
 import com.robertx22.mine_and_slash.onevent.entity.*;
 import com.robertx22.mine_and_slash.onevent.entity.damage.OnHurtEvent;
 import com.robertx22.mine_and_slash.onevent.item.*;
@@ -12,7 +11,6 @@ import com.robertx22.mine_and_slash.onevent.world.WorldTickMinute;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class RegisterEvents {
 
@@ -40,7 +38,6 @@ public class RegisterEvents {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnKeyPress.class);
             register(OnClientTick.class);
-            //register(StitchTextures.class);
         });
 
     }
@@ -58,10 +55,6 @@ public class RegisterEvents {
         register(OnTargetEvent.class);
         register(WorldTickMinute.class);
 
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-
-        });
-
     }
 
     private static void registerItemEvents() {
@@ -73,11 +66,6 @@ public class RegisterEvents {
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             register(OnTooltip.class);
             register(ItemNamesOnGround.class);
-
-            FMLJavaModLoadingContext.get()
-                .getModEventBus()
-                .register(ItemDyeRegister.class);
-
         });
 
     }

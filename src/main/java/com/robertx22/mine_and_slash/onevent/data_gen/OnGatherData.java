@@ -5,7 +5,6 @@ import com.robertx22.mine_and_slash.data_generation.EntityConfigsDatapackManager
 import com.robertx22.mine_and_slash.data_generation.affixes.AffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.base_gear_types.BaseGearTypeDatapackManager;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItemDataPackManager;
-import com.robertx22.mine_and_slash.data_generation.loot_tables.ModLootTableProvider;
 import com.robertx22.mine_and_slash.data_generation.mob_affixes.MobAffixDataPackManager;
 import com.robertx22.mine_and_slash.data_generation.models.ItemModelManager;
 import com.robertx22.mine_and_slash.data_generation.rarities.GearRarityManager;
@@ -37,8 +36,6 @@ public class OnGatherData {
 
             gen.addProvider(new GearRarityManager().getProvider(gen));
             gen.addProvider(new SkillGemRarityManager().getProvider(gen));
-
-            gen.addProvider(new ModLootTableProvider(gen));
 
         }
 

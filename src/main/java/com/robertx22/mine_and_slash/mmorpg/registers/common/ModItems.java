@@ -100,11 +100,8 @@ public class ModItems {
     public static List<RegistryObject<CurrencyItem>> currencies = new ArrayList<>();
 
     public static RegistryObject<CurrencyItem> ORB_OF_TRANSMUTATION = of(() -> new OrbOfTransmutationItem());
-
     public static RegistryObject<CurrencyItem> ORB_OF_DISORDER = of(() -> new OrbOfDisorder());
-
     public static RegistryObject<CurrencyItem> ORB_OF_TURBULENCE = of(() -> new OrbOfTurbulence());
-
     public static RegistryObject<CurrencyItem> STONE_OF_HOPE = of(() -> new StoneOfHopeItem());
     public static RegistryObject<CurrencyItem> LEAF_OF_CHANGE = of(() -> new LeafOfChangeItem());
     public static RegistryObject<CurrencyItem> ORB_OF_BLESSING = of(() -> new OrbOfBlessingItem());

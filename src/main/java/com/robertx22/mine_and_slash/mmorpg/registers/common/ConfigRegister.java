@@ -38,12 +38,6 @@ public class ConfigRegister {
 
         load();
 
-        createTutorials();
-
-    }
-
-    private static void createTutorials() {
-
     }
 
     // should be called only on server, then packets sent to client

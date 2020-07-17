@@ -12,7 +12,13 @@ public class StatUtils {
 
         StatData data = new StatData();
 
-        stats.forEach(x -> data.add(x, null));
+        stats.forEach(x -> {
+            if (x.getStat()
+                .GUID()
+                .equals(stat.GUID())) {
+                data.add(x, null);
+            }
+        });
 
         return data;
     }

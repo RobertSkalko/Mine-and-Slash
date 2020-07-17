@@ -22,35 +22,38 @@ public class CheckWeaponDpsBalanceTest {
             .getSerializable()
             .forEach(x -> {
 
-                List<StatModifier> mods = new ArrayList<>();
+                if (x.getBaseGearType()
+                    .isWeapon()) {
 
-                mods.addAll(x.uniqueStats());
-                mods.addAll(x.getBaseGearType()
-                    .baseStats());
-                mods.addAll(x.getBaseGearType()
-                    .implicitStats());
+                    List<StatModifier> mods = new ArrayList<>();
 
-                List<ExactStatData> stats = mods.stream()
-                    .map(m -> m.ToExactStat(100, 1))
-                    .collect(Collectors.toList());
+                    mods.addAll(x.uniqueStats());
+                    mods.addAll(x.getBaseGearType()
+                        .baseStats());
+                    mods.addAll(x.getBaseGearType()
+                        .implicitStats());
 
-                float totaldmg = 0;
+                    List<ExactStatData> stats = mods.stream()
+                        .map(m -> m.ToExactStat(100, 1))
+                        .collect(Collectors.toList());
 
-                for (Stat stat : new WeaponDamage(Elements.Physical).generateAllPossibleStatVariations()) {
-                    StatData data = StatUtils.turnIntoStatData(stat, stats);
-                    data.CalcVal();
-                    totaldmg += data.getAverageValue();
+                    float totaldmg = 0;
+
+                    for (Stat stat : new WeaponDamage(Elements.Physical).generateAllPossibleStatVariations()) {
+                        StatData data = StatUtils.turnIntoStatData(stat, stats);
+                        data.CalcVal();
+                        totaldmg += data.getAverageValue();
+                    }
+
+                    StatData atkspeeddata = StatUtils.turnIntoStatData(AttackSpeed.getInstance(), stats);
+                    atkspeeddata.CalcVal();
+                    float atkpersec = x.getBaseGearType()
+                        .getAttacksPerSecondCalculated(atkspeeddata);
+
+                    float totaldps = atkpersec * totaldmg;
+
+                    System.out.println(x.locNameForLangFile() + " has DPS: " + totaldps);
                 }
-
-                StatData atkspeeddata = StatUtils.turnIntoStatData(AttackSpeed.getInstance(), stats);
-                atkspeeddata.CalcVal();
-                float atkpersec = x.getBaseGearType()
-                    .getAttacksPerSecondCalculated(atkspeeddata);
-
-                float totaldps = atkpersec * totaldmg;
-
-                System.out.println(x.locNameForLangFile() + " has DPS: " + totaldps);
-
             });
 
     }

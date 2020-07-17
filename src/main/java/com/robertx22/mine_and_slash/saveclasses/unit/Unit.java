@@ -320,7 +320,7 @@ public class Unit {
 
     protected void CalcStats(UnitData data) {
         stats.stats.values()
-            .forEach((StatData stat) -> stat.CalcVal(data));
+            .forEach((StatData stat) -> stat.CalcVal());
     }
 
     public float getMissingHealth(LivingEntity en) {

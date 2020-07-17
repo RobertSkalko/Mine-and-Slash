@@ -1,6 +1,5 @@
 package com.robertx22.mine_and_slash.packets.sync_cap;
 
-import com.robertx22.mine_and_slash.mmorpg.CapSyncCheck;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -20,7 +19,8 @@ public class SyncCapabilityToClient {
     private PlayerCaps type;
 
     public SyncCapabilityToClient(ServerPlayerEntity p, PlayerCaps type) {
-        this.nbt = type.getCap(p).saveToNBT();
+        this.nbt = type.getCap(p)
+            .saveToNBT();
         this.type = type;
     }
 
@@ -41,22 +41,24 @@ public class SyncCapabilityToClient {
 
     public static void handle(final SyncCapabilityToClient pkt, Supplier<NetworkEvent.Context> ctx) {
 
-        ctx.get().enqueueWork(() -> {
-            try {
-                final PlayerEntity player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
+        ctx.get()
+            .enqueueWork(() -> {
+                try {
+                    final PlayerEntity player = MMORPG.proxy.getPlayerEntityFromContext(ctx);
 
-                if (player != null) {
-                    pkt.type.getCap(player).loadFromNBT(pkt.nbt);
+                    if (player != null) {
+                        pkt.type.getCap(player)
+                            .loadFromNBT(pkt.nbt);
 
-                    CapSyncCheck.set(pkt.type);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            });
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        ctx.get().setPacketHandled(true);
+        ctx.get()
+            .setPacketHandled(true);
 
     }
 

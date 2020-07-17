@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
 import com.robertx22.mine_and_slash.a_libraries.curios.CurioClientSetup;
-import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.HealthBarRenderer;
 import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.types.VanillaOverlay;
 import com.robertx22.mine_and_slash.gui.overlays.mob_bar.MobBarScreen;
 import com.robertx22.mine_and_slash.gui.overlays.spell_cast_bar.SpellCastBarOverlay;
@@ -25,7 +24,6 @@ public class ClientSetup {
         RenderTypeLookup.setRenderLayer(ModBlocks.THORN_BUSH.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(ModBlocks.HOLY_FLOWER.get(), RenderType.getCutout());
 
-        SpecialRenderRegister.register(event);
         CurioClientSetup.setup(event);
 
         MinecraftForge.EVENT_BUS.register(new VanillaOverlay(Minecraft.getInstance()));
@@ -33,7 +31,6 @@ public class ClientSetup {
         MinecraftForge.EVENT_BUS.register(new MobBarScreen(Minecraft.getInstance()));
         MinecraftForge.EVENT_BUS.register(new SpellCastBarOverlay());
         MinecraftForge.EVENT_BUS.register(new SpellHotbarOverlay());
-        MinecraftForge.EVENT_BUS.register(new HealthBarRenderer());
 
         KeybindsRegister.register();
         ContainerGuiRegisters.reg();
