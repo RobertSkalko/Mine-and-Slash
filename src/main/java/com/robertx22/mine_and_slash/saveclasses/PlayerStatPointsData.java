@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
+import com.robertx22.mine_and_slash.database.data.stats.Stat;
+import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Dexterity;
+import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Strength;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import info.loenwind.autosave.annotations.Storable;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts;
 
-import com.robertx22.mine_and_slash.database.affixes.Affix;
+import com.robertx22.mine_and_slash.database.data.affixes.Affix;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import info.loenwind.autosave.annotations.Storable;

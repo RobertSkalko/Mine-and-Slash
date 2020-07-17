@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
-import com.robertx22.mine_and_slash.database.stats.types.reduced_req.FlatIncreasedReq;
-import com.robertx22.mine_and_slash.database.stats.types.reduced_req.ReducedAllStatReqOnItem;
+import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Dexterity;
+import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Intelligence;
+import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.Strength;
+import com.robertx22.mine_and_slash.database.data.stats.types.reduced_req.FlatIncreasedReq;
+import com.robertx22.mine_and_slash.database.data.stats.types.reduced_req.ReducedAllStatReqOnItem;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;

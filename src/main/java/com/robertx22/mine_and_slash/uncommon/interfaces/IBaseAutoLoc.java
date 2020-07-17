@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.interfaces;
 
-import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.database.data.IGUID;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;

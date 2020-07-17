@@ -1,8 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.capability.player;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.sync_cap.PlayerCaps;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseProvider;
@@ -10,6 +9,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.PlayerCaps;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;

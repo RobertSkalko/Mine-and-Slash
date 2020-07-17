@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.database.rarities.gears.UniqueGear;
+import com.robertx22.mine_and_slash.database.data.rarities.gears.UniqueGear;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.Rarity;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;

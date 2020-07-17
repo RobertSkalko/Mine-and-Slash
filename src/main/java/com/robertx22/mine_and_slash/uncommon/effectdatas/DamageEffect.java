@@ -1,13 +1,10 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.MyDamageSource;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.MyDamageSource;
+import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
+import com.robertx22.mine_and_slash.event_hooks.entity.damage.DmgSourceUtils;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
-import com.robertx22.mine_and_slash.onevent.entity.damage.DmgSourceUtils;
-import com.robertx22.mine_and_slash.packets.DmgNumPacket;
-import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackPotion;
-import com.robertx22.mine_and_slash.potion_effects.bases.IOnBasicAttackedPotion;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
@@ -18,6 +15,9 @@ import com.robertx22.mine_and_slash.uncommon.enumclasses.Elements;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SoundUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.TeamUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.DmgNumPacket;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IOnBasicAttackPotion;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IOnBasicAttackedPotion;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.TameableEntity;

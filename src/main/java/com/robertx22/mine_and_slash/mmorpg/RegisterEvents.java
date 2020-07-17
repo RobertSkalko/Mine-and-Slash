@@ -1,13 +1,13 @@
 package com.robertx22.mine_and_slash.mmorpg;
 
-import com.robertx22.mine_and_slash.onevent.entity.*;
-import com.robertx22.mine_and_slash.onevent.entity.damage.OnHurtEvent;
-import com.robertx22.mine_and_slash.onevent.item.*;
-import com.robertx22.mine_and_slash.onevent.my_events.CollectGearEvent;
-import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
-import com.robertx22.mine_and_slash.onevent.ontick.OnServerTick;
-import com.robertx22.mine_and_slash.onevent.player.*;
-import com.robertx22.mine_and_slash.onevent.world.WorldTickMinute;
+import com.robertx22.mine_and_slash.event_hooks.entity.*;
+import com.robertx22.mine_and_slash.event_hooks.entity.damage.OnHurtEvent;
+import com.robertx22.mine_and_slash.event_hooks.item.*;
+import com.robertx22.mine_and_slash.event_hooks.my_events.CollectGearEvent;
+import com.robertx22.mine_and_slash.event_hooks.ontick.OnClientTick;
+import com.robertx22.mine_and_slash.event_hooks.ontick.OnServerTick;
+import com.robertx22.mine_and_slash.event_hooks.player.*;
+import com.robertx22.mine_and_slash.event_hooks.world.WorldTickMinute;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;

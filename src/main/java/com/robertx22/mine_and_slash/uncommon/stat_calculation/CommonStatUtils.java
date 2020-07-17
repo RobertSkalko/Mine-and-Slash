@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.uncommon.stat_calculation;
 
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.ICoreStat;
-import com.robertx22.mine_and_slash.db_lists.initializers.Stats;
-import com.robertx22.mine_and_slash.potion_effects.bases.IApplyStatPotion;
+import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.base.ICoreStat;
+import com.robertx22.mine_and_slash.database.registrators.Stats;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.IApplyStatPotion;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;

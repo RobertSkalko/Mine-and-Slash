@@ -3,8 +3,8 @@ package com.robertx22.mine_and_slash.data_generation;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.onevent.data_gen.ISerializablePart;
+import com.robertx22.mine_and_slash.database.data.StatModifier;
+import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializablePart;
 
 import java.util.ArrayList;
 import java.util.List;

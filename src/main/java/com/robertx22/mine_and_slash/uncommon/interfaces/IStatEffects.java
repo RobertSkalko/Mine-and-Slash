@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.interfaces;
 
-import com.robertx22.mine_and_slash.database.IGUID;
+import com.robertx22.mine_and_slash.database.data.IGUID;
 
 import java.util.Arrays;
 import java.util.List;

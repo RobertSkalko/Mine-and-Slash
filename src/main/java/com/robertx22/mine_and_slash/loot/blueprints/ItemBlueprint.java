@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.blueprints;
 
-import com.robertx22.mine_and_slash.database.rarities.BaseRaritiesContainer;
+import com.robertx22.mine_and_slash.database.data.rarities.BaseRaritiesContainer;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.LevelPart;
 import com.robertx22.mine_and_slash.loot.blueprints.bases.RarityPart;

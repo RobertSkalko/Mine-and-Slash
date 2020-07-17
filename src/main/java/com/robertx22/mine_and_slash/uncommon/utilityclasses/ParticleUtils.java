@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.packets.particles.ParticleEnum;
-import com.robertx22.mine_and_slash.packets.particles.ParticlePacketData;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticleEnum;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacketData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;

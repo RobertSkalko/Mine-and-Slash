@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.blocks.item_modify_station.TileGearModify;
-import com.robertx22.mine_and_slash.blocks.repair_station.TileGearRepair;
-import com.robertx22.mine_and_slash.blocks.salvage_station.TileGearSalvage;
-import com.robertx22.mine_and_slash.database.spells.blocks.holy_flower.HolyFlowerTileEntity;
-import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerTileEntity;
-import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushTileEntity;
+import com.robertx22.mine_and_slash.vanilla_mc.blocks.item_modify_station.TileGearModify;
+import com.robertx22.mine_and_slash.vanilla_mc.blocks.repair_station.TileGearRepair;
+import com.robertx22.mine_and_slash.vanilla_mc.blocks.salvage_station.TileGearSalvage;
+import com.robertx22.mine_and_slash.database.data.spells.blocks.holy_flower.HolyFlowerTileEntity;
+import com.robertx22.mine_and_slash.database.data.spells.blocks.magma_flower.MagmaFlowerTileEntity;
+import com.robertx22.mine_and_slash.database.data.spells.blocks.thorn_bush.ThornBushTileEntity;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;

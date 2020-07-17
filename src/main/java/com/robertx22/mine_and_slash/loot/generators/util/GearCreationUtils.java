@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.loot.generators.util;
 
 import com.google.common.base.Preconditions;
-import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.GearItemEnum;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.BaseStatsData;

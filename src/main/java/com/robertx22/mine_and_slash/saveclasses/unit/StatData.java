@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.saveclasses.unit;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.types.core_stats.base.IAddToOtherStats;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.data.stats.Stat;
+import com.robertx22.mine_and_slash.database.data.stats.types.core_stats.base.IAddToOtherStats;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.ModType;

@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.saveclasses.spells.calc;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.StatScaling;
-import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.data.stats.Stat;
+import com.robertx22.mine_and_slash.database.data.stats.StatScaling;
+import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.spells.IAbility;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;

@@ -2,12 +2,12 @@ package com.robertx22.mine_and_slash.config.base;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
+import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ConfigRegister;
-import com.robertx22.mine_and_slash.packets.SyncConfigToClientPacket;
 import com.robertx22.mine_and_slash.saveclasses.ListStringData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.SerializationUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.SyncConfigToClientPacket;
 import net.minecraft.entity.player.ServerPlayerEntity;
 
 import java.io.IOException;
@@ -79,7 +79,8 @@ public interface ISerializedConfig<T extends ISlashRegistryInit> {
     }
 
     default void generateIfEmpty() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting()
+            .create();
         String json = gson.toJson(getDefaultObject());
         SerializationUtils.makeFileAndDirAndWrite(folder(), fileName(), json);
     }

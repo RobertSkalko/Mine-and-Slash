@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.unit;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.HealEffect;

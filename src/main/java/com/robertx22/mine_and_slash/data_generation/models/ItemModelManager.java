@@ -2,11 +2,11 @@ package com.robertx22.mine_and_slash.data_generation.models;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.Crossbow;
-import com.robertx22.mine_and_slash.database.gearitemslots.weapons.HunterBow;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.Crossbow;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.weapons.HunterBow;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;

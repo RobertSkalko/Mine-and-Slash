@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.mixins;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.onevent.entity.damage.LivingHurtUtils;
+import com.robertx22.mine_and_slash.event_hooks.entity.damage.LivingHurtUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.CombatRules;

@@ -1,13 +1,11 @@
 package com.robertx22.mine_and_slash.gui.screens.spell_hotbar_setup;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.gui.bases.BaseScreen;
 import com.robertx22.mine_and_slash.gui.bases.INamedScreen;
-import com.robertx22.mine_and_slash.items.misc.SkillGemItem;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
@@ -18,6 +16,8 @@ import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RenderUtils;
+import com.robertx22.mine_and_slash.vanilla_mc.items.misc.SkillGemItem;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.spells.HotbarSetupPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.ImageButton;
 import net.minecraft.item.ItemStack;

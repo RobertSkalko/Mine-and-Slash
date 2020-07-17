@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.saveclasses;
 
 import com.google.gson.JsonObject;
-import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.stats.ILocalStat;
-import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.onevent.data_gen.ISerializable;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.data.StatModifier;
+import com.robertx22.mine_and_slash.database.data.stats.ILocalStat;
+import com.robertx22.mine_and_slash.database.data.stats.Stat;
+import com.robertx22.mine_and_slash.event_hooks.data_gen.ISerializable;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;

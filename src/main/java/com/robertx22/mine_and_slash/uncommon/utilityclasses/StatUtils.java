@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.unit.StatData;
 

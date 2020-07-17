@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.particles.EleParticleData;
-import com.robertx22.mine_and_slash.particles.ParticleDeserializer;
+import com.robertx22.mine_and_slash.vanilla_mc.particles.EleParticleData;
+import com.robertx22.mine_and_slash.vanilla_mc.particles.ParticleDeserializer;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ParticleType;

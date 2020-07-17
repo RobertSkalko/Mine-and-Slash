@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.database.rarities.SkillGemRarity;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.base.Rarities;
+import com.robertx22.mine_and_slash.database.data.rarities.SkillGemRarity;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipContext;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;

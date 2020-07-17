@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.loot.generators;
 
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
+import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
 import com.robertx22.mine_and_slash.loot.LootInfo;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.registry.FilterListWrap;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.exiled_lib.registry.FilterListWrap;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.LootType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

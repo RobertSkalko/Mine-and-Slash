@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
 import com.robertx22.mine_and_slash.config.forge.ClientContainer;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.FinalizedGearStatReq;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IGearPartTooltip;

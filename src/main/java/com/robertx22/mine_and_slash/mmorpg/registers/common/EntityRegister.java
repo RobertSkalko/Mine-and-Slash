@@ -1,15 +1,15 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.database.spells.entities.cloud.ArrowStormEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.cloud.BlizzardEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.cloud.ThunderstormEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.cloud.VolcanoEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.proj.*;
-import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.FireballEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.FrostballEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.single_target_bolt.PoisonBallEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.trident.SpearOfJudgementEntity;
-import com.robertx22.mine_and_slash.database.spells.entities.trident.ThunderspearEntity;
+import com.robertx22.mine_and_slash.database.data.spells.entities.cloud.ArrowStormEntity;
+import com.robertx22.mine_and_slash.database.data.spells.entities.cloud.BlizzardEntity;
+import com.robertx22.mine_and_slash.database.data.spells.entities.cloud.ThunderstormEntity;
+import com.robertx22.mine_and_slash.database.data.spells.entities.cloud.VolcanoEntity;
+import com.robertx22.mine_and_slash.database.data.spells.entities.proj.*;
+import com.robertx22.mine_and_slash.database.data.spells.entities.single_target_bolt.FireballEntity;
+import com.robertx22.mine_and_slash.database.data.spells.entities.single_target_bolt.FrostballEntity;
+import com.robertx22.mine_and_slash.database.data.spells.entities.single_target_bolt.PoisonBallEntity;
+import com.robertx22.mine_and_slash.database.data.spells.entities.trident.SpearOfJudgementEntity;
+import com.robertx22.mine_and_slash.database.data.spells.entities.trident.ThunderspearEntity;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.Entity;

@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.loot;
 
-import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
-import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.database.base.Rarities;
+import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.data.stats.types.resources.Health;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 import net.minecraft.entity.LivingEntity;

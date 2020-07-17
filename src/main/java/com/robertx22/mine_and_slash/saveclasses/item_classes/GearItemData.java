@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes;
 
-import com.robertx22.mine_and_slash.database.affixes.Affix;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.requirements.bases.GearRequestedFor;
-import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.base.Rarities;
+import com.robertx22.mine_and_slash.database.data.affixes.Affix;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
+import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.data.requirements.bases.GearRequestedFor;
+import com.robertx22.mine_and_slash.database.data.stats.Stat;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts.*;

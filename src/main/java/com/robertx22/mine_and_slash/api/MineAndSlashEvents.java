@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.api;
 
-import com.robertx22.mine_and_slash.onevent.entity.damage.DamageEventData;
+import com.robertx22.mine_and_slash.event_hooks.entity.damage.DamageEventData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;

@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.interfaces.data_items;
 
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 
 import java.util.Comparator;
 

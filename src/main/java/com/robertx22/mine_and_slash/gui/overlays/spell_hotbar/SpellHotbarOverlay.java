@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.gui.overlays.spell_hotbar;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
-import com.robertx22.mine_and_slash.onevent.ontick.OnClientTick;
+import com.robertx22.mine_and_slash.event_hooks.ontick.OnClientTick;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellCastingData;
 import com.robertx22.mine_and_slash.saveclasses.spells.SpellData;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;

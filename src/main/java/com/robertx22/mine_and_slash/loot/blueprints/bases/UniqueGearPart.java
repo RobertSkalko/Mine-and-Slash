@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
-import com.robertx22.mine_and_slash.database.unique_items.IUnique;
+import com.robertx22.mine_and_slash.database.data.unique_items.IUnique;
 import com.robertx22.mine_and_slash.loot.blueprints.GearBlueprint;
-import com.robertx22.mine_and_slash.registry.FilterListWrap;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.exiled_lib.registry.FilterListWrap;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 
 public class UniqueGearPart extends BlueprintPart<IUnique> {
 

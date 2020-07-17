@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases;
 
-import com.robertx22.mine_and_slash.database.MinMax;
+import com.robertx22.mine_and_slash.database.data.MinMax;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 
 public interface IGearPart {

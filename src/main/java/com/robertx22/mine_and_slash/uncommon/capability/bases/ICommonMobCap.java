@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.uncommon.capability.bases;
 
-import com.robertx22.mine_and_slash.packets.sync_cap.MobCaps;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.MobCaps;
 import net.minecraft.nbt.CompoundNBT;
 
 public interface ICommonMobCap extends ICommonCap {

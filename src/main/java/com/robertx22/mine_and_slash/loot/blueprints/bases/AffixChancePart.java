@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.blueprints.bases;
 
-import com.robertx22.mine_and_slash.database.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
 import com.robertx22.mine_and_slash.loot.blueprints.ItemBlueprint;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.RandomUtils;
 

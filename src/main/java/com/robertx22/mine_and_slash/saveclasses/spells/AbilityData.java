@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.spells;
 
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.SkillGemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.SkillGem;
 import info.loenwind.autosave.annotations.Storable;

@@ -1,9 +1,9 @@
 package com.robertx22.mine_and_slash.data_generation.rarities;
 
-import com.robertx22.mine_and_slash.database.rarities.GearRarity;
-import com.robertx22.mine_and_slash.database.rarities.gears.CommonGear;
-import com.robertx22.mine_and_slash.db_lists.Rarities;
-import com.robertx22.mine_and_slash.onevent.data_gen.providers.RarityProvider;
+import com.robertx22.mine_and_slash.database.base.Rarities;
+import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.data.rarities.gears.CommonGear;
+import com.robertx22.mine_and_slash.event_hooks.data_gen.providers.RarityProvider;
 import net.minecraft.data.DataGenerator;
 
 public class GearRarityManager extends BaseRarityDatapackManager<GearRarity> {

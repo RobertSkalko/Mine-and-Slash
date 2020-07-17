@@ -1,12 +1,10 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.items.SimpleMatItem;
-import com.robertx22.mine_and_slash.items.bags.currency_bag.ItemCurrencyBag;
-import com.robertx22.mine_and_slash.items.misc.ItemCapacitor;
-import com.robertx22.mine_and_slash.items.misc.ItemIncreaseRarityNearestEntity;
-import com.robertx22.mine_and_slash.items.misc.ItemNewbieGearBag;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IGenerated;
+import com.robertx22.mine_and_slash.vanilla_mc.items.SimpleMatItem;
+import com.robertx22.mine_and_slash.vanilla_mc.items.bags.currency_bag.ItemCurrencyBag;
+import com.robertx22.mine_and_slash.vanilla_mc.items.misc.ItemCapacitor;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -51,9 +49,6 @@ public class ItemRegister {
         IForgeRegistry<Item> r = event.getRegistry();
 
         list.add(new ItemCurrencyBag().setRegistryName(ItemCurrencyBag.ID));
-
-        list.add(new ItemIncreaseRarityNearestEntity());
-        list.add(new ItemNewbieGearBag());
 
         list.add(SimpleMatItem.CRYSTALLIZED_ESSENCE);
         list.add(SimpleMatItem.INFUSED_IRON);

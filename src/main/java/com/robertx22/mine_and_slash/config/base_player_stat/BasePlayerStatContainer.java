@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.config.base_player_stat;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalDamage;
-import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
-import com.robertx22.mine_and_slash.database.stats.types.resources.*;
-import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
+import com.robertx22.mine_and_slash.database.data.stats.Stat;
+import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalDamage;
+import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.mine_and_slash.database.data.stats.types.resources.*;
+import com.robertx22.exiled_lib.registry.ISlashRegistryInit;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IApplyableStats;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 

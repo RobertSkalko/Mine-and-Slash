@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts;
 
-import com.robertx22.mine_and_slash.database.affixes.Affix;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.data.affixes.Affix;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;

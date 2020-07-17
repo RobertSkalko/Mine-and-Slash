@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.loot.generators.stack_changers;
 
-import com.robertx22.mine_and_slash.database.rarities.GearRarity;
+import com.robertx22.mine_and_slash.database.data.rarities.GearRarity;
 import com.robertx22.mine_and_slash.loot.LootUtils;
 import com.robertx22.mine_and_slash.uncommon.interfaces.data_items.ICommonDataItem;
 import net.minecraft.item.ItemStack;

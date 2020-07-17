@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.saveclasses.item_classes.tooltips;
 
-import com.robertx22.mine_and_slash.database.stats.Stat;
+import com.robertx22.mine_and_slash.database.data.stats.Stat;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.ITooltipList;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.TooltipInfo;

@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.SpellCastContext;
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.SpellCastContext;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.configs.PreCalcSpellConfigs;
 import com.robertx22.mine_and_slash.uncommon.capability.player.PlayerSpellCap;
 import net.minecraft.entity.LivingEntity;
 

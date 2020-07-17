@@ -1,7 +1,7 @@
 package com.robertx22.mine_and_slash.uncommon.effectdatas;
 
-import com.robertx22.mine_and_slash.database.spells.spell_classes.bases.BaseSpell;
-import com.robertx22.mine_and_slash.potion_effects.bases.PotionEffectUtils;
+import com.robertx22.mine_and_slash.database.data.spells.spell_classes.bases.BaseSpell;
+import com.robertx22.mine_and_slash.vanilla_mc.potion_effects.bases.PotionEffectUtils;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.IHasSpellEffect;
 import com.robertx22.mine_and_slash.uncommon.effectdatas.interfaces.WeaponTypes;

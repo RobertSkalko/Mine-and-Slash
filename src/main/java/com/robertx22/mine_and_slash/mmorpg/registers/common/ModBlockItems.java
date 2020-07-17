@@ -1,6 +1,6 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.db_lists.CreativeTabs;
+import com.robertx22.mine_and_slash.database.base.CreativeTabs;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;

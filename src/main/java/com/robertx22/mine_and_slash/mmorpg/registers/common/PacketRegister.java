@@ -1,12 +1,12 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
-import com.robertx22.mine_and_slash.packets.*;
-import com.robertx22.mine_and_slash.packets.particles.ParticlePacket;
-import com.robertx22.mine_and_slash.packets.spells.CastSpellPacket;
-import com.robertx22.mine_and_slash.packets.spells.HotbarSetupPacket;
-import com.robertx22.mine_and_slash.packets.sync_cap.RequestSyncCapToClient;
-import com.robertx22.mine_and_slash.packets.sync_cap.SyncCapabilityToClient;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.*;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.particles.ParticlePacket;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.spells.CastSpellPacket;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.spells.HotbarSetupPacket;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.RequestSyncCapToClient;
+import com.robertx22.mine_and_slash.vanilla_mc.packets.sync_cap.SyncCapabilityToClient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 

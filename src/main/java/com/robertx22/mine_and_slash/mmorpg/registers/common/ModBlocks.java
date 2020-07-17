@@ -1,11 +1,11 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.common;
 
-import com.robertx22.mine_and_slash.blocks.item_modify_station.BlockGearModify;
-import com.robertx22.mine_and_slash.blocks.repair_station.BlockGearRepair;
-import com.robertx22.mine_and_slash.blocks.salvage_station.BlockGearSalvage;
-import com.robertx22.mine_and_slash.database.spells.blocks.holy_flower.HolyFlowerBlock;
-import com.robertx22.mine_and_slash.database.spells.blocks.magma_flower.MagmaFlowerBlock;
-import com.robertx22.mine_and_slash.database.spells.blocks.thorn_bush.ThornBushBlock;
+import com.robertx22.mine_and_slash.vanilla_mc.blocks.item_modify_station.BlockGearModify;
+import com.robertx22.mine_and_slash.vanilla_mc.blocks.repair_station.BlockGearRepair;
+import com.robertx22.mine_and_slash.vanilla_mc.blocks.salvage_station.BlockGearSalvage;
+import com.robertx22.mine_and_slash.database.data.spells.blocks.holy_flower.HolyFlowerBlock;
+import com.robertx22.mine_and_slash.database.data.spells.blocks.magma_flower.MagmaFlowerBlock;
+import com.robertx22.mine_and_slash.database.data.spells.blocks.thorn_bush.ThornBushBlock;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

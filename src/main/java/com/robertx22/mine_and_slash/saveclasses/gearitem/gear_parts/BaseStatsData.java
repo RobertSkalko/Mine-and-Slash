@@ -1,10 +1,10 @@
 package com.robertx22.mine_and_slash.saveclasses.gearitem.gear_parts;
 
-import com.robertx22.mine_and_slash.database.StatModifier;
-import com.robertx22.mine_and_slash.database.stats.Stat;
-import com.robertx22.mine_and_slash.database.stats.types.generated.WeaponDamage;
-import com.robertx22.mine_and_slash.database.stats.types.offense.CriticalHit;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.mine_and_slash.database.data.StatModifier;
+import com.robertx22.mine_and_slash.database.data.stats.Stat;
+import com.robertx22.mine_and_slash.database.data.stats.types.generated.WeaponDamage;
+import com.robertx22.mine_and_slash.database.data.stats.types.offense.CriticalHit;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.ExactStatData;
 import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.*;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;

@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.loot;
 
-import com.robertx22.mine_and_slash.database.stats.types.loot.IncreasedItemQuantity;
+import com.robertx22.mine_and_slash.database.data.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.mine_and_slash.loot.generators.BaseLootGen;
-import com.robertx22.mine_and_slash.registry.SlashRegistry;
+import com.robertx22.exiled_lib.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.LevelUtils;

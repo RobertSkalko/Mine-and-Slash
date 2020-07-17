@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.config.forge.parts;
 
-import com.robertx22.mine_and_slash.database.compatible_item.CompatibleItem;
-import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
-import com.robertx22.mine_and_slash.db_lists.Rarities;
+import com.robertx22.mine_and_slash.database.base.Rarities;
+import com.robertx22.mine_and_slash.database.data.compatible_item.CompatibleItem;
+import com.robertx22.mine_and_slash.database.data.gearitemslots.bases.BaseGearType;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;

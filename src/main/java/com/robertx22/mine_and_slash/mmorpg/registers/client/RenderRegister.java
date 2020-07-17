@@ -1,8 +1,8 @@
 package com.robertx22.mine_and_slash.mmorpg.registers.client;
 
-import com.robertx22.mine_and_slash.database.spells.entities.bases.MySpriteRenderer;
-import com.robertx22.mine_and_slash.database.spells.entities.special.RangerArrowRenderer;
-import com.robertx22.mine_and_slash.database.spells.entities.trident.HolyTridentRenderer;
+import com.robertx22.mine_and_slash.database.data.spells.entities.bases.MySpriteRenderer;
+import com.robertx22.mine_and_slash.database.data.spells.entities.special.RangerArrowRenderer;
+import com.robertx22.mine_and_slash.database.data.spells.entities.trident.HolyTridentRenderer;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.EntityRegister;
 import net.minecraft.client.Minecraft;
