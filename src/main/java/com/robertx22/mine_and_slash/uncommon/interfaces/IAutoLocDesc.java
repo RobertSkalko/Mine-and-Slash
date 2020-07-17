@@ -22,7 +22,7 @@ public interface IAutoLocDesc extends IBaseAutoLoc {
     }
 
     public default ITextComponent locDesc() {
-        return CLOC.blank(getFormatedForLangFile(formattedLocDescLangFileGUID()));
+        return CLOC.blank(getFormatedForLangFile(locDescLangFileGUID()));
     }
 
     public default String formattedLocDescLangFileGUID() {

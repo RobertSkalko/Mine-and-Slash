@@ -54,7 +54,7 @@ public class PowerLevel {
         for (BaseGearType slot : slots) {
             PowerLevel power = new PowerLevel(item, slot);
 
-            PowerLevel best = DeterminePowerLevels.STRONGEST.get(slot);
+            PowerLevel best = DeterminePowerLevels.STRONGEST.getOrDefault(slot, new PowerLevel(item, slot));
 
             val += power.divideBy(best);
 

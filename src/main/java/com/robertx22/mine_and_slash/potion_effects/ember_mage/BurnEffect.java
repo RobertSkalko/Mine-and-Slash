@@ -83,15 +83,15 @@ public class BurnEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
-        list.add(new PotionStat(-1, new ElementalResist(Elements.Fire)));
-        list.add(new PotionStat(-2, new ElementalResist(Elements.Water)));
+        list.add(new PotionStat(-5, new ElementalResist(Elements.Fire)));
+        list.add(new PotionStat(-5, new ElementalResist(Elements.Water)));
         return list;
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        p.set(SC.BASE_VALUE, 1, 3);
+        p.set(SC.BASE_VALUE, 4, 5);
         p.set(SC.DURATION_TICKS, 6 * 60, 10 * 60);
         p.set(SC.TICK_RATE, 30, 20);
         return p;

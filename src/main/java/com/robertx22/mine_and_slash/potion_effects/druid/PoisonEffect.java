@@ -77,8 +77,8 @@ public class PoisonEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
-        list.add(new PotionStat(-3, new ElementalResist(Elements.Thunder)));
-        list.add(new PotionStat(-2, new ElementalResist(Elements.Nature)));
+        list.add(new PotionStat(-5, new ElementalResist(Elements.Thunder)));
+        list.add(new PotionStat(-5, new ElementalResist(Elements.Nature)));
 
         return list;
     }

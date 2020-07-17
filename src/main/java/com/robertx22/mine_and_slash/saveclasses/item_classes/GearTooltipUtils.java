@@ -135,7 +135,9 @@ public class GearTooltipUtils {
         if (gear.is_unique) {
             IUnique unique = gear.uniqueStats.getUnique();
 
-            List<String> lores = TooltipUtils.cutIfTooLong(CLOC.translate(unique.locDesc()));
+            String uniqdesc = CLOC.translate(unique.locDesc());
+
+            List<String> lores = TooltipUtils.cutIfTooLong(uniqdesc);
             tip.add(new StringTextComponent(""));
 
             int i = 0;

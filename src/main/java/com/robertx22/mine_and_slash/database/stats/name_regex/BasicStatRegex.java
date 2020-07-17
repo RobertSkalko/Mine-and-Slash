@@ -13,11 +13,12 @@ public class BasicStatRegex extends StatNameRegex {
             String adds = "";
 
             if (stat.UsesSecondValue() || stat.isLocal()) {
-                adds = "Adds ";
+                if (v1 > 0 && v2 > 0) {
+                    adds = "Adds ";
+                }
             }
 
             if (stat.UsesSecondValue()) {
-
                 return adds + MIN_VALUE + " to " + MAX_VALUE + " " + NAME;
             } else {
                 return adds + VALUE + " To " + NAME;

@@ -54,8 +54,8 @@ public class StaticEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
-        list.add(new PotionStat(-1, new ElementalResist(Elements.Thunder)));
-        list.add(new PotionStat(-2, new ElementalResist(Elements.Nature)));
+        list.add(new PotionStat(-15, new ElementalResist(Elements.Thunder)));
+        list.add(new PotionStat(-15, new ElementalResist(Elements.Nature)));
         return list;
     }
 

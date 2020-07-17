@@ -61,8 +61,8 @@ public class FrostEffect extends BasePotionEffect implements IApplyStatPotion {
     @Override
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
-        list.add(new PotionStat(-2, new ElementalResist(Elements.Water)));
-        list.add(new PotionStat(-2, new ElementalResist(Elements.Fire)));
+        list.add(new PotionStat(-15, new ElementalResist(Elements.Water)));
+        list.add(new PotionStat(-15, new ElementalResist(Elements.Fire)));
         return list;
     }
 

@@ -1,8 +1,10 @@
 package com.robertx22.mine_and_slash.db_lists.initializers;
 
+import com.robertx22.mine_and_slash.database.unique_items.armor.JesterHat;
 import com.robertx22.mine_and_slash.database.unique_items.jewelry.necklace.BirthingMiracleNecklace;
 import com.robertx22.mine_and_slash.database.unique_items.jewelry.necklace.SkullOfSpiritsNecklace;
 import com.robertx22.mine_and_slash.database.unique_items.jewelry.ring.GreedsPersistenceRing;
+import com.robertx22.mine_and_slash.database.unique_items.weapons.axe.ObsidianMightAxe;
 import com.robertx22.mine_and_slash.database.unique_items.weapons.sword.WaterElementalSword;
 import com.robertx22.mine_and_slash.registry.ISlashRegistryInit;
 
@@ -14,6 +16,8 @@ public class UniqueGears implements ISlashRegistryInit {
         new BirthingMiracleNecklace().addToSerializables();
         new SkullOfSpiritsNecklace().addToSerializables();
         new GreedsPersistenceRing().addToSerializables();
+        new JesterHat().addToSerializables();
+        new ObsidianMightAxe().addToSerializables();
 
     }
 }
