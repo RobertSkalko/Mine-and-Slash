@@ -388,14 +388,6 @@ public enum Words implements IAutoLocName {
 
     Level("Level"),
 
-    Major_Arcana("Major Arcana"),
-
-    Major_Failure_Chance("Major Failure Chance"),
-
-    Major_Success_Bonus("Major Success Bonus"),
-
-    Major_Success_Chance("Major Success Chance"),
-
     Mana_Cost("Mana Cost"),
 
     Map("Map"),
@@ -414,8 +406,6 @@ public enum Words implements IAutoLocName {
 
     None("None"),
 
-    Not_a_Map_World("Not a Map World"),
-
     Npc("Npc"),
 
     Percent("Percent"),
@@ -423,8 +413,6 @@ public enum Words implements IAutoLocName {
     GroupPlay("Group Play"),
 
     PartySize("Party Size"),
-
-    Permadeath("Permadeath"),
 
     Player_Affixes("Player Affixes"),
 
@@ -476,7 +464,7 @@ public enum Words implements IAutoLocName {
 
     Stats("Stats"),
 
-    Suffix("Suffix"), SummonSpiders("Summon Spiders"),
+    Suffix("Suffix"),
 
     SpiritWolves("Spirit Wolves"),
 
@@ -499,8 +487,6 @@ public enum Words implements IAutoLocName {
     Uses("Uses"),
 
     Beware("Beware"),
-
-    DoNotBuildInMaps("Do not build in maps!"),
 
     World_Type("World Type"),
 
