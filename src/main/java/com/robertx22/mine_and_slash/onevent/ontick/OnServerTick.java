@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.database.stats.types.resources.HealthRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.MagicShieldRegen;
 import com.robertx22.mine_and_slash.database.stats.types.resources.ManaRegen;
+import com.robertx22.mine_and_slash.database.stats.types.resources.RegeneratePercentStat;
 import com.robertx22.mine_and_slash.saveclasses.unit.ResourcesData;
 import com.robertx22.mine_and_slash.saveclasses.unit.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.CapSyncUtil;
@@ -20,7 +21,7 @@ import java.util.UUID;
 public class OnServerTick {
 
     static final int TicksToUpdatePlayer = 18;
-    static final int TicksToRegen = 100;
+    static final int TicksToRegen = 20; // was 100, todo balance
     static final int TicksToPassMinute = 1200;
     static final int TicksToSpellCooldowns = 1;
     static final int TicksToProcessChunks = 50;
@@ -60,6 +61,10 @@ public class OnServerTick {
 
                                 float manarestored = unit.peekAtStat(ManaRegen.GUID)
                                     .getAverageValue();
+                                manarestored += unit.peekAtStat(RegeneratePercentStat.MANA)
+                                    .getAverageValue() * unit.manaData()
+                                    .getAverageValue() / 100F;
+
                                 ResourcesData.Context mana = new ResourcesData.Context(x, player, ResourcesData.Type.MANA,
                                     manarestored,
                                     ResourcesData.Use.RESTORE
@@ -77,11 +82,10 @@ public class OnServerTick {
                                         restored = true;
                                     }
 
-                                    float missingHp = x.getUnit()
-                                        .getMissingHealth(player);
-
                                     float healthrestored = unit.peekAtStat(HealthRegen.GUID)
                                         .getAverageValue();
+                                    healthrestored += unit.peekAtStat(RegeneratePercentStat.HEALTH)
+                                        .getAverageValue() * player.getMaxHealth() / 100F;
                                     ResourcesData.Context hp = new ResourcesData.Context(x, player, ResourcesData.Type.HEALTH,
                                         healthrestored,
                                         ResourcesData.Use.RESTORE
@@ -97,13 +101,11 @@ public class OnServerTick {
                                         restored = true;
                                     }
 
-                                    float missingMs = x.getUnit()
-                                        .magicShieldData()
-                                        .getAverageValue() - x.getResources()
-                                        .getMagicShield();
-
                                     float magicshieldrestored = unit.peekAtStat(MagicShieldRegen.GUID)
                                         .getAverageValue();
+                                    magicshieldrestored += unit.peekAtStat(RegeneratePercentStat.MAGIC_SHIELD)
+                                        .getAverageValue() * unit.magicShieldData()
+                                        .getAverageValue() / 100F;
                                     ResourcesData.Context ms = new ResourcesData.Context(x, player,
                                         ResourcesData.Type.MAGIC_SHIELD,
                                         magicshieldrestored,
