@@ -17,6 +17,7 @@ public class ServerContainer {
     public DoubleValue REGEN_HUNGER_COST;
     public DoubleValue EXP_LOSS_ON_DEATH;
     public DoubleValue STAT_POINTS_PER_LVL;
+    public DoubleValue VANILLA_ARMOR_EFFECTIVENESS;
 
     public IntValue MAX_LEVEL;
 
@@ -50,6 +51,9 @@ public class ServerContainer {
         REGEN_HUNGER_COST = builder.comment(".")
             .translation("mmorpg.word.")
             .defineInRange("REGEN_HUNGER_COST", 20D, 0, 1000D);
+
+        VANILLA_ARMOR_EFFECTIVENESS = builder.comment("As this mod uses it's own armor for entity damage, enabling this will make the player op. 1 Means 100% effective 0.5 means half effective")
+            .defineInRange("VANILLA_ARMOR_EFFECTIVENESS", 0, 0, 1F);
 
         STAT_POINTS_PER_LVL = builder.comment(".")
             .translation("mmorpg.word.")

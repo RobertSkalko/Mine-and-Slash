@@ -1,11 +1,19 @@
 1.0
 
+Big compatibility changes:
+
+* Damage is no longer overrided except for item's with stats and my spells. This means other mod's gear and spells should ALL be compatible now!
+* There's no magical mine and slash hp anymore, instead your normal hearts are increased.
+* Stats scale much slower with levels, and if you want to nerf or buff how strong my mod is, just increase or decrease stat scaling or maximum level. Both work.
+* Vanilla armor is overrided for entity damage, but there's a config for effectiveness now.
+
+As a result, the mod should be a lot more modpack friendly while still easily allowing itself to be the main point of a modpack by just tweaking one or two config options.
+
+
 Big changes that required the rework:
 
-* Mod no longer overrides damage (this means all other gear and spell mobs are compatible!)
-* Talent tree is gone.
-* Spells are now Skill Gems. 
-* Mod no longer uses hidden hp values, vanilla hp now increases (this makes other hp gui mods compatible but be wary of those that display each heart, mobs will have lots of hearts)
+* Spells are now Skill Gems.
+* Talent tree is gone. 
 * Gear now has local and global stats, local stats are weapon damage, armor etc. 
 Think Path of exile 50 base armor + adds 20 to armor + 80% increased armor and the item totals it up.
 * Gear rarities trimmed, now Common, Magical, Rare and Unique. Common complaint was that "Legendary" gear was sometimes too weak for the name.

@@ -28,6 +28,7 @@ b243fa54a0c4bb587568f35e977b11c609a36de7 assets\mmorpg\models\item\jewels\green.
 869d9ebc8e2ee21196f79cae17406b20a4b05f91 assets\mmorpg\models\item\skill_gems\dex.json
 25400e6d766837a670915f127756cb512e040c90 assets\mmorpg\models\item\skill_gems\int.json
 e881b768ee3e0ae99486692673186bb92c302c5a assets\mmorpg\models\item\skill_gems\str.json
+a8d6ed8ae75d23c03e80dad2c91801a87c4ad4eb assets\mmorpg\models\item\uniques\armor\beast_blood.json
 6879e6ac997765cef46e056229d3d368941ba4e5 assets\mmorpg\models\item\uniques\armor\inner_conflux.json
 1234e39b3e19199ba31d1685871f1649a9f56bab assets\mmorpg\models\item\uniques\armor\jester_hat.json
 fee1e0ecfc52bfa2bd1aac12b61ca4b85e7ec9e1 assets\mmorpg\models\item\uniques\jewelry\birth_miracle.json
@@ -195,8 +196,9 @@ a44b175d07c62d00a57b95f08e4b86fdec13ec90 data\mmorpg\tier\3.json
 84a286a3fe1f8c86e434fb8bd9c0fb3fdaf7a964 data\mmorpg\tier\5.json
 b2e7bbf7be97e91b829b417882f3fa9675cad099 data\mmorpg\unique_gears\gemstone_sword\water_ele_sword.json
 6a89c3a6c77b94baccddf68acfde02167b96dd43 data\mmorpg\unique_gears\life_necklace\birth_miracle.json
-6c460c6031c97ceb01b9fd13cd6d58b42cd4a970 data\mmorpg\unique_gears\occultist_robes\inner_conflux.json
+e5d79c292c8efdd5bd0de72f68a196d7a14c0e41 data\mmorpg\unique_gears\occultist_robes\inner_conflux.json
 238b6d2487c1a1679d4f8c2afe88e10b4287484f data\mmorpg\unique_gears\occult_necklace\skull_of_spirits.json
 3daac5280d3e1f616606090547f05293d17dad89 data\mmorpg\unique_gears\occult_ring\greed_persist.json
+e10421d8ad889ae2ff6d473d9a1658a0276630f4 data\mmorpg\unique_gears\plate_chest\beast_blood.json
 352caa44633b49d9e4892ee9602536bf7c1ccecd data\mmorpg\unique_gears\primitive_axe\obsi_might.json
 5293bddaf6dffa576bbb67f15f11ef287737eb2b data\mmorpg\unique_gears\sorcerer_circlet\jester_hat.json

@@ -1,14 +1,21 @@
 package com.robertx22.mine_and_slash.mixins;
 
+import com.robertx22.mine_and_slash.config.forge.ModConfig;
 import com.robertx22.mine_and_slash.mmorpg.MMORPG;
 import com.robertx22.mine_and_slash.onevent.entity.damage.LivingHurtUtils;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.util.CombatRules;
 import net.minecraft.util.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/*
+  Nothing is done to environmental damage
+  By default, entity damage ignores vanilla armor (configurable)
+  */
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
 
@@ -31,6 +38,18 @@ public abstract class LivingEntityMixin {
                 LivingEntity en = (LivingEntity) (Object) this;
 
                 LivingHurtUtils.damageArmorItems(en);
+
+                float afterArmor = CombatRules.getDamageAfterAbsorb(damage, (float) en.getTotalArmorValue(), (float) en.getAttribute(SharedMonsterAttributes.ARMOR_TOUGHNESS)
+                    .getValue());
+
+                float diff = damage - afterArmor;
+
+                if (diff > 0) {
+                    float effectiveness = ModConfig.INSTANCE.Server.VANILLA_ARMOR_EFFECTIVENESS.get()
+                        .floatValue();
+
+                    damage -= diff * effectiveness;
+                }
 
                 ci.setReturnValue(damage);
             } else {
