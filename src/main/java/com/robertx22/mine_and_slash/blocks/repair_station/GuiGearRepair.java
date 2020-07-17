@@ -2,7 +2,7 @@ package com.robertx22.mine_and_slash.blocks.repair_station;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.robertx22.mine_and_slash.blocks.bases.TileGui;
-import com.robertx22.mine_and_slash.uncommon.Res;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.uncommon.localization.CLOC;
 import com.robertx22.mine_and_slash.uncommon.localization.Words;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.GuiUtils;
@@ -22,7 +22,7 @@ import java.util.List;
 public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> {
 
     // This is the resource location for the background image
-    private static final ResourceLocation texture = Res.loc("textures/gui/repair_station.png");
+    private static final ResourceLocation texture = new ResourceLocation(Ref.MODID, "textures/gui/repair_station.png");
 
     public GuiGearRepair(ContainerGearRepair cont, PlayerInventory invPlayer,
                          ITextComponent comp) {
@@ -54,7 +54,9 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
 
         // Bind the image texture
-        Minecraft.getInstance().getTextureManager().bindTexture(texture);
+        Minecraft.getInstance()
+            .getTextureManager()
+            .bindTexture(texture);
         // Draw the image
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         blit(guiLeft, guiTop, 0, 0, xSize, ySize);
@@ -62,7 +64,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         // get cook progress as a double between 0 and 1
         // draw the cook progress bar
         blit(guiLeft + COOK_BAR_XPOS, guiTop + COOK_BAR_YPOS, COOK_BAR_ICON_U, COOK_BAR_ICON_V, (int) (tile
-                .fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
+            .fractionOfCookTimeComplete() * COOK_BAR_WIDTH), COOK_BAR_HEIGHT);
 
         // draw the fuel remaining bar for each fuel slot flame
         for (int i = 0; i < TileGearRepair.FUEL_SLOTS_COUNT; ++i) {
@@ -83,7 +85,7 @@ public class GuiGearRepair extends TileGui<ContainerGearRepair, TileGearRepair> 
         final int LABEL_XPOS = 5;
         final int LABEL_YPOS = 5;
         font.drawString(CLOC.translate(tile.getDisplayName()), LABEL_XPOS, LABEL_YPOS, Color.darkGray
-                .getRGB());
+            .getRGB());
 
         List<String> hoveringText = new ArrayList<String>();
 
