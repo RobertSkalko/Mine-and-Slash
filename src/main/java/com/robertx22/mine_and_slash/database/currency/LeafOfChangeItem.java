@@ -66,7 +66,7 @@ public class LeafOfChangeItem extends CurrencyItem implements ICurrencyItemEffec
 
     @Override
     public String locDescForLangFile() {
-        return "Re-rolls primary stat numbers";
+        return "Re-rolls base stat numbers";
     }
 
     @Override

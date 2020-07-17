@@ -7,10 +7,7 @@ import com.robertx22.mine_and_slash.database.stats.types.core_stats.AllAttribute
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Dexterity;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Intelligence;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
-import com.robertx22.mine_and_slash.database.stats.types.defense.Armor;
-import com.robertx22.mine_and_slash.database.stats.types.defense.ArmorPenetration;
-import com.robertx22.mine_and_slash.database.stats.types.defense.DamageShield;
-import com.robertx22.mine_and_slash.database.stats.types.defense.DodgeRating;
+import com.robertx22.mine_and_slash.database.stats.types.defense.*;
 import com.robertx22.mine_and_slash.database.stats.types.elementals.all_damage.AllEleDmg;
 import com.robertx22.mine_and_slash.database.stats.types.generated.*;
 import com.robertx22.mine_and_slash.database.stats.types.loot.IncreasedItemQuantity;
@@ -46,6 +43,12 @@ public class Stats implements ISlashRegistryInit {
         List<Stat> generated = new ArrayList<Stat>() {
             {
                 {
+
+                    add(ImmuneToEffectStat.POISON);
+                    add(ImmuneToEffectStat.HUNGER);
+                    add(ImmuneToEffectStat.SLOW);
+                    add(ImmuneToEffectStat.WITHER);
+
                     add(RegeneratePercentStat.HEALTH);
                     add(RegeneratePercentStat.MAGIC_SHIELD);
                     add(RegeneratePercentStat.MANA);

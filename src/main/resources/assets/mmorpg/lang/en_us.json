@@ -472,10 +472,11 @@
 	"mmorpg.stat.fire_weapon_damage": "Fire Damage",
 	"mmorpg.stat.frost_bonus_dmg": "Damage to Chilled Enemies",
 	"mmorpg.stat.hammer_damage": "Hammer Damage",
-	"mmorpg.stat.health": "Health",
-	"mmorpg.stat.health_on_kill": "Health Restored on Kill",
-	"mmorpg.stat.health_per_sec": "Health Per Second",
+	"mmorpg.stat.health": "Maximum Health",
+	"mmorpg.stat.health_on_kill": "Maximum Health Restored on Kill",
+	"mmorpg.stat.health_per_sec": "Maximum Health Per Second",
 	"mmorpg.stat.health_regen": "Health Regeneration",
+	"mmorpg.stat.hunger_immunity": "Immune to Hunger",
 	"mmorpg.stat.increase_healing": "Heal Power",
 	"mmorpg.stat.increased_quantity": "Item Quantity",
 	"mmorpg.stat.intelligence": "Intelligence",
@@ -500,7 +501,9 @@
 	"mmorpg.stat.nature_weapon_damage": "Poison Damage",
 	"mmorpg.stat.physical_weapon_damage": "Physical Damage",
 	"mmorpg.stat.poison_bonus_dmg": "Damage to Poisoned Enemies",
+	"mmorpg.stat.poison_immunity": "Immune to Poison",
 	"mmorpg.stat.renamed_or_deleted_stat": "Unknown",
+	"mmorpg.stat.slow_immunity": "Immune to Slow",
 	"mmorpg.stat.spell_damage": "Spell Damage",
 	"mmorpg.stat.spell_elemental_damage": "Elemental Skill Damage",
 	"mmorpg.stat.spell_fire_damage": "Fire Skill Damage",
@@ -521,6 +524,7 @@
 	"mmorpg.stat.water_penetration": "Water Penetration",
 	"mmorpg.stat.water_resist": "Ice Resistance",
 	"mmorpg.stat.water_weapon_damage": "Ice Damage",
+	"mmorpg.stat.wither_immunity": "Immune to Wither",
 
 "_comment": " [CATEGORY]: STATS - NAMES",
 
@@ -572,6 +576,7 @@
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - NAMES",
 
+	"item.mmorpg.uniques.armor.beast_blood": "Blood of the Beast",
 	"item.mmorpg.uniques.armor.inner_conflux": "Inner Conflux",
 	"item.mmorpg.uniques.armor.jester_hat": "Jester's Intuition",
 	"item.mmorpg.uniques.jewelry.birth_miracle": "Birthing Miracle",
@@ -671,6 +676,7 @@
 
 "_comment": " [CATEGORY]: UNIQUE ITEMS - DESCRIPTIONS",
 
+	"item.mmorpg.uniques.armor.beast_blood.desc": "Accept the blood, suffer the Sacrifice. Be reborn anew.",
 	"item.mmorpg.uniques.armor.inner_conflux.desc": "Merge the Rivers of Mana and Magic, attain infinity, or die.",
 	"item.mmorpg.uniques.armor.jester_hat.desc": "One, two, three, fail. Whoops! One, two..",
 	"item.mmorpg.uniques.jewelry.birth_miracle.desc": "Life can sometimes keep on giving.",
@@ -685,10 +691,10 @@
 "_comment": " [CATEGORY]: CURRENCY ITEMS - DESCRIPTIONS",
 
 	"item.mmorpg.currency.number_reroll.desc": "Re-rolls all numbers on a gear",
-	"item.mmorpg.currency.orb_of_transmutation.desc": "Transform Common Item",
+	"item.mmorpg.currency.orb_of_transmutation.desc": "Transform Common Item into Magical",
 	"item.mmorpg.currency.randomize_affixes.desc": "Re-rolls All affixes",
 	"item.mmorpg.currency.reroll_affix_numbers.desc": "Re-rolls all affix numbers",
-	"item.mmorpg.currency.reroll_primary_stats_numbers.desc": "Re-rolls primary stat numbers",
+	"item.mmorpg.currency.reroll_primary_stats_numbers.desc": "Re-rolls base stat numbers",
 	"item.mmorpg.currency.reroll_unique_numbers.desc": "Re-rolls unique stat numbers",
 	"item.mmorpg.currency.stone_of_hope.desc": "Transform any rarity gear into higher rarity",
 
@@ -724,9 +730,10 @@
 	"mmorpg.stat_desc.faster_cast_rate": "Reduces amount of time needed to cast spells.",
 	"mmorpg.stat_desc.frost_bonus_dmg": "Increases dmg if enemy is affected by: Chill",
 	"mmorpg.stat_desc.health": "Increases your total hearts amount.",
-	"mmorpg.stat_desc.health_on_kill": "Restore Health Every time you kill a mob",
+	"mmorpg.stat_desc.health_on_kill": "Restore Maximum Health Every time you kill a mob",
 	"mmorpg.stat_desc.health_per_sec": "Restore % of your total per second.",
 	"mmorpg.stat_desc.health_regen": "Regen happens every few seconds but is also used for other stats or spells",
+	"mmorpg.stat_desc.hunger_immunity": "This effect can't apply to you.",
 	"mmorpg.stat_desc.increase_healing": "Increases all types of healing recieved like health regen, lifesteal, life on hit, spell heals etc",
 	"mmorpg.stat_desc.increased_quantity": "Increases Loot Drop amount",
 	"mmorpg.stat_desc.intelligence": "Increase Magic Shield and Mana.",
@@ -746,11 +753,14 @@
 	"mmorpg.stat_desc.mana_per_sec": "Restore % of your total per second.",
 	"mmorpg.stat_desc.mana_regen": "Regen happens every few seconds but is also used for other stats or spells",
 	"mmorpg.stat_desc.poison_bonus_dmg": "Increases dmg if enemy is affected by: Poison",
+	"mmorpg.stat_desc.poison_immunity": "This effect can't apply to you.",
+	"mmorpg.stat_desc.slow_immunity": "This effect can't apply to you.",
 	"mmorpg.stat_desc.spell_damage": "Increases DMG of all spells no matter the element",
 	"mmorpg.stat_desc.static_bonus_dmg": "Increases dmg if enemy is affected by: Static",
 	"mmorpg.stat_desc.strength": "Increases Physical Dmg and health",
 	"mmorpg.stat_desc.strength_flat_stat_req": "Alters stat requirements of this item.",
 	"mmorpg.stat_desc.weapon_damage": "Increases damage done if it was caused by that weapon",
+	"mmorpg.stat_desc.wither_immunity": "This effect can't apply to you.",
 
 "_comment": " [CATEGORY]: STATS - DESCRIPTIONS"
 

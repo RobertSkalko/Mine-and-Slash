@@ -1,5 +1,6 @@
 package com.robertx22.mine_and_slash.onevent.entity;
 
+import com.robertx22.mine_and_slash.database.stats.types.defense.ImmuneToEffectStat;
 import com.robertx22.mine_and_slash.potion_effects.bases.IOneOfATypePotion;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Load;
@@ -23,6 +24,20 @@ public class OnPotionChange {
 
         try {
             LivingEntity entity = event.getEntityLiving();
+
+            Load.Unit(entity)
+                .getUnit()
+                .getStats()
+                .values()
+                .forEach(x -> {
+                    if (x.GetStat() instanceof ImmuneToEffectStat) {
+                        ImmuneToEffectStat imm = (ImmuneToEffectStat) x.GetStat();
+                        if (x.getAverageValue() > 0) {
+                            imm.onPotionAdded(event.getPotionEffect()
+                                .getPotion(), entity);
+                        }
+                    }
+                });
 
             if (event.getPotionEffect()
                 .getPotion() instanceof IOneOfATypePotion) {

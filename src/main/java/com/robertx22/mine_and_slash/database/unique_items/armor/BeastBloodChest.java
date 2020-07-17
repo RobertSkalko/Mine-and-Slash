@@ -4,6 +4,7 @@ import com.robertx22.mine_and_slash.database.StatModifier;
 import com.robertx22.mine_and_slash.database.gearitemslots.bases.BaseGearType;
 import com.robertx22.mine_and_slash.database.gearitemslots.plate.IronChestplate;
 import com.robertx22.mine_and_slash.database.stats.types.core_stats.Strength;
+import com.robertx22.mine_and_slash.database.stats.types.defense.ImmuneToEffectStat;
 import com.robertx22.mine_and_slash.database.stats.types.loot.IncreasedItemQuantity;
 import com.robertx22.mine_and_slash.database.stats.types.reduced_req.FlatIncreasedReq;
 import com.robertx22.mine_and_slash.database.stats.types.resources.Health;
@@ -19,10 +20,11 @@ public class BeastBloodChest implements IUnique {
     @Override
     public List<StatModifier> uniqueStats() {
         return Arrays.asList(
-            new StatModifier(5, 25, Health.getInstance(), ModType.FLAT),
-            new StatModifier(1, 2, RegeneratePercentStat.HEALTH, ModType.FLAT),
-            new StatModifier(-10, -5, IncreasedItemQuantity.getInstance(), ModType.FLAT),
-            new StatModifier(1, 2, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
+            new StatModifier(5, 15, Health.getInstance(), ModType.FLAT),
+            new StatModifier(1, 1, RegeneratePercentStat.HEALTH, ModType.FLAT),
+            new StatModifier(1, 1, ImmuneToEffectStat.HUNGER, ModType.FLAT),
+            new StatModifier(-15, -5, IncreasedItemQuantity.getInstance(), ModType.FLAT),
+            new StatModifier(0.5F, 1, new FlatIncreasedReq(Strength.INSTANCE), ModType.FLAT)
         );
     }
 

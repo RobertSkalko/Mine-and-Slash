@@ -9,7 +9,6 @@ import com.robertx22.mine_and_slash.database.currency.loc_reqs.item_types.GearRe
 import com.robertx22.mine_and_slash.items.SimpleMatItem;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModItems;
-import com.robertx22.mine_and_slash.saveclasses.gearitem.gear_bases.IRerollable;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.GearItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Gear;
 import com.robertx22.mine_and_slash.uncommon.interfaces.IRenamed;
@@ -44,9 +43,8 @@ public class OrbOfUniqueBlessingItem extends CurrencyItem implements ICurrencyIt
 
         GearItemData gear = Gear.Load(stack);
 
-        for (IRerollable rel : gear.GetAllRerollable()) {
-            rel.RerollNumbers(gear);
-        }
+        gear.uniqueStats.RerollNumbers(gear);
+
         Gear.Save(stack, gear);
 
         return stack;

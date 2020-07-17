@@ -43,6 +43,8 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
         gearPrint.gearItemSlot.set(gear.gear_type);
         gearPrint.rarity.setSpecificRarity(IRarity.Magical);
 
+        gearPrint.isUniquePart.set(false);
+
         GearItemData newgear = gearPrint.createData();
         gear.WriteOverDataThatShouldStay(newgear);
 
@@ -80,7 +82,7 @@ public class OrbOfTransmutationItem extends CurrencyItem implements ICurrencyIte
 
     @Override
     public String locDescForLangFile() {
-        return "Transform Common Item";
+        return "Transform Common Item into Magical";
     }
 
     @Override
