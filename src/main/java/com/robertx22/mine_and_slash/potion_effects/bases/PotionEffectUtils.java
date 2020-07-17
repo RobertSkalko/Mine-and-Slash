@@ -45,6 +45,7 @@ public class PotionEffectUtils {
 
         EffectInstance newInstance = new EffectInstance(effect, duration, extraData.getStacks(), false, false, true);
 
+        // so it can recalc stats cus onpotion remoove/add
         if (instance == null) {
 
             extraData.casterID = caster.getUniqueID()
@@ -53,7 +54,6 @@ public class PotionEffectUtils {
 
             PotionDataSaving.saveData(newInstance, extraData);
 
-            target.addPotionEffect(newInstance);
         } else {
 
             if (instance.getDuration() > duration) {
@@ -68,9 +68,9 @@ public class PotionEffectUtils {
             PotionDataSaving.saveData(newInstance, extraData);
 
             target.removePotionEffect(effect); // HAVE TO REMOVE OR IT WONT ACTUALLY ADD CORRECTLY
-            target.addPotionEffect(newInstance); // so it can recalc stats cus onpotion remoove/add
 
         }
+        target.addPotionEffect(newInstance);
 
         //target.sendMessage(new SText("You have " + getStacks(target, effect) + " " + effect.GUID() + " stacks "));
 

@@ -5,7 +5,7 @@ import com.robertx22.mine_and_slash.database.rarities.GearRarity;
 import com.robertx22.mine_and_slash.database.rarities.base.BaseMagical;
 
 public class MagicalGear extends BaseMagical implements GearRarity {
-    MagicalGear() {
+    private MagicalGear() {
     }
 
     public static MagicalGear getInstance() {
@@ -64,7 +64,8 @@ public class MagicalGear extends BaseMagical implements GearRarity {
 
     @Override
     public int maxSockets() {
-        return new RareGear().maxAffixes() - this.maxAffixes();
+        return RareGear.getInstance()
+            .maxAffixes() - this.maxAffixes();
     }
 
     @Override

@@ -149,13 +149,13 @@ public class EntityFinder {
 
                 Vec3d l = Utilities.getEndOfLook(entity, distance);
 
-                double minX = x < l.x ? x : l.x;
-                double minY = y < l.y ? y : l.y;
-                double minZ = z < l.z ? z : l.z;
+                double minX = Math.min(x, l.x);
+                double minY = Math.min(y, l.y);
+                double minZ = Math.min(z, l.z);
 
-                double maxX = x > l.x ? x : l.x;
-                double maxY = y > l.y ? y : l.y;
-                double maxZ = z > l.z ? z : l.z;
+                double maxX = Math.max(x, l.x);
+                double maxY = Math.max(y, l.y);
+                double maxZ = Math.max(z, l.z);
 
                 AxisAlignedBB aabb = new AxisAlignedBB(minX - horizontal, minY - vertical, minZ - horizontal,
                     maxX + horizontal, maxY + vertical, maxZ + horizontal

@@ -327,7 +327,7 @@ public class Unit {
         return healthData().getAverageValue() - health().CurrentValue(en, this);
     }
 
-    class DirtyCheck {
+    private static class DirtyCheck {
         public int hp;
 
         public boolean isDirty(DirtyCheck newcheck) {
@@ -339,7 +339,6 @@ public class Unit {
             return false;
 
         }
-
     }
 
     /**

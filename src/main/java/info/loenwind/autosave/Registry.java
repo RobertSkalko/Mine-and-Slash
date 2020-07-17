@@ -50,7 +50,7 @@ public class Registry {
         // Java primitives
         GLOBAL_REGISTRY.register(new HandlePrimitive<Boolean>(false, Boolean.class, boolean.class, CompoundNBT::putBoolean, CompoundNBT::getBoolean));
         GLOBAL_REGISTRY.register(new HandlePrimitive<Character>((char) 0, Character.class, char.class, (nbt, name, c) -> nbt
-                .putInt(name, (int) c), (nbt, name) -> (char) nbt.getInt(name)));
+            .putInt(name, (int) c), (nbt, name) -> (char) nbt.getInt(name)));
         GLOBAL_REGISTRY.register(new HandlePrimitive<Byte>((byte) 0, Byte.class, byte.class, CompoundNBT::putByte, CompoundNBT::getByte));
         GLOBAL_REGISTRY.register(new HandlePrimitive<Short>((short) 0, Short.class, short.class, CompoundNBT::putShort, CompoundNBT::getShort));
         GLOBAL_REGISTRY.register(new HandlePrimitive<Integer>(0, Integer.class, int.class, CompoundNBT::putInt, CompoundNBT::getInt));
@@ -150,11 +150,11 @@ public class Registry {
         // double/Double
         // Reuse the long[] handler since we can just stream convert
         IHandler<double[]> doubleArrayHandler = new DelegatingHandler<>(double[].class, longArrayHandler, (doubleArr) -> Arrays
-                .stream(doubleArr)
-                .mapToLong(d -> Double.doubleToLongBits(d))
-                .toArray(), (longArr) -> Arrays.stream(longArr)
-                .mapToDouble(l -> Double.longBitsToDouble(l))
-                .toArray());
+            .stream(doubleArr)
+            .mapToLong(d -> Double.doubleToLongBits(d))
+            .toArray(), (longArr) -> Arrays.stream(longArr)
+            .mapToDouble(l -> Double.longBitsToDouble(l))
+            .toArray());
         GLOBAL_REGISTRY.register(doubleArrayHandler);
         GLOBAL_REGISTRY.register(new DelegatingHandler<>(Double[].class, doubleArrayHandler, ArrayUtils::toPrimitive, ArrayUtils::toObject));
 
@@ -267,14 +267,15 @@ public class Registry {
      */
 
     public List<IHandler> findHandlers(
-            Type type) throws InstantiationException, IllegalAccessException {
+        Type type) throws InstantiationException, IllegalAccessException {
         List<IHandler> result = new ArrayList<IHandler>();
 
         @Nonnull Class<?> clazz = TypeUtil.toClass(type);
         Storable annotation = clazz.getAnnotation(Storable.class);
         while (annotation != null) {
             if (annotation.handler() != HandleStorable.class) {
-                result.add(annotation.handler().newInstance());
+                result.add(annotation.handler()
+                    .newInstance());
             }
             Class<?> superclass = clazz.getSuperclass();
             if (superclass != null) {
@@ -290,12 +291,6 @@ public class Registry {
         return result;
     }
 
-    /**
-     * Helper method for {@link #findHandlers(Type)}. Looks up only registered handlers and adds them to the end of the given list.
-     *
-     * @param clazz
-     * @param result
-     */
     private void findRegisteredHandlers(Registry caller, Type type,
                                         List<IHandler> result) {
         for (IHandler handler : handlers) {

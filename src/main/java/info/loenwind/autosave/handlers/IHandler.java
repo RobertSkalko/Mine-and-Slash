@@ -37,12 +37,6 @@ public interface IHandler<T> {
         return TypeUtil.isAssignable(getRootType(), type) ? this : null;
     }
 
-    /**
-     * Utility method for simple handlers that handle a single class. Only used by
-     * {@link #getHandler(Type)}.
-     *
-     * @return The {@link #getClass()} this handler can handle.
-     */
     default Class<?> getRootType() {
         // Should be equivalent to null without being null. Nothing can extend, nor would use Void.
         return Void.class;
