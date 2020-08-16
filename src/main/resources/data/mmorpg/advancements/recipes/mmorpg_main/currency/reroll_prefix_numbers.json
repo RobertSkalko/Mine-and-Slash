@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mmorpg:currency/reroll_prefix_numbers"
+    ]
+  },
+  "criteria": {
+    "player_level": {
+      "trigger": "mmorpg:player_level",
+      "conditions": {
+        "level": 10
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mmorpg:currency/reroll_prefix_numbers"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "player_level",
+      "has_the_recipe"
+    ]
+  ]
+}

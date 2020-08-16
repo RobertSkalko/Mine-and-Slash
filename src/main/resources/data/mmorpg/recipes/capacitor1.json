@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#c#",
+    "ctc",
+    "#c#"
+  ],
+  "key": {
+    "#": {
+      "item": "mmorpg:mat/infused_iron"
+    },
+    "t": {
+      "item": "mmorpg:capacitor0"
+    },
+    "c": {
+      "item": "mmorpg:ore1"
+    }
+  },
+  "result": {
+    "item": "mmorpg:capacitor1"
+  }
+}

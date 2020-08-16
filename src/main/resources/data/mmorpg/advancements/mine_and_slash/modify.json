@@ -1,0 +1,35 @@
+{
+  "parent": "mmorpg:mine_and_slash/player_level_10",
+  "display": {
+    "icon": {
+      "item": "mmorpg:modify_station"
+    },
+    "title": {
+      "translate": "mmorpg.advancement.title.modifystation"
+    },
+    "description": {
+      "translate": "mmorpg.advancement.desc.modifystation"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "gained_modify": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mmorpg:modify_station"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "gained_modify"
+    ]
+  ]
+}

@@ -12,6 +12,7 @@ import com.robertx22.mine_and_slash.uncommon.capability.bases.BaseStorage;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.ICommonPlayerCap;
 import com.robertx22.mine_and_slash.uncommon.capability.bases.IPerkCap;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap;
+import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.base.LoadSave;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,8 +34,51 @@ public class PlayerTalentsCap {
     @CapabilityInject(IPlayerTalentsData.class)
     public static final Capability<IPlayerTalentsData> Data = null;
 
-    public abstract static class IPlayerTalentsData extends IPerkCap<Perk, PlayerTalentsData> implements ICommonPlayerCap {
+    public static abstract class IPlayerTalentsData extends IPerkCap<Perk, PlayerTalentsData> implements ICommonPlayerCap {
 
+    	PlayerTalentsData data = new PlayerTalentsData();
+
+        @Override
+        public CompoundNBT saveToNBT() {
+            CompoundNBT nbt = new CompoundNBT();
+            LoadSave.Save(data, nbt, LOC);
+            return nbt;
+        }
+        
+        @Override
+        public void loadFromNBT(CompoundNBT nbt) {
+            this.data = LoadSave.Load(PlayerTalentsData.class, new PlayerTalentsData(), nbt, LOC);
+
+            if (data == null) {
+                data = new PlayerTalentsData();
+            }
+        }
+
+        @Override
+        public PlayerCaps getCapType() {
+            return PlayerCaps.TALENTS;
+        }
+
+        public int getAllowedPoints(EntityCap.UnitData data) {
+            return (int) ((float) ModConfig.INSTANCE.Server.TALENT_POINTS_AT_MAX_LEVEL.get() / (float) ModConfig.INSTANCE.Server.MAXIMUM_PLAYER_LEVEL.get() * data.getLevel());
+        }
+
+        @Override
+        public void applyStats(EntityCap.UnitData data, PlayerEntity player) {
+            this.data.applyStats(data);
+        }
+
+        @Override
+        public PlayerTalentsData getAbilitiesData() {
+            return data;
+        }
+
+        public void allocate(Perk talent) {
+            this.getAbilitiesData()
+                .allocate(talent.GUID());
+        }
+
+    	
     }
 
     @Mod.EventBusSubscriber

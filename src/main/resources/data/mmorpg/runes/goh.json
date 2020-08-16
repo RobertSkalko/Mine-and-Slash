@@ -1,0 +1,28 @@
+{
+  "id": "goh",
+  "weight": 1000,
+  "rarity": 0,
+  "tier": 0,
+  "registry": "rune",
+  "is_unique": false,
+  "possible_weapon_stats": [
+    "energy_regen_flat"
+  ],
+  "possible_armor_stats": [
+    "armor_percent",
+    "dodge_flat"
+  ],
+  "possible_jewerly_stats": [
+    "spell_fire_damage_percent",
+    "spell_nature_damage_percent",
+    "spell_thunder_damage_percent",
+    "spell_water_damage_percent"
+  ],
+  "item_id_per_rarity": {
+    "0": "mmorpg:runes/goh/0",
+    "1": "mmorpg:runes/goh/1",
+    "2": "mmorpg:runes/goh/2",
+    "3": "mmorpg:runes/goh/3",
+    "4": "mmorpg:runes/goh/4"
+  }
+}

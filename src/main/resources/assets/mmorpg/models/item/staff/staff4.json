@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "mmorpg:items/staff/staff4"
-    }
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "mmorpg:items/staff/staff4"
+  }
 }

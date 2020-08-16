@@ -1,0 +1,20 @@
+{
+  "id": "psi",
+  "weight": 20000,
+  "rarity": 0,
+  "tier": 2,
+  "registry": "rune",
+  "is_unique": true,
+  "possible_weapon_stats": [
+    "high_critical_damage_flat"
+  ],
+  "possible_armor_stats": [
+    "high_critical_damage_flat"
+  ],
+  "possible_jewerly_stats": [
+    "high_critical_damage_flat"
+  ],
+  "item_id_per_rarity": {
+    "-1": "mmorpg:runes/uniques/psi"
+  }
+}

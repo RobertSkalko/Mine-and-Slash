@@ -1,0 +1,28 @@
+{
+  "id": "ano",
+  "weight": 1000,
+  "rarity": 0,
+  "tier": 0,
+  "registry": "rune",
+  "is_unique": false,
+  "possible_weapon_stats": [
+    "life_on_hit_flat",
+    "mana_on_hit_flat"
+  ],
+  "possible_armor_stats": [
+    "fire_penetration_flat",
+    "nature_penetration_flat",
+    "thunder_penetration_flat",
+    "water_penetration_flat"
+  ],
+  "possible_jewerly_stats": [
+    "mana_regen_flat"
+  ],
+  "item_id_per_rarity": {
+    "0": "mmorpg:runes/ano/0",
+    "1": "mmorpg:runes/ano/1",
+    "2": "mmorpg:runes/ano/2",
+    "3": "mmorpg:runes/ano/3",
+    "4": "mmorpg:runes/ano/4"
+  }
+}

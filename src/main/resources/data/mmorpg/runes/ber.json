@@ -1,0 +1,24 @@
+{
+  "id": "ber",
+  "weight": 1000,
+  "rarity": 0,
+  "tier": 0,
+  "registry": "rune",
+  "is_unique": false,
+  "possible_weapon_stats": [
+    "critical_hit_percent"
+  ],
+  "possible_armor_stats": [
+    "dodge_flat"
+  ],
+  "possible_jewerly_stats": [
+    "health_regen_percent"
+  ],
+  "item_id_per_rarity": {
+    "0": "mmorpg:runes/ber/0",
+    "1": "mmorpg:runes/ber/1",
+    "2": "mmorpg:runes/ber/2",
+    "3": "mmorpg:runes/ber/3",
+    "4": "mmorpg:runes/ber/4"
+  }
+}

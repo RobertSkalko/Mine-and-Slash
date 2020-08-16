@@ -1,6 +1,6 @@
 {
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "mmorpg:items/uniques/staff/nature_ele_staff0"
-    }
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "mmorpg:items/uniques/staff/nature_ele_staff0"
+  }
 }

@@ -9,8 +9,7 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath 'com.google.code.gson:gson:2.8.5'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'		
+        classpath 'com.google.code.gson:gson:2.8.5'	
     }
 }
 
@@ -21,7 +20,7 @@ plugins {
 
 
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'com.matthewprenger.cursegradle'
+apply plugin: 'eclipse'
 
 
 version = "${version_minecraft}-${mod_version}"
@@ -162,28 +161,4 @@ jar {
 task deobfJar(type: Jar) {
     classifier = 'deobf'
     from sourceSets.main.output
-}
-
-def myCurseRelatons = {
-    requiredLibrary 'curios'
-    optionalLibrary 'jei'
-}
-
-
-curseforge {
-
-    def curseProp = new Properties()
-    File secretPropsFile = file("key.properties")
-    curseProp.load(secretPropsFile.newInputStream())
-
-
-    project {
-        apiKey = curseProp.getProperty('curseKey')
-        id = "${curse_id}"
-        releaseType = "${curse_release}"
-        changelogType = 'text'
-        changelog = file('CHANGELOG.txt')
-        addGameVersion("Forge")
-        relations(myCurseRelatons)      
-    }
 }

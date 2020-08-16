@@ -1,0 +1,28 @@
+{
+  "id": "mos",
+  "weight": 1000,
+  "rarity": 0,
+  "tier": 0,
+  "registry": "rune",
+  "is_unique": false,
+  "possible_weapon_stats": [
+    "critical_damage_flat"
+  ],
+  "possible_armor_stats": [
+    "armor_flat",
+    "magic_shield_regen_flat"
+  ],
+  "possible_jewerly_stats": [
+    "fire_resist_flat",
+    "nature_resist_flat",
+    "thunder_resist_flat",
+    "water_resist_flat"
+  ],
+  "item_id_per_rarity": {
+    "0": "mmorpg:runes/mos/0",
+    "1": "mmorpg:runes/mos/1",
+    "2": "mmorpg:runes/mos/2",
+    "3": "mmorpg:runes/mos/3",
+    "4": "mmorpg:runes/mos/4"
+  }
+}

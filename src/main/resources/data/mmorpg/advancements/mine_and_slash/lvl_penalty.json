@@ -1,0 +1,31 @@
+{
+  "parent": "mmorpg:mine_and_slash/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:gunpowder"
+    },
+    "title": {
+      "translate": "mmorpg.advancement.title.levelpenalty"
+    },
+    "description": {
+      "translate": "mmorpg.advancement.desc.levelpenalty"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "mmorpg:mine_and_slash/lvl_penalty": {
+      "trigger": "mmorpg:drop_lvl_penalty_trigger",
+      "conditions": {
+        "level": 5
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mmorpg:mine_and_slash/lvl_penalty"
+    ]
+  ]
+}

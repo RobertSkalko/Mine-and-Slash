@@ -1,0 +1,27 @@
+{
+  "id": "dos",
+  "weight": 1000,
+  "rarity": 0,
+  "tier": 0,
+  "registry": "rune",
+  "is_unique": false,
+  "possible_weapon_stats": [
+    "physical_damage_percent"
+  ],
+  "possible_armor_stats": [
+    "fire_penetration_percent",
+    "nature_penetration_percent",
+    "thunder_penetration_percent",
+    "water_penetration_percent"
+  ],
+  "possible_jewerly_stats": [
+    "energy_regen_flat"
+  ],
+  "item_id_per_rarity": {
+    "0": "mmorpg:runes/dos/0",
+    "1": "mmorpg:runes/dos/1",
+    "2": "mmorpg:runes/dos/2",
+    "3": "mmorpg:runes/dos/3",
+    "4": "mmorpg:runes/dos/4"
+  }
+}

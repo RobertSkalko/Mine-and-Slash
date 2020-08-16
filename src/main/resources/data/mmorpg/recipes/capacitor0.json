@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#c#",
+    "ctc",
+    "#c#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "t": {
+      "item": "mmorpg:currency/orb_of_transmutation"
+    },
+    "c": {
+      "item": "mmorpg:ore0"
+    }
+  },
+  "result": {
+    "item": "mmorpg:capacitor0"
+  }
+}

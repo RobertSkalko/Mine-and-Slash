@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "mmorpg:items/uniques/bracelet/braceletsetdrop0"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mmorpg:items/uniques/bracelet/braceletsetdrop0"
+  }
 }
