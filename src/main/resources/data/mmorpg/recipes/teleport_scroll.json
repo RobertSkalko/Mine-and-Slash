@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "oo",
+    "bv"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:paper"
+    },
+    "v": {
+      "item": "minecraft:leather"
+    },
+    "o": {
+      "item": "mmorpg:ore3"
+    }
+  },
+  "result": {
+    "item": "mmorpg:teleport_scroll",
+    "count": 4
+  }
+}

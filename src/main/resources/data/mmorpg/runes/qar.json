@@ -1,0 +1,29 @@
+{
+  "id": "qar",
+  "weight": 10000,
+  "rarity": 0,
+  "tier": 3,
+  "registry": "rune",
+  "is_unique": true,
+  "possible_weapon_stats": [
+    "very_low_spell_fire_damage_flat",
+    "very_low_spell_nature_damage_flat",
+    "very_low_spell_thunder_damage_flat",
+    "very_low_spell_water_damage_flat"
+  ],
+  "possible_armor_stats": [
+    "very_low_spell_fire_damage_flat",
+    "very_low_spell_nature_damage_flat",
+    "very_low_spell_thunder_damage_flat",
+    "very_low_spell_water_damage_flat"
+  ],
+  "possible_jewerly_stats": [
+    "very_low_spell_fire_damage_flat",
+    "very_low_spell_nature_damage_flat",
+    "very_low_spell_thunder_damage_flat",
+    "very_low_spell_water_damage_flat"
+  ],
+  "item_id_per_rarity": {
+    "-1": "mmorpg:runes/uniques/qar"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#i#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "mmorpg:ore3"
+    },
+    "i": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "mmorpg:mat/crystallized_essence"
+  }
+}

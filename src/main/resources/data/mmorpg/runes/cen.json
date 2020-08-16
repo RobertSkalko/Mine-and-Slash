@@ -1,0 +1,28 @@
+{
+  "id": "cen",
+  "weight": 1000,
+  "rarity": 0,
+  "tier": 0,
+  "registry": "rune",
+  "is_unique": false,
+  "possible_weapon_stats": [
+    "critical_hit_flat"
+  ],
+  "possible_armor_stats": [
+    "health_percent",
+    "magic_shield_percent"
+  ],
+  "possible_jewerly_stats": [
+    "fire_penetration_flat",
+    "nature_penetration_flat",
+    "thunder_penetration_flat",
+    "water_penetration_flat"
+  ],
+  "item_id_per_rarity": {
+    "0": "mmorpg:runes/cen/0",
+    "1": "mmorpg:runes/cen/1",
+    "2": "mmorpg:runes/cen/2",
+    "3": "mmorpg:runes/cen/3",
+    "4": "mmorpg:runes/cen/4"
+  }
+}

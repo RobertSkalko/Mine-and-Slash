@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "mmorpg:items/currency/cheap_gear_lvl"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mmorpg:items/currency/cheap_gear_lvl"
+  }
 }

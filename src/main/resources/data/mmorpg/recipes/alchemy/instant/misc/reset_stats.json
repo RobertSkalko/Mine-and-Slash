@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#v#",
+    "vtv",
+    "cbc"
+  ],
+  "key": {
+    "#": {
+      "item": "mmorpg:mat/infused_iron"
+    },
+    "t": {
+      "item": "mmorpg:currency/add_secondary_stat"
+    },
+    "v": {
+      "item": "minecraft:gold_ingot"
+    },
+    "b": {
+      "item": "minecraft:glass_bottle"
+    },
+    "c": {
+      "item": "minecraft:coal"
+    }
+  },
+  "result": {
+    "item": "mmorpg:alchemy/instant/misc/reset_stats"
+  }
+}

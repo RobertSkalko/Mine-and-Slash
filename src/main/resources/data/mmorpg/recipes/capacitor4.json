@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#c#",
+    "ctc",
+    "#c#"
+  ],
+  "key": {
+    "#": {
+      "item": "mmorpg:mat/mythic_essence"
+    },
+    "t": {
+      "item": "mmorpg:capacitor3"
+    },
+    "c": {
+      "item": "mmorpg:currency/stone_of_hope"
+    }
+  },
+  "result": {
+    "item": "mmorpg:capacitor4"
+  }
+}

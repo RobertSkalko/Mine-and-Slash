@@ -1,0 +1,35 @@
+{
+  "parent": "mmorpg:mine_and_slash/repair",
+  "display": {
+    "icon": {
+      "item": "mmorpg:loot_bag"
+    },
+    "title": {
+      "translate": "mmorpg.advancement.title.lootbag"
+    },
+    "description": {
+      "translate": "mmorpg.advancement.desc.lootbag"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "gained_loot_bag": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mmorpg:loot_bag"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "gained_loot_bag"
+    ]
+  ]
+}

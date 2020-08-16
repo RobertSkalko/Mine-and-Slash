@@ -1,0 +1,44 @@
+{
+  "parent": "mmorpg:mine_and_slash/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:zombie_head"
+    },
+    "title": {
+      "extra": [
+        {
+          "text": ": "
+        },
+        {
+          "translate": "mmorpg.mob_rarity.legendary"
+        }
+      ],
+      "translate": "mmorpg.word.kill"
+    },
+    "description": {
+      "extra": [
+        {
+          "text": "10"
+        }
+      ],
+      "translate": "mmorpg.advancement.desc.mobrarityspawnat"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill_mob_rarity_4": {
+      "trigger": "mmorpg:kill_mob_rarity",
+      "conditions": {
+        "rarity": 4
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_mob_rarity_4"
+    ]
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cgc",
+    "vtv",
+    "cbc"
+  ],
+  "key": {
+    "t": {
+      "item": "mmorpg:currency/orb_of_transmutation"
+    },
+    "v": {
+      "item": "minecraft:iron_ingot"
+    },
+    "b": {
+      "item": "minecraft:glass_bottle"
+    },
+    "c": {
+      "item": "minecraft:coal"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "mmorpg:alchemy/instant/misc/remove_spell"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cvc",
+    "vtv",
+    "cbc"
+  ],
+  "key": {
+    "t": {
+      "item": "mmorpg:currency/orb_of_transmutation"
+    },
+    "v": {
+      "item": "minecraft:iron_nugget"
+    },
+    "b": {
+      "item": "minecraft:glass_bottle"
+    },
+    "c": {
+      "item": "minecraft:coal"
+    }
+  },
+  "result": {
+    "item": "mmorpg:alchemy/instant/misc/remove_talent"
+  }
+}

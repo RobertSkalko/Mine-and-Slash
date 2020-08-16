@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#c#",
+    "ctc",
+    "#c#"
+  ],
+  "key": {
+    "#": {
+      "item": "mmorpg:mat/crystallized_essence"
+    },
+    "t": {
+      "item": "mmorpg:capacitor2"
+    },
+    "c": {
+      "item": "mmorpg:ore3"
+    }
+  },
+  "result": {
+    "item": "mmorpg:capacitor3"
+  }
+}

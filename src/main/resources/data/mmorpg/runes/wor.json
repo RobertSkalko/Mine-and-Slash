@@ -1,0 +1,29 @@
+{
+  "id": "wor",
+  "weight": 375,
+  "rarity": 3,
+  "tier": 5,
+  "registry": "rune",
+  "is_unique": true,
+  "possible_weapon_stats": [
+    "fire_focus_flat",
+    "nature_focus_flat",
+    "thunder_focus_flat",
+    "water_focus_flat"
+  ],
+  "possible_armor_stats": [
+    "fire_focus_flat",
+    "nature_focus_flat",
+    "thunder_focus_flat",
+    "water_focus_flat"
+  ],
+  "possible_jewerly_stats": [
+    "fire_focus_flat",
+    "nature_focus_flat",
+    "thunder_focus_flat",
+    "water_focus_flat"
+  ],
+  "item_id_per_rarity": {
+    "-1": "mmorpg:runes/uniques/wor"
+  }
+}

@@ -1,6 +1,6 @@
 {
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "mmorpg:items/uniques/staff/uniquestafffire0"
-    }
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "mmorpg:items/uniques/staff/uniquestafffire0"
+  }
 }

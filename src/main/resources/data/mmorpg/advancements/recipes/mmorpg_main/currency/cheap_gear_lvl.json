@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mmorpg:currency/cheap_gear_lvl"
+    ]
+  },
+  "criteria": {
+    "player_level": {
+      "trigger": "mmorpg:player_level",
+      "conditions": {
+        "level": 10
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mmorpg:currency/cheap_gear_lvl"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "player_level",
+      "has_the_recipe"
+    ]
+  ]
+}

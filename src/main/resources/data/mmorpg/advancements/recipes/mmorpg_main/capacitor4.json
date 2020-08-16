@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mmorpg:capacitor4"
+    ]
+  },
+  "criteria": {
+    "player_level": {
+      "trigger": "mmorpg:player_level",
+      "conditions": {
+        "level": 5
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mmorpg:capacitor4"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "player_level",
+      "has_the_recipe"
+    ]
+  ]
+}

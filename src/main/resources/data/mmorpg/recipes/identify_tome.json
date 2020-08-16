@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "oo",
+    "bv"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:book"
+    },
+    "v": {
+      "item": "minecraft:coal"
+    },
+    "o": {
+      "item": "mmorpg:ore2"
+    }
+  },
+  "result": {
+    "item": "mmorpg:identify_tome",
+    "count": 8
+  }
+}

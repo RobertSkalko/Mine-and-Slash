@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "mmorpg:teleport_scroll"
+    ]
+  },
+  "criteria": {
+    "player_level": {
+      "trigger": "mmorpg:player_level",
+      "conditions": {
+        "level": 1
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "mmorpg:teleport_scroll"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "player_level",
+      "has_the_recipe"
+    ]
+  ]
+}
