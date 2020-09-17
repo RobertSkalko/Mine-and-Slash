@@ -3,11 +3,14 @@ package com.robertx22.mine_and_slash.config.forge;
 import com.robertx22.mine_and_slash.a_libraries.neat_mob_overlay.NeatConfig;
 import com.robertx22.mine_and_slash.config.forge.parts.DmgParticleConfig;
 import com.robertx22.mine_and_slash.uncommon.enumclasses.PlayerGUIs;
+import com.robertx22.mine_and_slash.mmorpg.Ref;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
+import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.tuple.Pair;
 
+@Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientContainer {
 
     public static final String NAME = "CLIENT";
@@ -37,7 +40,55 @@ public class ClientContainer {
     public ForgeConfigSpec.IntValue LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
     public ForgeConfigSpec.IntValue RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST;
 
+    public ForgeConfigSpec.IntValue AZURE_X_POS_ADJUST;
+    public ForgeConfigSpec.IntValue AZURE_Y_POS_ADJUST;
+
+    public ForgeConfigSpec.IntValue BMC_LEFT_Y_POS_ADJUST;
+    public ForgeConfigSpec.IntValue BMC_LEFT_X_POS_ADJUST;
+    public ForgeConfigSpec.IntValue BMC_RIGHT_Y_POS_ADJUST;
+    public ForgeConfigSpec.IntValue BMC_RIGHT_X_POS_ADJUST;
+    
+    public ForgeConfigSpec.IntValue MIDDLE_Y_POS_ADJUST;
+    
+    public ForgeConfigSpec.IntValue TOPLEFT_X_POS_ADJUST;
+    public ForgeConfigSpec.IntValue TOPLEFT_Y_POS_ADJUST;
+
     public EnumValue<PlayerGUIs> PLAYER_GUI_TYPE;
+
+    public static int AzureXAdjust;
+    public static int AzureYAdjust;
+
+    public static int BMCLeftXAdjust;
+    public static int BMCLeftYAdjust;
+    public static int BMCRightXAdjust;
+    public static int BMCRightYAdjust;
+
+    public static int MiddleYAdjust;
+
+    public static int TopLeftXAdjust;
+    public static int TopLeftYAdjust;
+
+	@SubscribeEvent
+	public static void onModConfigEvent(final ModConfig.ModConfigEvent configEvent) {
+		if (configEvent.getConfig().getSpec() == ClientContainer.spec) {
+			bakeConfig();
+		}
+	}
+
+	public static void bakeConfig() {
+        AzureXAdjust = INSTANCE.AZURE_X_POS_ADJUST.get();
+        AzureYAdjust = INSTANCE.AZURE_Y_POS_ADJUST.get();
+
+        BMCLeftXAdjust = INSTANCE.BMC_LEFT_X_POS_ADJUST.get();
+        BMCLeftYAdjust = INSTANCE.BMC_LEFT_Y_POS_ADJUST.get();
+        BMCRightXAdjust = INSTANCE.BMC_RIGHT_X_POS_ADJUST.get();
+        BMCRightYAdjust = INSTANCE.BMC_RIGHT_Y_POS_ADJUST.get();
+
+        MiddleYAdjust = INSTANCE.MIDDLE_Y_POS_ADJUST.get();
+
+        TopLeftXAdjust = INSTANCE.TOPLEFT_X_POS_ADJUST.get();
+        TopLeftYAdjust = INSTANCE.TOPLEFT_Y_POS_ADJUST.get();
+	}
 
     ClientContainer(ForgeConfigSpec.Builder builder) {
         builder.comment("Client Settings")
@@ -87,58 +138,42 @@ public class ClientContainer {
         builder.comment("Azure Top Left Settings")
             .push("Azure Bars");
 
-        AZURE_Y_POS_ADJUST = builder.comment(".")
-            .defineInRange("AZURE_Y_POS_ADJUST", 0, -10000, 10000);
-        AZURE_X_POS_ADJUST = builder.comment(".")
-            .defineInRange("AZURE_X_POS_ADJUST", 0, -10000, 10000);
+        AZURE_Y_POS_ADJUST = builder.comment("Adjusts All Bars Downwards")
+            .defineInRange("AZURE_Y_POS_ADJUST", 0, 0, 10000);
+        AZURE_X_POS_ADJUST = builder.comment("Adjusts All Bars Rightwards")
+            .defineInRange("AZURE_X_POS_ADJUST", 0, 0, 10000);
 
         builder.pop();
 
         builder.comment("Bottom Middle Corner Bar Settings")
             .push("Bottom Middle Corner Bars");
 
-        BMC_LEFT_Y_POS_ADJUST = builder.comment(".")
-            .defineInRange("BMC_LEFT_Y_POS_ADJUST", 0, -10000, 10000);
-        BMC_LEFT_X_POS_ADJUST = builder.comment(".")
-            .defineInRange("BMC_LEFT_X_POS_ADJUST", 0, -10000, 10000);
-        BMC_RIGHT_Y_POS_ADJUST = builder.comment(".")
-            .defineInRange("BMC_RIGHT_Y_POS_ADJUST", 0, -10000, 10000);
-        BMC_RIGHT_X_POS_ADJUST = builder.comment(".")
-            .defineInRange("BMC_RIGHT_X_POS_ADJUST", 0, -10000, 10000);
-
-        builder.pop();
-
-        builder.comment("Bottom Middle Bar Settings")
-            .push("Bottom Middle Bars");
-
-        BM_LEFT_Y_POS_ADJUST = builder.comment(".")
-            .defineInRange("BM_LEFT_Y_POS_ADJUST", 0, -10000, 10000);
-        BM_LEFT_X_POS_ADJUST = builder.comment(".")
-            .defineInRange("BM_LEFT_X_POS_ADJUST", 0, -10000, 10000);
-        BM_RIGHT_Y_POS_ADJUST = builder.comment(".")
-            .defineInRange("BM_RIGHT_Y_POS_ADJUST", 0, -10000, 10000);
-        BM_RIGHT_X_POS_ADJUST = builder.comment(".")
-            .defineInRange("BM_RIGHT_X_POS_ADJUST", 0, -10000, 10000);
+        BMC_LEFT_Y_POS_ADJUST = builder.comment("Adjusts HP/XP Upwards")
+            .defineInRange("BMC_LEFT_Y_POS_ADJUST", 0, 0, 10000);
+        BMC_LEFT_X_POS_ADJUST = builder.comment("Adjusts HP/XP Leftwards")
+            .defineInRange("BMC_LEFT_X_POS_ADJUST", 0, 0, 10000);
+        BMC_RIGHT_Y_POS_ADJUST = builder.comment("Adjusts Mana/Energy Upwards")
+            .defineInRange("BMC_RIGHT_Y_POS_ADJUST", 0, 0, 10000);
+        BMC_RIGHT_X_POS_ADJUST = builder.comment("Adjusts Mana/Energy Rightwards")
+            .defineInRange("BMC_RIGHT_X_POS_ADJUST", 0, 0, 10000);
 
         builder.pop();
 
         builder.comment("Middle Bar Settings")
             .push("Middle Bars");
 
-        MIDDLE_Y_POS_ADJUST = builder.comment(".")
-            .defineInRange("MIDDLE_Y_POS_ADJUST", 0, -10000, 10000);
-        MIDDLE_X_POS_ADJUST = builder.comment(".")
-            .defineInRange("MIDDLE_X_POS_ADJUST", 0, -10000, 10000);
+        MIDDLE_Y_POS_ADJUST = builder.comment("Adjusts All Bars Upwards")
+            .defineInRange("MIDDLE_Y_POS_ADJUST", 0, 0, 10000);
 
         builder.pop();
 
         builder.comment("Top Left Settings")
             .push("Top Left Bars");
 
-        TOP_LEFT_Y_POS_ADJUST = builder.comment(".")
-            .defineInRange("TOP_LEFT_Y_POS_ADJUST", 0, -10000, 10000);
-        TOP_LEFT_X_POS_ADJUST = builder.comment(".")
-            .defineInRange("TOP_LEFT_X_POS_ADJUST", 0, -10000, 10000);
+        TOPLEFT_Y_POS_ADJUST = builder.comment("Adjusts All Bars Downwards")
+            .defineInRange("TOPLEFT_Y_POS_ADJUST", 0, 0, 10000);
+        TOPLEFT_X_POS_ADJUST = builder.comment("Adjusts All Bars Rightwards")
+            .defineInRange("TOPLEFT_X_POS_ADJUST", 0, 0, 10000);
 
         builder.pop();
 
@@ -146,9 +181,9 @@ public class ClientContainer {
             .push("Vanilla Bars");
 
         LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST = builder.comment(".")
-            .defineInRange("LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, -10000, 10000);
+            .defineInRange("LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, 0, 10000);
         RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST = builder.comment(".")
-            .defineInRange("RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, -10000, 10000);
+            .defineInRange("RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, 0, 10000);
 
         builder.pop();
     }

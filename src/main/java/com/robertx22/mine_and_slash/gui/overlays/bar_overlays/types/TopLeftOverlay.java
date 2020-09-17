@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.gui.overlays.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.gui.overlays.bar_overlays.bases.BaseBarsOverlay;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import net.minecraft.client.Minecraft;
@@ -9,13 +10,13 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class TopLeftOverlay extends BaseBarsOverlay {
-    int xPos = 2;
-    int yPos = 2;
+    int xPos = 2 + ClientContainer.TopLeftXAdjust;
+    int yPos = 2 + ClientContainer.TopLeftYAdjust;
 
     @Override
     public void Draw(AbstractGui gui, Minecraft mc, LivingEntity entity, RenderGameOverlayEvent event, UnitData data) {
 
-        yPos = 2;
+        yPos = 2 + ClientContainer.TopLeftYAdjust;
 
         float scale = 1F;
 
