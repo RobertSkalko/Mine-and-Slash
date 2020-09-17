@@ -54,9 +54,9 @@ public class ArrowStormSpell extends BaseSpell {
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
 
-        c.set(SC.MANA_COST, 30, 60);
+        c.set(SC.MANA_COST, 25, 40);
         c.set(SC.BASE_VALUE, 2, 8);
-        c.set(SC.ATTACK_SCALE_VALUE, 0.1F, 0.3F);
+        c.set(SC.ATTACK_SCALE_VALUE, 0.4F, 0.6F);
         c.set(SC.CAST_TIME_TICKS, 40, 20);
         c.set(SC.COOLDOWN_SECONDS, 120, 60);
         c.set(SC.TICK_RATE, 15, 5);

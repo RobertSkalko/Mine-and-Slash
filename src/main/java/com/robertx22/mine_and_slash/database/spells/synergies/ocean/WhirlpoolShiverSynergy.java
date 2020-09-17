@@ -66,6 +66,6 @@ public class WhirlpoolShiverSynergy extends OnDamageDoneSynergy {
 
     @Override
     public String locNameForLangFile() {
-        return "Shiver pool";
+        return "Shiver Pool";
     }
 }

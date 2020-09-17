@@ -27,8 +27,8 @@ public class ThornArmorThornsSynergy extends OnBasicAttackSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Attacking has a  "));
-        list.add(new StringTextComponent("% chance of applying effect."));
+        list.add(new StringTextComponent("Attacking has a chance"));
+        list.add(new StringTextComponent("of applying effect:"));
 
         list.addAll(ThornsEffect.INSTANCE.GetTooltipStringWithNoExtraSpellInfo(info));
 
@@ -57,7 +57,7 @@ public class ThornArmorThornsSynergy extends OnBasicAttackSynergy {
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
-        c.set(SC.CHANCE, 10, 30);
+        c.set(SC.CHANCE, 15, 33);
         c.setMaxLevel(6);
         return c;
     }

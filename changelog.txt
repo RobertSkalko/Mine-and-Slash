@@ -1,16 +1,80 @@
-3.6.15
-* map portals now take less time to break
-* dmg numbers now show all elements 
-* changed hud render to not break if experience isn't rendered.
-* small perf improvement for auto config items
-* most spells now swing arm
-* fix entity configs not clamping correctly if dimension is set to scale mob lvl to player
-* fix imbue synergy not giving hunter stacks
-* added minion mob rarity (for boss summons so they dont drop loot)
-* fixed the "Tried to load a block entity for block Block{minecraft:air}" spam
-* fix skill damage stats not working (this sounds really dumb but i forgot to make them work differently after reworking the spell system, leaving them as dummy stats,
+3.6.16
+
+General Changes:
+* Map portals now take less time to break.
+* Damage numbers now show all elements.
+* Changed hud render to not break if experience isn't rendered.
+* Small perf improvement for auto config items.
+* Fix entity configs not clamping correctly if dimension is set to scale mob level to player.
+* Added minion mob rarity (for boss summons so they dont drop loot).
+* Fixed the "Tried to load a block entity for block Block{minecraft:air}" spam.
+* Strength now increases elemental attack damage instead of all ele dmg, intelligence same but increases all elemental spell damage.
+* Updated the text of some core stats to match what they actually gave.
+* Fixed the formatting of the skill names so they're all capitalized properly.
+* Dexterity gives 25% less critical hit per point compared to before.
+* Fixed option to adjust position of gui in the config.
+
+All Spells:
+* Increased projectile speed of all spells (except hunting spells) by 100%.
+* Increased radius of totem and flower spells by 100%.
+* Most spells now swing arm.
+* Fix skill damage stats not working (this sounds really dumb but i forgot to make them work differently after reworking the spell system, leaving them as dummy stats,
 it doesn't help that i didn't have time to play test my mod)
-* strength now increases elemental attack damage instead of all ele dmg, intelligence same but increases all elemental spell damage.
+
+Divine Tree:
+* Switched positions of Bravery and Wizardry.
+* Bravery now grants 50% more armor and 20% more health regen than previously.
+* Trickery now grants 40% less energy regen than previously.
+* Wizardry now grants 40% less mana regen than previously.
+* Bravery and Wizardry stat bonuses have been increased to be more in line with Trickery.
+* Increased cast time of Divine Buffs from 1.5s -> 1s to 2s -> 3s.
+* Reduced cooldown of Divine Buffs from 360s -> 300s to 60s -> 30s.
+* Increased duration of Divine Buffs from 30s -> 60s to 60s -> 90s.
+* Increased radius of Divine Buffs from 3 -> 4 to 6 -> 8.
+* Increased base value of Healing Aura from 6 -> 30 to 8 -> 40.
+* Reduced cooldown of Healing Aura from 60s -> 30s to 40s -> 20s.
+* Increased radius of Healing Aura from 2 -> 3.5 to 3 -> 5.
+* Increased base value of Holy Flower from 5 -> 30 to 6 -> 36.
+* Reduced cooldown of Holy Flower from 120s -> 60s to 90s -> 45s.
+* Reduced mana cost of Purifying Flames from 5 -> 18 to 5 -> 16.
+* Reduced base value of Purifying Flames from 5 -> 15 to 2 -> 7.
+* Increased attack scaling of Purifying Flames from 0.1 -> 1 to 0.5 -> 1.1.
+
+Fire Tree:
+* Increased radius of Blazing Inferno from 2 -> 4 to 3 -> 5.
+* Increased attack scaling of Throw Flames from 0.1 -> 0.5 to 0.3 -> 0.5.
+* Increased shoot speed of Throw Flames from 0.3 -> 0.5 to 0.45 -> 0.75.
+* Increased radius of Volcano from 2.5 -> 3.5 to 3.0 -> 5.0.
+
+Hunting Tree:
+* Increased projectile speed of all Hunting Spells by 150%.
+* Increased attack scaling of Arrow Barrage from 0.1. -> 0.3 to 0.4 -> 0.6.
+* Increased attack scaling of Arrow Storm from 0.1. -> 0.3 to 0.4 -> 0.6.
+* Fix Imbue synergy not giving Hunting Instinct stacks.
+* Reduced duration of Imbue from 30s -> 45s to 15s -> 25s.
+* Increased attack scaling of Wide Shot from 0.2. -> 0.75 to 0.8 -> 1.4.
+* Increased attack scaling of Recoil Shot from 0.1. -> 1.2 to 0.4 -> 1.25.
+
+Nature Tree:
+* Increased cooldown of Nature Balm from 45s -> 25s to 60s -> 45s.
+* Reduced duration of Nature Balm from 45s -> 75s to 15s -> 25s. (pretty sure this was a typo)
+* Increased base value of Nature Balm from 4 -> 15 to 5 -> 18.
+* Increased radius of Spread Balm synergy from 1 -> 3.5 to 3 -> 5.
+* Doubled the effectiveness of Thorn Armor.
+* Increased proc chance of Thorny Armor synergy from 10 -> 30 to 15 -> 33.
+* Increased duration of Thorns effect from 3s -> 6s to 4s -> 7s.
+
+Ocean Tree:
+* Increased radius of Blizzard from 3 -> 4 to 4 -> 6.
+* Reduced base value of Heart of Ice from 50 -> 200 to 40 -> 200.
+* Increased attack scaling of Tidal Wave from 5% -> 30% to 15% -> 30%.
+* Increased shoot speed of Tidal Wave from 0.6 -> 0.9 to 0.8 -> 1.2.
+* Increased shoot speed of Whirlpool from 0.6 -> 0.9 to 0.8 -> 1.2.
+* Increased radius of Whirlpool from 3 -> 4 to 4 -> 6.
+
+Storm Tree:
+* Increased duration of Lightning Totem from 5s -> 8s to 10s -> 15s.
+* Increased radius of Thunderstorm from 2.5 -> 4 to 3 -> 6.
 
 3.6.14
 * fix divine buffs expiring randomly after a few seconds

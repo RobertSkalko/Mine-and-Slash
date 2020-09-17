@@ -24,7 +24,7 @@ public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Chance to give: " + HunterInstinctEffect.getInstance()
+        list.add(new StringTextComponent("Gives: " + HunterInstinctEffect.getInstance()
             .locNameForLangFile()));
 
         return list;
@@ -66,6 +66,6 @@ public class RecoilAddHunterSynergy extends OnDamageDoneSynergy {
 
     @Override
     public String locNameForLangFile() {
-        return "Recoil of the hunter";
+        return "Recoil of the Hunter";
     }
 }

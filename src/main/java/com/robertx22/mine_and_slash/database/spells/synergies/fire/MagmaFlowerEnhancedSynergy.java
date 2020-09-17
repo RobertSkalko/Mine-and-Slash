@@ -21,7 +21,7 @@ public class MagmaFlowerEnhancedSynergy extends Synergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Increases tickrate and radius"));
+        list.add(new StringTextComponent("Increases tick rate and radius"));
 
         return list;
     }

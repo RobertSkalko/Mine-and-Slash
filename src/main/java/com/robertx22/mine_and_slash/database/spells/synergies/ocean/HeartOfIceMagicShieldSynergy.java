@@ -24,7 +24,7 @@ public class HeartOfIceMagicShieldSynergy extends OnSpellCastSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Heals magic shield too"));
+        list.add(new StringTextComponent("Restores magic shield to caster:"));
 
         list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 

@@ -32,7 +32,7 @@ public class Dexterity extends BaseCoreStat {
 
     @Override
     public String locDescForLangFile() {
-        return "Increases Crit Hit, Dodge and Armor";
+        return "Increases Critical Hit, Dodge, Armor";
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Dexterity extends BaseCoreStat {
 
     @Override
     public List<StatMod> statsThatBenefit() {
-        return Arrays.asList(new CriticalHitFlat(), new DodgeRatingFlat(), new ArmorFlat());
+        return Arrays.asList(new CriticalHitFlat().size(StatMod.Size.LOW), new DodgeRatingFlat(), new ArmorFlat());
     }
 
     @Override

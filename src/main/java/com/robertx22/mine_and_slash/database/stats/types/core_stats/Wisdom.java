@@ -31,7 +31,7 @@ public class Wisdom extends BaseCoreStat {
 
     @Override
     public String locDescForLangFile() {
-        return "Increases Both Mana, Magic Shield Regens and elemental resists";
+        return "Increases Magic Shield, Magic Shield Regen, All Elemental Resists";
     }
 
     @Override

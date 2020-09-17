@@ -59,12 +59,12 @@ public class HolyFlowerSpell extends BaseSpell {
         PreCalcSpellConfigs c = new PreCalcSpellConfigs();
         c.set(SC.MANA_COST, 10, 20);
         c.set(SC.PROJECTILE_COUNT, 1, 1);
-        c.set(SC.SHOOT_SPEED, 0.4F, 0.6F);
-        c.set(SC.BASE_VALUE, 5, 30);
+        c.set(SC.SHOOT_SPEED, 0.8F, 1.2F);
+        c.set(SC.BASE_VALUE, 6, 36);
         c.set(SC.CAST_TIME_TICKS, 0, 0);
-        c.set(SC.COOLDOWN_SECONDS, 120, 60);
+        c.set(SC.COOLDOWN_SECONDS, 90, 45);
         c.set(SC.TICK_RATE, 30, 20);
-        c.set(SC.RADIUS, 2F, 3);
+        c.set(SC.RADIUS, 4F, 6);
         c.set(SC.DURATION_TICKS, 80, 100);
 
         c.setMaxLevel(12);

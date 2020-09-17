@@ -55,12 +55,12 @@ public class WhirlpoolSpell extends BaseSpell {
 
         c.set(SC.MANA_COST, 15, 30);
         c.set(SC.BASE_VALUE, 4, 10);
-        c.set(SC.SHOOT_SPEED, 0.6F, 0.9F);
+        c.set(SC.SHOOT_SPEED, 0.8F, 1.2F);
         c.set(SC.PROJECTILE_COUNT, 1, 1);
         c.set(SC.CAST_TIME_TICKS, 30, 20);
         c.set(SC.COOLDOWN_SECONDS, 100, 60);
         c.set(SC.TICK_RATE, 30, 20);
-        c.set(SC.RADIUS, 3, 4);
+        c.set(SC.RADIUS, 4, 6);
         c.set(SC.DURATION_TICKS, 80, 100);
 
         c.setMaxLevel(12);

@@ -51,7 +51,7 @@ public class BraverySpell extends BaseDivineBuffSpell {
 
     @Override
     public AbilityPlace getAbilityPlace() {
-        return new AbilityPlace(7, 0);
+        return new AbilityPlace(5, 0);
     }
 
     private static class SingletonHolder {

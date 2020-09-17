@@ -32,7 +32,7 @@ public class Stamina extends BaseCoreStat {
 
     @Override
     public String locDescForLangFile() {
-        return "Increases Energy, Energy Regen, Armor and Armor Percent";
+        return "Increases Energy, Energy Regen, Armor, Armor Percent";
     }
 
     @Override

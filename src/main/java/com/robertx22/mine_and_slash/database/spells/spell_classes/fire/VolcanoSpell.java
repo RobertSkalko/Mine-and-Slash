@@ -57,7 +57,7 @@ public class VolcanoSpell extends BaseSpell {
         c.set(SC.BASE_VALUE, 4, 12);
         c.set(SC.CAST_TIME_TICKS, 60, 40);
         c.set(SC.COOLDOWN_SECONDS, 120, 60);
-        c.set(SC.RADIUS, 2.5F, 3.5F);
+        c.set(SC.RADIUS, 3.0F, 5.0F);
         c.set(SC.DURATION_TICKS, 80, 100);
         c.set(SC.TICK_RATE, 20, 15);
 

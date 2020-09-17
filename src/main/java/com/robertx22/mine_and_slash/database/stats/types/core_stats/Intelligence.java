@@ -32,7 +32,7 @@ public class Intelligence extends BaseCoreStat {
 
     @Override
     public String locDescForLangFile() {
-        return "Increase Magic Shield percent, Mana Regen and Mana and All Elemental damage";
+        return "Increase Mana Regen, Mana, Elemental Spell DMG";
     }
 
     @Override

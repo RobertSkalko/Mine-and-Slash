@@ -89,6 +89,6 @@ public class PoisonedWeaponsThornsSynergy extends OnBasicAttackSynergy {
 
     @Override
     public String locNameForLangFile() {
-        return "Poison thorn seeker";
+        return "Poison Thorn Seeker";
     }
 }

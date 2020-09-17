@@ -67,6 +67,6 @@ public class FrostballFrostEssenceGenSynergy extends OnDamageDoneSynergy {
 
     @Override
     public String locNameForLangFile() {
-        return "Cold Essence creation";
+        return "Cold Essence Creation";
     }
 }

@@ -64,7 +64,7 @@ public class SpearOfJudgementSpell extends BaseSpell {
         c.set(SC.CAST_TIME_TICKS, 0, 0);
         c.set(SC.COOLDOWN_SECONDS, 120, 60);
         c.set(SC.TIMES_TO_CAST, 1, 1);
-        c.set(SC.SHOOT_SPEED, 0.9F, 1.5F);
+        c.set(SC.SHOOT_SPEED, 1.8F, 3.0F);
         c.set(SC.DURATION_TICKS, 80, 100);
         c.set(SC.PROJECTILE_COUNT, 1, 1);
         c.set(SC.TICK_RATE, 10, 10);
