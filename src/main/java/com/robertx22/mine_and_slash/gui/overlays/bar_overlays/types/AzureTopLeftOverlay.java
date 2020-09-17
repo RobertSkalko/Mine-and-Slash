@@ -1,6 +1,7 @@
 package com.robertx22.mine_and_slash.gui.overlays.bar_overlays.types;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.robertx22.mine_and_slash.config.forge.ClientContainer;
 import com.robertx22.mine_and_slash.saveclasses.Unit;
 import com.robertx22.mine_and_slash.uncommon.capability.entity.EntityCap.UnitData;
 import com.robertx22.mine_and_slash.uncommon.utilityclasses.NumberUtils;
@@ -14,8 +15,8 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import java.awt.*;
 
 public class AzureTopLeftOverlay {
-    int xPos = 2;
-    int yPos = 4;
+    int xPos = 2 + ClientContainer.AzureXAdjust;
+    int yPos = 4 + ClientContainer.AzureYAdjust;
 
     public final ResourceLocation azuremanatexturepath = new ResourceLocation(
         "mmorpg", "textures/gui/overlay/mana_bar_azure.png");
@@ -133,35 +134,35 @@ public class AzureTopLeftOverlay {
 
         Unit unit = data.getUnit();
 
-        yPos = 2;
+        yPos = 2 + ClientContainer.AzureYAdjust;
 
         float scale = 1F;
 
         RenderSystem.scalef(scale, scale, scale);
 
-        xPos = 3;
-        yPos = 1;
+        xPos = 3 + ClientContainer.AzureXAdjust;
+        yPos = 1 + ClientContainer.AzureYAdjust;
         DrawUI(mc, gui, azurehudtexturepath, Type.LVL, data, xPos, yPos);
 
-        xPos = 59;
-        yPos = 4;
+        xPos = 59 + ClientContainer.AzureXAdjust;
+        yPos = 4 + ClientContainer.AzureYAdjust;
         DrawBar(mc, gui, azurehealthtexturepath, unit.health()
                 .CurrentValue(mc.player, unit), unit.healthData()
                 .getAverageValue(),
             Type.HP, data, xPos, yPos
         );
-        xPos = 59;
+        xPos = 59 + ClientContainer.AzureXAdjust;
         yPos += 11;
 
         DrawBar(mc, gui, azuremanatexturepath, data.getCurrentMana(), unit.manaData()
             .getAverageValue(), Type.MANA, data, xPos, yPos);
-        xPos = 59;
+        xPos = 59 + ClientContainer.AzureXAdjust;
         yPos += 11;
         DrawBar(mc, gui, azureenergytexturepath, data.getCurrentEnergy(), unit.energyData()
                 .getAverageValue(), Type.ENE, data, xPos,
             yPos
         );
-        xPos = 59;
+        xPos = 59 + ClientContainer.AzureXAdjust;
         yPos += 11;
         DrawBar(mc, gui, azureexperiencetexturepath, data.getExp(), data.getExpRequiredForLevelUp(), Type.EXP, data,
             xPos, yPos
