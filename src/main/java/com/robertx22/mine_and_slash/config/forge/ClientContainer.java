@@ -8,6 +8,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.EnumValue;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.apache.commons.lang3.tuple.Pair;
 
 @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -43,10 +45,10 @@ public class ClientContainer {
     public ForgeConfigSpec.IntValue AZURE_X_POS_ADJUST;
     public ForgeConfigSpec.IntValue AZURE_Y_POS_ADJUST;
 
-    public ForgeConfigSpec.IntValue BMC_LEFT_Y_POS_ADJUST;
     public ForgeConfigSpec.IntValue BMC_LEFT_X_POS_ADJUST;
-    public ForgeConfigSpec.IntValue BMC_RIGHT_Y_POS_ADJUST;
+    public ForgeConfigSpec.IntValue BMC_LEFT_Y_POS_ADJUST;
     public ForgeConfigSpec.IntValue BMC_RIGHT_X_POS_ADJUST;
+    public ForgeConfigSpec.IntValue BMC_RIGHT_Y_POS_ADJUST;
     
     public ForgeConfigSpec.IntValue MIDDLE_Y_POS_ADJUST;
     
@@ -139,23 +141,23 @@ public class ClientContainer {
             .push("Azure Bars");
 
         AZURE_Y_POS_ADJUST = builder.comment("Adjusts All Bars Downwards")
-            .defineInRange("AZURE_Y_POS_ADJUST", 0, 0, 10000);
+            .defineInRange("AZURE_Y_POS_ADJUST", 0, 0, 1000);
         AZURE_X_POS_ADJUST = builder.comment("Adjusts All Bars Rightwards")
-            .defineInRange("AZURE_X_POS_ADJUST", 0, 0, 10000);
+            .defineInRange("AZURE_X_POS_ADJUST", 0, 0, 1000);
 
         builder.pop();
 
         builder.comment("Bottom Middle Corner Bar Settings")
             .push("Bottom Middle Corner Bars");
 
-        BMC_LEFT_Y_POS_ADJUST = builder.comment("Adjusts HP/XP Upwards")
-            .defineInRange("BMC_LEFT_Y_POS_ADJUST", 0, 0, 10000);
         BMC_LEFT_X_POS_ADJUST = builder.comment("Adjusts HP/XP Leftwards")
-            .defineInRange("BMC_LEFT_X_POS_ADJUST", 0, 0, 10000);
-        BMC_RIGHT_Y_POS_ADJUST = builder.comment("Adjusts Mana/Energy Upwards")
-            .defineInRange("BMC_RIGHT_Y_POS_ADJUST", 0, 0, 10000);
+            .defineInRange("BMC_LEFT_X_POS_ADJUST", 0, 0, 1000);
+        BMC_LEFT_Y_POS_ADJUST = builder.comment("Adjusts HP/XP Upwards")
+            .defineInRange("BMC_LEFT_Y_POS_ADJUST", 0, 0, 1000);
         BMC_RIGHT_X_POS_ADJUST = builder.comment("Adjusts Mana/Energy Rightwards")
-            .defineInRange("BMC_RIGHT_X_POS_ADJUST", 0, 0, 10000);
+            .defineInRange("BMC_RIGHT_X_POS_ADJUST", 0, 0, 1000);
+        BMC_RIGHT_Y_POS_ADJUST = builder.comment("Adjusts Mana/Energy Upwards")
+            .defineInRange("BMC_RIGHT_Y_POS_ADJUST", 0, 0, 1000);
 
         builder.pop();
 
@@ -163,7 +165,7 @@ public class ClientContainer {
             .push("Middle Bars");
 
         MIDDLE_Y_POS_ADJUST = builder.comment("Adjusts All Bars Upwards")
-            .defineInRange("MIDDLE_Y_POS_ADJUST", 0, 0, 10000);
+            .defineInRange("MIDDLE_Y_POS_ADJUST", 0, 0, 1000);
 
         builder.pop();
 
@@ -171,9 +173,9 @@ public class ClientContainer {
             .push("Top Left Bars");
 
         TOPLEFT_Y_POS_ADJUST = builder.comment("Adjusts All Bars Downwards")
-            .defineInRange("TOPLEFT_Y_POS_ADJUST", 0, 0, 10000);
+            .defineInRange("TOPLEFT_Y_POS_ADJUST", 0, 0, 1000);
         TOPLEFT_X_POS_ADJUST = builder.comment("Adjusts All Bars Rightwards")
-            .defineInRange("TOPLEFT_X_POS_ADJUST", 0, 0, 10000);
+            .defineInRange("TOPLEFT_X_POS_ADJUST", 0, 0, 1000);
 
         builder.pop();
 
@@ -181,9 +183,9 @@ public class ClientContainer {
             .push("Vanilla Bars");
 
         LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST = builder.comment(".")
-            .defineInRange("LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, 0, 10000);
+            .defineInRange("LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, 0, 1000);
         RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST = builder.comment(".")
-            .defineInRange("RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, 0, 10000);
+            .defineInRange("RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, 0, 1000);
 
         builder.pop();
     }
