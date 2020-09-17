@@ -43,11 +43,6 @@ public class ClientContainer {
         builder.comment("Client Settings")
             .push(NAME);
 
-        LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST = builder.comment(".")
-            .defineInRange("LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, -10000, 10000);
-        RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST = builder.comment(".")
-            .defineInRange("RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, -10000, 10000);
-
         neatConfig = builder.configure(NeatConfig::new)
             .getLeft();
         dmgParticleConfig = builder.configure(DmgParticleConfig::new)
@@ -86,6 +81,74 @@ public class ClientContainer {
         PLAYER_GUI_TYPE = builder.comment(".")
             .translation("mmorpg.config.player_gui_overlay_type")
             .defineEnum("PLAYER_GUI_TYPE", PlayerGUIs.Bottom_Middle_Corners);
+
+        builder.pop();
+
+        builder.comment("Azure Top Left Settings")
+            .push("Azure Bars");
+
+        AZURE_Y_POS_ADJUST = builder.comment(".")
+            .defineInRange("AZURE_Y_POS_ADJUST", 0, -10000, 10000);
+        AZURE_X_POS_ADJUST = builder.comment(".")
+            .defineInRange("AZURE_X_POS_ADJUST", 0, -10000, 10000);
+
+        builder.pop();
+
+        builder.comment("Bottom Middle Corner Bar Settings")
+            .push("Bottom Middle Corner Bars");
+
+        BMC_LEFT_Y_POS_ADJUST = builder.comment(".")
+            .defineInRange("BMC_LEFT_Y_POS_ADJUST", 0, -10000, 10000);
+        BMC_LEFT_X_POS_ADJUST = builder.comment(".")
+            .defineInRange("BMC_LEFT_X_POS_ADJUST", 0, -10000, 10000);
+        BMC_RIGHT_Y_POS_ADJUST = builder.comment(".")
+            .defineInRange("BMC_RIGHT_Y_POS_ADJUST", 0, -10000, 10000);
+        BMC_RIGHT_X_POS_ADJUST = builder.comment(".")
+            .defineInRange("BMC_RIGHT_X_POS_ADJUST", 0, -10000, 10000);
+
+        builder.pop();
+
+        builder.comment("Bottom Middle Bar Settings")
+            .push("Bottom Middle Bars");
+
+        BM_LEFT_Y_POS_ADJUST = builder.comment(".")
+            .defineInRange("BM_LEFT_Y_POS_ADJUST", 0, -10000, 10000);
+        BM_LEFT_X_POS_ADJUST = builder.comment(".")
+            .defineInRange("BM_LEFT_X_POS_ADJUST", 0, -10000, 10000);
+        BM_RIGHT_Y_POS_ADJUST = builder.comment(".")
+            .defineInRange("BM_RIGHT_Y_POS_ADJUST", 0, -10000, 10000);
+        BM_RIGHT_X_POS_ADJUST = builder.comment(".")
+            .defineInRange("BM_RIGHT_X_POS_ADJUST", 0, -10000, 10000);
+
+        builder.pop();
+
+        builder.comment("Middle Bar Settings")
+            .push("Middle Bars");
+
+        MIDDLE_Y_POS_ADJUST = builder.comment(".")
+            .defineInRange("MIDDLE_Y_POS_ADJUST", 0, -10000, 10000);
+        MIDDLE_X_POS_ADJUST = builder.comment(".")
+            .defineInRange("MIDDLE_X_POS_ADJUST", 0, -10000, 10000);
+
+        builder.pop();
+
+        builder.comment("Top Left Settings")
+            .push("Top Left Bars");
+
+        TOP_LEFT_Y_POS_ADJUST = builder.comment(".")
+            .defineInRange("TOP_LEFT_Y_POS_ADJUST", 0, -10000, 10000);
+        TOP_LEFT_X_POS_ADJUST = builder.comment(".")
+            .defineInRange("TOP_LEFT_X_POS_ADJUST", 0, -10000, 10000);
+
+        builder.pop();
+
+        builder.comment("Vanilla Bar Settings")
+            .push("Vanilla Bars");
+
+        LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST = builder.comment(".")
+            .defineInRange("LEFT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, -10000, 10000);
+        RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST = builder.comment(".")
+            .defineInRange("RIGHT_VANILLA_LIKE_BARS_Y__POS_ADJUST", 0, -10000, 10000);
 
         builder.pop();
     }
