@@ -65,14 +65,14 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
     public List<PotionStat> getPotionStats() {
         List<PotionStat> list = new ArrayList<>();
         list.add(new PotionStat(-3, new ElementalResist(Elements.Elemental)));
-        list.add(new PotionStat(-10, Armor.getInstance()));
+        list.add(new PotionStat(-12, Armor.getInstance()));
         return list;
     }
 
     @Override
     public PreCalcSpellConfigs getPreCalcConfig() {
         PreCalcSpellConfigs p = new PreCalcSpellConfigs();
-        p.set(SC.DURATION_TICKS, 80, 100);
+        p.set(SC.DURATION_TICKS, 100, 120);
         p.set(SC.TICK_RATE, 20, 20);
         return p;
     }
@@ -92,7 +92,8 @@ public class JudgementEffect extends BasePotionEffect implements IApplyStatPotio
     public List<ITextComponent> getEffectTooltip(TooltipInfo info) {
         List<ITextComponent> list = new ArrayList<>();
 
-        list.add(new StringTextComponent("Debuffs enemy, at max stacks, deal extra damage."));
+        list.add(new StringTextComponent("Attack to add additional stacks. At max"));
+        list.add(new StringTextComponent("stacks consume to deal extra damage."));
 
         return list;
 

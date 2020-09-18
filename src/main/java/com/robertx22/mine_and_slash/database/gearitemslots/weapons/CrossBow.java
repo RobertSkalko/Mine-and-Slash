@@ -36,7 +36,7 @@ public class CrossBow extends BaseWeapon implements ISpecificStatReq {
 
     @Override
     public WeaponDamageMulti weaponDamageMulti() {
-        return new WeaponDamageMulti(3);
+        return new WeaponDamageMulti(2.75F);
     }
 
     @Override

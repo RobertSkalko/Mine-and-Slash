@@ -30,7 +30,7 @@ public class RegenerateAoeSynergy extends OnSpellCastSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Buff is applied in AOE around the caster"));
+        list.add(new StringTextComponent("Buff is applied in AOE around the caster."));
 
         return list;
     }

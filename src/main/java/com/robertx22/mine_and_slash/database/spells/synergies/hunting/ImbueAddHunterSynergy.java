@@ -27,7 +27,7 @@ public class ImbueAddHunterSynergy extends OnBasicAttackSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Basic Attacks have chance to give: " + HunterInstinctEffect.getInstance()
+        list.add(new StringTextComponent("Basic attacks have chance to give: " + HunterInstinctEffect.getInstance()
             .locNameForLangFile()));
 
         return list;

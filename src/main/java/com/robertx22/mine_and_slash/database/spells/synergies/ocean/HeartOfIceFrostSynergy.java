@@ -25,7 +25,7 @@ public class HeartOfIceFrostSynergy extends OnSpellCastSynergy {
 
         addSpellName(list);
 
-        list.add(new StringTextComponent("Consumes Frost Essence stacks to increase heal"));
+        list.add(new StringTextComponent("Consumes Frost Essence stacks to increase heal."));
 
         list.addAll(getCalc(Load.spells(info.player)).GetTooltipString(info, Load.spells(info.player), this));
 
