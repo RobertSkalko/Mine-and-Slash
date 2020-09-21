@@ -1,3 +1,7 @@
+3.7.1:
+* Removed unfinished unique dungeon which fixed an issue with datapacks and CraftTweaker.
+* Removed an unused method in Holy Retribution synergy causing gui errors.
+
 3.7.0
 
 General Changes:

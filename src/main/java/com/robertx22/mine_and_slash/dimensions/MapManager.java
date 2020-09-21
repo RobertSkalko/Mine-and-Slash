@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.dimensions;
 
 import com.robertx22.mine_and_slash.database.world_providers.DungeonDimension;
-import com.robertx22.mine_and_slash.database.world_providers.UniqueDungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
 import com.robertx22.mine_and_slash.mmorpg.Ref;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
@@ -29,7 +28,6 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public class MapManager {
 
     public static final String DUNGEON_ID = "mmorpg:resettable_dungeon";
-    public static final String UNIQUE_DUNGEON_ID = "mmorpg:resettable_unique_dungeon";
 
     public static DimensionType getDungeonDimensionType() {
 
@@ -38,15 +36,6 @@ public class MapManager {
         }
 
         return getDimensionType(new ResourceLocation(DUNGEON_ID));
-    }
-
-    public static DimensionType getUniqueDungeonDimensionType() {
-
-        if (UNIQUE_DUNGEON_DIMENSION != null) {
-            return UNIQUE_DUNGEON_DIMENSION;
-        }
-
-        return getDimensionType(new ResourceLocation(UNIQUE_DUNGEON_ID));
     }
 
     @Mod.EventBusSubscriber(modid = Ref.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -75,7 +64,6 @@ public class MapManager {
     }
 
     private static DimensionType DUNGEON_DIMENSION;
-    private static DimensionType UNIQUE_DUNGEON_DIMENSION;
 
     @Mod.EventBusSubscriber(modid = Ref.MODID)
     public static class EventDimensionType {
@@ -90,22 +78,6 @@ public class MapManager {
                 DUNGEON_DIMENSION =
                     DimensionManager.registerDimension(new ResourceLocation(DUNGEON_ID), moddim, new PacketBuffer(Unpooled.buffer()), true);
                 DimensionManager.keepLoaded(DUNGEON_DIMENSION, false);
-
-            } else {
-                UNIQUE_DUNGEON_DIMENSION = DimensionType.byName(dunID);
-            }
-
-            ResourceLocation unDunID = new ResourceLocation(UNIQUE_DUNGEON_ID);
-            if (DimensionType.byName(unDunID) == null) {
-                ModDimension moddim = SlashRegistry.WorldProviders()
-                    .get(new UniqueDungeonDimension(null, null).GUID()).moddim;
-                UNIQUE_DUNGEON_DIMENSION =
-                    DimensionManager.registerDimension(new ResourceLocation(UNIQUE_DUNGEON_ID), moddim, new PacketBuffer(Unpooled.buffer()), true);
-                DimensionManager.keepLoaded(UNIQUE_DUNGEON_DIMENSION, false);
-
-            } else {
-
-                UNIQUE_DUNGEON_DIMENSION = DimensionType.byName(unDunID);
 
             }
         }

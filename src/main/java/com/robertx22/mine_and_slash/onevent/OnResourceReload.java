@@ -11,13 +11,4 @@ public class OnResourceReload {
 
     public void onGatherData(RecipesUpdatedEvent event) {
     }
-
-    public static void reloadUniqueDungeons() {
-
-        Collection<ResourceLocation> all = MapManager.getServer()
-            .getResourceManager()
-            .getAllResourceLocations("unique_dungeon", x -> x.contains("unique_dungeon") && x.contains(Ref.MODID));
-
-    }
-
 }

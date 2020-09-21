@@ -12,15 +12,11 @@ public class BiomeRegister {
 
     @ObjectHolder("mmorpg:dungeon_biome")
     public static Biome DUNGEON_BIOME;
-    @ObjectHolder("mmorpg:unique_dungeon_biome")
-    public static Biome UNIQUE_DUNGEON_BIOME;
 
     @SubscribeEvent
     public static void registerAllBiomes(RegistryEvent.Register<Biome> event) {
         event.getRegistry()
             .register(new DungeonBiome().setRegistryName(Ref.MODID, "dungeon_biome"));
-        event.getRegistry()
-            .register(new UniqueDungeonBiome().setRegistryName(Ref.MODID, "unique_dungeon_biome"));
     }
 }
 

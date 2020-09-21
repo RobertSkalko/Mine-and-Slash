@@ -3,11 +3,9 @@ package com.robertx22.mine_and_slash.blocks.map_device;
 import com.robertx22.mine_and_slash.blocks.bases.BaseTile;
 import com.robertx22.mine_and_slash.blocks.slots.FuelSlot;
 import com.robertx22.mine_and_slash.config.forge.ModConfig;
-import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeon;
 import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
 import com.robertx22.mine_and_slash.dimensions.MapManager;
 import com.robertx22.mine_and_slash.items.misc.ItemMap;
-import com.robertx22.mine_and_slash.items.misc.UniqueDungeonKeyItem;
 import com.robertx22.mine_and_slash.mmorpg.registers.common.ModTileEntities;
 import com.robertx22.mine_and_slash.saveclasses.dungeon_dimension.DungeonDimensionData;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
@@ -28,7 +26,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 
 import javax.annotation.Nullable;
@@ -185,35 +182,6 @@ public class TileMapDevice extends BaseTile {
             this.spendFuelForActivation();
             mapdata.setupPlayerMapData(this.pos, player);
             map.shrink(1);
-        }
-    }
-
-    public void sacrificeKey(PlayerEntity player, UniqueDungeon dungeon, ItemStack key) {
-
-        if (!hasEnoughFuel()) {
-            player.sendMessage(new SText("Not enough fuel"));
-            return;
-        }
-
-        boolean summoned = summonPortals(MapItemData.empty());
-
-        if (summoned) {
-            this.spendFuelForActivation();
-
-            UniqueDungeon uniqueDungeon = UniqueDungeonKeyItem.getDungeon(key);
-
-            World world = MapManager.getWorld(MapManager.getUniqueDungeonDimensionType());
-
-            ChunkPos cpos = Load.world(world)
-                .getData()
-                .randomFree(x -> WorldUtils.getUniqueDungeonAt(x, world)
-                    .GUID()
-                    .equals(uniqueDungeon.GUID()));
-
-            Load.playerMapData(player)
-                .initKey(pos, MapManager.getUniqueDungeonDimensionType(), player, cpos);
-
-            key.shrink(1);
         }
     }
 

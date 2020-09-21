@@ -1,11 +1,8 @@
 package com.robertx22.mine_and_slash.uncommon.utilityclasses;
 
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
-import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeon;
-import com.robertx22.mine_and_slash.database.world_providers.UniqueDungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.base.BaseDungeonDimension;
 import com.robertx22.mine_and_slash.database.world_providers.base.IWP;
-import com.robertx22.mine_and_slash.new_content.building.UniqueDungeonBuilder;
 import com.robertx22.mine_and_slash.registry.SlashRegistry;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.saveclasses.mapitem.MapAffixData;
@@ -29,14 +26,6 @@ public class WorldUtils {
 
         world.addEntity(entity);
 
-    }
-
-    public static UniqueDungeon getUniqueDungeonAt(BlockPos pos, IWorld world) {
-        return getUniqueDungeonAt(new ChunkPos(pos), world);
-    }
-
-    public static UniqueDungeon getUniqueDungeonAt(ChunkPos pos, IWorld world) {
-        return new UniqueDungeonBuilder(world.getSeed(), pos).uniqueDungeon;
     }
 
     public static boolean isNearSurface(BlockPos pos, World world, int buffer) {
@@ -181,10 +170,6 @@ public class WorldUtils {
             return SlashRegistry.getDimensionConfig(world)
                 .isMapWorld();
         }
-    }
-
-    public static boolean isUniqueDungeon(IWorld world) {
-        return world.getDimension() instanceof UniqueDungeonDimension;
     }
 
     public static boolean isMapWorldClass(IWorld world) {

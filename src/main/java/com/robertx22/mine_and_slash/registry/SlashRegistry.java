@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import com.robertx22.mine_and_slash.config.dimension_configs.DimensionConfig;
 import com.robertx22.mine_and_slash.config.whole_mod_entity_configs.ModEntityConfig;
 import com.robertx22.mine_and_slash.data_generation.compatible_items.CompatibleItem;
-import com.robertx22.mine_and_slash.data_generation.unique_dungeons.UniqueDungeon;
 import com.robertx22.mine_and_slash.database.affixes.BaseAffix;
 import com.robertx22.mine_and_slash.database.chaos_stats.ChaosStat;
 import com.robertx22.mine_and_slash.database.currency.OrbOfTransmutationItem;
@@ -134,10 +133,6 @@ public class SlashRegistry {
 
     private static SlashRegistryContainer<DimensionConfig> DimensionConfigs() {
         return getRegistry(SlashRegistryType.DIMENSION_CONFIGS);
-    }
-
-    public static SlashRegistryContainer<UniqueDungeon> UniqueDungeons() {
-        return getRegistry(SlashRegistryType.UNIQUE_DUNGEON);
     }
 
     public static SlashRegistryContainer<BaseItemModification> ItemModifications() {
@@ -325,7 +320,6 @@ public class SlashRegistry {
         new LootCrates().registerAll();
 
         new ChaosStats().registerAll();
-        new UniqueDungeons().registerAll();
 
     }
 
@@ -344,7 +338,6 @@ public class SlashRegistry {
         addRegistry(new SlashRegistryContainer<RuneWord>(SlashRegistryType.RUNEWORD, EmptyRuneWord.getInstance()).isDatapack());
         addRegistry(new SlashRegistryContainer<Set>(SlashRegistryType.SET, new EmptySet()).isDatapack());
         addRegistry(new SlashRegistryContainer<MobAffix>(SlashRegistryType.MOB_AFFIX, MobAffixes.EMPTY).isDatapack());
-        addRegistry(new SlashRegistryContainer<UniqueDungeon>(SlashRegistryType.UNIQUE_DUNGEON, null).isDatapack());
         addRegistry(new SlashRegistryContainer<CompatibleItem>(SlashRegistryType.COMPATIBLE_ITEM,
             CompatibleItem.EMPTY).dontErrorIfEmpty()
             .isDatapack()

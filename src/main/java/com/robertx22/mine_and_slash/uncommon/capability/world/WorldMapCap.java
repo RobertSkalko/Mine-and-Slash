@@ -127,9 +127,6 @@ public class WorldMapCap {
 
         @Override
         public float getLootMultiplier(BlockPos pos, IWorld world) {
-            if (WorldUtils.isUniqueDungeon(world)) {
-                return 1;
-            }
             return this.getMap(pos, world)
                 .getBonusLootMulti();
 
@@ -137,39 +134,21 @@ public class WorldMapCap {
 
         @Override
         public float getExpMultiplier(BlockPos pos, IWorld world) {
-            if (WorldUtils.isUniqueDungeon(world)) {
-                return 1;
-            }
             return (1 + getMap(pos, world).tier * 0.05F) * getMap(pos, world).getBonusExpMulti();
         }
 
         @Override
         public int getLevel(BlockPos pos, IWorld world) {
-
-            if (WorldUtils.isUniqueDungeon(world)) {
-                return WorldUtils.getUniqueDungeonAt(pos, world)
-                    .lvl;
-            }
-
             return this.getMap(pos, world).level;
         }
 
         @Override
         public int getTier(BlockPos pos, IWorld world) {
-
-            if (WorldUtils.isUniqueDungeon(world)) {
-                return WorldUtils.getUniqueDungeonAt(pos, world)
-                    .getTier();
-            }
             return this.getMap(pos, world).tier;
         }
 
         @Override
         public MapItemData getMap(BlockPos pos, IWorld world) {
-
-            if (WorldUtils.isUniqueDungeon(world)) {
-                return MapItemData.empty();
-            }
 
             if (pos.equals(Statics.EMPTY_POS)) {
                 return MapItemData.empty();

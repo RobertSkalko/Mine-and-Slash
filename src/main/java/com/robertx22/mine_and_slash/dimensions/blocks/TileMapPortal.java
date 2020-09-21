@@ -80,8 +80,6 @@ public class TileMapPortal extends TileEntity {
             DimensionType type = null;
             if (!map.isEmpty()) {
                 type = map.getDimension();
-            } else {
-                type = MapManager.getUniqueDungeonDimensionType();
             }
 
             ChunkPos cpos = DungeonDimensionData.getChunkFromId(dungeonID);

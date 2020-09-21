@@ -1,7 +1,6 @@
 package com.robertx22.mine_and_slash.blocks.map_device;
 
 import com.robertx22.mine_and_slash.blocks.bases.BaseInventoryBlock;
-import com.robertx22.mine_and_slash.items.misc.UniqueDungeonKeyItem;
 import com.robertx22.mine_and_slash.saveclasses.item_classes.MapItemData;
 import com.robertx22.mine_and_slash.uncommon.datasaving.Map;
 import net.minecraft.block.BlockState;
@@ -50,16 +49,6 @@ public class BlockMapDevice extends BaseInventoryBlock {
             if (mapdata != null) {
                 map.sacrificeMap(player, mapdata, stack);
                 return ActionResultType.SUCCESS;
-            } else {
-
-                if (stack.getItem() instanceof UniqueDungeonKeyItem) {
-                    UniqueDungeonKeyItem key = (UniqueDungeonKeyItem) stack.getItem();
-
-                    map.sacrificeKey(player, UniqueDungeonKeyItem.getDungeon(stack), stack);
-
-                    return ActionResultType.SUCCESS;
-                }
-
             }
 
         }
