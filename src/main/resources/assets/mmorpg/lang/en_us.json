@@ -73,6 +73,7 @@
 "curios.identifier.salvage_bag": "Salvage Bag",
 "curios.identifier.bracelet": "Bracelet",
 "entity.mmorpg.trader.none": "Dungeon Merchant",
+"block.mmorpg.dungeon_portal": "Dungeon Portal",
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 	"mmorpg.mob_affix.cold": "Cold",
@@ -1601,7 +1602,10 @@
 	"lore_4_item.mmorpg.auto_salvage_bag": "Right Clicking the bag while shield slot is empty.",
 	"lore_0_item.mmorpg.ores": "Precious Ingredient.",
 
-"_comment": " [CATEGORY]: MISC - LORE LINES"
+"_comment": " [CATEGORY]: MISC - LORE LINES",
 
+"_comment": " [CATEGORY]: BIOMES - NAMES",
+
+	"biome.mmorpg.dungeon_biome": "Adventure Map"
 
 }
