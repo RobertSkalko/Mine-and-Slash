@@ -189,7 +189,8 @@ public enum Words implements IAutoLocName {
     Blocks("Blocks"),
 
     Automatically_salvages_items("Automatically salvages items"),
-
+    Gives("Gives"),
+    ClickToUse("Click to Use"),
     Loot("Loot"), Exp("Exp"),
 
     Bonus_Salvage_Chance("Bonus Salvage Chance"),
