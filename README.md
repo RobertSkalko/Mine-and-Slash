@@ -1,3 +1,7 @@
+# Mine-and-Slash
+
+## Introduction
+
 This mod completely changes the combat and gear progression of minecraft, for better or worse, depending on your preferences, so i'll lay it out nice and clear what this mod does so you can make sure you want it or not.
 
 
@@ -7,8 +11,7 @@ First, the intent. The intent is to make Loot (mob drops) the primary way to obt
 Secondary intent is to provide long term progression.
 
 
-
-Now, how does this mod do this?
+## Now, how does this mod do this?
 
 
 - All living things are given levels. The level is determined by distance from spawn. This means if you want to explore further, you'll want to level up so you can beat the tougher mobs!
@@ -28,6 +31,7 @@ Now, how does this mod do this?
 
 Now let's get on to features, if you're here, you probably are fine with the drawbacks and want to play it!
 
+## Features
 
 - Hugely complicated gear system, all gears have primary stats and secondary stats, some have prefixes and suffixes! Primary stats give the most important things, like basic attack damage, elemental damage or health. Secondary stats, suffixes and prefixes usually multiply those primary stats or give new ones.
 
@@ -39,6 +43,7 @@ Now let's get on to features, if you're here, you probably are fine with the dra
 
 - In depth crafting system, kinda like Path of Exile, you have nearly 10 rare items that can be used to modify your gear. Anything from re-rolling a suffix or leveling the item. You are able to beat the randomness with smart usage of crafting items.
 
+## Stations
 
 And blocks which i call stations!
 
@@ -48,4 +53,4 @@ And blocks which i call stations!
 
 - Modify station, combine a piece of gear with a currency item in this block and it will change the item.
 
-- Gear crafting station, sacrifice a piece of gear and some fuel (my mod's ores) to create a new piece of gear. This is a resource sink that allows rich players to pour resources into trying to get better gear. 
+- Gear crafting station, sacrifice a piece of gear and some fuel (my mod's ores) to create a new piece of gear. This is a resource sink that allows rich players to pour resources into trying to get better gear.
