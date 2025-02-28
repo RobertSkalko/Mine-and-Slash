@@ -1,9 +1,9 @@
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # ## 
-#              語言文件 - 繁體中文(zh-TW)                          # 
-#          繁體中文語言文件譯者：'MCBBS-天空樹'                    # 
-#              翻譯反饋請聯系QQ：1182193284                        # 
-#   本語言文件的最後壹次更新由 '天空樹' 在 '2020年04月19日' 進行   # 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # ##  
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # ##
+#              語言文件 - 繁體中文(zh-TW)                          #
+#          繁體中文語言文件譯者：'MCBBS-天空樹'                    #
+#              翻譯反饋請聯系QQ：1182193284                        #
+#   本語言文件的最後壹次更新由 '天空樹' 在 '2021年01月01日' 進行   #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # ##
 
 {
 "block.mmorpg.egg_loot_crate": "戰利品獎勵箱",
@@ -56,7 +56,9 @@
 "item.mmorpg.teleport_scroll": "回城卷軸",
 "item.mmorpg.prefix": "前綴",
 "item.mmorpg.suffix": "後綴",
-"_comment": "SPELL TOOLTIPS",
+	"block.mmorpg.scrabble": "拼詞箱子",
+	"block.mmorpg.map_chest": "地圖箱子",
+"_comment": "法術提示",
 "mmorpg.tooltip.aoe_spell_explosion": "釋放元素彈體，命中後造成範圍傷害.",
 "mmorpg.tooltip.single_target_spell_bolt": "釋放元素彈體，對單個目標造成傷害.",
 "mmorpg.tooltip.spell_instant_heal": "立即治療施法者.",
@@ -72,7 +74,7 @@
 "item.mmorpg.capacitor4": "精品能效珠",
 "item.mmorpg.capacitor5": "珍品能效珠",
 "_comment": "ITEM TOOLTIPS",
-"_comment": "MAPS",
+"_comment": "地圖",
 "mmorpg.name.map": "冒險地圖",
 "mmorpg.tooltip.put_in_mapdevice": "右鍵點擊地圖裝置使用",
 "mmorpg.tooltip.press_shift_more_info": "[Shift]: 信息, [Alt]: 描述, [Ctrl]: 附魔",
@@ -80,6 +82,7 @@
 "curios.identifier.salvage_bag": "回收袋",
 "curios.identifier.bracelet": "手鐲",
 "entity.mmorpg.trader.none": "地牢商人",
+"block.mmorpg.dungeon_portal": "地牢傳送門",
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 	"mmorpg.mob_affix.cold": "寒冷",
@@ -110,13 +113,26 @@
 "_comment": " [CATEGORY]: MISC - NAMES",
 
 
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+	"item.mmorpg.alchemy.instant.misc.remove_spell": "小型法術重置藥",
+	"item.mmorpg.alchemy.instant.misc.remove_talent": "小型天賦重置藥",
+	"item.mmorpg.alchemy.instant.misc.reset_spells": "大型法術重置藥",
+	"item.mmorpg.alchemy.instant.misc.reset_stats": "大型屬性重置藥",
+	"item.mmorpg.alchemy.instant.misc.reset_talents": "大型天賦重置藥",
+
+"_comment": " [CATEGORY]: ALCHEMY - NAMES",
+
+
 "_comment": " [CATEGORY]: SPELLS - NAMES",
 
 	"mmorpg.synergy.fireball_syn_1": "爆裂火焰",
 	"mmorpg.synergy.frostball_syn_1": "冰之怒",
 	"mmorpg.synergy.frostball_syn_2": "冰之懲",
+	"mmorpg.synergy.blizzard_syn_1": "冰雨",
 	"mmorpg.synergy.heart_of_ice_syn_1": "冰之愈",
 	"mmorpg.synergy.heart_of_ice_syn_2": "冰之盾",
+	"mmorpg.synergy.heavy_strike_syn_1": "憤怒",
 	"mmorpg.synergy.holy_flower_syn_1": "神聖凈化",
 	"mmorpg.synergy.imbue_syn_1": "註入本能",
 	"mmorpg.synergy.lightning_totem_syn_1": "雷懲圖騰",
@@ -124,9 +140,11 @@
 	"mmorpg.synergy.magma_flower_syn_2": "治療之漿",
 	"mmorpg.synergy.nature_balm_syn_1": "棘刺之愈",
 	"mmorpg.synergy.nature_balm_syn_2": "治愈擴散",
+	"mmorpg.synergy.poison_ball_syn_1": "瘟疫球",
 	"mmorpg.synergy.poisoned_weapons_syn_1": "毒刺",
 	"mmorpg.synergy.purifying_fires_syn_1": "回能打擊",
 	"mmorpg.synergy.purifying_fires_syn_2": "審判之火",
+	"mmorpg.synergy.purifying_fires_syn_3": "神聖之懲",
 	"mmorpg.synergy.recoil_shot_syn_1": "獵手反沖",
 	"mmorpg.synergy.recoil_shot_syn_2": "反沖重創",
 	"mmorpg.synergy.thorn_armor_syn_1": "棘刺盔甲",
@@ -135,9 +153,12 @@
 	"mmorpg.synergy.thunder_dash_syn_1": "能量沖刺",
 	"mmorpg.synergy.thunder_spear_syn_1": "雷矛之怒",
 	"mmorpg.synergy.thunder_spear_syn_2": "雷矛之懲",
+	"mmorpg.synergy.thunder_storm_syn_1": "電荷風暴",
 	"mmorpg.synergy.tidal_wave_syn_1": "水之浪",
 	"mmorpg.synergy.volcano_syn_1": "火山之怒",
 	"mmorpg.synergy.whirlpool_syn_1": "湧之懲",
+	"mmorpg.synergy.whirlwind_syn_1": "嘲諷",
+	"mmorpg.synergy.whirlwind_syn_2": "刺風",
 
 "_comment": " [CATEGORY]: SPELLS - NAMES",
 
@@ -263,17 +284,6 @@
 "_comment": " [CATEGORY]: AFFIXES - NAMES",
 
 
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	"item.mmorpg.alchemy.instant.misc.remove_spell": "小型法術重置藥",
-	"item.mmorpg.alchemy.instant.misc.remove_talent": "小型天賦重置藥",
-	"item.mmorpg.alchemy.instant.misc.reset_spells": "大型法術重置藥",
-	"item.mmorpg.alchemy.instant.misc.reset_stats": "大型屬性重置藥",
-	"item.mmorpg.alchemy.instant.misc.reset_talents": "大型天賦重置藥",
-
-"_comment": " [CATEGORY]: ALCHEMY - NAMES",
-
-	
 "_comment": " [CATEGORY]: ITEM SETS - NAMES",
 
 	"mmorpg.set.archemage_vestments": "法師的長袍",
@@ -384,6 +394,7 @@
 	"mmorpg.mob_rarity.common": "青銅級",
 	"mmorpg.mob_rarity.epic": "鉑金級",
 	"mmorpg.mob_rarity.legendary": "鉆石級",
+	"mmorpg.mob_rarity.minion": "Minion",
 	"mmorpg.mob_rarity.rare": "黃金級",
 	"mmorpg.mob_rarity.uncommon": "白銀級",
 	"mmorpg.rarity.common": "凡品",
@@ -408,7 +419,7 @@
 	"item.mmorpg.currency.cheap_gear_lvl": "§c腐化之石",
 	"item.mmorpg.currency.clear_runes": "§c遺忘寶珠",
 	"item.mmorpg.currency.create_new_unique": "§c珍品天堂寶石",
-	"item.mmorpg.currency.exp_map": "§c地圖物轉經寶石",
+	"item.mmorpg.currency.exp_map": "§c經驗寶石",
 	"item.mmorpg.currency.item_levelup": "§c飛升水晶",
 	"item.mmorpg.currency.number_reroll": "§c祝福寶珠",
 	"item.mmorpg.currency.orb_of_transmutation": "§c嬗變寶珠",
@@ -538,6 +549,7 @@
 	"mmorpg.word.casttimeticks": "施法時間",
 	"mmorpg.word.chance": "幾率",
 	"mmorpg.word.chaos_stats": "混沌屬性",
+	"mmorpg.word.chargednova": "電荷新星",
 	"mmorpg.word.cleric": "牧師",
 	"mmorpg.word.commonercrate": "平民的夢想獎勵箱",
 	"mmorpg.word.compendium": "物品資料",
@@ -552,6 +564,7 @@
 	"mmorpg.word.currencycrate": "工匠的天堂獎勵箱",
 	"mmorpg.word.currentmapinfo": "當前地圖信息",
 	"mmorpg.word.damage": "傷害",
+	"mmorpg.word.dash": "沖刺",
 	"mmorpg.word.dealt": "分配",
 	"mmorpg.word.decreased": "減少",
 	"mmorpg.word.defenses": "防禦",
@@ -570,13 +583,15 @@
 	"mmorpg.word.firebomb": "火焰炸彈",
 	"mmorpg.word.flat": "固定",
 	"mmorpg.word.from": "From",
-	"mmorpg.word.frostball": "冰球術",
+	"mmorpg.word.frostball": "霜球術",
+	"mmorpg.word.frozenorb": "冰球",
 	"mmorpg.word.fuel": "燃料",
 	"mmorpg.word.gears": "裝備",
 	"mmorpg.word.geyser": "噴泉",
 	"mmorpg.word.good": "好評",
 	"mmorpg.word.gorgonsgaze": "美杜莎的凝視",
 	"mmorpg.word.great": "超級好評",
+	"mmorpg.word.groundslam": "地面猛擊",
 	"mmorpg.word.groupplay": "團隊地圖",
 	"mmorpg.word.hasinfusion": "有註魔屬性",
 	"mmorpg.word.hasmatchingrunes": "與裝備上鑲嵌的符文相匹配",
@@ -587,6 +602,7 @@
 	"mmorpg.word.hasuniquestats": "有珍品屬性",
 	"mmorpg.word.healingaura": "治療光環",
 	"mmorpg.word.heartofice": "冰之療",
+	"mmorpg.word.heavystrike": "重擊",
 	"mmorpg.word.holdtopreventpickup": "手持可以防止拾取物品.",
 	"mmorpg.word.holyflower": "神聖之花",
 	"mmorpg.word.hunting": "狩獵",
@@ -597,8 +613,8 @@
 	"mmorpg.word.instabilitylimitreached": "不穩定性達到極限",
 	"mmorpg.word.instantheal": "瞬間治療",
 	"mmorpg.word.iscommon": "凡品裝備",
-	"mmorpg.word.islowerthanmythic": "不是鉆石級",
-	"mmorpg.word.isnotunique": "不是珍品",
+	"mmorpg.word.islowerthanlegendary": "不能是精品",
+	"mmorpg.word.isnotunique": "不能是珍品",
 	"mmorpg.word.isunique": "是珍品",
 	"mmorpg.word.item": "物品",
 	"mmorpg.word.item_modifiable_in_station": "可以在裝備強化臺內使用",
@@ -664,6 +680,7 @@
 	"mmorpg.word.picksupitemsauto": "自動收集某些物品!",
 	"mmorpg.word.player_affixes": "玩家詞綴",
 	"mmorpg.word.poisonball": "草球術",
+	"mmorpg.word.poisoncloud": "毒雲",
 	"mmorpg.word.poisonedweapons": "武器塗毒",
 	"mmorpg.word.position": "位置",
 	"mmorpg.word.prefix": "前綴",
@@ -752,6 +769,7 @@
 	"mmorpg.word.weapon": "武器",
 	"mmorpg.word.weaponcrafterscrate": "武器工匠的獎勵箱",
 	"mmorpg.word.weaponoffhand": "武器/副手",
+	"mmorpg.word.whirlwind": "旋風斬",
 	"mmorpg.word.whirpool": "水之湧",
 	"mmorpg.word.wideshot": "寬廣射擊",
 	"mmorpg.word.wizardry": "巫術",
@@ -759,13 +777,15 @@
 	"mmorpg.word.world_type": "世界類型",
 
 "_comment": " [CATEGORY]: WORDS - NAMES",
+	"mmorpg.word.gives": "Gives",
+	"mmorpg.word.clicktouse": "點擊使用",
+	"item.mmorpg.give_exp": "經驗書",
 
 
 "_comment": " [CATEGORY]: STATS - NAMES",
 
 	"mmorpg.stat.all_attributes": "所有屬性",
 	"mmorpg.stat.all_ele_dmg": "所有元素傷害",
-	"mmorpg.stat.all_ele_spell_dmg": "所有元素法術傷害",
 	"mmorpg.stat.all_elemental_damage": "所有元素傷害",
 	"mmorpg.stat.all_fire_damage": "所有火焰系傷害",
 	"mmorpg.stat.all_nature_damage": "所有自然系傷害",
@@ -775,6 +795,7 @@
 	"mmorpg.stat.armor": "盔甲",
 	"mmorpg.stat.armor_penetration": "盔甲穿透",
 	"mmorpg.stat.armored": "裝甲",
+	"mmorpg.stat.attack_elemental_damage": "元素攻擊傷害",
 	"mmorpg.stat.attack_fire_damage": "攻擊附加火焰傷害",
 	"mmorpg.stat.attack_nature_damage": "攻擊附加自然傷害",
 	"mmorpg.stat.attack_thunder_damage": "攻擊附加雷電傷害",
@@ -887,6 +908,7 @@
 	"mmorpg.stat.plus_bravery_spell_lvl": "英勇技能等級",
 	"mmorpg.stat.plus_burn_effect_lvl": "火之懲技能等級",
 	"mmorpg.stat.plus_divine_skill_lvls": "神聖精通技能等級",
+	"mmorpg.stat.plus_enrage_effect_lvl": "狂暴技能等級",
 	"mmorpg.stat.plus_fire_bombs_spell_lvl": "火焰炸彈技能等級",
 	"mmorpg.stat.plus_fire_skill_lvls": "火焰精通技能等級",
 	"mmorpg.stat.plus_fireball_spell_lvl": "火球術技能等級",
@@ -1233,6 +1255,7 @@
 	"item.mmorpg.chest.plate.chest2": "§9鋼甲",
 	"item.mmorpg.chest.plate.chest3": "§d鋼甲",
 	"item.mmorpg.chest.plate.chest4": "§6鋼甲",
+	"item.mmorpg.dungeon_key": "地牢鑰匙",
 	"item.mmorpg.hammer.hammer0": "§7錘",
 	"item.mmorpg.hammer.hammer1": "§a錘",
 	"item.mmorpg.hammer.hammer2": "§9錘",
@@ -1314,6 +1337,7 @@
 	"effect.mmorpg.trickery": "欺詐",
 	"effect.mmorpg.wizardry": "巫術",
 	"effect.mmorpg.wounds": "傷口",
+	"effect.mmorpg.enrage": "狂暴",
 
 "_comment": " [CATEGORY]: POTIONS - NAMES",
 
@@ -1321,6 +1345,7 @@
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",
 
 	"mmorpg.world_type.dungeon": "地牢維度",
+	"mmorpg.world_type.unique_dungeon": "罕見的地牢維度",
 
 "_comment": " [CATEGORY]: WORLD TYPES - NAMES",
 
@@ -1498,7 +1523,6 @@
 
 	"mmorpg.stat_desc.all_attributes": "添加所有核心屬性,  例如VIT, DEX, STR, INT, WIS, STA",
 	"mmorpg.stat_desc.all_ele_dmg": "增加該元素的所有傷害, 包括法術和攻擊",
-	"mmorpg.stat_desc.all_ele_spell_dmg":  "增加所有元素的法術傷害",
 	"mmorpg.stat_desc.arcane_devotion_trait": "全身心地投入到奧術中.",
 	"mmorpg.stat_desc.armor": "降低受到的百分比傷害",
 	"mmorpg.stat_desc.armor_penetration": "忽略 x 盔甲",
@@ -1605,7 +1629,10 @@
 	"lore_4_item.mmorpg.auto_salvage_bag": "手持袋子並右鍵, 即可清空綁定的設置.",
 	"lore_0_item.mmorpg.ores": "珍貴的材料.",
 
-"_comment": " [CATEGORY]: MISC - LORE LINES"
+"_comment": " [CATEGORY]: MISC - LORE LINES",
 
+"_comment": " [CATEGORY]: BIOMES - NAMES",
+
+	"biome.mmorpg.dungeon_biome": "冒險地圖"
 
 }
